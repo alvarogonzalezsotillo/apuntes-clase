@@ -1,0 +1,172 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+
+\renewcommand{\hmwkTitle}{Usuarios y permisos}
+\renewcommand{\hmwkClass}{ASGBD}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\section{Objetivo de la práctica}
+En esta práctica utilizaremos a la base de datos \textbf{Oracle} como un verdadero servidor, conectándonos desde otros ordenadores. Para ello:
+\begin{itemize}
+\item Crearemos tablas en un \textit{tablespace} separado
+\item Crearemos un usuario para cada compañero de clase
+\item Asignaremos privilegios utilizando un rol
+\end{itemize}
+
+La última versión de este documento está accesible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos.pdf}{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos.pdf}
+
+\begin{homeworkProblem}[: Creación de un \textit{tablespace}]
+
+  Crea un tablespace
+  \begin{itemize}
+  \item De nombre \texttt{PARAOTROS}.
+  \item Con dos ficheros que se guardarán en \texttt{/datos/paraotros}.
+  \item El tamaño de cada fichero será como máximo de 100 MBytes
+  \end{itemize}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Crear usuarios para tus compañeros]
+
+  Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el profesor. La contraseña inicial será la misma que el nombre, excepto en tu usuario que debería ser una contraseña secreta:
+  \begin{multicols}{3}
+    \begin{itemize}
+    \item ALEJANDROALONSOPLAZA
+    \item DAVIDBERNALMICAELO  
+    \item FRANCISCOCASTELLANO1
+    \item SAULDE              
+    \item STEFANAURELIAN      
+    \item JORGEGARCIA478      
+    \item DIEGOGARCIA11       
+    \item CRISTINAGARCIAMAROTO
+    \item CARLAGARCIA15       
+    \item KEVINHERNANDEZGARCIA
+    \item SILVIUILEA          
+    \item VITALIYKRASNOKUTSKY 
+    \item CRUZMBA             
+    \item ELENAAYECABA        
+    \item JONATHANOLIVEIRA1   
+    \item SPARLALEAL          
+    \item JORGEPEREZ174       
+    \item RAULPEREZNUNEZ      
+    \item PABLOPORCEL         
+    \item ALJENADRORUIZ       
+    \item IGNACIOSERVERT      
+    \item MIRCEASTEFAN        
+    \item JORGEVILLARTA       
+    \item ALVAROVILLODRE      
+    \item PROFESOR
+    \end{itemize}
+  \end{multicols}
+  {\small \textbf{Nota}: Son muchos usuarios, así que es aconsejable utilizar un \textit{script} en vez de crearlos manualmente.}
+
+  Tu propio usuario tendrá como \textit{tablespace} por defecto \texttt{USERS}, y los demás \texttt{PARAOTROS}. Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su \textit{tablespace} por defecto. Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en \texttt{PARAOTROS}, y no podrán escribir nada en \texttt{USERS}.
+  
+  Cuando tengas listos los usuarios:
+  \begin{itemize}
+    \item El resto de usuarios podrán conectarse con \texttt{sqlplus USUARIO/USUARIO@HOST:1521/SID}
+    \item Pide a algunos compañeros que comprueben su usuario
+    \item Pide al profesor que compruebe su usuario
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \texttt{PROFESOR} con permisos especiales]
+  Haz que el usuario \texttt{PROFESOR} tenga permisos de lectura en las vistas de sistema
+  \begin{itemize}
+  \item \texttt{DBA\_TABLES}
+  \item \texttt{DBA\_TABLESPACES}
+  \item \texttt{DBA\_USERS}
+  \item \texttt{DBA\_SYNONYMS} 
+  \item \texttt{DBA\_TS\_QUOTAS} 
+  \item \texttt{DBA\_DATA\_FILES}
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Creación de las tablas]
+  Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con \texttt{ALTER USER}).
+
+  \begin{enumerate}
+  \item Crea un \textit{tablespace} de nombre \texttt{CARRERAS}, con un \textit{datafile} en el directorio \texttt{/datos/carreras}.
+  \item Con tu propio usuario, crea las tablas en ese \textit{tablespace}
+    \begin{itemize}
+    \item Utiliza el \enlace{https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql}{\textit{script} \texttt{carreras-coches.sql}} para la creación de las tablas
+    \item Tendrás que modificar el \textit{script} para que tenga en cuenta el nuevo \textit{tablespace}
+    \end{itemize}
+  \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Dar acceso a otros usuarios a un campo de tus tablas]
+  Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
+  \begin{itemize}
+  \item Haz que el resto de usuarios pueda realizar \texttt{SELECT} sobre tus tablas.  
+  \item Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas
+    \begin{itemize}
+    \item Por ejemplo, el usuario \texttt{profesor} debería poder ejecutar \texttt{SELECT * FROM CIRCUITOS}, puesto que habrás creado un sinónimo del tipo \seqsplit{\texttt{CREATE PUBLIC SYNONYM CIRCUITOS FOR \textit{MIUSUARIO}.CIRCUITOS}}.
+    \end{itemize}
+  \end{itemize}
+
+  Después, haz que puedan escribir en un campo de la tabla \texttt{RESULTADOS}:
+  \begin{itemize}
+  \item Crea un nuevo campo en la tabla \texttt{RESULTADOS}: \texttt{VALORACION}, de tipo \texttt{VARCHAR(20)}. Tendrá como únicos valores posibles \texttt{MALO}, \texttt{ACEPTABLE}, \texttt{BUENO} y \texttt{MUY BUENO}.
+    
+  \item Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden \texttt{GRANT}
+    \begin{itemize}
+    \item \enlace{http://stackoverflow.com/questions/14462353/grant-alter-on-only-one-column-in-table}{http://stackoverflow.com/questions/14462353/grant-alter-on-only-one-column-in-table}
+    \end{itemize}
+
+  \item Pide a algún otro compañero que compruebe que funciona
+  \item Pide al profesor que compruebe que funciona.
+
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Llena el \textit{tablespace} \texttt{CARRERAS}]
+  \begin{itemize}
+  \item Llena de datos el \textit{tablespace} \texttt{CARRERAS}, hasta que no quepan más datos en él.
+  \item Indica el método que utilizas para llenarlo de datos y qué mensaje de error aparece.
+  \item Amplía el \textit{tablespace}  con un nuevo \textit{datafile} para se puedan insertar más datos.
+  \end{itemize}
+\end{homeworkProblem}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item Describe en una memoria todos los pasos que has necesitado para realizar la práctica. Incluye también los errores y como los has solucionado.
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item El profesor debe comprobar que tu base de datos funciona en clase. Pídele que lo revise cuando lo tengas listo.
+\item Entrega tu trabajo en formato \textbf{doc}, \textbf{docx}, \textbf{odt} o \textbf{pdf}.
+\item También puede entregarse como una entrada de blog. Para ello, sube un archivo con la URL de la entrada.
+\item Sube el documento a la tarea correspondiente \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=72}{en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
+
+
+\section{Qué se valorará}
+\begin{itemize}
+\item La corrección técnica (que funcione, que haya usuarios, que tengan los permisos correctos)
+\item Que se incluyan las órdenes de \textit{shell} y SQL ejecutadas en cada punto
+\item La claridad de las explicaciones
+\end{itemize}
+
+
+\end{document}

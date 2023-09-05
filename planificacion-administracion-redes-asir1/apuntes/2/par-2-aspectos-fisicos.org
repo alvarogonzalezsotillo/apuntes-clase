@@ -1,0 +1,460 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Aspectos físicos de la transmisión
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+HTML_HEAD_EXTRA: <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+* Introducción
+
+- La capa física se encarga de la transmisión de bits por el medio o canal de comunicación.
+- El nivel de enlace genera grupo de bits (tramas). Los medios físicos transportan señales, que representan los bits.
+
+
+** Elementos
+- Elementos de una comunicación:
+  -  Emisor: codificar en señales los dígitos binarios que representan las tramas de la capa de enlace de datos.
+  -  Medio: transmitir las magnitudes físicas por el canal.
+  -  Receptor: recuperar estas señales individuales desde los medios, restaurarlas para sus representaciones de bit y enviar los bits hacia la capa de enlace de datos.  
+
+- La capa física debe contemplar:
+  -  Medios físicos y conectores asociados.
+  -  Una representación de los bits en los medios .
+  -  Codificación de los datos y de la información de control.
+  -  Sistema de circuitos del receptor y transmisor en los dispositivos de red.
+    
+* Estándares
+- Un estándar es un acuerdo entre varias partes
+- Sirve para garantizar la *interoperabilidad*
+  - Cada elemento es sustituible por partes equivalentes de otro proveedor
+- Tipos de estándares
+  - De /iure/: Acordado entre varias partes
+  - De /facto/: Por costumbre o dominancia de algún proveedor
+
+** Principales organizaciones estandarizadoras
+#+ATTR_LATEX: :align |l|p{7cm}|
+| ISO     | Organización Internacional para la Estandarización                                                      |
+| IEEE    | Instituto de Ingenieros Eléctricos y Electrónicos                                                       |
+| ANSI    | Instituto Nacional Estadounidense de Estándares                                                         |
+| ITU     | Unión Internacional de Telecomunicaciones                                                               |
+| EIA/TIA | La Asociación de Industrias Electrónicas y la Asociación de las Industrias de las Telecomunicaciones    |
+| FCC     | Autoridades de las telecomunicaciones nacionales, como la Comisión Federal de Comunicaciones  en EE.UU. |
+| IETF    | /Internet Engineering Task Force/                                                                       |
+
+#+reveal: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/estandares-y-niveles.png]]
+* Medio de transmisión
+** Tipos básicos de medios de red:
+-  Cable de cobre. Pulsos eléctricos.
+-  Fibra. Patrones de luz.
+-  Inalámbrico. Patrones de transmisión de radio.
+
+** Tipos de señal
+- Señal analógica
+  - Todos los niveles de señal son importantes
+  - En cualquier momento
+  - No hay /cuantización/
+- Señal digital
+  - Sólo unos pocos niveles son válidos
+  - En algunos momentos (/muestreo/)
+  - Los demás niveles se aproximan a los válidos
+
+
+#+reveal: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/muestreo-analogico-digital.png]]
+
+
+[[https://wikitecno.wikispaces.com/file/view/Sennal_analogica_digital.png/364985066/967x394/Sennal_analogica_digital.png][Fuente: wikitecno]]
+
+
+** Conversión de una señal analógica a digital
+- Codificador: transforma de analógico a digital 
+- Descodificador: transforma de digital a analógico
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificador-analogico-digital.png]]
+
+#+reveal: split
+
+- *Muestreador*: A mayor número de muestras por segundo (frecuencia de muestreo), 
+  - Más fiel es la onda digital resultante.
+  - Más información se genera por segundo
+- *Cuantificador*: A mayor número de bits, 
+  - mayor precisión 
+  - más información se genera por segundo
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/conversion-analogico-digital.png]]
+
+
+
+** Ejemplos analógico/digital
+
+|   |                         | *Canal analógico*                  | *Canal digital*    |
+|---+-------------------------+------------------------------------+--------------------|
+| / | >                       | <                                  |                    |
+|   | *Información analógica* | Teléfono o televisión (analógicos) | Televisión digital |
+|   | *Información digital*   | Fax, módem telefónico, ADSL        | fibra              |
+
+
+
+- La señal no es digital, la *información* que lleva sí.
+- Consideramos canal digital a uno diseñado originalmente para llevar información digital
+  - Siempre se puede cuantizar después para convertir en digital
+
+
+* Señalización
+- La capa física debe generar las señales (inalámbricas, ópticas o eléctricas) que representan el "1" y el "0" en los medios. 
+- El método de sincronización de la comunicación de bits se denomina [[https://es.wikipedia.org/wiki/Se%25C3%25B1alizaci%25C3%25B3n][método de señalización]].
+- La transmisión de la trama a través de los medios se realiza mediante una cadena o /stream/ de bits. 
+- El tiempo de bit es el tiempo que ocupa el medio la transmisión de un bit. 
+  - El tiempo de bit debe estar sincronizado entre el transmisor y el receptor (se utilizan señales de reloj para este fin).
+  - Para sincronizar los relojes e identificar inicios/finales tramas (información a nivel de enlace), se utilizan combinaciones de bits preestablecidas (patrones).
+
+** <<#banda-ancha>>Banda base/Banda ancha
+  :PROPERTIES:
+  :CUSTOM_ID: banda-ancha
+  :END:
+
+- [[https://es.wikipedia.org/wiki/Banda_base][Banda base]]
+  - Se pueden utilizar simplemente voltajes para indicar niveles
+  - No es fácil multiplexar el medio
+  - Se suele utilizar en medios de baja velocidad
+- [[https://es.wikipedia.org/wiki/Banda_ancha][Banda ancha]]
+  - El medio se comparte, utilizando diferentes frecuencias (ver [[#multiplexacion-frecuencia][multiplexación por frecuencia]])
+  - Cada frecuencia es un canal independiente
+
+** Modulación de señal
+- Las señales no se suelen emitir sin más (excepto a veces en banda base)
+- Sino que se transmiten como variaciones de una [[https://www.geogebra.org/m/KfUX66de][onda sinusoidal]]
+  $$y(t) = A\cdot sen(\omega \cdot t + \varphi)$$
+  - $A$: Amplitud 
+  - $\omega$: Frecuencia
+  - $\varphi$: Fase 
+- Los bits se representan en el medio al cambiar una o más de las características de la señal
+  - Amplitud
+  - Frecuencia
+  - Fase
+
+#+reveal: split
+#+attr_latex: :width 0.6\textwidth
+[[file:media/modulacion-animacion.gif]]
+
+#+reveal: split
+
+| Amplitud                           | Frecuencia                           | Fase                           |
+| [[file:media/modulacion-amplitud.png]] | [[file:media/modulacion-frecuencia.png]] | [[file:media/modulacion-fase.png]] |
+
+
+** Suma de señales
+- Se pueden [[https://www.geogebra.org/m/BOMfKCIK][sumar varias señales]]
+  - Es la forma de multiplexar varias señales por un medio
+- En el lado receptor se pueden separar las señales
+  - Si cada señal tiene un rango de frecuencias distinto
+  - Utilizando la [[https://es.wikipedia.org/wiki/Transformada_de_Fourier][Transformada de Fourier]]
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/suma-de-senales.png]]
+
+Señalización – Señales analógicas complejas
+
+** Baudios / /bit rate/
+- *Baudios*: Número de señales *digitales* enviadas por segundo
+  - Cada señal es de un conjunto limitado de posibilidades
+- *Bitrate*: Número de bits enviados por segundo
+
+$$ bitrate = baudios*bitsporbaudio $$
+
+** Ejercicios
+- Determina los baudios y bits por segundo de:
+  - El foco morse de un barco de la marina, que se puede encender o apagar cada segundo
+  - Un semáforo, que puede cambiar cada 0.5 segundos a uno de sus tres colores
+  - Un semáforo, que puede cambiar cada 0.5 segundos a cualquier combinación de sus tres colores
+  - Una sinusoidal, que 10 veces por segundo puede
+    - cambiar de frecuencia tres a frecuencias posibles
+    - y a la vez, cambiar de amplitud a dos amplitudes posibles
+
+* Codificación de canal
+- Cada señal enviada no tiene por que ser *directamente* el dato que se quiere enviar
+- El conjunto de señales recibidas pueden ser reinterpretadas
+  - Para distinguir el inicio y el fin de la transmisión de los datos reales
+  - Para mejorar la detección de errores
+  - Para sincronizar los relojes de muestreo entre emisor y receptor
+
+- Para el resto de la explicación se supondrán señales en banda base
+  -  Aunque sería aplicable a banda ancha
+
+** Codificación unipolar
+| 0 | 0V |
+| 1 | xV | 
+
+- Ventajas
+  - Simple de entender e implementar
+- Desventajas
+  - La amplitud media no es 0, por lo que hay un componente de corriente continua apreciable
+
+** Código [[https://es.wikipedia.org/wiki/C%25C3%25B3digos_NRZ][NRZ-L]] (bipolar)
+| 0 | -xV |
+| 1 | +xV |
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-nrzl.png]]
+- Ventajas
+  - Ya no hay corriente continua
+- Desventajas
+  - Si mando muchos 0s o 1s seguidos, puedo perder la sincronización del reloj
+
+Nota: Si no usa -xV para 0, queda unipolar
+
+** Código [[https://es.wikipedia.org/wiki/C%C3%B3digos_NRZ][NRZI]] (bipolar)
+| 0 | La señal no cambia       |
+| 1 | La señal cambia de signo |
+|---+--------------------------|
+|   | Por lo demás, como NRZL  |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-nrzi.png]]
+
+- Ventajas
+  - Si mando muchos 1s no pierdo sincronía
+- Desventajas
+  - Pero si mando muchos 0s sí pierdo sincronía
+
+** <<#rz>>Código [[https://es.wikipedia.org/wiki/C%25C3%25B3digos_RZ][RZ]]   
+  :PROPERTIES:
+  :CUSTOM_ID: rz
+  :END:
+
+| 0 | -xV seguido de 0V |
+| 1 | xV seguido de 0V  |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-rz.png]]
+
+- Ventajas
+  - No pierdo sincronía
+- Desventajas
+  - Necesito 3 niveles posibles en vez de dos (desperdicio bits, /hardware/ más complejo)
+  - La mitad de los baudios se gasta en la sincronía
+
+** <<#manchester>>Código [[https://es.wikipedia.org/wiki/Codificaci%25C3%25B3n_Manchester][Manchester]]   
+  :PROPERTIES:
+  :CUSTOM_ID: manchester
+  :END:
+
+| 0 | -xV seguido de xV |
+| 1 | xV seguido de -xV |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-manchester.png]]
+- Ventajas
+  - Sólo dos niveles de señal
+- Desventajas
+  - Transiciones extra a principio de señal (con muchos 0s o 1s seguidos)
+
+** <<#manchester-diferencial>>Código Manchester diferencial
+  :PROPERTIES:
+  :CUSTOM_ID: manchester-diferencial
+  :END:
+
+| 0 | Se cambia el voltaje al principio     |
+| 1 | No se cambia el voltaje al principio  |
+|---+---------------------------------------|
+|   | Pero a mitad de bit siempre se cambia |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-manchesterdiferencial.png]]
+- Ventajas
+  - Me ahorro algunas transiciones extra al principio
+- Desventajas
+  - Pero siguen quedando transiciones extra al principio
+
+** Código [[https://es.wikipedia.org/wiki/Alternate_Mark_Inversion][AMI]]
+| 0 | 0V                            |
+| 1 | xV o -xV, alternando cada vez |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-ami.png]]
+- Desventaja
+  - Pérdida de sincronía con muchos 0s
+
+
+** B8ZS   
+|        0 | 0V                             |
+|        1 | xV o -xV, alternando cada vez  |
+|----------+--------------------------------|
+| 00000000 | 000VB0VB                       |
+|          | V: Violación, un 1 mal enviado |
+|          | B: un 1 bien enviado           |
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-b8zs.png]]
+- Ventajas
+  - Sincronización com muchos 0s
+
+** 4B/5B
+- Se agrupan paquetes de 5 bits
+- Correspondencia entre cada paquete de 5 bits con
+  - Una secuencia de 4 bits
+  - Un código de control
+  - Algo inválido (ha habido un error)
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/codificacion-4b5b.png]]
+
+
+
+** Ejercicios
+- Codifica los dígitos =1011100010= en:
+  - NRZ-L
+  - NRZI
+  - AMI
+  - Bipolar con sustitución de 8 ceros (B8ZS)
+  - Manchester
+  - Manchester diferencial.
+- Codifica los dígitos =100100000000001011= en las mismas codificaciones
+- Aplica 4B/5B a los bits anteriores. Rellena con bits a =0= al final si es necesario
+
+
+* Velocidad de transferencia
+- Cada medios físicos admiten la transferencia de información a cierta velocidad.
+- La transferencia de datos puede medirse de tres formas:
+  - *Ancho de banda*: Capacidad que posee un medio de transportar datos sin procesar.  El ancho de banda digital (kbps o Mbps) mide la cantidad de información que puede fluir desde un lugar hacia otro en un período de tiempo determinado.
+  - *Rendimiento*: Medida de transferencia de *bits* a través de los medios durante un período de tiempo determinado.  Generalmente /no coincide/ con el ancho de banda (colisiones en el medio si es de acceso compartido, errores de transmisión o sincronía,...)
+  - *Transferencia útil*. Mide la transferencia efectiva de los datos del usuario entre las entidades de la capa de aplicación descartando la /sobrecarga de cabeceras/ del resto de capas.
+
+* Multiplexación
+- Uso compartido del medio por los hosts de la red
+  - Por frecuencia
+  - Por tiempo
+  - Por frecuencia y tiempo
+- El efecto es conseguir varios /canales/ a través de solo un medio de transmisión
+
+** Multiplexación por tiempo
+- Se divide el tiempo en ranuras (/slots/)
+- Las ranuras se reparten por orden entre los canales
+- Si el medio tiene una capacidad $c$, cada uno de los $n$ canales tiene una capacidad de $c/n$
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/multiplexacion-tiempo.png]]
+
+** <<#multiplexacion-frecuencia>>Multiplexación por frecuencia
+  :PROPERTIES:
+  :CUSTOM_ID: multiplexacion-frecuencia
+  :END:
+
+- Se divide el rango de frecuencias que el medio soporta
+- Se reparte dicho rango entre varios canales ([[#banda-ancha][banda ancha]])
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/multiplexacion-frecuencia.jpg]]
+
+Fuente: [[https://comunication2011jeff.wordpress.com/2011/01/27/multiplexacion/][comunication2011jeff]]
+
+
+
+** Ejemplos de multiplexación en frecuencias
+- [[https://es.wikipedia.org/wiki/Anexo:CNAF_de_España_(2007)][Cuadro Nacional de Atribución de Frecuencias]]
+- [[https://upload.wikimedia.org/wikipedia/commons/d/df/United_States_Frequency_Allocations_Chart_2011_-_The_Radio_Spectrum.pdf][Equivalente estadounidense]]
+
+  #+attr_latex: :width 0.6\textwidth
+  [[file:media/frecuencias-estados-unidos.pdf]]
+
+** Multiplexación en tiempo y frecuencia
+- Se utilizan la multiplexación en tiempo
+- En cada canal resultante, se usa la multiplexación en frecuencia
+#+attr_latex: :width 0.6\textwidth
+[[file:media/multiplexacion-tiempo-frecuencia.png]]
+
+- Nota: se podría seguir multiplexando cada canal por tiempo y por frecuencia
+
+
+
+
+* Sincronización
+- Proceso mediante en cual el equipo receptor, conoce los momentos exactos en que debe medir la magnitud de la señal para identificar la información recibida.  
+- Dependiendo del tipo de sincronización, la transmisión puede ser:
+  - Asíncrona
+  - Síncrona
+
+** Transmisión asíncrona
+
+- Las señales que permiten marcar los tiempos están incluidas en el mensaje transmitido.
+- Los datos se transmiten enviándolos carácter a carácter, donde cada carácter tiene una longitud de 5 a 8 bits.
+- El receptor tiene la oportunidad de resincronizarse al principio de cada carácter. 
+- La transmisión asíncrona es sencilla y no costosa, si bien requiere de 2 o 3 bits suplementarios por cada carácter.
+- Está en *desuso*
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/transmision-asincrona.png]]
+
+
+** Transmisión síncrona
+
+- Los bits se envían a una cadencia constante sin discriminar los caracteres que componen.
+- El emisor y el receptor se encargan de la sincronización de modo que sean capaces de reconstruir la información original.
+- Deben utilizar relojes a la misma frecuencia.  El comienzo y el final de cada bloque de datos se identifican con patrones de bits conocidos en ambos lados de la comunicación.  El modo de transmisión síncrona permite velocidades de transmisión mayores que la asíncrona ya que es menos sensible al ruido y obtiene un mejor rendimiento de la línea de datos.
+- Es la utilizada en [[#manchester][Manchester]], [[#manchester-diferencial][Manchester diferencial]], [[#rz][RZ]]
+
+
+
+* Serie/Paralelo
+- Modo de transmisión serie
+  - Una única línea transmite los datos
+  - Ejemplos: ADSL, USB 1.0
+- Modo de transmisión paralelo
+  - La información se envía simultáneamente por varias líneas
+  - Más rápido, pero con mayores problemas de sincronía a distancias largas
+  - Ejemplos: buses internos del ordenador
+
+
+* Problemas en la transmisión
+
+- En una transmisión, la señal recibida puede ser distinta de la emitida por culpa de perturbaciones:
+  - Atenuación
+  - Distorsión
+  - Interferencia
+  - Ruido
+  - Diafonía
+
+** Atenuación
+- Debilitamiento de la señal debido a la resistencia eléctrica del canal
+- La *amplitud* de la señal disminuye
+- Se puede mejorar con
+  - Mejores cables: cobre, plata...
+  - Amplificadores
+  - Retransmisores/Repetidor
+#+attr_latex: :width 0.6\textwidth
+[[file:media/atenuacion.png]]
+
+
+** Distorsión
+- Deformación de la señal 
+  - Distintas frecuencias se transmiten mejor por el medio
+  - Inducción y resistencia del canal
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/distorsion.png]]
+
+** Interferencia
+- Suma a la señal que se transmite de otra señal de origen conocido.
+  - Otras señales transmitidas en canales cercanos
+  - Aparatos eléctricos: fluorescentes, motores, alternadores...
+  - Causas naturales: tormentas solares, rayos...
+  - Alimentación eléctrica 
+
+*** Diafonía (/Crosstalk/ o XT)
+- La señal de un canal, considerado perturbador, aparece en el otro, considerado perturbado. 
+- Diafonía inteligible es aquella en que en el circuito perturbado se "entiende" la señal que se transmite por el circuito perturbador
+  - Ejemplo: escuchar a otra conversación por teléfono.
+
+** Ruido
+- Es la suma de múltiples interferencias
+  - Puede intentar aislarse             
+- Ruido térmico: agitación de los electrones
+  - *No se puede eliminar* completamente
+                                        
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+

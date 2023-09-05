@@ -1,0 +1,187 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{VPN con SSH a casa}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em} 
+
+\newcommand{\reddecasa}{192.168.1}
+
+\section{Objetivo de la práctica}
+Los objetivos de la práctica son:
+\begin{itemize}
+\item Comprender los conceptos necesarios para implantar una VLAN
+\item Configurar un router con NAT para exponer un servicio
+\item Configurar una VPN con SSH
+\item Ayudarse de un acceso remoto auxiliar
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/8/par-8-vpn-ssh.pdf}{este enlace}.
+
+
+\section{Diagrama general}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./media/practica-vpn-general.pdf}
+  \end{center}
+  \caption{Diagrama general de la práctica}\label{fig:diagrama-general}
+\end{figure}
+
+
+\begin{itemize}
+\item Se creará una VPN entre un ordenador del aula y un ordenador en el domicilio del estudiante.
+\item Se supone que el ordenador real del domicilio es Windows
+\item Las máquinas virtuales serán Linux
+\item El ordenador en el domicilio será una máquina virtual (para mayor seguridad)
+\item La práctica se puede realizar fuera de clase, utilizando un móvil como punto de acceso desde un ordenador  
+\end{itemize}
+
+\section{(Opcional) Team Viewer en el ordenador real de casa}
+Durante el desarrollo de la práctica, puede ser necesario reconfigurar los ordenadores de casa o el propio router. Para ello hay varias opciones
+\begin{enumerate}
+\item El alumno configura su casa y luego acude a clase a configurar el resto. Si tiene que hacer algún cambio en casa vuelve allí.
+\item La práctica se hace por parejas. Un alumno está en su casa y otro en el instituto.
+  
+\item Se configura solo el \textit{Remote Desktop} al ordenador real, y se abre el puerto \texttt{3389} para poder acceder desde Internet.
+\item \textbf{(Preferida)} Se instala Team Viewer en casa, que no necesita abrir ningún puerto, y se controla el PC real de casa en caso necesario. 
+\end{enumerate}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./media/practica-vpn-teamviewer.pdf}
+  \end{center}
+  \caption{Diagrama general de la práctica}\label{fig:diagrama-general}
+\end{figure}
+
+\begin{Aviso}
+  \begin{itemize}
+  \item Si se opta por utilizar \texttt{Remote Desktop}, se debe utilizar una contraseña suficientemente segura.
+  \item Se recomienda que el puerto externo de \texttt{Remote Desktop} no sea \texttt{3389}, para evitar algunos ataques.
+  \end{itemize}
+\end{Aviso}
+
+\section{IP externa del router de casa}
+Hay varias opciones para conocer la IP externa del router de casa:
+\begin{enumerate}
+\item Desde un navegador de casa, visitar la página \url{http://www.cualesmiip.com/}. Dará la IP de ese momento, que puede cambiar en pocas horas.
+\item \textbf{(Preferida)} Crear una cuenta de un \enlace{https://es.wikipedia.org/wiki/DNS\_din\%C3\%A1mico}{DNS dinámico}, como \url{http://www.noip.com}. Después, ejecutar un programa en la LAN que comunique automáticamente al DNS vuestra dirección IP
+  \begin{itemize}
+  \item Algunos routers traen ya este programa instalado (\enlace{https://www.redeszone.net/redes/host-en-no-ip-manual-para-crear-un-dynamic-dns-con-no-ip/}{enlace a ejemplo})
+  \item También se puede instalar un \enlace{https://www.noip.com/download?page=win}{programa para actualizar la IP} en la máquina real Windows 
+  \end{itemize}
+\end{enumerate}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./media/practica-vpn-dyndns.pdf}
+  \end{center}
+  \caption{Funcionamiento DNS dinámico}\label{fig:dns-dinamico}
+\end{figure}
+
+
+\section{Servidor SSH}
+\begin{itemize}
+\item Se recomienda que sea una máquina virtual Linux
+\item Debe configurarse con IP fija dentro de la LAN de casa
+\item Se instalará openssh-server, con la configuración por defecto
+\item En el router, debe abrirse un puerto para el servidor SSH
+  \begin{itemize}
+  \item Cada router de cada compañía telefónica es distinto
+  \item Los clientes de telefónica utilizan el \enlace{https://comunidad.movistar.es/t5/Bienvenida-y-Noticias/C\%C3\%B3mo-abrir-los-puertos-de-tu-Router/td-p/1537794}{Portal Alejandra}.
+  \end{itemize}
+\item Para comprobar que se ha abierto correctamente, puede utilizarse una \enlace{https://play.google.com/store/apps/details?id=org.connectbot\&hl=en\_US}{aplicación de cliente SSH} desde el móvil, accediendo por 3G (sin wifi)
+\end{itemize}
+
+\begin{Aviso}
+  \begin{itemize}
+  \item Las contraseñas del servidor SSH deben ser \textbf{seguras}. Estará expuesto a Internet.
+  \item Se recomienda que el puerto abierto para SSH no sea el \texttt{22}, para evitar algunos ataques.
+  \item Se debe contar con el\textbf{permiso de los padres} para modificar el router de casa.
+  \end{itemize}
+\end{Aviso}
+
+
+\section{VPN}
+El servidor SSH se debe configurar con las siguientes opciones en su fichero \texttt{/etc/ssh/sshd\_config}:
+
+\begin{listadoshell}{Opciones para el servidor SSH}{lst:sshdconfig}
+  PermitRootLogin yes
+  PermitTunnel yes
+\end{listadoshell}
+
+\begin{enumerate}
+\item Se creará una conexión VPN entre el ordenador del aula y el servidor SSH
+\item Se asignarán las siguientes direcciones IP en las interfaces TUN
+  \begin{itemize}
+  \item Aula: \texttt{10.2.37.1/24}
+  \item Servidor SSH: \texttt{10.2.37.2/24}
+  \end{itemize}
+\end{enumerate}
+
+Tras esto, debe haber comunicación directa (1 salto IP) entre el servidor SSH y el PC del centro.
+
+
+\section{Acceso a la LAN desde el centro}
+\begin{enumerate}
+\item El ordenador de clase añadirá una ruta para acceder a la red \texttt{\reddecasa.0/16} a través de \texttt{10.2.37.1}
+
+  \begin{listadoshell}{Enrutamiento desde el aula a casa}{lst:enrutamiento}
+    route add -net 192.168.1.0/16 gw 10.2.37.2
+  \end{listadoshell}
+  
+\item El servidor SSH realizará NAT, de forma que el PC de clase sea enmascarado por el servidor SSH, y el resto de PCs de la LAN de casa puedan responderle
+  
+  \begin{listadoshell}{NAT para acceder a la LAN}{lst:nat}
+    sudo iptables -t nat -A POSTROUTING -s 10.2.37.0/24 -o eth0 -j MASQUERADE
+  \end{listadoshell}
+  
+
+\end{enumerate}
+
+Como resultado, el ordenador de clase debe acceder a todos los ordenadores de la LAN de casa. Puedes mostrar cómo se accede al router de tu casa, una impresora...
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./media/practica-vpn-nat.pdf}
+  \end{center}
+  \caption{Enrutamiento y NAT para acceso a red de casa}\label{fig:enrutamiento-y-nat}
+\end{figure}
+
+\section{Normas de entrega}
+\begin{itemize}
+  
+\item La entrega se realizará en el Áula Virtual
+\item Solo se puede hacer la práctica en pareja si un alumno configura el pc del aula y otro la red de su casa.
+\end{itemize}
+
+\section{Qué se valorará}
+\begin{itemize}
+\item Que se demuestre con pantallazos que todo funciona
+\item Que se incluyan los comandos utilizados y los cambios en los ficheros de configuración
+\item La claridad de la explicación
+\item Diagramas adaptados a cada caso (nombres e IPs concretos)
+\end{itemize}
+
+
+
+\end{document}

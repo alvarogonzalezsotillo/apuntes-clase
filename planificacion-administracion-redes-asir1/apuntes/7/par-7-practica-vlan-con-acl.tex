@@ -1,0 +1,109 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{Práctica VLAN y ACL en Cisco}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Los objetivos de la práctica son:
+\begin{itemize}
+\item Diseñar una red en la que se tenga en cuenta la velocidad
+\item Configurar VLAN 802.1Q en routers y switches
+\item Utilizar restricciones de acceso (ACL)
+\item Conocer comandos IOS de Cisco
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/7/par-7-practica-vlan-con-acl.pdf}{este enlace}.
+
+
+\section{Enunciado}
+Se parte del supuesto de la \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/7/par-7-practica-vlan-cisco.pdf}{práctica anterior}
+\begin{itemize}
+\item En una empresa hay dos departamentos: \textbf{comerciales} y \textbf{soporte} al cliente.
+\item Todos los empleados acceden a Internet a través del mismo router. Representamos Internet por un servidor con la ip \texttt{8.8.8.8}).
+\item El router hace NAT para salir a Internet.
+\item Hay un switch en el sistema troncal. Hay un switch por cada sistema horizontal (de planta).  
+\item Los comerciales están en la planta 3, y los de soporte en la planta 2.
+\item A pesar de la división general por plantas, hay un comercial en la planta 2, y un técnico de soporte en la 3.
+\item Hay dos servidores conectados al sistema troncal directamente. Uno es del departamento comercial, y otro de soporte.
+\item Se desea reducir los \enlace{https://es.wikipedia.org/wiki/Dominio_de_difusi\%C3\%B3n}{dominios de difusión} de la red. Para ello, se utilizará una VLAN para comerciales y otra para soporte, con diferentes subredes IP.
+\item A pesar de ello, se desea que todos los equipos de la red puedan comunicarse entre sí a nivel IP.
+\end{itemize}
+
+Ahora, se quieren limitar algunos accesos. Se tiene que conseguir que:
+\begin{itemize}
+\item Los servidores no pueden enviar/recibir paquetes a/desde Internet, de ningún tipo.
+\item Los demás ordenadores pueden acceder a Internet, pero solo se permiten conexiones TCP salientes. No se permite intercambio UDP con Internet (se probará intentando usar un servidor de DNS en Internet).
+\item Los ordenadores de comercio pueden intercambiar cualquier paquete con el servidor de comercio. No pueden acceder al servidor de soporte.
+\item Los ordenadores de soporte pueden intercambiar cualquier paquete con el servidor de comercio y el servidor de soporte.
+\item Los ordenadores de soporte y comercio no pueden intercambiar paquetes.
+\item Los servidores pueden intercambiar entre sí cualquier paquete.
+\end{itemize}
+
+
+\section{Documentación de la red}
+Rellena una tabla como la siguiente con la configuración de tu red
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Nombre de equipo & Interfaz & VLAN & IP/Máscara \\
+    \hline
+                     & & & \\
+                     & & & \\
+                     & & & \\
+                     & & & \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Es posible que no todas las columnas deban usarse para todos los adaptadores de red:
+\begin{itemize}
+\item Los puertos de los switchs no tienen dirección IP
+\item Los puertos de los servidores y PCs no tienen VLAN
+\end{itemize}
+
+Además, entrega un listado de las ACL introducidas en el router, indicando la interfaz donde se han instalado.
+
+\section{Normas de entrega}
+\begin{itemize}
+  
+\item La entrega se realizará en el Áula Virtual
+\item Se entregará un fichero PKT que pueda abrirse con la versión 8.0.2 de Packet Tracer.
+\item Los equipos identificarán en su etiqueta su IP, y su pertenencia a algún departamento o función.
+\item La tabla y la lista de ACL pueden entregarse como imagen de fondo del PKT o como fichero aparte (todo ello en un ZIP).
+\end{itemize}
+
+\section{Qué se valorará}
+\begin{itemize}
+\item Que se respeten las normas de la práctica anterior: 2 puntos.
+\item Cada una de las 6 restricciones de acceso: 1.5 puntos.
+\item \textbf{No se valorará} el ejercicio si las direcciones IP no son de la subred \texttt{10.N.0.0/16}.
+\end{itemize}
+
+Para comprobar las restricciones de acceso, se deben habilitar los servidores web de \texttt{8.8.8.8}, el servidor de comercio y el servidor de informática, y probar el acceso a ellos desde diferentes ordenadores.
+
+
+
+\end{document}

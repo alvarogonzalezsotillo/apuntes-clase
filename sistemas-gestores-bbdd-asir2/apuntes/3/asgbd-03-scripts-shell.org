@@ -1,0 +1,981 @@
+#+include: "../../../common/header.org"
+#+Title: Scripts de shell para Oracle
+#+EXCLUDE_TAGS: noexport
+
+
+* Introducción
+- Muchas tareas del mantenimiento de una base de datos *Oracle* se llevan a cabo desde la línea de comandos
+- Por tanto, pueden automatizarse
+  - Arranque y parada
+  - Extracción de datos
+  - Copia de seguridad de datos
+  - Restauración de datos
+- Para ello, se utilizan las facilidades de ejecución del sistema operativo aprendidas en otros módulos
+
+
+* Scripts de /shell/
+
+** /shebang/
+- Los scripts empiezan con una línea indicando el intérprete que los ejecutará, con un comentario ~#!~
+#+begin_src sh
+#!/bin/sh
+#+end_src
+
+#+begin_src sh
+#!/usr/bin/php
+#+end_src
+
+#+begin_src sh
+#!/usr/bin/python
+#+end_src
+
+** Variables
+
+#+begin_src sh
+# Variable local a esta shell
+variable=valor
+
+# Variable exportada a los hijos de esta shell
+export variable_exportada=valor
+
+# Variable definida solo para un comando
+variable_para_un_comando=valor comando
+
+#+end_src
+
+** Entrada/salida
+- Los programas comienzan su ejecución con una salida y una entrada
+- Son flujos de bytes
+- Inicialmente:
+  - La entrada es el teclado
+  - La salida es la consola
+
+*** Redirigir entrada/salida a fichero
+#+begin_src sh
+# La entrada sale de un fichero en vez del teclado
+sort < fichero
+
+# La entrada sale de un fichero, y la salida va a otro fichero
+sort < fichero > fichero_ordenado
+
+# La entrada sale de un fichero, y la salida se agrega al final de un fichero
+sort < otro_fichero >> fichero_ordenado
+
+# La salida del primer comando es la entrada del segudo
+sort < fichero | less
+
+#+end_src
+
+*** /HEREDOCS/
+#+begin_src sh
+
+# La entrada se especifica en el propio script
+sort <<FINDEFICHERO
+Maria
+Pepe
+Juan
+Susana
+Manolo
+FINDEFICHERO
+
+#+end_src
+
+*** Salida como parámetro
+- Se puede capturar la salida de un comando en una cadena
+- Esa cadena se utiliza luego como otra cadena cualquiera en el script
+
+#+begin_src sh
+
+# Defino una variable con los ficheros del directorio
+variable=$(ls)
+
+#+end_src
+
+
+
+
+
+** Parámetros del /script/
+- =$0=: El nombre del /script/
+- =$1=: Primer parámetro
+- =$2=: Segundo parámetro
+- =$*=: Todos los parámetros a partir del primero
+- =$#=: Número de parámetros del /script/
+
+** Funciones
+- Son conjuntos agrupados de órdenes con un nombre
+- Tienen sus propios argumentos =$*=, =$1=, =$2=...
+
+#+begin_src sh
+
+importante(){
+  echo --------------------------
+  echo Aviso: $*
+  echo --------------------------
+}
+
+importante "Asi se define una funcion en bash"
+
+#+end_src
+
+*** =return= en funciones
+- Las funciones también tienen código de retorno
+- Pueden simplificar =if= o bucles =while=
+
+#+BEGIN_SRC sh
+condicion(){
+  # AQUÍ SE PODRÍA DECIDIR EL RETORNO CON OTROS COMANDOS
+  # O CON IF's ENCADENADOS, PERO COMO EJEMPLO DEVOLVEMOS TRUE
+  return 0
+}
+
+while condicion
+do
+  echo Esto es un bucle infinito
+done
+#+END_SRC
+
+** Ejercicio
+- Crea un /script/ que reciba hasta 9 parámetros
+- Su salida serán los parámetros, uno por línea, en orden alfabético inverso
+- La salida no tendrá líneas en blanco
+- Mejoras:
+  - Más de 9 parámetros: =shift=, =$*=
+  - Parámetros con espacios: =$@=
+
+#+begin_comment
+parametros_en_orden(){
+    sort -r <<EOF | grep -v "^$"
+$1
+$2
+$3
+$4
+$5
+$6
+$7
+$8
+$9
+EOF
+}
+parametros_en_orden "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+#+end_comment
+
+** Código de error (/exit code/)
+- Al terminar, un programa devuelve un valor numérico
+- Por convenio
+  - =0=: Todo ha funcionado correctamente
+  - Distinto de =0=: Ha sucedido algún tipo de error
+- Se puede consultar con =$?= *inmediatamente* después de ejecutar el comando
+
+#+begin_src sh
+grep cadena *
+exit_code_del_grep=$?
+echo grep ha devuelto: $exit_code_del_grep
+#+end_src
+
+** Condicionales
+- =if= utiliza los códigos de error de los programas
+  - =0= se considera =true=
+  - Cualquier otro valor se considera =false=
+
+#+begin_src sh
+if grep cadena *
+then
+  echo grep ha encontrado algo sin errores
+else
+  echo grep no lo ha encontrado, o ha habido errores
+fi
+#+end_src
+
+
+*** Comando =[=
+- =[= es un comando externo que ayuda a hacer condiciones con =if=
+  - Comparación de cadenas
+  - Comparación de números
+  - Existencia de ficheros
+
+#+begin_src sh
+TEST(1)                      User Commands                     TEST(1)
+
+NAME
+       test - check file types and compare values
+
+SYNOPSIS
+       test EXPRESSION
+       test
+
+       [ EXPRESSION ]
+       [ ]
+       [ OPTION
+
+DESCRIPTION
+       Exit with the status determined by EXPRESSION.
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+
+       An omitted EXPRESSION defaults to false.  Otherwise, EXPRESSION
+       is true or false and sets exit status.  It is one of:
+
+       ( EXPRESSION )
+              EXPRESSION is true
+
+       ! EXPRESSION
+              EXPRESSION is false
+
+       EXPRESSION1 -a EXPRESSION2
+              both EXPRESSION1 and EXPRESSION2 are true
+
+       EXPRESSION1 -o EXPRESSION2
+              either EXPRESSION1 or EXPRESSION2 is true
+
+       -n STRING
+              the length of STRING is nonzero
+
+       STRING equivalent to -n STRING
+
+       -z STRING
+              the length of STRING is zero
+
+       STRING1 = STRING2
+              the strings are equal
+
+       STRING1 != STRING2
+              the strings are not equal
+
+       INTEGER1 -eq INTEGER2
+              INTEGER1 is equal to INTEGER2
+
+       INTEGER1 -ge INTEGER2
+              INTEGER1 is greater than or equal to INTEGER2
+
+       INTEGER1 -gt INTEGER2
+              INTEGER1 is greater than INTEGER2
+
+       INTEGER1 -le INTEGER2
+              INTEGER1 is less than or equal to INTEGER2
+
+       INTEGER1 -lt INTEGER2
+              INTEGER1 is less than INTEGER2
+
+       INTEGER1 -ne INTEGER2
+              INTEGER1 is not equal to INTEGER2
+
+       FILE1 -ef FILE2
+              FILE1 and FILE2 have the same device and inode numbers
+
+       FILE1 -nt FILE2
+              FILE1 is newer (modification date) than FILE2
+
+       FILE1 -ot FILE2
+              FILE1 is older than FILE2
+
+       -b FILE
+              FILE exists and is block special
+
+       -c FILE
+              FILE exists and is character special
+
+       -d FILE
+              FILE exists and is a directory
+
+       -e FILE
+              FILE exists
+
+       -f FILE
+              FILE exists and is a regular file
+
+       -g FILE
+              FILE exists and is set-group-ID
+
+       -G FILE
+              FILE exists and is owned by the effective group ID
+
+       -h FILE
+              FILE exists and is a symbolic link (same as -L)
+
+       -k FILE
+              FILE exists and has its sticky bit set
+
+       -L FILE
+              FILE exists and is a symbolic link (same as -h)
+
+       -O FILE
+              FILE exists and is owned by the effective user ID
+
+       -p FILE
+              FILE exists and is a named pipe
+
+       -r FILE
+              FILE exists and read permission is granted
+
+       -s FILE
+              FILE exists and has a size greater than zero
+
+       -S FILE
+              FILE exists and is a socket
+
+       -t FD  file descriptor FD is opened on a terminal
+
+       -u FILE
+              FILE exists and its set-user-ID bit is set
+
+       -w FILE
+              FILE exists and write permission is granted
+
+       -x FILE
+              FILE  exists  and  execute  (or  search)  permission  is
+              granted
+#+end_src
+
+** Ejercicio
+   - Haz un /script/ que reciba un parámetro
+   - Si no recibe ningún parámetro, indica que lo necesita y acaba
+   - Si el parámetro es un fichero, informará de su longitud en bytes
+   - Si el parámetro es un directorio, informará del número de ficheros/directorios que contiene
+   - Si no es ni un fichero ni un directorio, informará de ello
+
+
+#+begin_comment
+fichero="$1"
+
+if test -z "$fichero"
+then
+    echo "Se necesita un parámetro"
+    exit
+fi
+
+if test -f "$fichero"
+then
+    echo "$fichero es un fichero"
+    size=$(wc -c < "$fichero")
+    echo "Su tamaño es $size"
+elif test -d "$fichero"
+then
+    echo "$fichero es un directorio"
+    archivos=$(ls "$fichero" | wc -l)
+    echo "Contiene $archivos archivos y directorios"
+else
+    echo "$fichero no es ni un fichero ni un directorio"
+fi
+
+#+end_comment
+** Bucles
+- Con =for= se pueden hacer bucles sobre una lista de parámetros
+- Para bucles numéricos se puede usar el comando =seq=
+#+begin_src sh
+for nombre in Maria Juan Pepe Susana Manolo
+do
+   echo Realizando una vuelta de bucle sobre $nombre
+done
+
+# CUIDADO CON LOS NOMBRES DE FICHERO CON ESPACIOS
+for fichero in $(ls)
+do
+   echo El siguiente fichero es $fichero
+done
+
+#+end_src
+
+*** Bucles y espacios
+- Las cadenas se separan por la variable =IFS=, que suele ser ~\t \n~ (tabulador, nueva línea, espacio)
+- Si no se quieren separar por espacios, hay que quitarlos de =IFS=
+
+#+begin_src bash
+#!/bin/bash
+ELEMENTOS="
+elemento1
+elemento 2
+elemento 3
+elemento4
+"
+
+echo "valor actual de IFS (en hexadecimal):" $(printf "%s" "$IFS" | xxd -p)
+for ELE in $ELEMENTOS
+do
+    echo BUCLE: $ELE
+done 
+
+IFS=$'\n'
+echo "valor actual de IFS (en hexadecimal):" $(printf "%s" "$IFS" | xxd -p)
+for ELE in $ELEMENTOS
+do
+    echo BUCLE: $ELE
+done 
+#+end_src
+
+*** Bucles sobre Ficheros
+- Los nombres de fichero pueden contener caracteres de todo tipo (emojis, \n, espacios...)
+  #+begin_src bash :results raw
+  touch "antes"$'\n'"después💩"
+  echo LS NORMAL
+  ls
+  echo LS LITERAL
+  ls --literal --show-control-chars
+  echo LS SIN CONTROLCHARS
+  ls --literal --hide-control-chars
+  #+end_src
+- La única forma segura es separar los ficheros por =$'\0'=, que no puede aparecer en la mayoría de sistemas de ficheros
+  #+begin_src bash
+  find . -maxdepth 1 -print0 | while read -d $'\0' FILE
+  do
+      echo FICHERO: $FILE
+  done    
+  #+end_src
+
+
+** Operaciones aritméticas
+- Se utiliza =$((expresión))=
+#+begin_src sh
+# INCREMENTAR LA VARIABLE contador
+contador=$(($contador + 1))
+#+end_src
+** Comandos útiles
+- Enviar un email
+  #+begin_src sh
+  echo Cuerpo del mensaje | mail -s "Asunto del mensaje" -a ficheroadjunto alvarogonzalezprofesor@gmail.com
+  #+end_src
+- Operaciones matemáticas, si no se dispone de /bash/
+  #+begin_src sh
+  echo 2+2 | bc
+  #+end_src
+- /Text User Interface/
+  - =whiptail= o =dialog=
+** Ejercicio
+- Usa =whiptail= / =dialog= para hacer un /script/ que muestre información del sistema, con opciones para:
+  - Mostrar el nombre del ordenador (=hostname=)
+  - Mostrar las IPs (=hostname -I=)
+  - Mostrar espacio libre en los discos (=df | grep=)
+  - Mostrar usuarios con sesión abierta (=who=)
+- Después de mostrar la información, se vuelve al diálogo, hasta que se elija la opción "salir".
+
+** Solución
+#+begin_src bash
+#!/bin/bash
+
+
+dialogo(){
+    whiptail --menu "Elige una opción" 20 50 12 \
+             1 "Mostrar el nombre del ordenador"\
+             2 "Mostrar las direcciones IP asignadas"\
+             3 "Mostrar espacio libre en los discos"\
+             4 "Mostrar usuarios con sesión abierta"\
+             5 "Salir"
+}
+
+resultado_de_dialogo(){
+    dialogo 3>&2 2>&1 1>&3
+}
+
+ejecuta_opcion(){
+    case $1 in
+        1)
+            hostname
+            ;;
+        2)
+            hostname -I
+            ;;
+        3)
+            df | grep /dev | grep -v tmpfs
+            ;;
+        4)
+            who
+            ;;
+        5)
+            echo "Saliendo"
+            ;;
+    esac
+}
+
+respuesta=$(resultado_de_dialogo)
+while [ $respuesta -ne 5 ]
+do
+    ejecuta_opcion $respuesta
+    respuesta=$(resultado_de_dialogo)
+    read -p "Pulsa intro para continuar"
+done
+#+end_src
+  
+* Entorno inicial
+- =bash= procesa los siguientes ficheros:
+  - Si es un nuevo /login/: =/etc/bash.bashrc= (Debian), =/etc/bashrc= (Centos), =~/.bash_login=
+  - Siempre: =/etc/profile/= =~/.bashrc=
+- Así, se puede conseguir que
+  - Se ejecuten comandos al entrar a un sistema
+  - Se ejecuten comandos en cada nueva /shell/
+  - Se ejecuten comandos para todos los usuarios
+
+** Ficheros de inicio de /shell/    
+[[file:../1/media/ficheros-inicio-bash.svg]]
+   
+** Ejercicios
+1. Edita los ficheros de inicio y añade una orden =echo ESTOY EN EL FICHERO XXXXXX=. Comprueba cuándo se invoca cada fichero.
+2. Haz que el usuario =alumno= tenga las variables necesarias para utilizar *Oracle* cada vez que hace /login/.
+3. Haz que el usuario =alumno= vea el estado del /listener/ cada vez que inicia una /shell/
+4. Haz que todos los usuarios vean el mensaje =Bienvenido a ASGBD= cada vez que inician una /shell/.
+5. Crea un /script/ en =$HOME/estado.sh= que muestre el valor de las variables =HOME=, =USER=, =PATH=, =ORACLE_HOME=, =ORACLE_SID=, =ORACLE_BASE= y la hora actual.
+  
+* Prerrequisitos
+
+- Los comandos de *Oracle* necesitan conocer a qué instancia hacen referencia
+- Para ello, necesitan las variables de entorno =ORACLE_HOME= y =ORACLE_SID=.
+- También es conveniente añadir los comandos de *Oracle* al /path/
+- El siguiente /script/ puede utilizarse para tener estas variables (ejecutándolo con =source=)
+
+#+begin_src sh
+#!/bin/sh 
+ORACLE_HOME=/var/oracle/product/12.1.0/asir_bbdd
+ORACLE_SID=asir
+PATH=$ORACLE_HOME/bin:$PATH
+export ORACLE_HOME
+export PATH
+export ORACLE_SID
+#+end_src
+
+** Autenticación de *SQLPlus*
+- *SQLPlus* se autentica/autentifica de varias formas
+  - Mediante *Oracle*: usuarios creados con =create user..=
+  - Mediante el *sistema operativo*: Al instalar, se indica un grupo de usarios que *Oracle* considera autenticados (grupo =wheel=)
+
+#+reveal: split
+*SQLPlus* con autenticación de sistema operativo
+#+begin_src sql
+SHOW PARAMETER os_authent_prefix; -- Por defecto es 'ops$'
+CREATE USER ops$usuario IDENTIFIED EXTERNALLY;
+#+end_src
+
+#+begin_src sh
+su usuario
+sqlplus / 
+#+end_src
+
+*SQLPlus* con autenticación de *Oracle*
+#+begin_src sh
+sqlplus sys/alumno as sysdba
+#+end_src
+
+
+** Conexiones de *SQLPlus*
+- Hasta ahora
+  - todas las conexiones de *SQLPlus* son locales, sin utilizar la red
+  - todas las conexiones de *SQLDeveloper* son por red
+- Para conectar por red con *SQLPlus* se utiliza un descriptor de conexión
+  - Los descriptores están en el fichero =tnsnames.ora=
+
+#+begin_src sh
+sqlplus sys/alumno@CONEXION as sysdba
+#+end_src
+
+** =tnsnames.ora=
+#+begin_src lisp
+MYSID=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = mydnshostname)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = MYSID)
+    )
+  )
+#+end_src
+- Situado en =$ORACLE_HOME/network/admin/=
+- Indica las formas de conexión a instancias de base de datos
+  - Protoloco de conexión: TCP
+  - Dirección IP
+  - Puerto
+  - SID
+- Equivalen a la lista de conexiones de SQLDeveloper
+
+** Conexiones sin =tnsnames.ora=
+- No es necesario cambiar el fichero =tnsnames.ora= para conectarse a un servidor remoto
+- Aunque puede ser recomendable
+  - Ejemplo: varios scripts usan un nombre de conexión, de forma que pueda cambiarse fácilmente
+#+BEGIN_SRC shell
+sqlplus username/password@host:port/sid
+#+END_SRC
+
+* Ejecución de *SQL* desde la /shell/
+- El comando =sqlplus=  puede ejecutarse desde la shell
+- Lee las órdenes SQL desde la entrada estándar.
+  - Se puede redirigir de un fichero
+  - Se puede usar un /heredoc/
+
+** Ejemplo /heredoc/
+#+begin_src sh
+sqlplus -S alumno/alumno <<HEREDOC
+set  autocommit off
+create table prueba(un_atributo int);
+insert into prueba values(1);
+insert into prueba values(2);
+select * from prueba;
+rollback;
+HEREDOC
+#+end_src
+
+** Consultas a fichero 
+
+- Puede enviarse la salida a un fichero
+
+#+begin_src sh
+sqlplus -S alumno/alumno <<HEREDOC
+set  autocommit off
+insert into prueba values(1);
+insert into prueba values(2);
+spool prueba.txt
+select * from prueba;
+spool off
+rollback;
+HEREDOC
+
+less prueba.txt
+#+end_src
+
+** Formateo básico de la salida 
+
+- Tiene algunas facilidades para formatear la salida (por ejemplo, para generar ficheros *CSV*)
+#+begin_src sh
+sqlplus -S sys/alumno as sysdba <<HEREDOC
+set colsep ','    -- separate columns with a comma
+set pagesize 0    -- No header rows
+set trimspool on  -- remove trailing blanks
+set headsep off   -- this may or may not be useful...depends on your headings.
+set linesize 1000 -- X should be the sum of the column widths
+
+
+spool tablas.csv
+
+select table_name, tablespace_name 
+  from all_tables
+ where owner = 'SYS'
+   and tablespace_name is not null;
+
+spool off
+HEREDOC
+#+end_src
+
+- Ver también [[https://oracle-base.com/articles/12c/sqlplus-enhancements-12c#markup-csv][=set markup csv on=]]
+
+** /Scripts/ *SQL* para =sqlplus=
+
+- =sqlplus= también puede leer scripts de =SQL= con *=@=*
+
+#+begin_src sh
+
+sqlplus -S sys/alumno as sysdba <<HEREDOC
+@/camino/al/fichero.sql
+HEREDOC
+
+#+end_src
+
+
+* Arranque y parada 
+
+
+** =dbstart= y =/etc/oratab=
+- *Oracle* proporciona el /script/ =dbstart= para arrancar instancias de base de datos
+- Se guía por el contenido de =/etc/oratab=
+- Por alguna razón, 
+  - no levanta el /listener/ :(
+  - no hace =startup open=, así que no se registra en el /listener/ :( 
+  - Se puede modificar el /script/ para que lo haga
+
+#+begin_src sh
+# This file is used by ORACLE utilities.  It is created by root.sh
+# and updated by either Database Configuration Assistant while creating
+# a database or ASM Configuration Assistant while creating ASM instance.
+
+# A colon, ':', is used as the field terminator.  A new line terminates
+# the entry.  Lines beginning with a pound sign, '#', are comments.
+#
+# Entries are of the form:
+#   $ORACLE_SID:$ORACLE_HOME:<N|Y>:
+#
+# The first and second fields are the system identifier and home
+# directory of the database respectively.  The third field indicates
+# to the dbstart utility that the database should , "Y", or should not,
+# "N", be brought up at system boot time.
+#
+# Multiple entries with the same $ORACLE_SID are not allowed.
+#
+#
+asir:/var/oracle/product/12.1.0/asir_bbdd:Y
+#+end_src
+
+
+
+** Ejecutar *Oracle* al iniciar el sistema
+- Cada sitema operativo tiene sus formas de arrancar servicios/demonios al inicio
+  - *Windows*: Servicios
+  - *Linux*:
+    - *systemd*: Ficheros en el directorio =/etc/systemd/system=. Se controla con la orden =systemctl=
+    - *rc init*: Se basaba en /scripts/ en los directorios =/etc/rc.*=. Se está reemplazando por *systemd*
+
+** *systemd*
+- Los servicios se crean con ficheros en =/etc/systemd/system= (entre otros)
+  - Dependen de otros servicios (=After=)
+  - Otros servicios dependen de ellos (=WantedBy=)
+  - Se puede elegir el usuario que lo lanza (=User=)
+
+#+begin_src sh
+[Unit]
+Description=Oracle
+After=network.target
+
+[Service]
+Type=forking
+User=alumno
+ExecStart=/home/alumno/oracle-al-inicio.sh
+ExecStop=/home/alumno/oracle-al-final.sh
+
+
+[Install]
+WantedBy=multi-user.target
+#+end_src
+
+Más información con =man systemd.service= y =man systemd.unit=
+
+
+*** Dependencias de la sección =Unit=
+
+#+ATTR_LATEX: :align |l|p{3cm}|p{3cm}|p{3cm}|p{3cm}|
+| Si el servicio ~A~ ... | ~A~ intenta arrancar ~B~ | Si se apaga ~B~, ~A~ también | ~A~ arranca si ~B~ está inicialmente apagado | Si falla arranque de ~B~, arranca ~A~ |
+|------------------------+--------------------------+------------------------------+----------------------------------------------+---------------------------------------|
+| ~BindsTo=B~            | Sí                       | Sí                           | Sí                                           | No                                    |
+| ~Requires=B~           | Sí                       | No*                          | Sí                                           | No                                    |
+| ~Requisite=B~          | No                       | No                           | No                                           | No                                    |
+| ~Wants=B~              | Sí                       | No                           | Sí                                           | Sí                                    |
+
+Fuente: [[https://www.freedesktop.org/software/systemd/man/systemd.unit.html][freedesktop]]
+
+[*] Si ~B~ se apaga explícitamente, se apaga ~A~. Si el servicio ~B~ termina sin error, no se apaga ~A~
+
+
+*** Dependencias de la sección =Install=
+| Si el servicio ~A~ |                                            |
+|--------------------+--------------------------------------------|
+| ~WantedBy=B~       | Equivalente a que ~B~ indique ~Wants=A~    |
+| ~RequiredBy=B~     | Equivalente a que ~B~ indique ~Required=A~ |
+
+*** Controlar el arranque de servicios
+
+- Habilitar/Deshabilitar un servicio al inicio del sistema
+#+begin_src sh
+systemctl enable SERVICIO
+systemctl disable SERVICIO
+#+end_src
+
+- Arrancar o parar un servicio
+#+begin_src sh
+systemctl start SERVICIO
+systemctl stop SERVICIO
+#+end_src
+
+
+*** Recargar ficheros
+- Si se crean nuevas unidades, no se tienen en cuenta automáticamente
+- Se necesita =systemctl daemon-reload=
+
+
+*** Servicios de usuario
+- El comando =systemctl= se ejecuta con el parámetro =--system= por defecto
+  - Servicios de sistema
+- Si se ejecuta con =--user= se utilizan los servicios del usuario llamante
+  - Sus unidades están en =$HOME/.config/systemd/user/=
+- Es una opción que no existe en Centos.
+  - Es posible que los quiten de todas las distribuciones linux    
+
+
+*** /Runlevels/ y /targets/
+| Runlevel | Target              | Alias              |
+|----------+---------------------+--------------------|
+|        0 | ~poweroff.target~   | =runlevel0.target= |
+|        1 | ~rescue.target~     | =runlevel1.target= |
+|        3 | ~multi-user.target~ | =runlevel3.target= |
+|        5 | ~graphical.target~  | =runlevel5.target= |
+|        6 | ~reboot.target~     | =runlevel6.target= |
+
+*** Utilidades *systemd*
+- =systemd-analyze plot=: Tiempo de carga de cada servicio
+- =systemd-analyze dot=: Fichero con todas las dependencias. Puede convertirse en SVG con =dot -Tsvg -o nombre-dibujo.svg=
+- =systemctl list-dependencies=: Servicios necesarios para cargar un servicio. Se pueden listar a la inversa con =--reverse=
+
+*** Systemd de usuario :noexport:
+https://bugzilla.redhat.com/show_bug.cgi?id=1173278
+loginctl enable-linger $USUARIO
+
+
+* Operaciones periódicas
+
+- Los sistemas operativos aportan formas para ejecutar tareas periódicamente
+  - *Windows* tiene las *tareas programadas*
+  - *Linux* tiene el sistema =cron= y =systemd=
+
+** =cron=
+- Es un servicio que 
+  - Lee el fichero =/etc/crontab=
+  - Ejecuta las órdenes descritas en ese fichero
+  - Más información [[https://es.wikipedia.org/wiki/Cron_(Unix)#Formato_del_fichero_crontab][en la Wikipedia]]
+- Suele utilizar el comando =run-parts=
+  - Este comando ejecuta todos los comandos de un directorio
+  - Más información con =man run-parts=
+
+** =systemd=
+# https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html
+Más información en =man systemd.timer= y =man systemd.time=
+#+caption: /etc/systemd/system/date.service
+#+begin_src sh
+[Unit]
+Description=Prints date into /tmp/date file
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c '/usr/bin/date >> /tmp/date'
+#+end_src
+
+#+caption: /etc/systemd/system/date.timer
+#+begin_src sh
+[Unit]
+Description=Run date.service every 10 minutes
+
+[Timer]
+OnCalendar=*:0/10
+#+end_src
+
+
+** Operaciones periódicas manuales
+
+- Se puede crear un bucle infinito con =sleep=
+- El bucle se interrumpe con alguna condición externa
+  - Por ejemplo, que exista o deje de existir un fichero
+
+#+BEGIN_SRC sh
+#!/bin/bash
+
+rm $HOME/elbucledebeparar
+hay_que_seguir(){
+    if [ -e $HOME/elbucledebeparar ]
+    then
+        return 1
+    else
+        return 0
+    fi
+}
+
+SEGUNDOS=3
+sleep $SEGUNDOS
+while hay_que_seguir
+do      
+    echo han pasado $SEGUNDOS segundos
+    sleep $SEGUNDOS
+done
+#+END_SRC
+
+
+
+* Avanzado
+- Literales
+  - Comillas dobles: sustituyen variables
+  - Comillas simples: no se sustituyen variables
+- Heredocs
+  - [[https://unix.stackexchange.com/a/353689][Indentados]]: =<<-EOF=
+  - Sin sustitución de variables: =<<'EOF'= 
+- [[http://www.tldp.org/LDP/abs/html/process-sub.html][Process substitutions]]: Trata una orden como un fichero temporal
+  #+caption: Compara los contenidos de un directorio con otro
+  #+begin_src sh
+  diff <(ls $first_directory) <(ls $second_directory)
+  #+end_src
+- =mktemp= para ficheros temporales
+- [[https://www.linuxjournal.com/content/bash-trap-command][/traps/]] para finalizar un /script/
+- [[https://www.tutorialspoint.com/awk/awk_overview.htm][awk]], [[https://www.howtogeek.com/666395/how-to-use-the-sed-command-on-linux/][sed]], [[https://www.redhat.com/sysadmin/use-whiptail][whiptail]]
+
+* Más avanzado: comandos desde PL/SQL
+- http://www.dba-oracle.com/t_execute_operating_system_os_command_oracle.htm
+- Se necesita el privilegio =CREATE EXTERNAL JOB=
+- Solo he conseguido escribir ficheros en =$ORACLE_HOME=
+#+begin_src sql
+begin
+   -- BORRAR EL TRABAJO, POR SI YA EXISTE
+   dbms_scheduler.drop_job( job_name => 'myjob' );
+
+   -- CREAR TRABAJO Y PONER ARGUMENTOS
+   dbms_scheduler.create_job (job_name    => 'myjob',
+                              job_type    => 'executable',
+                              job_action  => '/bin/touch',
+                              number_of_arguments => 1,
+                              auto_drop   => true);
+   dbms_scheduler.set_job_argument_value ('myjob', 1, '/opt/oracle/product/18c/dbhomeXE/fichero.nuevo');
+
+   -- EJECUTAR TRABAJO
+   dbms_scheduler.run_job ('myjob');
+end;
+/
+#+end_src
+
+* Referencias
+#+include: "../../../common/footer.org"
+- [[https://oracle-base.com/articles/misc/oracle-shell-scripting][oracle-base]]
+
+* Ejemplos :noexport:
+** =whiptail=
+#+begin_src sh
+#!/bin/bash
+
+
+lista_de_ficheros_0(){
+  find . -maxdepth 1 -print0
+}
+
+lista_de_opciones_0(){
+  local i=0
+  lista_de_ficheros_0 | while IFS= read -r -d '' f
+  do
+      i=$(($i + 1))
+      echo "$i"  \""$f"\"
+  done
+}
+
+lista_de_opciones(){
+  i=0
+  for f in $(lista_de_ficheros)
+  do
+      i=$(($i + 1))
+      echo "$i" "$f"
+  done
+}
+
+
+lista_de_ficheros(){
+  ls | grep -v ' '
+}
+
+
+muestra_dialogo(){
+  whiptail --title "Ejemplo whiptail" \
+           --menu "Elige un fichero para mostrar" \
+           18 40 10 $(lista_de_opciones)
+}
+
+consigue_linea(){
+  local linea=$1
+  head -n $linea | tail -n 1
+}
+
+elige_fichero(){
+  opcion=$(muestra_dialogo 3>&2 2>&1 1>&3)
+  lista_de_ficheros | consigue_linea $opcion
+}
+
+#less $(elige_fichero)
+
+#lista_de_opciones
+#muestra_dialogo
+elige_fichero
+
+
+
+#+end_src
+
+
+

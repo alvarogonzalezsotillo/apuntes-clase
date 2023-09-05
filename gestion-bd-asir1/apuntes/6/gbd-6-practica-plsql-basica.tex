@@ -1,0 +1,211 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica PLSQL}
+\renewcommand{\hmwkClass}{Gestión de Bases de datos}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+En esta práctica el alumno utilizará las funcionalidades de PLSQL para automatizar algunas operaciones y para realizar comprobaciones sobre los datos. Estas operaciones y comprobaciones no pueden realizarse solo con SQL.
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/gbd-6-practica-plsql-basica.pdf}{este enlace}.
+
+
+\section{Descripción del problema}
+Una compañía necesita automatizar su almacén
+\begin{itemize}
+\item De cada producto se almacena su identificador (máximo 10 dígitos), su nombre (como máximo, 30 caracteres) y su \textit{stock}.
+\item En cada entrada de producto al almacén, se apunta
+  \begin{itemize}
+  \item El producto
+  \item La cantidad de producto (como máximo, 9999 unidades)
+  \item El precio pagado al proveedor por unidad de producto (como máximo, 99999{\euro})
+  \end{itemize}
+\item De cada salida de producto del almacén se apunta
+  \begin{itemize}
+  \item El producto, cantidad de producto y precio por unidad que paga el cliente
+  \end{itemize}
+\item Será necesario saber a qué precio se realizó la última compra y la última venta de cada producto  \end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Definir el modelo de datos}]
+  Crea las tablas y funciones necesarias para soportar la descripción del problema. Las tablas y atributos concretos no son importantes, ya que el profesor consultará los datos a partir de las vistas definidas más adelante.
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Procedimiento para crear un producto} (2 puntos)]
+  Crea un procedimiento de nombre \texttt{CREAR\_PRODUCTO} (listado \ref{lst:crear-producto}), que inserte un nuevo producto en la base de datos.  El identificador de los productos podrá basarse en la secuencia \texttt{SECUENCIA\_PRODUCTO\_ID}, o usar otro método.
+
+  \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_PRODUCTO}}{lst:crear-producto}
+create or replace procedure CREAR_PRODUCTO(nombreproducto IN varchar, idproducto OUT number)
+as 
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  -- CONSIGUE EL NUEVO ID 
+  -- INSERTA EL PRODUCTO CON ESE ID
+  -- DEVUELVO EL NUEVO ID EN idproducto
+end;
+/
+\end{listadosql}
+
+  El procedimiento devolverá en su segundo parámetro el identificador del producto recién creado.
+
+  Crea una vista de nombre \texttt{V\_PRODUCTOS} para que el profesor pueda consultar los productos en el catálogo (listado \ref{lst:vproductos})
+  
+  \begin{listadosql}{Creación de la vista \texttt{V\_PRODUCTOS}}{lst:vproductos}
+  create or replace view V_PRODUCTOS(nombreproducto,idproducto) as
+  ...
+  \end{listadosql}
+
+
+  
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Entrada y salida de productos} (3 puntos)]
+
+  \begin{itemize}
+  \item Crea un procedimiento \texttt{ENTRADA\_PRODUCTO} que actualice la base de datos cuando llegue un producto.
+  \item Crea un procedimiento \texttt{SALIDA\_PRODUCTO} que actualice la base de datos cuando se envie un producto.
+  \item Si el producto no existe, se lanzará el error -20102.
+  \item Los precios pagados y cobrados son por unidad de producto.
+  \end{itemize}
+
+
+
+  
+  \begin{listadosql}{Entrada y salida de productos}{lst:entrada-salida}
+create or replace procedure ENTRADA_PRODUCTO(
+  idproducto IN number,
+  cantidad IN number,
+  preciopagadoporunidad IN number)
+as
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  ...
+end; 
+
+create or replace procedure SALIDA_PRODUCTO(
+  idproducto IN number,
+  cantidad IN number,
+  preciocobradoporunidad IN number)
+as
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  ...
+end; 
+  \end{listadosql}
+
+
+  
+  Para poder corregirse, debe existir la función \texttt{EXISTENCIAS\_PRODUCTO} que informe del \textit{stock} de un producto. Un producto que no ha tenido ni entradas ni salidas tiene un \textit{stock} de cero. Un producto que no existe tiene \textit{stock} $-1$.
+
+  \begin{listadosql}{Función de existencias}{lst:funcion-existencias}
+create or replace function EXISTENCIAS_PRODUCTO(idproducto IN number) return number
+as
+begin
+  ...
+end; 
+  \end{listadosql}  
+  
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Vista de existencias} (3 puntos)]
+
+  Crea la vista \texttt{V\_EXISTENCIAS}. En esta vista se listan todos los productos existentes y su stock. Un producto que nunca ha tenido entradas o salidas debe tener un \textit{stock} de cero. Un producto que no se ha comprado nunca a un proveedor tiene un \texttt{ultimopreciocompra} a \texttt{NULL}. Un producto que nunca se ha vendido a un cliente tiene \texttt{ultimoprecioventa} a \texttt{NULL}. Los precios son por unidad de producto.
+
+  \begin{listadosql}{Vista de existencias}{lst:vista-existencias}
+create or replace view V_EXISTENCIAS(idproducto,existencias,ultimopreciocompra,ultimoprecioventa) as
+...
+  \end{listadosql}  
+  
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Función de precio medio de venta} (3 puntos)]
+
+  Crea la función \texttt{PRECIO\_MEDIO\_VENTA}. Esta función devolverá:
+  \begin{itemize}
+  \item \texttt{null} si el producto no se ha vendido nunca
+  \item El precio medio de venta, que se calcula como la suma de los precios de cada una de las unidades vendidas, dividido por el número total de las unidades vendidas. El precio medio tendrá dos decimales.
+    \begin{itemize}
+    \item Ejemplo: si se han vendido 3 unidades a 10{\euro} y 2 unidades a 5{\euro} el precio medio es de 8{\euro}
+    \end{itemize}
+  \item Lanzará el error \texttt{-20102} si el producto no existe
+  \end{itemize}
+
+  \begin{listadosql}{Precio medio de venta}{lst:precio-medio-de-venta}
+create or replace function PRECIO_MEDIO_VENTA(idproducto number) return number
+as
+...
+  \end{listadosql}  
+  
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Salida del almacén respetando existencias} (2 puntos)]
+
+  Crea un procedimento \texttt{SALIDA\_PRODUCTO\_CON\_STOCK}. Realizará el mismo proceso que \texttt{SALIDA\_PRODUCTO}, pero en el caso de que no haya existencias suficientes lanzará un error con el mensaje \texttt{Rotura de stock} y número \texttt{-20101}. 
+  Si el producto no existe, se lanzará el error \texttt{-20102}.
+
+  \begin{listadosql}{Entrada y salida de productos}{lst:entrada-salida}
+create or replace procedure SALIDA_PRODUCTO_CON_STOCK(
+  idproducto IN number,
+  cantidad IN number,
+  preciocobrado IN number
+as
+begin
+  ...
+  RAISE_APPLICATION_ERROR(-20101,'Rotura de stock');
+  ...
+end; 
+  \end{listadosql}
+  
+\end{homeworkProblem}
+
+\section{Entorno de pruebas}
+Los procedimientos y funciones se crearán sobre el servidor del instituto, con el usuario de cada alumno. El profesor pasará unas pruebas automáticas, que dejarán el resultado en \enlace{http://10.1.33.201:80}{http://10.1.33.201:80}. Para acceder a los resultados desde casa, se puede utilizar un túnel ssh como sigue, y conectar un navegador a \enlace{http://localhost:8080}{http://localhost:8080} (y otro al servidor de Oracle por el puerto 1521)
+\begin{center}
+\texttt{ssh -L 8080:localhost:80 -L 1521:localhost:1521 \textit{USUARIO}@213.97.191.51 -p 10133}
+\end{center}
+
+\section{Instrucciones de entrega}
+La entrega se realizará en el servidor de pruebas.
+
+Si no estuviera operativo, se entregará un único fichero SQL para todos los apartados con las sentencias SQL necesarias para crear las tablas, secuencias, procedimientos, funciones y vistas que el alumno necesite.
+\begin{itemize}
+\item Este fichero se corregirá de forma semiautomática, por lo que es necesario seguir la nomenclatura propuesta en el ejercicio.
+\item El fichero se cargará en un usuario recién creado con permisos necesarios para crear todos los elementos necesarios (tablas, vistas, funciones, secuencias\dots)
+\item Si tiene \textbf{errores} de compilación podría no corregirse. Si no se siguen los \textbf{nombres de objetos} pedidos podría no corregirse.
+\end{itemize}
+
+Sube el documento a la tarea correspondiente en el \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/}{aula virtual}.
+Presta atención al plazo de entrega (con fecha y hora).
+
+
+\end{document}
+
+
+
+

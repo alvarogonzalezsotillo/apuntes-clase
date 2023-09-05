@@ -1,0 +1,118 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil toc:nil title:nil
+
+#+LATEX_HEADER: \lhead{Cableado de oficina}
+#+LATEX_HEADER: \rhead{Planificación y Administración de Redes}
+
+
+* Objetivo de la práctica
+En esta práctica el alumno diseñará desde el comienzo una pequeña red de área local. Se espera que el alumno
+- Se familiarice con los materiales necesarios para una instalación de red /Ethernet/
+- Planifique y presupueste los componentes necesarios
+- Se anticipe a las necesidades de un cliente/jefe de proyecto
+
+
+
+La última versión de este documento está accesible en [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/2/par-2-practica-cableado-oficina-guiada.pdf][este enlace]]
+
+
+
+* Enunciado
+Un posible cliente pide un presupuesto para realizar la instalación de una LAN en una oficina.
+
+- La oficina tiene como dimensiones 15 \times 8  metros. Inicialmente, empezarán a trabajar 6 empleados, con vistas a  ampliar la plantilla hasta a 10 empleados.
+- El acceso a la red del edificio se realizará a través de un punto e red preexistente (ver plano).
+- El cliente indica que desearía tener una sala de reuniones con clientes externos, donde se dispondría de un proyector y acceso WI-FI a la red.
+- La oficina dispone de techo técnico
+- Pueden ignorarse las ventanas.
+
+
+[[file:media/plano-oficina-small.pdf]]
+
+
+
+* Qué se entrega
+Un documento que incluya:
+- Planos aproximados de la situación de los puestos informáticos, puntos de red y racks
+  - Es necesario indicar dónde se situarán los puestos de trabajo (mesas y sillas), aunque el mobiliario no es
+    parte de lo que se debe presupuestar.
+  - Si se necesitan separaciones o tabiques, deben indicarse también.
+- Presupuesto de los materiales
+  - Informáticos: Ordenadores, monitores, teclados, cables de vídeo, proyectores...
+  - De red: cables, canaletas, rosetas, patch panels, switchs…
+  - Desglosados por precio, cantidad, total sin IVA y total con IVA
+  - Los materiales incluirán una URL o hiperlink en donde se puedan comprobar sus características y/o precio.
+- Se entregará un solo fichero en formato Microsoft Word, Open Office o PDF.
+
+
+
+* Qué se valorará
+- 1 punto: La aplicabilidad práctica de los planos
+  - Medidas realistas
+  - Comodidad de los empleados
+  - Los equipos informáticos no ``estorban''
+- 3 puntos: La completitud en la relación de materiales
+- 2 puntos: La compatibilidad de los materiales
+- 1 punto: La previsión de futuras necesidades de la oficina
+- 1 punto: Cumplimiento de necesidades actuales, aunque el cliente no las haya especificado
+- 2 puntos: La apariencia profesional del trabajo
+
+
+* Instrucciones de entrega
+- Se corregirá un solo documento. En él estarán embebidos todos los recursos que se quieran mostrar (explicaciones, imágenes, diagramas, tablas...)
+- El ejercicio se realizará y entregará de manera individual.
+  - Solo se admiten trabajos en pareja si en clase es necesario compartir ordenador.
+- Entrega tu trabajo en formato \textbf{doc}, \textbf{docx}, \textbf{odt} o \textbf{pdf}.
+- También puede entregarse como una entrada de blog. Para ello, sube un archivo con la URL de la entrada.
+- Sube el documento a la tarea correspondiente [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala][en el aula virtual]]
+- Presta atención al plazo de entrega (con fecha y hora).
+
+
+
+* Guía de compras
+
+** Diagrama de decisiones
+#+BEGIN_SRC dot :file ./media/tareas-en-la-practica.pdf :exports results :cmd dot :cmdline -Tpdf
+digraph {
+  compound=true
+  label=""
+  node [shape="ellipse",margin=0];
+  rankdir=LR;
+
+
+  "Cuántas personas en total" ->   "Decidir cuántas rosetas\n y enchufes"
+  "Cuántas personas en total" -> "Cuántas personas iniciales"
+  "Decidir cuántas rosetas\n y enchufes" -> "Decidir dónde van las rosetas"
+  "Cuántas personas en total" -> "Colocar las mesas"
+  "Cuántas personas iniciales" -> "Comprar ordenadores"
+  "Cuántas personas iniciales" -> "Comprar switch"
+  "Cuántas personas iniciales" -> "Extras no pedidos por el cliente"
+  "Decidir dónde van las rosetas" -> "Comprar cable"
+  "Decidir por dónde va el cable" -> "Comprar cable"
+  "Comprar cable" -> "Canaletas\nColumnas\nBandejas\nRacks\n..." -> "Instalación"
+  "Colocar las mesas" -> "Decidir dónde van las rosetas"
+  "Decidir cuántas rosetas\n y enchufes" -> "Comprar patch pannels"
+  "Cuántas personas iniciales" -> "Comprar patch cords"
+  "Comprar proyector/pantala" -> "Instalación"
+  "Comprar punto acceso wifi" -> "Instalación"
+                
+
+                
+}
+
+#+end_src
+
+#+RESULTS:
+[[file:./media/tareas-en-la-practica.pdf]]
+
+** Ejemplo de posible Presupuesto
+| Artículo con URL | Unidades | Precio unitario |    Total |
+|------------------+----------+-----------------+----------|
+| [[https://www.tornillos-online.com/975a2es.html][Tornillo]]         |      100 |             3.6 |      360 |
+| [[https://www.pccomponentes.com/hp-pavilion-200-raton-gaming-3200-dpi][Ratón]]            |       12 |           23.99 |   287.88 |
+| Más cosas....    |          |                 |          |
+|------------------+----------+-----------------+----------|
+| IVA 21%          |          |                 | 115.0548 |
+| Total            |          |                 | 662.9348 |
+|------------------+----------+-----------------+----------|

@@ -1,0 +1,163 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  RIP y OSPF
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+* Introducción
+
+- El protocolo IP se pensó para tener más de una ruta a cada destino
+- De esta forma, la red era /tolerante a fallos/
+- Pero hasta ahora, solo utilizamos una ruta para cada destino
+
+
+* Métrica del enrutamiento
+- Las tablas de rutas pueden tener más de una ruta para un destino
+  - Ejemplo: la ruta =0.0.0.0/0= (para ir a Internet) es aplicable también a la red local
+- IP decide qué ruta aplicar de la siguiente forma
+  - Calcula todas las rutas aplicables
+  - Se queda con la de *menor* métrica
+  - En implementaciones reales, también se usan otros criterios
+    - /Flags/ de la ruta
+    - Tipo de enlace (VPN, loopback...)
+    - Distancia Administrativa (Cisco)  
+
+* Ejemplo de enrutamiento redundante
+
+[[file:media/enrutamiento-redundante.svg]]
+
+** Tabla de enrutamiento de =A=
+ |          IP | Máscara |    Gateway | Métrica |
+ |-------------+---------+------------+---------|
+ | 192.168.1.0 | /24     | (yo mismo) |         |
+ | 192.168.2.0 | /24     |   10.0.2.2 |       1 |
+ | 192.168.2.0 | /24     |   10.0.1.2 |       3 |
+ | 192.168.3.0 | /24     |   10.0.1.2 |       1 |
+ | 192.168.3.0 | /24     |   10.0.2.2 |       3 |
+ | 192.168.4.0 | /24     |   10.0.1.2 |       2 |
+ | 192.168.4.0 | /24     |   10.0.1.2 |       2 |
+
+
+** Tabla de enrutamiento de =B=
+ |          IP | Máscara |    Gateway | Métrica |
+ |-------------+---------+------------+---------|
+ | 192.168.2.0 | /24     | (yo mismo) |         |
+ | 192.168.1.0 | /24     |   10.0.2.1 |       1 |
+ | 192.168.1.0 | /24     |   10.0.3.2 |       3 |
+ | 192.168.3.0 | /24     |   10.0.2.1 |       2 |
+ | 192.168.3.0 | /24     |   10.0.3.2 |       2 |
+ | 192.168.4.0 | /24     |   10.0.3.2 |       1 |
+ | 192.168.4.0 | /24     |   10.0.2.1 |       3 |
+
+** Tablas de enrutamiento de =C= y =D=
+- Se dejan como ejercicio
+
+** Resultado
+- Si el enlace entre A y C se rompe
+  - A envía los paquetes de 192.168.3.0/24 a B
+- B seguirá enviando los paquetes de 192.168.3.0/24 a A
+
+
+** Ejercicio
+
+[[file:media/ejercicio-redundancia-routers.png]]
+
+#+latex: \attachfile{./pkt/redundancia-routers-rip.pkt}
+
+[[file:pkt/redundancia-routers-rip.pkt][Enlace a fichero PKT]]
+
+
+* RIP y OSPF
+- Añadir rutas es una tarea rutinaria
+  - /Para llegar allí pasa por aquí.../
+- Los propios routers pueden *anunciar* qué redes pueden alcanzar
+- Los propios routers pueden detectar problemas y dejar de utilizar algunas rutas
+
+
+* RIP
+- [[https://es.wikipedia.org/wiki/Routing_Information_Protocol][Routing Information Protocol]]
+- [[https://tools.ietf.org/html/rfc1058][RIPv1]]: Solo soporta redes con clase
+- [[https://tools.ietf.org/html/rfc2453][RIPv2]]: Estandar actual, soporta VLSM y CIDR
+- Periódicamente, cada /router/ anuncia sus redes alcanzables
+- Una ruta caduca cuando no es actualizada en un tiempo, y se considera inalcanzable
+- Cuando pasa un tiempo con la ruta caducada, se borra de la tabla de rutas
+
+** Ventajas de RIP
+- Simple 
+- Soportado por casi todos los /routers/
+
+** Desventajas de RIP
+- Su métrica es solo el número de saltos (sin ancho de banda, congestión...)
+- Solo redes pequeñas (máximo de 16 saltos)
+- El tiempo de convergencia (descubrimiento de cambios de la red) es largo
+
+** RIP en Cisco
+- Se debe permitir al router anunciar cada una de las redes a las que está directamente conectado
+- Acepta información RIP por las interfaces de las redes anunciadas 
+
+    #+begin_example
+Router(config)#router rip
+Router(config-router)#network 192.168.1.0 
+Router(config-router)#network 200.200.1.0
+    #+end_example
+
+** Interfaces pasivas
+- La información de RIP se envia por todas las interfaces que se anuncian
+- Si no hay routers por una red anunciada, estos mensajes no tienen sentido
+- Una interfaz pasiva se anuncia por otras interfaces, pero no se envían anuncios por ellas
+
+    #+begin_example
+Router(config)#router rip
+Router(config-router)#passive-interface FastEthernet 0/1    
+    #+end_example
+
+** Ejercicio
+- Repite el ejercicio de añadir rutas redundantes, pero de forma automática (con RIP), en vez de con rutas estáticas
+- Puede usarse este [[file:pkt/redundancia-routers-direcciones-puestas.pkt][fichero PKT con las direcciones IP ya puestas]], pero sin enrutamiento  
+
+* OSPF
+- [[https://es.wikipedia.org/wiki/Open_Shortest_Path_First][Open Shortest Path First]]
+- Más complejo que RIP
+- No tiene sus desventajas
+- Adecuado para redes grandes
+
+
+* Distancia administrativa (Cisco)
+
+** Formas de descubrir rutas
+- Las rutas conocidas llegan por diferentes vías:
+  - Redes directamente conectadas a interfaces
+  - Rutas estáticas
+  - OSPF
+  - RIP
+  - ...
+- No todos las vías son igual de confiables:
+  - Las redes directamente conectadas /seguro/ que funcionan
+  - Las rutas estáticas las determina un administrador, que /seguro/ que está en lo cierto
+  - OSFP es más fiable que RIP
+  - Hay más formas ([[https://en.wikipedia.org/wiki/Border_Gateway_Protocol][BGP]], [[https://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol][EIGRP]]...)
+** Distancia administrativa
+- Un router CISCO determina cuál es la menor *distancia administrativa* entre sus rutas
+- Después, elige la ruta a aplicar entre la menor *métrica*
+- Es una práctica común
+  - Configurar los routers para que autodescubran las rutas
+  - Crear una ruta estática por si falla el autodescubrimiento
+
+| Vía de descubrimiento               | Distancia administrativa |
+|-------------------------------------+--------------------------|
+| Red directamente conectada          |                        0 |
+| Ruta estática (por defecto)         |                        1 |
+| OSPF                                |                      110 |
+| RIP                                 |                      120 |
+| Ruta estática (flotante, de backup) |         Cualquier número |
+
+** Linux :noexport:
+- https://unix.stackexchange.com/questions/188584/which-order-is-the-route-table-analyzed-in
+- Tiene diferentes tablas
+#+begin_src sh
+ip rule show
+
+ip route show table {local,default,main...}
+#+end_src
+
+* Referencias
+#+include: "../../../common/footer.org"

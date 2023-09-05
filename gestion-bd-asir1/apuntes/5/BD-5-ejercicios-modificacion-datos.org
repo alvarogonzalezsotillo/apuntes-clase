@@ -1,0 +1,171 @@
+
+
+
+* Student
+- "Fred Crocitto" vive en la población "New Milford" 
+
+#+begin_src sql
+update
+  student
+set
+  zip=(select zip from zipcode where city='New Milford')
+where
+  first_name like '%Fred%' and last_name like '%Crocitto%';
+#+end_src
+- Pasa =grade_type= a español
+#+begin_src sql
+update grade_type 
+set description='Proyecto'
+where grade_type_code='PJ';
+
+update grade_type 
+set description='Deberes'
+where grade_type_code='HM';
+
+update grade_type 
+set description='Parcial'
+where grade_type_code='MT';
+
+update grade_type
+set description = (
+  case description
+  when 'Homework' then 'DEBERES'
+  when 'Midterm' then 'PARCIAL'
+  when 'Participation' then 'PARTICIPACIÓN'
+  when 'Project' then 'Proyecto'
+  when 'Quiz' then 'CONCURSO'
+  else description
+  end
+);
+
+
+#+end_src
+
+- Todas las secciones de  cursos de Java empiezan el 3 de septiembre del 2007.
+#+begin_src sql
+update section
+set start_date_time=to_date('03-09-2007','DD/MM/YYYY')
+where
+  section_id = any(
+    select s.section_id
+    from 
+      course c, section s
+    where
+     lower(c.description) like '%java%' and
+     s.course_no = c.course_no);
+#+end_src
+
+
+- Los teléfonos de estudiantes y profesores se amplían para incluir el prefijo internacional, de 15 a 20 caracteres. El prefijo de todos los teléfonos *conocidos* es '+1' (Estados Unidos).
+
+#+begin_src sql
+alter table student modify phone varchar(20);
+alter table instructor modify phone varchar(20);
+
+update student
+set phone='+1-' || phone
+where phone is not null;
+
+update instructor
+set phone='+1-' || substr(phone,1,3) || '-' || substr(phone,4,3) || '-'  || substr(phone,7,4)
+where phone is not null;
+#+end_src
+
+- Pasa el número de teléfono de los instructores al formato que tienen los números de teléfono de los alumnos (999-999-9999).
+
+- Los teléfonos no conocidos de alumnos pasan a ser 'desconocido'.
+
+- Todas la notas parciales de "Intermediate Java Programming" que imparte "Marilyn Frantzen" son un 30.
+#+begin_src sql
+select * from grade where section_id=(
+  select section_id from section
+  where 
+    course_no=(
+        select course_no from course c 
+        where lower(c.description) like '%intermediate java programming%'
+    )
+    and 
+    instructor_id=(
+        select instructor_id from instructor 
+        where lower(first_name) like '%marilyn%' and lower(last_name) like '%frantzen%'
+    )
+);
+
+
+update grade
+set numeric_grade=30
+where
+  section_id in(
+
+    select s.section_id
+    from 
+      section s 
+      join instructor i on s.instructor_id=i.instructor_id
+      join course c on s.course_no=c.course_no
+    where
+      lower(i.first_name) like '%marilyn%' and 
+      lower(i.last_name) like '%frantzen%' and
+      lower(c.description) like '%intermediate java programming%'
+      );
+#+end_src
+
+- El profesor Mr Tom Wojick da un aprobado general a todos sus alumnos en la nota final (80).
+  
+- La forma de cálculo de las notas de los cursos de "Nina Schorin" se cambiarán para que sea la nota del examen final, el resto de notas se ignora (0% de la nota final).
+  #+begin_src sql
+  create or replace view cursos_de_nina_schori as
+  select 
+    s.section_id, s.instructor_id
+  from
+    section s, instructor i
+  where
+    s.instructor_id = i.instructor_id and
+    lower(i.first_name) like '%nina%' and
+    lower(i.last_name) like '%schori%';
+
+
+
+  update grade_type_weight
+  set 
+    PERCENT_OF_FINAL_GRADE = (
+      case grade_type_code
+        when 'FI' then 100
+        else 0 end)
+  where
+    section_id in (select section_id from cursos_de_nina_schori);
+  #+end_src
+
+- Asigna las notas a los alumnos de "Nina Schorin", teniendo en cuenta que es directamente la nota del examen final de sus secciones.
+#+begin_src sql
+create or replace view secciones_de_schorin as
+    select section_id
+    from 
+      section s 
+      join instructor i on s.instructor_id=i.instructor_id
+    where
+      lower(i.first_name) like '%nina%' and 
+      lower(i.last_name) like '%schorin%';
+      
+      
+create or replace view nota_de_examen_final as
+select *
+from grade
+where grade_type_code='FI';
+      
+select * from nota_de_examen_final where section_id in (select section_id from secciones_de_schorin);      
+      
+update enrollment
+set final_grade=(
+  select numeric_grade 
+  from nota_de_examen_final g
+  where 
+    g.student_id=enrollment.student_id and 
+    g.section_id=enrollment.section_id
+)
+where
+  section_id in (select section_id from secciones_de_schori);
+#+end_src
+
+- La nota final de "Intro to Programming" que imparte "Nina Schorin" será la nota del examen final menos un 10%.
+
+

@@ -1,0 +1,111 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Vistas estáticas y dinámicas}
+\renewcommand{\hmwkClass}{Administración y Gestión de Bases de datos}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica} 
+En esta práctica se pretende que el alumno se familiarice con las vistas estáticas y dinámicas del diccionario de Oracle.
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-diccionario-oracle.pdf}{este enlace}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{homeworkProblem}[: \imenu{Vistas de ficheros de la base de datos (3 puntos)}]
+  Crea dos vistas:
+  \begin{itemize}
+  \item \texttt{FICHEROS\_Y\_TABLESPACES}: Lista de ficheros de datos y nombres de sus tablespaces (50\%)
+  \item \texttt{FICHEROS\_PARA\_BACKUP}: Lista de ficheros de datos y ficheros de control de la base de datos, para conocer todos los ficheros necesarios para hacer un backup completo. El campo \texttt{tipos} será \texttt{datos} si es un fichero de datos, \texttt{temporal} si es un fichero temporal y \texttt{control} si es un fichero de control (50\%)
+  \end{itemize}
+
+\begin{listadosql}{Vistas de ficheros}{lst:contrata-becario}
+create or replace view FICHEROS_Y_TABLESPACES(fichero,tablespace) as ...
+create or replace view FICHEROS_PARA_BACKUP(fichero,tipo) as ...
+\end{listadosql}
+  
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{homeworkProblem}[: \imenu{Tablas de usuarios (3 puntos)}]
+  Crea una vista de nombre \texttt{TABLAS\_DE\_USUARIOS} que indique por cada tabla de la base de datos, de qué usuario es y en qué \textit{tablespace} está alojada.
+
+\begin{listadosql}{Vistas de ficheros}{lst:contrata-becario}
+create or replace view TABLAS_DE_USUARIOS(tabla,usuario,tablespace) as ...
+\end{listadosql}
+  
+\end{homeworkProblem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{homeworkProblem}[: \imenu{Procedimientos y funciones (3 puntos)}]
+  Crea una vista de nombre \texttt{PROGRAMAS\_DE\_USUARIOS} que indique por cada \textit{procedure} y \textit{function} de la base de datos, a qué usuario pertenece. El campo \texttt{tipo} será \texttt{procedure} o \texttt{function}
+
+\begin{listadosql}{Vistas de ficheros}{lst:contrata-becario}
+create or replace view PROGRAMAS_DE_USUARIOS(nombre,usuario,tipo) as ...
+\end{listadosql}
+  
+\end{homeworkProblem}
+
+\section{Problemas con los permisos}
+%https://dba.stackexchange.com/questions/86030/ora-00942-when-trying-to-select-from-gvsession-inside-of-procedure
+En Oracle, los \texttt{select} se ejecutan con los privilegios del usuario y sus roles. En cambio, las vistas se ejecutan con los privilegios dados directamente al usuario, sin tener en cuenta los roles. 
+
+Mientras voy dando todos los privilegios necesarios, como solución propongo:
+\begin{itemize}
+\item Crear las vistas pedidas en esta práctica sobre vuestra propia instancia, con el usuario \texttt{SYS}. Así podéis probar si funcionan.
+\item Después, crear funciones en la instancia del profesor con las select de las vistas. \textit{Aunque las funciones den errores de compilación}, el profesor puede verlas en su instancia y así corregirlas.
+
+\begin{listadosql}{Ejemplo de función \textit{con errores}, pero que permite corregir al profesor}{lst:funcion-trampa}
+create or replace function FICHEROS_Y_TABLESPACES return integer
+as
+begin
+  select * from sys.dba_tablespaces; -- aquí la query que resuelve el ejercicio
+  return 0;
+end;
+/
+
+Function FICHEROS_Y_TABLESPACES compiled
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+4/3       PL/SQL: SQL Statement ignored
+4/21      PL/SQL: ORA-00942: table or view does not exist
+Errors: check compiler log
+\end{listadosql}
+\end{itemize}
+
+
+\section{Instrucciones de entrega}
+Se entregará sobre el servidor del profesor:
+\begin{itemize}
+\item Host: \texttt{alvarogonzalez.no-ip.biz}
+\item Puerto: \texttt{1522}
+\item SID: \texttt{XE}
+\item Usuario y contraseña: Las indicadas por el profesor en el aula virtual para cada alumno.
+\end{itemize}
+
+Si hay problemas de conexión, se puede entregar también en la tarea correspondiente del aula virtual.
+
+
+
+\end{document}
+
+
+
+

@@ -1,0 +1,129 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Automatización de tareas}
+\renewcommand{\hmwkTitle}{Examen de \textit{scripts} de \textit{shell}}
+
+
+\usepackage{blindtext}
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{Normas del examen}
+Los ficheros modificados se enviarán a \enlace{mailto:alvarogonzalezprofesor@gmail.com}{alvarogonzalezprofesor@gmail.com}
+
+El profesor asignará uno de los ejercicios a cada alumno según su número de lista. Solo se corregirá el ejercicio asignado.
+
+No está permitida la comunicación con otros alumnos.
+
+
+\begin{homeworkProblem}[: Arrancar automáticamente \textbf{Oracle} cuando se inicie el servidor (2 puntos)]
+
+  \textbf{Oracle} debe levantarse cuando la máquina se inicie, y apagarse cuando la máquina se cierre. Se crearán para ello dos servicios:
+  \begin{itemize}
+  \item \texttt{instance-oracle}: Este servicio activará la instancia \texttt{ASIR}. Se activará antes que \texttt{multi-user.target}, y necesita que antes esté arrancado el servicio \texttt{listener-oracle}. Si \texttt{listener-oracle} se apaga, también se desactiva \texttt{instance-oracle}.
+  \item \texttt{listener-oracle}: Arrancará el \textit{listener} de Oracle. Se activará cuando ya esté arrancado \texttt{network.target}.
+  \end{itemize}
+
+  Los ficheros que el profesor necesita para corregir la práctica son:
+  \begin{itemize}
+  \item Ficheros de definición de servicios de \textbf{systemd} (al menos dos).
+  \item Fichero(s) de \textit{script} que se ejecute(n) desde los ficheros de definición de servicios.
+  \item Salida de los comandos
+    \begin{itemize}
+    \item \texttt{systemctl status instance-oracle} 
+    \item \texttt{systemctl status listener-oracle}
+    \end{itemize}
+  \end{itemize}
+
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item Para que \texttt{systemd} recargue los servicios se puede reiniciar el ordenador, o ejecutar \texttt{systemctl daemon-reload}
+    \item Recuerda \texttt{After}, \texttt{WantedBy}
+    \item Haz que \texttt{instance-oracle} requiera \texttt{listener-oracle}(\texttt{Requires}), para que si se apaga el listener, se apague la instancia.
+    \end{itemize}
+  \end{Aviso}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Copia periódica online de un esquema (2 puntos)]
+
+  Se desea realizar copias periódicas de los datos del usuario \texttt{alumno}. Se desea que cada minuto:
+  \begin{itemize}
+  \item Se cree un usuario nuevo, de nombre \texttt{alumnoHHMM}, siendo \texttt{HH} la hora y \texttt{MM} el minuto actual
+  \item Se extraigan las tablas del usuario \texttt{alumno} 
+  \item Se importen en el usuario \texttt{alumnoHHMM}
+  \end{itemize}
+
+  Los ficheros que el profesor necesita para corregir la práctica son:
+  \begin{itemize}
+  \item Ficheros modificados o creados de \textbf{cron}.
+  \item Fichero(s) de \textit{script} que se ejecute(n) desde \textbf{cron}.
+  \end{itemize}
+
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item Utiliza \texttt{impdp} y \texttt{expdp} para importar y exportar datos.
+    \item Utiliza el comando \texttt{date} con un formato para conseguir la cadena \texttt{HHMM}.
+    \end{itemize}
+  \end{Aviso}
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Copia periódica de un esquema (2 puntos)]
+
+  Se desea realizar copias periódicas de los datos del usuario \texttt{alumno}. Se desea que cada minuto:
+  \begin{itemize}
+  \item Se extraigan las tablas del usuario \texttt{alumno}.
+  \item Se guarden en un fichero de nombre \texttt{/home/alumno/backups/alumnoHHMM}, siendo \texttt{HH} la hora y \texttt{MM} el minuto actual
+  \end{itemize}
+
+  Habrá un \textit{script} en \texttt{/home/alumno/scripts/recupera.sh} al que se llamará con un parámetro \texttt{HHMM}. Este \textit{script} recuperará las tablas del alumno guardadas esa hora y minuto si se encuentra ese backup, o informará de que ese backup no está disponible si no encuentra el fichero correspondiente.
+
+  Los ficheros que el profesor necesita para corregir la práctica son:
+  \begin{itemize}
+  \item Ficheros modificados o creados de \textbf{cron}.
+  \item Fichero(s) de \textit{script} que se ejecute(n) desde \textbf{cron}.
+  \item Fichero \texttt{recupera.sh}
+  \end{itemize}
+
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item Utiliza \texttt{impdp} y \texttt{expdp} para importar y exportar datos.
+    \item Utiliza el comando \texttt{date} con un formato para conseguir la cadena \texttt{HHMM}.
+    \item Comprueba si un fichero existe con \texttt{if} y \texttt{[}.
+    \item Usa la opción \texttt{TABLE\_EXISTS\_ACTION} para que \texttt{impdb} sobreescriba las tablas sin preguntar.
+    \end{itemize}
+  \end{Aviso}
+
+\end{homeworkProblem}
+
+
+
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\item Cada alumno subirá al servidor FTP indicado por el profesor sus ficheros, con su usuario y su contraseña.
+\end{itemize}
+\end{document}
+
+
+%https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-examen-corto-scripts.pdf

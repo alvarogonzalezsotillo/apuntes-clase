@@ -1,0 +1,81 @@
+
+
+* enunciado
+  Crear un esquema ER que represente el funcionamiento de un centro escolar de formación profesional, teniendo en cuenta que:
+
+     Sólo interesa llevar el control de ocupación de las aulas en el horario escolar
+     El horario es de seis horas diarias y en la base de datos simplemente se anota si es la primera, segunda,… y el día de la semana del que hablamos (por ejemplo miércoles a tercera hora)
+    Las asignaturas tienen un nombre, un código interno del centro y un código europeo.
+    La misma asignatura se puede impartir en dos ciclos distintos y en ese caso tendría el mismo código europeo y nombre, pero el código interno sería distinto. Hace falta saber en qué curso del ciclo se imparte la asignatura
+    Los ciclos tienen un nombre, pueden ser de grado superior,de grado medio o de FP Básica
+    Las asignaturas en cada momento ocupan un aula, del que tenemos que almacenar un código de aula, un nombre (que no se repite), un número de aula (que tampoco se repite) y los metros que tiene. A una hora concreta de la semana, el aula puede estar vacía o bien ocuparse, pero sólo se puede ocupar por una asignatura
+
+* ER    
+ [[file:horario-instituto.zip][horario-instituto]]
+
+* Relacional
+  Asignatura(codigoeuropeo,nombreasignatura)
+    PK(codigoeuropeo)
+
+  Profesor(codigoporofesor,nombre,apellidos,dni,ss,direccion,telfono,email)
+    PK(codigoporofesor)
+  
+  OfertaAsignatura(codigointernocentro, codigoeuropeo, codigooficialdecicloesteaño)
+    PK(codigointernocentro) -- codigooficialdecicloesteaño sería clave si codigointernocentro no cambia cada año
+    FK(codigoeuropeo) -> Asignatura
+    FK(codigooficialdecicloesteaño) -> OfertaCiclo
+
+  Ciclo(nombreciclo,nivel)
+    PK(nombreciclo)
+
+  OfertaCiclo(curso,codigooficialdecicloesteaño,turno)
+    PK(curso,codigooficialdecicloesteaño)
+
+  Aula(codigoaula,superficie,nombreaula,numeroaula)
+    PK(codigoaula)
+
+  Asignatura_Ciclo(nombreciclo,codigoeuropeo)
+    PK(nombreciclo,codigoeuropeo)
+    FK(nombreciclo) -> Ciclo
+    FK(codigoeuropeo) -> Asignatura
+
+  Asignatura_Profesor(codigoeuropeo,codigoporofesor,antigüedad)
+    PK(codigoeuropeo,codigoporofesor)
+    FK(codigoporofesor) -> Profesor
+    FK(codigoeuropeo) -> codigoeuropeo
+
+  OfertaAsignatura_Profesor(codigointernocentro,codigoporofesor)
+    PK(codigointernocentro,codigoporofesor)
+    FK(codigoporofesor) -> Profesor
+    FK(codigointernocentro) -> Asignatura
+
+  OfertaAsignatura_Aula(codigointernocentro,codigoaula,dia,hora)
+    PK(codigointernocentro,codigoaula,dia,hora)
+    FK(codigoaula) -> Aula
+    FK(codigointernocentro) -> Asignatura
+
+    
+  
+
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  

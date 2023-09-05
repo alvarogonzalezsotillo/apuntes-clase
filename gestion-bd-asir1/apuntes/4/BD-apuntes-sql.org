@@ -1,0 +1,299 @@
+
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Resumen de SQL
+
+* Orden de ejecución de una /query/
+1. =from=
+2. =where=
+3. =group by=
+4. =having=
+5. =select=
+6. =order by=
+
+#+begin_src sql
+select  
+  location, count(*) as ocupacion
+from 
+  section
+where
+  capacity > 10 
+group by 
+  location
+having
+  count(*) < 10
+order by
+  ocupacion;
+#+end_src
+
+* Funciones sobre valores
+- =upper=, =lower=: Mayúsculas y minúsculas
+- =trunc=: quita decimales a números, horas y minutos a las fechas
+- =mod=, =sqrt=...: funciones matemáticas
+- =to_number=: Convierte una cadena a número
+- =extract=: Extrae partes de una fecha
+- =nvl=: Pone un valor por defecto si un valor es =null=    
+
+* Operaciones sobre fechas
+- Resta de fechas
+- Sumar o restar días, meses...:
+
+#+begin_src sql
+select sysdate - interval '1' month + interval '1' day from dual;
+#+end_src  
+
+* Funciones de texto
+- =to_char=: Formatea fechas o números y los convierte en cadenas
+- =instr=: Busca el comienzo de una cadena dentro de otra cadena
+- =to_date=: Convierte una cadena en una fecha
+- =substr=: partes de un =varchar=
+- =regexp_like=: como =like=, pero con expresiones regulares
+
+
+* Funciones sobre grupos
+- =avg=: media
+- =max=: mínimo
+- =min=: máximo
+- =sum=: suma   
+- =count=: cuenta valores de columnas
+- =count(distict )=: cuenta valores distintos
+- =count(*)=: cuenta todas las filas, incluidos los valores =null=
+
+
+* Producto cartesiano
+- Es una operación de conjuntos
+- Para calcular $P = A \times B$
+  - Por cada elemento $a \in A$
+    - Por cada elemento $b \in B$
+      - $(a b)$ es un elemento de $P$
+- Ejemplo
+  - $A =$ {Juan, María}
+  - $B =$ {González, Pérez, García}
+  - $P =$ {Juan González, Juan Pérez, Juan García, María González, María Pérez, María García}
+- Se llama /producto/ porque $|P| = |A| \cdot |B|$   
+
+** Tabla original
+- Solo un pedido al día
+- No respeta 2FN (=Precio= depende de parte de la clave)
+
+#+caption: VENTAS
+| _Producto_ | Precio | Cantidad | _Fecha pedido_ | _Cliente_ |
+|------------+--------+----------+----------------+-----------|
+| Pera       |      1 |        2 |            1-1 | Pepe      |
+| Manzana    |      2 |        4 |            1-1 | Pepe      |
+| Naranja    |      3 |        3 |            1-1 | María     |
+| Manzana    |      2 |        6 |            1-2 | María     |
+| Pera       |      1 |        5 |            1-2 | Juan      |
+| Naranja    |      3 |        3 |            1-2 | Juan      |
+
+
+** Tablas normalizadas
+
+ #+caption: PRODUCTOS
+ | _Producto_ | Precio |
+ |------------+--------|
+ | Pera       |      1 |
+ | Manzana    |      2 |
+ | Naranja    |      3 |
+
+ #+caption: PEDIDOS
+ | _Producto_ | Cantidad | _Fecha pedido_ | _Cliente_ |
+ |------------+----------+----------------+-----------|
+ | Pera       |        2 |            1-1 | Pepe      |
+ | Manzana    |        4 |            1-1 | Pepe      |
+ | Naranja    |        3 |            1-1 | María     |
+ | Manzana    |        6 |            1-2 | María     |
+ | Pera       |        5 |            1-2 | Juan      |
+ | Naranja    |        3 |            1-2 | Juan      |
+
+** Cómo recuperar información original
+ - La tabla original VENTAS puede seguir siendo necesaria para un informe
+ - Se puede recuperar con los siguientes pasos:
+   - Se calcula la tabla PRODUCTOS $\times$ PEDIDOS
+   - Quitamos las filas que no respeten la /foreign key/
+
+*** PRODUCTOS $\times$ PEDIDOS
+ #+html: <font size="-1">
+ | PRODUCTO.producto | PRODUCTO.precio | PEDIDOS.producto | PEDIDOS.cantidad | PEDIDOS.Fecha pedido | PEDIDOS.cliente |
+ |-------------------+-----------------+------------------+------------------+----------------------+-----------------|
+ | _*Pera*_          |               1 | _*Pera*_         |                2 |                  1-1 | Pepe            |
+ | Pera              |               1 | Manzana          |                4 |                  1-1 | Pepe            |
+ | Pera              |               1 | Naranja          |                3 |                  1-1 | María           |
+ | Pera              |               1 | Manzana          |                6 |                  1-2 | María           |
+ | _*Pera*_          |               1 | _*Pera*_         |                5 |                  1-2 | Juan            |
+ | Pera              |               1 | Naranja          |                3 |                  1-2 | Juan            |
+ | Manzana           |               2 | Pera             |                2 |                  1-1 | Pepe            |
+ | _*Manzana*_       |               2 | _*Manzana*_      |                4 |                  1-1 | Pepe            |
+ | Manzana           |               2 | Naranja          |                3 |                  1-1 | María           |
+ | _*Manzana*_       |               2 | _*Manzana*_      |                6 |                  1-2 | María           |
+ | Manzana           |               2 | Pera             |                5 |                  1-2 | Juan            |
+ | Manzana           |               2 | Naranja          |                3 |                  1-2 | Juan            |
+ | Naranja           |               3 | Pera             |                2 |                  1-1 | Pepe            |
+ | Naranja           |               3 | Manzana          |                4 |                  1-1 | Pepe            |
+ | _*Naranja*_       |               3 | _*Naranja*_      |                3 |                  1-1 | María           |
+ | Naranja           |               3 | Manzana          |                6 |                  1-2 | María           |
+ | Naranja           |               3 | Pera             |                5 |                  1-2 | Juan            |
+ | _*Naranja*_       |               3 | _*Naranja*_      |                3 |                  1-2 | Juan            |
+ #+html: </font>
+
+
+*** PRODUCTOS $\times$ PEDIDOS, filtrado
+ - Nos quedamos solo con las filas =where PRODUCTO.producto = PEDIDOS.producto=
+ #+html: <font size="-1">
+ | PRODUCTO.producto | PRODUCTO.precio | PEDIDOS.producto | PEDIDOS.cantidad | PEDIDOS.Fecha pedido | PEDIDOS.cliente |
+ |-------------------+-----------------+------------------+------------------+----------------------+-----------------|
+ | *Pera*            |               1 | *Pera*           |                2 |                  1-1 | Pepe            |
+ | *Pera*            |               1 | *Pera*           |                5 |                  1-2 | Juan            |
+ | *Manzana*         |               2 | *Manzana*        |                4 |                  1-1 | Pepe            |
+ | *Manzana*         |               2 | *Manzana*        |                6 |                  1-2 | María           |
+ | *Naranja*         |               3 | *Naranja*        |                3 |                  1-1 | María           |
+ | *Naranja*         |               3 | *Naranja*        |                3 |                  1-2 | Juan            |
+ #+html: </font>
+
+** Sintaxis SQL
+ #+begin_src sql
+ select 
+   *
+ from 
+   PRODUCTOS,PEDIDOS
+ where
+   PRODUCTOS.producto = PEDIDOS.producto;
+ #+END_SRC
+
+ #+begin_src sql
+ select 
+   *
+ from 
+   PRODUCTOS join PEDIDOS on PRODUCTOS.producto = PEDIDOS.producto;
+ #+END_SRC
+
+* Vistas
+- Una /query/ puede guardarse como una vista
+- Las vistas se comportan como tablas con la orden =select=, extrayendo información de las tablas originales
+- En general, no se pueden modificar datos de una vista, hay que modificar las tablas de origen.
+
+#+begin_src sql
+create view ALUMNOS as
+select student_id as clave, first_name as nombre, last_name as apellidos from student;
+
+
+select * from alumnos;
+
+#+end_src
+
+
+* /Query/ en un =from=
+- En el =from= no es obligatorio poner tablas
+- Se puede poner cualquier cosa con filas y columnas:
+  - Tablas
+  - Vistas
+  - Otras /queries/
+
+#+begin_src sql
+select * from (
+  select student_id as clave, first_name as nombre, last_name as apellidos from student
+);
+#+end_src
+
+* /with/
+- Si no se quiere definir una vista o usar una /query/ dentro de  =from=
+
+#+begin_src sql
+select nombre, apellidos from (
+  select student_id as clave, first_name as nombre, last_name as apellidos from student
+)
+where clave > 10;
+
+
+with estudiantes as(
+  select student_id as clave, first_name as nombre, last_name as apellidos from student
+)
+select nombre, apellidos
+from estudiantes
+where clave > 10;
+#+end_src
+
+* /Query/ traducida a valor
+- Se puede poner una consulta que devuelva una fila y una columna en cualquier lugar donde se necesite un valor simple
+#+begin_src sql
+select * from student 
+where upper(last_name) = (
+  select max(upper(last_name)) from student
+);
+#+end_src
+
+
+* /Query/ traducida a lista
+- Se puede poner una consulta que devuelva una columna y muchas filas en una condición =in=
+#+begin_src sql
+select distinct course_no from section where capacity = 25 order by course_no;
+select * from course where course_no = 20 or course_no = 220 or course_no = 134;
+select * from course where course_no in (20,220,134);
+
+select * from course where course_no in (
+  select distinct course_no from section where capacity = 25
+);
+#+end_src
+
+
+* =Having=
+- =having= sirve para poner condiciones a los grupos de una consulta
+- Se puede simular con una subconsulta en el =from=
+
+#+begin_src sql
+select * from
+(
+    select  
+      location, count(*) as ocupacion
+    from 
+      section
+    group by 
+      location
+)
+
+where ocupacion < 10;
+
+
+select  
+  location, count(*) as ocupacion
+from 
+  section
+group by 
+  location
+having
+  count(*) < 10;
+#+end_src
+
+* Operaciones sobre conjuntos
+- $\cup$ =union=
+- $\cap$ =intersect=
+- $-$ =minus=    
+[[file:operaciones-de-conjuntos.png]] 
+
+
+* Paginación
+
+** Paginación tradicional (anterior a Oracle 12c)
+
+#+begin_src sql
+with student_con_orden as(
+    select rownum as orden, student.* 
+    from student 
+    order by last_name
+)
+select * from student_con_orden where orden > 100 and orden < 200;
+#+end_src
+
+** Paginación en Oracle 12c
+
+#+begin_src sql
+select Student.* 
+from student 
+order by last_name
+offset 0 rows                -- offset es opcional
+FETCH next 1 rows with ties; -- rows only
+#+end_src
+
+
+* Referencias
+
+#+INCLUDE: "../../../common/footer.org"

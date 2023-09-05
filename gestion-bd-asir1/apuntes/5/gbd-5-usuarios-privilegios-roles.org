@@ -1,0 +1,165 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Usuarios, privilegios y roles de *Oracle*
+
+
+
+* Introducción
+- Oracle puede utilizarse simultáneamente por varios procesos y clientes
+  - Hay problemas de concurrencia
+- Cada uno puede tener distintos permisos y capacidades
+  - Acceso a diferentes tablas de datos
+
+([[https://youtu.be/Ure7h5andLU][Vídeo en YouTube]])
+
+* Usuarios
+
+- Creación de usuarios
+  #+begin_src sql
+  CREATE USER usuario 
+    IDENTIFIED BY contraseña
+    ACCOUNT UNLOCK
+  #+end_src
+- Modificación de un usuario ya creado
+  #+begin_src sql
+  ALTER USER usuario
+    cualquier opción válida al crear usuario
+  #+end_src
+- Borrado de usuario
+  #+begin_src sql
+  DROP USER usuario
+  #+end_src
+
+* Privilegios
+- Cada usuario puede tener unos permisos distintos
+- Acceso, modificación, y borrado de:
+  - Filas, tablas, usuarios, sesiones...
+- Acceso al sistema
+  - =connect=, =resource=...
+
+** Privilegios de *Oracle*
+|   | Privilegio                       | Objeto sobre el que se aplica                   |
+|---+----------------------------------+-------------------------------------------------|
+| / | <>                               | <>                                              |
+|   | =Create, alter, drop=            | =Table, sequence, view, user, synonym, session= |
+|   | =select, update, delete, insert= | Sobre campos de tablas y filas                  |
+
+
+
+** Sintaxis de =Grant=
+
+#+begin_src sql
+grant PRIVILEGIO1,PRIVILEGIO2,...,PRIVILEGION 
+on OBJETO
+to USUARIO
+with grant option;
+#+end_src
+
+#+begin_src sql
+create table alumnos(...);
+create user profesor ...;
+grant select on alumnos to profesor;
+#+end_src
+
+[[https://docs.oracle.com/database/121/TTSQL/privileges.htm#TTSQL339][Fuente: docs.oracle.com]]
+
+
+
+** Ejercicio
+- Crea un usuario =PROPIETARIO=
+  - Utilízalo para crear una tabla =DATOS(TEXTO varchar2(255),numero integer)=
+- Crea un usuario =LIMITADO=
+- Haz que =PROPIETARIO= de privilegios a =LIMITADO= para que:
+  - Pueda leer todos los campos de la tabla =DATOS=
+  - Pueda actualizar el campo =NUMERO= de tabla =DATOS=
+  - Pero no pueda modificar el campo =TEXTO=, ni borrar filas, ni insertar filas
+
+#+BEGIN_NOTES
+grant update(column-name) on table-name to user-name
+#+END_NOTES
+
+
+
+
+
+** Quitar privilegios
+- Los privilegios se quitan con =revoke=
+- Cuando un usuario pierde un privilegio, los pierden también todos los que recibieron el mismo privilegio a través de él
+  - Por la cláusula =with grant option=
+
+#+begin_src sql
+connect sys/*******
+grant select on unatabla to unusuario with grant option;
+
+connect unusuario/*******
+grant select on unatabla to otrousuario;
+
+connect sys/*******
+revoke select on unatabla from unusuario;
+
+-- AQUI NI unusuario NI otrousuario TIENEN PRIVILEGIO SOBRE unatabla
+#+end_src
+
+
+** Caso especial: =Select= sobre columnas
+- Oracle no permite otorgar =select= sobre columnas, solo sobre la tabla completa
+- Se puede simular creando una vista sobre la tabla, y otorgando =select= sobre la vista
+
+#+begin_src sql
+create table datos(texto varchar2(255,numero integer);
+
+grant select(texto) on datos to usuario; -- NO FUNCIONA EN ORACLE
+
+create view DATOSPARAUSUARIO as select texto from datos;
+grant select on datosparausuario to usuario;
+#+end_src
+
+_
+* Roles
+- Asignar todos los privilegios a un usuario es trabajoso, pero factible
+- ¿Qué ocurre si tenemos que manejar a muchos usuario?
+- Los *roles* permiten dar nombre a un grupo de privilegios
+  - Se pueden asignar privilegios a un rol
+  - Y después asignar ese rol a varios usuarios
+
+** Sintaxis de roles
+#+begin_src sql
+create role NOMBREROL;
+grant PRIVILEGIOS on OBJETOS to NOMBREROL;
+grant NOMBREROL to USUARIO;
+#+end_src
+
+[[https://docs.oracle.com/cd/B10501_01/server.920/a96521/privs.htm][Fuente: docs.oracle.com]]
+
+** Ejercicio
+- Imagina que
+  1. Creas un rol con sus permisos
+  2. Le asignas privilegios
+  3. Lo asignas al usuario =USUARIOANTES=
+  4. Quitas algún privilegio del rol
+  5. Asignas el rol al usuario =USUARIODESPUES=
+- El usuario =USUARIODESPUES=, ¿tiene más, menos o los mismos privilegios que =USUARIOANTES=?
+  - O lo que es lo mismo, ¿los permisos del rol se /copian/ al usuario o se /enlazan/?
+
+#+BEGIN_NOTES
+
+drop role ELROL;
+
+create role ELROL;
+grant resource, connect to ELROL;
+grant select on LIMITADO.DATOS to ELROL;
+
+drop user usuarioantes;
+create user usuarioantes identified by u;
+grant ELROL to usuarioantes;
+
+revoke select on LIMITADO.DATOS from ELROL;
+
+drop user usuariodespues;
+create user usuariodespues identified by u;
+grant ELROL to usuariodespues;
+
+#+END_NOTES
+
+
+* Referencias
+#+include: "../../../common/footer.org"

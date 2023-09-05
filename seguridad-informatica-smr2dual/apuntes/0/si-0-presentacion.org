@@ -1,0 +1,172 @@
+#+include: "../../../common/header.org"
+#+Title: SEGURIDAD INFORMÁTICA (SMR fct ampliada)
+#+SUBTITLE: CÓDIGO: 0226
+#+KEYWORDS: 
+
+* Cómo serán las clases
++ Teoría
+  - Basada en apuntes
+  - Con un libro de referencia
++ Ejercicios
+  - Se realizan en clase o en casa
+  - Se ponen en común al día siguiente
++ Práctica
+  - Máquinas virtuales
++ Trabajos
+
+* Materiales 
++ Memoria USB
++ Correo electrónico
++ Acceso a Internet fuera del aula
++ Portátil propio (opcional)
+  - No se puede usar la red del centro 
+
+** Libro de referencia
++ Seguridad Informática
++ Editorial: MacMillan
++ Autor: Gema Escrivá Gascó
++ ISBN: 978-84-15656-64-7 
+[[file:portada-libro.png]]
+
+* Entrega de Trabajos
+- Via *Moodle*
+  + Nuestro curso es http://aulavirtual2.educa.madrid.org/course/view.php?id=19438
+  + El curso es accesible incluso sin usuario
+- Se utilizará Microsoft Office (*DOC*, *DOCX*)
+  + Opcionalmente, *PDF* o LibreOffice (*ODT*)
+- Se tendrá en cuenta
+  + La corrección técnica de los trabajos
+  + La fecha de entrega
+  + Expresión, sintaxis, ortografía
+  + La apariencia profesional
+
+* Normas
+- Retrasos y faltas
+- Uso de los ordenadores
+  - No pueden utilizarse para tareas distintas de las encargadas por el profesor
+  - Se respetará a otros alumnos
+- Móviles
+  - No.
+  - Un /smartwatch/ se considera un móvil.
+
+** Averías de los ordenadores
+- Los problemas se comunican al profesor en cuanto se detectan
+- Se deben hacer copias de seguridad para no perder los datos de los discos
+  - Pen Drive
+  - Disco Externo
+  - Correos enviados a uno mismo
+  - Copias en los ordenadores de otros compañeros
+- Norma fundamental: 
+*Si se pierde porque no hay copia, es que no era importante*
+
+
+
+
+* Cómo será la evaluación
+- Trabajos
+- Actitud
+  - Puntualidad, interés, preguntas al profesor, puesta en común de resultados, comportamiento...
+- Exámenes
+  - Dos parciales y un final por evaluación
+  - Se necesita un mínimo de 3,5 en cada parcial para hacer media
+- Entrega de trabajos
+  - Individuales
+
+#+include: "../../../common/calculo-notas.org"
+
+
+
+* Contenidos
+** Aplicación de medidas de seguridad pasiva:
+- Tipos de seguridad: Activa y pasiva. Necesidad de la seguridad en entornos de red.
+- Ubicación y protección física de los equipos y servidores.
+- Requisitos de la alimentación eléctrica.
+- Sistemas de alimentación ininterrumpida.
+- Estructura física de un sistema de alimentación ininterrumpida.
+
+** Gestión de dispositivos de almacenamiento:
+- Almacenamiento de la información: rendimiento, disponibilidad, accesibilidad.
+- Almacenamiento redundante y distribuido.
+- Almacenamiento remoto y extraíble.
+- Criptografía.
+- Copias de seguridad e imágenes de respaldo.
+- Medios de almacenamiento.
+- Sistemas RAID.
+- Programación de copias de seguridad.
+
+** Aplicación de mecanismos de seguridad activa:
+- Identificación digital. Firma electrónica y certificado digital.
+- Seguridad en los protocolos para comunicaciones inalámbricas.
+- Cortafuegos hardware.
+- Cortafuegos software.
+- Selección del cortafuegos en función de las características de la instalación.
+- Utilización de cortafuegos en un sistema o servidor.
+- Listas de control de acceso.
+- Política de contraseñas.
+- Recuperación de datos.
+- Software malicioso. Clasificación. Herramientas de protección y desinfección.
+
+** Aseguramiento de la privacidad:
+- Métodos para asegurar la privacidad de la información transmitida.
+- Fraudes informáticos y robos de información.
+- Control de la monitorización en redes cableadas.
+- Seguridad en redes inalámbricas.
+- Sistemas de identificación: firma electrónica, certificados digitales y otros.
+- Cortafuegos en equipos y servidores.
+- Cumplimiento de la legislación y de las normas sobre seguridad:
+- Legislación sobre protección de datos.
+- Legislación sobre los servicios de la sociedad de la información y correo electrónico.
+- 
+* Criterios de evaluación
+
+REAL DECRETO 1691/2007, de 14 de diciembre, por el que se establece el título de Técnico en Sistemas Microinformáticos y Redes y se fijan sus enseñanzas mínimas.
+
+** Aplica medidas de seguridad pasiva en sistemas informáticos describiendo características de entornos y relacionándolas con sus necesidades.
+-  Se ha valorado la importancia de mantener la información segura.
+-  Se han descrito las diferencias entre seguridad física y lógica. 
+-  Se han definido las características de la ubicación física y condiciones ambientales de los equipos y servidores.
+-  Se ha identificado la necesidad de proteger físicamente los sistemas informáticos. 
+-  Se ha verificado el funcionamiento de los sistemas de alimentación ininterrumpida. 
+-  Se han seleccionado los puntos de aplicación de los sistemas de alimentación ininterrumpida. 
+-  Se han esquematizado las características de una política de seguridad basada en listas de control de acceso.
+-  Se ha valorado la importancia de establecer una política de contraseñas. 
+-  Se han valorado las ventajas que supone la utilización de sistemas biométricos.
+
+** Gestiona dispositivos de almacenamiento describiendo los procedimientos efectuados y aplicando técnicas para asegurar la integridad de la información.
+-  Se ha interpretado la documentación técnica relativa a la política de almacenamiento.
+-  Se han tenido en cuenta factores inherentes al almacenamiento de la información (rendimiento, disponibilidad, accesibilidad, entre otro- .
+-  Se han clasificado y enumerado los principales métodos de almacenamiento incluidos los sistemas de almacenamiento en red.
+-  Se han descrito las tecnologías de almacenamiento redundante y distribuido.
+-  Se han seleccionado estrategias para la realización de copias de seguridad.
+-  Se ha tenido en cuenta la frecuencia y el esquema de rotación.
+-  Se han realizado copias de seguridad con distintas estrategias.
+-  Se han identificado las características de los medios de almacenamiento remotos y extraíbles.
+-  Se han utilizado medios de almacenamiento remotos y extraíbles.
+-  Se han creado y restaurado imágenes de respaldo de sistemas en funcionamiento.
+
+** Aplica mecanismos de seguridad activa describiendo sus características y relacionándolas con las necesidades de uso del sistema informático.
+-  Se han seguido planes de contingencia para actuar ante fallos de seguridad.
+-  Se han clasificado los principales tipos de software malicioso.
+-  Se han realizado actualizaciones periódicas de los sistemas para corregir posibles vulnerabilidades. 
+-  Se ha verificado el origen y la autenticidad de las aplicaciones que se instalan en los sistemas. 
+-  Se han instalado, probado y actualizado aplicaciones específicas para la detección y eliminación de software malicioso. 
+-  Se han aplicado técnicas de recuperación de datos.
+
+** Asegura la privacidad de la información transmitida en redes informáticas describiendo vulnerabilidades e instalando software especifico.
+-  Se ha identificado la necesidad de inventariar y controlar los servicios de red.
+-  Se ha contrastado la incidencia de las técnicas de ingeniería social en los fraudes informáticos y robos de información.
+-  Se ha deducido la importancia de minimizar el volumen de tráfico generado por la publicidad y el correo no deseado. 
+-  Se han aplicado medidas para evitar la monitorización de redes cableadas. 
+-  Se han clasificado y valorado las propiedades de seguridad de los protocolos usados en redes inalámbricas. 
+-  Se han descrito sistemas de identificación como la firma electrónica, certificado digital, entre otros. 
+-  Se han utilizado sistemas de identificación como la firma electrónica, certificado digital, entre otros. 
+-  Se ha instalado y configurado un cortafuegos en un equipo o servidor.
+
+** Reconoce la legislación y normativa sobre seguridad y protección de datos analizando las repercusiones de su incumplimiento.
+-  Se ha descrito la legislación sobre protección de datos de carácter personal.
+-  Se ha determinado la necesidad de controlar el acceso a la información personal almacenada.
+-  Se han identificado las figuras legales que intervienen en el tratamiento y mantenimiento de los ficheros de datos. 
+-  Se ha contrastado la obligación de poner a disposición de las personas los datos personales que les conciernen. 
+-  Se ha descrito la legislación actual sobre los servicios de la sociedad de la información y comercio electrónico. 
+-  Se han contrastado las normas sobre gestión de seguridad de la información.
+ 

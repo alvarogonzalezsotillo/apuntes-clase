@@ -1,0 +1,93 @@
+http://www.howtoforge.com/debian_subversion_websvn
+
+Setting up Subversion
+Subversion packages
+
+As root you can enter the following commands to install the packages required for our Subversion setup:
+
+# apt-get update
+# apt-get install subversion
+# apt-get install libapache2-svn
+
+The package libapache2-svn will install the subversion WebDAV apache module.
+Creating and populating repositories
+
+To work with in this howto we'll create two repos:
+
+# mkdir /var/svn-repos/
+# svnadmin create --fs-type fsfs /var/svn-repos/project_zen
+# svnadmin create --fs-type fsfs /var/svn-repos/project_wombat 
+
+The repository directories need the proper permissions for apache and the other users. I'll make a group and add users to it (don't just copy/paste here). The apache user won't be put in the group because I find it less secure.
+
+# groupadd subversion
+# addgroup john subversion
+# addgroup bert subversion
+# addgroup you subversion
+...
+# chown -R www-data:subversion /var/svn-repos/*
+# chmod -R 770 /var/svn-repos/*
+
+Let's set up easy ssh connectivity, on a user machine enter the following commands:
+
+$ mkdir ~/.ssh/
+$ cd ~/.ssh/
+$ ssh-keygen -t dsa
+$ cat ~/.ssh/id_dsa.pub | ssh you@example.com "cat - >> ~/.ssh/authorized_keys"
+
+The server example.com is the server we installed Subversion on. For easy ssh use you can chose not to use a passphrase with your key or use an agent to keep authenticated. Otherwise each transaction between the user machine and Subversion will require the user to enter a password (very inconvenient). Using an agent can be done like this:
+
+$ ssh-agent
+$ ssh-add
+$ ssh you@example.com
+
+All should be set now to use the a repository. You may test it like this, it shows an import and a checkout:
+
+$ mkdir ~/TEMP/
+$ echo "testing svn" > ~/TEMP/testing.txt
+$ svn import -m "importing test over ssh+svn" ~/TEMP/ svn+ssh://example.com/var/svn-repos/project_zen/trunk
+$ svn co svn+ssh://example.com/var/svn-repos/project_zen/trunk testcheckout 
+
+
+
+
+La mayoría de los subcomandos reciben parámetros de tipo archivo y/o
+directorio.  Si no se proveen parámetros a estos comandos, por omisión
+descenderán recursivamente desde el directorio actual (incluyéndolo).
+
+Subcomandos disponibles:
+   add
+   blame (praise, annotate, ann)
+   cat
+   changelist (cl)
+   checkout (co)
+   cleanup
+   commit (ci)
+   copy (cp)
+   delete (del, remove, rm)
+   diff (di)
+   export
+   help (?, h)
+   import
+   info
+   list (ls)
+   lock
+   log
+   merge
+   mergeinfo
+   mkdir
+   move (mv, rename, ren)
+   propdel (pdel, pd)
+   propedit (pedit, pe)
+   propget (pget, pg)
+   proplist (plist, pl)
+   propset (pset, ps)
+   resolve
+   resolved
+   revert
+   status (stat, st)
+   switch (sw)
+   unlock
+   update (up)
+
+

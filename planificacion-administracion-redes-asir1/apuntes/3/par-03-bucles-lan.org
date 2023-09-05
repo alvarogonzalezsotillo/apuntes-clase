@@ -1,0 +1,182 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Ethernet. Bucles LAN
+#+SUBTITLE:
+#+KEYWORDS: 
+#+language: ES
+
+* Introducción
+Bucles lan
+- Generalmente, una LAN se configura de forma jerárquica
+  - Óptimo según el cableado estructurado
+  - Fácil de entender
+- A veces conviene una topología en forma de malla
+  - Mayor tolerancia a fallos
+  - A veces, mayor velocidad entre switches
+
+* Bucles LAN
+- Problema
+  - Una trama podría estar /viajando/ por la red por siempre ([[https://en.wikipedia.org/wiki/Switching_loop][Switching loop]])
+- Solución 1: [[https://en.wikipedia.org/wiki/Spanning_Tree_Protocol][STP]]
+  - Ciertos enlaces de la red se deshabilitan, para volver a una topología jerárquica
+  - Estos enlaces se habilitan de nuevo cuando se modifican las condiciones
+- Solución 2:  [[https://en.wikipedia.org/wiki/Link_aggregation][Link Aggregation]]
+  - Se modifica el comportamiento de los switches
+  - Utilizan varias conexiones como una sola, con más velocidad
+
+
+* 802.1D: [[https://en.wikipedia.org/wiki/Spanning_Tree_Protocol][Spanning Tree]]
+- Es un protocolo de red para conseguir un árbol (red jerárquica) a base de deshabilitar enlaces de una malla
+  - El administrador puede definir una *raíz* (centro de estrella)
+  - Los switches envían paquetes entre sí para calcular sus distancias a esa raíz
+  - El puerto más *cercano* de cada switch se convierte en el puerto raíz
+
+** Nomenclatura
+- *Root Port* (RP): es el puerto por el que se llega más “barato” a la raíz
+  -  Coste del enlace: un enlace lento es más costoso. Esta es la medida para decidir entre enlaces. Coste = 10000/Mbs
+  -  nos quedamos con el más “barato”, que es el más rápido
+- *Designated Port* (DP): es el puerto conectado al RP de algún otro switch
+- *Bumped Port (BP)*: Un puerto enchufado a otro switch, que no es RP ni DP
+
+** Costes de un enlace
+- Definidos por un estándar
+- Nosotros los aproximaremos por 10000/velocidad
+
+| Data rate  | STP Cost (802.1D-1998) | RSTP Cost (802.1W-2001) |
+|------------+------------------------+-------------------------|
+| 4 Mbit/s   |                    250 |                 5000000 |
+| 10 Mbit/s  |                    100 |                 2000000 |
+| 16 Mbit/s  |                     62 |                 1250000 |
+| 100 Mbit/s |                     19 |                  200000 |
+| 1 Gbit/s   |                      4 |                   20000 |
+| 2 Gbit/s   |                      3 |                   10000 |
+| 10 Gbit/s  |                      2 |                    2000 |
+
+
+** Bridge Protocol Data Units
+- Cada switch viene de fábrica con un ID para ser root
+  -  Aunque el administrador lo puede cambiar
+- Se envían tramas BPDU para comunicarse
+  -  Qué switch tiene el menor ID
+  -  Qué costes tiene cada uno de sus puertos para llegar a la raiz
+- Generalmente, se envían cada 2 segundos
+
+** Ejemplo Wikipedia
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo1-final.svg]]
+
+** Ejemplo 2
+#+caption: Red inicial
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo2-1.svg]]
+
+#+reveal: split
+#+caption: Los RP son los puertos más cercanos a la raíz
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo2-2.svg]]
+
+#+reveal: split
+#+caption: Los DP son los que se conectan a algún RP
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo2-3.svg]]
+
+#+reveal: split
+#+caption: Los BP son los puertos que no son ni RP ni DP
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo2-4.svg]]
+
+
+
+** Ejemplo 3
+#+caption: Red inicial
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo3-1.svg]]
+
+#+reveal: split
+#+caption: Costes de los enlaces
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo3-2.svg]]
+
+#+reveal: split
+#+caption: Coste del camino hacia el raíz de cada puerto
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo3-3.svg]]
+
+#+reveal: split
+#+caption: Salidas hacia el raíz (RP)
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo3-4.svg]]
+
+#+reveal: split
+#+caption: Enlaces no usados
+#+ATTR_LaTeX: :placement [!htpb]
+[[file:media/stp-ejemplo3-5.svg]]
+
+
+#+latex: \clearpage
+
+** Ejercicio CISCO
+
+#+BEGIN_EXAMPLE
+Switch# show spanning-tree
+Switch(config)# spanning-tree vlan 1 priority 1
+#+END_EXAMPLE
+
+
+[[file:media/stp-cisco.png]]
+
+#+latex: \attachfile{./pkt/stp.pkt}
+
+[[file:./pkt/stp.pkt][Fichero PKT]]
+
+
+* IEEE 802.3ad: [[https://en.wikipedia.org/wiki/Link_aggregation][Link Aggregation]]
+- Los switches no envían entre sí tramas ethernet estándar
+- Agrupan varios enlaces y los utilizan como uno solo
+- Sirve para eliminar cuellos de botella entre switches.
+
+[[file:media/802-3ad.png]]
+
+** Configuración en Cisco
+- Los puertos que se quieren agregar se añaden al mismo =channel-group=
+#+begin_example
+Switch(config)# interface fa0/1
+Switch(config-if)# channel-group 1 mode active
+
+Switch# show etherchannel summary
+#+end_example
+
+** Ejercicio
+
+
+[[file:media/ejercicio-stp-port-aggregation.png]]
+
+#+latex: \attachfile{./pkt/stp-y-port-aggregation.pkt}
+
+[[file:pkt/stp-y-port-aggregation.pkt][Enlace a fichero PKT]]
+
+
+* Redundancia a nivel de red
+
+[[file:./media/ejercicio-redundancia-routers.png]]
+
+#+latex: \attachfile{./pkt/redundancia-routers.pkt}
+
+[[file:pkt/redundancia-routers.pkt][Enlace a fichero PKT]]
+
+** Problema con enrutamiento estático
+- si se romple un enlace, puede haber Bucles
+- solución: algoritmos dinámicos  
+
+
+[[file:./media/ejercicio-redundancia-routers-rutas-estaticas-puestas.png]]
+  
+#+latex: \attachfile{./pkt/redundancia-routers-rutas-estaticas-puestas.pkt}
+
+[[file:pkt/redundancia-routers-rutas-estaticas-puestas.pkt][Enlace a fichero PKT]]
+
+
+
+* Referencias
+
+#+INCLUDE: "../../../common/footer.org"
+

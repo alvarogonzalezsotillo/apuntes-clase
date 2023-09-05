@@ -1,0 +1,425 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Clasificación de redes
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+
+* Introducción
+
+
+** Preguntas previas
+Es posible que ya conozcas muchas cosas acerca de las redes. Veamos si sabes...
+
+- ¿Por qué nos molestamos en crear redes de ordenadores?
+  - En casa
+  - En el trabajo
+- ¿Qué es una dirección /IP/? ¿Qué es una dirección /MAC/? ¿Qué es un /puerto/?
+- ¿Sabes que es un /proxy/ o un /firewall/?
+- ¿Qué es un servidor /DNS/?
+- ¿Qué es un servidor /DHCP/?
+
+** Empieza la clase de redes
+[[file:media/clase-de-redes.jpg]]
+** Un poco de historia
+- En los años 50, las empresas grandes tenían *un* (1) ordenador
+  - Muy grande. Muy caro. 
+  - Debía ser compartido por todos los empleados
+  - Que se debían trasladar físicamente para usarlo
+- Idea: conectar terminales (ordenadores baratos) 
+  - No es necesario el desplazamiento físico
+  - Se puede compartir simultáneamente
+
+** ¿Por qué usar redes? 
+Las redes permiten compartir recursos entre ordenadores.
+- /Hardware/
+  - /CPU/ y memoria
+  - Disco 
+  - Impresora, escáner
+  - Conexión a otras redes
+- /Software/
+  - Programas
+  - Datos
+  - Aplicaciones
+
+** Ventajas de una red
+La *compartición de recursos* aporta las siguientes ventajas:
+- Reducción de costes
+- Mejora de la comunicación (trabajo en colaborativo en equipo)
+- Gestión simplificada
+  - Los técnicos pueden centralizar su trabajo
+- Como consecuencia, *mejora de la productividad*
+
+** Criterios de clasificación de redes
+
+- Modelo de transmisión
+- Topología (física)
+- Extensión
+- Propietario de la red
+- Modo de transmisión
+- Medio de transmisión
+
+
+* Modelo de transmisión
+- Difusión
+- Punto a punto
+
+
+**  Redes de difusión: 
+1. A quiere comunicar con B.
+2. A manda la información a todos los nodos que componen la red (multidifusión). 
+3. De todos estos, solo B se quedará con la información.
+4. El resto también la reciben, pero la ignoran
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/difusion.svg]]
+
+
+*** Características
+- Se necesita un arbitraje del medio.
+  - Asignación estática: tiempo dividido en cuantos. 
+    - Un host utiliza el medio en su cuanto. Si no lo utiliza, se queda sin usar.
+  - Asignación dinámica: bajo demanda.
+- Límite máximo de usuarios: colisiones
+- Privacidad
+
+#+REVEAL: split
+Ejemplo de redes de difusión:
+- Radio de la policía
+- Wifi (aproximadamente)
+- Comunicación oral entre personas
+
+** Redes punto a punto : 
+1. A quiere conectarse con B. 
+2. Entre A y B existen otros /elementos de interconexión/ que se ocupan de seleccionar un camino de A a B.
+3. Los equipos que no estén directamente en la interconexión no interactúan
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/punto-a-punto.svg]]
+
+*** Características
+- Privacidad
+- Coste:
+  - El medio no está compartido
+  - Hardware por cada conexión
+- Sin colisión 
+
+*** Conmutación de circuitos: 
+- Se crea un circuito dedicado (real o virtual) por el que pasa la información. 
+  - Necesita establecer la conexión y liberarla. 
+  - Puede desaprovechar recursos.
+  - Mientras exista la conexión, la comunicación está garantizada
+
+#+REVEAL: split
+#+attr_html: :width 80%
+#+attr_latex: :width 0.6\textwidth
+[[file:media/conmutacion-circuitos-temporal.jpg]]
+
+
+[[https://sites.google.com/site/redeslocalesyglobales/1-caracterizacion-de-las-redes/2-redes-de-transmision-de-datos/3-tipos-de-redes/redes-clasificadas-por-el-metodo-de-transmision][Fuente]]
+
+
+#+BEGIN_NOTES
+ La conmutación de circuitos es un tipo de
+comunicación que establece o crea un canal
+dedicado (o circuito) durante la duración de una
+sesión. Después de que es terminada la sesión
+(e.g. una llamada telefónica) se libera el canal y
+éste podrá ser usado por otros usuarios.
+-  El ejemplo más típico de este tipo de redes es el
+sistema telefónico, que enlaza segmentos de cable
+para crear un circuito o trayectoria única durante
+la duración de una llamada o sesión. Los sistemas
+de conmutación de circuitos son ideales para
+comunicaciones que requieren que los
+datos/información sean transmitidos en tiempo
+real.
+#+END_NOTES
+
+*** Conmutación de paquetes: 
+- El mensaje se divide en paquetes, que se envían de forma individual
+- Cada paquete puede seguir un camino distinto.
+- Cada paquete puede llegar o no
+- El orden de emisión no tiene por qué ser el de recepción 
+- Requiere dispositivos más rápidos y complejos. 
+- La congestión puede afectar a toda la red. Más difícil resolver congestiones.
+
+#+REVEAL: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/conmutacion-paquetes.gif]]
+
+
+[[https://commons.wikimedia.org/w/index.php?curid=29033823][De Oddbodz - Trabajo propio, CC BY-SA 3.0]]
+
+
+#+REVEAL: split
+
+#+attr_html: :width 60%
+#+attr_latex: :width 0.6\textwidth
+[[file:media/conmutacion-paquetes-temporal.jpg]]
+
+[[https://sites.google.com/site/redeslocalesyglobales/1-caracterizacion-de-las-redes/2-redes-de-transmision-de-datos/3-tipos-de-redes/redes-clasificadas-por-el-metodo-de-transmision][Fuente]]
+
+#+BEGIN_NOTES
+Clasificación de redes
+Conmutación de paquetes
+-  La información/datos antes de ser transmitida es
+ensamblada en paquetes. Cada paquete es
+transmitido individualmente y éste puede seguir
+diferentes rutas hacia su destino. En el destino,
+los paquetes son otra vez re-ensamblados.
+-  En los sistemas de conmutación de paquetes el
+canal es compartido por muchos usuarios. La
+mayoría de los protocolos de WAN tales como
+TCP/IP, X.25, Frame Relay, ATM, son basados en
+conmutación de paquetes.
+-  La conmutación de paquetes es más eficiente y
+robusto para datos que pueden ser enviados con
+retardo en la transmisión (no en tiempo real).
+#+END_NOTES
+
+
+*** Circuitos vs paquetes
+
+|                                    | Circuitos         | Paquetes          |
+|------------------------------------+-------------------+-------------------|
+| Retardo inicial                    | Mayor             |                   |
+| Asignación dinámica de recursos    |                   | Sí                |
+| La congestión afecta a toda la red |                   | Sí                |
+| Complejidad en la recepción        |                   | Mayor             |
+| Latencia (tras la conexión)        | Menor             |                   |
+| Tipo de latencia                   | Constante         | Variable          |
+| Tolerancia a fallos                |                   | Mayor             |
+| Mejor para                         | Tráfico constante | Tráfico a ráfagas |
+
+* Topología
+
+- La topología es una rama de las matemáticas que estudia la forma /intrínseca/ de un objeto
+- No son importantes las deformaciones como:
+  - Estiramientos
+  - Doblamientos
+- Sí son importantes
+  - Los cortes
+  - Las uniones
+- Son iguales
+  - Un círculo y un cuadrado 
+  - Una taza y un donut 
+- Son distintos
+  - Una botella y una taza (con asa)
+
+** Bus
+- Los equipos de la red comparten un único cable.
+  - Requiere poco cable
+  - Si falla el bus, ningún equipo mantiene la comunicación
+  - Son redes de /difusión/
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/bus.svg]]
+
+**  Anillo
+- Cada equipo tiene un enlace con el siguiente equipo
+- El último equipo se une con el primero
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/anillo.svg]]
+
+#+REVEAL: split
+Características de redes en anillo:
+  - Si falla un enlace, la red no funciona.
+  - Son redes punto a punto
+  - Sin congestión de la red (posiblemente de algún nodo)
+
+
+** Anillo doble
+- Dos anillos "paralelos", cada uno en una dirección
+- Si se rompe un enlace o un nodo, se puede recuperar la forma de anillo
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/anillo-doble.svg]]
+
+** Estrella
+-  Los nodos se conectan a un nodo central.
+-  El fallo de un enlace no afecta el resto de la red.
+-  El fallo del nodo central impide el funcionamiento de la red.
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/topologia-estrella.svg]]
+
+
+**  Árbol
+-  Los nodos se conectan de forma jerárquica.
+  - Los de un nivel inferior se conectan a uno (y solo uno) de los nodos del nivel superior
+  - La /raíz/ del árbol es el único nodo sin nodo superior
+- Si un enlace falla, el “subárbol” se queda aislado.
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/topologia-arbol.svg]]
+
+#+REVEAL: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/topologia-arbol-niveles.svg]]
+
+** Completa (malla completa)
+-  Todos los nodos se conectan entre ellos.
+-  Muy cara, pero muy tolerante a los fallos de nodos y enlaces
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/malla-completa.svg]]
+
+#+REVEAL: split
+#+attr_latex: :width 0.6\textwidth
+[[file:media/malla-completa-2.svg]]
+
+----- 
+Pregunta: ¿cuántos enlaces tiene una malla completa con 7 nodos?
+
+
+** Irregular (malla)
+-  Es parecida a la completa, pero sin la conexión total entre los nodos
+- Es la topología "por descarte"
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/topologia-irregular.svg]]
+
+
+
+
+** Preguntas
+- ¿Qué topología tiene la red del aula?
+- ¿Qué topología tiene la red del instituto?
+- ¿Qué topología física tiene la wifi del instituto?
+- ¿Qué topología lógica tiene la wifi del instituto?
+
+#+REVEAL: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/arpanet-1978.png]]
+
+#+REVEAL: split
+
+#+attr_latex: :width 0.6\textwidth
+[[file:media/estrella-grande.png]]
+
+#+REVEAL: split
+#+attr_latex: :width 0.6\textwidth
+[[file:media/red-europea.png]]
+http://www.chrisharrison.net/index.php/Visualizations/InternetMap
+
+#+REVEAL: split
+[[https://www.submarinecablemap.com/][
+Submarine Cable Map]]
+** Topología física vs topología lógica
+- Física: conexiones entre equipos
+- Lógica: cómo se utilizan las conexiones
+
+*** Bus lógico
+- Una estrella física, en la que el equipo central envía todos los datos al resto. 
+- Cada equipo mira si es destinatario de dichos datos para procesarlos.
+
+*** Anillo lógico
+- Un bus con uso de testigo.
+- El equipo que tiene el testigo, es el poseedor de los permisos para transmitir en el medio.
+- Cuando termina, transmite el testigo a otro equipo
+
+#+attr_html: :width 40%
+#+attr_latex: :width 0.6\textwidth
+[[file:media/carga-ethernet.png]]
+
+* Extensión de la red
+- *PAN* /Personal Area Network/
+  - Hasta 10 metros
+  - Alrededor de una persona
+- *LAN* /Local Area Network/
+  - Hasta 1 Km
+  - Un edificio
+- *MAN* /Metropolitan Area Network/
+  - Hasta 10 km
+  - Una población
+- *WAN* /Wide Area Network/
+  - Más de 10 Km
+  - Una región, un país, todo el mundo
+#+reveal: split
+- Clasifica estas redes según su extensión
+  - /GPRS/
+  - /X25/
+  - Wi-fi
+  - /IrDA/
+  - /ADSL/
+  - /Ethernet/
+  - /Frame Relay/
+
+* Propietario de la red
+- Redes privadas
+  - De particulares o empresas
+  - Sólo se conectan equipos y usuarios autorizados
+  - Un responsable maneja toda la red
+- Redes públicas
+  - Compañías telefónicas y de acceso a Internet (/ISP Intertet Service Provider/)
+  - Se /alquilan/ a usuarios
+  - Es difícil controlar a los usuarios de la red
+
+#+reveal: split
+#+attr_latex: :width 0.6\textwidth
+[[file:media/windows-red-publico-privada.png]]
+
+#+reveal: split
+- Clasifica estas redes según su propiertario
+  - /GPRS/
+  - /X25/
+  - Wi-fi
+  - /IrDA/
+  - /ADSL/
+  - /Ethernet/
+  - /Frame Relay/
+
+
+* Modo de transmisión
+- Simplex
+  - La comunicación es en un solo sentido
+- Semi duplex
+  - El canal puede invertirse
+  - Pero en cada momento tiene solo un sentido
+- Full duplex
+  - El canal permite comunicación simultánea en ambos sentidos
+
+#+reveal: split
+- Clasifica estas redes según su modo de transmisión
+  - Los 40 principales (93.9 FM)
+  - Portero automático
+  - /Walkie talkie/
+  - Congreso de los Diputados
+  - Sálvame Deluxe
+
+* Medio de transmisión
+
+- Redes cableadas (medios guiados)
+  - La señal viaja por un cable
+  - Eléctrico
+    - Par trenzado
+    - Cable coaxial
+  - Óptico
+    - Fibra óptica
+- Redes inalábricas (radiofrecuencia)
+
+#+reveal: split
+- ¿Qué velocidades se pueden alcanzar en los medios guiados descritos?
+  - Par trenzado
+  - Cable coaxial
+  - Fibra óptica
+- ¿Qué ventajas e inconvenientes tienen los medios no guiados respecto a los guiados?
+
+#+reveal: split
+- Clasifica estas redes según su medio de transmisión
+  - /GPRS/
+  - /X25/
+  - Wi-fi
+  - /IrDA/
+  - /ADSL/
+  - /Ethernet/
+  - /Frame Relay/
+
+
+* Referencias
+#+include: "../../../common/footer.org"

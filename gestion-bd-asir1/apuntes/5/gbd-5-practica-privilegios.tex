@@ -1,0 +1,109 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+\renewcommand{\hmwkTitle}{Modificación concurente de datos}
+\renewcommand{\hmwkClass}{Gestión de Bases de Datos}
+
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+%\setlist[itemize]{parsep=0em}
+
+
+\setlength{\columnseprule}{0.4pt}
+\newcommand{\Simultaneo}[2]{
+  \begin{multicols}{2}
+    #1
+    \vfill \null
+    \columnbreak
+    #2
+    \vfill \null
+  \end{multicols}
+}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+Tras la práctica se espera que el alumno se familiarice con:
+\begin{itemize}
+\item La asignación de diferentes privilegios a los usuarios, de acuerdo a sus necesidades
+\item Las posibilidades de las bases de datos SQL para implementar el nivel 3 del estándar ANSI/SPARC
+\end{itemize}
+
+Se puede descargar \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/5/gbd-5-practica-privilegios.pdf}{la última versión de la práctica en este enlace}
+
+\section{Modelo de datos}
+
+Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/5/jardineria_oracle.sql}{esquema de base de datos descargable en este link}, que también se incluye como \adjuntardoc{jardineria_oracle.sql}{adjunto} a este PDF. El diagrama del esquema se puede consultar en la figura \ref{fig:esquema}.
+
+El alumno cargará el \textit{script} en su usuario, y después otorgará los privilegios siguientes sobre sus tablas.
+
+\begin{homeworkProblem}[: \imenu{Usuario \texttt{RRHH} (2 puntos)}]
+  El usuario \texttt{RRHH} tendrá:
+  \begin{itemize}
+  \item Privilegios completos (\texttt{select, insert, update, delete}) sobre las tablas \texttt{Oficinas} y \texttt{Empleados}
+  \item Podrá ver (\texttt{select}) los datos de \texttt{Clientes}
+  \item Podrá modificar (\texttt{update}) el campo \texttt{Clientes.CodigoEmpleadoRepVentas}
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Usuario \texttt{COMERCIAL} (2 puntos)}]
+  El usuario \texttt{COMERCIAL} tendrá:
+  \begin{itemize}
+  \item Privilegios completos sobre las tablas \texttt{Clientes}, \texttt{Pedidos} y \texttt{DetallePedidos}
+  \item Podrá ver  los datos de \texttt{Productos}, \texttt{Empleados} y \texttt{Oficinas} 
+  \item Podrá modificar el campo \texttt{Productos.CantidadEnStock}
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Usuario \texttt{CONTABILIDAD} (2 puntos)}]
+  El usuario \texttt{CONTABILIDAD} tendrá:
+  \begin{itemize}
+  \item Privilegios completos sobre la tabla \texttt{Pagos}
+  \item Podrá ver  los datos de \texttt{Clientes}, \texttt{Pedidos} y \texttt{DetallePedidos}.
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Usuario \texttt{ALMACEN} (2 puntos)}]
+  El usuario \texttt{ALMACEN} tendrá:
+  \begin{itemize}
+  \item Privilegios completos sobre las tablas \texttt{Productos} y \texttt{GamasProductos}
+  \item Podrá leer los campos \texttt{DetallePedidos.CodigoPedido}, \texttt{DetallePedidos.CodigoProducto} y \texttt{DetallePedidos.Cantidad}. Lo hará a través de la vista \texttt{DetallePedidosAlmacen} \\ (\enlace{https://dba.stackexchange.com/a/17079}{https://dba.stackexchange.com/a/17079})
+  \end{itemize}
+\end{homeworkProblem}
+
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\item Se realizará sobre el servidor del profesor, accesible desde clase en 10.1.33.201, y desde fuera del instituto \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=29534}{a través de un túnel ssh}.
+\item Si hay algún problema con la entrega en el servidor, se contactará con el profesor mediante el aula virtual.
+\item Hay una corrección automática accesible en \enlace{http://10.1.33.201:80/practica-privilegios}{http://10.1.33.201:80/practica-privilegios}.
+\end{itemize}
+
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./jardineria.pdf}
+  \end{center}
+  \caption{Diagrama de la base de datos}\label{fig:esquema}
+\end{figure}
+
+\end{document}
+
+
+
+

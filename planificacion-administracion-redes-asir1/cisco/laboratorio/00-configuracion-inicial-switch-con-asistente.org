@@ -1,0 +1,577 @@
+* Configurar un switch con el asistente inicial
+
+Se debe conectar el puerto serie /antes/ de encender el switch  
+
+#+begin_src bash
+Using driver version 3 for media type 1
+Base ethernet MAC Address: 40:a6:e8:ab:fa:80
+Xmodem file system is available.
+The password-recovery mechanism is enabled.
+Initializing Flash...
+mifs[2]: 10 files, 1 directories
+mifs[2]: Total bytes     :    1806336
+mifs[2]: Bytes used      :     687616
+mifs[2]: Bytes available :    1118720
+mifs[2]: mifs fsck took 1 seconds.
+mifs[3]: 0 files, 1 directories
+mifs[3]: Total bytes     :    3870720
+mifs[3]: Bytes used      :       1024
+mifs[3]: Bytes available :    3869696
+mifs[3]: mifs fsck took 0 seconds.
+mifs[4]: 5 files, 1 directories
+mifs[4]: Total bytes     :     258048
+mifs[4]: Bytes used      :       8192
+mifs[4]: Bytes available :     249856
+mifs[4]: mifs fsck took 0 seconds.
+mifs[5]: 5 files, 1 directories
+mifs[5]: Total bytes     :     258048
+mifs[5]: Bytes used      :       8192
+mifs[5]: Bytes available :     249856
+mifs[5]: mifs fsck took 1 seconds.
+mifs[6]: 7 files, 2 directories
+mifs[6]: Total bytes     :   57931776
+mifs[6]: Bytes used      :   31730176
+mifs[6]: Bytes available :   26201600
+mifs[6]: mifs fsck took 14 seconds.
+...done Initializing Flash.
+done.
+#+end_src
+
+En este punto comienza a cargar la flash
+
+#+begin_src bash
+Loading "flash:c2960s-universalk9-mz.152-2.E9.bin"...@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+File "flash:c2960s-universalk9-mz.152-2.E9.bin" uncompressed and installed, entry point: 0x3000
+executing...
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(2)E9, RELEASE SOFTWARE (fc4)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Sat 08-Sep-18 14:56 by prod_rel_team
+Initializing flashfs...
+Using driver version 4 for media type 1
+mifs[4]: 10 files, 1 directories
+mifs[4]: Total bytes     : 1806336
+mifs[4]: Bytes used      : 687616
+mifs[4]: Bytes available : 1118720
+mifs[4]: mifs fsck took 0 seconds.
+mifs[4]: Initialization complete.
+
+mifs[5]: 0 files, 1 directories
+mifs[5]: Total bytes     : 3870720
+mifs[5]: Bytes used      : 1024
+mifs[5]: Bytes available : 3869696
+mifs[5]: mifs fsck took 0 seconds.
+mifs[5]: Initialization complete.
+
+mifs[6]: 5 files, 1 directories
+mifs[6]: Total bytes     : 258048
+mifs[6]: Bytes used      : 8192
+mifs[6]: Bytes available : 249856
+mifs[6]: mifs fsck took 0 seconds.
+mifs[6]: Initialization complete.
+
+mifs[7]: 5 files, 1 directories
+mifs[7]: Total bytes     : 258048
+mifs[7]: Bytes used      : 8192
+mifs[7]: Bytes available : 249856
+mifs[7]: mifs fsck took 1 seconds.
+mifs[7]: Initialization complete.
+
+mifs[8]: 7 files, 2 directories
+mifs[8]: Total bytes     : 57931776
+mifs[8]: Bytes used      : 31730176
+mifs[8]: Bytes available : 26201600
+mifs[8]: mifs fsck took 0 seconds.
+mifs[8]: Initialization complete.
+
+...done Initializing flashfs.
+Checking for Bootloader upgrade..
+Boot Loader upgrade not required (Stage 2)
+
+
+FIPS: Flash Key Check : Begin
+FIPS: Flash Key Check : End, Not Found, FIPS Mode Not Enabled
+
+POST: MA BIST : Begin
+  FC 1   MBIST Test Passed.
+  DP Sg1 MBIST Test Passed.
+  DP Xg1 MBIST Test Passed.
+  NI 1   MBIST Test Passed.
+  FC 0   MBIST Test Passed.
+  DP Sg0 MBIST Test Passed.
+  DP Xg0 MBIST Test Passed.
+  NI 0   MBIST Test Passed.
+  UPB    MBIST Test Passed.
+POST: MA BIST : End, Status Passed
+
+POST: TCAM BIST : Begin
+POST: TCAM BIST : End, Status Passed
+
+extracting front_end/front_end_ucode_info (86 bytes)
+Waiting for Stack Master Election...
+POST: Thermal, Fan Tests : Begin
+POST: Thermal, Fan Tests : End, Status Passed
+
+POST: PortASIC Stack Port Loopback Tests : Begin
+POST: PortASIC Stack Port Loopback Tests : End, Status Passed
+
+POST: PortASIC Port Loopback Tests : Begin
+POST: PortASIC Port Loopback Tests : End, Status Passed
+
+POST: EMAC Loopback Tests : Begin
+POST: EMAC Loopback Tests : End, Status Passed
+
+Election Complete
+Switch 1 booting as Master
+Waiting for Port download...Complete
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-F48TS-L (PowerPC) processor (revision C0) with 131072K bytes of memory.
+Processor board ID FOC1912Y222
+Last reset from power-on
+1 Virtual Ethernet interface
+49 FastEthernet interfaces
+4 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 40:A6:E8:AB:FA:80
+Motherboard assembly number     : 73-14896-02
+Power supply part number        : 341-0529-02
+Motherboard serial number       : FOC19113WRJ
+Power supply serial number      : LIT19060T2S
+Model revision number           : C0
+Motherboard revision number     : B0
+Model number                    : WS-C2960S-F48TS-L
+Daughterboard assembly number   : 73-14972-02
+Daughterboard serial number     : FOC191179GS
+System serial number            : FOC1912Y222
+Top Assembly Part Number        : 800-38492-02
+Top Assembly Revision Number    : A0
+Version ID                      : V02
+CLEI Code Number                : CMMMW00ARA
+Daughterboard revision number   : B0
+Hardware Board Revision Number  : 0x00
+
+Switch Ports Model                     SW Version            SW Image
+------ ----- -----                     ----------            ----------
+,*    1 52    WS-C2960S-F48TS-L         15.2(2)E9             C2960S-UNIVERSALK9-M
+
+
+
+
+Press RETURN to get started!
+
+
+,*Mar  1 00:00:16.342: Read env variable - LICENSE_BOOT_LEVEL =
+,*Jan  2 00:00:00.576: %IOS_LICENSE_IMAGE_APPLICATION-6-LICENSE_LEVEL: Module name = c2960s_lanbase Next reboot level = lanbase and License = lanbase
+,*Jan  2 00:00:24.793: %STACKMGR-4-SWITCH_ADDED: Switch 1 has been ADDED to the stack
+,*Jan  2 00:00:25.994: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+,*Jan  2 00:00:27.635: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0, changed state to down
+,*Jan  2 00:00:29.774: %SPANTREE-5-EXTENDED_SYSID: Extended SysId enabled for type vlan
+,*Jan  2 00:00:55.915: %STACKMGR-5-SWITCH_READY: Switch 1 is READY
+,*Jan  2 00:00:55.915: %STACKMGR-4-STACK_LINK_CHANGE: Stack Port 1 Switch 1 has changed to state DOWN
+,*Jan  2 00:00:55.915: %STACKMGR-4-STACK_LINK_CHANGE: Stack Port 2 Switch 1 has changed to state DOWN
+,*Jan  2 00:00:56.156: %USB_CONSOLE-6-MEDIA_RJ45: Console media-type is RJ45.
+,*Jan  2 00:00:56.502: %STACKMGR-5-MASTER_READY: Master Switch 1 is READY
+,*Jan  2 00:00:56.948: %SYS-5-RESTART: System restarted --
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(2)E9, RELEASE SOFTWARE (fc4)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Sat 08-Sep-18 14:56 by prod_rel_team
+,*Jan  2 00:00:59.034: %LINK-3-UPDOWN: Interface FastEthernet0, changed state to down
+,*Jan  2 00:01:00.046: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0, changed state to down
+#+end_src
+
+
+Asistentente para la configuración inicial del switch:
+- Nombre del switch: =switch-S-puesto-N=, siendo S y N el número de switch y puesto de la pegatina de indentificación
+- /enable secret/: =enables=
+- /enable password/: =enablep=
+- Contraseña de interfaz virtual: =alumno= (es la que se usará al conectar en remoto)  
+- IP a asignar a interfaz virtual =VLan1=: =172.31.P.S=, siendo S y N el número de switch y puesto de la pegatina de indentificación
+
+Nota: la =vlan1= es un grupo de interfaces que inicialmente agrupa a todos los puertos del switch
+
+#+begin_src bash_
+         --- System Configuration Dialog ---
+
+Enable secret warning
+----------------------------------
+In order to access the device manager, an enable secret is required
+If you enter the initial configuration dialog, you will be prompted for the enable secret
+If you choose not to enter the intial configuration dialog, or if you exit setup without setting the enable secret,
+please set an enable secret using the following CLI in configuration mode-
+enable secret 0 <cleartext password>
+----------------------------------
+Would you like to enter the initial configuration dialog? [yes/no]:
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: yes
+
+At any point you may enter a question mark '?' for help.
+Use ctrl-c to abort configuration dialog at any prompt.
+Default settings are in square brackets '[]'.
+
+
+Basic management setup configures only enough connectivity
+for management of the system, extended setup will ask you
+to configure each interface on the system
+
+Would you like to enter basic setup instead of extended setup? [yes/no]: yes
+Configuring global parameters:
+
+  Enter host name [Switch]: switch-1-puesto-4
+
+  The enable secret is a password used to protect access to
+  privileged EXEC and configuration modes. This password, after
+  entered, becomes encrypted in the configuration.
+  Enter enable secret: enables
+
+  The enable password is used when you do not specify an
+  enable secret password, with some older software versions, and
+  some boot images.
+  Enter enable password: enablep
+
+  The virtual terminal password is used to protect
+  access to the router over a network interface.
+  Enter virtual terminal password: alumno
+  Configure SNMP Network Management? [no]: no
+
+Current interface summary
+
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES unset  up                    down
+FastEthernet0          unassigned      YES unset  down                  down
+FastEthernet1/0/1      unassigned      YES unset  down                  down
+FastEthernet1/0/2      unassigned      YES unset  down                  down
+FastEthernet1/0/3      unassigned      YES unset  down                  down
+FastEthernet1/0/4      unassigned      YES unset  down                  down
+FastEthernet1/0/5      unassigned      YES unset  down                  down
+FastEthernet1/0/6      unassigned      YES unset  down                  down
+FastEthernet1/0/7      unassigned      YES unset  down                  down
+FastEthernet1/0/8      unassigned      YES unset  down                  down
+FastEthernet1/0/9      unassigned      YES unset  down                  down
+FastEthernet1/0/10     unassigned      YES unset  down                  down
+FastEthernet1/0/11     unassigned      YES unset  down                  down
+FastEthernet1/0/12     unassigned      YES unset  down                  down
+FastEthernet1/0/13     unassigned      YES unset  down                  down
+FastEthernet1/0/14     unassigned      YES unset  down                  down
+FastEthernet1/0/15     unassigned      YES unset  down                  down
+FastEthernet1/0/16     unassigned      YES unset  down                  down
+FastEthernet1/0/17     unassigned      YES unset  down                  down
+FastEthernet1/0/18     unassigned      YES unset  down                  down
+FastEthernet1/0/19     unassigned      YES unset  down                  down
+FastEthernet1/0/20     unassigned      YES unset  down                  down
+FastEthernet1/0/21     unassigned      YES unset  down                  down
+FastEthernet1/0/22     unassigned      YES unset  down                  down
+FastEthernet1/0/23     unassigned      YES unset  down                  down
+FastEthernet1/0/24     unassigned      YES unset  down                  down
+FastEthernet1/0/25     unassigned      YES unset  down                  down
+FastEthernet1/0/26     unassigned      YES unset  down                  down
+FastEthernet1/0/27     unassigned      YES unset  down                  down
+FastEthernet1/0/28     unassigned      YES unset  down                  down
+FastEthernet1/0/29     unassigned      YES unset  down                  down
+FastEthernet1/0/30     unassigned      YES unset  down                  down
+FastEthernet1/0/31     unassigned      YES unset  down                  down
+FastEthernet1/0/32     unassigned      YES unset  down                  down
+FastEthernet1/0/33     unassigned      YES unset  down                  down
+FastEthernet1/0/34     unassigned      YES unset  down                  down
+FastEthernet1/0/35     unassigned      YES unset  down                  down
+FastEthernet1/0/36     unassigned      YES unset  down                  down
+FastEthernet1/0/37     unassigned      YES unset  down                  down
+FastEthernet1/0/38     unassigned      YES unset  down                  down
+FastEthernet1/0/39     unassigned      YES unset  down                  down
+FastEthernet1/0/40     unassigned      YES unset  down                  down
+FastEthernet1/0/41     unassigned      YES unset  down                  down
+FastEthernet1/0/42     unassigned      YES unset  down                  down
+FastEthernet1/0/43     unassigned      YES unset  down                  down
+FastEthernet1/0/44     unassigned      YES unset  down                  down
+FastEthernet1/0/45     unassigned      YES unset  down                  down
+FastEthernet1/0/46     unassigned      YES unset  down                  down
+FastEthernet1/0/47     unassigned      YES unset  down                  down
+FastEthernet1/0/48     unassigned      YES unset  down                  down
+GigabitEthernet1/0/1   unassigned      YES unset  down                  down
+GigabitEthernet1/0/2   unassigned      YES unset  down                  down
+GigabitEthernet1/0/3   unassigned      YES unset  down                  down
+GigabitEthernet1/0/4   unassigned      YES unset  down                  down
+
+Enter interface name used to connect to the
+management network from the above interface summary: vlan1
+
+Configuring interface Vlan1:
+  Configure IP on this interface? [no]: yes
+    IP address for this interface: 172.31.4.1
+    Subnet mask for this interface [255.255.0.0] :
+    Class B network is 172.31.0.0, 16 subnet bits; mask is /16
+Would you like to enable as a cluster command switch? [yes/no]: no
+
+#+end_src
+
+Tras esto, se generará un script de configuración, que podremos aplicar en el siguiente paso
+
+#+begin_src bash
+The following configuration command script was created:
+
+hostname switch-1-puesto-4
+enable secret 5 $1$70.o$engKl.43auQDKuBjjOkxg0
+enable password enablep
+line vty 0 15
+password alumno
+no snmp-server
+!
+no ip routing
+
+!
+interface Vlan1
+no shutdown
+ip address 172.31.4.1 255.255.0.0
+!
+interface FastEthernet0
+shutdown
+no ip address
+!
+interface FastEthernet1/0/1
+!
+interface FastEthernet1/0/2
+!
+interface FastEthernet1/0/3
+!
+interface FastEthernet1/0/4
+!
+interface FastEthernet1/0/5
+!
+interface FastEthernet1/0/6
+!
+interface FastEthernet1/0/7
+!
+interface FastEthernet1/0/8
+!
+interface FastEthernet1/0/9
+!
+interface FastEthernet1/0/10
+!
+interface FastEthernet1/0/11
+!
+interface FastEthernet1/0/12
+!
+interface FastEthernet1/0/13
+!
+interface FastEthernet1/0/14
+!
+interface FastEthernet1/0/15
+!
+interface FastEthernet1/0/16
+!
+interface FastEthernet1/0/17
+!
+interface FastEthernet1/0/18
+!
+interface FastEthernet1/0/19
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+!
+interface FastEthernet1/0/24
+!
+interface FastEthernet1/0/25
+!
+interface FastEthernet1/0/26
+!
+interface FastEthernet1/0/27
+!
+interface FastEthernet1/0/28
+!
+interface FastEthernet1/0/29
+!
+interface FastEthernet1/0/30
+!
+interface FastEthernet1/0/31
+!
+interface FastEthernet1/0/32
+!
+interface FastEthernet1/0/33
+!
+interface FastEthernet1/0/34
+!
+interface FastEthernet1/0/35
+!
+interface FastEthernet1/0/36
+!
+interface FastEthernet1/0/37
+!
+interface FastEthernet1/0/38
+!
+interface FastEthernet1/0/39
+!
+interface FastEthernet1/0/40
+!
+interface FastEthernet1/0/41
+!
+interface FastEthernet1/0/42
+!
+interface FastEthernet1/0/43
+!
+interface FastEthernet1/0/44
+!
+interface FastEthernet1/0/45
+!
+interface FastEthernet1/0/46
+!
+interface FastEthernet1/0/47
+!
+interface FastEthernet1/0/48
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface GigabitEthernet1/0/3
+!
+interface GigabitEthernet1/0/4
+!
+end
+
+#+end_src
+
+Para configurar el switch elegiremos la opción =2=
+
+#+begin_src bash
+
+[0] Go to the IOS command prompt without saving this config.
+[1] Return back to the setup without saving this config.
+[2] Save this configuration to nvram and exit.
+
+Enter your selection [2]: 0
+% You can enter the setup, by typing setup at IOS command prompt
+Switch>
+#+end_src
+
+* Comprobación
+1. Asignaremos a la interfaz de red del ordenador una dirección de la misma red del switch.  
+2. Realizaremos un ping desde el ordenador hasta el switch
+3. Realizaremos un ping desde el switch hasta el ordenador
+
+
+* Conexión remota (telnet)
+Desconectaremos el cable de consola y conectaremos por el cable de red, mediante putty y el protocolo telnet
+
+* Conexión remota (SSH)
+El protocolo telnet es inseguro, por lo que activaremos el protocolo SSH 2.
+Para ello generaremos una clave RSA de longitud 1024 (o superior, si no nos importa esperar un rato largo)
+
+#+begin_src bash
+switch-1-puesto-4(config)#ip domain-name avellaneda
+switch-1-puesto-4(config)#crypto key generate rsa
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 768
+% Generating 768 bit RSA keys, keys will be non-exportable...
+[OK] (elapsed time was 1 seconds)
+
+switch-1-puesto-4(config)#ip ssh version 2       
+#+end_src
+
+
+
+Para conectar desde el SSH de WSL, necesitamos activar un algoritmo concreto de autentificación
+#+begin_src bash
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -l alumno 172.31.P.S
+#+end_src
+
+
+* Dejar el switch en la configuración inicial
+Si se han seguido los pasos, el switch volverla a su configuración inicial al apagarse.
+
+Si se ha grabado la configuración el la flash, hay que
+- Reiniciar el switch con el cable de consola conectado
+- Pulsar el botón =mode= antes de 15 segundos
+- Ejecutar el comando =flash_init= y =boot=
+
+
+#+begin_src bash
+Using driver version 3 for media type 1
+Base ethernet MAC Address: 40:a6:e8:ab:fa:80
+Xmodem file system is available.
+The password-recovery mechanism is enabled.
+
+The system has been interrupted prior to initializing the
+flash filesystem.  The following commands will initialize
+the flash filesystem, and finish loading the operating 
+system software:
+
+    flash_init
+    boot
+
+
+switch: flash_init
+Initializing Flash...
+mifs[2]: 10 files, 1 directories
+mifs[2]: Total bytes     :    1806336
+mifs[2]: Bytes used      :     687616
+mifs[2]: Bytes available :    1118720
+mifs[2]: mifs fsck took 1 seconds.
+mifs[3]: 0 files, 1 directories
+mifs[3]: Total bytes     :    3870720
+mifs[3]: Bytes used      :       1024
+mifs[3]: Bytes available :    3869696
+mifs[3]: mifs fsck took 0 seconds.
+mifs[4]: 5 files, 1 directories
+mifs[4]: Total bytes     :     258048
+mifs[4]: Bytes used      :       8192
+mifs[4]: Bytes available :     249856
+mifs[4]: mifs fsck took 0 seconds.
+mifs[5]: 5 files, 1 directories
+mifs[5]: Total bytes     :     258048
+mifs[5]: Bytes used      :       8192
+mifs[5]: Bytes available :     249856
+mifs[5]: mifs fsck took 1 seconds.
+ -- MORE --
+mifs[6]: 7 files, 2 directories
+mifs[6]: Total bytes     :   57931776
+mifs[6]: Bytes used      :   31725568
+mifs[6]: Bytes available :   26206208
+mifs[6]: mifs fsck took 14 seconds.
+...done Initializing Flash.
+
+switch:   
+#+end_src
+
+

@@ -1,0 +1,116 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{Práctica VLAN en Cisco}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Los objetivos de la práctica son:
+\begin{itemize}
+\item Diseñar una red en la que se tenga en cuenta la velocidad
+\item Configurar VLAN 802.1Q en routers y switches
+\item Conocer comandos IOS de Cisco
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/7/par-7-practica-vlan-cisco.pdf}{este enlace}.
+
+
+\section{Enunciado}
+\begin{itemize}
+\item En una empresa hay dos departamentos: \textbf{comerciales} y \textbf{soporte} al cliente.
+\item Todos los empleados acceden a internet a través del mismo router (puedes representar internet por un servidor con la ip \texttt{8.8.8.8}). \textbf{Es necesario que se haga NAT}.
+\item Hay un switch en el sistema troncal. Hay un switch por cada sistema horizontal (de planta).
+\item Los comerciales están en la planta 3, y los de soporte en la planta 2.
+\item A pesar de la división general por plantas, hay un comercial en la planta 2, y un técnico de soporte en la 3.
+\item Hay dos servidores conectados al sistema troncal directamente. Uno pertenece al departamento comercial, y otro al de soporte.
+\end{itemize}
+Se desea reducir los \enlace{https://es.wikipedia.org/wiki/Dominio_de_difusi\%C3\%B3n}{dominios de difusión} de la red. Para ello, se utilizará una VLAN para comerciales y otra para soporte, con diferentes subredes IP.
+A pesar de ello, se desea que todos los equipos de la red puedan comunicarse entre sí a nivel IP.
+\section{Diseño de la red}
+\begin{itemize}
+\item Incluye al menos:
+  \begin{itemize}
+  \item Dos ordenadores por departamento en su planta.
+  \item Un ordenador por departamento en una planta que no es la suya.
+  \item Los switchs especificados.
+  \item Los servidores especificados.
+  \end{itemize}
+\item Los equipos estarán en subredes de \texttt{10.N.0.0/16} (siendo \texttt{N} el número del ordenador del alumno usado en otras prácticas).
+\item Además de los pedidos en el enunciado, pueden añadirse los switches y routers adicionales que se necesiten.  
+\end{itemize}
+
+\section{Documentación de la red}
+Rellena una tabla como la siguiente con la configuración de tu red
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Nombre de equipo & Interfaz & VLAN & IP/Máscara & Gateway\\
+    \hline
+                     & & & & \\
+                     & & & & \\
+                     & & & & \\
+                     & & & & \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Es posible que no todas las columnas deban usarse para todos los adaptadores de red:
+\begin{itemize}
+\item Los puertos de los switchs no tienen dirección IP
+\item Los puertos de los servidores y PCs no tienen VLAN
+\item Solo los ordenadores y servidores tienen gateway
+  
+\end{itemize}
+
+\section{Normas de entrega}
+\begin{itemize}
+  
+\item La entrega se realizará en el Áula Virtual
+\item Se entregará un fichero PKT que pueda abrirse con la versión 8.0 de Packet Tracer (la de clase).
+\item Los equipos identificarán en su etiqueta su IP, y su pertenencia a algún departamento o función.
+\end{itemize}
+
+\section{Qué se valorará}
+\begin{itemize}
+\item Que se respeten los dominios de difusión (\textbf{3} puntos)
+  \begin{itemize}
+  \item Se entiende que dos equipos \textit{no comparten dominio de difusión} si un broadcast de Ethernet (por ejemplo, ARP) no consigue viajar entre ellos en ninguno de los sentidos.
+  \end{itemize}
+\item Que se incluyan etiquetas identificativas en cada equipo (\textbf{1.5} puntos)  
+\item Que los departamentos puedan comunicarse a través de la capa 3 (\textbf{2} puntos)
+\item Que se rellene correctamente la tabla de documentación de la red (\textbf{2} puntos)
+\item Que todos los ordenadores puedan comunicarse con Internet (\textbf{1} punto)
+\item Que los equipos de red no pierdan la configuración al reiniciar (\textbf{0.5} puntos)
+\item \textbf{No se valorará} el ejercicio
+  \begin{itemize}
+  \item si las direcciones IP no son de la subred \texttt{10.N.0.0/16}.
+  \item si algún router tiene más de dos interfaces.
+  \item si no va acompañado de la tabla de documentación de la red.
+  \end{itemize}
+\end{itemize}
+
+
+
+\end{document}

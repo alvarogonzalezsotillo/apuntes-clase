@@ -1,0 +1,197 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Automatización de tareas}
+\renewcommand{\hmwkTitle}{Examen de \textit{scripts} de \textit{shell}}
+
+
+\usepackage{blindtext}
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{Normas del examen}
+Es difícil evaluar el manejo de \textit{scripts} sin realizar un examen en el ordenador, pero también es difícil condensar un examen en solo dos horas. Por eso, el examen se plantea como una práctica, que el profesor corregirá en clase.
+
+El desarrollo de este ejercicio será como el de otras prácticas. La única diferencia está en que la nota de esta práctica se tendrá en cuenta en el apartado \textit{exámenes} en vez de en el aparatado \textit{prácticas} al calcular la calificación del trimestre.
+
+La última versión de este documento se puede descargar de \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-examen-scripts-shell.pdf}{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-examen-scripts-shell.pdf}
+
+
+
+
+\begin{homeworkProblem}[: \imenu{\textit{Scripts} de inicio y parada de \textbf{Oracle} (1 punto)}]
+
+  Crea dos \textit{scripts} para iniciar y parar \textbf{Oracle} en \path{/home/alumno/scripts/oraclestart.sh} y \path{/home/alumno/scripts/oraclestop.sh}
+  
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Arrancar automáticamente \textbf{Oracle} cuando se inicie el servidor (2 puntos)}]
+
+  \begin{itemize}
+  \item \textbf{Oracle} debe levantarse cuando la máquina se inicie, y apagarse cuando la máquina se cierre.
+  \item Oracle se iniciará solo si se indica en el fichero \texttt{/etc/oratab}. {\scriptsize Nota: Los \textit{scripts} no cambian el fichero \texttt{/etc/oratab}, solo lo consultan.}
+  
+  \item En el fichero \texttt{/home/alumno/logs/oracle.log} se dejará una traza de cuando se arrancó y se paró la máquina, y si fue necesario arrancar o parar \textit{Oracle}. Por ejemplo:
+    
+    \begin{listadotxt}{Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se arranca}{lst:yoracle.log}
+      2017-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2017-02-10-12:40:01 - Oracle arrancando porque /etc/oratab indica Y
+      2017-02-10-12:40:20 - Oracle arrancado
+    \end{listadotxt}
+
+    \begin{listadotxt}{Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se para}{lst:pararoracle}
+      2017-02-10-12:41:00 - Solicitud de parar Oracle
+      2017-02-10-12:41:20 - Oracle parado
+    \end{listadotxt}
+
+    \begin{listadotxt}{Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} no se arranca}{lst:noracle.log}
+      2017-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2017-02-10-12:40:01 - Oracle no se arranca porque /etc/oratab indica N
+    \end{listadotxt}
+
+    
+  \end{itemize}
+  
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Crea usuarios de base de datos (2 puntos)}]
+  Crea un script de nombre \texttt{/home/alumno/scripts/nuevo-usuario-oracle.sh} que cree un nuevo usuario de oracle. Si se invoca sin parámetros, o con más de dos, mostrará el texto de ayuda del listado \ref{lst:nuevo-usuario-ayuda}
+
+  \begin{listadotxt}{Ayuda del script \texttt{nuevo-usuario-oracle.sh}}{lst:nuevo-usuario-ayuda}
+  Crea un usuario nuevo de oracle, con permisos connect y resource.
+  Si el usuario ya existe, lo desbloquea y le cambia la contraseña.
+  
+  Uso: nuevo-usuario-oracle.sh <usuario> <contraseña>
+\end{listadotxt}
+
+
+  En la salida del \textit{script} debe quedar claro si el usuario se crea (porque no existe), o solo es desbloqueado.
+
+
+  
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Almacena información periódicamente en la base de datos (3 puntos)}]
+  % df -k | awk '{print $3}'
+
+  % while read -r line
+  % do
+  %     name="$line"
+  %     echo "Name read from file - $name"
+  % done < "$filename"
+
+  Programa un \textit{script} para que cada minuto almacene en la tabla \texttt{DF} la información del comando \texttt{df -k}. Esta tabla (listado \ref{lst:tabla.sql}) tendrá como columnas:
+  \begin{itemize}
+  \item \texttt{hora}: Hora de lanzamiento del comando
+  \item \texttt{sistema}: Nombre del tipo de sistema de ficheros
+  \item \texttt{tamano}: Tamaño en KB del sistema de ficheros
+  \item \texttt{usado}: Tamaño usado, en KB
+  \item \texttt{montado}: Punto de montaje
+  \end{itemize}
+
+  \begin{listadoshell}{Creación de la tabla \texttt{DF}}{lst:tabla.sql}
+  create table DF(
+    hora varchar(40),
+    sistema varchar(40),
+    tamano varchar(40),
+    usado varchar(40),
+    montado varchar(40)
+  );
+  \end{listadoshell}
+
+
+
+  \begin{listadotxt}{Ejemplo de salida del comando \texttt{df -k}}{lst:df-k}
+Filesystem     1K-blocks      Used Available Use% Mounted on
+udev             4002180         0   4002180   0% /dev
+tmpfs             804488     19756    784732   3% /run
+/dev/sda1      237874840 183034916  42733532  82% /
+tmpfs            4022440    437328   3585112  11% /dev/shm
+tmpfs               5120         4      5116   1% /run/lock
+tmpfs            4022440         0   4022440   0% /sys/fs/cgroup
+/dev/sdb5      689521880 595546232  58926896  91% /home/windows
+cgmfs                100         0       100   0% /run/cgmanager/fs
+tmpfs             804488        88    804400   1% /run/user/1000
+  \end{listadotxt}
+  
+
+  Pistas para realizar el \textit{script}:
+  \begin{itemize}
+    
+  \item Los \textit{heredocs} pueden contener variables: \enlace{http://superuser.com/questions/456615/how-to-pass-variables-to-a-heredoc-in-bash}{http://superuser.com/questions/456615/how-to-pass-variables-to-a-heredoc-in-bash}
+    
+  \item Cortar columnas con \texttt{awk}: \enlace{https://www.cyberciti.biz/tips/processing-the-delimited-files-using-cut-and-awk.html}{https://www.cyberciti.biz/tips/processing-the-delimited-files-using-cut-and-awk.html}
+    
+  \item Leer líneas una por una y meterlas en una variable: \enlace{http://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable}{http://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable}
+    
+  \item Quitar la primera línea de la salida de \texttt{df -k} con el comando \texttt{tail}: \enlace{https://linuxconfig.org/commands-on-how-to-delete-a-first-line-from-a-text-file-using-bash-shell}{https://linuxconfig.org/commands-on-how-to-delete-a-first-line-from-a-text-file-using-bash-shell}
+    
+  \item El \textit{script} debería seguir los siguientes pasos:
+    \begin{enumerate}
+    \item Quitar la primera línea de la salida de \texttt{df -k} con \texttt{tail -n +2}
+      
+    \item Leer cada línea con \texttt{while} y \texttt{read}
+    \item Sacar los campos de cada línea con \texttt{awk}
+      
+    \item Ejecutar una sentencia \texttt{SQL} con los datos extraidos
+    \end{enumerate}
+  \end{itemize}
+
+  
+  
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Envía un correo periódicamente (2 puntos)}]
+
+  \begin{itemize}
+  \item Programa un \textit{script} para que cada minuto envíe un correo con la información promedio del comando  \texttt{df -k}. Puedes usar como base para la consulta el listado \ref{lst:promedio.sql}.
+  \item El correo se enviará a \path{alvarogonzalez.profesor@gmail.com} 
+  \item Con copia a \path{alvaro@alvarogonzalez.no-ip.biz}
+  \item Indica tu nombre en el asunto del correo  
+  \item El fichero tendrá un formato \enlace{https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus\#654723}{CSV}. Se debe poder abrir directamente con excel y visualizar su resultado en filas y columnas.
+
+
+\begin{listadoshell}{Consulta tipo para extraer información promedio}{lst:promedio.sql}
+  select 
+    sistema, avg(tamano), avg(usado), montado
+  from 
+    DF
+  group by
+    sistema, montado;
+\end{listadoshell}
+    
+\end{itemize}
+\end{homeworkProblem}
+
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\item El profesor comprobará el funcionamiento del sistema.
+\item No importa que el correo llegue a \path{alvarogonzalez.profesor@gmail.com}, lo que importa es que se envíe (el profesor mirará los ficheros de traza para comprobarlo)
+\item Sube en la tarea del aula virtual ZIP con todos los ficheros que has creado o modificado:
+  \begin{itemize}
+  \item \textit{Scripts}
+  \item \textit{units} de \texttt{systemd}
+  \item Ficheros de \texttt{cron}/\texttt{anacron}
+  \end{itemize}
+\end{itemize}
+\end{document}

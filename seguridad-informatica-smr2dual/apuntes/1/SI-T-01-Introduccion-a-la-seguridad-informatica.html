@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2019-01-19 sáb 12:28 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Introducción a la seguridad informática</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Álvaro González Sotillo" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
+<script type="text/javascript" src="../../../common/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Introducción a la seguridad informática</h1>
+<div id="table-of-contents">
+<h2>&Iacute;ndice</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org993b02c">1. Presentación del tema</a></li>
+<li><a href="#orgd98d16b">2. Sistemas de información y sistemas informáticos.</a>
+<ul>
+<li><a href="#orgafcc78b">2.1. Sistema de información:</a></li>
+<li><a href="#org2998753">2.2. Sistema informático:</a></li>
+</ul>
+</li>
+<li><a href="#org30aca16">3. Seguridad</a></li>
+<li><a href="#orgf410b24">4. Propiedades de un sistema de información seguro.</a>
+<ul>
+<li><a href="#org80f4aff">4.1. INTEGRIDAD:</a></li>
+<li><a href="#org43f6b7b">4.2. CONFIDENCIALIDAD:</a></li>
+<li><a href="#org0f9f313">4.3. DISPONIBILIDAD:</a></li>
+<li><a href="#org2b43c75">4.4. Otras propiedades de seguridad.</a></li>
+</ul>
+</li>
+<li><a href="#orga49a7f5">5. Medidas de seguridad. Clasificaciones.</a>
+<ul>
+<li><a href="#org6fb5218">5.1. SEGURIDAD ACTIVA / SEGURIDAD PASIVA:</a></li>
+<li><a href="#org32c1883">5.2. SEGURIDAD FÍSICA / SEGURIDAD LÓGICA</a></li>
+</ul>
+</li>
+<li><a href="#orga9701de">6. Referencias</a></li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-org993b02c" class="outline-2">
+<h2 id="org993b02c"><span class="section-number-2">1</span> Presentación del tema</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+En este tema hablaremos de los conceptos básicos de la Seguridad Informática.
+</p>
+
+<p>
+No son conceptos nuevos ni creados a propósito para ésta disciplina.
+</p>
+
+<p>
+La mayor parte de ésta terminología ha sido adoptada de terminología ya existente en el ámbito empresarial, referida a la seguridad en un concepto amplio.
+</p>
+
+<p>
+La Seguridad Informática se encarga de los aspectos relacionados con la seguridad de los equipos informáticos, pero también de todo lo que le rodea de manera más o menos directa: personas, datos, software, instalaciones&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd98d16b" class="outline-2">
+<h2 id="orgd98d16b"><span class="section-number-2">2</span> Sistemas de información y sistemas informáticos.</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgafcc78b" class="outline-3">
+<h3 id="orgafcc78b"><span class="section-number-3">2.1</span> Sistema de información:</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Un sistema de información es un conjunto de elementos organizados, relacionados y coordinados entre sí, encargados de facilitar el funcionamiento global de una empresa o de cualquier otra actividad humana para conseguir sus objetivos.
+</p>
+
+<p>
+Esos elementos son:
+</p>
+
+<ul class="org-ul">
+<li>Recursos, como ordenadores, componentes, periféricos, conexiones, aplicaciones, sistemas operativos, y otros recursos no necesariamente informáticos, desde un teléfono a una grapadora.</li>
+
+<li>Equipo humano</li>
+
+<li>Información: datos organizados que tienen un significado. Pueden estar en un soporte informático o no.</li>
+
+<li>Actividades: muy importante&#x2026; toda organización realiza varias actividades en su negocio. (Ej.: una pequeña tienda tiene varias actividades: vender productos a los clientes, hacer pedidos a los proveedores, controlar la cantidad de productos almacenados, gestionar los gastos, ingresos, impuestos, etc&#x2026;)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2998753" class="outline-3">
+<h3 id="org2998753"><span class="section-number-3">2.2</span> Sistema informático:</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Un Sistema informático está formado por un conjunto de elementos físicos (hardware, conexiones, cables&#x2026;) lógicos (Software de aplicación, de base, protocolos) y también podemos considerar con frecuencia al componente humano.
+</p>
+
+<p>
+Un sistema informático <b>da soporte a las actividades de los sistemas de información</b>. Las empresas diseñan sus actividades conforme a la información que manejan&#x2026; Nunca pensando en el sistema informático que les va a dar soporte. Lo importante para ellas, lógicamente, es que esas actividades se desarrollen de manera ordenada, eficaz y eficiente. Los sistemas informáticos, cuando están bien diseñados y utilizados, contribuyen en esos aspectos. (INFORMÁTICA=Tratamiento autoMÁTICO de la INFORmación).
+</p>
+
+<p>
+No necesariamente todas las actividades de la empresa requieren de sistemas informáticos.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org30aca16" class="outline-2">
+<h2 id="org30aca16"><span class="section-number-2">3</span> Seguridad</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+La seguridad es la disciplina que se ocupa de diseñar las <b>normas, procedimientos, métodos y técnicas</b> destinados a conseguir un sistema de información seguro y confiable.
+</p>
+
+<p>
+Todos los elementos que participan en un sistema de información pueden verse afectados por factores de diversa índole que pueden poner en peligro su estabilidad y normal funcionamiento.
+</p>
+
+<p>
+Con respecto a la Seguridad Informática, debemos tener en cuenta, que de todos esos elementos, debemos poner especial atención en la <b>información,</b> pues es el elemento más sensible de la empresa, y la que tiene un valor <i>incalculable</i>&#x2026; pero siempre por detrás, por supuesto, de la seguridad de las personas.
+</p>
+
+<p>
+Reflexiona sobre ésto: ¿Tendría sentido anteponer la seguridad de la información o de cualquier otro elemento a la seguridad de las personas?
+</p>
+
+<p>
+Nuestro trabajo se centrará en la seguridad de los sistemas informáticos, pero siempre teniendo en mente que la protección va encaminada hacia las <b>actividades</b> de una empresa&#x2026; a intentar que no se vean vulneradas o afectadas por ninguna circunstancia, y por supuesto, tampoco la información que manejan. Es decir, a que los <i>sistemas de información</i> continúen su ritmo con la máxima normalidad posible. Para ello actuamos sobre los sistemas informáticos que les dan soporte.
+</p>
+
+<p>
+Nuestra disciplina se encarga poco de la seguridad de las personas, por eso no tendrá especial relevancia. Eso no significa que sea, sin duda, el aspecto clave de la seguridad&#x2026; simplemente, que ésta disciplina se enfoca principalmente hacia la seguridad de los sistemas de información.
+</p>
+
+<p>
+Para afrontar la seguridad de un sistema, deberemos conocer los elementos del sistema, los peligros que pueden acechar y las medidas que deberían adoptarse para lograr esa seguridad. No obstante, lo estudiaremos desde un punto de vista formal, utilizando terminología estándar del sector de la seguridad.
+</p>
+
+<p>
+Reflexiona sobre ésto: ¿Se puede lograr la seguridad total? Es decir&#x2026; estar totalmente protegido contra cualquier cosa.
+</p>
+
+<p>
+Hay un dicho en el sector de la seguridad:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><i><b>La cadena siempre se rompe por el eslabón más débil</b></i></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A menudo se dice también que ese eslabón suele implicar al factor humano.
+</p>
+
+<p>
+Reflexiona sobre ésto:¿Crees que en efecto, el factor humano es el eslabón más débil?
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgf410b24" class="outline-2">
+<h2 id="orgf410b24"><span class="section-number-2">4</span> Propiedades de un sistema de información seguro.</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+¿Qué le pedimos a un sistema de información seguro? ¿Que no se cuelgue? ¿Que no nos borre cosas? ¿Que no lo puedan hackear?&#x2026;. Si&#x2026; por supuesto. Estas cosas y muchas otras más. Formalmente hablando, hay tres <i>propiedades</i> básicas que un sistema de información debe mantener al máximo que sea posible. Prácticamente todo lo que le pidamos a un sistema de información que consideremos seguro cae dentro de mantener estas tres propiedades altas:
+</p>
+</div>
+
+<div id="outline-container-org80f4aff" class="outline-3">
+<h3 id="org80f4aff"><span class="section-number-3">4.1</span> INTEGRIDAD:</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Garantizar la autenticidad y precisión de la información, sin importar el momento en que se solicita.
+</p>
+
+<p>
+Dicho de otra forma, que los datos no son alterados ni destruidos de modo no autorizado, ni accidentalmente. Si los datos se pierden, se borran, se modifican, se corrompen, o se añaden datos nuevos fraudulentos o erróneos consideramos que se ha perdido la integridad de un sistema de información. Esto puede ocurrir con datos que están almacenados (“quietos”, en un fichero, o base de datos, o manejados por una aplicación&#x2026;) o con datos que se está en un sistema de comunicaciones (se están “moviendo”&#x2026; y llegan a su destino en un estado diferente al que fueron emitidos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org43f6b7b" class="outline-3">
+<h3 id="org43f6b7b"><span class="section-number-3">4.2</span> CONFIDENCIALIDAD:</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Garantizar que los datos almacenados estén únicamente al alcance de las personas, entidades o mecanismos autorizados, en los momentos autorizados y de una manera autorizada.
+</p>
+
+<p>
+Es decir, no sólo que se pueda acceder a información si se está autorizado, sino que se además, debe hacerse dentro de la actividad correspondiente.
+</p>
+
+<p>
+Si un sistema de información permite que un dato cualquiera llegue a ser visto por alguien que no está autorizado supone una pérdida de la confidencialidad. El concepto va todavía más lejos&#x2026; Si el dato llega a una persona que sí es un destinatario legítimo de la información, pero llega por un mecanismo no autorizado, o un momento no autorizado, o utilizando algún procedimiento no autorizado, también consideramos que se ha producido una pérdida de la confidencialidad.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f9f313" class="outline-3">
+<h3 id="org0f9f313"><span class="section-number-3">4.3</span> DISPONIBILIDAD:</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+El grado en que un dato está en el lugar, momento y forma en que es requerido por un usuario autorizado.
+</p>
+
+<p>
+Dicho de otro modo, que la información que se solicite esté disponible en un periodo de tiempo "razonable" desde que se solicita por un usuario autorizado.
+</p>
+
+<p>
+La pérdida de la disponibilidad sólo implica en sí misma que en un momento dado, una información que se solicita no es devuelta por un sistema. Esto no implica que la información haya perdido la integridad&#x2026; sólo que no se puede proporcionar en ese momento.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2b43c75" class="outline-3">
+<h3 id="org2b43c75"><span class="section-number-3">4.4</span> Otras propiedades de seguridad.</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Además de las tres propiedades fundamentales de un sistema de información seguro (la disponibilidad, confidencialidad e integridad), y de la cualidad de no-repudio, a menudo se utilizan otras propiedades de seguridad en algunos sistemas, según sean útiles o no:
+</p>
+
+<ul class="org-ul">
+<li><b>No repudio</b>: La capacidad de determinar quién creó, modificó o accedió a cierta información, de forma que ni el emisor/creador pueda negar su participación, ni el receptor pueda negar que tuvo dicha información disponible.
+Esta característica de la seguridad cobra importancia a la hora de realizar transacciones seguras en un sistema informático, con aplicaciones variadas. Por ejemplo, en la administración electrónica, es vital que el ciudadano pueda probar que ha tramitado en plazo sus obligaciones tributarias, y que el estado no pueda alegar que no recibió la documentación.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><b>Autenticación</b>: Más allá de la confidencialidad, las medidas o servicios de autenticación intentan garantizar la identidad de las personas o entidades que intentan acceder a la información. Se puede exigir la autenticación en el origen de los datos, en el destino o en ambas. Está ligada a la <b>confidencialidad</b>, ya que el sistema informático necesita saber quién accede al sistema para garantizar esta última. Se necesita para el <b>no-repudio</b>.</li>
+
+<li><b>Control de acceso</b>: Son las medidas o servicios que no sólo permiten o impiden el acceso de personas o entidades a la información, sino que además, suelen registrar constancia del hecho del acceso o el intento de acceso. Relacionado con la <b>confidencialidad</b> y el <b>no-repudio</b>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orga49a7f5" class="outline-2">
+<h2 id="orga49a7f5"><span class="section-number-2">5</span> Medidas de seguridad. Clasificaciones.</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Para proteger la información, es necesario establecer una serie de medidas. Las medidas de seguridad pueden clasificarse de varias maneras. Nosotros vamos a mencionar dos:
+</p>
+</div>
+
+<div id="outline-container-org6fb5218" class="outline-3">
+<h3 id="org6fb5218"><span class="section-number-3">5.1</span> SEGURIDAD ACTIVA / SEGURIDAD PASIVA:</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Atendiendo al carácter que tenga, hablamos de medidas de seguridad
+</p>
+
+<ul class="org-ul">
+<li><b>Activas</b>: aquellas cuyo objetivo es evitar o reducir los riesgos que amenazan al sistema. Podemos decir que tienen un carácter <b>preventivo</b>. Intentan <i>impedir</i> que ocurra un incidente.
+Por ejemplo, en un coche, el ABS es una medida de seguridad activa, ya que es un mecanismo electrónico que ayuda al conductor a frenar el coche&#x2026; intenta evitar, prevenir un incidente.</li>
+
+<li><b>Pasivas</b>: aquellas cuyo objetivo es minimizar la repercusión de un incidente de seguridad una vez producido. Podemos decir que tienen un carácter <b>correctivo</b>.
+No intentan evitar un incidente, sino reducir sus posibles efectos adversos. Por ejemplo, en un coche, un cinturón de seguridad es una medida de seguridad pasiva: no intenta evitar un accidente, sino que, de producirse, los daños para el ocupante del vehículo sean menores.</li>
+</ul>
+
+<p>
+Una determinada medida de seguridad casi siempre cae en uno de los dos grupos. Es poco frecuente encontrar medidas de seguridad que simultáneamente puedan considerarse activas y pasivas&#x2026; no obstante, como haberlas, haylas. Por ejemplo, cualquiera de los antivirus modernos, por un lado intenta <i>impedir</i> la entrada de virus y malwares, y por otro lado, si entran y el antivirus los detecta intentará minimizar su impacto.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org32c1883" class="outline-3">
+<h3 id="org32c1883"><span class="section-number-3">5.2</span> SEGURIDAD FÍSICA / SEGURIDAD LÓGICA</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Referido ya al ámbito exclusivo de la seguridad informática, podemos hablar de
+</p>
+
+<ul class="org-ul">
+<li><b>Seguridad lógica</b>: cuando la medida va destinada a la protección de la información o del software.</li>
+
+<li><b>Seguridad física</b>: cuando la medida va destinada a la protección del hardware.</li>
+</ul>
+
+<p>
+Quizá estés pensando en el hecho de que el hardware, a veces es soporte del software y los datos&#x2026; Por ejemplo&#x2026; Si protejo un ordenador servidor con un SAI (el ordenador es hardware), pero el servidor en su interior contiene datos&#x2026; entonces ¿el SAI es una medida de seguridad física o lógica? Es física&#x2026; protege de manera directa al hardware&#x2026; y los datos del servidor también, pero de manera indirecta.
+</p>
+
+<p>
+En general, el hardware en sí no es un recurso demasiado valioso. Hay medidas de seguridad física dirigidas a él porque prácticamente siempre es el soporte de los datos.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orga9701de" class="outline-2">
+<h2 id="orga9701de"><span class="section-number-2">6</span> Referencias</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Adaptado de <a href="https://www.linkedin.com/in/victorjfernandez/">Víctor J. Fernández</a></li>
+<li><a href="SI-T-01-Introduccion-a-la-seguridad-informatica.pdf">Versión en PDF</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Álvaro González Sotillo</p>
+<p class="date">Created: 2019-01-19 sáb 12:28</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

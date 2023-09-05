@@ -1,0 +1,287 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  TCP y UDP
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+* Introducción
+
+#+caption: Esquema de niveles de red
+[[file:media/capas-tcpip.png]]
+
+
+#+reveal: split
+- TCP y UDP son de la capa de transporte
+- Es la primera que une dos entidades (procesos), en vez de dos hosts
+- Suele ser la primera capa visible para los programadores de aplicaciones
+  - IP se puede considerar la /frontera/ entre los /administradores/ y los /programadores/
+
+* UDP
+- /User Datagram Protocol/
+- Funciones:
+  - Entregar un datagrama entre el emisor y receptor (procesos)
+  - Detección de errores
+
+** Formato de trama UDP
+
+[[file:./media/trama-udp.png]]
+
+** Características de UDP
+- Los datagramas pueden llegar en un orden diferente al enviado (si IP elige rutas distintas para ellos)
+- El emisor no tiene la seguridad de que los datagramas llegan al receptor
+- Por tanto, no se utilizan *conexiones* ni es *confiable*. Cada datagrama se envía de forma independiente. 
+-----
+- ¿Cuántos puertos hay?
+- ¿Cuál es el tamaño máximo de un datagrama UDP?
+
+* TCP
+- /Transmission Control Protocol/
+- Asegura que la transmisión se realiza por un medio fiable
+- Garantiza la recepción de los mensajes en orden correcto
+- Garantiza al emisor que los mensajes llegan correctamente al receptor
+- Por tanto, es orientado a *conexión* y *confiable*.
+
+#+reveal: split
+[[file:./media/trama-tcp.png]]
+
+
+** Ventana y corrección de errores
+- TCP necesita confirmación de cada mensaje enviado
+  - Para garantizar la confiabilidad
+- Opciones:
+  - *[[https://es.wikipedia.org/wiki/Parada_y_espera][Parada y espera]]*: Cada mensaje necesita confirmación
+  - *[[https://en.wikipedia.org/wiki/Piggybacking_(data_transmission)][Piggybacking]]*: La confirmación puede retrasarse algunos mensajes ([[https://en.wikipedia.org/wiki/Sliding_window_protocol][ventana]])
+- La parada y espera es más simple, pero desaprovecha ancho de banda
+
+#+reveal: split
+
+#+caption: Ejemplo de parada y espera
+[[file:media/parada-y-espera.svg]]
+
+#+reveal: split
+
+#+caption: Ejemplo de piggybacking con ventana 3
+[[file:media/piggybacking.svg]]
+
+
+* /Sequence number/ y /Acknowledgment number/
+- *TCP* intenta que la comunicación se asemeje a un flujo de bytes
+  - Todos los bytes que entran por un extremo
+  - ... deben salir por el otro lado
+- En *cada paquete* se envía
+  - el número de secuencia del primer byte transmitido en el paquete
+  - el número de secuencia del siguiente byte que se espera
+
+** Estado de la conexión
+- Cada extremo de la comunicación debe saber:
+  - Cuál es su siguiente byte a enviar (/sequence number/)
+  - Cuál es su siguiente byte a recibir (/acknowledgment number/)
+- Además, también lleva la cuenta de su opinión acerca del /sequence number/ y del /acknowledgment number/ del otro extremo
+
+#+reveal: split
+
+#+caption: /Sequence number/ y /acknowledgment number/
+file:./media/sequence-number-acknoledgement-number.svg
+
+
+** Corrección de errores
+- Si se recibe un /sequence number/ posterior a nuestro /acknowledgment number/
+  - Es un paquete *posterior* al que esperamos
+    - Se puede guardar en la capa *TCP* hasta que lleguen los anteriores
+    - O se puede ignorar, y [[https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Dupack-based_retransmission][reclamar los paquetes perdidos]] enviando un /acknowledgment number/ menor que el que espera el otro 
+  - El otro lado reenviará los paquetes necesarios
+
+
+#+reveal: split
+#+caption: Llegada de un paquete posterior al esperado
+[[file:./media/sequence-number-acknoledgement-number-1.svg]]
+
+
+#+reveal: split
+- Si se recibe un /sequence number/ anterior a nuestro /acknowledgment number/
+  - Es un paquete ya recibido (se habrá duplicado)
+  - Por tanto, se ignora
+
+#+reveal: split
+- Si me llega un /acknowledgement number/ menor que los bytes que yo he enviado
+  - Reenviaré a partir de dicho /acknowledgement number/
+#+reveal: split
+#+caption: El otro lado informa de la pérdida de algún paquete
+[[file:./media/sequence-number-acknoledgement-number-2.svg]]
+
+
+
+#+reveal: split
+- Si no tengo confirmación de un paquete enviado tras un /[[https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Timeout_based_retransmission][timeout]]/
+  - Reenviaré el paquete
+
+#+reveal: split
+#+caption: Paquete no confirmado tras un /timeout/
+[[file:./media/sequence-number-acknoledgement-number-3.svg]]
+
+* Mensajes TCP
+** Establecimiento de conexión
+1. Un servidor escucha en un puerto
+2. Un cliente envía una solicitud de conexión
+3. El servidor responde con una aceptación de la conexión
+4. El cliente /acepta/ la aceptación 
+
+[[file:media/inicio-tcp.svg]]
+Fuente: [[https://commons.wikimedia.org/w/index.php?curid=11680600][By Snubcube]] 
+
+** Estados TCP
+- Los principales estados son:
+  - *Closed*: Ninguna conexión
+  - *Listening*: Un servidor está esperando en un puerto a ser conectado
+  - *Established*: Un cliente ha conectado con un servidor
+  - *Time wait*: Esperando a que la conexión termine
+- Todos los estados en [[http://www.medianet.kent.edu/techreports/TR2005-07-22-tcp-EFSM.pdf][http://www.medianet.kent.edu/techreports/TR2005-07-22-tcp-EFSM.pdf]]
+ 
+#+reveal: split
+
+[[file:./media/estados-tcp.svg]]
+Fuente:[[https://commons.wikimedia.org/w/index.php?curid=30810617][By Scil100]] 
+
+
+* Puertos
+- Se llama puerto a la dirección de nivel de transporte en
+  - TCP
+  - UDP
+- La asignación de puertos se realiza según el [[http://www.ietf.org/rfc/rfc1700.txt?number=1700][RFC 1700]]
+
+|---+--------------------+----------------+----------------------------------------|
+| / | <>                 | <>             | <>                                     |
+|   | *Well-known ports* | 0 - 1023       | Solo para el administrador             |
+|   | *Registered ports* | 1024 - 49151   | Generalmente, servicios menos críticos |
+|   | *Dynamic ports*    | 49152 to 65535 | Asignables a los clientes              |
+|---+--------------------+----------------+----------------------------------------|
+
+** Asignación de puertos
+- *Servidor*: El proceso escucha en un puerto conocido 
+  - Ejemplos: 80 para HTTP, 25 para SMTP...
+  - Lista de /well known ports/ en el fichero [[http://www.penguintutor.com/linux/network-services-ports][=/etc/services=]]
+- *Cliente*: El cliente inicia una conexión un servidor. 
+  - El sistema le asigna un puerto no utilizado cualquiera
+  - Generalmente, un puerto dinámico
+  - El cliente también puede solicitar un puerto, pero es poco frecuente
+
+** Comando =netstat=
+- Informa de 
+  - Las conexiones TCP y UDP activas
+  - Los programas escuchando en puertos TCP y UDP
+
+|---------------------------+-------+----------|
+|                           | Linux | Windows  |
+|---------------------------+-------+----------|
+| Conexiones TCP            | ~-t~  | ~-p tcp~ |
+| Conexiones UDP            | ~-u~  | ~-p udp~ |
+| Proceso                   | ~-p~  | ~-o~     |
+| No traducir direcciones   | ~-n~  | ~-n~     |
+| Escuchando                | ~-l~  |          |
+| Escuchando y establecidas | ~-a~  | ~-a~     |
+|---------------------------+-------+----------|
+
+- Si no está =netstat=, se puede usar =ss=
+  - =ss --process --numeric --tcp --all=
+
+*** Ejercicio
+- Comprueba qué conexiones están establecidas en tu ordenador
+- Comprueba a qué direcciones está conectado tu ordenador
+- Comprueba qué puertos admiten conexiones
+- Comprueba qué procesos admiten conexiones
+
+** Comando =nc=
+- [[https://es.wikipedia.org/wiki/Netcat][Netcat]] permite realizar conexiones TCP/UDP y redirigir su entrada/salida
+- [[http://crysol.github.io/recipe/2005-10-10/netcat-la-navaja-suiza-de-tcp-ip.html][Usos]]
+  - Simular de forma rápida un cliente para probar un servidor
+  - Simular un servidor para probar un cliente
+  - Comprobar si el /firewall/ permite conexiones
+  - Transferir información por red
+- Versión Windows: 
+  - https://eternallybored.org/misc/netcat/
+- Otras opciones para Windows
+  - Máquina virtual con Linux
+  - [[https://github.com/besimorhino/powercat][powercat]]
+  - [[https://docs.microsoft.com/en-us/windows/wsl/install-win10][Windows Subsystem for Linux]]  
+
+
+*** Ejercicio
+- Pon a *netcat* a escuchar en un puerto
+- Haz que un compañero se conecte a ese puerto
+- Utiliza *netcat* como chat.
+
+*** Youtube, 1990
+=nc towel.blinkenlights.nl 23=
+
+*** Gmail, 1990
+=telnet bbs.fozztexx.com=
+
+
+
+* Direcciones de escucha
+
+- Cuando un proceso escucha en un puerto, también elige en qué dirección de red escucha
+- La dirección IP se puede utilizar como un /firewall/ rudimentario
+  | Dirección   | Efecto                                         |
+  |-------------+------------------------------------------------|
+  | =0.0.0.0=   | Escucha en todas las direcciones IP accesibles |
+  | =127.X.X.X= | Escucha en una dirección local                 |
+  | =X.X.X.X=   | Escucha en una interfaz de red concreta        |
+- No todas las combinaciones son posibles
+  - Es posible escuchar en el mismo puerto en =127.X.X.X= y en =X.X.X.X=
+  - =0.0.0.0= no es compatible con ningún otro
+** Posibilidades
+- El servidor está accesible a todo el mundo
+- El servidor solo está disponible desde la máquina local (por ejemplo email local)
+- El servidor solo está disponible por una de las interfaces de red
+- Diferentes servidores en diferentes interfaces de red
+
+
+
+** ¿Más de un proceso escuchando en el mismo puerto? 
+- Dependiendo de la versión de Linux/Windows, más de un proceso puede escuchar en el mismo puerto
+- Se hace para repartir mejor múltiples conexiones de clientes entre las CPU del servidor
+# https://superuser.com/questions/1267192/multiple-processes-listening-on-the-same-port-how-is-it-possible
+# https://superuser.com/questions/1321883/how-to-make-nc-listen-on-a-port-without-setting-so-reuseport
+#+begin_example
+SO_REUSEPORT (since Linux 3.9)
+
+Permits multiple AF_INET or AF_INET6 sockets to be
+bound to an identical socket address. This option
+must be set on each socket (including the first
+socket) prior to calling bind(2) on the socket. To
+prevent port hijacking, all of the processes
+binding to the same address must have the same
+effective UID. This option can be employed with
+both TCP and UDP sockets.
+
+#+end_example
+
+* TCP vs UDP
+- TCP es un medio de transmisión asegurado
+  - Las aplicaciones que usan TCP no envían paquetes, sino bytes. 
+  - TCP decide cuando enviar un paquete (las aplicaciones pueden /opinar/)
+  - Consume más CPU y memoria, por la ventana de emisión y los reenvíos
+  - Reduce la /transferencia útil/ 
+- UDP es más eficiente
+  - No necesita mantener conexión, ni reordenar paquetes, ni retransmitir paquetes
+  - Las aplicaciones son /conscientes/ de que se envían paquetes, no bytes.
+  - En redes con pocos errores, puede ser más adecuado
+  - Interesante cuando se necesita mucha transferencia útil pero no importa perder algún paquete (voz, vídeo)
+
+** TCP Joke
+1. Hello, would you like to hear a TCP joke?                                                                                                 
+2. Yes, I'd like to hear a TCP joke.                                                                                                         
+3. OK, I'll tell you a TCP joke.                                                                                                             
+4. OK, I'll hear a TCP joke.                                                                                                                 
+5. Are you ready to hear a TCP joke?                                                                                                         
+6. Yes, I am ready to hear a TCP joke.                                                                                                       
+7. OK, I'm about to send the TCP joke. It will last 10 seconds, it has two characters, it does not have a setting, it ends with a punchline. 
+8. OK, I'm ready to hear the TCP joke that will last 10 seconds, has two characters, does not have a setting and will end with a punchline.  
+9. I'm sorry, your connection has timed out... ...Hello, would you like to hear a TCP joke?                                                  
+
+** UDP Joke
+- Lo anterior era una broma de TCP. No me importa si la pillas o no.
+
+                                                                                                                                          
+* Referencias
+#+include: "../../../common/footer.org"

@@ -1,0 +1,153 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{Práctica de conexiones TCP}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Los objetivos  de la práctica son:
+\begin{itemize}
+\item Familiarizarse con los conceptos de puerto y conexión
+\item Implementar NAT
+\item Exponer servicios a través de un NAT  
+\item Manejar conexiones de ISP y routers SOHO
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/6/par-6-practica-nat-desde-casa.pdf}{este enlace}.
+
+
+\section{Preparación del entorno}
+Apunta aquí tu proveedor de Internet, para ver si te permite poner un servidor en Internet: {\footnotesize \url{https://docs.google.com/spreadsheets/d/1wDb4Y5bzZ9NilRIF-V9fgTn9on35MRNYayPEpLI8k8Q/edit#gid=0}}
+
+\begin{itemize}
+\item Máquina virtual Linux (recomendado Debian)
+  \begin{itemize}
+  \item No necesita mucha memoria (256 MBytes)
+  \item Tendrá una tarjeta de red \textit{bridged} con una dirección en la red local de casa (generalmente \texttt{192.168.0.0/24} o \texttt{192.168.1.0/24}). Se sugiere que sea la última libre, y en el resto de la práctica se supondrá que es \texttt{192.168.1.254/24}.
+  \item Tendrá una tarjeta de red \textit{host only}, para poder comunicarse con ella aunque falle la conexión real 
+  \end{itemize}
+
+\item Máquina virtual Windows, versión \textit{profesional}, \textit{ultimate} o equivalente (las que permitan \enlace{https://www.redeszone.net/2016/01/30/activar-escritorio-remoto-windows-10-8-1-7/}{Escritorio Remoto})
+  \begin{itemize}
+  \item No necesita mucha memoria (512 MBytes)    
+  \item Tendrá una tarjeta de red \textit{bridged} con una dirección en la red local de casa. Se sugiere que sea la penúltima libre, y en el resto de la práctica se supondrá que es \texttt{192.168.1.253/24}.
+  \item Tendrá una tarjeta de red \textit{host only}, para poder comunicarse con ella aunque falle la conexión real 
+  \end{itemize}
+\end{itemize}
+
+No se recomienda utilizar ordenadores reales directamente, para mejorar la seguridad.
+
+\includegraphics[width=\textwidth]{./media/practica-nat-en-casa.png}
+
+
+\begin{homeworkProblem}[: \imenu{Registra tu dirección IP real en Internet}]
+  \begin{itemize}
+  \item Los ISP generalmente no dan direcciones fijas en Internet.
+  \item Tu router tendrá una dirección externa obtenida por DHCP, que puede cambiar en cualquier momento
+  \item Para saber cuál es tu dirección en Internet puedes
+    \begin{itemize}
+    \item Consultar páginas como \url{http://www.cualesmiip.com/}. Deberás consultarla cada poco tiempo, por si tu IP cambia
+    \item Registrarte en un \enlace{https://www.ionos.es/digitalguide/servidores/know-how/que-es-un-dyndns-dns-dinamico/}{DNS dinámico} gratuito, como \url{https://www.noip.com/}
+    \end{itemize}
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Comprueba la conectividad de las máquinas virtuales]
+  \begin{itemize}
+  \item Asigna a las máquinas virtuales las direcciones indicadas
+    
+  \item Comprueba que pueden accederse entre sí (con \texttt{ping}) y que tienen conexión a Internet.
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Abre un puerto a la máquina virtual Linux]
+  \begin{itemize}
+  \item Instala el servidor ssh, con \texttt{sudo apt-get install openssh-server}. Observa con \texttt{netstat -antp} que el servicio sshd está en el puerto \texttt{22}.
+  \item Si no tienes un usuario no \texttt{root}, crea uno con \texttt{sudo adduser remoto}
+  \item En el router de tu ISP abre el puerto \texttt{222}, y conéctalo al puerto \texttt{22} de la máquina virtual Linux
+    \begin{itemize}
+    \item Del puerto extero \texttt{222} a la dirección \texttt{192.168.1.254}, puerto \texttt{22}
+    \item Cada router es distinto. Si tienes problemas contacta con el profesor.
+    \end{itemize}
+  \end{itemize}
+
+  \begin{Aviso}
+    No se recomienda abrir el puerto \texttt{22} en el router, ya que muchos bots de Internet intentan continuamente entrar por ese puerto. El puerto \texttt{222} es mucho más tranquilo. 
+  \end{Aviso}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Pide a un compañero que se conecte a tu servidor linux}]
+  \begin{itemize}
+  \item Pásale a un compañero tu IP (o nombre de dominio registrado en un DNS dinámico), el nombre de usuario y la contraseña de linux. Si el puerto que has abierto en el router no es el \texttt{222}, comunícaselo también.
+  \item El compañero se conectará con un cliente SSH
+    \begin{itemize}
+    \item Desde windows: \enlace{https://mobaxterm.mobatek.net/}{MobaXterm}, \enlace{https://putty.org/}{PuTTY}
+    \item Desde linux: En la línea de comandos, \texttt{ssh usuario@DIRECCIONIPEXTERNADELROUTER -p 222}
+    \end{itemize}
+    
+  \item Para demostrar que se ha conectado a tu ordenador, el compañero creará un directorio con su nombre: \texttt{mkdir manolo-ha-estado-aqui}
+  \item Puedes monitorizar con el comando \texttt{who} para ver quién está conectado en cada momento.
+  \end{itemize}
+  
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Abre un puerto a la máquina virtual Windows}]
+  \begin{itemize}
+  \item Habilita las conexiones por escritorio remoto a tu máquina virtual Windows: \url{https://www.redeszone.net/2016/01/30/activar-escritorio-remoto-windows-10-8-1-7/}. Observa con \texttt{netstat} que el servicio está escuchando en el puerto \texttt{3389}.
+  \item En el router de tu ISP abre el puerto \texttt{33389}, y conéctalo al puerto \texttt{3389} de la máquina virtual Windows
+    \begin{itemize}
+    \item Del puerto extero \texttt{33389} a la dirección \texttt{192.168.1.253}, puerto \texttt{3389}
+    \item Cada router es distinto. Si tienes problemas contacta con el profesor.
+    \end{itemize}
+  \end{itemize}
+
+  \begin{Aviso}
+    No se recomienda abrir el puerto \texttt{3389} en el router, ya que muchos bots de Internet intentan continuamente entrar por ese puerto. El puerto \texttt{33389} es mucho más tranquilo. 
+  \end{Aviso}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Pide a un compañero que se conecte a tu servidor Windows}]
+  \begin{itemize}
+  \item Pásale a un compañero tu IP (o nombre de dominio registrado en un DNS dinámico), el nombre de usuario y la contraseña de windows. Si el puerto que has abierto en el router no es el \texttt{33389}, comunícaselo también.
+  \item El compañero se conectará con el cliente Remote Desktop
+    \begin{itemize}
+    \item Desde windows: Ejecuta en el terminal \texttt{mstsc /v:DIRECCIONIPEXTERNADELROUTER:33389}
+      \includegraphics{./media/conexion-con-mstsc.png}
+    \item Desde linux: Lo mejor es instalar y usar \enlace{https://remmina.org/how-to-install-remmina/}{remmina}.
+    \end{itemize}
+  \item Windows te pedirá confirmación para que tu compañero tome el control de la máquina virtual. En las versiones no servidor de Windows \enlace{http://woshub.com/how-to-allow-multiple-rdp-sessions-in-windows-10/}{solo una persona puede controlar el ordenador} a la vez.  
+  \item Para demostrar que se ha conectado a tu ordenador, el compañero creará un directorio con su nombre en el escritorio
+  \end{itemize}
+  
+\end{homeworkProblem}
+
+
+\section{Conclusión}
+
+Se puede realizar esta práctica con cualquier otro servicio (páginas web, carpetas compartidas...). Basta con saber el número de puerto correspondiente a ese servicio.
+
+\end{document}

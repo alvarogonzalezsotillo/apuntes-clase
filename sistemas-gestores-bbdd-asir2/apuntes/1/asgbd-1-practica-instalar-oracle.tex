@@ -1,0 +1,94 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+
+\renewcommand{\hmwkTitle}{Usuarios y permisos}
+\renewcommand{\hmwkClass}{ASGBD}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\section{Objetivo de la práctica}
+En esta práctica utilizaremos a la base de datos \textbf{Oracle} como un verdadero servidor, conectándonos desde otros ordenadores. Para ello:
+\begin{itemize}
+\item Necesitamos poner accesible por red nuestro servidor
+\end{itemize}
+
+La última versión de este documento está accesible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos.pdf}{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-instalar-oracle.pdf}
+
+\begin{homeworkProblem}[: Poner Oracle disponible por red]
+
+  Los demás compañeros deben poder acceder a tu servidor de \textbf{Oracle}. Para ello:
+  \begin{enumerate}
+  \item La máquina virtual debe ser accedida desde el resto del aula. El tipo de conexión será \textit{bridged}
+  \item \textbf{Centos} tiene activado un firewall. Hay que desactivarlo como se indica en
+    \begin{itemize}
+    \item  \enlace{https://www.liquidweb.com/kb/how-to-stop-and-disable-firewalld-on-centos-7/}{https://www.liquidweb.com/kb/how-to-stop-and-disable-firewalld-on-centos-7/}
+    \end{itemize}
+    
+  \item La dirección IP se asigna actualmente por DHCP. Esto es un inconveniente porque puede variar cada día. Es mejor utilizar un nombre, así que instalaremos \textbf{avahi}
+    \begin{itemize}
+    \item \enlace{https://en.wikipedia.org/wiki/Avahi\_(software)}{https://en.wikipedia.org/wiki/Avahi\_(software)}
+    \item Instalaremos repositorios de \textit{software} adicionales con \texttt{sudo yum install epel-release}
+    \item Después, instalaremos \textbf{avahi} con \texttt{sudo yum install avahi avahi-tools nss-mdns}
+
+    \end{itemize}
+
+  \item Tu ordenador será accesible con el nombre \texttt{nombre-de-host.local} desde otros linux.
+  \item Pide al profesor que añada el nombre de tu ordenador en la siguiente hoja de cálculo: \enlace{http://bit.ly/2y7u57I}{http://bit.ly/2y7u57I}
+
+
+    \begin{comment}
+      Lo que hay que cambiar en /etc/sysconfig/network-scripts:
+      #BOOTPROTO=dhcp                                                    
+      BOOTPROTO=none
+      IPADDR=10.1.35.210
+      NETMASK=255.255.255.0
+      GATEWAY=10.1.0.1
+      DNS=8.8.8.8
+    \end{comment}
+    
+  \end{enumerate}
+
+  Cuando tengas estos cambios, pide al profesor que compruebe que funcionan.
+\end{homeworkProblem}
+
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item Describe en una memoria todos los pasos que has necesitado para realizar la práctica. Incluye también los errores y como los has solucionado.
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item El profesor debe comprobar que tu base de datos funciona en clase. Pídele que lo revise cuando lo tengas listo.
+\item Entrega tu trabajo en formato \textbf{doc}, \textbf{docx}, \textbf{odt} o \textbf{pdf}.
+\item También puede entregarse como una entrada de blog. Para ello, sube un archivo con la URL de la entrada.
+\item Sube el documento a la tarea correspondiente \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala}{en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
+
+
+\section{Qué se valorará}
+\begin{itemize}
+\item La corrección técnica (que funcione)
+\item Que se incluyan las órdenes SQL ejecutadas en cada punto
+\item La claridad de las explicaciones
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="entrenador" directorySegmentName="seg_0" id="D27F3528-D943-9DDF-2349-DD6ACB3528D1">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:47 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<sourcePk>E2A8BFC7-52D1-D76A-17CB-8C0DBCE5E729</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5F3801DA-C699-9E33-4601-5D5FF82EC448</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6A42A406-DF17-FC39-0851-773BDED17DDB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,321 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Ethernet. Switchs y Hubs
+#+SUBTITLE:
+#+KEYWORDS: 
+#+language: ES
+
+
+* Introducción
+
+- Recuerda que en la arquitectura IEEE 802, el nivel de enlace se divide en dos subcapas:
+  - LLC: se encarga de las funciones comunes de la capa independientemente del medio físico usado (ej: control de errores o de flujo). Sus funciones han sido definidas por el subgrupo 802.2.
+  - MAC: se encarga del acceso al medio.
+
+- En esta presentación nos ocuparemos de algunas de las funciones definidas en la subcapa MAC. Aunque haremos referencia a otros protocolos, se describirá en mayor detalle el protocolo Ethernet 802.3.
+
+
+* Dominios de colisión
+- Un dominio de colisión es el conjunto de segmentos de cable que interconectan una red donde, al transmitir dos o más estaciones, puede producirse una colisión.
+- La subcapa MAC
+  - Se encarga de que no haya colisión
+  - O si se producen, gestionar las colisiones
+
+
+** Compartición del medio 
+- Al principio del curso vimos 2 tipos de redes:
+  - Redes de difusión.
+  - Redes punto a punto. No existen colisiones.
+- En las redes de difusión, cuyo medio de transmisión está compartido por diferentes dispositivos, hace falta un mecanismo para que cada equipo pueda usar el medio durante un tiempo suficiente.  
+- Los protocolos se tienen que encargar de resolver los conflictos de acceso al medio.  Por esta razón, la capa de enlace de redes de difusión es más compleja que la de las redes punto a punto
+
+
+** Gestión de un dominio de colisión
+- *Detección de portadora*. Se trata de la capacidad de las estaciones transmisoras para detectar si en un determinado momento el canal está siendo ocupado por otra transmisión.  
+- *Detección de colisión*. Se trata de la capacidad de las estaciones para determinar si se ha producido una colisión en el medio.
+
+
+* Precedente de Ethernet (802.3)
+** [[https://es.wikipedia.org/wiki/ALOHAnet][ALOHA]]
+- Elaborado en el 1970 por la Universidad de Hawaii.
+- Se manda una trama y se espera una confirmación.
+- Si no llega la confirmación se supone que ha habido una colisión y se retransmite la trama. 
+  - Uso temporizadores.  
+  - La trama retransmitida podría colisionar otra vez.  
+  - Poco eficiente. 
+- Se mejora repartiendo el tiempo en slots. 
+  - Disminuye la probabilidad de colisión.
+  - No comprueba si el canal está libre antes de transmitir.
+
+
+** CSMA. 
+- Carrier Sense Multiple Access. 
+- Escucha el canal antes de empezar a transmitir, para comprobar que no se está en uso.
+- *CSMA persistente*: comprueba continuamente si el canal está libre.
+  - En cuanto detecta disponibilidad, envía. 
+  - Si varios dispositivos están esperando disponibilidad del canal para realizar un envío, enviarán al mismo tiempo y se producirá colisión.
+- *CSMA no persistente*: si al intentar transmitir está ocupado, espera un tiempo aleatorio antes de intentar transmisión otra vez. 
+  - Reduce las colisiones, pero aumenta el retardo con de bajo tráfico. 
+- *CSMA-CD* (Collision detection). Las estaciones son capaces de detectar una colisión después de haber empezado a transmitir. 
+  - Si esto ocurre, abortan la transmisión y vuelven a intentarlo después de un tiempo aleatorio.
+
+
+
+* Ethernet (802.3) 
+- Ethernet se basa sobre el CSMA/CD persistente. 
+- Utilizan cable UTP de cat. 5e o 6.
+  - [[https://es.wikipedia.org/wiki/100Base-TX][100 Base TX]]
+    - Usa codificación 4B/5B [[https://en.wikipedia.org/wiki/MLT-3_encoding][MTL-3]]
+  - 1000 Base T
+    - [[https://en.wikipedia.org/wiki/Pulse-amplitude_modulation][PAM]]-5
+- 1000 Base X (SX, LX...) 
+  - Fibra óptica con codificación 8B/10B
+
+** Tramas
+#+caption: Estándares de tramas Ethernet/802
+[[file:media/tramas-ethernet.png]]
+
+Nota: [[https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml][Lista de /ethertypes/]]
+
+** [[https://es.wikipedia.org/wiki/IEEE_802.2][LLC]]
+#+caption: Cabecera LLC
+[[file:media/llc.png]]
+*** *SAP* y control 
+- Si *length* es mayor de =05DC=, es un *type*
+- *DSAP* y *SSAP*: Especifican los protocolos de nivel superior 
+- Control:
+  - Paquetes *U* , con un campo de control de 8 bits, están pensados para servicios no orientados a conexión. Son los usados /normalmente/
+  - Paquetes *I*, con un campo de control y secuencia numérica de 16 bits, están pensados para servicios orientados a conexión
+  - Paquetes *S*, con un campo de control de 16 bits, están pensados para usarse en funciones supervisoras en la capa LLC (Logical Link Control).
+*** Lista de protocolos *SAP*
+| 00 | Null LSAP                                           |
+| 02 | Individual LLC Sublayer Management Function         |
+| 03 | Group LLC Sublayer Management Function              |
+| 04 | IBM SNA Path Control (individual)                   |
+| 05 | IBM SNA Path Control (group)                        |
+| 06 | ARPANET Internet Protocol (IP)                      |
+| 08 | SNA                                                 |
+| 0C | SNA                                                 |
+| 0E | PROWAY (IEC955) Network Management & Initialization |
+| 18 | Texas Instruments                                   |
+| 42 | IEEE 802.1 Bridge Spanning Tree Protocol            |
+| 4E | EIA RS-511 Manufacturing Message Service            |
+| 7E | ISO 8208 (X.25 over IEEE 802.2 Type 2 LLC)          |
+| 80 | Xerox Network Systems (XNS)                         |
+| 86 | Nestar                                              |
+| 8E | PROWAY (IEC 955) Active Station List Maintenance    |
+| 98 | ARPANET Address Resolution Protocol (ARP)           |
+| BC | Banyan VINES                                        |
+| AA | SubNetwork Access Protocol (SNAP)                   |
+| E0 | Novell NetWare                                      |
+| F0 | IBM NetBIOS                                         |
+| F4 | IBM LAN Management (individual)                     |
+| F5 | IBM LAN Management (group)                          |
+| F8 | IBM Remote Program Load (RPL)                       |
+| FA | Ungermann-Bass                                      |
+| FE | ISO Network Layer Protocol                          |
+| FF | Global LSAP                                         |
+
+#+begin_NOTES
+- Lista de dsap-ssap:
+  - http://standards.ieee.org/develop/regauth/llc/public.html
+  - https://www.liveaction.com/docs/glossary/networking-technical-reference/service-access-point-sap/
+#+end_NOTES
+** [[https://en.wikipedia.org/wiki/Subnetwork_Access_Protocol][SNAP]]
+- Cuando DSAP y SSAP tienen el valor =AA= o =BB=
+- Distingue protocolos adicionales a los de LLC
+  - Por ejemplo, no hay un número asignado para que IP viaje sobre LLC
+
+#+caption: Cabecera LLC y SNAP
+[[file:media/snap.png]]
+
+** ¿Se usa LLC, SNAP?
+/As per IETF RFC 1042, IP datagrams and ARP datagrams are transmitted over IEEE 802 networks using LLC and SNAP headers, except on Ethernet/IEEE 802.3, where they are transmitted with Ethernet II headers, as per RFC 894/
+- Lo normal son tramas Ethernet-DIX, o 802.3 Raw
+
+
+** Tamaño
+- Tamaño mínimo: 64 bytes (46 de datos)
+  - Se necesita un *mínimo* para poder detectar las colisiones en [[https://es.wikipedia.org/wiki/10BASE-T][10baseT]] (2500 metros máximos a 10Mbs)
+- Tamaño máximo: 1518 bytes (1500 de datos)
+  - Para limitar las colisiones y mejorar la compartición del medio
+- Estos límites son *obsoletos*
+  - Con los switches no hay colisiones
+  - Mayores velocidades permiten [[https://en.wikipedia.org/wiki/Jumbo_frame][tramas jumbo]]
+
+*** MTU
+- /Maximum Transfer Unit/
+- El sistema operativo puede permitir configurarlo para 
+  - Mejorar el rendimiento: tramas jumbo
+  - Reducir la latencia: tramas más pequeñas
+
+  #+caption: MTU por defecto para algunas redes
+  | Network              | MTU (bytes) |
+  |----------------------+-------------|
+  | 16 Mbps Token Ring   |       17914 |
+  | 4 Mbps Token Ring    |        4464 |
+  | FDDI                 |        4352 |
+  | Ethernet             |        1500 |
+  | IEEE 802.3/802.2     |        1492 |
+  | PPPoE (WAN Miniport) |        1480 |
+  | X.25                 |         576 |
+
+
+* Direcciones MAC
+- Se llaman *direcciones físicas*, aunque son de la capa de enlace
+- Son números de 48 bits (6 bytes). 
+  - Se expresan como números hexadecimales separados por dos puntos (=D4:AA:12:F3:00:C8=)
+  - En ocasiones (Windows) se utiliza como separador un - (=D4-AA-12-F3-00-C8=)
+- Cada tarjeta de red tiene una dirección MAC única
+   - 24 bits indican el fabricante
+   - 24 bits como identificador de la tarjeta dentro del fabricante
+
+- Es posible consultar el fabricante de tu tarjeta de red desde la MAC en muchos sitios de la web
+  - [[http://www.seguridadwireless.net/php/direccion-mac.php][http://www.seguridadwireless.net/php/direccion-mac.php]]
+  - [[http://standards-oui.ieee.org/oui/oui.txt][http://standards-oui.ieee.org/oui/oui.txt]]
+
+#+begin_NOTES
+
+#!/bin/bash
+#https://www.linux.com/blog/handy-2-line-script-lookup-network-card-manufacturer-mac-address
+OUI=$(echo ${1//[:.- ]/} | tr "[a-f]" "[A-F]" | egrep -o "^[0-9A-F]{6}")
+grep $OUI lynx -dump http://standards.ieee.org/regauth/oui/oui.txt
+
+#+end_NOTES
+
+** Consultar la propia MAC
+- Windows
+  - =ipconfig /all=
+- Linux
+  - =ifconfig -a | grep HWaddr=
+
+** ¿Puedo cambiar mi MAC?
+- El sistema operativo consulta la MAC de la tarjeta
+- Después, la usa para enviar tramas
+- Pero se puede utilizar otra MAC a voluntad
+  - Máquinas virtuales
+  - Con comandos/utilidades del sistema operativo
+
+#+begin_src shell
+ifconfig eth0 down
+ifconfig eth0 hw ether 60:6c:66:b5:85:65
+ifconfig eth0 up
+#+end_src
+
+
+** Broadcast
+- Hay ocasiones en las que interesa hablar con todos los ordenadores de la red
+  - [[https://es.wikipedia.org/wiki/Zeroconf][MDNS/Zeroconf]]
+  - [[https://es.wikipedia.org/wiki/Protocolo_de_resoluci%25C3%25B3n_de_direcciones][ARP]]
+  - [[https://es.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol][DHCP]]
+- La dirección MAC =FF:FF:FF:FF:FF:FF= es de broadcast, e implica que los destinatarios del paquete enviado son todos los equipos de la subred. 
+
+* Equipos de interconexión
+
+** Componentes de red: Repetidor
+- Un repetidor es un equipo con dos puertos de comunicaciones
+- Repite la señal recibida por un extremo hacia el otro extremo
+  - Puede regenerar y amplificar la señal
+  - Puede almacenar la trama completa antes de empezar a retransmitirla
+  - Un concentrador (hub) es un repetidor con más de dos puertos
+
+** Corte o almacenamiento y reenvío
+- Método de corte: 
+  - Según llegan los primeros bytes se empieza a reenviar la trama
+  - Menor latencia de red
+- Almacenamiento y reenvío: 
+  - Hasta que no se tiene la trama completa no se empieza a reenviar
+  - Menos colisiones
+
+** Componentes de red: Puente
+- Un puente es similar a un hub, incluyendo sus funcionalidades pero con una lógica más avanzada
+- No solo trabaja a nivel eléctrico. Además, entiende las tramas y puede decidir si las retransmite o no
+  - Solo retransmite tramas si el destinatario está al otro lado
+- Un puente (bridge) con más de dos puertos se denomina switch.
+
+** Hub VS switch
+- Si A envía un mensaje a B, un hub replica dicho mensaje a partes innecesarias de la red
+
+#+caption: Un hub retransmite todas las tramas
+file:media/retransmision-hub.png
+
+** Hub VS switch
+- Si A envía un mensaje a B, un switch interpreta la trama y sabe en qué parte de la red está B, por lo que no envía dicha trama por subredes innecesarias
+
+
+#+caption: Un switch solo retransmite si es necesario
+[[file:media/retransmision-switch.png]]
+
+
+
+** ¿Direcciones MAC?
+- Los hub y los switch no tienen una dirección MAC
+  - Los paquetes no se dirigen directamente a ellos
+  - La introducción de un hub/switch en una infraestructura de red ya existente no cambia la configuración de ningún otro equipo
+
+** Switch ¿Configuración?
+- ¿Cómo conoce un bridge qué equipos están en qué zonas de la red?
+  - Generalmente, un bridge/switch no tiene este tipo de configuración
+- El switch aprende “hacia atrás”
+  - Nada más ser enchufado, se comporta como un hub
+  - Cada vez que recibe una trama, apunta la dirección origen de la trama y el puerto por donde ha llegado
+  - De esa forma, cuando una trama tenga como destino una dirección MAC conocida, sólo la envía por el puerto por el que llegan sus paquetes
+
+** Switch: aprendizaje inicial
+- En una red grande, es casi /obligatorio/ utilizar switches
+  - Para evitar /tormentas de broadcast/
+- Aún así, inicialmente hay una /inundación/ hasta que los switches conocen las MAC de los equipos
+
+[[https://contenthub.netacad.com/srwe-dl/2.1.8][Actividad Cisco]]
+
+#+caption: La primera comunicación entre A y B inundará la red
+[[file:media/muchos-switch.png]]
+
+* ARP
+
+- Es un protocolo que se encuentra en la frontera de las capas de red y enlace, aunque generalmente aparece como protocolo de red.  
+- Determina la dirección MAC de un equipo de nuestra misma subred conocida su dirección IP, para hacer la entrega de la trama localmente. 
+- Suele realizarlo el sistema operativo
+
+** Comando ARP (Linux)
+- Consultar las direcciones conocidas
+#+begin_src shell
+  arp -n
+#+end_src
+- Borrar una entrada (dirección IP)
+#+begin_src shell
+  sudo arp -d III.III.III.III
+#+end_src
+
+- Añadir manualmente una entrada (dirección IP, MAC)
+#+begin_src shell
+  sudo arp -s III.III.III.III XX:XX:XX:XX:XX:XX
+#+end_src
+
+** Comando ARP (Windows)
+- Consultar las direcciones conocidas
+#+begin_src shell
+  arp -a
+#+end_src
+- Borrar una entrada (dirección IP)
+#+begin_src shell
+  arp -d III.III.III.III
+#+end_src
+- Borrar todas las entradas
+#+begin_src shell
+  arp -d
+#+end_src
+- Añadir manualmente una entrada (dirección IP, MAC)
+#+begin_src shell
+  arp -s III.III.III.III XX:XX:XX:XX:XX:XX
+#+end_src
+
+** /Unicast Poll/
+- El mensaje inicial de una pregunta ARP es de /broadcast/, para que todo el mundo lo reciba y pueda contestar.
+- Algunos S.O. pueden /repreguntar/ al dueño de una IP, para mantener la tabla caché de direcciones MAC
+  - En ese caso, envían preguntas /unicast/
+  - [[https://www.ietf.org/rfc/rfc1122.txt][RFC 1122]]  
+  
+
+
+* Referencias
+#+INCLUDE: "../../../common/footer.org"

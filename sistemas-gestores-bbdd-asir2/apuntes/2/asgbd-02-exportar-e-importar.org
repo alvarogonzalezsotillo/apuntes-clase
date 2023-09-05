@@ -1,0 +1,826 @@
+#+include: "../../../common/header.org"
+#+Title: Exportar e importar datos de Oracle
+
+* Exportar datos
+- Se utiliza el comando =expdp=
+  - Ayuda con =expdp help=yes=
+  - Es necesario crear antes el =directory= de *Oracle*
+
+#+begin_src C
+Export: Release 12.1.0.2.0 - Production on Fri Dec 16 13:32:15 2016
+
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+
+
+The Data Pump export utility provides a mechanism for transferring data objects
+between Oracle databases. The utility is invoked with the following command:
+
+   Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+
+You can control how Export runs by entering the 'expdp' command followed
+by various parameters. To specify parameters, you use keywords:
+
+   Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+   Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
+               or TABLES=(T1:P1,T1:P2), if T1 is partitioned table
+
+USERID must be the first parameter on the command line.
+
+------------------------------------------------------------------------------
+
+The available keywords and their descriptions follow. Default values are listed within square brackets.
+
+ABORT_STEP
+Stop the job after it is initialized or at the indicated object.
+Valid values are -1 or N where N is zero or greater.
+N corresponds to the object's process order number in the master table.
+
+ACCESS_METHOD
+Instructs Export to use a particular method to unload data.
+Valid keyword values are: [AUTOMATIC], DIRECT_PATH and EXTERNAL_TABLE.
+
+ATTACH
+Attach to an existing job.
+For example, ATTACH=job_name.
+
+CLUSTER
+Utilize cluster resources and distribute workers across the Oracle RAC [YES].
+
+COMPRESSION
+Reduce the size of a dump file.
+Valid keyword values are: ALL, DATA_ONLY, [METADATA_ONLY] and NONE.
+
+COMPRESSION_ALGORITHM
+Specify the compression algorithm that should be used.
+Valid keyword values are: [BASIC], LOW, MEDIUM and HIGH.
+
+CONTENT
+Specifies data to unload.
+Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
+
+DATA_OPTIONS
+Data layer option flags.
+Valid keyword values are: XML_CLOBS.
+
+DIRECTORY
+Directory object to be used for dump and log files.
+
+DUMPFILE
+Specify list of destination dump file names [expdat.dmp].
+For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
+
+ENCRYPTION
+Encrypt part or all of a dump file.
+Valid keyword values are: ALL, DATA_ONLY, ENCRYPTED_COLUMNS_ONLY, METADATA_ONLY and NONE.
+
+ENCRYPTION_ALGORITHM
+Specify how encryption should be done.
+Valid keyword values are: [AES128], AES192 and AES256.
+
+ENCRYPTION_MODE
+Method of generating encryption key.
+Valid keyword values are: DUAL, PASSWORD and [TRANSPARENT].
+
+ENCRYPTION_PASSWORD
+Password key for creating encrypted data within a dump file.
+
+ENCRYPTION_PWD_PROMPT
+Specifies whether to prompt for the encryption password [NO].
+Terminal echo will be suppressed while standard input is read.
+
+ESTIMATE
+Calculate job estimates.
+Valid keyword values are: [BLOCKS] and STATISTICS.
+
+ESTIMATE_ONLY
+Calculate job estimates without performing the export [NO].
+
+EXCLUDE
+Exclude specific object types.
+For example, EXCLUDE=SCHEMA:"='HR'".
+
+FILESIZE
+Specify the size of each dump file in units of bytes.
+
+FLASHBACK_SCN
+SCN used to reset session snapshot.
+
+FLASHBACK_TIME
+Time used to find the closest corresponding SCN value.
+
+FULL
+Export entire database [NO].
+
+HELP
+Display Help messages [NO].
+
+INCLUDE
+Include specific object types.
+For example, INCLUDE=TABLE_DATA.
+
+JOB_NAME
+Name of export job to create.
+
+KEEP_MASTER
+Retain the master table after an export job that completes successfully [NO].
+
+LOGFILE
+Specify log file name [export.log].
+
+LOGTIME
+Specifies that messages displayed during export operations be timestamped.
+Valid keyword values are: ALL, [NONE], LOGFILE and STATUS.
+
+METRICS
+Report additional job information to the export log file [NO].
+
+NETWORK_LINK
+Name of remote database link to the source system.
+
+NOLOGFILE
+Do not write log file [NO].
+
+PARALLEL
+Change the number of active workers for current job.
+
+PARFILE
+Specify parameter file name.
+
+QUERY
+Predicate clause used to export a subset of a table.
+For example, QUERY=employees:"WHERE department_id > 10".
+
+REMAP_DATA
+Specify a data conversion function.
+For example, REMAP_DATA=EMP.EMPNO:REMAPPKG.EMPNO.
+
+REUSE_DUMPFILES
+Overwrite destination dump file if it exists [NO].
+
+SAMPLE
+Percentage of data to be exported. 
+
+SCHEMAS
+List of schemas to export [login schema].
+
+SERVICE_NAME
+Name of an active Service and associated resource group to constrain Oracle RAC resources.
+
+SOURCE_EDITION
+Edition to be used for extracting metadata.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+TABLES
+Identifies a list of tables to export.
+For example, TABLES=HR.EMPLOYEES,SH.SALES:SALES_1995.
+
+TABLESPACES
+Identifies a list of tablespaces to export.
+
+TRANSPORTABLE
+Specify whether transportable method can be used.
+Valid keyword values are: ALWAYS and [NEVER].
+
+TRANSPORT_FULL_CHECK
+Verify storage segments of all tables [NO].
+
+TRANSPORT_TABLESPACES
+List of tablespaces from which metadata will be unloaded.
+
+VERSION
+Version of objects to export.
+Valid keyword values are: [COMPATIBLE], LATEST or any valid database version.
+
+VIEWS_AS_TABLES
+Identifies one or more views to be exported as tables.
+For example, VIEWS_AS_TABLES=HR.EMP_DETAILS_VIEW.
+
+------------------------------------------------------------------------------
+
+The following commands are valid while in interactive mode.
+Note: abbreviations are allowed.
+
+ADD_FILE
+Add dumpfile to dumpfile set.
+
+CONTINUE_CLIENT
+Return to logging mode. Job will be restarted if idle.
+
+EXIT_CLIENT
+Quit client session and leave job running.
+
+FILESIZE
+Default filesize (bytes) for subsequent ADD_FILE commands.
+
+HELP
+Summarize interactive commands.
+
+KILL_JOB
+Detach and delete job.
+
+PARALLEL
+Change the number of active workers for current job.
+
+REUSE_DUMPFILES
+Overwrite destination dump file if it exists [NO]. 
+
+START_JOB
+Start or resume current job.
+Valid keyword values are: SKIP_CURRENT.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+STOP_JOB
+Orderly shutdown of job execution and exits the client.
+Valid keyword values are: IMMEDIATE.
+
+
+#+end_src
+
+
+** =directory= de *Oracle*
+- Algunos comandos de *Oracle* necesitan trabajar sobre directorios del disco
+- A veces no interesa que los usuarios conozcan/decidan los directorios
+  - para no llenar una partición
+  - para no divulgar información de la base de datos
+  - para no acceder a directorios donde *Oracle* puede, pero el usuario no
+
+
+
+** Definir un directorio
+
+#+begin_src sql
+grant create any directory to unusuario; 
+create directory mi_directorio_de_backup as '/home/alumno/backups';
+#+end_src
+
+#+begin_src sql
+GRANT READ, WRITE ON DIRECTORY mi_directorio_de_backup TO usuario; 
+#+end_src
+
+- Seguridad: es importante dar permisos a los procesos de *Oracle* para acceder y escribir al directorio
+  - Pero no al resto de usuarios
+  - Mejor =setfacl= que =chmod=  
+
+** Caracteres de escape
+- A veces hay que pasar parámetros con espacios u otros caracteres especiales
+- En =bash= se haría con comillas "dobles" o 'simples'  
+- =expdp= maneja por sí mismo las comillas, así que hay que escaparlas en =bash=
+
+#+begin_src bash
+expdp \'sys/alumno@localhost:1521/orclpdb1 as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
+#+end_src
+
+** Conectar sin contraseña :noexport:
+https://logic.edchen.org/how-to-expdp-as-sysdba/
+https://logic.edchen.org/how-to-expdp-pdb-as-sysdba-without-password/
+
+
+
+#+begin_src bash
+ORCL =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = orcl)
+    )
+  )
+
+PDB1 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = orclpdb1)
+    )
+  )
+#+end_src
+
+** Ejemplo de exportación
+
+#+begin_src shell
+
+[alumno@centos-asgbd ~]$ expdp alumno/alumno directory=mi_directorio_de_backup schemas=alumno dumpfile=alumno.dmp logfile=alumno.log
+Export: Release 12.1.0.2.0 - Production on Fri Dec 16 13:07:26 2016
+
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to: Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+Starting "ALUMNO"."SYS_EXPORT_SCHEMA_01":  alumno/******** directory=mi_directorio_de_backup schemas=alumno dumpfile=alumno.dmp logfile=alumno.log 
+Estimate in progress using BLOCKS method...
+Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+Total estimation using BLOCKS method: 192 KB
+Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type SCHEMA_EXPORT/TABLE/COMMENT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type SCHEMA_EXPORT/STATISTICS/MARKER
+. . exported "ALUMNO"."MATRICULAS"                     6.523 KB      44 rows
+. . exported "ALUMNO"."MULTAS"                         8.195 KB      35 rows
+. . exported "ALUMNO"."PERSONAS"                       6.875 KB      47 rows
+Master table "ALUMNO"."SYS_EXPORT_SCHEMA_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for ALUMNO.SYS_EXPORT_SCHEMA_01 is:
+  /home/alumno/backups/alumno.dmp
+Job "ALUMNO"."SYS_EXPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:08:00 2016 elapsed 0 00:00:33
+#+end_src
+
+
+* Importar datos
+
+- Se utiliza el comando =impdp=
+  - Ayuda con =impdp help=yes=
+
+#+begin_src C
+
+Import: Release 12.1.0.2.0 - Production on Fri Dec 16 13:31:18 2016
+
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+
+
+The Data Pump Import utility provides a mechanism for transferring data objects
+between Oracle databases. The utility is invoked with the following command:
+
+     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+
+You can control how Import runs by entering the 'impdp' command followed
+by various parameters. To specify parameters, you use keywords:
+
+     Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+
+USERID must be the first parameter on the command line.
+
+------------------------------------------------------------------------------
+
+The available keywords and their descriptions follow. Default values are listed within square brackets.
+
+ABORT_STEP
+Stop the job after it is initialized or at the indicated object.
+Valid values are -1 or N where N is zero or greater.
+N corresponds to the object's process order number in the master table.
+
+ACCESS_METHOD
+Instructs Import to use a particular method to load data.
+Valid keyword values are: [AUTOMATIC], CONVENTIONAL, DIRECT_PATH
+and EXTERNAL_TABLE.
+
+ATTACH
+Attach to an existing job.
+For example, ATTACH=job_name.
+
+CLUSTER
+Utilize cluster resources and distribute workers across the Oracle RAC [YES].
+
+CONTENT
+Specifies data to load.
+Valid keywords are: [ALL], DATA_ONLY and METADATA_ONLY.
+
+DATA_OPTIONS
+Data layer option flags.
+Valid keywords are: DISABLE_APPEND_HINT and SKIP_CONSTRAINT_ERRORS.
+
+DIRECTORY
+Directory object to be used for dump, log and SQL files.
+
+DUMPFILE
+List of dump files to import from [expdat.dmp].
+For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
+
+ENCRYPTION_PASSWORD
+Password key for accessing encrypted data within a dump file.
+Not valid for network import jobs.
+
+ENCRYPTION_PWD_PROMPT
+Specifies whether to prompt for the encryption password [NO].
+Terminal echo will be suppressed while standard input is read.
+
+ESTIMATE
+Calculate network job estimates.
+Valid keywords are: [BLOCKS] and STATISTICS.
+
+EXCLUDE
+Exclude specific object types.
+For example, EXCLUDE=SCHEMA:"='HR'".
+
+FLASHBACK_SCN
+SCN used to reset session snapshot.
+
+FLASHBACK_TIME
+Time used to find the closest corresponding SCN value.
+
+FULL
+Import everything from source [YES].
+
+HELP
+Display help messages [NO].
+
+INCLUDE
+Include specific object types.
+For example, INCLUDE=TABLE_DATA.
+
+JOB_NAME
+Name of import job to create.
+
+KEEP_MASTER
+Retain the master table after an import job that completes successfully [NO].
+
+LOGFILE
+Log file name [import.log].
+
+LOGTIME
+Specifies that messages displayed during import operations be timestamped.
+Valid keyword values are: ALL, [NONE], LOGFILE and STATUS.
+
+MASTER_ONLY
+Import just the master table and then stop the job [NO].
+
+METRICS
+Report additional job information to the import log file [NO].
+
+NETWORK_LINK
+Name of remote database link to the source system.
+
+NOLOGFILE
+Do not write log file [NO].
+
+PARALLEL
+Change the number of active workers for current job.
+
+PARFILE
+Specify parameter file.
+
+PARTITION_OPTIONS
+Specify how partitions should be transformed.
+Valid keywords are: DEPARTITION, MERGE and [NONE].
+
+QUERY
+Predicate clause used to import a subset of a table.
+For example, QUERY=employees:"WHERE department_id > 10".
+
+REMAP_DATA
+Specify a data conversion function.
+For example, REMAP_DATA=EMP.EMPNO:REMAPPKG.EMPNO.
+
+REMAP_DATAFILE
+Redefine data file references in all DDL statements.
+
+REMAP_SCHEMA
+Objects from one schema are loaded into another schema.
+
+REMAP_TABLE
+Table names are remapped to another table.
+For example, REMAP_TABLE=HR.EMPLOYEES:EMPS.
+
+REMAP_TABLESPACE
+Tablespace objects are remapped to another tablespace.
+
+REUSE_DATAFILES
+Tablespace will be initialized if it already exists [NO].
+
+SCHEMAS
+List of schemas to import.
+
+SERVICE_NAME
+Name of an active Service and associated resource group to constrain Oracle RAC resources.
+
+SKIP_UNUSABLE_INDEXES
+Skip indexes that were set to the Index Unusable state.
+
+SOURCE_EDITION
+Edition to be used for extracting metadata.
+
+SQLFILE
+Write all the SQL DDL to a specified file.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+STREAMS_CONFIGURATION
+Enable the loading of Streams metadata [YES].
+
+TABLE_EXISTS_ACTION
+Action to take if imported object already exists.
+Valid keywords are: APPEND, REPLACE, [SKIP] and TRUNCATE.
+
+TABLES
+Identifies a list of tables to import.
+For example, TABLES=HR.EMPLOYEES,SH.SALES:SALES_1995.
+
+TABLESPACES
+Identifies a list of tablespaces to import.
+
+TARGET_EDITION
+Edition to be used for loading metadata.
+
+TRANSFORM
+Metadata transform to apply to applicable objects.
+Valid keywords are: DISABLE_ARCHIVE_LOGGING, INMEMORY, INMEMORY_CLAUSE,
+LOB_STORAGE, OID, PCTSPACE, SEGMENT_ATTRIBUTES, STORAGE, and
+TABLE_COMPRESSION_CLAUSE.
+
+TRANSPORTABLE
+Options for choosing transportable data movement.
+Valid keywords are: ALWAYS and [NEVER].
+Only valid in NETWORK_LINK mode import operations.
+
+TRANSPORT_DATAFILES
+List of data files to be imported by transportable mode.
+
+TRANSPORT_FULL_CHECK
+Verify storage segments of all tables [NO].
+Only valid in NETWORK_LINK mode import operations.
+
+TRANSPORT_TABLESPACES
+List of tablespaces from which metadata will be loaded.
+Only valid in NETWORK_LINK mode import operations.
+
+VERSION
+Version of objects to import.
+Valid keywords are: [COMPATIBLE], LATEST, or any valid database version.
+Only valid for NETWORK_LINK and SQLFILE.
+
+VIEWS_AS_TABLES
+Identifies one or more views to be imported as tables.
+For example, VIEWS_AS_TABLES=HR.EMP_DETAILS_VIEW.
+Note that in network import mode, a table name may be appended
+to the view name.
+
+------------------------------------------------------------------------------
+
+The following commands are valid while in interactive mode.
+Note: abbreviations are allowed.
+
+CONTINUE_CLIENT
+Return to logging mode. Job will be restarted if idle.
+
+EXIT_CLIENT
+Quit client session and leave job running.
+
+HELP
+Summarize interactive commands.
+
+KILL_JOB
+Detach and delete job.
+
+PARALLEL
+Change the number of active workers for current job.
+
+START_JOB
+Start or resume current job.
+Valid keywords are: SKIP_CURRENT.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+STOP_JOB
+Orderly shutdown of job execution and exits the client.
+Valid keywords are: IMMEDIATE.
+#+end_src
+
+** Importar un =schema= en otro =schema=
+- Importar un fichero del usuario =profesor= en el usuario =alumno=
+
+#+begin_src shell
+impdp system/alumno SCHEMAS=alumno remap_schema=alumno:profesor \
+            directory=EXPORTDIR \
+            dumpfile=profesor.dmp
+#+end_src
+
+#+begin_src shell
+[alumno@centos-asgbd backups]$ impdp system/alumno schemas=profesor remap_schema=profesor:alumno directory=mi_directorio_de_backup dumpfile=profesor.dmp       
+
+Import: Release 12.1.0.2.0 - Production on Fri Dec 16 13:23:38 2016
+
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to: Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+Master table "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully loaded/unloaded
+Starting "SYSTEM"."SYS_IMPORT_SCHEMA_01":  system/******** schemas=profesor remap_schema=profesor:alumno directory=mi_directorio_de_backup dumpfile=profesor.dm
+p 
+Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+. . imported "ALUMNO"."MATRICULAS"                       6.523 KB      44 rows
+. . imported "ALUMNO"."MULTAS"                           8.195 KB      35 rows
+. . imported "ALUMNO"."PERSONAS"                         6.875 KB      47 rows
+Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type SCHEMA_EXPORT/STATISTICS/MARKER
+Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:58 2016 elapsed 0 00:00:19
+#+end_src
+
+[[https://stackoverflow.com/questions/14397668/ora-39122-unprivileged-users-may-not-perform-remap-schema-remappings][Permiso para cambiar schema]]
+
+
+* Ejercicio (1)
+- Crea la base de datos de multas en el usuario =multas= ([[../1/sql/multas.sql]])
+- Exporta la base de datos al fichero =/datos/exports/multas.dump=
+- Importa las tablas en el usuario =copiamultas=
+
+** Tareas para la exportación
+
+#+begin_src dot :file ./media/dependencias-expdp.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+
+  "Registrar directorio" -> "Crear directorio"
+  "expdp" -> "Registrar directorio"
+  "expdp" -> "Privilegios de usuario Oracle" 
+  "expdp" -> "Permisos usuario S.O."
+  "Permisos usuario S.O." -> "¿Qué usuario S.O. ejecuta la instancia?"
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/dependencias-expdp.svg]]
+
+** Tareas para la importación
+
+#+begin_src dot :file ./media/dependencias-impdp.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+
+  "impdp" -> "Privilegios de usuario Oracle" 
+  "impdp" -> "Cambio de schema"
+  "impdp" -> "Cuota de nuevo usuario"
+  "Cuota de nuevo usuario" -> "Crear nuevo usuario"
+  "Cambio de schema" -> "grant datapump_imp_full_database to ..."
+  "impdp" -> "expdp"
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/dependencias-impdp.svg]]
+
+
+* Ejercicio (2)
+1. Crear la base de datos
+   - Con la base de datos de carreras ([[../1/sql/carreras-coches.sql][../1/sql/carreras-coches.sql]])
+   - Crear el usuario =CARRERAS= y ejecutar el /script/ SQL
+2. Exportar
+   - Exportar las tablas del usuario =CARRERAS= al fichero =carreras.dmp=
+3. Importar
+   - Borrar las filas de la tabla =CARRERAS.RESULTADOS=
+   - Importar los datos desde =carreras.dmp=
+
+** Tareas
+#+begin_src dot :file ./media/tareas-carreras.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+
+  "Registrar directorio" -> "Crear directorio"
+  "expdp" -> "Registrar directorio"
+  "expdp" -> "Privilegios de usuario Oracle" 
+  "expdp" -> "Permisos usuario S.O."
+  "Permisos usuario S.O." -> "¿Qué usuario S.O. ejecuta la instancia?"
+
+  "impdp" -> "expdp"
+  "impdp" -> "Vaciar RESULTADOS"
+  "impdp" -> "Seleccionar importar solo datos"
+  "impdp" -> "Seleccionar tabla a importar"
+
+}
+#+end_src
+
+
+* Otras soluciones
+- RMAN
+- Copias de /tablespaces/
+
+** [[https://oracle-base.com/articles/9i/recovery-manager-9i][RMAN]]
+- Solución de [[https://docs.oracle.com/cd/E11882_01/backup.112/e10642/rcmquick.htm#BRADV89346][Oracle para backups]]
+- Ventajas
+  - Granularidad del backup: incrementales o totales
+  - En línea
+- Desventajas
+  - Mayor complejidad
+  
+
+** Copias de /tablespaces/
+- Los datos están en ficheros =dbf=
+- Basta con hacer copias de esos ficheros
+- Ventajas
+  - Fácil, no se necesitan herramientas especiales
+- Desventajas
+  - Muchas veces es necesario parar Oracle para hacer la copia y la restauración
+
+Fuente: [[https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup.htm#BRADV016][docs.oracle.com]]
+
+*** Lista de ficheros a copiar
+- El fichero =pfile= o =spfile= indica dónde está el fichero de control
+  - Generalmente en =$ORACLE_HOME/dbs/spfile.ora=
+  - =SHOW PARAMETER spfile;=
+- El fichero de control indica dónde están los ficheros de datos
+- Los tablespaces =system= tienen los metadatos necesarios para entender los tablespaces de datos
+
+#+BEGIN_SRC sql
+select 'datos', name from v$datafile
+union
+select 'temporal', name from v$tempfile
+union
+select 'redo', member from v$logfile
+union
+select 'control', name from v$controlfile
+union
+select 'spfile', value from v$parameter where name='spfile';
+#+END_SRC
+
+
+#+begin_comment
+
+| control  | /var/oracle/fast_recovery_area/asir/control02.ctl       |
+| control  | /var/oracle/oradata/asir/control01.ctl                  |
+| datos    | /var/oracle/oradata/asir/sysaux01.dbf                   |
+| datos    | /var/oracle/oradata/asir/system01.dbf                   |
+| datos    | /var/oracle/oradata/asir/undotbs01.dbf                  |
+| datos    | /var/oracle/oradata/asir/users01.dbf                    |
+| redo     | /var/oracle/oradata/asir/redo01.log                     |
+| redo     | /var/oracle/oradata/asir/redo02.log                     |
+| redo     | /var/oracle/oradata/asir/redo03.log                     |
+| spfile   | /var/oracle/product/12.1.0/asir_bbdd/dbs/spfileasir.ora |
+| temporal | /var/oracle/oradata/asir/temp01.dbf                     |
+
+SELECT   t.NAME "Tablespace", f.NAME "Datafile"
+FROM     V$TABLESPACE t, V$DATAFILE f
+WHERE    t.TS# = f.TS#
+ORDER BY t.NAME;
+#+end_comment
+
+*** Arrancar la base de datos
+Si solo se restauran los ficheros de datos (y se tienen suficientes ficheros de =log=)
+
+#+begin_src sql
+SQL> startup mount
+ORACLE instance started.
+
+Total System Global Area  264241152 bytes
+Fixed Size                  1286916 bytes
+Variable Size             205524220 bytes
+Database Buffers           54525952 bytes
+Redo Buffers                2904064 bytes
+Database mounted.
+SQL> recover database until cancel;
+Media recovery complete.
+SQL> alter database open resetlogs;
+
+Database altered.
+
+SQL>
+#+end_src
+
+*** ora-00152 :noexport:
+http://www.dba-oracle.com/t_ora_01152_file_1_not_restored_from_sufficiently_old_backup.htm
+
+*** Cambiar nombres de fichero :noexport:
+
+#+begin_src sql
+SQL> startup nomount;
+SQL> alter system set control_files = '/oracle/data/control.dbf';
+SQL> alter database mount;
+SQL> alter database rename file '/u01/data/sysaux.dbf'
+  to '/oracle/data/sysaux.dbf';
+SQL> alter database rename file '/u01/data/redo_1a.dbf'
+  to '/oracle/data/redo_1a.dbf';
+#+end_src
+
+https://dba.stackexchange.com/questions/46367/mounting-a-database-from-database-files-copied-from-a-previous-installation
+
+
+** Ejercicio
+1. Localiza los ficheros de datos de tu instancia
+2. Apaga la instancia y haz una copia de los ficheros
+3. Arranca la instancia, y realiza cambios en la base de datos
+4. Apaga la instancia e intenta recuperar los ficheros de datos
+5. Arranca la instancia, y comprueba que todo sigue como antes del paso 1
+
+
+
+* Referencias
+#+include: "../../../common/footer.org"

@@ -1,0 +1,296 @@
+\input{../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+\usepackage{qrcode}
+\usepackage{ragged2e}
+\usepackage{mdframed}
+
+
+\renewcommand{\hmwkTitle}{Práctica de seguridad en el sistema}
+
+
+\usepackage{blindtext}
+
+\newcommand{\dibujoadmin}{\raisebox{-2mm}{\includegraphics[height=7mm]{admin.pdf}}}
+\newcommand{\dibujohacker}{\raisebox{-2mm}{\includegraphics[height=7mm]{hacker.pdf}}}
+
+
+% CAJAS
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{aActividad}[1][Actividad]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{ActividadHacker}[1][Actividad]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1\hspace{2mm}\dibujohacker
+}
+
+\newtcolorbox{ActividadAdmin}[1][Actividad]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1\hspace{1mm}\dibujoadmin
+}
+
+\usepackage{multicol}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+{\primerapagina}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Durante el desarrollo de esta práctica, el alumno provocará varios agujeros de seguridad en sistemas Linux, que un usuario sin privilegios podría aprovechar para tomar el control del sistema. De esta forma podrá comprobar como errores más o menos sutiles pueden convertir un sistema en inseguro. Además, investigará qué tipo de niveles de acceso puede tener un usario en el sistema y la forma de modificarlos.
+
+Cada paso está planteado desde el punto de vista de:
+
+\begin{tabular}{r c p{10cm}}
+  %\hline
+  Un administrador de sistema & \colorbox{gray!85}{\dibujoadmin} & Intentará detectar, evitar o paliar los ataques a la seguridad. También cometerá errores que dejarán el sistema vulnerable. \\
+  % \hline
+   Un \textit{hacker} & \colorbox{gray!85}{\dibujohacker} & Intentará aprovechar fallos en la seguridad \\
+  %\hline
+\end{tabular}
+
+
+\begin{homeworkProblem}[: Aprovecha un fallo de seguridad en \textbf{Linux} (2 puntos)]
+
+  \begin{multicols}{2}
+
+    \null \vfill
+    \begin{ActividadAdmin}[1. Problema de seguridad]
+      ¡El usuario \texttt{root} a dejado a \texttt{777} los permisos de \texttt{/etc/group} y \texttt{/etc/passwd}!
+
+
+    \end{ActividadAdmin}
+    \vfill \null
+    \columnbreak
+
+
+
+    \begin{ActividadHacker}[2. Un \textit{hacker} lo aprovecha]
+      Tienes acceso al usuario \texttt{normal}, pero no tiene ningún permiso especial. ¡Aprovecha el problema de seguridad y consigue ser \texttt{root}!
+      \begin{itemize}
+      \item Puedes cambiar la password del \texttt{root}, o bien…
+      \item Puedes añadir usuarios al grupo \texttt{admin} y al grupo \texttt{sudo}, que son especiales para el comando \texttt{sudo}
+      \end{itemize}
+    \end{ActividadHacker}
+
+
+
+  \end{multicols}
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Elección de una buena contraseña (1 punto)]
+
+  \begin{multicols}{2}
+
+    \null \vfill
+    \begin{ActividadAdmin}[1. Problema de seguridad]
+      Un usuario utiliza una contraseña muy débil. Su \textit{hash} md5 se guarda en el fichero \path{/etc/shadow}, y es \texttt{4c882dcb24bcb1bc225391a602feca7c}
+    \end{ActividadAdmin}
+    \vfill \null
+    \columnbreak
+
+
+    \begin{ActividadHacker}[2. Un \textit{hacker} lo aprovecha]
+      \begin{itemize}
+      \item Consigues de un viejo \textit{backup} el fichero \path{/etc/shadow}, así que conoces el \textit{hash} md5 de la contraseña
+      \item Intenta encontrar el \textit{hash} de la contraseña en Internet. Si lo encuentras, cualquiera puede encontrar la contraseña a partir del \textit{hash}
+        \item Propón una contraseña mejor, e intenta encontrar en Internet su \textit{hash} (calcula el \textit{hash} con el comando \texttt{md5sum}).  
+      \end{itemize}
+    \end{ActividadHacker}
+  \end{multicols}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}[: Auditoría de accesos en \textbf{Linux} (1 punto)]
+
+  \begin{multicols}{2}
+
+    \begin{ActividadHacker}[1. Problema de seguridad]
+      Alguien está intentando acceder a tu \textbf{Linux}, probando usuarios y contraseñas por fuerza bruta
+      \begin{itemize}
+      \item Intenta hacer \textit{login} con un usuario que no existe (por \textit{ssh} o en una consola de texto)
+      \item Intenta hacer \texttt{sudo} con contraseña incorrecta
+      \item Intenta hacer \texttt{sudo} con un usuario que no tiene acceso a \texttt{sudo}
+      \end{itemize}
+    \end{ActividadHacker}
+    \columnbreak
+
+    \null \vfill
+
+    \begin{ActividadAdmin}[2. El administrador lo detecta]
+      Como tienes sospechas de lo que está ocurriendo, decides consultar los ficheros de log (en \texttt{/var/log}). ¿En qué ficheros se guardan estos sucesos?. ¿Qué información se obtiene?
+    \end{ActividadAdmin}
+
+    \vfill \null
+
+  \end{multicols}
+
+
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}[: Escalada de privilegios en \textbf{Linux} (2 puntos)]
+
+
+  \begin{multicols}{2}
+
+    \null \vfill
+    \begin{ActividadAdmin}[1. Problema de seguridad]
+      ¡El usuario \texttt{root} se ha dejado una consola abierta!.
+
+      Ahora que lo has visto, quieres aprovechar la posibilidad para poder ser \texttt{root} otro día. Tu problema es que si cambias la contraseña \textbf{el administrador lo notaría}. Necesitas una forma que no afecte a la configuración del sistema (los ficheros de \path{/etc}).
+    \end{ActividadAdmin}
+    \vfill \null
+    \columnbreak
+
+
+
+    \begin{ActividadHacker}[2. El \textit{hacker} lo aprovecha]
+      \begin{itemize}
+      \item Consulta información del permiso \texttt{s} en el manual de \texttt{chmod}
+      \item Crea el usuario \texttt{normal2}
+      \item Crea una copia de la \textit{shell} (\texttt{/usr/bash}) en el directorio \textit{home} de \textbf{normal2} (\path{/home/normal2/shell-de-root})
+      \item Haz que \texttt{shell-de-root} tenga como propietario a \texttt{root} y tenga el permiso \texttt{s}
+      \item Ejecuta \texttt{shell-de-root -p} siendo el usuario \texttt{normal2}. ¿Qué ocurre?
+      \end{itemize}
+    \end{ActividadHacker}
+
+  \end{multicols}
+
+  
+\end{homeworkProblem}
+
+
+\newpage
+\begin{homeworkProblem}[: Implementa el uso de cuotas de disco en \textbf{Linux} (3 puntos)]
+
+  \begin{multicols}{2}
+
+    \null \vfill
+    \begin{ActividadHacker}[1. Problema de seguridad]
+      El usuario \texttt{normal} está abusando del sistema, ya que se está bajando multitud de archivos de Internet, y no deja sitio libre para el trabajo legítimo de los demás usuarios (es un ataque \textit{Denial of Serivice}).
+    \end{ActividadHacker}
+    \vfill \null
+    \columnbreak
+
+
+    \begin{ActividadAdmin}[2. El administrador lo soluciona]
+      \newcommand{\tutorialcuota}{https://www.linuxtotal.com.mx/?cont=info\_admon\_018}%{https://www.howtoforge.com/tutorial/linux-quota-ubuntu-debian}
+      \begin{itemize}
+      \item Consulta \enlace{\tutorialcuota}{este enlace} para ver cómo manejar las cuotas
+
+        \centering\qrcode[height=4cm]{\tutorialcuota}
+        
+      \item \justify Haz que el usuario \texttt{normal2} tenga una cuota de 1000 KBytes, Observa qué ocurre cuando intenta utilizar más de este espacio del disco.
+      \end{itemize}
+
+
+    \end{ActividadAdmin}
+
+  \end{multicols}
+
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Listas de control de acceso (1 punto)]
+
+  \begin{multicols}{2}
+
+    \null \vfill
+    \begin{ActividadAdmin}[1. Problema de seguridad]
+      El administrador tiene ahora un ordenador con \textbf{Windows}. Para configurarlo adecuadamente, necesita  una lista de qué permisos pueden otorgarse/negarse en \textbf{Windows} a cada tipo de \textit{objeto}.
+    \end{ActividadAdmin}
+    \vfill \null
+    \columnbreak
+
+
+
+    \begin{ActividadAdmin}[2. El administrador lo soluciona]
+      Consigue una lista de los permisos asignables a:
+      \begin{itemize}
+      \item Ficheros
+      \item Procesos (utiliza el programa \texttt{procexp})
+      \item Entradas de registro (utiliza el programa \texttt{regedit})
+      \end{itemize}
+    \end{ActividadAdmin}
+
+  \end{multicols}
+
+  
+
+\end{homeworkProblem}
+
+
+
+\section{Qué se valorará}
+El resultado de la práctica debe ser una memoria con los pasos que el alumno ha seguido para seguir los pasos del administrador y el \textit{hacker}. Se valorará:
+\begin{itemize}
+\item Que cada paso quede bien documentado. 
+\item La corrección técnica (que funcione)
+\item Que esté correctamente redactado, de forma que nuestro lector lo entienda 
+\item La apariencia profesional:
+  \begin{itemize}
+  \item Estética
+  \item Organización
+  \item Homogeneidad de formatos y estilos
+  \end{itemize}
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \item En este caso, todos los integrantes del grupo deben subir el trabajo al aula virtual.
+
+  \end{itemize}
+\item Los trabajos pueden entregarse:
+  \begin{itemize}
+  \item En formato \textbf{DOC} o \textbf{DOCX}.
+  \item En formato \textbf{ODT}.
+  \item En formato \textbf{PDF}. 
+  \item Como una entrada en un \textbf{blog}
+
+  \end{itemize}
+  
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}  
+
+\section{Créditos}
+\begin{itemize}
+\item Icons made by \url{http://www.freepik.com} from \url{http://www.flaticon.com} are licensed by \textbf{CC 3.0 BY}
+\item Icons made by Picol from \url{http://www.flaticon.com} are licensed by \textbf{CC 3.0 BY}
+\end{itemize}
+\end{document}

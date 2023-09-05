@@ -1,0 +1,681 @@
+#+title: Ejemplos y ejercicios PLSQL
+* Programación
+
+** Tabla de multiplicar Del 7
+Haz un procedimiento =CREATE OR REPLACE PROCEDURE TABLADELSIETE= que imprima con =dbms_output.put_line= la tabla de multiplicar del 7
+
+#+begin_src c
+7 x 1 = 7
+7 x 2 = 14
+...
+#+end_src
+
+#+begin_src sql
+create or replace procedure tabladelsiete
+is
+begin
+    for n in 1..10 loop
+        dbms_output.put_line('7 x '||n||' = '|| n*7);      
+    end loop;
+end;
+/
+
+call tabladelsiete();
+#+end_src
+
+#+begin_src sql
+create or replace procedure tabladel(numero number)
+is
+begin
+    for n in 1..10 loop
+        dbms_output.put_line( numero || ' x '||n||' = '|| n*numero);      
+    end loop;
+end;
+/
+
+call tabladel(3);
+#+end_src
+
+
+
+
+** Tablas de multiplicar del 1 al 9
+#+begin_src sql
+create or replace procedure tablasdemultiplicar(desde number, hasta number)
+is
+begin
+    for n in desde..hasta loop
+        dbms_output.put_line('TABLA DEL ' || n );
+        tabladel(n);
+    end loop;
+end;
+/
+
+call tablasdemultiplicar(5,8);
+#+end_src
+
+** Tablas de multiplicar bien alineadas
+Los números se tabulan alineándolos a la derecha
+#+begin_src c
+7 x  1 =  7
+7 x  2 = 14
+7 x  3 = 21
+7 x  4 = 28
+7 x  5 = 35
+7 x  6 = 42
+7 x  7 = 49
+7 x  8 = 56
+7 x  9 = 63
+7 x 10 = 70
+#+end_src
+
+#+begin_src sql
+create or replace procedure tablabienalineada(numero number)
+is
+  resultado number;
+  cadena varchar(10);
+begin
+    for n in 1..10   loop
+        resultado := numero*n;
+        if( resultado < 10 ) then
+          cadena := '  ' || resultado;
+        elsif( resultado < 100 ) then
+          cadena := ' ' || resultado;
+        else 
+          cadena := '' || resultado;
+        end if;
+    
+        if n < 10 then
+          dbms_output.put_line( numero || ' x  '|| n||' = '||cadena); 
+        else
+          dbms_output.put_line( numero || ' x '|| n||' = '|| cadena); 
+        end if;  
+    end loop;
+end;
+/
+#+end_src
+
+
+#+begin_src sql
+create or replace procedure tablabienalineada(numero number)
+is
+  resultado number;
+  cadena varchar(10);
+begin
+    for n in 1..10   loop
+       dbms_output.put_line( numero || ' x '|| to_char(n,'999') ||' = '|| to_char(n*numero,'999') ); 
+    end loop;
+end;
+/
+#+end_src
+
+
+
+No sale alineado.
+
+Hay varias opciones: o muchos IF para ver los dígitos que tiene un número, o usar la funcion LPAD, o usar TO_CHAR con un formato adecuado.
+
+
+** Nota cualitativa
+Haz una función que reciba una nota numérica sobre 10 y devuelva su nota cualitativa. Por ejemplo, para =7.3= es =notable=.
+
+
+#+begin_src sql
+CREATE OR REPLACE FUNCTION NOTACUALITATIVA(NOTA NUMBER) RETURN VARCHAR
+IS
+    NOTACUALITATIVA VARCHAR(20);
+BEGIN
+    CASE  
+        WHEN NOTA < 5 THEN NOTACUALITATIVA := 'SUSPENSO';
+        WHEN NOTA < 6 THEN NOTACUALITATIVA := 'SUFICIENTE';
+        WHEN NOTA < 7 THEN NOTACUALITATIVA := 'BIEN';
+        WHEN NOTA < 9 THEN NOTACUALITATIVA := 'NOTABLE';
+        WHEN NOTA <=10 THEN NOTACUALITATIVA := 'SOBRESALIENTE';
+        ELSE NOTACUALITATIVA := 'ESCRIBA UNA NOTA CORRECTA';
+    END CASE;
+    RETURN NOTACUALITATIVA;
+END;
+/
+#+end_src
+
+
+
+#+begin_src sql
+CREATE OR REPLACE FUNCTION NOTACUALITATIVA(NOTA NUMBER) RETURN VARCHAR
+IS
+BEGIN
+    return CASE  
+        WHEN NOTA < 5 THEN 'SUSPENSO'
+        WHEN NOTA < 6 THEN 'SUFICIENTE'
+        WHEN NOTA < 7 THEN  'BIEN'
+        WHEN NOTA < 9 THEN 'NOTABLE'
+        WHEN NOTA <=10 THEN 'SOBRESALIENTE'
+        ELSE 'ESCRIBA UNA NOTA entre 0 y 10'
+    END;
+END;
+/
+
+select notacualitativa(8.3) from dual;
+#+end_src
+
+
+
+
+** Pasar de decimal a binario
+#+begin_src sql
+CREATE OR REPLACE FUNCTION ENBINARIO(NUMERO number) RETURN VARCHAR
+is
+  retorno varchar(20) := '';
+  resto number;
+  n number := numero;
+begin
+  while(n > 0) loop
+    resto := mod(n,2);
+    retorno := resto || retorno;
+    n := trunc(n/2);
+  end loop;
+  return retorno;
+end;
+/
+
+select enbinario(255) from dual;
+#+end_src
+
+
+** Pasar de decimal a una base entre 2 y 16
+** Pasar de una base de 2 a 16 a decimal 
+** Función para decidir si un número es primo
+
+#+begin_src sql
+CREATE OR REPLACE FUNCTION ESPRIMO(NUMERO number) RETURN VARCHAR
+IS
+    J FLOAT :=1;
+BEGIN
+        FOR J IN 2..NUMERO-1 LOOP
+            IF(MOD(NUMERO,J)=0) THEN
+                RETURN 'NO ES PRIMO';
+            END IF;
+        END LOOP;
+        RETURN 'SI ES PRIMO';
+END;
+#+end_src
+
+** Imprimir los números primos menores de 1000
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace function es_primo(posibleprimo IN number) return char
+is
+  esprimo boolean := true;
+begin
+  for posibledivisor in 2..(sqrt(posibleprimo)) loop
+     esprimo := mod(posibleprimo,posibledivisor) <> 0;
+     exit when not esprimo;
+  end loop;
+  return case esprimo
+    when true then 's'
+    else 'n' 
+  end;  
+end;
+/
+#+end_src
+
+#+begin_src sql
+begin
+  for i in 2 .. 1000 loop
+    if( es_primo(i) = 's' ) then
+      dbms_output.put_line( 'Es primo:' || i );
+    end if;
+  end loop;
+end;
+/
+#+end_src
+
+** Decidir si un número es capicúa
+
+Usa =to_char= para pasar el número a texto, y utiliza =substr= para extraer posiciones del texto y compararlas.
+
+*** Solución :noexport:
+#+BEGIN_SRC sql
+create or replace function escapicua(n number) return varchar 
+as
+  numerocomotexto varchar(255);
+  longitud number;
+  letra char(1);
+  letracorrespondiente char(1);
+  escapicua number := 1;
+begin
+  numerocomotexto := to_char(n);
+  longitud := length(numerocomotexto);
+  for i in 1..longitud loop
+     letra := substr(numerocomotexto,i,1);
+     letracorrespondiente := substr(numerocomotexto,longitud-i+1,1);
+     if( letra <> letracorrespondiente ) then
+        escapicua := 0;
+     end if;  
+  end loop;
+  if escapicua = 0 then
+     return 'No es capicua';
+  else
+     return 'Es capicua';
+  end if;
+end;
+/
+
+select escapicua(7987) from dual;
+#+END_SRC
+
+
+#+begin_src sql
+create or replace function reverse(cadena varchar) return varchar
+as
+  retorno varchar(1024) := '';
+begin
+  -- ESTA FUNCION EXISTÍA EN VERSIONES ANTERIORES DE ORACLE
+  -- http://psoug.org/definition.htm/REVERSE.htm
+  for i in 1..length(cadena) loop
+    retorno := substr(cadena,i,1) || retorno;
+  end loop;
+  return retorno;
+end;
+/
+
+create or replace function escapicua(n number) return varchar 
+as
+begin
+  if( to_char(n) = reverse(to_char(n)) ) then
+    return 'Es capicua';
+  else
+    return 'No es capicua';
+  end if;  
+end;
+/
+
+select escapicua(7) from dual;
+#+end_src
+
+
+** Imprimir los Números primos capicúas menores de 100000
+#+begin_src sql
+begin
+  for n in 1..2000 loop
+    if lower(esprimo(n)) = 'es primo' and lower(escapicua(n)) = 'es capicua' then
+      dbms_output.put_line('Es primo y capicua: ' || n );
+    end if;
+  end loop;  
+end;
+/
+#+end_src
+** Decidir si 1000003 es primo
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+declare
+  posibleprimo numeric(10,0) := 1000003;
+  limitededivisores numeric(10,0);
+  esprimo boolean := true;
+begin
+  limitededivisores := sqrt(posibleprimo)+1;
+  for posibledivisor in 2..limitededivisores loop
+     esprimo := mod(posibleprimo,posibledivisor) <> 0;
+     exit when not esprimo;
+     
+  end loop;
+  if( esprimo ) then
+    dbms_output.put_line( posibleprimo || ' es primo'  );
+  else
+    dbms_output.put_line( posibleprimo || ' NO es primo'  );
+  end if;
+end;
+/
+#+end_src
+
+Un número es primo si solo es divisible por 1 y por si mismo. Un número es divisible por otro si el resto de la división (función =mod=) es cero.
+** Convertir boolean a char
+Crea una función que reciba un =boolean= y devuelva ='si'= si es =true= y ='no'= si es =false=.
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace function bool2char(b in boolean) return varchar 
+is
+begin
+  return (case b when true then 'si' else 'no' end );
+
+end;
+/
+#+end_src
+
+
+
+** Paso por valor :noexport:
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace procedure sumaUno(n in out numeric)
+is
+begin
+  n := n +1;
+end;
+/
+
+declare
+  numero numeric(10,0);
+begin
+  numero := 3;
+  sumauno(3);
+  dbms_output.put_line(numero);
+end;
+/
+
+#+end_src
+
+
+
+
+
+
+* Estudiantes
+
+** Estadística por nombre
+Crea un procedimiento que reciba un nombre o apellido, e imprima cuántos alumnos tienen ese nombre o apellido.
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace function cuantos_con_nombre_o_apellido(
+  nombreoapellido in varchar
+)
+return number
+as
+  contador number := 0;
+begin
+  for estudiante in (select * from student) loop
+    if( estudiante.first_name = nombreoapellido ) then
+      contador := contador + 1;
+    end if;
+    if( estudiante.last_name = nombreoapellido ) then
+      contador := contador + 1;
+    end if;
+  end loop;
+  return contador;
+end;
+/
+
+declare 
+  cuantos number;
+begin
+   cuantos := cuantos_con_nombre_o_apellido('Allende');
+   dbms_output.put_line( cuantos );
+end;
+/
+#+end_src
+
+
+** Matricular un hermano
+ Un hermano comparte todos los datos, excepto el nombre y el tratamiento
+
+*** Solución                                                       :noexport:
+ #+begin_src sql
+create or replace procedure matricular_hermano(
+  idqueyaexiste number,
+  nuevonombre varchar,
+  nuevotratamiento varchar,
+  iddelnuevohermano out number
+)
+as  
+  fila student%rowtype;
+begin
+  select  *
+  into fila
+  from student
+  where student_id = idqueyaexiste;
+  
+  fila.first_name := nuevonombre;
+  fila.salutation := nuevotratamiento;
+  
+  select max(student_id)+1
+  into fila.student_id
+  from student;
+  
+  fila.registration_date := sysdate;
+  fila.created_by := user;
+  fila.created_date := sysdate;
+  fila.modified_by := user;
+  fila.modified_date := sysdate;
+  
+  insert into student values fila;
+  
+  iddelnuevohermano := fila.student_id;
+end;
+/
+ #+end_src
+
+** Matricular a un alumno en una sección
+#+begin_src sql
+create or replace procedure matricular_alumno_en_seccion(
+  codigoestudiante number,
+  codigoseccion number
+)
+as
+  matriculacion enrollment%rowtype;
+BEGIN
+  matriculacion.student_id := codigoestudiante;
+  matriculacion.section_id := codigoestudiante;
+  matriculacion.enroll_date := sysdate;
+
+  matriculacion.created_by := 'agonzalez';
+  matriculacion.modified_by := 'agonzalez';
+  matriculacion.created_date := sysdate;
+  matriculacion.modified_date := sysdate;
+
+  insert into enrollment values matriculacion;
+end;
+/
+#+end_src
+** Calcular nota máxima y mínima
+Crea un procedimiento con dos parámetros out, que devuelvan la nota mínima y máxima entre las notas parciales (tabla =grade=)
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace function maxima_minima_nota(
+  maximo out numeric,
+  minimo out numeric
+)
+return varchar
+as
+  retorno varchar(15) := 'sin datos';
+begin
+  maximo := -1000;
+  minimo := 1000;
+  for g in (select * from grade) loop
+    retorno := 'ok';
+    maximo := greatest(maximo,g.numeric_grade);
+    minimo := least(minimo,g.numeric_grade);
+  end loop;
+  return retorno;
+end;
+/
+#+end_src
+
+** Calcular la media de notas por encima de cierto valor
+Crea una función que devuelva la media de las notas mayores que un umbral (tabla =grade=)
+*** Solución                                                       :noexport:
+ #+begin_src sql
+ create or replace 
+ FUNCTION MEDIA_DE_GRADES(minimo number) RETURN number AS 
+   total number;
+   numero number;
+ BEGIN
+   total := 0;
+   numero := 0;
+   for g in (select numeric_grade from grade) 
+   loop
+     if g.numeric_grade > minimo then
+       total := total + g.numeric_grade;
+       numero := numero + 1;
+     end if;
+   end loop;
+  
+   return total/numero;
+  
+ END MEDIA_DE_GRADES;
+ #+end_src
+
+** Costes totales de los cursos
+Funcion que devuelve la suma de los precios de todos los cursos (table =course=)
+
+*** Solución                                                       :noexport:
+ #+begin_src sql
+ create or replace 
+ FUNCTION SUMACOSTES RETURN NUMBER AS 
+   CURSOR c_courses is select cost, course_no from course;
+   resultado number;
+   coste number;
+   numerocurso number;
+ BEGIN
+   resultado := 0;
+   open c_courses;
+  
+   fetch c_courses into coste, numerocurso;
+   while not c_courses%NOTFOUND LOOP
+     if coste is not null then
+       resultado := resultado + coste;
+     else
+       SYS.dbms_output.put_line( 'Es null:' || numerocurso );
+     end if;
+     fetch c_courses into coste, numerocurso;
+   end loop;
+  
+   close c_courses;
+   return resultado;
+ END;
+ #+end_src
+
+** Insertar un ID automático en un estudiante
+
+Crea un /trigger/ que añada un ID a los estudiantes insertados, en el caso de que no tengan un ID ya asignado. El ID saldrá de una secuencia.
+*** Solución                                                       :noexport:
+ #+begin_src sql
+ CREATE OR REPLACE TRIGGER "ALUMNO"."PONER_ID_A_STUDENT" 
+    before insert on "ALUMNO"."STUDENT" 
+    for each row 
+ begin  
+    if inserting then 
+       if :NEW."STUDENT_ID" is null then 
+          select STUDENT_ID_SEQ.nextval into :NEW."STUDENT_ID" from dual; 
+       end if; 
+    end if; 
+ end;
+ ALTER TRIGGER "ALUMNO"."PONER_ID_A_STUDENT" ENABLE;
+ #+end_src
+
+** Actualizar campos de auditoría
+
+Crea  /triggers/ que actualicen los campos de auditoría =modified_by= y =modified_date= de todas las tablas de la base de datos.
+*** Solución                                                       :noexport:
+#+begin_src sql
+create or replace trigger actualiza_lo_de_modificado
+before update
+on student
+for each row
+begin
+  :new.modified_by := user;
+  :new.modified_date := sysdate;
+end;
+/
+#+end_src
+
+* Sueldos y masa salarial (desnormalización)
+
+** Tablas de masa salarial
+
+#+begin_src sql
+create table sueldos(idempleado, sueldo numeric)
+create table masasalarialtotal(total numeric);
+#+end_src
+
+** Limitar los sueldos por arriba y por abajo
+Haz un /trigger/ que asegure que los empleados no cobran menos de 100000€ ni más de 1000000€.
+
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+CREATE TRIGGER COMPROBAR_SUELDO
+BEFORE
+INSERT OR UPDATE OF sueldo ON sueldos
+FOR EACH ROW
+DECLARE
+SUELDO_FUERA_RANGO EXCEPTION;
+BEGIN
+IF (:NEW.sueldo < 100000 OR
+:NEW.sueldo > 1000000) THEN
+RAISE SUELDO_FUERA_RANGO;
+END IF;
+END;
+#+end_src
+
+
+** Inicializar la masa salarial
+Crea una tabla =masasalarialtotal=. Tendrá una sola fila con la suma de todos los sueldos
+
+#+BEGIN_SRC sql
+create table masasalarialtotal( total numeric );
+#+END_SRC
+
+Crea un procedimiento que se asegure que solo hay una fila con la suma de todos los sueldos.
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+CREATE OR REPLACE PROCEDURE INICIALIZA_MASA_SALARIAL_TOTAL AS 
+  t number;
+BEGIN
+  select sum(sueldo) into t from sueldos;
+  if t is null then
+    t := 0;
+  end if;
+  update masasalarialtotal set total = t;
+END INICIALIZA_MASA_SALARIAL_TOTAL;
+#+end_src
+
+
+** Actualizar al borrar
+Crea un /trigger/ que actualice la masa salarial al borrar un sueldo
+*** Solución                                                       :noexport:
+#+begin_src sql
+CREATE OR REPLACE TRIGGER MASA_SALARIAL_BORRANDO 
+BEFORE DELETE ON SUELDOS 
+FOR EACH ROW 
+BEGIN
+  UPDATE masasalarialtotal set total = total - :old.sueldo;
+END; 
+#+end_src
+
+
+
+** Actualizar al modificar o insertar
+Crea un /trigger/ que actualice la masa salarial al modificar o insertar un sueldo
+
+*** Solución                                                       :noexport:
+#+begin_src sql
+CREATE OR REPLACE TRIGGER MENOR_DE_UN_MILLON 
+BEFORE INSERT or update ON SUELDOS
+for each row
+declare
+  masasalarial number;
+  sueldo_fuera_de_rango exception;
+BEGIN
+
+  if inserting then
+    masasalarial := masasalarial + :new.sueldo;
+  end if;
+  
+  if updating then
+    select total into masasalarial from masasalarialtotal where id=1;
+    masasalarial := masasalarial - :old.sueldo + :new.sueldo;
+  end if;
+  
+  if  masasalarial > 1000000  then
+    raise  sueldo_fuera_de_rango;
+  end if;
+  
+  update masasalarialtotal set total = masasalarial;
+END;
+#+end_src
+

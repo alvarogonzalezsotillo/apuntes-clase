@@ -1,0 +1,240 @@
+.total, .colapsable, .explicacion{
+    display: inline-block;
+}
+
+.total{
+    vertical-align: top;
+}
+
+
+
+body{
+    counter-reset: evaluacion;
+}
+
+.autonumerico-evaluacion:before{
+    counter-increment: evaluacion;
+    content: counter(evaluacion);
+}
+
+div.calculo-trabajos{
+    counter-reset: trabajo;
+}
+
+.autonumerico-trabajo:before{
+    counter-increment: trabajo;
+    content: counter(trabajo);
+}
+
+
+input{
+    background-color: transparent;
+    
+    width: 42;
+    
+    border-bottom-width: 3px;
+    border-bottom-color: black;
+    border-bottom-style: dotted;
+    
+    border-left-width: 0px;
+    border-left-style: dotted;
+    border-left-color: black;
+    
+    border-right-width: 0px;
+    border-top-width: 0px;
+}
+
+input.calculado{
+    border-bottom-style: solid;
+}
+
+
+.texto-explicacion{
+    display: none;
+    position: fixed;
+    max-width: 300px;
+    padding: 5px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    --border-top-left-radius: 7px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: yellow;
+
+    /* box-sadow: inset [offsetx offsety blur spread color] */
+    box-shadow: 0 0 5px #aaa;
+}
+
+
+.texto-explicacion.explicacion-visible{
+    display: block;
+}
+
+.toggle-explicacion{
+    padding: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: yellow;
+    
+    box-shadow: 0 0 5px #aaa;
+}
+
+.explicacion{
+    cursor: help;
+    background-color: yellow;
+}
+
+.texto-explicacion{
+    background-color: yellow;
+    z-index: 10;
+}
+
+.calculo-examenes{
+    clear:both;
+}
+
+
+.evaluacion{
+    margin: 10px;
+    padding: 10px;
+}
+
+.examenes, .trabajos, .actitud{
+    margin: 5px;
+    padding: 5px;
+    
+}
+
+label{
+    min-width: 150px;
+    resize: both;
+    text-align: right;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+label.estrecho{
+    min-width: 90px;
+}
+
+.llave-expandible{
+    
+    padding: 5px;
+    
+    display: inline-block;
+    border-left-width: 2px;
+    border-left-color: black;
+    border-left-style: solid;
+
+    border-top-width: 2px;
+    border-top-color: black;
+    border-top-style: solid;
+
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+
+    
+    background-color: yellow;
+    cursor: pointer;
+    
+    vertical-align: top;
+    
+    box-shadow: 0 0 5px #aaa;
+
+}
+
+.llave-expandible.abajo{
+
+    border-right-width: 2px;
+    border-right-color: black;
+    border-right-style: solid;
+    
+    border-bottom-width: 0px;
+
+    
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.llave-expandible.llave-cerrada{
+    border-right-width: 2px;
+    border-right-color: black;
+    border-right-style: solid;
+}
+
+.llave-expandible.llave-cerrada.abajo{
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+}
+
+
+.llave-expandible:hover{
+   box-shadow:0px 0px 10px 5px #aaa;
+}
+
+.colapsable{
+    
+    
+    
+    border-left-width: 2px;
+    border-left-color: black;
+    border-left-style: solid;
+
+
+    border-top-width: 2px;
+    border-top-color: black;
+    border-top-style: solid;
+
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+
+    border-right-width: 2px;
+    border-right-color: black;
+    border-right-style: solid;
+    
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    
+    padding: 5px;
+    
+
+    box-shadow: 0 0 5px #aaa;
+    
+    z-index:10;
+    
+}
+
+.trabajo-por-crear *{
+    color: lightgray;
+}
+
+.quita-trabajo{
+    font-size: 8px;
+    background-color: yellow;
+}
+
+.trabajo-por-crear .quita-trabajo{
+    visibility: hidden;
+}
+
+.trabajo-por-crear input{
+    border-bottom-color: lightgray;
+}
+
+.quita-trabajo:hover{
+   box-shadow:0px 0px 3px 3px #aaa;
+}
+
+
+div.calculo-modulo > div:last-of-type div.recuperacion{
+    visibility: hidden;
+}

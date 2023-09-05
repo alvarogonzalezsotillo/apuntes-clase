@@ -1,0 +1,247 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica DBLinks (simplificada)}
+\renewcommand{\hmwkClass}{Bases de datos}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+
+\section{Objetivo de la práctica}
+En esta práctica el alumno utilizará la funcionalidad \textit{dblink} de Oracle para implementar una base de datos distribuida.
+
+
+
+\section{Descripción del problema}
+Cada alumno representará una entidad bancaria. Cada entidad tendrá clientes, que pueden tener más de una cuenta.
+Cada cuenta almacena movimientos. Un movimiento incluye el importe, una descripción y una marca de tiempo.
+
+
+\begin{homeworkProblem}[: Vistas necesarias]
+  No son importantes las tablas utlizadas para almacenar los datos, pero deben crearse las vistas del listado \ref{lst:vistas}, con los tipos de datos definidos en la tabla \ref{tbl:tipos}.
+
+
+
+\begin{listadosql}{Creación de las vistas}{lst:vistas}
+create or replace view v_cuentas(idcuenta) as
+select ...;
+create or replace view v_movimientos(idcuenta,marcadetiempo,euros,descripcion) as
+select ...;
+create or replace view v_clientes(idcliente,nombre) as
+select ...;
+\end{listadosql}
+
+
+  \begin{figure}[h]
+    \begin{tabular}{|c|c|p{10cm}|}
+      \hline
+      Campo & tipo & \\
+      \hline
+      \texttt{idcuenta}  & \texttt{VARCHAR(20)} & El identificador de cuenta. Los 4 primeros  indicarán el banco. Seguirá la cadena \texttt{0001DC}. Los últimos 10 seguirán una  secuencia. \\
+      \texttt{idcliente} & \texttt{NUMBER(10)} & El identificador de cliente  \\
+      \texttt{euros} & \texttt{NUMBER(15,2)} & Las cantidades en euros  \\
+      \texttt{marcadetiempo} & \texttt{TIMESTAMP} & Las marcas de tiempo  \\
+      \texttt{nombre} & \texttt{VARCHAR(255)} & Nombre del cliente \\
+      \texttt{descripcion} & \texttt{VARCHAR(1024)} & Descripción del movimiento \\
+      \hline
+    \end{tabular}
+    \caption{Tipos de datos de los campos}
+    \label{tbl:tipos}
+  \end{figure}
+
+  
+  
+\end{homeworkProblem}
+
+
+\newenvironment{Indentado}
+{\hfill\minipage{\dimexpr\textwidth-2cm}}
+{\endminipage}
+
+
+\begin{homeworkProblem}[: Funciones internas del banco]
+
+  \begin{itemize}
+  \item \texttt{saldo\_cuenta(idcuenta)}
+
+    \begin{Indentado}
+      El saldo de una cuenta es la suma de los importes de sus movimientos. Una cuenta sin movimientos tiene saldo \texttt{0}.
+    \end{Indentado}
+    
+  \item \texttt{saldo\_cliente(idcliente)}
+
+    \begin{Indentado}
+      El saldo de un cliente es la suma del saldo de todas las cuentas. Un cliente sin cuentas tiene saldo \texttt{0}.
+    \end{Indentado}
+
+
+  \end{itemize}
+
+\begin{listadosql}{Funciones internas del banco}{lst:funciones}
+create or replace function SALDO_CUENTA( idcuenta IN varchar )
+return number as begin
+  ...
+end; 
+
+create or replace function SALDO_CLIENTE( idcliente IN number )
+return number as begin
+  ...
+
+end; 
+
+\end{listadosql}
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Procedimientos internos del banco]
+
+
+  \begin{itemize}
+  \item \texttt{nuevo\_movimiento(idcuenta,euros,descripcion)}
+
+    
+    \begin{Indentado}
+      Añade un movimiento a una cuenta, con la hora actual del sistema.
+    \end{Indentado}
+    
+  \item \texttt{crear\_cuenta(idcliente,out idcuenta)}
+    
+    \begin{Indentado}
+      Crea una cuenta cuyo titular es el cliente especificado.  El identificador de cuenta será un \texttt{VARCHAR(20)}. Los 4 primeros indicarán el banco. Seguirá la cadena \texttt{0001DC}. Los últimos 10 seguirán una secuencia.
+    \end{Indentado}
+    
+    
+
+    
+  \item \texttt{crear\_cliente(nombre,out idcliente)}
+    
+    \begin{Indentado}
+      Crea un nuevo cliente, devolviendo su identificador. \\
+    \end{Indentado}
+  \end{itemize}
+
+
+  \begin{listadosql}{Procedimientos internos del banco}{lst:funciones}
+create or replace procedure NUEVO_MOVIMIENTO(
+  idcuenta IN varchar, 
+  euros IN number,
+  descripcion IN varchar)
+as begin
+  ...
+end; 
+
+create or replace procedure CREAR_CUENTA(
+  idcliente IN number
+  idcuenta OUT varchar)
+as begin
+  ...
+end; 
+
+create or replace procedure CREAR_CLIENTE(
+  nombre IN varchar, 
+  idcliente OUT  number)
+as begin
+  ...
+end; 
+
+
+\end{listadosql}
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Conexión con otros bancos]
+  
+  \begin{enumerate}
+  \item Apunta el nombre de tu servidor, el usuario y la contraseña que usarán los demás bancos para conectarse tu base de datos en la hoja compartida 
+    \begin{itemize}
+      % \item \enlace{https://docs.google.com/spreadsheets/d/1Hpo3YKgWtDsmaOB1p5PX5VdGO-c3HxdzpoBsCNI7cl4/edit}{https://docs.google.com/spreadsheets/d/ 1Hpo3YKgWtDsmaOB1p5PX5VdGO-c3HxdzpoBsCNI7cl4 /edit}.
+      \item \enlace{https://goo.gl/jR8iNj}{https://goo.gl/jR8iNj}.
+    \item Recuerda que ese usuario debe tener privilegios para utilizar las vistas, funciones y procedimientos del ejercicio.
+    \end{itemize}
+  
+  \item Crea los \textit{dblink} necesarios para conectarte a los demás bancos.
+
+    
+\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Interacción entre bancos]
+Cada banco podrá hacer transferencias entre sus cuentas. También podrá transferir dinero desde una de sus cuentas a una cuenta de otro banco. El procedimiento \texttt{TRANSFERENCIA( idcuentaorigen, euros, descripcion, idcuentadestino)} realizará las siguientes acciones
+\begin{itemize}
+\item En la cuenta de origen se hará un movimiento negativo (que reste dinero de la cuenta), usando el método \texttt{NUEVO\_MOVIMIENTO}.
+\item En la cuenta de destino se hará un movimiento positivo (que añada dinero a la cuenta), usando el método \texttt{NUEVO\_MOVIMIENTO} del banco de destino via \textit{dblink}, si es necesario.
+\item Si la cuenta de destino no es del propio banco, se hará un cargo de una comisión en la cuenta de origen. Este cargo será de un 2\% de la transferencia, con un mínimo de 3\euro.
+\item El movimiento de la comisión tendrá como descripción ``\texttt{comision por transferencia}''  
+\end{itemize}
+
+\begin{Aviso}
+  El procedimiento \texttt{TRANSFERENCIA} \textbf{no} llama a otros procedimientos \texttt{TRANSFERENCIA} de otros bancos.
+  El procedimiento \texttt{TRANSFERENCIA} usa solo los procedimientos \texttt{NUEVO\_MOVIMIENTO} de otros bancos.
+\end{Aviso}
+
+
+Se tendrán en cuenta los siguientes casos de error:
+\begin{itemize}
+\item El banco de destino no existe: \texttt{BANCONOEXISTE}
+\item La cuenta de origen no es del propio banco: \texttt{CUENTAAJENA}
+%\item La cuenta origen no existe: \texttt{CUENTANOEXISTE}
+\item La cuenta origen no tiene suficiente saldo: \texttt{SALDOINSUFICIENTE}
+\item La transferencia es de un importe de 0{\euro} o menor: \texttt{IMPORTEINCORRECTO}
+\end{itemize}
+
+  \begin{listadosql}{Procedimiento de transferencia}{lst:funciones}
+create or replace procedure TRANSFERENCIA(
+  idcuentaorigen IN varchar, 
+  euros IN number,
+  descripcion IN varchar,
+  idcuentadestino IN varchar )
+as begin
+  ...
+end; 
+
+\end{listadosql}
+
+
+\begin{Aviso}[ORA-02020]
+  Es posible que aparezca el error \texttt{ORA-02020: too many database links in use}, ya que por defecto solo puede haber 4 conexiones abiertas con otras bases de datos. En ese caso hay dos opciones:
+  \begin{itemize}
+  \item Cerrar todas las sesiones están cerradas en SQLDeveloper
+  \item Ejecutar \texttt{alter system set open\_links=30 scope=spfile} (como usuario \texttt{SYS}) y reiniciar el servidor. Esto aumenta el número máximo de conexiones abiertas.
+  \end{itemize}
+
+\end{Aviso}
+
+\end{homeworkProblem}
+
+
+\section{Instrucciones de entrega}
+La autoría del trabajo es individual. Se corregirá \textit{on-line}, ejecutando pruebas mediante conexiones de red. Los servidores Oracle deberán estar funcionando y conectados en el día que el profesor pase dichas pruebas.
+
+
+
+\end{document}
+
+
+
+

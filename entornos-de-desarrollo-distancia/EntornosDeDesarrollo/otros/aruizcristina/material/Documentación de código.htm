@@ -1,0 +1,375 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="../../../estilo.css">
+    <title>Documentación de código</title>
+  </head>
+  
+<body>
+  <p class="mapa">
+  <a href="../../../index.html">Laboratorio de Programación</a>
+  &nbsp;&gt;&nbsp;
+  <a href="../../index.html">Material de estudio</a>
+  &nbsp;&gt;&nbsp;
+  <a href="../index.html">Apuntes</a>
+  &nbsp;&gt;&nbsp;
+  <a href="index.html">Escritura de programas</a>
+  &nbsp;&gt;&nbsp;
+  Documentación de código
+  </p>
+
+<h1>Documentación de código</h1>
+
+<b>José A. Mañas</b>
+<a href="mailto:jmanas@dit.upm.es">&lt;jmanas@dit.upm.es&gt;</a><br>
+<a href="http://www.dit.upm.es">Dept. de
+	Ingeniería de Sistemas Telemáticos</a><br>
+<a href="http://www.dit.upm.es">Universidad
+	Politécnica de Madrid</a><br>
+8 de mayo, 2003
+
+
+<h2>1. Introducción</h2>
+Documentar el código de un programa es
+añadir suficiente información como para explicar lo que hace,
+punto por punto,
+de forma que no sólo los ordenadores sepan qué hacer,
+sino que además los humanos entiendan qué están haciendo
+y por qué.
+
+<p>
+Porque entre lo que tiene que hacer un programa y cómo lo hace
+hay una distancia impresionante: todas las horas que el 
+programador ha dedicado a pergeñar una solución y escribirla en
+el lenguaje que corresponda para que el ordenador la ejecute
+ciegamente.
+
+<p>
+Documentar un programa no es sólo un acto de buen hacer del
+programador por aquello de dejar la obra rematada.
+Es además una necesidad que sólo se aprecia en su debida
+magnitud cuando hay errores que reparar o hay que extender el
+programa con nuevas capacidades o adaptarlo a un nuevo escenario.
+Hay dos reglas que no se deben olvidar nunca:
+
+<ol>
+  <li>todos los programas tienen errores y descubrirlos sólo
+  	es cuestión de tiempo y de que el programa tenga éxito
+	y se utilice frecuentemente
+  <li>todos los programas sufren modificaciones a lo largo de su 
+  	vida, al menos todos aquellos que tienen éxito
+</ol>
+
+<p>
+Por una u otra razón, todo programa que tenga éxito será modificado
+en el futuro, bien por el programador original, bien por otro
+programador que le sustituya.
+Pensando en esta revisión de código es por lo que es importante
+que el programa se entienda: para poder repararlo y modificarlo.
+
+
+<h2>2. Citas</h2>
+
+<blockquote>
+<em>"If your program isn't worth documenting, it probably isn't worth running"</em><br>
+J. Nagler. 1995<br>
+Coding Style and Good Computing Practices
+<!--
+<a href="http://wizard.ucr.edu/~nagler/coding_style.html">Coding Style and Good Computing Practices</a>
+-->
+</blockquote>
+
+<blockquote>
+<em>"do not document bad code - rewrite it"</em><br>
+R. Caron. 2000<br>
+<a href="http://msdn2.microsoft.com/en-us/library/aa291593(VS.71).aspx">Coding Techniques and Programming Practices</a>
+</blockquote>
+
+<blockquote>
+<em>"Write the documentation before you write the code."</em><br>
+S.W. Ambler. 2000.<br>
+<a href="http://www.ambysoft.com/essays/javaCodingStandards.html">Writing Robust Java Code</a>
+</blockquote>
+
+
+<h2>3. ¿Qué hay que documentar?</h2>
+<blockquote><table border=1><tr><td>
+Hay que añadir explicaciones a todo lo que no es evidente.
+<p>
+No hay que repetir lo que se hace,
+sino explicar por qué se hace.
+</table></blockquote>
+
+<p>
+Y eso se traduce en:
+<ul>
+  <li>¿de qué se encarga una clase? ¿un paquete?
+  <li>¿qué hace un método?
+  <li>¿cuál es el uso esperado de un método?
+  <li>¿para qué se usa una variable?
+  <li>¿cuál es el uso esperado de una variable?
+  <li>¿qué algoritmo estamos usando? ¿de dónde lo hemos sacado?
+  <li>¿qué limitaciones tiene el algoritmo? ¿... la implementación?
+  <li>¿qué se debería mejorar ... si hubiera tiempo?
+</ul>
+
+
+<h2>4. Tipos de comentarios</h2>
+En Java disponemos de tres notaciones para introducir comentarios:
+
+<dl>
+  <dt><b>javadoc</b>
+  <dd>Comienzan con los caracteres "<tt>/**</tt>",
+  	se pueden prolongar a lo largo de varias líneas
+	(que probablemente comiencen con el carácter "<tt>*</tt>")
+	y terminan con los caracteres "<tt>*/</tt>".
+  <dt><b>una línea</b>
+  <dd>Comienzan con los caracteres "<tt>//</tt>"
+  	y terminan con la línea
+  <dt><b>tipo C</b>
+  <dd>Comienzan con los caracteres "<tt>/*</tt>",
+  	se pueden prolongar a lo largo de varias líneas
+	(que probablemente comiencen con el carácter "<tt>*</tt>")
+	y terminan con los caracteres "<tt>*/</tt>".
+</dl>
+
+Cada tipo de comentario se debe adaptar a un propósito:
+
+<dl>
+  <dt><b>javadoc</b>
+  <dd>Para generar documentación externa
+  	(ver comentarios javadoc más abajo)
+  <dt><b>una línea</b>
+  <dd>Para documentar código que no necesitamos que aparezca
+  	en la documentación externa
+	(que genere javadoc)
+	<p>
+	Este tipo de comentarios se usará incluso cuando el comentario
+	ocupe varias líneas,
+	cada una de las cuales comenzará con "<tt>//</tt>"
+  <dt><b>tipo C</b>
+  <dd>Para eliminar código.
+  	Ocurre a menudo que código obsoleto no queremos que
+	desaparezca, sino mantenerlo "por si acaso".
+	Para que no se ejecute, se comenta.<br>
+	(En inglés se suele denominar <em>"comment out"</em>)
+</dl>
+
+<p>
+Javadoc, que veremos posteriormente, impone sus propias reglas
+prácticas.
+
+
+<h2>5. ¿Cuándo hay que poner un comentario?</h2>
+Por obligación (<b>javadoc</b>):
+<ol>
+  <li>al principio de cada clase
+  <li>al principio de cada método
+  <li>ante cada variable de clase
+</ol>
+
+<p>
+Por conveniencia (<b>una línea</b>):
+<ol start="4">
+  <li>al principio de fragmento de código no evidente
+  <li>a lo largo de los bucles
+</ol>
+
+<p>
+Y por si acaso (<b>una línea</b>):
+<ol start="6">
+  <li>siempre que hagamos algo raro
+  <li>siempre que el código no sea evidente
+</ol>
+
+<p>
+Es decir, que los comentarios más vale que sobren
+que que falten.
+
+<p>
+Y una nota de cautela,
+cuando un programa se modifica,
+los comentarios deben modificarse al tiempo,
+no sea que los comentarios acaben refiriéndose a un
+algoritmo que ya no utilizamos.
+
+
+<h2>6. Javadoc: documentación de APIs</h2>
+El paquete de desarrollo Java incluye una herramienta,
+<tt>javadoc</tt>, para generar un conjunto de páginas web
+a partir de los ficheros de código.
+Esta herramienta toma en consideración algunos comentarios
+para generar una documentación bien presentada de 
+clases y componentes de clases (variables y métodos).
+
+<p>
+Aunque <tt>javadoc</tt> no ayuda a la comprensión de los
+detalles de código, si ayuda a la comprensión de la arquitectura
+de la solución, lo que no es poco.
+Se dice que <tt>javadoc</tt> se centra en la interfaz
+<em>(API - Application Programming Interface)</em>
+de las clases y paquetes Java.
+
+<p>
+<tt>Javadoc</tt> realza algunos comentarios,
+de los que exige una sintaxis especial.
+Deben comenzar por <tt>"/**"</tt> y terminar por <tt>"*/"</tt>,
+incluyendo una descripción y algunas etiquetas especiales:
+
+<blockquote><table border=1><tr><td><pre>
+  /**
+   * Parte descriptiva.
+   * Que puede consistir de varias frases o párrafos.
+   *
+   * @etiqueta texto específico de la etiqueta
+   */
+</pre></table></blockquote>
+
+<p>
+Estos comentarios especiales deben aparecer justo antes
+de la dclaración de una clase, un campo o un método
+en el mismo código fuente.
+En las siguientes secciones se detallan las etiquetas
+(<em>tags</em>) que <tt>javadoc</tt> sabe interpretar en
+cada uno de los casos.
+
+<p>
+Como regla general, hay que destacar que la primera frase
+(el texto hasta el primer punto)
+recibirá un tratamiento detacado, por lo que debe
+aportar una explicación concisa y contundente del
+elemento documentado.
+Las demás frases entrarán en detalles.
+
+
+<h3>6.1. Documentación de clases e interfaces</h3>
+Deben usarse al menos las etiquetas:
+<ul>
+  <li><b><tt>@author</tt></b>
+  <li><b><tt>@version</tt></b>
+</ul>
+
+<p>
+La tabla muestra todas las etiquetas posibles y su interpretación:
+<table border=1>
+<tr><td>@author<td>nombre del autor
+<tr><td>@version<td>identificación de la versión y fecha
+<tr><td>@see<td>referencia a otras clases y métodos
+<!--
+<tr><td>@since<td>indica desde qué versión o fecha existe
+	esta clase o interfaz en el paquete
+<tr><td>@deprecated<td>esta clase no debería usarse
+	pues puede desaparecer en próximas versiones
+	-->
+</table>
+
+
+<h3>6.2. Documentación de constructores y métodos</h3>
+Deben usarse al menos las etiquetas:
+<ul>
+  <li><b><tt>@param</tt></b><br>una por argumento de entrada
+  <li><b><tt>@return</tt></b><br>si el método no es <i>void</i>
+  <li><b><tt>@exception ó @throws</tt></b><br>
+  una por tipo de <i>Exception</i> que se puede lanzar<br>
+  (@exception y @throws se pueden usar indistintamente).
+</ul>
+
+<p>
+La tabla muestra todas las etiquetas posibles y su interpretación:
+<table border=1>
+<tr><td>@param<td>nombre del parámetro
+	<td>descripción de su significado y uso
+<tr><td>@return<td>&nbsp;
+	<td>descripción de lo que se devuelve
+<tr><td>@exception<td>nombre de la excepción
+	<td>excepciones que pueden lanzarse
+<tr><td>@throws<td>nombre de la excepción
+	<td>excepciones que pueden lanzarse
+<!--
+<tr><td>@since<td colspan=2>
+	indica desde qué versión o fecha existe
+	este constructor o método en la clase
+<tr><td>@deprecated<td colspan=2>
+	este método no debería usarse
+	pues puede desaparecer en próximas versiones
+-->
+</table>
+
+<p>
+@exception y @throws se pueden usar indistintamente.
+
+<h3>6.3. Documentación de campos</h3>
+Ninguna etiqueta es obligatoria.
+
+<!--
+<p>
+La tabla muestra todas las etiquetas posibles y su interpretación:
+<table border=1>
+<tr><td>@since<td>indica desde qué versión o fecha existe
+	este campo en la clase
+<tr><td>@deprecated<td>este campo no debería usarse
+	pues puede desaparecer en próximas versiones
+</table>
+-->
+
+
+<h3>6.4. Ejecución de javadoc</h3>
+La mayor parte de los entornos de desarrollo incluyen 
+un botón para llamar a <tt>javadoc</tt>
+así como opciones de configuración.
+
+<p>
+No obstante, siempre puede ir al directorio donde
+instaló en JDK y ejecutar 
+<tt>javadoc</tt> directamente sobre el código fuente Java:
+<blockquote><pre>
+  ...> {directorio de instalación}/javadoc *.java
+</pre></blockquote>
+
+<p>
+La herramienta <tt>javadoc</tt> admite miles de opciones.
+Algunas de las más usadas aparecen a continuación:
+<blockquote><pre>
+usage: javadoc [options] [packagenames] [sourcefiles] [classnames] [@files]
+-public                   Show only public classes and members
+-protected                Show protected/public classes and members (default)
+-package                  Show package/protected/public classes and members
+-private                  Show all classes and members
+-sourcepath &lt;pathlist&gt;    Specify where to find source files
+-classpath &lt;pathlist&gt;     Specify where to find user class files
+-verbose                  Output messages about what Javadoc is doing
+
+-d &lt;directory&gt;            Destination directory for output files
+-version                  Include @version paragraphs
+-author                   Include @author paragraphs
+-docfilessubdirs          Recursively copy doc-file subdirectories
+-splitindex               Split index into one file per letter
+-windowtitle &lt;text&gt;       Browser window title for the documenation
+-doctitle &lt;html-code&gt;     Include title for the overview page
+-header &lt;html-code&gt;       Include header text for each page
+-footer &lt;html-code&gt;       Include footer text for each page
+-bottom &lt;html-code&gt;       Include bottom text for each page
+</pre></blockquote>
+
+<p>
+<tt>javadoc -help</tt> despliega un catálogo completo de opciones.
+
+
+<h2>7. Referencias</h2>
+Sun Microsystems, empresa creadora de Java,
+ha dedicado extenso material a la descripción de cómo
+documentar las interfaces de los programas:
+<blockquote>
+  <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/">How
+  	to Write Doc Comments for the Javadoc Tool</a>
+</blockquote>
+
+<p>
+<a href="http://java.sun.com/j2se/javadoc/index.html">Javadoc</a>
+se utiliza sistemáticamente para documentar
+<a href="http://java.sun.com/j2se/1.5.0/docs/api/index.html">el
+entorno de desarrollo Java</a>.
+
+</body>
+</html>

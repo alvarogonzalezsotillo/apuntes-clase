@@ -1,0 +1,296 @@
+* No formales
+** Agencia de modelos
+Se desea diseñar una BD para una Agencia de Castings dedicada a buscar modelos y actores para sus clientes. Los supuestos semánticos que hay que recoger son:
+a. Un casting se identifica por un código (CC) se caracteriza por un nombre (NC) y una fecha de contratación (FC).
+b. Un casting es contratado por un único cliente, identificado por un código de cliente (NN) aunque un cliente puede tener contratados varios castings. Un casting tiene además un presupuesto (P) y es dirigido por un agente identificado por su código (AG)
+c. Un casting se estructura en varias fases, identificadas dentro de cada casting por un número en secuencia (NF) y a su vez, cada fase se descompone en varias pruebas individuales identificadas por un número de prueba individual (NP) dentro de cada fase. Cada fase tiene una fecha de inicio (FI)
+d. De cada prueba individual se guarda la fecha de realización (FR) y la hora de inicio (HI) y de finalización (HF) así como la sala (S) en la que se realiza.
+e. En una sala solo se realizará una prueba en una determina fecha entre una hora de inicio y una hora de fin.
+f. A cada casting se le asigna uno o varios perfiles identificados por un código de perfil (CP) y con una serie de atributos que denominaremos (AP).
+g. Los candidatos de la agencia se identifican por un código (CM) y tienen además un nombre (M) y una dirección (D). Cada candidato tienen un único perfil pero un perfil puede corresponder a varios candidatos.
+h. Cada candidato que encaje con el perfil de un casting realizará una prueba individual y obtendrá un resultado (RP) que puede ser “apto” o “no apto”. Un candidato solo puede realizar pruebas de castings compatibles con su perfil.
+i. Un candidato puede someterse como máximo a una prueba individual dentro de cada fase de un casting.
+j. En cada prueba individual de una fase solo participa un único candidato. Cada prueba en la que participa un candidato pertenece sólo a una fase de un casting.
+k. Un candidato no podrá realizar una prueba individual de una fase si en la fase anterior realizó una prueba cuyo resultado fue “no apto”.  
+
+Se pide:
+1. Formular las dependencias funcionales correspondientes a los supuestos semánticos anteriores utilizando las abreviaturas que se indican entre paréntesis.
+2. Obtener un recubrimiento minimal correspondiente al conjunto de dependencias obtenido en el apartado (a).
+3. ¿En qué Forma Normal se encuentra la relación?
+
+** Profesores y recursos
+Dada la siguiente relación UTILIZACIÓN(=DNI_Prof=, =Nombre_Prof=, =Despacho_Prof=, =Recurso=, =Ubicación=, =Fecha_inicio=, =Fecha_fin=,) que contiene información relativa a la utilización de los recursos de la universidad por parte de los profesores en periodos de tiempo:
+
+| =DNI_Prof= | =Nombre_Prof= | =Despacho_Prof= | =Recurso= | =Descripción= | =Fechahora_inicio= | =Fechahora_fin=  |
+|------------+---------------+-----------------+-----------+---------------+--------------------+------------------|
+|   33456456 | P.Martínez    | 2.2.B05         | R122      | Tablet    PC  | 1-1-2007  12:00    | 15-1-2007  12:00 |
+|   44556689 | L.Moreno      | 2.2.A10         | R100      | Impresora     | 1-1-2007 12:00     | 15-1-2007  12:00 |
+|   33456456 | P.Martínez    | 2.2.B05         | R200      | Portátil      | 12-1-2007 12:00    | 22-1-2007  12:00 |
+|   11223344 | E.Castro      | 2.2.B23         | R122      | Tablet    PC  | 16-1-2007 12:00    | 31-1-2007  12:00 |
+|   99771122 | D.Cuadra      | 2.1.B23         | R200      | Portátil      | 23-1-2007 12:00    | 26-1-2007  12:00 |
+|   33456456 | P.Martínez    | 2.2.B05         | R300      | Scaner        | 1-1-2007 12:00     | 15-1-2007  12:00 |
+|   99887766 | F.Calle       | 2.1.C11         | R300      | Scaner        | 1-2-2007 12:00     | 6-2-2007  12:00  |
+|   33456456 | P.Martínez    | 2.2.B05         | R122      | Tablet    PC  | 1-2-2007 12:00     | 6-2-2007  12:00  |
+   
+Se pide, considerando únicamente la extensión de la relación mostrada en la tabla:
+1. Indicar un ejemplo de anomalía de modificación
+2. Indicar un ejemplo de anomalía de borrado
+3. Indicar un ejemplo de anomalía de inserción
+4. Pasar a tercera forma normal
+
+#+BEGIN_SRC dot :file ./media/profesores-recursos.png :exports results :cmd dot :cmdline -Tpng
+digraph{
+                compound=true
+                label=""
+                node [shape="ellipse",margin=0]
+
+
+                subgraph cluster_iniciorecurso {
+                         style="rounded"
+                         recurso
+                         fechahorainicio
+                }
+
+                dni -> nombre
+                recurso -> descripcion
+                dni -> despacho
+                recurso -> dni [ltail=cluster_iniciorecurso]
+                recurso -> fechahorafin  [ltail=cluster_iniciorecurso]
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/profesores-recursos.png]]
+
+
+** Turnos de trabajo
+Dada la siguiente relación ASIGNACIÓN (DNI, Nombre, Código_Tienda, Dirección_Tienda, Fecha, Turno) que contiene información relativa a la asignación de los turnos de trabajo de los empleados de los distintos centros de una cadena de tiendas de moda:
+
+|      DNI | Nombre    | Código_Tienda | Dirección _Tienda        | Turno | Fecha  |
+|----------+-----------+---------------+--------------------------+-------+--------|
+| 33456456 | P. Martín | 100A          | Avd. Mayor, 23, Alcorcón | M     | 2/9/06 |
+| 44556689 | L. Sanz   | 100A          | Avd. Mayor, 23, Alcorcón | M     | 2/9/06 |
+| 99771122 | D. Díaz   | 100A          | Avd. Mayor, 23, Alcorcón | T     | 2/9/06 |
+| 33456456 | P. Martín | 200B          | C/ Sur 13, Alcorcón      | T     | 3/9/06 |
+| 11223344 | E. López  | 300C          | Pl. Central, Getafe      | M     | 3/9/06 |
+| 99887766 | F. Monte  | 200B          | C/ Sur 13, Alcorcón      | M     | 3/9/06 |
+| 11223344 | E. López  | 300C          | Pl. Central, Getafe      | M     | 4/9/06 |
+| 99887766 | F. Monte  | 100A          | Avd. Mayor, 23, Alcorcón | M     | 4/9/06 |
+| 44556689 | L. Sanz   | 100A          | Avd. Mayor, 23, Alcorcón | T     | 4/9/06 |
+| 33456456 | P. Martín | 200B          | C/ Sur 13, Alcorcón      | M     | 5/9/06 |
+   
+Se pide, considerando únicamente la extensión de la relación mostrada en la tabla:
+1. Indicar un ejemplo de anomalía de borrado
+2. Indicar las dependencias funcionales utilizando las siguientes abreviaturas: DNI
+(P), Nombre (N), Código_Tienda (C), Dirección_Tienda (D), Turno (T), Fecha (F).
+4. Pasar a tercera forma normal
+
+
+** Actividades extraescolares
+Dada la siguiente relación SE REALIZA(=Cod_Actividad=, =Nombre_Actividad=, =DNI_Monitor=, =Nombre_monitor=, =Sala=, =Fecha=, =Hora_I=, =Duración=) utilizada para almacenar información sobre la fecha y duración de las actividades deportivas que se organizan en un colegio.
+Se pide:
+| =Cod_Actividad= | =Nombre_Actividad= | =DNI_Monitor= | =Nombre_Monitor=  | =Sala=                 | =Fecha=   | =Hora_I= | =Duración= |
+|-----------------+--------------------+---------------+-------------------+------------------------+-----------+----------+------------|
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 9/9/2007  |    10:00 |       1:00 |
+|              02 | Fitness            |      65434527 | P. García         | Pabellón polideportivo | 9/9/2007  |    10:00 |       1:30 |
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 11/9/2007 |     9:30 |       1:00 |
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 15/9/2007 |    12:00 |       1:00 |
+|              03 | Yoga               |      65434527 | P. García         | Sala Multiusos         | 15/9/2007 |     9:00 |       0:30 |
+|              04 | Gimnasia           |      54332221 | J. Luis Hernández | Sala Musculación       | 1/10/2007 |    12:00 |       1:00 |
+|              03 | Yoga               |      65434527 | P. García         | Sala Multiusos         | 15/9/2007 |    11:00 |       0:30 |
+|              04 | Gimnasia           |      45673214 | Ana Sanz          | Pabellón Polideportivo | 1/10/2007 |    12:00 |       1:00 |
+|              02 | Fitness            |      45673214 | Ana Sanz          | Pabellón Polideportivo | 9/9/2007  |    10:00 |       1:30 |
+|              01 | Pilates            |      65434527 | P. García         | Sala Multiusos         | 9/9/2007  |    11:00 |       1:00 |
+
+Se pide, considerando que los nombres de los monitores no son únicos, ateniéndose a las tuplas de la relación SE REALIZA:
+a. Indicar un ejemplo de anomalía de borrado
+b. Indicar las dependencias funcionales utilizando las siguientes abreviaturas:Cod_Actividad (A), Nombre_Actividad (N), DNI_Monitor (D), Nombre_Monitor(M), Sala (S), Fecha(F), Hora_I (I), Duración(L).
+c. ¿Cuáles son las claves de la relación? ¿En que FN está la relación SEREALIZA? 
+d. Pasar a tercera forma normal
+
+
+
+** Actividades extraescolares II
+Dada la siguiente relación SE REALIZA(=Cod_Actividad=, =Nombre_Actividad=, =DNI_Monitor=, =Nombre_monitor=, =Sala=, =Fecha=, =Hora_I=, =Hora_F=) utilizada para almacenar información sobre la fecha y duración de las actividades deportivas que se organizan en un colegio.
+ Se pide:
+| =Cod_Actividad= | =Nombre_Actividad= | =DNI_Monitor= | =Nombre_Monitor=  | =Sala=                 | =Fecha=   | =Hora_I= | =Hora_F= |
+|-----------------+--------------------+---------------+-------------------+------------------------+-----------+----------+----------|
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 9/9/2007  |    10:00 |    11:00 |
+|              02 | Fitness            |      65434527 | P. García         | Pabellón polideportivo | 9/9/2007  |    10:00 |    11:00 |
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 11/9/2007 |     9:30 |    11:00 |
+|              01 | Pilates            |      54332221 | J. Luis Hernández | Pabellón polideportivo | 15/9/2007 |    12:00 |    13:00 |
+|              03 | Yoga               |      65434527 | P. García         | Sala Multiusos         | 15/9/2007 |     9:00 |    10:00 |
+|              04 | Gimnasia           |      54332221 | J. Luis Hernández | Sala Musculación       | 1/10/2007 |    12:00 |    13:00 |
+|              03 | Yoga               |      65434527 | P. García         | Sala Multiusos         | 15/9/2007 |    11:00 |    12:00 |
+|              04 | Gimnasia           |      45673214 | Ana Sanz          | Pabellón Polideportivo | 1/10/2007 |    12:00 |    14:00 |
+|              02 | Fitness            |      45673214 | Ana Sanz          | Pabellón Polideportivo | 9/9/2007  |    10:00 |    11:00 |
+|              01 | Pilates            |      65434527 | P. García         | Sala Multiusos         | 9/9/2007  |    10:00 |    12:00 |
+
+Se pide, considerando que los nombres de los monitores no son únicos y los nombres de las actividades tampoco y ateniéndose a las tuplas de la relación SE REALIZA:
+a. Indicar un ejemplo de anomalía de borrado
+b. Indicar las dependencias funcionales utilizando las siguientes abreviaturas: =Cod_Actividad= (A), =Nombre_Actividad= (N), =DNI_Monitor= (D), =Nombre_Monitor= (M), =Sala= (S), =Fecha= (F), =Hora_I= (I), =Hora_F= (E).
+c. ¿Cuáles son las claves de la relación? ¿En que FN está la relación SEREALIZA? 
+d. Pasar a tercera forma normal
+
+
+#+BEGIN_SRC dot :file ./media/actividades-v1.png :exports results :cmd dot :cmdline -Tpng
+digraph{
+                compound=true
+                label=""
+                node [shape="ellipse",margin=0]
+
+
+                subgraph cluster_codigo_fecha_hi {
+                         style="rounded"
+                         codigo
+                         fecha
+                         hora_inicio
+                }
+
+                codigo -> nombre_actividad
+                dni -> nombre_monitor
+                
+                codigo -> dni [ltail=cluster_codigo_fecha_hi]
+                codigo -> dni [ltail=cluster_codigo_fecha_hi]
+                codigo -> sala [ltail=cluster_codigo_fecha_hi]
+                codigo -> hora_fin [ltail=cluster_codigo_fecha_hi]
+
+                "No se pueden dar dos pilates a la vez" [shape="rectangle"]
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/actividades-v1.png]]
+
+#+BEGIN_SRC dot :file ./media/actividades-v2.png :exports results :cmd dot :cmdline -Tpng
+digraph{
+                compound=true
+                label=""
+                node [shape="ellipse",margin=0]
+
+
+                subgraph cluster_dni_fecha_hi {
+                         style="rounded"
+                         dni
+                         fecha
+                         hora_inicio
+                }
+
+                codigo -> nombre_actividad
+                dni -> nombre_monitor
+                
+
+                dni -> codigo [ltail=cluster_dni_fecha_hi]
+                dni -> sala [ltail=cluster_dni_fecha_hi]
+                dni -> hora_fin [ltail=cluster_dni_fecha_hi]
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/actividades-v2.png]]
+
+
+** Broker bursátil
+Se desea modelar la actividad de una empresa bursátil, quien maneja las carteras de acciones de varios inversores. Las atributos relevantes son:
+- B (broker),
+- I (inversor),
+- E (domicilio comercial del broker),
+- A (acción de una empresa que cotiza en bolsa),
+- D (dividendo),
+- C (cantidad de acciones).
+
+Además, se cumplen las DFs: 
+- A  → D
+- I  → B
+- I,A → C
+- B  → E
+
+Se pide:
+- Pasar a tercera forma normal
+
+** Broker bursátil histórico
+Para el ejercicio anterior, se necesita mantener un histórico de datos. Se supondrá que los inversores no cambian de broker, pero pueden cambiar:
+- La cantidad de acciones
+- El dividendo
+
+
+** Pruebas de caja blanca
+Normaliza la siguiente tabla utilizada para llevar un registro de pruebas de caja blanca y caja negra sobre una función que recibe varios valores de entrada y un solo valor de salida. Ten en cuenta que se va a realizar más de un caso de prueba por cada clase de equivalencia o camino_crítico.
+
+T( nombre_caso_prueba, clase_de_equivalencia, nombre_camino_crítico, nodo_camino_crítico, valor_entrada, valor_esperado, valor_obtenido)
+
+* Formales
+** 1
+Sean: la relación R={A,B,C,D,E,F,G,H,I,J}
+y el conjunto de DF: 
+- AB → C
+- BD → EF
+- AD → GH
+- A → I
+- H → J
+
+Se pide:
+a. Encontrar una clave de R y demostrar que es clave.
+b. Descomponer el conjunto de relaciones resultantes en 3NF.
+
+** 2
+Sea el siguiente esquema: R = {A,B,C,D,E,F,G,H}
+donde se cumplen las siguientes DFs: 
+- B → C
+- D → A
+- E → H
+- C → E
+- B → G
+Se pide:
+a. Encontrar una clave del esquema y demostrar que lo es.
+b. Descomponer el esquema en 3NF, manteniendo las dependencias.
+c. ¿La descomposición está en BCNF? 
+** Broker bursátil
+Se desea modelar la actividad de una empresa bursátil, quien maneja las carteras de acciones de varios inversores. Las atributos relevantes son:
+- B (broker),
+- I (inversor),
+- E (domicilio comercial del broker),
+- A (acción de una empresa que cotiza en bolsa),
+- D (dividendo),
+- C (cantidad de acciones).
+
+Además, se cumplen las DFs: 
+- A   → D
+- I   → B
+- I,A → C
+- B   → E
+
+Se pide:
+- Pasar a tercera forma normal
+
+** Broker bursátil histórico
+Para el ejercicio anterior, se necesita mantener un histórico de datos.
+- Se supondrá que los inversores no cambian de broker
+- La cantidad de acciones puede cambiar. Cada cambio tiene una fecha.
+- Se apuntará la fecha en la que se reparte cada dividendo de acciones. La cantidad del dividendo puede ser distinta cada vez.
+
+** Equivalencia de dependencias
+Decidir si los siguientes conjuntos de dependencias son los mismos:
+- A → C, AC → D, E → AD, E → H
+- A → CD, E → AH
+
+
+
+** Equivalencia de dependencias
+Decidir si los siguientes conjuntos de dependencias son los mismos:
+- A → C, AC → D, E → AD, E → H
+- A → CD, E → AH
+
+** Normalizar
+Sea el esquema: R{A,B,C,D,E,F,G,H} y las dependencias:
+- A → BC
+- C → D
+- D → GF
+- H → E 
+- E → A
+- E → H
+
+Se pide pasar a tercera forma normal
+

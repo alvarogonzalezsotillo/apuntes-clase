@@ -1,0 +1,185 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{Práctica de conexiones TCP}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Los objetivos  de la práctica son:
+\begin{itemize}
+\item Familiarizarse con los conceptos de puerto y conexión
+\item Crear servicios simples de red
+\item Utilizar servicios simples de red
+\item Monitorizar el estado de las conexiones de red
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/5/par-5-practicas-nc.pdf}{este enlace}.
+
+
+\begin{homeworkProblem}[: \imenu{Crea un chat con otros ordenadores del aula (2 puntos)}]
+  Crea un chat con otro compañero del aula. Para ello:
+  \begin{itemize}
+  \item Deberás localizar un puerto libre para escuchar
+  \item Comprueba que estás escuchando en un puerto con el comando \texttt{netstat}
+  \item El compañero se conectará a tu IP y tu puerto
+  \item Comprueba que se ha establecido la conexión con la salida del comando \texttt{netstat}
+  \end{itemize}
+
+  Después
+  \begin{itemize}
+  \item Repite los pasos intercambiando los roles de servidor y cliente.
+  \item Conéctate simultáneamente a dos compañeros, y demuéstralo con \texttt{netstat}
+  \end{itemize}
+
+  En las salidas de \texttt{netstat}, incluye tus conexiones y las de tus compañeros, identificando las conexiones de la práctica en cada máquina.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Protege un servidor de chat (2 puntos)}]
+  \begin{itemize}
+  \item Crea un servidor de chat que escuche en la dirección IP de tu ordenador.
+  \item Crea otro servidor de chat que escuche en la dirección \texttt{127.0.0.1}, \textbf{en el mismo puerto} que el servidor anterior.
+  \item Explica por qué los dos servidores pueden funcionar a la vez en el mismo puerto. Explica también qué clientes pueden conectarse a cada uno de los servidores.
+  \end{itemize}
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}[: \imenu{Envía información de tus ficheros (2 puntos)}]
+   Envía información de los ficheros y directorios de tu directorio \texttt{\$HOME} a otro ordenador del aula, usando tuberías (pipes). Después, cambia los roles de cliente y servidor enviando la ayuda del comando nc (\texttt{man nc}).
+
+
+
+  \begin{listadoshell}{Enviar la salida de un comando a \texttt{nc}}{lst:tuberias}
+    ls -la | nc ipdelservidor puertolibre
+  \end{listadoshell}
+
+  Después, envía una imagen (JPG, PNG...) a un compañero. El compañero debe grabar dicha imagen y visualizarla. Usa el flag \texttt{-N} en cliente y servidor, para que \texttt{netcat} finalice automáticamente al acabarse el fichero, sin tener que pulsar \texttt{CTRL-C}.
+
+  \begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
+    nc -N ipdelservidor puertolibre < imagen
+  \end{listadoshell}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: \imenu{Envía una máquina virtual a un compañero (2 puntos)}]
+  \begin{itemize}
+  \item Empaqueta una máquina virtual (fichero \texttt{OVA}, \texttt{ISO}, \texttt{ZIP}, \texttt{VMDK} o \texttt{DVI}).
+  \item Envía el fichero a un compañero usando \texttt{netcat}. Mide el tiempo total de transmisión con el comando \texttt{time}
+
+    \begin{listadoshell}{Medir el tiempo de ejecución con  \texttt{time}}{lst:time}
+      time nc ....
+    \end{listadoshell}
+    
+  \item Monitoriza el progreso en el ordenador que recibe el fichero, vigilando el directorio de destino con
+
+    \begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
+      watch -d ls -l
+    \end{listadoshell}
+
+    
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: \imenu{Simulación de servidor web (2 puntos)}]
+
+  Utiliza \texttt{netcat} para crear un servidor en el puerto \texttt{8080} (u otro que esté libre). Utiliza un navegador web para visitar el servidor, en \url{http://localhost:8080}. Consigue que el navegador vea una página como la siguiente:
+
+  \begin{cuadrito}
+    {\large \textbf{Un título de nivel 1}}
+    
+    Un ejemplo de página que tiene \textbf{negrita} y \textit{cursiva}.
+  \end{cuadrito}
+
+  Puedes escribir directamente la página en el terminal, o enviar un fichero. Debes conseguir que funcionen los clientes Chrome y Firefox.
+
+
+\begin{comment}
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+cabecera: inventada
+
+
+<html>
+
+    <head><title>Ejercicio 5</title></head>
+
+    <body>
+        <h1>Un título de nivel 1</h1>
+        Un ejemplo de página que tiene <b>negrita</b> y <i>cursiva</i>.
+
+        Ahora con utf-8
+
+    </body>
+
+</html>
+\end{comment}
+  
+\end{homeworkProblem}
+
+
+\newpage
+
+\begin{homeworkProblem}[: \imenu{Simulación de cliente web (2 puntos)}]
+  Utilizaremos el protocolo HTTP directamente para pedir un recurso a un servidor
+\begin{comment}
+  \begin{itemize}
+  \item Ejecuta NetCat conectándote al puerto 80 de \url{quotes.rest}
+  \item Tras la conexión, introducir
+    \begin{cuadrito}
+      \texttt{GET /qod HTTP/1.1} \\
+      \texttt{Host:quotes.rest} \\
+      \\
+      \\
+      (Aquí hay que darle al Enter dos veces)
+    \end{cuadrito}
+  \item Es una respuesta \enlace{https://es.wikipedia.org/wiki/JSON}{JSON}. Decide si la respuesta te resulta inspiradora. Si no, puedes volver a intentarlo mañana.
+  \end{itemize}
+
+
+https://apipheny.io/free-api/
+
+
+  
+\end{comment}
+
+\item Ejecuta NetCat conectándote al puerto 80 de \url{www.boredapi.com}
+  \item Tras la conexión, introducir
+    \begin{cuadrito}
+      \texttt{GET /api/activity HTTP/1.1} \\
+      \texttt{Host:www.boredapi.com} \\
+      \\
+      \\
+      (Aquí hay dos líneas nuevas)
+    \end{cuadrito}
+  \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.  
+  \item Es una respuesta \enlace{https://es.wikipedia.org/wiki/JSON}{JSON}. Decide si la actividad que te sugiere te sacará del aburrimiento.
+  \end{itemize}
+
+  
+\end{homeworkProblem}
+
+
+
+
+\end{document}

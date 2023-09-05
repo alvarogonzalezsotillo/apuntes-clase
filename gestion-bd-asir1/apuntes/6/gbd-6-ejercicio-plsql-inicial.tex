@@ -1,0 +1,145 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Ejercicios inciales PLSQL}
+\renewcommand{\hmwkClass}{Gestión de Bases de datos}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+En esta práctica el alumno utilizará las funcionalidades de PLSQL para automatizar algunas operaciones y para realizar comprobaciones sobre los datos. Estas operaciones y comprobaciones no pueden realizarse solo con SQL.
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/gbd-6-ejercicio-plsql-inicial.pdf}{este enlace}.
+
+\section{Modelo de datos}
+Los ejercicios se realizarán sobre las tablas y datos del \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/ejemplosSQL/jardineria_oracle.sql}{ejemplo de jardineria}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Procedimiento para contratar un becario (3 puntos)}]
+  Crea un procedimiento de nombre \texttt{CONTRATA\_BECARIO} (listado \ref{lst:contrata-becario}). El procedimiento recibirá el identificador de un empleado ya existente que será el jefe del nuevo becario, y el nombre y apellidos del nuevo becario.
+  \begin{itemize}
+  \item La extensión, email, oficina... se copiarán del jefe del becario, ya que al ser becario, no tiene ventajas como un email propio (50\%)
+  \item El código de empleado se calculará dentro del procedimiento, como el \texttt{nextval} de una secuencia, y se devolverá en un parámetro de salida (50\%). Si esto no funciona no se podrá corregir el ejercicio.
+  \end{itemize}
+
+  \begin{listadosql}{Creación del procedimiento \texttt{CONTRATA\_BECARIO}}{lst:contrata-becario}
+create sequence SECUENCIA_EMPLEADOS;
+create or replace procedure CONTRATA_BECARIO(nombre IN varchar, apellido1 IN varchar, apellido2 IN varchar, codigojefe IN integer, codigobecario OUT integer)
+as 
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  -- CONSIGUE EL NUEVO ID 
+  -- INSERTA EL BECARIO CON ESE ID
+  -- DEVUELVO EL NUEVO ID EN codigobecario
+end;
+/
+\end{listadosql}
+
+\end{homeworkProblem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Venta de productos} (30\%)]
+
+  \begin{itemize}
+  \item Crea un procedimiento \texttt{AGREGA\_DETALLE\_PEDIDO} que añada una línea de pedido a un pedido ya existente.
+  \item El precio del producto será el precio de venta en la tabla \texttt{PRODUCTOS} (20\%)
+  \item El número de línea no es importante, se puede poner siempre a \texttt{1}.
+  \item El procedimiento se encargará de eliminar del \textit{stock} del producto las cantidades vendidas (30\%)
+  \item Si el \textit{stock} no es suficiente, lanzará el error \texttt{-20001} (50\%)
+  \end{itemize}
+
+
+  \begin{Aviso}
+    Este sistema de control de \textit{stock} no funcionaría si más de un usuario estuviera conectado a la vez a la base de datos. Se necesitaría un \textit{isolation level} adecuado, pero queda fuera de esta práctica.
+  \end{Aviso}
+  
+  \begin{listadosql}{Añadir un producto a un pedido}{lst:venta-producto}
+create or replace procedure AGREGA_DETALLE_PEDIDO(
+  codigopedido IN integer
+  codigoproducto IN varchar,
+  cantidad IN number)
+as
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  ...
+  if ..... then
+    RAISE_APPLICATION_ERROR(-20001,'Rotura de stock');
+  end if;
+  ...
+end; 
+  \end{listadosql}
+
+
+\end{homeworkProblem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{homeworkProblem}[: \imenu{Registro de pagos (4 puntos)}]
+
+  Crea un procedimiento para registrar los pagos de los clientes
+  \begin{itemize}
+  \item La fecha del pago será el momento de la ejecución (\texttt{SYSDATE}) (20\%)
+  \item El identificador de la transacción será \texttt{PAGOAUTOMATICO-XXXX}, siendo \texttt{XXXX} una secuencia. El identificador se devolverá en un parámetro \texttt{out} (30\%). Si no funciona este parámetro no se podrá corregir el ejercicio.
+  \item Si el pago no es necesario, porque el cliente no debe tanto dinero, se lanzará el error \texttt{-20002}. Para saber el saldo de un cliente se calculará su facturación y se restará el total de pagos. (50\%)
+  \end{itemize}
+
+\begin{listadosql}{Registro de pagos}{lst:registra-pago}
+create sequence SECUENCIA_PAGOS;
+create or replace procedure REGISTRA_PAGO(
+  codigocliente IN integer,
+  formapago IN varchar,
+  cantidad IN number,
+  idtransaccion OUT varchar
+)
+as
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  ...
+  if ..... then
+    RAISE_APPLICATION_ERROR(-20002,'Pago innecesario');
+  end if;
+  ...
+end; 
+  \end{listadosql}
+
+
+  
+\end{homeworkProblem}
+
+\section{Instrucciones de entrega}
+Se creará un único fichero SQL para todos los apartados.
+\begin{itemize}
+\item Este fichero se corregirá de forma semiautomática, por lo que es necesario seguir la nomenclatura propuesta en el ejercicio.
+\item El fichero se cargará en un usuario recién creado, con las tablas y datos de jardinería, y con permisos necesarios para crear todos los elementos necesarios (tablas, vistas, funciones, secuencias\dots)
+\item Además de los procedimientos y secuencias pedidos, pueden crearse vistas o funciones adicionales para facilitar los ejercicios.
+\item Si tiene \textbf{errores} de compilación podría no corregirse. Si no se siguen los \textbf{nombres de objetos} pedidos podría no corregirse.
+\end{itemize}
+
+
+Sube el documento a la tarea correspondiente en el \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/}{aula virtual}.
+Presta atención al plazo de entrega (con fecha y hora).
+
+
+\end{document}
+
+
+
+

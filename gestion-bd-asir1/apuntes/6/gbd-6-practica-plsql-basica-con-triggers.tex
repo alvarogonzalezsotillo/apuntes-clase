@@ -1,0 +1,250 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica PLSQL con triggers}
+\renewcommand{\hmwkClass}{Gestión de Bases de datos}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+En esta práctica el alumno utilizará las funcionalidades de PLSQL para automatizar algunas operaciones y para realizar comprobaciones sobre los datos. Estas operaciones y comprobaciones no pueden realizarse solo con SQL. Se incluyen también disparadores (\textit{triggers}).
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/gbd-6-practica-plsql-basica-con-triggers.pdf}{este enlace}.
+
+
+\section{Descripción del problema}
+Se parte de \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/gbd-6-practica-plsql-basica.pdf}{la práctica anterior}. Una compañía necesita automatizar su almacén
+\begin{itemize}
+\item De cada producto se almacena su identificador, su nombre y su \textit{stock}.
+\item En cada entrada de producto al almacén, se apunta
+  \begin{itemize}
+  \item El producto
+  \item La cantidad de producto
+  \item El precio pagado al proveedor por unidad de producto
+  \end{itemize}
+\item De cada salida de producto del almacén se apunta
+  \begin{itemize}
+  \item El producto, cantidad de producto y precio por unidad que paga el cliente
+  \end{itemize}
+\item Será necesario saber a qué precio se realizó la última compra y la última venta de cada producto  
+\end{itemize}
+
+En esta práctica, se siguen utilizando las vistas \texttt{V\_PRODUCTOS} y \texttt{V\_EXISTENCIAS}. Los procedimientos y funciones \texttt{EXISTENCIAS\_PRODUCTO}, \texttt{ENTRADA\_PRODUCTO}, \texttt{SALIDA\_PRODUCTO} y \texttt{SALIDA\_PRODUCTO\_CON\_STOCK} son inicialmente los mismos. Puede comenzarse con \enlace{https://www.youtube.com/playlist?list=PLPYjb2UQXp7TLfDwwm09A7BR0KLW05MiX}{la solución propuesta por el profesor}.
+
+La práctica anterior tiene un valor de \textbf{2 puntos}.
+
+\newpage
+
+\begin{homeworkProblem}[: Control de precios (\textbf{1 punto})]
+
+  Se desea evitar las variaciones muy rápidas de los precios pagados a los proveedores.
+  \begin{itemize}
+  \item Se pondrá un \textit{trigger} en la tabla donde se apunten las entradas, de nombre \texttt{CONTROL\_PRECIOS\_ENTRADA}.
+  \item La entrada  no se podrá guardar si su precio difiere en más de 10\euro (por arriba o por abajo) de la entrada anterior. En ese caso, se lanzará el error \texttt{PRECIOFUERADERANGO}
+  \item Si nunca ha habido una entrada para ese producto, se aceptará cualquier precio.
+  \end{itemize}
+
+\begin{listadosql}{Control de precios de entrada}{lst:control-precios}
+create or replace trigger CONTROL_PRECIOS_ENTRADA
+before insert on .....
+for each row 
+declare
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  .....
+  if ...... then
+    RAISE_APPLICATION_ERROR(-20200, 'PRECIOFUERADERANGO');
+  end if;
+.....
+end;
+
+-- PRUEBA DEL TRIGGER
+declare
+  id number;
+begin
+  crear_producto( 'Pera limonera', id );
+  entrada_producto( id, 1, 10); -- COMPRO 1 A 10€, ADMITIDO POR SER LA PRIMERA COMPRA
+  entrada_producto( id, 3, 20); -- COMPRO 3 A 20€, ADMITIDO
+  entrada_producto( id, 2, 9); -- COMPRO 2 A 9€, DEBERIA DAR ERROR
+end;
+/
+\end{listadosql}  
+
+  \begin{Aviso}
+    Un \textit{trigger} no puede acceder a los datos de una tabla que acaba de ser modificada, solo a \texttt{:new} y \texttt{:old} (\enlace{http://www.dba-oracle.com/t_avoiding_mutating_table_error.htm}{ORA-04091}). Por eso, este \textit{trigger} es \texttt{BEFORE} en vez de \texttt{AFTER}
+  \end{Aviso}
+
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[: Saldo precalculado (\textbf{1 punto})]
+
+  Crea una tabla \texttt{T\_SALDO} que contenga la ganancia (o pérdida) de la empresa, a partir de las entradas y salidas de producto. Tendrá solo una fila, con una única columna de nombre \texttt{SALDO} con el dinero que se haya conseguido con las salidas, menos el dinero que se haya gastado con las entradas.
+  
+  \begin{itemize}
+  \item Añade los \textit{triggers} necesarios a tus tablas para que cada vez que se produzca una entrada o salida se actualice el saldo de la empresa. Los triggers se llamarán \texttt{TRIGGERENTRADA} y/o \texttt{TRIGGERSALIDA}.
+  \item Si la tabla \texttt{T\_SALDO} tiene ya una fila, esa fila se actualizará cuando haya una entrada o una salida
+  \item Si la tabla \texttt{T\_SALDO} no tiene ninguna fila, se creará la fila cuando haya una entrada o una salida
+  \end{itemize}
+
+  
+\begin{listadosql}{Tabla \texttt{SALDO}}{lst:saldo}
+create table T_SALDO(saldo number(10,2));
+\end{listadosql}
+
+\end{homeworkProblem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{homeworkProblem}[: Creación de producto especificando \texttt{IDPRODUCTO} (\textbf{2 puntos})]
+
+  Modifica el procedimiento \texttt{CREAR\_PRODUCTO} para que:
+  \begin{itemize}
+  \item   si recibe un valor para el nuevo \texttt{IDPRODUCTO} lo utilice,  y si el \texttt{IDPRODUCTO} ya existe, se lanzará el error \texttt{PRODUCTOYAEXISTE}.
+  \item   Si \texttt{IDPRODUCTO} es \texttt{NULL}, el identificador se extraerá de la secuencia \texttt{SECUENCIA\_PRODUCTO}.  
+  \end{itemize}
+
+  
+
+
+  \begin{Aviso}
+    Si es necesario, se probarán números de la \texttt{SECUENCIA\_PRODUCTO} hasta que se encuentre uno que no exista (por ejemplo, con un bucle \texttt{while})
+  \end{Aviso}
+
+
+\begin{listadosql}{Creación del procedimiento \texttt{CREAR\_PRODUCTO}}{lst:crear-producto}
+create or replace procedure CREAR_PRODUCTO(nombreproducto IN varchar, idproducto IN OUT number)
+as 
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  -- SI idproducto ES NULL, USA LA SECUENCIA_PRODUCTO
+  -- INSERTA EL PRODUCTO CON ESE ID
+  -- DEVUELVO EL NUEVO ID EN idproducto
+end;
+/
+\end{listadosql}
+
+  
+\end{homeworkProblem}
+
+
+\newpage
+
+\begin{homeworkProblem}[: Creación de producto con \texttt{insert} (\textbf{2 puntos})]
+
+  Crea un \textit{trigger} de tipo \enlace{https://www.oracletutorial.com/plsql-tutorial/oracle-instead-of-triggers/}{instead of} que permita crear un producto directamente con una orden \texttt{insert} en la vista \texttt{V\_PRODUCTOS}.
+  \begin{itemize}
+  \item Si se da valor a la columna \texttt{IDPRODUCTO} se usará ese identificador, dando un error de \texttt{PRODUCTOYAEXISTE} si el identificador ya EXISTE
+  \item si no se da valor a \texttt{IDPRODUCTO}, se sacará de la secuencia \texttt{SECUENCIA\_PRODUCTO} hasta encontrar un identificador que no esté en uso.
+  \item Si no se da valor a la columna \texttt{NOMBRE\_PRODUCTO} se lanzará el error \texttt{FALTANDATOS}.
+  \end{itemize}
+
+  \begin{Aviso}
+    El \textit{trigger} puede (\textit{debería}) usar el procedimiento \texttt{CREAR\_PRODUCTO}
+  \end{Aviso}
+  
+  
+\begin{listadosql}{Creación de producto con \texttt{insert}}{lst:crear-producto}
+create or replace trigger INSERTAR_PRODUCTO
+instead of INSERT on V_PRODUCTOS
+for each row
+declare
+  -- VARIABLES QUE HAGAN FALTA
+begin
+  -- 
+  -- Llama a CREAR_PRODUCTO con los parámetros necesarios
+  -- 
+end;
+/
+
+
+-- INSERTA UN PRODUCTO USANDO LA SECUENCIA PARA EL ID
+insert into v_productos(nombreproducto) values ('Zapatos magnolia');
+
+-- INSERTA UN PRODUCTO CON EL ID ESPECIFICADO
+insert into v_productos(nombreproducto,idproducto) values ('Zapatos rosa', 25);
+
+-- ESTO DA EL ERROR FALTANDATOS
+insert into v_productos(idproducto) values (230);
+
+
+\end{listadosql}
+
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}[: Creación rápida de productos (\textbf{2 puntos})]
+
+  Se modificará la tabla \texttt{V\_EXISTENCIAS} para que incluya el nombre del producto.
+
+\begin{listadosql}{Vista de existencias}{lst:vista-existencias}
+create or replace view V_EXISTENCIAS(idproducto,nombreproducto,existencias,ultimopreciocompra,ultimoprecioventa) as
+...
+\end{listadosql}  
+
+  
+  El cliente necesita que se pueda dar de alta y dar entrada a un producto de forma rápida. Para ello, se desea que se pueda insertar directamente en la vista \texttt{V\_EXISTENCIAS}.
+  \begin{itemize}
+  \item Si se indica un \texttt{idproducto}, se creará un producto con ese identificador. Si no, se utilizará la secuencia de la práctica anterior.
+  \item El nombre del producto será el indicado en el \texttt{insert}. Si es \texttt{NULL} se lanzará el error \texttt{FALTANDATOS}
+  \item Se creará una entrada de producto con la cantidad indicada en \texttt{existencias}, al precio marcado en \texttt{ultimopreciocompra}. Si alguno de estos es \texttt{NULL} se lanzará el error \texttt{FALTANDATOS}.
+  \item Si se indica un \texttt{ultimoprecioventa}, se lanzará el error \texttt{SOBRANDATOS}
+
+\begin{listadosql}{Ejemplos de insert}{lst:insert}
+-- Se añade un producto de nombre OFERTA, id 1234, con una entrada de 10 unidades a 20 euros
+insert into v_existencias(idproducto,nombreproducto,existencias,ultimopreciocompra) 
+values (1234,'OFERTA',10,20);
+
+-- Se añade un producto de nombre OFERTON, con identificador sacado de la secuencia, con una entrada de 10 unidades a 20 euros
+insert into v_existencias(nombreproducto,existencias,ultimopreciocompra) 
+values ('OFERTON',10,20);
+
+-- Error FALTANDATOS
+insert into v_existencias(ultimopreciocompra) values (20);
+
+-- Error SOBRANDATOS
+insert into v_existencias(nombreproducto,existencias,ultimopreciocompra,ultimoprecioventa) 
+values ('producto',10,20,30);
+\end{listadosql}
+  \end{itemize}
+
+\end{homeworkProblem}
+
+
+
+
+\section{Instrucciones de entrega}
+La entrega se realizará en el servidor del profesor. Si no estuviera operativo, se entregará un único fichero SQL para todos los apartados con las sentencias SQL necesarias para crear las tablas, secuencias, procedimientos, funciones y vistas que el alumno necesite.
+\begin{itemize}
+\item Este ejercicio se corregirá de forma semiautomática, por lo que es necesario seguir la nomenclatura propuesta en el ejercicio.
+\item Si tiene \textbf{errores} de compilación podría no corregirse. Si no se siguen los \textbf{nombres de objetos} pedidos podría no corregirse.
+\end{itemize}
+
+
+El documento se subiría a la tarea correspondiente en el \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/}{aula virtual}.
+Presta atención al plazo de entrega (con fecha y hora).
+
+
+\end{document}
+
+
+
+

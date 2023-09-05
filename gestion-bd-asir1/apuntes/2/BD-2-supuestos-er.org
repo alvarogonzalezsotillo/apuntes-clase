@@ -1,0 +1,805 @@
+* Buscaminas
+- Hay un tablero con celdas
+- Cada celda puede contener o no una mina
+- Cada celda puede estar descubierta u oculta
+- Cada partida define
+  - El tamaño del tablero
+  - El número de minas en total
+  - Hay unos niveles predefinidos de dificultad (tamaño del tablero y minas), pero el usuario puede personalizar cada partida.  
+- Cada partida guarda su resultado
+  - Si se consiguió ganar o no
+  - El tiempo total de juego
+- Se guardan los mejores tiempos de los niveles predefinidos de dificultad
+- Cada partida puede grabarse y continuarse posteriormente
+- Interesa guardar cómo jugó se jugó cada partida: qué celdas se abrieron, en qué orden y la rapidez con la que se abrieron
+
+* Ticket de compra
+El TPV de un comercio tiene que almacenar e imprimir tickets de compra con la siguiente información:
+- Fecha y hora de compra
+- Los artículos comprados
+- El precio de cada artículo
+- Si se compra más de un artículo igual, se quiere en la misma línea, con un multiplicador
+- Cada artículo tiene un impuesto de IVA distinto: normal, reducido o súper-reducido.
+- El total del ticket, y la parte que se debe al IVA
+- Cada día, el comercio puede definir ofertas con descuentos. Por ejemplo:
+  - Con dos barras de pan, la 2ª al 50%
+  - Lleva 3 litros de leche, y uno será gratis
+
+
+* Biblioteca
+Crear un diseño ER que permita gestionar los datos de una biblioteca de modo que:
+
+- Las personas socias de la biblioteca disponen de un código de socio y además necesitar almacenar su dni, dirección, teléfono, nombre y apellidos
+- La biblioteca almacena libros que presta a los socios y socias, de ellos se almacena su título, su editorial, el año en el que se escribió el libro, el nombre completo del autor (o autores), el año en que se editó y en qué editorial fue y el ISBN.
+- Necesitamos poder indicar si un volumen en la biblioteca está deteriorado o no
+- Queremos controlar cada préstamo que se realiza almacenando la fecha en la que se realiza, la fecha tope para devolver (que son 15 días más que la fecha inicial) y la fecha real en la que se devuelve el libro
+- Un socio puede tener más de un libro en préstamo al mismo tiempo.  
+
+
+* Menú diario
+
+Crear un esquema ER que represente un modelo para llevar los datos que maneja un restaurante de menús diarios. Teniendo en cuenta que:
+- Sólo interesa llevar los datos de los menús diarios a la hora de la comida, nada más del restaurante
+- Cada menús se compone de una serie de posibles platos. Cada plato se puede repetir en diferentes días. Los platos pueden ser primer plato, segundo plato o postre.
+- De cada plato se almacena el nombre (por ejemplo /Arroz negro con setas/) y una pequeña descripción.
+- De los menús almacenamos la fecha en la que se ofrece el menú, y el número de raciones de cada plato que se han servido ese día.
+- Se almacena también la temperatura que hacía el día del menú para así poder analizar las temperaturas y los platos exitosos
+
+
+* Horario
+Crear un esquema ER que represente el funcionamiento de un centro escolar de formación profesional, teniendo en cuenta que:
+
+- Sólo interesa llevar el control de ocupación de las aulas en el horario escolar
+- El horario es de seis horas diarias y en la base de datos simplemente se anota si es la primera, segunda,… y el día de la semana del que hablamos (por ejemplo miércoles a tercera hora)
+- Las asignaturas tienen un nombre, un código interno del centro y un código europeo.
+- La misma asignatura se puede impartir en dos ciclos distintos y en ese caso tendría el mismo código europeo y nombre, pero el código interno sería distinto. Hace falta saber en qué curso del ciclo se imparte la asignatura
+- Los ciclos tienen un nombre, pueden ser de grado superior,de grado medio o de FP Básica.
+- Las asignaturas en cada momento ocupan un aula, del que tenemos que almacenar un código de aula, un nombre (que no se repite), un número de aula (que tampoco se repite) y los metros que tiene. A una hora concreta de la semana, el aula puede estar vacía o bien ocuparse, pero sólo se puede ocupar por una asignatura
+- Necesitamos saber y anotar en la base de datos si una asignatura requiere que antes se hayan aprobado otras, para poder matricularse en ella. Por ejemplo, Ampliación de Matemáticas de 2º a lo mejor requiere aprobar Matemáticas de 1º. Puede requerirse terminar más de una asignatura previamente para poder matricularse de una concreta.
+- De los profesores se almacena su nombre, dirección, teléfono, email, DNI, nº de Seguridad Social y un código interno de profesor así como los años que tiene de antigüedad impartiendo cada asignatura.
+- Nos damos cuenta de que en un curso escolar, puede haber varios profesores responsables de una asignatura (por bajas, ceses, etc.); por lo que anotamos cuándo empezó a impartir dicho profesor la asignatura y cuando terminó (si no ha terminado, se dejaría vacío)
+- Una misma asignatura siempre se imparte en el mismo aula a un grupo de alumnos.
+- En un mismo año un ciclo se puede impartir a más de un grupo de alumnos
+
+Asegúrate de que podemos averiguar gracias al diseño, que si buscamos a un profesor un día concreto (por ejemplo el 13 de Mayo de 2018) a una hora concreta (sexta hora), podríamos saber en qué aula va a estar.
+
+
+
+* Registro civil
+Se desea realizar una base de datos para almacenar la información del registro civil de una provincia.
+- El registro debe guardar información de nacimientos, defunciones, matrimonios y divorcios.
+- Los nacimientos se producen en una localidad en cierta fecha, de una madre y certificados por un facultativo. Es posible que el padre no sea conocido. Si es un niño abandonado, tampoco aparece la madre.
+- Las defunciones se certifican por un médico o forense. Se producen en una localidad, en cierta fecha.
+- Los matrimonios son certificados por un funcionario. Se celebran en una localidad y fecha concretas. Los matrimonios están compuestos por dos personas.
+- Los divorcios se sancionan por un juez, en una localidad y fecha concretas.
+- Todos los hechos registrables se apuntan en los libros de registro. Cada hecho se apunta en un folio, dentro de un tomo de un libro. Dos hechos no pueden compartir el mismo folio.
+- Las personas participantes en un hecho se identifican por nombre, apellidos, lugar de nacimiento, y, si están disponibles, DNI, nombre del padre y nombre de la madre.
+- (Opcional) Los ciudadanos pueden requerir la expedición de certificados de cualquier hecho registrable. Para evitar un abuso en el servicio, se desean conocer los certificados que han sido expedidos para cada ciudadano, y en qué fecha.
+
+** Consultas
+- Número de gente que ha nacido, por año, entre 1990 y 2000 (año, número de nacimientos)
+- Lista de personas que han estado casadas con la persona con DNI 123456789Y
+- Matrimonios realizados en "Alcalá de Henares" el año 2015 (fecha, nombre-apellidos persona1, nombre-apellidos persona2)
+- Matrimonios realizados en "Alcalá de Henares" el año 2015, que a fecha 1-1-2019 se han divorciado (fecha de divorcio, nombre-apellidos persona1, nombre-apellidos persona2)
+- Hijos de padres huérfanos, porque los abuelos no están registrados (dni, nombre-apellidos)
+
+** Inserciones
+- Pepe Pérez (1341414U) se casa con María Gómez(134124E) el día 1-1-2014 en Daganzo
+- Pepe Pérez (1341414U) se divorcia de María Gómez(134124E) el día 1-1-2016 en Daganzo
+- Manolo García (31234T) se casa con María Gómez(134124E) el día 1-1-2017 en Daganzo
+
+* Agenda personal
+Un gestor de correo electrónico maneja la siguiente información
+- Los correos se almacenarán en carpetas, con cierto nombre. Una carpeta puede contener correos, u otras carpetas. Un correo o carpeta aparece en una sola carpeta. La carpeta de nivel superior no aparece en ninguna carpeta.
+- Los correos recibidos tienen una fecha de envío, un remitente, un texto, varios ficheros adjuntos y varios destinatarios. Cada destinatario aparece como ENVIADO A o CON COPIA A. Los correos tienen un identificador único.
+- Los correos están inicialmente marcados como no leídos. 
+- Un correo puede ser la respuesta a un correo anterior (envíado o recibido). Cuando se responde a un correo, se incluye en el correo el identificador del correo respondido.
+- Inicialmente, los correos recibidos se almacenan en la carpeta ENTRADA. El usuario puede crear reglas organizar los correos, especificando que los correos recibidos de cierto remitente se almacenan en cierta carpeta.
+- Se guarda una lista de contactos. Por cada contacto se quiere conocer su nombre, apellidos, direcciones de correo, y dirección postal
+- Se deben almacenar también los correos enviados. Los correos enviados tienen la misma información que los recibidos, y se guardan en la carpeta ENVIADOS
+- Se desea que el usuario pueda organizar los correos por conversaciones (como GMail)
+
+
+
+* Correo electrónico
+Realiza un diagrama E-R del siguiente supuesto acerca de un servidor de correo electrónico:
+- Un email puede tener varios destinatarios, pero solo un remitente
+- Los destinatarios son de tres tipos
+  - TO: Un destinatario directo
+  - CC: indirecto en copia
+  - CCO: como copia oculta a otros destinatarios
+- Un email puede tener varios ficheros adjuntos
+- De cada usuario se guarda su nombre de usuario y su nombre real. Cada usuario tiene una agenda donde apunta sus contactos: nombre y apellidos, lista de teléfonos y lista de emails.
+
+
+* Empresa
+  Realiza un diagrama E-R del siguiente supuesto acerca de los empleados de una empresa:
+- De cada empleado se sabe su DNI, nombre, apellidos y sueldo anual.
+- Cada empleado trabaja en un departamento, de los que se conoce el nombre.
+- Cada departamento tiene un responsable, que es uno de los empleados de (ese departamento|la empresa). Un empleado solo puede ser responsable de un departamento.
+- La empresa desarrolla proyectos, que tienen un nombre y un presupuesto
+- Cada proyecto tiene un responsable, y trabajan en él varios empleados.
+- Un empleado puede ser responsable de varios proyectos, si trabaja en ellos. Un empleado puede trabajar en varios proyectos.
+    
+  
+  
+
+
+* Colección de cromos
+  Realiza un diagrama E-R del siguiente supuesto acerca de un coleccionista de cromos:
+- De cada colección quiere saber el año de publicación inicial del álbum, editorial, nombre y número total de cromos.
+- Las colecciones se agrupan por temas: fútbol, series de televisión, películas...
+- Cada cromo poseido pertenece a una colección, tiene un número, una descripción y un estado de conservación
+- Cada álbum poseido pertenece a una colección, y tiene un estado de conservación
+- También se desea almacenar información de cromos y álbums no poseidos, como en una lista de deseos
+- Algunos cromos son especialmente difíciles de conseguir. Hay que conocer qué cromos son especialmente difíciles de cada colección, se posean ya o no.
+- De los cromos especialmente difíciles de conseguir, se debe conocer su abundancia relativa respecto de los demás cromos de la colección y su precio de mercado.
+- Se pueden poseer álbums y cromos repetidos.  
+  
+
+
+
+* Sistema de ficheros Windows
+Realiza un diagrama E-R del siguiente supuesto acerca del sistema de ficheros de un ordenador:
+- El ordenador puede tener varias unidades: A:, B:, C: \ldots
+- Cada unidad tiene un directorio raíz
+- Tanto directorios como ficheros tienen:
+  - Un nombre
+  - Una fecha de creación
+  - Unos permisos, que indican si cada usuario puede leerlos o si puede modificarlos.
+- Un directorio puede contener otros ficheros y directorios.
+- Un fichero tiene datos almacenados
+- De cada usuario necesitamos saber el nombre interno del sistema y una descripción.  
+  
+
+
+
+* Autoescuela
+Realiza un diagrama E-R del siguiente supuesto acerca de una autoescuela
+- Se desea saber de cada alumno su nombre, apellidos, DNI y carnets de conducir que ya posee.
+- Hay una batería de tests de prueba para los alumnos en fase teórica, que se identifican por un número
+- Los alumnos se matriculan para conseguir cierto carnet (A, B, C, D \ldots)
+- Cada alumno está en la fase teórica o práctica
+  - Si está en la fase teórica, es necesario saber qué tests de prueba ha realizado ya, con su puntuación
+  - Si está en la fase práctica, es necesario saber cuántas clases prácticas lleva.
+- De cada clase práctica, hay que saber qué profesor acompañó a qué estudiante, y en qué fecha.
+- De los profesores solo conocemos el nombre, que no se repite.
+- De cada examen al que se presente un alumno (teórico o práctico), hay que saber el resultado (aprobado o no) y en qué fecha se realizó, y para qué tipo de carnet era.
+  
+  
+
+
+
+
+
+
+
+* Artículos y encargos
+Una base de datos para una pequeña empresa debe contener información acerca de clientes, artículos y pedidos. Hasta el momento se registran los siguientes datos en documentos varios:
+- Para cada cliente: Número de cliente (único), Direcciones de envío (varias por cliente), Saldo, Límite de crédito (depende del cliente, pero en ningún caso debe superar los 3.000.000 pts), Descuento.
+- Para cada artículo: Número de artículo (único), Fábricas que lo distribuyen, Existencias de ese artículo en cada fábrica, Descripción del artículo.
+- Para cada pedido: Cada pedido tiene una cabecera y el cuerpo del pedido. La cabecera está formada por el número de cliente, dirección de envío y fecha del pedido. El cuerpo del pedido son varias líneas, en cada línea se especifican el número del artículo pedido y la cantidad.
+- Además, se ha determinado que se debe almacenar la información de las fábricas. Sin embargo, dado el uso de distribuidores, se usará: Número de la fábrica (único) y Teléfono de contacto. Y se desean ver cuántos artículos (en total) provee la fábrica. 
+- También, por información estratégica, se podría incluir información de fábricas alternativas respecto de las que ya fabrican artículos para esta empresa.
+
+Nota: Una dirección se entenderá como Nº, Calle y Ciudad. Una fecha incluye hora.
+
+| NC | Número de cliente                  |
+| DE | Dirección de envío                 |
+| SC | Saldo cliente                      |
+| LC | Límite crédito cliente             |
+| DC | Descuento cliente                  |
+| NA | Número de artículo                 |
+| EA | Existencias de artículo en fábrica |
+| DA | Descripción artículo               |
+| FP | Fecha del pedido                   |
+| CA | Cantidad de artículo               |
+| NF | Número de fábrica                  |
+| TF | Teléfono fábrica                   |
+| FA | La fábrica es alternativa          |
+
+
+Se pide hacer el diagrama ER para la base de datos que represente esta información.
+
+* Sistema de ventas
+Le contratan para hacer una BD que permita apoyar la gestión de un sistema de ventas. La empresa necesita llevar un control de proveedores, clientes, productos y ventas.
+
+Un proveedor tiene nombre, dirección, teléfono y página web. Un cliente también tiene nombre, dirección, pero puede tener varios teléfonos de contacto. La dirección se entiende por calle, númer y ciudad.
+
+Un producto tiene un id único, nombre, precio actual, stock y nombre del proveedor. Además se organizan en categorías, y cada producto va sólo en una categoría. Una categoría tiene id, nombre y descripción.
+
+Por razones de contabilidad, se debe registrar la información de cada venta con un id, fecha, cliente, descuento y monto final. Además se debe guardar el precio al momento de la venta, la cantidad vendida y el monto total por el producto.
+
+* Carreteras
+Diseñar un esquema E/R que recoja la organización de una base de datos para contener la información sobre todas las carreteras del país, sabiendo que se deben cumplir las siguientes especificaciones:
+- Las carreteras están divididas en varias categorías (locales, comarcales, regionales, nacionales, autovías, etc).
+- Las carreteras se dividen en tramos. Un tramo siempre pertenece a una única carretera y no puede cambiar de carretera.
+- Un tramo puede pasar por varias poblaciones, interesando conocer el Km de la carretera y la población donde empieza el tramo y en donde termina.
+- Para los tramos que suponen principio o final de carretera, interesa saber si es que la carretera concluye físicamente o es que confluye en otra carretera. En este caso, interesa conocer con qué carretera confluye y en qué kilómetro, tramo y población.
+
+* Sistema de vuelos
+Obtener el diagrama E/R para un sistema de control de vuelos adaptado a las siguientes reglas de gestión (indicar las entidades, interrelaciones, etc., que se deducen de cada una de las reglas):
+a. De cada aeropuerto se conoce su código, nombre, ciudad y país.
+b. En cada aeropuerto pueden tomar tierra diversos modelos de aviones (el modelo de un avión determina su capacidad, es decir, el número de plazas.
+c. En cada aeropuerto existe una colección de programas de vuelo. En cada programa de vuelo se indica el número de vuelo, línea aérea y días de la semana en que existe dicho vuelo.
+d. Cada programa de vuelo despega de un aeropuerto y aterriza en otro.
+e. Los números de vuelo son únicos para todo el mundo.
+f. En cada aeropuerto hay múltiples aterrizajes y despegues. Todos los aeropuertos contemplados están en activo, es decir, tienen algún aterrizaje y algún despegue.
+g. Cada vuelo realizado pertenece a un cierto programa de vuelo. Para cada vuelo se quiere conocer su fecha, plazas vacías y el modelo de avión utilizado.
+h. Algunos programas de vuelo incorporan escalas técnicas intermedias entre los aeropuertos de salida y de llegada. Se entiende por escala técnica a un aterrizaje y despegue consecutivos sin altas ó bajas de pasajeros.
+i. De cada vuelo se quieren conocer las escalas técnicas ordenadas asignándole a cada una un número de orden. Por ejemplo, el programa de vuelo 555 de Iberia con vuelos los lunes y jueves 
+   - despega de Barajas-Madrid-España 
+   - aterriza en Caudell-Sydney-Australia 
+   - escalas técnicas: 
+     1. Los Pradiños-Sao Paulo-Brasil
+     2. El Emperador-Santiago-Chile
+     3. Saint Kitts-Auckland-Nueva Zelanda.
+
+** Modificación
+¿Qué cambios se producirán en el caso anterior si en las escalas pudiesen bajar o subir pasajeros?
+
+Explicar cómo se podría representar esta nueva situación.
+
+* Olimpiadas
+- Las sedes olímpicas se dividen en complejos deportivos.
+- Los complejos deportivos se subdividen en aquellos en los que se desarrolla un único deporte y en los polideportivos.
+- Los complejos polideportivos tienen áreas designadas para cada deporte con un indicador de localización (ejemplo: centro, esquina- NE, etc.).
+- Un complejo tiene una localización, un jefe de organización individual y un área total ocupada.
+- Para cada tipo de sede, se conservará el número de complejos y su presupuesto aproximado.
+- Cada complejo celebra una serie de eventos (ejemplo: la pista del estadio puede celebrar muchas carreras distintas.).
+- Para cada evento está prevista una fecha, duración, número de participantes y número de comisarios.
+- Una lista de todos los comisarios se conservará junto con la lista de los eventos en los que esté involucrado cada comisario ya sea cumpliendo la tarea de juez u observador.
+- Tanto para cada evento como para el mantenimiento se necesitará cierto equipamiento (ejemplo: arcos, pértigas, barras paralelas, etc).
+
+** Datos de ejemplo
+   
+- Sede en Valencia y en Barcelona
+- Comisario Juan (1) y María (2)
+- Complejos Camp Nou, Mestalla, RCDE Stadium
+- En el Camp Nou
+  - Centro 600m2
+  - Alrededor tiene una pista 200m2
+- Mestalla
+  - Fútbol 650m2
+  - Tenis 350m2
+- RCDE Stadium, solo Fútbol, 700m2
+- eventos
+  - Final de tenis, 1-1 12:00 3 horas. María de Juez
+  - Semifinal 1 de fútbol, Mestalla, 1-1 15:00, 2:30 horas. Juan de Juez
+  - 400m vallas final, Camp Nou, 2-1 21:00, 15 min María de Juez, Juan de observador
+
+
+
+* Educando S.A.
+En la Empresa "Educando S.A." se lleva control de sus Bienes y Servicios. El interés primario es poder
+hacer que los Bienes se manejen de forma rápida y con el menor grado de error. Para esto quien maneja
+la sección de "Bienes y Suministros" plantea las siguientes condiciones del negocio para la construcción
+de una base de datos:
+- La Sección está dividida en tres (3) áreas: COMPRAS, ALMACEN, INVENTARIO.
+- El área de Compras funciona de la siguiente forma:
+    - Recibe las solicitudes de compras de las diferentes áreas de la empresa.
+    - Cada solicitud tiene un responsable.
+    - Cada solicitud es autorizada por el jefe del área y posteriormente por el Director Financiero.
+    - Quien realiza una solicitud puede ser responsable de uno o varios centros de costos, conla salvedad de que él como empleado solo está adscrito a uno.
+    - De la solicitud se debe diligenciar la siguiente información: Número de la solicitud (consecutivo), Fecha, Responsable (nombre y cédula), Centro de Costos, Rubro presupuestal del cual se descargará la compra. En cada solicitud se pueden discriminar uno o muchos ítems con la siguiente información: ítem, nombre del bien, cantidad solicitada, unidad de medida del bien, valor unitario y valor total. Cada solicitud debe ser totalizada.
+    -  Cada bien es identificado por un código universal que es único y es de carácter devolutivo (suministro) o un bien inmueble.
+    - Una vez diligenciada la solicitud es remitida al área de compras para realizar su correspondiente cotización.
+    - Las cotizaciones son realizadas con uno o varios proveedores de los bienes solicitados.
+    - Una vez la cotización definitiva está lista, se crea una orden contractual que maneja la siguiente información: Número de la orden contractual, nit y nombre del proveedor al cual se le va a realizar la compra, fecha de la orden, monto total de la orden, fecha de entrega. Cada orden puede tener asociado uno o varios ítems de la solicitud o solicitudes que van a ser despachadas. Cada ítem tiene la siguiente información: nombre del bien, cantidad solicitada, cantidad despachada, unidad de medida del bien, valor unitario y valor total.
+    - La orden de compra es aprobada por el Director Financiero para que sea enviada al proveedor elegido.
+- El área de Almacén funciona de la siguiente forma:
+    - Su función principal es recepcionar los bienes que llegan de los proveedores y distribuirlos a las correspondientes áreas que realizaron las solicitudes de compras.
+    - Cuando llega un proveedor mercancía, este hace una entrega física de los bienes, los cuales son comparados con la factura que este entrega y con la orden de compra correspondiente. Si esta acción es correcta se registra una entrada de almacén por cada factura relacionada, con la siguiente información: Número de Entrada, Fecha, Número de factura, Proveedor, Total Bienes, Valor Total (los totales deben coincidir con los de la factura). Adjunto a esta se discriminan los ítems recibidos con la siguiente información: nombre del bien, cantidad entregada.
+    - Cuando el almacén decide despachar los bienes a las diferentes áreas solicitantes, registra cada una de las entregas en Salidas de Almacén con la siguiente información: Número de Salida, Empleado responsable del bien a entregar, fecha de salida, fecha de entrega. Por cada entrega se detalla cada uno de los ítems con la siguiente información: nombre del bien, cantidad entregada.
+    - Una entrada de almacén puede generar muchas salidas de almacén, por ejemplo: Pueden ingresar 500 pacas de papel higiénico, pero como se debe repartir entre varias áreas, cada una requiere de una salida de almacén.
+- El área de inventarios funciona de la siguiente forma:
+    - Es la encargada de administrar y controlar la ubicación de los bienes dentro de la empresa, por esto antes de que el bien salga del almacén debe ser codificado a través de un código único que lo haga identificable dentro de la empresa.
+    - La ubicación del bien se identifica por la siguiente información: responsable del bien, fecha de entrega, dirección del bien (ubicación).
+
+* Problema 7: Torneo de Tenis Grand Slam
+El sistema debe memorizar todos los encuentros que se han desarrollado desde que existe el torneo, así
+como las siguientes características de estos.
+
+- El Grand Slam se compone de cuatro torneos anuales que se celebran en Gran Bretaña, Estados Unidos, Francia y Australia.
+- En cada país se pueden desarrollar en distintos lugares (p. ej., en EE. UU. puede desarrollarse en Forest Hill o en Flashing Meadows).
+- Cada partido tiene asociado un premio de consolación para el perdedor que dependerá de la fase en que se encuentre el torneo (p. ej., el perdedor de octavos de final puede ganar 5.000 dólares). El ganador de la final recibirá el premio correspondiente al torneo.
+- Cada torneo tiene cinco modalidades: Individual masculino, individual femenino, dobles masculino, dobles femenino y dobles mixtos.
+- También hay que tener en cuenta la nacionalidad de un jugador, de forma que éste puede ser apátrida o tener varias nacionalidades.
+- Solo se apunta un árbitro de cada partido
+- El árbitro podía haber sido previamente jugador
+- Una edición de un Grand Slam solo tiene una localización
+- Los premios dependen de la edición y de la modalidad.
+- Se juega hasta que alguien gana 3 sets.
+
+El sistema debe dar respuesta a las siguientes preguntas:
+1. Dado un año y un torneo, composición y resultado de los partidos.
+2. Lista de árbitros que participaron en el torneo.
+3. Ganancias percibidas en premios por un jugador a lo largo del torneo.
+4. Lista de entrenadores que han entrenado a un jugador a lo largo del torneo y fechas en las que lo hizo.
+
+Ejemplos de acceso a la base de datos.
+1. Connors ganó Gerulaitis en Roland Garros en 1979 en cuartos de final en individuales masculinos por 6-3 4-6 7-5 6-0.
+2. El señor Wilkinson arbitró ese partido.
+3. Alemania ha ganado dos veces las individuales masculinas de Wimbledon. Borg ha ganado 2.000.000 de dólares a lo largo de su participación en el Grand Slam.
+4. El ganado de Roland Garros de 1987 ganó 20.000 dólares.
+5. Noah ha jugado cuatro veces en dobles mixtos con Mandlikova.
+
+* Cines
+Se desea crear un sitio web con información referente a las películas en cartel en las salas de una cadena de cines.
+- De cada película, se almacena una ficha con su título de distribución, su título original, su género, el idioma original, si tiene subtítulos en español o no, los países de origen, el año de la producción, la url del sitio web de la película, la duración (en horas y minutos), la calificación (Apta todo público,+9 años, +15 años,+18 años), fecha de estreno, un resumen y un identificador de la película. 
+- De cada película interesa conocer la lista de directores y el reparto, es decir para cada actor que trabaja, el nombre de todos los personajes que interpreta.
+- Además interesa disponer de información sobre los directores y actores que trabajan en cada película.
+  - De ambos, se conoce su nombre (que lo identifica) y su nacionalidad. 
+  - Además se desea conocer en qué otras películas dirigieron o actuaron. 
+  - Tenga en cuenta que hay personas que cumplen los dos roles.
+- Los cines pueden tener más de una sala y cada semana cada uno de los cines envía la cartelera para dicha semana, indicando de detalle de las funciones. 
+- Para cada función se conoce el día de la semana y la hora de comienzo, y obviamente la sala y la película que exhibe. 
+- De cada sala se sabe el nombre, un número que la identifica dentro del cine y la cantidad de butacas que posee. 
+- De cada cine se conoce el nombre que lo identifica, su dirección y teléfono para consultas.
+- Algunos cines cuentan con promociones. Estas promociones dependen de la función. (Ej. De lunes a jueves antes de las 18 50% de descuento en la sala tal del cine tal para la película cual...La función del lunes a las 14 para la película tal en la sala cual, no se cobra a los escolares con túnica... ) 
+- De cada promoción se conoce una descripción y el descuento que aplica.
+- Además del resumen de la película que se incluye en la ficha interesa mostrar la opinión de las personas que vieron la película.
+-  De cada opinión se conoce el nombre de la persona que la realiza, su edad, la fecha en que registró su opinión, la calificación que le dio a la película (Obra Maestra, Muy Buena, Buena, Regular, Mala) y el comentario propiamente dicho. 
+
+
+
+* Academia de clases
+
+Crear un diseño entidad relación que permita controlar el sistema de información de una academia de cursos siguiendo estas premisas:
+
+- Se dan clases a trabajadores y desempleados. Los datos que se almacenan de los alumnos son el DNI, dirección, nombre, teléfono y la edad
+- Además de los que trabajan necesitamos saber el CIF, nombre, teléfono y dirección de la empresa en la que trabajan
+- Los cursos que imparte la academia se identifican con un código de curso. Además se almacena el programa del curso, las horas de duración del mismo, el título y cada vez que se imparte se anotará las fechas de inicio y fin del curso junto con un número concreto de curso (distinto del código) y los datos del profesor o profesora (sólo uno por curso) que son: dni, nombre, apellidos, dirección y teléfono
+- Se almacena la nota obtenida por cada alumno en cada curso teniendo en cuenta que un mismo alumno o alumna puede realizar varios cursos y en cada cual obtendrá una nota.
+
+
+* Geografía
+
+Crear un diseño entidad relación que permita almacenar datos geográficos referidos a España:
+
+- Se almacenará el nombre y población de cada localidad, junto con su nombre y los datos de la provincia a la que pertenece la localidad, su nombre, población y superficie.
+- Necesitamos también conocer los datos de cada comunidad autónoma, nombre, población y superficie y por supuesto las localidades y provincias de la misma
+- Para identificar a la provincia se usarán los dos primeros dígitos del código postal. Es decir 34 será el código de Palencia y 28 el de Madrid
+- Necesitamos saber qué localidad es la capital de cada provincia y cuáles lo son de cada comunidad
+
+
+* Guerras
+
+Diseñar un modelo entidad/relación que almacene los datos de todas las guerras de la historia de modo que:
+
+- Se almacene el año en el que empezó la guerra y el año en que terminó, así como su nombre y el de los paises contendientes, pudiendo indicar además quienes fueron los ganadores
+- Hay que tener en cuenta que los paises se pueden unir a la guerra a uno u otro bando (suponemos que solo hay dos bandos) después de comenzada la guerra (como EEUU en la 2ª guerra mundial) y que incluso pueden abandonar la guerra antes de que esta finalice (como Rusia en la 1ª guerra mundial)
+- Los paises que se almacenan en la base de datos pueden no ser paises actualmente (como Prusia, Aragón, Asiria,etc.) por lo que se ha contemplado que en la base de datos se almacenen los años en los que el país ha sido independiente, teniendo en cuenta que hay paises que ha habido momentos en los que ha sido independiente y otros en los que no (por ejemplo Croacia). Bastará con almacenar los periodos en los que ha sido independiente.
+
+
+* Almacén v1
+
+Se trata de crear una base de datos sobre un almacén de piezas de modo que:
+
+- Cada pieza se identifica con dos letras (tipo, por ejemplo TU=tuerca) y un número (modelo, por ejemplo 6)
+- Almacenamos un atributo que permite saber la descripción de cada tipo de pieza. Es decir el tipo TU tendrá la descripción tuerca.
+- Necesitamos conocer el precio al que vendemos cada pieza.
+- Además hay piezas que se componen de otras piezas, por ejemplo una puerta se compone de una hoja de madera, una bisagra y un picaporte. Incluso una pieza puede estar compuesta de otras piezas que ha su vez pueden estar compuestas por otras y así sucesivamente
+- Tenemos una serie de almacenes de los que guardamos su número, descripción, dirección y el nombre de cada estantería de almacén. Cada estantería se identifica por tres letras.
+- Necesitaremos saber la cantidad de piezas que tenemos en cada almacén y saber en qué estanterías están las piezas buscadas
+
+
+* Biblioteca v2
+
+Se trata de crear una base de datos sobre el funcionamiento de una biblioteca
+
+- Almacenaremos el DNI, nombre, apellidos, código de socio, dirección y teléfonos (pueden ser varios, pero al menos uno)
+- La biblioteca presta libros, CDs y películas. De todos ellos se almacena un código de artículo distinto para cada pieza en la biblioteca. Es decir si tenemos tres libros del Quijote, los tres tendrán un número distinto de artículo.
+- Además almacenamos el nombre de cada artículo, el año en el que se hizo la obra (sea del tipo que sea) un resumen de la obra y los datos de los autores del mismo. Se considera autor de la película al director, de la música al intérprete y del libro al escritor. Pero de todos ellos se guarda la misma información: nombre y país.
+- De los libros además se guarda el número de páginas, de los CDs el número de canciones y de la película la duración
+- Anotamos si un artículo concreto está deteriorado y un comentario sobre el posible deterioro
+- Cuando se presta un artículo, se anota fecha en la que se presta y la fecha tope para devolverle. Cuando el socio le devuelve, se anota la fecha de devolución.
+- No hay tope sobre el número de artículos que puede prestarse a un socio e incluso el socio podría llevarse varias veces el mismo artículo en distintos préstamos
+
+
+* Organigrama
+
+Crear el esquema entidad/relación que represente el organigrama de una empresa, de modo que:
+
+- Aparezcan los datos de todos los empleados y empleadas: dni, nº de seguridad social, código de trabajador, nombre, apellidos, dirección, teléfono y departamento en el que trabajan indicado por su código y nombre.
+- También hay que tener en cuenta que cada trabajador puede tener un responsable (que en realidad es otro trabajador)
+- Los departamentos poseen un único coordinador del mismo
+- Necesitamos almacenar la categoría profesional de los trabajadores y trabajadoras, teniendo en cuenta que la categoría a veces cambia al cambiar el contrato, de los contratos se almacena la fecha de inicio del mismo y la fecha final (un contrato en vigor tendrá como fecha final el valor nulo).
+- También controlaremos las nóminas que ha recibido el trabajador de las que sabemos la fecha, el salario y a qué trabajador van dirigidas y la categoría del mismo.
+
+
+* Vuelos
+
+Crear el esquema entidad/relación que permita gestionar reservas de vuelos, de modo que:
+
+- Los clientes pueden reservar vuelos. Con la reserva se pueden reservar varias plazas, pero no poseeremos el número de asiento hasta obtener la tarjeta de embarque. En ese instante se asignará el asiento que tiene como identificación la fila, columna y la planta en la que está situado.
+- Se pueden obtener tarjetas de embarque sin tener reserva
+- Las tarjetas de embarque se refieren a un único cliente. De modo que aunque reserváramos nueve plazas, cada cliente podrá sacar su tarjeta de embarque indicando el número de reserva, la fecha de la misma y sus datos personales (dni, nombre, apellidos, dirección y teléfono). Además la persona que reserva debe indicar una tarjeta de crédito que quedará asociada a esa persona.
+- El vuelo que se reserva tiene un código único, una fecha y una hora de salida y de llegada y un aeropuerto de salida y otro de llegada
+- Los aeropuertos poseen un código único, además del nombre y la localidad y el país en el que se encuentran
+- Se guarda información sobre los aviones, código y número de plazas. Los vuelos sólo les puede realizar un avión determinado, pero el mismo avión puede realizar (como es lógico) otros vuelos
+
+
+* Recetas de cocina
+
+Crear el esquema entidad/relación que permita gestionar los datos sobre preparación de recetas de cocina
+
+
+
+* Fútbol
+
+Crear el esquema entidad/relación que permita crear el diseño de una base de datos que almacena información sobre los partidos de una liga de fútbol durante varias temporadas. 
+- De cada partido se guarda:
+  - Equipos que juegan, indicando cuál es el local y cuál el visitante
+  - Alineación titular, incluyendo la posición de cada jugador. 
+  - Resultado
+  - Por cada gol, qué jugador fue el autor y el minuto de juego
+- Hay que tener en cuenta que en dicha liga los jugadores no pueden cambiar de equipo durante una temporada, pero pueden cambiar en la siguiente.
+- Se debe guardar el dorsal de cada jugador. El dorsal puede cambiar cada temporada.
+- Un empate representa un punto para cada equipo. Una victoria son tres, y una derrota no representa ningún punto.
+
+* Festival de música
+- Hay varios grupos de música
+- Cada grupo tiene componentes. Cada componente puede tocar varios instrumentos.
+- Se cobran entradas. Hay un aforo. Una entradas para solo un día, y entradas para todo el festival.
+- Horarios: hora de inicio y hora de salida de cada día.
+- Hay que saber qué día a qué hora toca cada grupo. hay que saber qué canciones va a tocar cada grupo. Un grupo toca solo una vez en todo el festival.
+- Las entradas no son nominativas.      
+
+* Festival de música (ii)
+La base de datos es para el manager.
+
+- Conciertos: lugar, fecha y hora, aforo máximo de cada tipo de entrada. En cada concierto pueden variar los integrantes
+- Integrantes: nombre, nombre artístico, DNI
+- Grupos de Teloneros  y los integrantes de los grupos teloneros de cada concierto, que tienen los mismos datos que los integrantes
+- Instrumentos: en qué instrumentos está especializado cada integrante (no los teloneros). Un integrante puede estar especializado en más de un instrumento. Tipo de instrumento (cuerda, percusión...) y nombre de instrumento.
+- Canciones: canciones tocadas en cada concierto, con su orden de aparición. Una canción se puede tocar dos veces en un concierto.
+- Repertorio: todas las canciones que el grupo sabe tocar.
+- Entradas vendidas para los conciertos: vip, normal, con consumición. Las entradas están numeradas, no son nominativas.
+- Entradas que realmente se usaron en el concierto.
+
+
+
+
+
+* Accidentes geográficos
+
+Realizar un esquema entidad/relación que sirva para almacenar información geográfica. Para ello hay que tener en cuenta
+
+- Se almacenan los siguientes accidentes geográficos: ríos, lagos y montañas
+- De cada accidente se almacenan su posición horizontal y vertical según el eje de la tierra, además de su nombre
+- De los ríos se almacena su longitud, de las montañas su altura y de los lagos su extensión
+- Se almacena también información sobre cada país, su nombre, su extensión y su población
+- Se desea almacenar información que permite saber en qué país está cada accidente geográfico, teniendo en cuenta que cada accidente puede estar en más de un país.
+- Se almacena también los nombres de cada localidad del planeta. Y se almacena por qué localidades pasa cada río.
+
+- Preguntas sql:
+  - Lista de localidades por donde pasa el Amazonas, ordenadas por país y localidad
+     #+begin_src sql
+     select p.nombrepais, l.nombre
+     from
+       Accidentegeografico a
+       join accidente_localidad al on a.idaccidente = al.idaccidente
+       join localidad l on l.idlocalidad = al.idlocalidad
+       join pais p on p.nombrepais = l.nombrepais
+     where
+       a.nombre = 'Amazonas' and
+       a.tipo = 'rio'
+     order by
+       1, 2
+     #+end_src
+  - Tipos de accidentes y cuántos hay de cada tipo en Portugal
+    #+BEGIN_SRC sql
+    select a.tipo, count(a.idaccidente)
+    from
+      AccidenteGeografico a
+      join accidente_pais ap on a.idaccidente = ap.accidente
+    where
+      ap.nombrepais = 'Portugal'
+    group by
+      a.tipo
+
+   select a.tipo, count(a.idaccidente)
+    from
+      AccidenteGeografico a, accidente_pais ap
+    where
+      a.idaccidente = ap.accidente and
+      ap.nombrepais = 'Portugal'
+    group by
+      a.tipo
+    #+END_SRC
+  - Lista de las poblaciones con más de un rio (nombrepoblacion, numeroderios)
+    #+BEGIN_SRC sql
+  
+select
+  l.idlocalidad, l.nombre, count(a.idaccidente)
+from
+  accidente_geografico a,
+  localidad l,
+  accidente_localidad al
+where
+  a.idaccidente = al.idaccidente and
+  al.idlocalidad = l.idlocalidad and
+  a.tipo = 'rio' and
+group by
+  l.idlocalidad, l.nombre
+having
+  count(a.idaccidente) > 1;
+
+select idlocalidad, nombre,numerorios
+from(
+  select
+    l.idlocalidad, l.nombre, count(a.idaccidente) as numerorios
+  from
+    accidente_geografico a,
+    localidad l,
+    accidente_localidad al
+  where
+    a.idaccidente = al.idaccidente and
+    al.idlocalidad = l.idlocalidad and
+    a.tipo = 'rio' and
+  group by
+    l.idlocalidad, l.nombre
+)
+where
+  numerorios > 1
+
+
+
+
+
+
+
+
+
+
+
+insert into pais(nombrepais) values ('España');
+
+
+insert into localidad(idlocalidad,nombre,nombrepais)
+  values(1,'Madrid', 'España');
+insert into localidad(idlocalidad,nombre,nombrepais)
+  values(2,'Manzanares', 'España');
+insert into localidad(idlocalidad,nombre,nombrepais)
+  values(3,'Alcalá', 'España');
+
+insert into accidentegeografico(idaccidente,nombre,tipo,longitud)
+  values(1,'Manzanares','rio',100000);
+insert into accidente_pais(idaccidente,nombrepais)
+  values(1,'España');
+insert into accidente_localidad(idaccidente,idlocalidad)
+  values(1,1);
+insert into accidente_localidad(idaccidente,idlocalidad)
+  values(1,2);
+
+
+insert into accidentegeografico(idaccidente,nombre,tipo,altura)
+  values(2,'Gurugú','montaña',900);
+insert into accidente_pais(idaccidente,nombrepais)
+  values(2,'España');
+insert into accidente_localidad(idaccidente,idlocalidad)
+  values(2,3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #+END_SRC 
+
+
+* Empresa de software
+
+Realizar un esquema entidad/relación que permita modelar el sistema de información de una empresa de software atendiendo las siguientes premisas
+
+- La empresa crea proyectos para otras empresas. De dichas empresas se almacena el CIF, nombre, dirección y teléfono así como un código interno de empresa.
+- Los proyectos se inician en una determinada fecha y finalizan en otra. Además al planificarle se almacena la fecha prevista de finalización (que puede no coincidir con la finalización real)
+- Los proyectos los realizan varios trabajadores, cada uno de ellos desempeña una determinada profesión en el proyecto (analista, jefe de proyecto, programador,…), dicha profesión tiene un código de profesión. En el mismo proyecto puede haber varios analistas, programadores,…
+- Todos los trabajadores tienen un código de trabajador, un dni, un nombre y apellidos. Su profesión puede cambiar según el proyecto: en uno puede ser jefe y en otro un programador
+- Se anota las horas que ha trabajado cada trabajador en cada proyecto.
+- Puede haber varios proyectos que comiencen el mismo día.
+- A todas las empresas les hemos realizado al menos un proyecto
+- Todos los trabajadores han participado en algún proyecto
+- En la base de datos, la profesión “administrador de diseño” no la ha desempeñado todavía ningún trabajador o trabajadora
+
+
+* Empresa de comidas
+
+Crear un diseño entidad/relación para una empresa de comidas. En la base de datos tienen que figurar:
+
+- El nombre y apellidos de cada empleado, su dni y su número de SS además del teléfono fijo y el móvil
+- Algunos empleados/as son cocineros/as. De los cocineros y cocineras anotamos (además de los datos propios de cada empleado) sus años de servicio en la empresa.
+- Hay empleados/as que son pinches. De los y las pinches anotamos su fecha de nacimiento.
+- La mayoría de trabajadores no son ni pinches ni cocineros/as
+- En la base de datos figura cada plato (su nombre como “pollo a la carloteña”, “bacalo al pil-pil”,…), el precio del plato junto con los ingredientes que lleva. Anotamos también si cada plato es un entrante, un primer plato, segundo plato o postre
+- De los ingredientes necesitamos la cantidad que necesitamos de él en cada plato y en qué almacén y estantería del mismo le tenemos.
+- Cada almacén se tiene un nombre (despensa principal, cámara frigorífica A, cámara frigorífica B…), un número de almacén y una descripción del mismo.
+- Cada estante en el almacén se identifica con dos letras y un tamaño en centímetros. Dos almacenes distintos pueden tener dos estantes con las mismas letras.
+- Necesitamos también saber qué cocineros son capaces de preparar cada plato.
+- Cada pinche está a cargo de un cocinero o cocinera.
+- La cantidad de ingredientes en cada estantería de un almacén se actualiza en la base de datos al instante. SI cogemos dos ajos de un estante, figurará al instante que tenemos dos ajos menos en ese estante. Es necesario por lo tanto saber los ingredientes (cuáles y en qué número) que tenemos en cada estante.
+
+
+* Red social
+
+Crear un diseño entidad/relación que permita modelar un sistema que sirva para simular el funcionamiento de una red social, teniendo en cuenta lo siguiente:
+
+- Los usuarios de la red social se identifican con un identificador y una contraseña. Además se almacena de ellos:
+- Su nombre, apellidos, dirección, teléfono (puede tener varios teléfonos) e e-mail (el e-mail no tiene que poder coincidir con el de otro usuario) y una foto
+- Si los usuarios son celebridades, de ellos no aparecerá ni el email ni la dirección ni el teléfono.
+- Los usuarios pueden tener una serie de contactos, que en realidad son otros usuarios. De cada contacto se puede almacenar un comentario que es personal y que sirve para describir al contacto.
+- Los usuarios pueden organizar sus contactos en grupos de los cuales se almacena un nombre y deberemos saber los contactos que contiene. El mismo contacto puede formar parte de varios grupos.
+- Además cada usuario puede tener una lista de usuarios bloqueados a fin de que no puedan contactar con él
+- Los usuarios pueden publicar en la red comentarios, los cuales se puede hacer que los vea todo el mundo, que los vea uno o varios de los grupos de contactos del usuario o bien una lista concreta de usuarios. Los comentarios pueden incluir un texto y una imagen.
+
+
+
+
+* Twitter
+
+- Crear un esquema Entidad/relación que represente un modelo para llevar los datos que maneja la red social Twitter: usuarios, mensajes,...
+
+
+
+
+* Inmuebles
+
+Crear un diseño entidad/relación que permita modelar un sistema que sirva para gestionar una empresa que posee inmuebles.  Para ello
+
+- Se almacenan los clientes usando su DNI, Teléfono fijo, Móvil, Nombre y Apellidos.
+- Se almacenan los trabajadores y se almacenan los mismos datos. Ocurre además que un trabajador puede ser un cliente (porque puede alquilar o comprar mediante la inmobiliaria) a veces.
+- A cada cliente y trabajador se le asigna un código personal
+- Los clientes pueden comprar pisos, locales o garajes. En los tres casos se almacena un código de inmueble (único para cada inmueble), los metros que tienen, una descripción y su  dirección.
+- Los pisos tienen un código especial de piso que es distinto para cada piso.
+- En los locales se indica el uso que puede tener y si tienen servicio o no.
+- De los garajes se almacena el número de garaje (podría repetirse en distintos edificios) y la planta en que se encuentra (para el caso de garajes que están en varias plantas). Los garajes además pueden asociarse a un piso y así cuando se alquile el piso se incluirá el garaje.
+- La empresa prevé que podría haber inmuebles que podrían no ser ni locales, ni garajes, ni pisos
+- Los inmuebles se pueden comprar. Incluso varias veces. Se asigna un código de compra cada vez que se haga, la fecha y el valor de la compra. La compra puede tener varios titulares.
+- Cada inmueble se puede alquilar y en ese caso se asigna un número de alquiler por cada inmueble. Ese número se puede repetir en distintos inmuebles (es decir puede haber alquiler nº 18 para el inmueble 40 y el 35). Pero no se repite para el mismo inmueble.
+- Al alquilar queremos saber el nombre del agente de la empresa que gestionó el alquiler así como a qué persona (solo una) estamos alquilando el inmueble.
+- Cada pago de cada alquiler será almacenado en la base de datos, llevando el año, el mes y el valor del mismo.
+
+
+* Frutería
+  Una frutería quiere crear una tienda online:
+  - Cada producto es de una categoría: Fruta, Hortaliza, Legumbre \ldots
+  - De cada producto interesa su nombre, el precio de venta, una descripción, y su lugar de cultivo.
+  - Hay productos que se venden por peso, y otros por unidades.
+  - De cada producto puede haber una versión ecológica, con un precio distinto  (y seguramente, un lugar de cultivo distinto). Los clientes pueden elegir en su cesta de la compra si desean cambiar de versión ecológica a no ecológica, y viceversa.
+  - De los clientes se conoce su nombre, DNI y dirección de entrega.
+  - Un cliente puede hacer varios pedidos. En cada pedido elegirá los productos deseados y su cantidad, y especificará el día de entrega, y si quiere que se entregue por la mañana o por la tarde.
+
+
+
+* Frutería (sin ecológicos)  
+  Una frutería quiere crear una tienda online
+  - Cada producto es de una categoría: /Fruta/, /Hortaliza/, /Legumbre/ ...
+  - De cada producto interesa su nombre, el precio de venta, una descripción, y su lugar de cultivo.
+  - Hay productos que se venden por peso, y otros por unidades.
+  - De los clientes se conoce su nombre, DNI y dirección de entrega.
+  - Un cliente puede hacer varios pedidos. En cada pedido elegirá los productos deseados y su cantidad, y especificará el día de entrega, y si quiere que se entregue por la mañana o por la tarde.
+  - Si el pedido no se pudo entregar, el cliente deberá indicar un nuevo día y tramo horario para la entrega. Se guardará un histórico de los intentos de entrega (para que el cliente no pueda decir que no se ha intentado entregar el pedido)
+
+** datos
+   - Pedro, con DNI 1111111, compró 6 manzanas y 4 peras el 1-1. Se entregaron por la tarde del 3-1
+   - Pedro volvió a comprar 4 manzanas y 500g de judías el 2-1. Se van a entregar el 4-1 por la tarde, pero aún no se ha intentado la entrega.
+   - María, con DNI 2222222, compró 1 melón que pesaba 3kg y 250g de judías el 1-1. Se intentaron entregar el 2-1 por la tarde. Se acabaron entregando el 3-1 por la mañana
+   - Las manzanas se venden a 0,30€ la unidad. Las peras se venden a 0,35€ la unidad. El melón se vende a 1€/Kg, y las judías a 4€/kg.
+   - Las frutas son de Aragón. Las legumbres son de Zamora.  
+      
+
+
+* Dragones y Mazmorras
+
+- Hay dos tipos de armas
+  - Magia
+  - Armas normales
+
+- La magia es de algún elemento (aire, tierra, fuego, agua)
+
+- Las armas normales pueden ser blancas (espadas, hachas, dagas) o de fuego (trabucos, pistolas)
+
+- Personajes:
+  - magos: solo armas de magia
+  - guerreros: armas normales
+  - paladines: todas las armas
+
+- Hay muchos personajes. Un usuario puede tener varios personajes.
+- Cada personaje tiene
+  - Un nivel (0..300)
+  - Unos puntos de experiencia, que cuando llegan a un umbral sube de nivel
+  - Raza (orco, elfo, humano)
+  - Un tipo: mago, guerrero, paladín
+  - Unas cuantas armas
+  - Estadísticas: fuerza, magia, resistencia, velocidad, defensa, agilidad, vida
+  - Un clan 
+
+- Los clanes tienen una zona de mapa asignada y un nombre.
+
+- Una cuenta de usuario premium deja tener hasta 10 personajes. Una gratis solo 2.  
+
+- Existen solo un mundo, con un mapa unificado. Un personaje tiene
+  - Una situación en el plano
+  - Un respawn
+
+
+* Empresa
+
+- Una empresa tiene varios empleados.
+- Cada empleado tiene asignado un despacho de una sede. De cada sede queremos saber su nombre, qué despachos tiene, y su dirección postal
+- Un despacho se localiza con la planta donde está en la sede, y un número único por planta
+- Hay despachos donde cabe más de un empleado
+- Cada empleado puede tener varios subordinados, pero un solo jefe. Puede ocurrir que el jefe de un empleado esté en otra sede.
+- Cada empleado tiene un puesto en la empresa. El puesto determina el rango mínimo y máximo de su sueldo.
+- De cada empleado hay que saber su DNI, nombre y sueldo.
+
+
+* Agencia de modelos
+Se desea diseñar una BD para una Agencia de Castings dedicada a buscar modelos y actores para sus clientes. Los supuestos semánticos que hay que recoger son:
+
+- Un casting se identifica por un código (CC) se caracteriza por un nombre (NC) y una fecha de contratación (FC).
+- Un casting es contratado por un único cliente, identificado por un código de cliente (NN) aunque un cliente puede tener contratados varios castings. Un casting tiene además un presupuesto (P) y es dirigido por un agente identificado por su código (AG)
+- Un casting se estructura en varias fases, identificadas dentro de cada casting por un número en secuencia (NF) y a su vez, cada fase se descompone en varias pruebas individuales identificadas por un número de prueba individual (NP) dentro de cada fase. Cada fase tiene una fecha de inicio (FI)
+- De cada prueba individual se guarda la fecha de realización (FR) y la hora de inicio (HI) y de finalización (HF) así como la sala (S) en la que se realiza.
+- En una sala solo se realizará una prueba en una determina fecha entre una hora de inicio y una hora de fin.
+- A cada casting se le asigna un perfil identificado por un código de perfil (CP). El perfil tiene una serie de atributos que denominaremos (AP).
+- Los candidatos de la agencia se identifican por un código (CM) y tienen además un nombre (M) y una dirección (D). Cada candidato tiene un único perfil, pero un perfil puede corresponder a varios candidatos.
+- Cada candidato que encaje con el perfil de un casting realizará una prueba individual y obtendrá un resultado (RP) que puede ser “apto” o “no apto”. Un candidato solo puede realizar pruebas de castings compatibles con su perfil.
+- Un candidato puede someterse como máximo a una prueba individual dentro de cada fase de un casting.
+- En cada prueba individual de una fase solo participa un único candidato. Cada prueba en la que participa un candidato pertenece sólo a una fase de un casting.
+- Un candidato no podrá realizar una prueba individual de una fase si en la fase anterior realizó una prueba cuyo resultado fue “no apto”.
+
+* Diagrama ER
+Haz un diagrama ER para una base de datos que almacenará varios diagramas ER
+- Un diagrama ER tiene un nombre único y una fecha de creación
+- Cada diagrama tiene varias entidades e interrelaciones
+- De cada entidad se guarda su nombre y sus atributos
+- De un atributo hay que saber su nombre y si es clave primaria
+- De cada interrelación se guarda su nombre y sus atributos
+- Una interrelación une siempre dos entidades. Se guarda la cardinalidad (1 o N) de cada extremo de la interrelación
+
+Modificación:
+- Una interrelación puede unir más de dos entidades
+
+* Diagrama relacional
+Haz un diagrama ER para una base de datos que almacenará varios esquemas relacionales
+- Un esquema relacional tiene un nombre único y una fecha de creación
+- De cada tabla se guarda su nombre y sus columnas, y el tipo de cada columna
+- De cada columna hay que saber su nombre, si es clave primaria y si es clave extranjera. Si es una clave extranjera, también hay que saber a qué tabla y columna referencia
+
+** Consultas
+- Lista de esquemas relacionales con el número de tablas y columnas que contiene (esquema, número de tablas, número de columnas)
+- Lista de columnas que referencian a la columna "idalumno" de la tabla "alumno" del esquema "academia" (nombre de columna, nombre de tabla)
+
+** Inserciones
+- La tabla "alumno" del esquema "academia" tiene 4 columnas: nombre (Varchar), apellido (varchar), dni (varchar), idalumno (integer)

@@ -1,0 +1,96 @@
+\input{../../..//common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+\usepackage{needspace}
+
+
+\renewcommand{\hmwkTitle}{Práctica enrutamiento IP}
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+
+\section{Objetivo de la práctica}
+Tras la práctica, el alumno conocerá los comandos básicos para manejar un router Cisco:
+\begin{itemize}
+\item Configuración de interfaces
+\item Mantenimiento de tablas de enrutamiento
+\end{itemize}
+
+Está dispobile la \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-packet-tracer.pdf}{última versión de la práctica en este enlace}.
+
+\section{Enunciado}
+Una empresa decide conectar varios departamentos en una sola red IP. Para ello, dispone de la red \texttt{192.168.\textit{2*N}.0/23} (\texttt{\textit{N}} indica el número de ordenador de clase del alumno usado en prácticas anteriores. Si \texttt{\textit{N}} es 3, la red sería \texttt{192.168.6.0/23}).
+\begin{itemize}
+\item Departamento de administración: 12 ordenadores. % /28
+\item Departamento de contabilidad: 30 ordenadores. % /26
+\item Departamento de ventas: 13 ordenadores.     % /28
+\item Departamento de informática: 20 ordenadores.%  /27
+\end{itemize}
+
+Se desea que cada departamento tenga su propio domino de broadcast, pero tengan conectividad entre sí a nivel de red, por lo que estarán unidos mediante routers. Se decide que los routers formen parte de la red de servidores, la \texttt{172.N.48.0/23}, siendo los cuatro últimos de esta red. En la parte interna (hacia los departamentos), cada router será el último de la red.
+
+\section{Directrices para la creación de redes}
+\begin{itemize}
+\item Calcula las subredes que se asignarán a cada departamento.
+  \begin{itemize}
+  \item Calcula las direcciones IP (interna y externa) que tendrán cada uno de los 4 routers.
+  \item Apunta todos estos datos como etiquetas de texto en el Packet Tracer.
+  \end{itemize}
+\item Crea las redes de cada departamento.
+  \begin{itemize}
+  \item Cada una tendrá, a modo de ejemplo, el primer y último ordenador del departamento (por ejemplo, el departamento de administración tendrá el 1º y el 12º).
+  \item En la red de cada departamento, añade su router como el último de la red IP de ese departamento.
+  \end{itemize}
+\item Une los routers entre sí dentro de la red de servidores.
+  
+\item Las redes libres deben ser lo más grandes y compactas posible.
+\end{itemize}
+
+
+\section{Normas de entrega}
+Crea la red descrita en Packet Tracer. Para entregar la práctica, sube el fichero \texttt{PKT} al aula virtual. El fichero \texttt{PKT} deberá tener notas de texto dónde se expliquen las subredes creadas y otras decisiones tomadas.
+
+\section{Criterios de calificación}
+\begin{itemize}
+\item Las subredes son de tamaño adecuado (ni grandes, ni pequeñas).
+\item Las redes libres son lo más grande y contiguas posible.
+\item Los routers son los últimos de sus subredes.
+\item No se usa \texttt{\enlace{https://es.wikipedia.org/wiki/Routing\_Information\_Protocol}{RIP}} ni \texttt{\enlace{https://es.wikipedia.org/wiki/Proxy\_ARP}{ARP Proxy}}
+\item Hay 2 ordenadores (además del router) en cada departamento, y son los pedidos.
+\item Hay conectividad entre todos los ordenadores.
+\item Hay etiquetas de texto explicando las redes asignadas y libres.
+\item Cada ordenador y router tienen en su etiqueta sus IP’s (para que la red sea fácil de entender).
+\item Si un router se apaga, la configuración no se pierde
+\item Los routers solo tienen dos interfaces (o solo se usan dos de sus interfaces)
+\end{itemize}
+
+
+\begin{comment}
+
+  192.168.0.0/23
+
+  Contabilidad /26 -> 64
+  Informática /27 -> 32
+  Administracion /28 -> 16
+  Ventas /28 -> 16
+
+  Libre /25
+  Libre /24
+
+\end{comment}
+
+\end{document}

@@ -1,0 +1,145 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  /Network Address Translation/ (NAT)
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+
+* Introducción
+
+- En un enrutamiento normal IP los paquetes siempre conservan su IP origen y destino, aunque pasen por diferentes routers
+  - ¿Qué pasaría si un /router/ cambiase la dirección IP de origen por la suya propia?
+  - El destino de la comunicación pensaría que el origen de la misma es ese /router/
+  - La información de vuelta se enviaría al /router/, no al origen real
+  - ¿Esto es deseable? ¿Esto es útil?
+
+* Enrutamiento
+
+En un enrutamiento normal IP los paquetes siempre conservan su IP origen y destino, aunque pasen por diferentes /routers/
+
+#+reveal: split
+#+caption: Se envía un paquete a otra red 
+[[file:media/enrutar-1.svg]]
+#+reveal: split
+#+caption: El paquete pasa por el /router/ local
+[[file:media/enrutar-2.svg]]
+#+reveal: split
+#+caption: El /router/ local lo envía al siguiente /router/
+[[file:media/enrutar-3.svg]]
+#+reveal: split
+#+caption: El /router/ de la red remota lo envía al destino
+[[file:media/enrutar-4.svg]]
+
+* NAT
+
+- NATP cambia la dirección IP de origen
+  - El origen está en una red privada interna
+  - La reemplaza por la IP externa del /router/
+  - También puede cambiar el puerto de origen
+- Deja anotados estos cambios en una tabla de correspondencias
+  - Al recibir un paquete de respuesta, deshace el cambio antes de enrutar
+
+#+reveal: split
+#+caption: Se envía un paquete de la red interna a Internet
+[[file:media/nat-1.svg]]
+#+reveal: split
+#+caption: El /router/ recibe el paquete
+[[file:media/nat-2.svg]]
+#+reveal: split
+#+caption: Lo envía sustituyendo la dirección IP de origen por la IP pública
+[[file:media/nat-3.svg]]
+#+reveal: split
+#+caption: El paquete llega a su destino en Internet
+[[file:media/nat-4.svg]]
+#+reveal: split
+#+caption: El servidor de Internet responde al origen del paquete
+[[file:media/nat-5.svg]]
+#+reveal: split
+#+caption: El paquete llega a la IP pública del /router/
+[[file:media/nat-6.svg]]
+#+reveal: split
+#+caption: El /router/ sabe que él no es el destino final, y deshace el cambio de direcciones
+[[file:media/nat-7.svg]]
+
+#+reveal: split
+- ¿Podría =8.8.8.8= comenzar una comunicación con =192.168.1.1=?
+  - el /router/ no tendría en su tabla NAT una correspondencia para hacer la traducción
+  - Solo las comunicaciones internas añaden entradas a la tabla NAT de correspondencias
+  - =8.8.8.8= ni siquiera sabe que =192.168.1.1= existe
+- ¿Cuantas direcciones IP públicas (de pago) necesito utilizar?
+  - Solo una, la del /router/, ya que el resto de ordenadores tendrán una IP privada que será traducida por la tabla NAT
+
+* Ventajas de NAT
+- El NAT crea un /firewall/ automático y casi imposible de saltar
+  - Los equipos externos no pueden iniciar comunicaciones, sólo los internos
+  - Los equipos internos ni siquiera existen en Internet
+- El NAT permite compartir una sola IP pública entre muchos ordenadores
+  - Ahorro en direcciones IP públicas
+
+* Redirección permanente de puertos
+- Puede ser interesante que haya entradas NAT permanentes en la tabla de correspondencias
+  - Un servidor web en nuestra red local debería recibir todo el tráfico que tenga como destino la IP del router y el puerto 80
+  - Programas P2P pueden funcionar mejor redireccionando directamente el tráfico al programa, para que otros /peers/ puedan encontrarnos
+- El puerto internto expuesto no tiene por qué coincidir con el externo
+#+reveal: split
+#+caption: Servidor Web en 192.168.1.1 expuesto a Internet
+[[file:media/nat-abrir-puerto-80.svg]]
+
+** ¿Qué puertos exponer?
+- Cada protocolo tiene un puerto asignado (aunque algunos pueden cambiarse)
+- Hay que referirse a la documentación de cada servicio (o a [[https://www.lifewire.com/what-is-etc-services-2196940][=/etc/services=]] )
+
+| Protocolo | Puerto(s) |
+|-----------+-----------|
+| SSH       |        22 |
+| HTTP      |        80 |
+| HTTPS     |       443 |
+| SMTP      |        25 |
+| POP3      |       110 |
+| IMAP      |       143 |
+| FTP       |    20, 21 |
+| VNC       |      5900 |
+| RDP       |      3389 |
+| DNS       |        53 |
+
+* Ejemplo NAT: ICS de Windows
+- /Internet Connection Sharing/ permite compartir una conexión Internet entre muchos ordenadores
+- Un equipo tiene una conexión a Internet (por ejemplo, LAN), y la comparte mediante una conexión (por ejemplo, Wifi)
+- Habilita el enrutamiento, y en la conexión Wifi instala
+  - Un servidor DHCP
+  - Un servidor NAT
+  - Un servidor DNS
+
+[[file:media/ics.png]]
+
+* Ejemplo NAT: TPLink
+- Usaremos un emulador de TPLink: [[https://www.tp-link.com/es/support/emulator/][https://www.tp-link.com/es/support/emulator/]]
+- No funcionan correctamente, pero sirve para hacerse una idea de las opciones
+
+* DMZ
+- La /zona desmilitarizada/ la componen los hosts que una empresa expone a Internet
+- Puede configurarse de varias maneras
+
+** DMZ expuesta
+[[file:./media/dmz-expuesta.jpg]]
+
+** DMZ Host
+[[file:./media/dmz-host.jpg]]
+
+** DMZ doble firewall
+[[file:./media/dmz-doble-firewall.jpg]]
+
+
+* Curso Redes empresariales, Seguridad y Automatización v7.02
+https://lms.netacad.com/course/view.php?id=1866459
+- Test: https://contenthub.netacad.com/ensa-dl/6.1.5
+- Packet Tracer: https://contenthub.netacad.com/ensa-dl/6.2.7
+- Test: ventajas y desventajas de NAT https://contenthub.netacad.com/ensa-dl/6.3.3
+- Packet Tracer: configurar NAT estática https://contenthub.netacad.com/ensa-dl/6.4.5
+- Packet Tracer: configurar NAT dinámica https://contenthub.netacad.com/ensa-dl/6.5.6
+- Packet Tracer: configurar PAT https://contenthub.netacad.com/ensa-dl/6.6.7
+- Packet Tracer: configurar NAT para ipv4 https://contenthub.netacad.com/ensa-dl/6.8.1   
+- Test: https://contenthub.netacad.com/ensa-dl/6.8.4
+  
+
+* Referencias
+#+INCLUDE: "../../../common/footer.org"

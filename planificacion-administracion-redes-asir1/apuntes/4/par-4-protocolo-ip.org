@@ -1,0 +1,421 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Protocolo IP
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+* Introducción
+- En Internet, el protocolo IP corresponde con el nivel de red de ISO/OSI
+- No tiene todas sus características:
+  - IP no tiene control de la congestión
+  - No es orientado a conexión ni confiable
+- Existen dos versiones
+  - IPv6: Reemplazará a IPv4 a medio plazo
+  - IPv4: La más usada actualmente, es la estudiada aquí
+
+* Protocolo IP
+[[file:media/protocolos-tcp-ip.png]]
+
+** Protocolo IP
+- Internet Protocol (RFC 791)
+- Es un protocolo de la capa 3 (red) del modelo OSI
+- Entre sus funciones se encuentran:
+  - Dividir paquetes grandes en paquetes más pequeños
+  - Encontrar la ruta necesaria para enviar un paquete individual
+  - Determinar si un paquete recibido es correcto
+
+** Estructura paquete IP
+
+[[file:media/cabecera-ip.png]]
+[[https://en.wikipedia.org/wiki/IPv4#Packet_structure][Estructura en la wikipedia]]
+
+** Longitud de la cabecera
+- IP no tiene un tamaño de cabecera fijo
+- Algunas opciones del protocolo añaden palabras de 32 bits
+- Por eso se necesita saber dónde empiezan los datos en cada paquete
+
+** Código de redundancia
+- El /checksum/ se calcula como la suma (sin acarreo) de todas las palabras de 16 bits de la cabecera
+  - Excepto el propio /checksum/
+- Sirve para detectar errores de transmisión
+- Es adicional al que pueda tener la capa de transporte
+
+** Identificación del paquete y /fragment offset/
+- Todos los paquetes IP tienen un identificador único: /identification/ y /fragment offset/
+- Originalmente, un paquete se manda en un solo fragmento
+  - Con /fragment offset/ a =0=
+- Si se necesita dividir (MTU del nivel de enlace insuficiente)
+  - Se parte en varios fragmentos
+  - Cada uno de ellos indica el lugar de su primer byte de datos
+- Cada fragmento puede volverse a dividir
+- En el destino, se espera a que lleguen todos los fragmentos antes de enviarlo al protocolo de nivel superior
+
+** /Flags/
+- El primero es para usos futuros.
+- El segundo indica si este datagrama se puede fragmentar.
+- El tercero dice si hay más fragmentos o es el último.
+- El flag DF (/dont fragment/) indica a los routers que no fragmenten el paquete si sobrepasa la MTU (descarta el paquete)
+** TTL (tiempo de vida)
+- El enrutamiento IP puede tener problemas
+  - Es posible que haya bucles en las rutas que hagan que un paquete de vueltas /por siempre/
+- Para evitarlo, el paquete se descarta pasado un tiempo en segundos (originalmente)
+  - Actualmente, el tiempo de vida se mide en saltos
+- Generalmente, los paquetes se envían con TTL suficiente para atravesar Internet (64 o 255)
+
+---
+Intenta hacer =ping= a Google con un TTL de 10. ¿es suficiente? ¿y con 20?
+
+** Protocolo de nivel superior
+- Indica qué protocolo está encapsulado en los datos
+  - [[https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers][Lista de protocolos en la wikipedia]]
+
+|   | Identificador | Protocolo                           |                                        |
+|---+---------------+-------------------------------------+----------------------------------------|
+| / |             > | <                                   |                                        |
+|   |          0x01 | ICMP                                | Internet Control Message Protocol      |
+|   |          0x02 | IGMP                                | Internet Group Management Protocol     |
+|   |          0x06 | TCP                                 | Transmission Control Protocol          |
+|   |          0x11 | UDP                                 | User Datagram Protocol                 |
+|   |          0x29 | IPv6                                | IPv6 Encapsulation                     |
+|   |          0x59 | OSPF                                | Open Shortest Path First               |
+|   |          0x73 | L2TP                                | Layer Two Tunneling Protocol Version 3 |
+|   |          0x85 | FC                                  | Fibre Channel                          |
+|   |     0x8F-0xFC | UNASSIGNED                          |                                        |
+|   |     0xFD-0xFE | Use for experimentation and testing | RFC 3692                               |
+|   |          0xFF | Reserved for extra.                 |                                        |
+
+** Dirección de origen y destino
+- Son números de 32 bits
+- Indican la dirección de origen y destino de IP
+- Pueden no coincidir con la dirección de origen /real/
+  - Por ejemplo, en los saltos intermedios
+  - En esos casos, el origen y destino /en ese momento/ no son los indicados en la cabecera
+
+* Direcciones IP
+- Una dirección IP consta de 32 bits
+- Por convenio, se representa como 4 números decimales, uno por cada byte
+
+| ~192.168.1.1~                      |
+| ~11000000101010000000000100000001~ |
+
+** Direcciones IP ¿qué identifican?
+- Las direcciones no se asignan por host.
+- Se asignan a interfaces del host
+  - Un equipo con dos enlaces a la red tendrá dos direcciones IP
+  - Los enlaces a la red pueden ser a la misma red o a redes distintas
+- También un mismo interfaz puede tener más de una IP
+
+[[file:media/host-con-dos-ips.png]]
+
+** Red y Host
+- Las direcciones IP se asignan al montar la red, no como las MAC
+   -  Las direcciones MAC se asignan por el fabricante de la tarjeta, quedando distribuidas casi aleatoriamente
+   -  Las direcciones IP se estructuran de una forma jerárquica
+- La dirección IP contiene dos partes
+   -  Una parte identifica a la red
+   -  Otra parte identifica al host/enlace dentro de la red
+| 192.168.1.1 | Parte de red | Host |
+|             |    192.168.1 |    1 |
+|             |      192.168 |  1.1 |
+
+* Clases IP
+- En las primeras versiones de IP había unas normas fijas para definir qué parte de la dirección era host y qué parte red
+- Los primeros bits de la dirección definen la clase a la que pertenece
+
+[[file:media/clases-ip.png]]
+
+** Ejercicio de clases IP
+- Ejemplo: 
+  - ~192.168.1.1~ 
+  - En binario: ~11000000101010000000000100000001~ 
+  - Clase C
+
+- ¿De qué clases son las siguientes direcciones IP?
+  - ~192.168.20.1~
+  - ~127.0.0.1~
+  - ~169.254.12.9~
+  - ~241.82.9.9~
+  - ~216.239.59.147~
+  - ~85.112.7.243~
+  - ~199.16.156.198~
+
+** Parte de red y host
+- La clase define qué bits de la dirección son parte de la red y qué parte es del host
+- Ejemplo: La clase C tiene 24 bits para la red y 8 para el host
+
+| 192.168.1.1 | Parte de red | Host |
+|-------------+--------------+------|
+|             |    ~192.168.1~ |    1 |
+
+** Ejercicio de parte de red y host
+- ¿Cuáles son las direcciones de red y de host de las siguientes direcciones IP?
+   - ~192.168.20.1~
+   - ~127.0.0.1~
+   - ~169.254.12.9~
+   - ~241.82.9.9~
+   - ~216.239.59.147~ 
+   - ~85.112.7.243~ 
+   - ~199.16.156.198~
+
+** Dirección de red
+- La red IP tiene una dirección propia
+  - No puede ser utilizada por un host dentro de la red
+  - La dirección de la red tiene la parte del host a ceros.
+
+| 192.168.1.1 | Parte de red | Dirección de red | Host |
+|-------------+--------------+------------------+------|
+|             |    ~192.168.1~ |      ~192.168.1.0~ |    1 |
+
+
+** Dirección de host
+- El host tiene una dirección propia dentro de la red
+  - Con ceros en la parte de la red
+  - No puede haber una red con todos sus bits a cero
+
+| 192.168.1.1 | Parte de red | Dirección de red | Host | Dirección de Host |
+|-------------+--------------+------------------+------+-------------------|
+|             |    192.168.1 |      192.168.1.0 |    1 |           0.0.0.1 |
+
+** Resumen de direcciones de red y host
+
+
+| Bits de red | Bits de host | Significado                              |
+|-------------+--------------+------------------------------------------|
+|           0 |            0 | El propio host ~*~                       |
+|           0 |         host | Host indicado dentro de mi red ~*~       |
+|         red |            0 | Dirección de la red                      |
+|           1 |            1 | Difusión a mi red ~*~                    |
+|         red |            1 | Difusión a la red indicada (/broadcast/) |
+
+~*~ En desuso
+
+
+** Ejercicio de clases IP
+| Clase de red | Número de redes | Número de hosts por red |
+|--------------+-----------------+-------------------------|
+| A            |                 |                         |
+| B            |                 |                         |
+| C            |                 |                         |
+
+
+** ¿Para qué sirve la red y el host?
+- Cuando un host va a enviar un paquete
+  - Decide si el destino está en su misma red
+  - Si está en su misma red, se encarga la capa de enlace (posiblemente con ARP)
+  - Si no está en su red, envía el paquete al router
+  - Y el router está en su misma red
+
+
+** Problemas de las clases IP
+- En un principio, IP tenía suficientes direcciones y redes para todo el mundo
+- La creciente demanda de direcciones IP supuso problemas
+   -  Ejemplo: Una empresa con 3000 hosts debe reservar una red de clase B, con más de 65000 direcciones (muchas direcciones desperdiciadas)
+   -  Si reserva más de una red de clase C (unas 12), hay que configurar muchas redes en los routers intermedios.
+- Últimamente (desde 1985) las direcciones IP ya no se dividen en clases, utilizándose CIDR (/Classless Internet Domain Routing/)
+
+* CIDR
+- /Classles Internet Domain Routing/
+- La dirección IP ya no da información acerca de los bits reservados para red y para host
+- Las redes se identifican por la dirección de la red y el número de bits destinado a la misma
+   - ~172.16.0.0/12~
+   - ~198.18.0.0/15~
+
+** Máscara de red
+- Con CIDR las parte de la dirección red y host se calcula mediante las máscaras de red
+- La máscara de red es un número binario:
+   - Tantos 1’s como el tamaño de la red CIDR
+   - Los 0’s necesarios para completar hasta los 32 bits
+- Las máscaras de red también se expresan como 4 números decimales separados por puntos.
+
+** Ejercicio
+- ¿Qué máscaras de red tienen las siguientes redes?
+   - ~172.16.0.0/12~
+   - ~198.18.0.0/15~
+   - ~198.18.0.0/30~
+   - ~192.168.255.0/24~
+   - ~172.31.0.0/16~
+
+** Dirección de red
+- Con CIDR, la dirección de red sigue siendo la que tiene todos los bits del host a 0, y la de broadcast a 1.
+- Sin embargo, ya no es tan fácil como con clases
+   - Los bits de la red no son múltiplos de 8
+- Se utiliza una máscara de red, realizando la operación ~AND~ con la dirección IP para encontrar la dirección de red
+
+
+#+reveal: split
+- Ejemplo
+   - La dirección IP es ~192.168.20.100/26~
+   - La máscara de red son 26 1’s \to ~255.255.255.192~
+   - La dirección pertenece a la red
+   #+begin_example
+       255.255.255.192
+   AND 192.168.020.100
+   -------------------
+       192.168.020.064
+   #+end_example
+  - La red a la que pertenece es ~192.168.20.64/26~
+
+** Ejercicio
+- ¿A qué red pertenecen las siguientes direcciones IP?
+   - ~172.46.25.1/12~
+   - ~198.30.18.18/15~
+   - ~198.30.18.18/30~
+   - ~192.168.255.253/24~
+   - ~172.37.10.255/16~
+
+
+** /Subnetting/ y /supernetting/
+- Utilizando máscaras de red pueden saltarse los límites de las clases IP
+   - Una red grande puede dividirse en varias redes pequeñas (/subnetting/)
+   - Varias redes pequeñas pueden reunirse en una red más grande (/supernetting/)
+
+** Subnetting
+- Consiste en crear subredes pequeñas dentro de una red de clase A, B o C
+- Ejemplo
+   -  Conseguir 4 redes a partir de una red clase C
+   - Hay que aumentar la máscara de red 2 bits (4 posibilidades)
+#+reveal: split
+|                | Redes               | Primer host      | Último host      | Broadcast        |
+|----------------+---------------------+------------------+------------------+------------------|
+| Red original   | ~192.168.20.0/24~   | ~192.168.20.1~   | ~192.168.20.254~ | ~192.168.20.255~ |
+|----------------+---------------------+------------------+------------------+------------------|
+|                |                     |                  |                  |                  |
+|----------------+---------------------+------------------+------------------+------------------|
+| Primera subred | ~192.168.20.0/26~   | ~192.168.20.1~   | ~192.168.20.62~  | ~192.168.20.63~  |
+| Segunda subred | ~192.168.20.64/26~  | ~192.168.20.65~  | ~192.168.20.126~ | ~192.168.20.127~ |
+| Tercera subred | ~192.168.20.128/26~ | ~192.168.20.129~ | ~192.168.20.190~ | ~192.168.20.191~ |
+| Cuarta subred  | ~192.168.20.192/26~ | ~192.168.20.193~ | ~192.168.20.254~ | ~192.168.20.255~ |
+
+http://www.aprendaredes.com/cgi-bin/ipcalc/ipcalc_cgi
+[[https://arcadio.gq/calculadora-subredes-vlsm.html][https://arcadio.gq/calculadora-subredes-vlsm.html]]
+
+** Supernetting
+- A partir de varias redes pequeñas (generalmente clase C), conseguir una más grande
+- Ejemplo
+   - Conseguir una red con más de 1000 hosts a partir de redes clase C
+1. Tenemos las 32 redes ~192.168.0.0~ a la ~192.168.31.0~
+2. Reducimos la máscara en 5 bits \to ~192.168.0.0/19~
+| Red              | Primer host   | Último host      | Broadcast        | Máscara           |
+|------------------+---------------+------------------+------------------+-------------------|
+| ~192.168.0.0/19~ | ~192.168.0.1~ | ~192.168.31.254~ | ~192.168.31.255~ | ~255.255.255.224~ |
+
+
+* Ejercicios
+
+** Tabla de redes IP
+| IP del host     | Máscara           | Bits máscara | subred          | broadcast       | Nº hosts |
+|-----------------+-------------------+--------------+-----------------+-----------------+----------|
+| ~192.168.1.130~ |                   |              | ~192.168.1.128~ | ~192.168.1.255~ |          |
+| ~200.1.17.15~   |                   |              | ~200.1.17.0~    | ~200.1.17.255~  |          |
+| ~133.32.4.161~  |                   |              |                 |                 |       30 |
+| ~200.9.41.23~   | ~255.255.255.192~ |              |                 |                 |          |
+| ~132.4.60.99~   | ~255.255.0.0~     |              |                 |                 |          |
+| ~222.43.15.41~  |                   |              | ~222.43.15.0~   | ~222.43.15.255~ |          |
+
+
+
+** Tabla de redes IP
+| Subred           | Máscara         | Primer host   | Último host | broadcast     | Nº hosts |
+|------------------+-----------------+---------------+-------------+---------------+----------|
+| ~192.168.1.0/24~ |                 |               |             |               |          |
+|                  | ~255.255.192.0~ | ~1.2.128.1~   |             |               |          |
+|                  |                 | ~172.182.4.1~ |             |               |      510 |
+|                  |                 |               |             | ~98.34.7.255~ |     1022 |
+
+** Subnetting
+Una organización tiene 5 departamentos independientes. En cada uno de ellos se van a instalar 3000 hosts.  Si todas las máquinas disponen de una direccion IP única en internet:
+- ¿Qué clase deberá solicitar el administrador de la empresa?.
+- Establece la máscara necesaria para que la organización subdivida la red en redes a razón de una subred por cada departamento.
+- Indica las direcciones de subred, broadcast y rangos de direcciones IP de los host para cada departamento.
+- Se debe desaprovechar el mínimo número de direcciones IP (ajustar el tamaño de red al tamaño del departamento)
+- Las redes libres, si las hay, deben quedar lo más compactas posible
+
+** Subnetting
+Una organización tiene asignada la red 192.168.2.0/24 y desea agrupar a su personal en grupos de trabajo de 140 empleados. El conjunto de trabajadores de cada grupo, comparte una subred diferente a la de los otros grupos.
+- ¿Cuántos grupos de trabajo se pueden hacer?.
+- Establece la máscara necesaria para que la organización subdivida la red en redes a razón de una subred por cada grupo.
+- Indica las direcciones de subred, broadcast y rangos de direcciones IP de los host para cada departamento.
+- Las redes libres, si las hay, deben quedar lo más compactas posible
+
+------
+El ejercicio se puede repetir con 
+- Grupos de 60 empleados
+- Un grupo de 60 empleados y 3 de 22 empleados
+
+** Subnetting
+Una empresa recibe la dirección 132.33.0.0/17   para su red. Asigna a cada uno de los siete departamentos una subred, teniendo en cuenta el número de ordenadores de cada uno:
+- A: 8000 ordenadores
+- B: 2047 ordenadores
+- C,D: 1020 ordenadores
+- E,F: 4000 ordenadores
+- G: 500 ordenadores
+Las redes libres, si las hay, deben quedar lo más compactas posible
+
+
+* Redes reservadas
+- IANA, por medio de RFC’s, ha reservado varias redes para usos concretos. Algunos ejemplos son:
+| Red              | Uso                                                                                 |
+|------------------+-------------------------------------------------------------------------------------|
+| ~127.0.0.0/8~    | "loopback", utilizado para enviar paquetes IP al propio host                        |
+| ~10.0.0.0/8~     | Red privada (RFC 1918)                                                              |
+| ~172.16.0.0/12~  | Red privada (RFC 1918)                                                              |
+| ~192.168.0.0/16~ | Red privada (RFC 1918)                                                              |
+| ~169.254.0.0/16~ | /Link Local/ o /APIPA/. Direcciones automáticas en redes pequeñas sin servidor DHCP |
+- Más ejemplos en la [[https://en.wikipedia.org/wiki/Reserved_IP_addresses][Wikipedia]]
+
+** ¿Qué es una red privada?
+- Una red privada ([[https://www.rfc-editor.org/rfc/rfc1918.html][RFC 1918]]) son direciones inválidas en Internet
+  - Un router de Internet descarta todos los paquetes con origen o destino en redes privadas
+- Sirven para crear redes con IP que no forman parte de Internet
+  - Internas a organizaciones: Empresas, universidades, institutos...
+- Objetivos:
+  - No es posible /ocultar/ direcciones de Internet: Ningún ordenador interno tendrá la dirección ~8.8.8.8~
+  - Ahorro de direcciones IP
+  - Siguen teniendo acceso /limitado/ a Internet: [[https://en.wikipedia.org/wiki/Network_address_translation][NAT]] (se verá en otro tema)
+  
+
+** CIDR: Redes reservadas :noexport:
+- En el estándar CIDR se reserva la primera y última red de cada partición
+   - Por ejemplo, al dividir la red de clase C ~192.168.20.0/24~ en 4 redes (pasando a máscara ~/26~), las redes ~192.168.20.0/26~ y ~192.168.20.192/26~ quedan reservadas
+   - La mayoría de routers e implementaciones de IP pueden trabajar con ellas, pero es mejor no utilizarlas para no tener problemas con equipos antiguos.
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+* PRUEBAS :noexport:
+
+
+#+begin_src plantuml :file kk1.png
+frame "192.168.1.0/24\n\n\n\n\n\n\n\n\n\n\n\n192.168.1.255"
+#+end_src
+
+#+RESULTS:
+[[file:kk1.png]]
+
+#+begin_src plantuml :file kk2.png
+frame "192.168.1.0/24"{
+  frame "192.168.1.0/25\n\n\n\n192.168.1.127"
+  frame "192.168.1.128/25\n\n\n\n192.168.1.255"
+  rectangle "Hola"
+}
+#+end_src
+
+#+RESULTS:
+[[file:kk2.png]]
+
+#+begin_src plantuml :file kk3.png
+!function $recurse($count)
+frame $count
+!if $count > 0
+$recurse($count)
+!endif
+!endfunction
+
+frame "192.168.1.0/24"{
+  frame "192.168.1.0/25\n\n\n\n192.168.1.127"
+  frame "192.168.1.128/25\n\n\n\n192.168.1.255"
+  rectangle "Hola"
+}
+#+end_src
+
+#+RESULTS:
+[[file:kk3.png]]

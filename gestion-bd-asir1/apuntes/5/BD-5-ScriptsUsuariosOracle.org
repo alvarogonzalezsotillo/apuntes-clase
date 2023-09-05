@@ -1,0 +1,55 @@
+* Creación de usuario
+#+begin_src sql
+create user agonzalez identified by agonzalez default tablespace users;
+#+end_src
+
+
+* Otorgar privilegios
+#+begin_src sql
+grant connect to agonzalez
+grant create table to agonzalez
+grant select on alumno.student to agonzalez
+grant update(first_name) on alumno.student to agonzalez
+#+end_src
+
+
+* Crear roles
+#+begin_src sql
+create role manejadordezips;
+grant select, update, delete on alumno.zipcode to manejadordezips
+#+end_src
+
+
+* Otorgar roles 
+#+begin_src sql
+grant manejadordezips to agonzalez
+#+end_src
+
+
+* Roles del usuario actual
+#+begin_src sql
+SELECT * 
+FROM user_role_privs;
+#+end_src
+
+
+* Permisos asignados a cada rol del usuario actual
+#+begin_src sql
+SELECT *
+FROM role_sys_privs;
+#+end_src
+
+
+* Quitar roles y permisos
+#+begin_src sql
+revoke manejadordezips from agonzalez
+#+end_src
+
+* Aumentar el número de conexiones
+http://www.eddgrant.com/blog/2010/01/20/increasing-the-number-of-processes-in-oracle-xe.html
+#+begin_src sql
+show parameter session
+alter system set sessions=300 scope=spfile;
+alter system set processes=300 scope=spfile;
+shutdown immediate
+#+end_src

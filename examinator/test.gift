@@ -1,0 +1,375 @@
+Un servidor HTTP 1º 1ª
+{
+  ~Da acceso a documentos HTML, exclusivamente.
+  ~Da acceso a directorios compartidos, como un NAS
+  =Da acceso a documentos CSS y ficheros de JavaScript, entre otros.
+  ~Es un servidor especializado para grandes empresas
+}
+
+En HTML, ¿qué son A, LI, UL, TR?
+{
+  ~Atributos
+  =Tags
+  ~Valores
+  ~Una mezcla de tags, atributos y/o valores
+}
+
+En HTML, ¿qué son #ffabcd, BGCOLOR, IMG?
+{
+  ~Tags
+  =Una mezcla de tags, atributos y/o valores
+  ~Atributos
+  ~Valores
+}
+
+En HTML, ¿qué son HREF, BGCOLOR, FACE?
+{
+  ~Tags
+  ~Una mezcla de tags, atributos y/o valores
+  =Atributos
+  ~Valores
+}
+
+En HTML, ¿qué son BODY, LI, TD?
+{
+  ~Atributos
+  =Tags
+  ~Valores
+  ~Una mezcla de tags, atributos y/o valores
+}
+
+¿Cuál es el HTML correcto?
+{
+  ~</b></i>Texto importante <b><i>
+  =<b><i>Texto importante </i></b>
+  ~<b><i>Texto importante <b><i>
+  ~<b><i>Texto importante <b/><i/>
+}
+
+¿Cuál es el HTML correcto?
+{
+  ~<a src="paginhtml" text="una p&aacute;gina">
+  ~<a href="paginhtml" text="una pagina">
+  =<a href="paginhtml">una p&aacute;gina</a>
+  ~<a src="paginhtml">una pagina</a>
+}
+
+El comienzo de una tabla HTML de 3x3 es
+{
+  =<table border="9" width="30%"> ......
+  ~<table rows="3" columns="3"> ......
+  ~<table columnwidth="3" rowheight="3"> ......
+  ~<table size="9" border="9"> .....
+}
+
+El siguiente color HTML es el azul más intenso posible
+{
+  =#0000ff
+  ~#ffff00
+  ~#ff00ff
+  ~#00ff00
+}
+
+¿Cuál de estos códigos es Javascript, exclusivamente?
+{
+  ~<script type=”vbscript”></script>
+  ~<? php echo( ‘hola mundo’ ) ?>
+  ~<body onload=”acabado( )”>
+  =document.writeln( ‘hola mundo’ )
+}
+
+En un CSS pondremos solamente una de las siguientes reglas. ¿Cuál de estas reglas asegura que el fondo de los párrafos (<p>) es rojo?
+{
+  ~P{ color: red }
+  ~P{ background-color: #0000ff }
+  =P{ background-color: #ff0000 }
+  ~#P{ background-color: red }
+}
+
+En CSS es posible…
+{
+  =Definir la apariencia de todos los tags de un tipo, pero pudiendo definir también todas las excepciones que sean necesarias.
+  ~Definir la apariencia de todos los tags de un tipo, sin excepciones entre cada aparición de ese tag
+  ~Definir la apariencia de todos los tags de un tipo, con una sola excepción para una aparición de ese tag
+  ~Definir la apariencia de cada elemento del documento HTML, por separado. No es posible definir la apariencia común que tienen todas las apariciones de un TAG
+}
+
+La siguiente regla CSS modifica el elemento html <A href="hola" class="uno" id="dos">
+{
+  =uno{ color: red }
+  ~#uno{ color: red }
+  ~dos{ color: red }
+  ~#dos{ color: red }
+}
+
+¿Cuál de estas reglas hace que los enlaces tengan una letra gran tamaño?
+{
+  =A { font-size: 50px }
+  ~LINK{ font-size: 50px }
+  ~A { font : 5px }
+  ~LINK{ font-size: 5px }
+}
+
+Son servidores http los siguientes productos
+{
+	~MySQL y PHP
+	=Apache
+	~LAMP
+	~MySQL y Microsoft SQL Server
+}
+
+El código <?php echo( ‘<script>document.write( Date() )</script>’) ?> es equivalente 
+{
+  =Escribir en la página la hora del navegador cliente
+  ~Escribir en la página la hora del servidor
+  ~En la página , el usuario visualiza Date()
+  ~En la página HTML, el usuario visualiza <script>document.write( Date() )</script>
+}
+ 
+El código <?php echo( ‘<script>document.write( "Date()" )</script>’) ?> es equivalente 
+{
+  ~Escribir en la página la hora del navegador cliente
+  ~Escribir en la página la hora del servidor
+  =En la página HTML, el usuario visualiza Date()
+  ~En la página HTML, el usuario visualiza <script>document.write( Date() )</script>
+}
+
+El comienzo de una tabla HTML de 3 filas por 9 columnas es
+{
+  ~<table rows="3" columns="9"> ......
+  ~<table size="9" height="3"> ......
+	=<table border="9" width="30%"> ......
+	~<table size="9" border="9"> .....
+}
+
+Son servidores de base de datos
+{
+	~LAMP
+	~MySQL y PHP
+	~Apache
+	=MySQL y Microsoft SQL Server
+}
+
+PHP se ejecuta
+{
+	=En el lado servidor
+	~En el lado cliente y en el lado servidor
+	~En el lado cliente
+	~Preferentemente en el servidor, o en el lado cliente si es un cluster.
+}
+
+Las reglas CSS y los ficheros JavaScript
+{
+	~El CSS se puede mezclar con el HTML, pero el JavaScript debe estar en un fichero aparte
+	~Están mezclados con el código HTML
+	=Ambos se pueden mezclar con HTML o estar aparte.
+	~El JavaScript se puede mezclar con el HTML, pero el CSS debe estar en un fichero aparte
+}
+
+No es propio de la Web 1.0
+{
+	~Páginas HTML estáticas, no generadas a partir de un script en el lado servidor.
+	~El correo electrónico
+	~Los servidores HTTP
+	=Las redes sociales
+}
+
+No es propio de la Web 2.0, y sí de la Web 1.0
+{
+	=Páginas HTML estáticas
+	~Las redes sociales
+	~Los servidores HTTP
+	~Las fuentes RSS
+}
+
+Para conocer las novedades de varios sitios web de una forma cómoda se puede usar...
+{
+	~XML o AJAX
+	~Blogs
+	~Ficheros CSS
+	=Agregador de noticas RSS
+}
+
+Un sitio web donde uno o varios autores publican artículos, y el resto de usuarios pueden consultar dichos artículos, pero no cambiar su contenido, es...
+{
+	=Un blog
+	~Una wiki
+	~Un blog o una Wiki
+	~Una red social o una wiki
+}
+
+Un sitio web donde uno o varios autores colaboran en la creación de artículos, de forma que todos pueden modificar lo escrito por cualquiera, es
+{
+	~Un blog
+	~Una red social o una wiki
+	=Una wiki
+	~Un blog o un foro
+}
+
+Actualmente, los sitios web que ofrecen herramientas ofimáticas aventajan a los programas de escritorio tradicionales (MS Office) en que
+{
+	~Los ficheros creados tienen mucha más confidencialidad
+	~Los ficheros creados pueden tener un tamaño mayor
+	=Los ficheros creados pueden compartirse muy fácil y rápidamente con otros usuarios
+	~Ofrecen más funcionalidad (más tipos de letra, más efectos de formato,…)
+}
+
+No son servidores web
+{
+	=Ni MySQL ni PHP
+	~Ni Apache ni Linux
+	~Ni IIS ni ASP
+	~Ni IIS ni Apache
+}
+
+En una instalación estándar de Apache (como la de clase) en un servidor de nombre a215-03, el fichero /var/www/d/f.txt puede accederse como
+{
+	~http://a215-03/f.txt
+	=http://d/f.txt
+	~http://var/www/d/f.txt
+	~http://a215-03/d/f.txt
+}
+
+En una instalación estándar de Apache (como la de clase), un fichero accesible en la URL http://servidor.com/var/www.txt se encuentra en
+{
+	~/var/www.txt
+	=/var/www/var/www.txt
+	~/www.txt
+	~/var/www/www.txt
+}
+
+Son lenguajes Script en el lado servidor
+{
+	~PHP y XML
+	~PHP y AJAX
+	~Java y Javascript
+	=ASP y JSP (Java Server Pages)
+}
+
+Las fuentes RSS
+{
+	~Sirven para conocer los cambios que se producen en los agregadores de noticias.
+	~Sirven para conocer los cambios que se producen en una Wiki, exclusivamente.
+	~Sirven para conocer los cambios que se producen en un blog, exclusivamente.
+	=Sirven para conocer los cambios que se producen en cualquier tipo de sitio web
+}
+
+MyPHPAdmin
+{
+	~Es una web dinámica que se utiliza para crear scripts PHP
+	~Es un programa escrito en SQL para manejar el servidor con PHP
+	=Es un programa escrito en PHP para manejar el componente MySQL
+	~Es una base de datos que se utiliza para crear web dinámicas
+}
+
+¿Qué es lo que NO aporta un gestor de contenidos?
+{
+	~Se consigue un sitio web funcional con mayor rapidez
+	~El sitio web se beneficia de futuras extensiones de funcionalidad
+	=Se consigue un sitio web que no necesita una base de datos para funcionar
+	~El sitio web se beneficia de futuros parches de seguridad
+}
+
+
+¿Qué tecnología es imprescindible para crear un sitio Web 2.0, según lo visto en clase?
+{
+	~Páginas HTML estáticas
+	~Servidor de vídeo
+	=Lenguajes de script en el lado servidor (sitio web)
+	~Lenguajes de script en el lado cliente (navegador)
+}
+¿Qué es lo que no se puede instalar directamente en Windows?
+{
+	~Apache con PHP
+	=Un sistema LAMP
+	~PHP
+	~Un servidor IIS
+}
+
+Una licencia OpenSource
+{
+	~Es obligatoriamente gratis
+	=Puede ser libre
+	~Es obligatoriamente libre
+	~Puede no entregar el código fuente
+} 
+
+Todas las licencias gratuitas cumplen que
+{
+	~Dan derecho a utilizarlo para cualquier fin, tanto personal como de negocios
+	=Permiten cierto uso del sofware sin pagar por él
+	~Dan derecho a cualquiera a distribuir copias
+	~Permiten cobrar por las copias distribuidas
+}
+
+El mejor producto para montar una tienda online es
+{
+	=OsCommerce
+	~OsCommerce o MediaWiki, indistintamente
+	~Joomla o Drupal
+	~Joomla o WordPress, indistintatemente
+}
+	
+El mejor producto para montar una web en la que se crean páginas de cualquier tema de forma colaborativa es
+{
+	~Wikipedia
+	=MediaWiki
+	~Microsoft Frontpage
+	~Adobe Dreamweaver
+}
+
+El usuario con menos permisos que puede publicar un artículo en Wordpress es
+{
+	~Editor
+	~Administrador
+	~Colaborador
+	=Autor
+}
+
+Un tema de Wordpress es
+{
+  ~Imágenes y colores definidos en el gestor multimedia
+  =Varios ficheros CSS, PHP, HTML e imágenes
+	~Uno o varios menús definidos en el backend
+	~Una opción en la instalación de Wordpress
+}
+
+El usuario con menos permisos que puede modificar un artículo de otro usuario en Wordpress es
+{
+	=Editor
+	~Administrador
+	~Colaborador
+	~Autor
+}
+
+Cuando se sube una imagen a Wordpress para realizar un artículo, dicha imagen se almacena
+{
+	~En un servidor Wordpress externo
+	=En el disco duro, en un subdirectorio de la instalación de Wordpress
+	~Embebida en un fichero HTML del servidor Wordpress
+	~En la base de datos MySQL
+}
+
+En Wordpress
+{
+  =Las categorias pueden contener subcategorías
+  ~Las etiquetas pueden contener subetiquetas
+  ~Las categorías pueden contener etiquetas
+  ~Las etiquetas pueden contener categorías
+}
+
+Los siguientes productos necesitan PHP para poder instalarse:
+{
+	=MyPhpAdmin y Drupal
+	~OsCommerce y IIS
+	~Moodle y AJAX
+	~ASP y MediaWiki
+}
+
+El usuario con menos permisos que puede escribir un artículo en Wordpress es
+{
+	~Editor
+	~Administrador
+	=Colaborador
+	~Autor
+}

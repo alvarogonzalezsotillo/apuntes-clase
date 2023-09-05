@@ -1,0 +1,411 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Listas de control de acceso en routers CISCO
+#+KEYWORDS: CISCO, IOS, ACL
+
+
+
+
+* LISTAS DE CONTROL DE ACCESO
++ Las ACL son listas con reglas.
+  - Cada regla define una condición que puede cumplir un paquete
+  - Cada regla define una acción (=permit=, =deny=) a ejecutar sobre el paquete que cumpla su condición
+  - Siempre hay una regla al final que desecha cualquier paquete
+
+
+** Numeración
+
++ Se identifican por un número
+  - Estándar: 
+    - =1= a =99=
+    - =1300= a =1999=
+  - Ampliadas: 
+    - =100= a =199=
+    - =2000= a =2699=
++ En versiones recientes de IOS (11.2) se pueden usar también nombres de ACL      
++ Una interfaz puede tener una ACL asociada en cada sentido
+  - Entrada de paquetes (Inbound)
+  - Salida de paquetes (Outbound)
+
+* PROCESAMIENTO DE ACL
+  + Al llegar un paquete
+    1. Si la interfaz no tiene ACL de entrada, se acepta
+    2. Si tiene ACL, se revisan las reglas de la lista
+       1. Se comprueban en orden
+       2. Si alguna deniega el paquete, se rechaza
+       3. Si alguna acepta el paquete, se acepta
+       4. Si ninguna se aplica al paquete, se rechaza
+
+#+REVEAL: split
+  + Antes de enviar un paquete      
+    1. Si la interfaz no tiene ACL de salida, se envía
+    2. Si tiene ACL, se revisan las reglas de la lista
+       1. Se comprueban en orden
+       2. Si alguna deniega el paquete, se desecha
+       3. Si alguna acepta el paquete, se envía
+       4. Si ninguna se aplica al paquete, se desecha
+
+	
+
+
+  #+REVEAL: split
+  #+attr_latex: :width 4in :placement [H]
+  #+attr_org: :width 400
+  [[file:./media/proceso-acl.svg]]
+  
+* COMANDOS ÚTILES
+
+  - Una vez creada una ACL (más adelante) es necesario
+    - Asignar y desasignar ACL a interfaces
+    - Borrar y consultar ACL creadas
+
+** Borrar una ACL
+   #+BEGIN_SRC sh
+   no access-list <numero>
+   #+END_SRC
+** Mostrar las ACL existentes
+   #+BEGIN_SRC sh
+   show ip access-list
+   #+END_SRC
+   #+BEGIN_SRC sh
+   show access-lists
+   #+END_SRC
+** ACL asociadas a una interfaz
+   #+BEGIN_SRC sh
+   show ip interface <interfaz>
+   #+END_SRC
+   Es necesario mirar el apartado Inbound y Outbound 
+** Asociar una ACL a una interfaz
+   #+BEGIN_SRC sh
+   interface <interfaz>
+   ip access-group <numero ACL> <out o in>
+   #+END_SRC
+** Eliminar una ACL de una interfaz
+   #+BEGIN_SRC sh
+   interface <interfaz>
+   no ip access-group <numero ACL> <in o out>
+   #+END_SRC
+
+* ACL ESTANDAR
+  #+BEGIN_SRC sh
+  access-list access-list-number {permit|deny} 
+  {host|source source-wildcard|any}.
+  #+END_SRC
+
+  + Solo hacen referencia a las direcciones IP de origen. 
+  #+REVEAL: split
+  + Se puede especificar:
+    + Una Red: Se especifica con =IP= y =WILDCARD= (no IP y máscara). El WILDCARD es la máscara de red con ceros y unos invertidos.
+      - Ejemplo: La red =192.168.1.0/24= se especifica como =192.168.1.0 0.0.0.255=
+    + Una dirección IP: Las siguientes especificaciones son equivalentes
+      - =192.168.1.1=
+      - =192.168.1.1 0.0.0.0=
+    + Todas las direcciones: Las siguientes especificaciones son equivalentes
+      - =any=
+      - =0.0.0.0 255.255.255.255=
+
+  #+REVEAL: split
+Ejemplo: No dejes pasar el tráfico con origen en la red =192.168.1.0/24=
+#+begin_src sh
+access-list 10 deny 192.168.1.0 0.0.0.255 
+#+end_src
+
+** Ejercicio
+
+   Se desea que la red =10.0.0.0/15= no sea enrutada, excepto el equipo =10.0.1.1=, que es del administrador.
+
+** Solución propuesta al ejercicio
+
+
+    1. Se elige un número libre de ACL (en este caso, el 1). 
+    2. Se introducen en orden todas las regas de la ACL
+    3. Se recomienda hacer explícita la regla final de denegación.
+    4. El resultado sería el siguiente: 
+       
+    #+REVEAL: split   
+       - Permitir el host =10.0.1.1=
+         #+BEGIN_SRC sh
+         access-list 1 permit host 10.0.1.1
+         #+END_SRC
+       - Prohibir la red =10.0.0.0/15=
+         #+BEGIN_SRC sh
+         access-list 1 deny 10.0.0.0 0.1.255.255
+         #+END_SRC
+       - Permitir el resto de redes
+         #+BEGIN_SRC sh
+         access-list 1 permit any
+         #+END_SRC
+       - Explicitar la regla final de denegación (va a estar de todas formas, pero ayuda a no olvidarse de ella)
+         #+BEGIN_SRC sh
+         access-list 1 deny any
+         #+END_SRC
+       - Asociar esta ACL a la interfaz de entrada de la red =10.0.0.0/15=
+         #+BEGIN_SRC sh
+         interface Fa0/0
+         ip access-group 1 in
+        #+END_SRC
+
+
+
+* ACL AMPLIADAS
+  Pueden hacer referencia a otras características del paquete: 
+  - Dirección de origen y destino
+  - Protocolo ICMP, TCP o UDP
+  - Puerto
+  - Conexión previamente establecida
+
+** Operadores (para puertos TCP/UDP)
+| Operador | Significa    |
+|----------+--------------+
+| eq       | ~=~ igual    |
+| lt       | ~<~ Menor    |
+| ne       | ~≠~ No igual |
+| gt       | ~>~ Mayor    |
+
+** IP
+   #+BEGIN_SRC sh
+   access-list access-list-number [dynamic dynamic-name [timeout minutes]]
+   {deny | permit} protocol 
+   source source-wildcard destination   destination-wildcard
+   [precedence precedence] [tos tos] [log | log-input]  
+   [time-range time-range-name][fragments]
+   #+END_SRC
+
+Ejemplo: Prohíbe el tráfico hacia la red =172.16.0.0/12=
+#+begin_src sh
+access-list 101 deny ip any 172.16.0.0 0.0.15.255
+#+end_src
+
+
+** Protocolo de mensajes de control de Internet (ICMP)
+   #+BEGIN_SRC sh
+   access-list access-list-number [dynamic dynamic-name [timeout minutes]]
+   {deny | permit}   icmp source source-wildcard destination destination-wildcard
+   [icmp-type   [icmp-code] | [icmp-message]] [precedenceprecedence] [tos tos] 
+   [log |   log-input] [time-range time-range-name][fragments]
+   #+END_SRC
+** Protocolo de control de transporte (TCP)
+   #+BEGIN_SRC sh
+   access-list access-list-number [dynamic dynamic-name [timeout minutes]]  
+   {deny | permit} tcp   
+   source source-wildcard [operator [port]] 
+   destination destination-wildcard   [operator [port]] [established] 
+   [precedence precedence] [tos tos] [log |   log-input] 
+   [time-range time-range-name][fragments]
+   #+END_SRC
+
+Ejemplo: Permite el protocolo *TCP* desde la red =172.16.3.0/24= con puerto de origen =21= hacia la red =172.16.1.0/24=
+#+begin_src sh
+access-list 101 permit tcp 172.16.3.0 0.0.0.255 eq 21 172.16.1.0 0.0.0.255
+#+end_src
+
+Ejemplo: Permite la comunicación *TCP* hacia la red =10.0.0.0/8= si ya se ha establecido conexión (la red =10.0.0.0/8= es la que tiene el cliente)
+#+begin_src sh
+access-list 102 permit tcp any 10.0.0.0 0.0.0.255 established
+#+end_src
+
+
+** Protocolo de datagrama de usuario (UDP)
+   #+BEGIN_SRC sh
+   access-list access-list-number [dynamic dynamic-name [timeout minutes]]   
+   {deny | permit} udp   
+   source source-wildcard [operator [port]] 
+   destination destination-wildcard   [operator [port]]
+   [precedence precedence] [tos tos] [log | log-input] 
+   [time-range time-range-name][fragments]
+   #+END_SRC
+
+* Edición de ACL
+- ACL con nombre
+- Modificación de ACL
+
+** ACL con nombre
+- En vez de asignar números a las ACL, pueden crearse con un nombre
+- Facilita la comprensión de la configuración del firewall
+  #+BEGIN_SRC sh
+  R1(config)# ip access-list standard NO_ACCESS
+  R1(config-std-nacl)# deny host 192.168.11.10
+  R1(config-std-nacl)# permit any
+  R1(config-std-nacl)# exit
+  R1(config)# interface g0/0
+  R1(config-if)# ip access-group NO_ACCESS out
+  #+END_SRC
+
+** Modificación de ACL
+- Generalmente:
+  - Utilizar un editor de texto para crear las ACL
+  - Copiar y pegar los comandos en iOS
+- Modificación en el firewall:
+  #+BEGIN_SRC sh
+  R1# show access-lists 1
+  Standard IP access list 1
+     10 deny   192.168.10.99
+     20 permit 192.168.0.0, wildcard bits 0.0.255.255
+  R1#
+
+  R1# configure terminal      
+  R1(config)# ip access-list standard 1
+  R1(config-std-nacl)# no 10
+  R1(config-std-nacl)# 10 deny host 192.168.10.10
+  R1(config-std-nacl)# end
+  R1#
+  #+END_SRC
+
+* PROCESO DE DEFINICIÓN DE ACLs
+  + Para definir las ACL de un router es necesario
+    - Determinar las interfaces del router
+    - Por cada interfaz:
+      - Determinar qué tráfico será permitido
+      - Determinar qué tráfico debe ser prohibido
+      - Ordenar las reglas para que no entren en conflicto (generalmente, de más concreta a más general)
+    - Es posible que se generen reglas redundantes 
+      - Pueden eliminarse, teniendo en cuenta que el tráfico prohibido es mejor eliminarlo cuanto antes de la red
+
+** Ejercicio
+   - Un router une las redes =192.168.1.0/24= (LAN) y =172.16.1.0/24= (DMZ). Se desea que:
+     - Los usuarios de la LAN no puedan realizar PING hacia la DMZ.
+     - El tráfico UDP está permitido por el puerto =53= (DNS)
+     - Las únicas conexiones TCP permitidas entre LAN y DMZ serán las que tengan origen en la LAN.
+
+
+   [[file:./media/ejercicio-acl-ampliada.png]]
+
+
+
+[[file:pkt/ACL-ejercicio.pkt][(Fichero PKT)]]
+
+** Planteamiento
+
+   Interfaz Fa0/0 (LAN)
+   
+   |---+-----+-----------------------------------------+-----+-------------------------------------------|
+   |   |     | Entrada                                 |     | Salida                                    |
+   |---+-----+-----------------------------------------+-----+-------------------------------------------|
+   | / | <   | >                                       | <   | >                                         |
+   |   | /X/ | PING (ICMP)                             | /X/ | PING (ICMP)                               |
+   |   | /V/ | /DNS (UDP con destino 53)/              | /V/ | /DNS (UDP con origen 53)/                 |
+   |   | /V/ | /TCP si se ha establecido desde la LAN/ | /V/ | /TCP si se ha establecido desde la LAN/   |
+   |   |     |                                         | /X/ | TCP si es una conexión entrante de la DMZ |
+   |   | /X/ | Todo                                    | /X/ | Todo                                      |
+   |---+-----+-----------------------------------------+-----+-------------------------------------------|
+   #+REVEAL: split
+
+   Interfaz Fa0/1 (DMZ)
+   |---+-----+-----------------------------------------+-----+----------------------------|
+   |   |     | Entrada                                 |     | Salida                     |
+   |---+-----+-----------------------------------------+-----+----------------------------|
+   | / | <   | >                                       | <   | >                          |
+   |   | /X/ | PING (ICMP)                             | /X/ | PING (ICMP)                |
+   |   | /V/ | /DNS (UDP con origen 53)/               | /V/ | /DNS (UDP con destino 53)/ |
+   |   | /V/ | /TCP si se ha establecido desde la LAN/ | /V/ | /TCP/                      |
+   |   | /X/ | Todo                                    | /X/ | Todo                       |
+   |---+-----+-----------------------------------------+-----+----------------------------|
+  
+   #+REVEAL: split
+   - En el planteamiento anterior hay bastante redundancia, así que pueden agruparse muchas de esas reglas.
+     - Basta con prohibir ICMP en una sola interfaz, en un solo sentido
+     - Basta con controlar el tráfico TCP en una sola interfaz
+     - Basta con controlar el tráfico DNS en una sola interfaz
+
+
+
+** Solución propuesta
+   
+   Esta ACL debe colocarse en la tarjeta de la LAN, sentido inbound.
+   #+BEGIN_SRC sh
+   access-list 100 deny icmp any any
+   access-list 100 permit udp any any eq domain
+   access-list 100 permit tcp any any
+   access-list 100 deny ip any any
+   interface Fa0/0
+   ip access-group 100 in
+   #+END_SRC
+
+   Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
+   #+BEGIN_SRC sh
+   access-list 101 permit udp any eq 53 any
+   access-list 101 permit tcp any any established
+   access-list 101 deny ip any any
+   interface Fa0/0
+   ip access-group 101 out
+   #+END_SRC
+   
+
+* Práctica
+
+
+
+#+LATEX: \textattachfile{pkt/ACL-inicial.pkt}{Fichero PKT inicial (adjunto al PDF)}
+
+
+   [[file:pkt/ACL-inicial.pkt][Enlace al fichero PKT inicial]]
+
+   [[file:./media/ACL.png]]
+
+   #+REVEAL: split  
+   + La LAN puede acceder completamente a los servidores de la DMZ 
+   + La LAN puede acceder a Internet al servicio HTTP, HTTPS y DNS.
+   + Todo internet puede acceder al servicio HTTP y HTTPS del servidor web de la DMZ.
+   + El administrador remoto puede acceder a cualquier servicio de la LAN y la DMZ.
+   + Todo lo demás está prohibido
+     + En particular, conexiones entrantes de Internet a la LAN o a Oracle
+     
+
+   #+REVEAL: split
+   + Router
+     - Internet: =Fa9/0 8.0.0.1/8=
+     - DMZ: =Fa1/0 100.0.0.14/28=  
+     - LAN: =Fa0/0 192.168.1.254/24=
+   + Servidor Web:
+     - DMZ: =100.0.0.1/28=
+   + Administrador remoto:
+     - =8.0.0.200=
+
+** Solución	:noexport:
+   Hay Muchas posibles soluciones. En esta se intenta que el Administrador tenga acceso IP completo (ICMP, TCP y UDP)
+
+   - Internet y la LAN pueden acceder al servidor web, se permite al administrador.
+
+     Regla out en Fa1/0
+    #+BEGIN_SRC sh
+    access-list 100 permit tcp any any eq www
+    access-list 100 permit ip host 8.0.0.200 any
+    access-list 100 deny ip any any
+    interface fa1/0
+    ip access-group 100 out
+
+    #+END_SRC
+
+     Regla in en Fa1/0
+    #+BEGIN_SRC sh
+    access-list 104 permit tcp host 100.0.0.1 eq www any
+    access-list 104 permit ip any host 8.0.0.200 
+    access-list 104 deny ip any any
+    interface fa1/0
+    ip access-group 104 in
+    #+END_SRC
+
+   - La LAN solo puede acceder a los servicios WEB, se permite al administrador.
+
+     Regla in en Fa0/0
+    #+BEGIN_SRC sh
+    access-list 101 permit tcp any any eq www
+    access-list 101 permit ip any 8.0.0.200 0.0.0.0 
+    access-list 101 deny ip any any
+    interface fa0/0
+    ip access-group 101 in
+    #+END_SRC
+
+     Regla out en Fa0/0
+    #+BEGIN_SRC sh
+    access-list 102 permit ip host 8.0.0.200 any 
+    access-list 102 permit tcp any eq 80 any established
+    access-list 102 deny ip any any
+    interface fa0/0
+    ip access-group 102 out
+    #+END_SRC
+
+    
+
+   
+* Referencias
+#+include: "../../../common/footer.org"

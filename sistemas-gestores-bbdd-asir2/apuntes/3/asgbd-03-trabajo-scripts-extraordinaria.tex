@@ -1,0 +1,108 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Administración y gestión de bases de datos}
+\renewcommand{\hmwkTitle}{Actividad extraordinaria \textit{scripts} de \textit{shell}}
+
+
+\usepackage{blindtext}
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica} 
+En esta práctica se pretende que el alumno invoque las órdenes de Oracle desde \texttt{scripts}, utlizando condicionales y variables.
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts-extraordinaria.pdf}{este enlace}.
+
+
+\begin{homeworkProblem}[: Insertar datos (3 puntos) ]
+  Crea un \textit{script} de nombre \texttt{inserta-datos.sh}. Este \textit{script} comprobará si existe una tabla de nombre \texttt{DATOS}, y si no existe, la creará de la siguiente forma (50\%):
+  
+  \begin{listadoshell}{Creación de la tabla \texttt{DF}}{lst:tabla.sql}
+    create table DATOS(
+      dato varchar(255)
+    );
+  \end{listadoshell}
+  
+  Después, leerá las líneas de su entrada estándar, e introducirá en la tabla anterior cada línea (50\%). El programa terminará cuando no haya más líneas que leer o la línea leída sea una cadena vacía.
+
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item En clase hemos usado \texttt{read} para leer línea a línea
+    \item Para marcar el final de las líneas el usuario utilizará el caracter de fin de fichero en linux (CTRL-D).
+    \item Para saber si una tabla existe se pueden consultar las tablas del diccionario de \textbf{Oracle}  
+    \end{itemize}
+  \end{Aviso}
+  
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Existe objeto (3 puntos) ]
+  Crea un \textit{script} de nombre \texttt{existe-objeto.sh}. Este \textit{script} recibirá dos parámetros: un usuario y un nombre de objeto. El \textit{script} indicará si el objeto de base de datos \texttt{usuario.objeto} existe y de qué tipo es:
+  \begin{itemize}
+  \item Función
+  \item Procedimiento
+  \item Vista
+  \item Trigger
+  \item Tabla
+  \end{itemize}
+  
+  \begin{listadoshell}{Ejemplo de uso del script \textit{existe-objeto.sh}}{lst:tabla.sql}
+    > ./existe-objeto.sh ALUMNO UNATABLA
+    El objeto ALUMNO.UNATABLA existe y es un: tabla
+    > ./existe-objeto.sh ALUMNO ALGORARO
+    El objeto ALUMNO.ALGORARO no existe
+    >
+  \end{listadoshell}
+  
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item Utiliza las vistas \texttt{dba\_xxxx} para saber si existen los objetos
+    \item Fíjate que los tipos están en castellano: \texttt{tabla} en vez de \texttt{TABLE}.
+    \end{itemize}
+  \end{Aviso}
+  
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Apaga o enciende Oracle (3 puntos)]
+  Crea un \textit{script} de nombre \texttt{apaga-o-enciende-oracle.sh} que comprueba si la instancia se está ejecutando.
+  \begin{itemize}
+  \item Si se está ejecutando, preguntará si se desea apagar la instancia. Si se responde \texttt{si}, se apagará el listener y la instancia.
+  \item Si no se está ejecutando, preguntará si se desea arrancar la instania. Si se responde \texttt{si}, se arrancará el listener y la instancia.
+  \end{itemize}
+
+  \begin{Aviso}[Ayuda]
+    \begin{itemize}
+    \item Utiliza \texttt{read} para conseguir la opción del alumno (\url{https://www.putorius.net/linux-read-command.html}).
+    \item Este ejercicio no funcionará en el servidor del profesor, porque no tenéis permisos de \texttt{sysadmin}. Pruébalo en tu instancia y deja el script en el directorio del servidor del profesor.
+    \end{itemize}
+  \end{Aviso}
+\end{homeworkProblem}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\item Cada alumno subirá al servidor sus \textit{scripts} al directorio \texttt{\$HOME/scripts}
+  \begin{itemize}
+  \item IP: \texttt{alvarogonzalez.no-ip.biz}
+  \item Puerto: \texttt{1522}
+  \item SID: \texttt{XE}
+  \item Usuario y contraseña: los indicados a cada alumno
+  \end{itemize}
+\end{itemize}
+\end{document}
+
+
+%https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-examen-corto-scripts.pdf

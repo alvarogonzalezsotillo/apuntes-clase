@@ -1,0 +1,28 @@
+* Ordenadores
+- Dos máquinas virtuales con permisos de administrador
+- Se recomienda una Windows y una Linux
+
+* Conocer las direcciones nivel 2 y 3
+- =ifconfig= (Linux)
+- =ipconfig /all= (Windows)
+
+* Vaciar la caché ARP
+- =arp -d= (windows)
+- =arp -d MAC= (Linux)
+
+* Arrancar Wireshark
+
+* Comunicar los dos ordenadores
+- =ping IPDELOTRO=
+
+* Buscar en Wireshark
+- Tramas entre los dos ordenadores
+- La primera debería ser una petición ARP
+- La segunda una respuesta ARP
+- Después, peticiones y respuestas de ICMP ECHO (comando =ping=)
+
+* Comprobar la caché de ARP
+- =arp -n= (Linux)
+- =arp -a= (Windows)
+
+

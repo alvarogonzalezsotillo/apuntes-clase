@@ -1,0 +1,332 @@
+#+include: "../../../common/header.org"
+#+Title: Concurrencia y bloqueos en Oracle
+#+EXCLUDE_TAGS: no_export
+
+
+* Introducción
+- *Oracle* es un servidor de base de datos
+- Idealmente, cada usuario debería poder usar la base de datos como si fuera para él en exclusiva (*ACID*)
+- Más de un usuario, y más de un cliente por usuario, puede utilizar a la vez el servidor
+- Problemas:
+  - Bloqueos de tablas
+  - Auditoría de conexiones
+
+* Propiedades *ACID*
+| *Atomicidad*   | Un conjunto de cambios se realiza en su totalidad, o no se realiza ninguno            |
+| *Consistencia* | Las reglas de los datos (*constraints*) se respetan                                   |
+| *aIslamiento*  | Cada usuario puede trabajar considerando que es el único que utiliza la base de datos |
+| *Durabilidad*  | Una vez grabada una modificación, persistirá aunque ocurra algún fallo posterior      |
+
+** Atomicidad
+- Algunos cambios deben producirse juntos:
+  - Ejemplo: Una transferencia bancaria debe restar de una cuenta y sumar en otra
+- El conjunto de cambios es una *transacción*
+  - Una transacción empieza cuando acaba la siguiente
+  - Termina con:
+    - *=commit=*: Los cambios se guardan
+    - *=rollback=*: Ningún cambio se guarda 
+    - Desconexión o error: generalmente, equivalente a =rollback=
+
+** Consistencia
+- Los datos deben ser coherentes con el modelo de datos
+- Se utilizan restricciones (/constraints/)
+  - =primary key=
+  - =unique=
+  - =foreign key=
+  - =check=
+  - Incluso =triggers= (scripts del gestor de base de datos)
+- No hay forma de */saltarse/* una /constraint/
+  - Más allá de eliminarla (=drop=)
+
+
+** Aislamiento (/isolation/)
+- Objetivos:
+  - Cada usuario debe poder trabajar como si fuera el único
+  - Pero al mismo tiempo los datos deben poder accederse concurrentemente
+- Esto supone llegar a un compromiso
+  - Cuanto más /aislamiento/ menos /concurrencia/
+  - Cuanto más /concurrencia/ menos /aislamiento/
+- Estos problemas los trataremos más adelante
+
+
+** Durabilidad
+- Las bases de datos garantizan tras la vuelta de =commit= que
+  - Los datos han sido grabados a soporte no volátil
+  - Los datos son recuperables por este y otros usuarios
+
+* Problemas del uso concurrente
+- Idealmente, cada usuario debería poder trabajar sin notar que otros usuarios usan a la vez la base de datos
+- Debido a otras transacciones, pueden presentarse los siguientes problemas:
+
+#+ATTR_LATEX: :align l|l|p{9cm}
+| Lectura sucia        | /Dirty read/      | Un usuario lee datos aún no confirmados                                                              |
+| Lectura no repetible | /Repeatable read/ | Un usuario lee menos filas (o filas cambiadas) en =select= sucesivas dentro de la misma transaccción |
+| Fila fantasma        | /Phanton read/    | Un usuario lee más filas en =select= sucesivas  dentro de la misma transacción                       |
+
+** Nivel de aislamiento/concurrencia
+
+
+| Problema             | Nivel de aislamiento                      |
+|----------------------+-------------------------------------------|
+|                      | =Read Uncommited= (*Oracle* no lo tiene)  |
+| Lectura sucia        |                                           |
+|                      | =Read commited= (por defecto en *Oracle*) |
+| Lectura no repetible |                                           |
+|                      | =Repeatable read= (*Oracle* no lo tiene)  |
+| Fila fantasma        |                                           |
+|                      | =Serializable=                            |
+
+** Datos para pruebas
+#+begin_src sql
+create table ALUMNOS( DNI varchar(10), NOMBRE varchar(10));
+insert into ALUMNOS values ('1','Pepe');
+insert into ALUMNOS values ('2','Juan');
+insert into ALUMNOS values ('3','María');
+#+end_src
+
+
+
+** Lectura no repetible
+#+ATTR_LATEX: :align p{.45\textwidth}|p{.45\textwidth}
+| Conexión 1                                           | Conexión 2                                       |
+|------------------------------------------------------+--------------------------------------------------|
+| =set transaction isolation level read committed=     | =set transaction isolation level read committed= |
+| =select * from alumnos=                              | =select * from alumnos=                          |
+|                                                      | ~update alumnos set nombre='Pepe2' where dni=3~  |
+| ~select * from alumnos~                              |                                                  |
+| /Aún no se ve el cambio, sería una lectura sucia/    |                                                  |
+|                                                      | =commit=                                         |
+| ~select * from alumnos~                              |                                                  |
+| /Ahora se ve el cambio, es una lectura no repetible/ |                                                  |
+| =rollback=                                           |                                                  |
+
+
+
+** Fila fantasma
+#+ATTR_LATEX: :align p{.45\textwidth}|p{.45\textwidth}
+| Conexión 1                                                                  | Conexión 2                                       |
+|-----------------------------------------------------------------------------+--------------------------------------------------|
+| =set transaction isolation level read committed=                            | =set transaction isolation level read committed= |
+| =select * from alumnos=                                                     |                                                  |
+|                                                                             | ~insert into ALUMNOS values('4','Susana')~       |
+|                                                                             | =commit=                                         |
+| =select * from alumnos=                                                     |                                                  |
+| /La conexión 1 leerá más alumnos en la segunda =select=, una fila fantasma/ |                                                  |
+| =rollback=                                                                  |                                                  |
+
+
+* Bloqueos y versiones
+- La orden =set isolation level= indica a la base de datos que *bloquee* filas, campos o tablas
+- Al bloquearse, los demás usuarios no pueden acceder hasta que la transacción no termine
+  - =commit=
+  - =rollback=
+- Los *bloqueos* garantizan que no se producen los problemas correspondientes al nivel de aislamiento:
+  - =Read commited=
+  - =Serializable=
+- Las *versiones* hacen que una transacción vea solo una /fotografía/ del estado de la base de datos
+  - La transacción no se ve afectada por cambios posteriores a su inicio
+
+
+** Lectura no repetible evitada 
+#+ATTR_LATEX: :align p{.45\textwidth}|p{.45\textwidth}
+| Conexión 1                                       | Conexión 2                                      |
+|--------------------------------------------------+-------------------------------------------------|
+| =set transaction isolation level serializable=   |                                                 |
+| =select * from alumnos=                          |                                                 |
+|                                                  | ~update alumnos set nombre='Pepe2' where dni=3~ |
+| ~select * from alumnos~                          |                                                 |
+| /No se ve el cambio, sería una lectura sucia/    |                                                 |
+|                                                  |                                                 |
+|                                                  | =commit=                                        |
+| ~select * from alumnos~                          |                                                 |
+| /El cambio no se ve, sería lectura no repetible/ |                                                 |
+| =rollback=                                       |                                                 |
+
+
+** Fila fantasma evitada
+#+ATTR_LATEX: :align p{.45\textwidth}|p{.45\textwidth}
+| Conexión 1                                        | Conexión 2                               |
+|---------------------------------------------------+------------------------------------------|
+| =set transaction isolation level serializable=    |                                          |
+|                                                   | ~insert into ALUMNOS values('5','Pepe')~ |
+|                                                   | =commit=                                 |
+| =select * from alumnos=                           |                                          |
+| /No se ve el cambio, sería lectura fila fantasma/ |                                          |
+| =rollback=                                        |                                          |
+
+
+** Bloqueos no automáticos
+- Los niveles de aislamiento bloquean automáticamente filas, campos o tablas
+- Pero también pueden bloquearse manualmente
+- Bloqueo de una [[https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_9015.htm][tabla completa]]
+  - =lock table TABLA in exclusive mode=
+- Bloqueo de algunas filas:
+#+begin_src sql
+select <una consulta que devuelva algunas filas de una tabla>
+for update
+#+end_src
+
+** Bloqueos mutuos
+- Una sesión =SA= bloquea la fila/tabla =OA=
+- Una sesión =SB= bloquea la fila/tabla =OB=
+- =SA= intenta acceder a =OB=. Se queda bloqueada, esperando su liberación
+- =SB= intenta acceder a =OA=. Se queda bloqueada, esperando su liberación
+- Ni =SA= ni =SB= pueden liberar sus recursos, porque están esperando
+- Tras un tiempo, Oracle acaba finalizando una de las dos transacciones  
+
+  
+
+* Detección y solución de sesiones bloqueadas
+- Si un usuario/aplicación se comporta de manera inadecuada, puede bloquear la base de datos
+- Es necesario monitorizar los bloqueos y solucionarlos:
+  - Avisando al usuario
+  - Modificando la aplicación
+  - /Matando/ las transacciones o conexiones bloqueantes
+
+** Vistas de sesiones
+- Contienen información de las sesiones 
+  - Usuario *Oracle*
+  - Usuario de sistema operativo
+  - Cliente *Oracle*
+  - Sentencia =SQL=
+  - ...
+| [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_2088.htm#REFRN30223][=v_$session=]]       | [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_2022.htm#REFRN30186][=v_$process=]] |
+| [[https://docs.oracle.com/cd/B13789_01/server.101/b10755/dynviews_2113.htm][=V_$SQLTEXT=]]       | [[https://docs.oracle.com/cd/B12037_01/server.101/b10755/dynviews_1123.htm][=V_$LOCK=]]    |
+| [[https://docs.oracle.com/database/121/REFRN/GUID-3F9F26AA-197F-4D36-939E-FAF1EFD8C0DD.htm#REFRN30125][=V_$LOCKED_OBJECT=]] | [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_2086.htm#REFRN30231][=V_$SESS_IO=]] |
+
+
+** Usuarios conectados (1)
+#+begin_src sql
+select
+  username,
+  osuser,
+  terminal
+from
+  sys.v_$session
+where
+  username is not null
+order by
+  username,
+  osuser;
+#+end_src
+
+
+** Usuarios conectados (2)
+#+begin_src sql
+SELECT s.username, s.program, s.logon_time
+FROM sys.v_$session s, sys.v_$process p, sys.v_$sess_io si
+WHERE s.paddr = p.addr(+)
+AND si.sid(+) = s.sid
+AND s.type = 'USER'; 
+#+end_src
+
+** Bloqueos de la base de datos
+#+begin_src sql
+select session_id "sid",SERIAL#  "Serial",
+  substr(object_name,1,20) "Object",
+  substr(os_user_name,1,10) "Terminal",
+  substr(oracle_username,1,10) "Locker",
+  nvl(lockwait,'active') "Wait",
+  decode(locked_mode,
+    2, 'row share',
+    3, 'row exclusive',
+    4, 'share',
+    5, 'share row exclusive',
+    6, 'exclusive',  'unknown') "Lockmode",
+  OBJECT_TYPE "Type"
+FROM
+  SYS.V_$LOCKED_OBJECT A,
+  SYS.ALL_OBJECTS B,
+  SYS.V_$SESSION c
+WHERE
+  A.OBJECT_ID = B.OBJECT_ID AND
+  C.SID = A.SESSION_ID
+ORDER BY 1 ASC, 5 Desc;
+#+end_src
+
+** Descripción de usuarios bloqueados y bloqueantes
+#+begin_src sql
+select s1.username || '@' || s1.machine
+  || ' ( SID=' || s1.sid || ' )  is blocking '
+  || s2.username || '@' || s2.machine || ' ( SID=' || s2.sid || ' ) ' AS blocking_status
+  from v_$lock l1, v_$session s1, v_$lock l2, v_$session s2
+  where s1.sid=l1.sid and s2.sid=l2.sid
+  and l1.BLOCK=1 and l2.request > 0
+  and l1.id1 = l2.id1
+  and l1.id2 = l2.id2 ;
+#+end_src
+
+Fuente: http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessions/
+
+#+begin_comment
+select s1.username  as blocking_user , s1.machine as blocking_machine
+  ,s1.sid as blocking_sid, s1.serial# as blocking_serial, p1.spid as blocking_pid, s2.username as blocked_user, s2.machine  as blocked_machine, 
+  s2.sid  as blocked_sid, s2.serial# as blocked_serial, p2.spid as blocked_pid
+  from v_$lock l1, v_$session s1, v_$lock l2, v_$session s2, sys.v_$process p2, sys.v_$process p1
+  where s1.sid=l1.sid and s2.sid=l2.sid
+  and s1.paddr = p1.addr
+  and s2.paddr = p2.addr
+  and l1.BLOCK=1 and l2.request > 0
+  and l1.id1 = l2.id1
+  and l2.id2 = l2.id2 ;
+#+end_comment
+
+** Sentencia =SQL= bloqueada (de un =SID=)
+#+begin_src sql
+select s.sid, q.sql_text from v_$sqltext q, v_$session s
+where q.address = s.sql_address
+and s.sid = *ELSIDBLOQUEADO*
+order by piece;
+#+end_src
+
+** Sentencias =SQL= bloqueadas
+#+begin_src sql
+select s.sid, q.sql_text from v_$sqltext q, v_$session s
+where q.address = s.sql_address
+and s.sid in (
+  select s2.sid
+  from v_$lock l1, v_$session s1, v_$lock l2, v_$session s2
+  where s1.sid=l1.sid and s2.sid=l2.sid
+  and l1.BLOCK=1 and l2.request > 0
+  and l1.id1 = l2.id1
+  and l2.id2 = l2.id2 
+)
+order by piece;
+#+end_src
+
+** Terminar una sesión
+#+begin_src sql
+SELECT s.inst_id,
+       s.sid,
+       s.serial#,
+       p.spid,
+       s.username,
+       s.program
+FROM   gv_$session s
+       JOIN gv_$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE  s.type != 'BACKGROUND';
+#+end_src
+
+#+begin_src sql
+ALTER SYSTEM KILL SESSION 'sid,serial#';
+#+end_src
+
+** Terminar una sesión (sistema operativo)
+- Solo como último recurso, mejor =KILL SESSION=
+- Se debe matar el proceso identificado en el =spid= (/system process identifier/)
+- Importante:
+  - el =spid= es del proceso intermedio entre el cliente (/application code/) y el servidor (/system global area/)
+  - Por tanto, el proceso a matar se encuentra en el mismo host que el servidor de base de datos
+
+[[file:./media/procesos-usuario-sistema.png]]
+
+  
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+
+
+
+  
+  

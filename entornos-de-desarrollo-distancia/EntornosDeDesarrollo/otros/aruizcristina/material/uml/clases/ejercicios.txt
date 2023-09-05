@@ -1,0 +1,28 @@
+Crear un diagrama de clases que represente una aplicación que gestiona los elementos que se encuentran en un sitio web teniendo en cuenta que:
+- Un sitio web tiene objetos, cada uno de ellos al ser creado, genera una URL con un método.
+- Las URL estan formadas de servicio, direccion servidor, ruta dentro del servidor, fichero del objeto.
+- Los objetos no tienen atributos propios, ya que pueden ser páginas (titulo, comentario), multimedia , que pueden ser imagenes (descripcion de la imagen, texto alternativo, formato, ancho recomendado) o video (descripción, duración, formato, comentario_iframe). También encontramos estilos (descripción) y codigos(descripción, lenguaje).
+- Un estilo se incrusta en una o varias páginas, lo mismo pasa con los códigos.
+- Además en la aplicacion queremos almacenar una arbol de directorios, de forma que un directorio, del que sabemos su ruta completa, esta formado por objetos.
+** Es un ejemplo de UML puro, por tanto no todo es implementable en JAVA.
+
+
+
+
+Una autoescuela quiere realizar una aplicación para que sus alumnos realicen exámenes tipo test de conducir de forma simulada.
+· En la aplicación habrá usuarios que podrán ser o alumnos o profesores.
+· Al iniciar sesión, el profesor tendrá dos opciones más: Activar nuevo examen y Nueva Pregunta, además de más permisos y opciones sobre las comunes. Al iniciar sesión, el alumno verá los exámenes activos y podrá seleccionarlos y realizarlos.
+· Cuando un profesor activa un nuevo examen, elegirá el número de preguntas que va a contener y la fecha de desactivación. Automáticamente el examen se activará conteniendo tantas preguntas aleatorias como el profesor expuso. Cada pregunta está compuesta de 4 respuestas, de las cuales sólo una es válida.
+· Cuando un alumno selecciona un examen, se mostraran las preguntas y respuestas y deberá seleccionar las que considere válida. Al terminar el examen el alumno confirmará la corrección y podrá ver marcadas las respuestas correctas y las suyas para ver en que ha fallado, y de forma
+opcional podrá imprimir el examen.
+
+
+Un ayuntamiento pretende hacer una aplicación para que los empadronados en su localidad puedan domiciliar o pagar el tributo de su coche.
+
+Para ello el Ayuntamiento tiene almacenados los datos de sus empadronado (NIF, Nombre, Apellidos, Dirección, Codigo Postal, Telefono), y los datos de los vehículos que de forma más detallada pide la normativa.
+
+Una vez que se hayan organizado los datos que poseemos,la aplicación, introduciendo el NIF, mostrará los vehiculos asociados y calculará de forma automática la tasa del impuesto a pagar.
+
+EL usuario podrá domiciliar el pago del vehículo que desee con una cuenta bancaria o imprimir el recibo correspondiente para efectura el pago de forma manual.
+
+EXTRA: También podrá realizar el pago por otro métodos.

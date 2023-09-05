@@ -1,0 +1,205 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Arquitectura de *Oracle*
+
+
+
+
+
+* Arquitectura
+
+- *Oracle* es un sistema complejo
+- Para hacerlo más seguro, sus tareas se distribuyen entre muchos procesos
+  - Si un proceso falla, los demás pueden intentar seguir trabajando
+
+#+attr_latex: :width 0.6\textwidth
+[[file:./media/sga-procesos-usuario-sistema.png]]
+
+
+** Algunos procesos
+#+ATTR_LATEX: :align |l|p{7cm}|
+| ~PMON~ (Process MONitor)         | Monitor de procesos, se encarga controlar los otros procesos en background  y de recuperarlos cuando uno de ellos falla              |
+| ~SMON~ (System MONitor process)  | Recupera transacciones. Realiza tareas de limpieza: recuperar segmentos temporales, combinar extensiones contiguas y disponibles,... |
+| ~DBWn~ (Database Writer Process) | Escribe el contenido de los buffers en los datafiles. ~n~ puede ser 0,1,...,9,a,...,j                                                |
+| ~LGWR~ (Log Writer Process)      | Gestión del buffer de *redo*, escribiendo su contenido en los archivos log.                                                          |
+| ~CKPT~ (ChecKPoinT Process)      | Actualiza  los datafiles y el fichero de control cuando se establece un punto de control (/checkpoint/).                             |
+| ~RECO~ (RECOverer Process)       | Necesario ante fallos en transacciones distribuidas.                                                                                 |
+
+-----
+Más información en [[https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm]]
+
+** SGA y PGA
+- *PGA*: /Program Global Area/
+  - Es la zona de memoria dedicada a un proceso
+  - Global: si admite más de una conexión, se comparte entre conexiones
+- *SGA*: /System Global Area/
+  - Memoria compartida entre todos los procesos de *Oracle*
+
+#+attr_latex: :width 0.6\textwidth
+[[file:./media/pga-sga-muchos-procesos.png]]
+[[https://docs.oracle.com/cd/B19306_01/server.102/b14220/memory.htm#i8451][Fuente: Oracle]]
+
+** Procesos de usuario y procesos de sistema
+- Los procesos de usuario no se conectan directamente a la SGA
+- *Oracle* crea procesos /intermedios/ para aislarlos
+
+#+attr_latex: :width 0.6\textwidth
+[[file:./media/procesos-usuario-sistema.png]]
+
+
+* Arranque y parada
+
+- *Oracle* tiene varios estados 
+  - *Shutdown*: Todo parado
+  - *Nomount*: Memoria compartida reservada
+  - *Mount*: Fichero de control abierto
+  - *Open*: Ficheros de datos abiertos. Los clientes pueden conectarse.
+
+#+reveal: split
+
+
+#+begin_src dot :file ./media/arranque-parada-oracle.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+  rankdir="LR"
+
+  Shutdown
+
+  {
+    rank=same
+  
+    Nomount [group=abajo]
+    Mount [group=abajo]
+    Open [group=abajo]
+  }
+
+  Shutdown -> Nomount [label="startup nomount"]
+  Shutdown -> Mount [label="startup mount"]
+  Shutdown -> Open [label="startup open"]
+
+  Nomount -> Mount [label="alter database mount      "]
+  Mount -> Open [label="alter database open     "]
+
+  Nomount -> Shutdown [label="shutdown"]
+  Mount -> Shutdown [label="shutdown"]
+  Open -> Shutdown [label="shutdown"]
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/arranque-parada-oracle.svg]]
+
+** ¿Por qué tantos modos?
+- *Shutdown* y *open* son los modos habituales
+- *Nomount*:
+  - Para recuperar la base de datos de errores (si falta algún fichero)
+- *Mount*: 
+  - Para habilitar y deshabilitar el /redo log/.
+  - Para recuperar la base de datos de errores (sin usuarios)
+  - Ejemplo: [[https://docs.oracle.com/cd/B28359_01/server.111/b28310/dfiles005.htm#ADMIN11434][cambiar los nombres de los ficheros de datos]]
+- Conclusión: con suerte, solo *Shutdown* y *open*
+
+
+* Vistas
+
+
+- En un sistema relacional, toda la información se guarda en forma de *relaciones*
+- Las *vistas* son representaciones de otras vistas o relaciones
+  - Quitando algunas filas o columnas
+  - Uniendo unas tablas con otras
+- Tanto las tablas como las vistas son relaciones
+  
+** Vistas de *Oracle*
+- La información acerca de la base de datos también se almacena en relaciones de la base de datos
+- Generalmente, en forma de vistas
+- Ejemplos:
+  - Tablas: nombre, propietario,...
+  - Campos de las tablas: nombre, tipo, longitud
+  - Restricciones
+  - Usuarios: nombre, contraseñas,...
+  - Tablespaces
+ 
+
+** Tipos de vistas de *Oracle*
+- Estáticas 
+  - Cambian solo si se produce un cambio en los objetos de la base de datos (tablas, vistas, usuarios,...)
+  - =create=, =alter=, =drop=, =grant=, =revoke=,...
+  - Documentación de Oracle: [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_2.htm][1]], [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_3.htm][2]], [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/statviews_4.htm][3]]
+- Dinámicas: Actualizadas constantemente
+  - Usuarios conectados, memoria disponible, consultas en curso,...
+  - [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_1.htm][Documentación de Oracle]]
+
+#+reveal: split
+
+| ~USER_xxxx~ | Estática | Acerca de los objetos propiedad del usuario |
+| ~ALL_xxx~   | Estática | Objetos que puede acceder el usario         |
+| ~DBA_xxx~   | Estática | [[https://sqljana.wordpress.com/2016/12/21/oracle-data-dictionary-views-user-vs-all-vs-dba-views-100-level-basics/][Todos los objetos de la base de datos]]       |
+| ~V$xxxxx~   | Dinámica | Información dinámica de la instancia        |
+| ~GV$xxxx~   | Dinámica | [[https://docs.oracle.com/database/121/REFRN/GUID-884B21B1-7C87-41E1-8F97-C4668704AF30.htm#REFRN-GUID-884B21B1-7C87-41E1-8F97-C4668704AF30][Información dinámica del cluster]]            |
+
+-----
+- Vistas /comodín/:
+  - =SELECT * FROM DICT=
+  - =SELECT * FROM DICT_COLUMNS=
+
+#+BEGIN_NOTES
+Para cambiar tamaños de columnas en =sqlplus=:
+
+#+begin_src sql
+set linesize 2000;
+set pagesize 2000;
+column table_name format a30
+column comments format a150 
+#+end_src
+
+#+END_NOTES
+
+
+** Ejemplo de vistas: ficheros
+| Tipos de archivos                      | Vista             |
+|----------------------------------------+-------------------|
+| De Datos (dbf) undo, system y users    | ~v$datafile~      |
+| Temporales (tmp)                       | ~v$tempfile~      |
+| Rehacer o Redo Log (log)               | ~v$logfile~       |
+| De control. Estructura física de la BD | ~v$controlfile~   |
+| De Log                                 | ~v$diag_info~     |
+| Información de la BD                   | ~v$database~      |
+
+** Ejercicios de vistas
+- Lista los usuarios de base de datos que no tengan tablas creadas
+- Crea una vista basada en vistas estáticas =DBA_xxxx= que imite la vista compuesta =ROLE_TAB_PRIVS=
+  - Comprueba que tiene las mismas columnas y filas que =ROLE_TAB_PRIVS= con =minus=
+
+*** Solución :noexport:
+#+begin_src sql
+create or replace view mi_role_tab_privs as
+select ROLE,OWNER,TABLE_NAME,COLUMN_NAME,PRIVILEGE,grantable, common, inherited from (
+   SELECT GRANTEE AS ROLE,OWNER,TABLE_NAME,null as column_name,PRIVILEGE, grantable, common, inherited
+   FROM DBA_TAB_PRIVS 
+   WHERE GRANTEE IN(SELECT ROLE FROM DBA_ROLES)
+)
+union
+select grantee as role, owner,table_name,column_name,privilege,grantable, COMMON, INHERITED from dba_col_privs
+where grantee in (select role from dba_roles);
+#+end_src
+
+** Archivos
+- Los datos de las tablas al final se almacenan en archivos
+
+| Archivos de datos, de usuario y del sistema    | En /tablespaces/ (=dbf=) |
+| Redo Log (registro de todas las transacciones) | =log=                    |
+| Archivos de control                            | =ctl=                    |
+
+-----
+¿Dónde están los archivos de datos de nuestra instalación?
+¿Cómo encontrarlos?
+
+
+* Bibliografía
+- https://docs.google.com/document/d/1CV-Sk9I0Pvra85IrBLjzCDA2M-nn82kziJJQBhvYMq8/edit
+- https://docs.google.com/presentation/d/1pIrg5ZfTOr_j_MxBSMW3pl6jmabko_zvoAJ2ktXPis8/edit
+
+* Referencias
+#+include: "../../../common/footer.org"

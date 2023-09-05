@@ -1,0 +1,163 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Enrutamiento IP
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+* Introducción
+- IP se encarga de llevar cada paquete hasta su red
+- Una vez llegado a la red, IP supone que:
+  - La red es de difusión (bus), con lo cual llega a su destino
+  - La entrada a la red es un router que conoce las subredes dentro de la red, con lo que se sigue enrutando el paquete
+
+** =pathping= en Windows
+[[file:media/pathping.png]]
+
+** =mtr= en Linux
+[[file:media/mtr.png]]
+
+
+* Cómo enruta IP
+- Hacen falta los siguientes datos para enrutar un paquete IP
+  - La dirección de destino del paquete
+  - La red a la que pertenece la dirección de destino
+  - La interfaz de red por donde se alcanza la red de destino
+  - La dirección del router que nos ayuda a alcanzar el destino
+
+** IP vs MAC
+- Un host con IP recibe y procesa paquetes tanto con su propia dirección IP como la de otros:
+  -  Ethernet (o el protocolo usado en la capa de enlace) pasa a IP todos los paquetes que llegan con su dirección MAC
+  -  IP pasa hacia arriba los paquetes con la dirección IP propia
+  -  IP enruta (reenvía) los paquetes no dirigidos a su propia dirección IP
+- Por tanto, para que funcione IP tiene que ser posible enviar paquetes IP a otro host aunque no sea el indicado en la dirección IP destino
+  -  Se hace utilizando las direcciones MAC o físicas del otro host
+  -  La unión entre direcciones MAC y físicas es el protocolo ARP
+
+** Red IP vs Red Ethernet
+
+- IP trabaja sobre la capa de enlace sin conocer sus detalles
+  -  Ni siquiera conoce la topología física
+  -  Un enlace físico podría tener más de una dirección IP
+- Como consecuencia, puede haber más de una red IP encima de la misma red ethernet
+  -  Por interés administrativo o de seguridad
+
+[[file:media/dos-redes-ip-sobre-misma-ethernet.svg]]
+
+
+* Ejemplo de enrutamiento
+
+[[file:media/enrutamiento-ip-1.svg]]
+
+- 192.168.1.1 debe conocer su máscara de red (/24)
+- Con ella decide si 192.168.2.3 está en su red
+  -  Está en su red si la dirección de destino está en la misma red, usando la máscara
+- Puesto que el destino no está en la misma red, 192.168.1.254 debe utilizar una puerta de enlace
+
+#+reveal: split
+
+file:media/enrutamiento-ip-2.svg
+
+- La puerta de enlace de 192.168.1.1 debe estar configurada a 192.168.1.254
+- Se envía una trama por el bus con la MAC del router, pero con dirección IP origen 192.168.1.1 y dirección destino 192.168.2.3
+- La capa ethernet del router la recibe, y la pasa al protocolo superior, IP
+- IP no la pasa al protocolo superior, ya que no va dirigida al propio router. Sin embargo, enrutará de nuevo el paquete para que llegue a su destino
+
+#+reveal: split
+
+file:media/enrutamiento-ip-3.svg
+
+- El router consulta sus tablas, y sabe que para llegar a la red 192.168.2.0/24 tiene que utilizar el router 10.0.0.2 
+- Envía el paquete a 10.0.0.2
+  - Pero con dirección IP origen 192.168.1.1 y dirección destino 192.168.2.3.
+  -  La trama ethernet donde va el paquete tiene la dirección MAC asociada a 10.0.0.2 (si no, no le llegaría)
+
+#+reveal: split
+
+file:media/enrutamiento-ip-4.svg
+
+- El segundo router repite los pasos que realizó el primero, reenviando la trama por su enlace 192.168.2.254 
+- El equipo 192.168.2.3 recibe la trama
+- IP detecta que va dirigida a este mismo equipo, por lo que no la enruta y la pasa al protocolo superior
+
+
+* Tablas de enrutamiento
+- Cada host con IP debe tener configuradas sus tablas de enrutamiento
+- Estudiaremos las tablas de enrutamiento en 
+  - Windows
+  - Linux/Unix
+- Se manejan con el comando =route=
+
+** Filas y columnas
+- Cada *fila* de la tabla es una regla
+  - Tiene información de cómo llegar a una red o host
+- Cada *columna* es el nombre de la información
+  - Destino, máscara...
+
+** Descripción de columnas
+- Destino: IP (host o red) con el que se comparará la dirección de destino de los paquetes a enrutar
+- Máscara: Máscara que se aplica a la dirección de destino del paquete IP
+  - Para saber si una entrada es utilizable por una IP destino, se aplica la máscara sobre la IP destino del paquete y se comprueba si coincide con la IP destino de la entrada
+- Puerta de acceso: Dirección IP del siguiente enrutador, si se utiliza esta entrada
+- Interfaz: enlace del host local por que el saldrá el paquete si se utiliza esta entrada
+- Métrica: si es posible usar más de una entrada, se utilizará preferiblemente la entrada con menor métrica
+
+** Windows
+- Comando =route print=
+[[file:media/tabla-enrutamiento-windows.png]]
+
+*** Modificar las tablas en Windows
+- Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz 2, con métrica 3. Se envía al router 157.55.80.1
+#+begin_src sh
+ROUTE ADD 157.0.0.0 MASK 255.0.0.0 157.55.80.1 METRIC 3 IF 2
+#+end_src
+- La métrica y la interfaz son opcionales
+- Internet se puede especificar como =0.0.0.0=
+
+*** Activar el enrutamiento
+- Hay varios métodos, pero todos acaban [[https://www.wikihow.com/Enable-IP-Routing][modificando el registro]]
+  - =HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\IpEnableRouter= debe estar a 1
+- Después, hay que reiniciar
+
+
+** Linux
+- Comando =route=
+#+begin_src sh
+alvaro@alvaro-vaio$ route  
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    600    0        0 wlan0
+link-local      *               255.255.0.0     U     1000   0        0 wlan0
+192.168.1.0     *               255.255.255.0   U     600    0        0 wlan0
+192.168.56.0    *               255.255.255.0   U     0      0        0 vboxnet0
+#+end_src
+
+*** Modificar las tablas en Linux (=route=)
+- Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz =eth0=, con métrica 3. Se envía al router 157.55.80.1
+#+begin_src sh
+sudo route add -net 157.0.0.0 netmask 255.0.0.0 gw 157.55.80.1 metric 3 dev eth0
+#+end_src
+- La métrica y la interfaz son opcionales
+- Internet se puede especificar como =0.0.0.0= o como =default=
+
+
+
+*** Modificar las tablas en Linux (=ip=)
+- Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz =eth0=, con métrica 3. Se envía al router 157.55.80.1
+#+begin_src sh
+sudo ip route add 157.0.0.0/8 via 157.55.80.1 dev eth0 weigth 3
+#+end_src
+- La métrica y la interfaz son opcionales
+- Internet se puede especificar como =0.0.0.0/0= o como =default=
+
+
+*** [[http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/][Activar el enrutamiento]]
+- El /ip forwarding/ es un parámetro de kernel.
+- Se puede comprobar si se está enrutando con =sysctl net.ipv4.ip_forward=
+- Se puede activar con ~sysctl -w net.ipv4.ip_forward=1~
+- Para que se active *en el siguiente inicio* se debe cambiar el fichero /etc/sysctl.conf:
+  - ~net.ipv4.ip_forward = 1~
+
+
+
+* Referencias
+#+INCLUDE: "../../../common/footer.org"
+

@@ -1,0 +1,19 @@
+Se desea realizar una base de datos para almacenar la información del registro civil de una provincia.
+
+El registro debe guardar información de nacimientos, defunciones, matrimonios y divorcios.
+
+Los nacimientos se producen en una localidad en cierta fecha, de una madre y certificados por un facultativo. Es posible que el padre no sea conocido.
+
+Las defunciones se certifican por un médico o forense. Se producen en una localidad, en cierta fecha.
+
+Los matrimonios son certificados por un funcionario. Se celebran en una localidad y fecha concretas. Los matrimonios están compuestos por dos personas.
+
+Los divorcios se sancionan por un juez, en una localidad y fecha concretas.
+
+El registro civil también se encarga de expedir los libros de familia. Hay un libro de familia por cada pareja con hijos en común, aunque también pueden existir libros de familia monoparentales.
+
+Todos los hechos registrables se apuntan en los libros de registro. Cada hecho se apunta en un folio, dentro de un tomo de un libro. Dos hechos no pueden compartir el mismo folio.
+
+Las personas participantes en un hecho se identifican por nombre, apellidos, lugar de nacimiento, y, si están disponibles, DNI, nombre del padre y nombre de la madre.
+
+Los ciudadanos pueden requerir la expedición de certificados de cualquier hecho registrable. Para evitar un abuso en el servicio, se desean conocer los certificados que han sido expedidos para cada ciudadano, y en qué fecha.

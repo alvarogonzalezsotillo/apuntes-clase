@@ -1,0 +1,1955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2019-01-19 sáb 12:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seguridad física en equipos y servidores</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Álvaro González Sotillo" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
+<script type="text/javascript" src="../../../common/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAACRCAYAAAAvgf1wAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QkZCgArkOZkdQAAIABJREFUeNrsvXmYZVlVJ/pbe++zzzl3ijEjIiMj56x5nquAYqawlEFGG5oWxOG1LU9xamgbu7VFPgUf0K22Q+un9qPF5vFQphIQVIq5ipqorCkrqyrnjIzMiIy4cYcz7L3W+2OfG1NGlvBAP+nmft/NyLhx7rnn7LXX9Fu/tS596r/Oon1SozsviBJCc9Qi7zksnHAoS4+xqRj9joMyguEtKU6faKNeTzC5J8FjX+lgcm8C0QzxDtfeNoz7/2YZ2TJDxYwyZ2iKsTCbw8YK0xfF6C05JHGChVM97LmqjqOP95F3GTYFeovAlu0RyqLA0pxB0fWIUsHOy2vIsgJpPcbC8QLzpzJcenMTTz2QIWkxLnteKyXQS7tL7udAWG4M6d+A8l88tt/nTz2QI2l5pHXC4kmFoXGN9nwBz4KRKYORyRT9DuPU0S5qqYYoQnepwPhkil7PgbyGdwQoB2GgOW6wPC+IUo+8y5ja1cD80QK9ToHhCYPuUonRrSm6vT5qQxFsrHDqYI7GaIQkjVAfUlg4yej3C0zvSbB0ymNsl8XBL+eoDQl23xijPafw0BfnsedaA4Pv0gcRcO1L64Y0XyMeP1v08SobJZY90Fssb0mG8Cd7b4r/85Y95olvfK4t3633qb4rhaOAndfaSRG8pbdIH8s7+nWarFVKIbIKxsT1rG3f0p7jTwJ4/bXf3xgh+u4U0HeVBilFuOLFaa23HL14cc7/kuub6402MAYAGCIAAyANWGXgSnUhw31AR/LpS5/X+M2yT3ce+ELmv6dB/wjmzESEndfqC9jJb5Y9/eGiE11vtIGuhAMosFeAVyAQhBgmUrAmQtGJX9w/qz7BLG+9/IXpNKnvadB3bgdpwp6bo61loV+1eJJ/kUuzI00jCAQAg0Bgr+BKBqOEMEGr4JyhAIbAxhrsdK3Iit8q4F597csa7yLInY9/NVv6noD+f2sN4abX1iNS8uzuWf6P3UW6VZOFTTQADxAAUSgyRlk4pEMe0xcpFAXj1IEcvWUDmxgYqwAwlFGoRQmK0t3siuJjJuEPXPrc2vtOH5R7sz5B5HsC+qbNmTbA1S+JL2VPb/Q9eqsja5NYg7RA4EBQkBLo9xyU9Zi6iLD1AovGmAEEGJ4scPzREvOHHVRmkTYUSAu8dzBaQccJity9IWN3+7bL6d3eywdPH6Wj3xPQN2HOLnpOPOaK6JWds3iHErMjtgakAJAPvoUVsh7DuQKtScbM5Rbj2yxYgKwDgIChSYvGeIS5rTmO7M+w3NZIkhg2JoAEpIE4MWBvxs4eK35TtHv5DS9v/oY2uOO+O3r/rIII9c9Fa4wlXPOS9Nbeovy33qL5Q6uSHXFsACWAYkAU8h6h13ZQNsOOq4BLn1/D+A6LIquEI8H69dsAPGH64gRXvjDB1os9GH30Oh4uJ0AIIIYygrQWI6L0Ga6vPlb28VtXf1/tCq2/p0HrorNLb6/tBfAjRU/9HFyUGquhDCDC0ErBFQqddgmIw8ReYMeVFo1xG8xcGxAG1GCrEaAIKDLAFUCtZXDRMxpY2JHjyEMFFo8RdN+i3tSAYUB5xDWNMktQ5u6twu6lV9/e+q3mqPnQ1z+6vCD+f0MBkQBaE3bdENWb2+SVeQc/LT66PrIRlAWCxxYQafSXBf1+H80Jxo7LImzZbaEMoegCXIakdbOwWamgUb02EMXA6EyMxniE2cczHH+4j/ZChLRpEacEZg9tCZGNUBZmL5fF7+Udvv3K29Lf2f+Z8m+8/99IQESASRQuvy19Vvu0++n+knqNMRYmNgD5SjAKZU7od0rouMTua4FtlyewiYGrzBnR5oJZ/2FBm8occDkQ1xR2XFHD6PYCx75R4OQBj7wXo9ZUUBaVoBTSKIbr+Zd5wvMvfb7+XaXpD+/75PKT8r+6gIxVuPT56Vbx6g3ds/j5rG0mrTXBnMGBSIFLQtZheBQY3S7YfmWE4a0WYCDbaM6+aQQi/Mx7gC6AxrDFxc+2GJ7OcOSBDO0zCnEaI21ogBgAwyYGRa4aLnNvA7kXXPOS+nuJ8KHHvpj/k+qT+qfSGiLBjqvMD2bL8he9ebzbUDxpEwNohoChlUHWBhZOZYiHMlz0TI1Ln5dieKtF0QN6S8HyfTsoACnAuYCacw5M7Utw9YsT7LoB8NTH/Mkcrq+glYYXBxMD1hoosde7vvlA1pU/uvJF6VXa0P86GkSacOMr6zvZqZ9uz+HHtUqaxiiQBoRCEOBLwuLpAqIL7LxaYfuVCWotA18ErWEG1HcoslrRpj6gc8DWDPZcazC6rcChe3OcPuSQZgkaIwYMD7AgihV8aRV79aZe291y8XOi36kPx3/8lQ93+t/VArr69mbkcry56OFHIfYGQxV2RgE7I1boLQuKMkNrK2PnVRHGdsQr5owrc3Y+k6Z0CATYB3/zrWqTF6DXAUwEDE9aXPkijRMHChzbn+HsGYM0tbA1goBBhmBtBJeri7jEb5d9/v7rX1Z//+zD9JnvLgEJEFnC5S+u39w9yz/HpX2VIaOUURU8wyAolBnQ6zqYuMCOaxRmLk1hEw2fhRB5YBoBIE6CaXIlEKfh/wCgqwhOOPwssiBMEwEsQcCuAIwJ6IQrg1C1BpwH2IVLciXgFoGkoTFzaYrh6RJH7s8x94RD0beotQy0BTx7mEjBRAlc4W5nctftuAp/tP2K9L1f+B/F/D9rAYkANlG4/LZa6+yJ8i2dBfpxlMkurQyUBlgYmggCg+WzDkw5pi4iTF+QoDluIACKZcD7VT9DCvBe0G0LrFWIYiBbZpg4CODYwwWMJYzPRNCGoFSQaNblsPgGiGKFogs4x2hNKGRtYLnjkDSCNksV6UGAogOoCKi3Ilz0DI2JnQ5HHixx9qRDWotRa+hg9oSgtQGxnsja/pc8l7fe9Or6+w5+ufjLf5YCEgHSpgJi/7ruLP9k2be3xnEEYwkMgUCglULRJ/R7GWqjDtsvN5jcY6FIocgAX64PnZmBJAE0C+790iymdrewY28D9989h+k9DYAtmBlFBpw86DE/18YVt46j32Uc2r+IsckWTCzYdmGKoss4c7RAkSu4PmN50aM5zJjYZcEKcJXmgcJ1+DIIdny3RWtS4/jDOY4+1Ed7PkJtKKqiTobWBIgBWN0qrrhs7y30ahPZXzt0Nz8q/M9AQCKAjghXvKC2p3fWvf3ofv9aRfFQvakqaydQisAlodv1QFRi5jJg+pIYtaEILg9mSXCe6IxDaF5kwOLJArWkRG+J0W8z4kQwc2kCY4GFE4wD9zu0Tzt0Fx16ZxXGpwFmgTBQG1NoZcCjX1rE7isb2LI9wuIpB8BCbXBfg+so8sqk1jR2X5tiaKrEsUdKLB7zMMYiqSuABAyGiRXEJ6NF4V7Prrhmz03q95Vt/c6jX+x/22L6tsLsOCHsuEr/m84Z/mS2bH9cSTwUmSqFJ4Ymhbwj6LRzNCYLXPxMgz3XJag1IhTdytecBwmgIB+4Ati6q4VsWfDE/W2Mba0jbUQoCw+lFLRSUKKwbdcwjh3oYWHWYWK6BQhgjAKZyu9AgTlsKkUKlVV72mhPBMg7gMsJo9MWFz8zxZ4bFUyaYWmhgMsIRimAGaSA2BooJJf0l8x7iq585srb6i/Q+tsrZXzLGsQVTHPBM+z19a38jt6iflGSRrUoUpVTZyil4EqFzlIBUyux+zqDyb0pbKzgHVC4aqHU04IAIAB5xmgORegvFcj7jHorQmM4ArsST35jGYYI1lqMzySYPZohShRaWyzyvI/Tx/oQCIyK0GszLr9lCEUGnD5SoD6sgubi/BEgVRdRFiFS1EZh+oIErS0Oxx8ucPqpHlyZIG0YCLmVTaHIWs7MCxZPFpduvzL679sus//h0b/rF//oAiIF3PyqVtJd5HfMHXJvVD6dSRoaCgHYBBFEFHodgfcZRvcIdlyaoDkeqEtFXqkFrUZoT6fbzgFECo0Ri8ZIBEDArBFZYHyHBp3oQxuFoXEDQKE1MQxSBEUA+xg6EvgcsHVgfCZG2iJkPUHSYsQ1gnjA8z98LUTBJ3IRNlVjyOCCZyiMbS9wZH+GpXmDWt0ismEdSBOMVmCfbO2fLf4t6fIFV31//X0H7iz/nOQfSUDaEnbfYF7aX+Z/L2V0HSMyJlIrzoKUgsuBfr9A3HLYdYnBxB4LY6ogwK8Pnb+Zh3dhQbQlaE2QaqHEhdrR5K7aSkABAaIk3A47QMcK03tqYWFlVROimBDXNLyv8if/raET3oX3GaswsStBfdTh+CMFTj3RQ55Z1BsGVPkmZRSssuSduX7pVPG7O67VPzA2Hf3KV/5n//HvqICue1ljZ+ncO5bn6ZWRSUbTmqrEwlBCUNqgyDy8FNh+BWH6whRJSwOuis4UMEiD1vj/db/Lmt8Hm0yv+Z0FK7Zcmc13+SByWokEK02s0i8os+rbFG1+nm/F1LsSqA8Z7LtRYWKnC0HErENiExir4L0HEcFECuSS4bLrXn/mmLt13zOi99rU/vaJh5z/tgR006uaOrL0xu6ivN1Gyb4k0USVexURKApJRHuxg6jusPOqBGPbDESAzllXrVDINdb6lYEJk38oUtkosbVnIVnzOq0T8NNm0dXxq0GCrHmlOolsuG7Z/JpcFe0pTWiOWVx4s8GJxzMcf7QD17OwiYWIBEjLELQx4FJtzzruXdq4l134zPg/3P2R3he/JQEJAZc9P6V+h28oM36HOPN8q6O60goCDr5G1hxMDIoLRClh8aTHmcMOXAbtItCKSRPIyrIIAIha+dtAcCyr6iVqNZRXg11ffaYIrSxUiMrCezeNzGTNqstaTVUQFghJyL8kRFtEq9ota/5dI8IVSa1cb/XTxARFBr5wKFyGOLXhTBJyQSJAaYX6UJy6vnreyYPlX+17pv3d8Znodw5+OT/9TQnoomfZLUWffyrvyk8qiidMZAADyMDQrzNTDGKgURuClEBnNuQdRBvslmxuwlb+LE+jME+vCP/gwbJGG2jNe2Ug0DWvy0AxN9Gcja/JRvs8QCI0kKY1kCYw84ZrqQ4kgjEGED3m+uW/Wzjhvv+q74//U2NEfXrptC/OERAR4ZqX1Gri5UWLc/7t8Ob6OI6NUgRmqQzI+S0Qu/DbNwvDn08QtIkMnl5CYV/Lyi4/16fJ03zCQFuUELha+YG2rjW9fN5rOPdTScJ6rt0cKxtEBrs1/MFEBMBGrs/Xi3MfFJG/3H65fe/kPvrGQ1+EBwB64u7ler9NF+Yd/GLWodcabbWJAulvkCmwALw2HpU1teuVixyYA1qzOILzphlrHdOmay/nERudf33WHLdRYwn0NOEIPc3/scFbfTO+bsP5aZMNsuYyBstaFAwdFyfrQ+Y9Z+eyD4xsVQv0yJfaP3/ssfzfcj8eSlIdsVc9Y1HoCORKOAKgIxUZg0gEEBEh2pAdb7gnWherrXl9jSxXzBpVO05k9RS0ek5aczytNS2y/ubkaZaINtn4G8VBG3b82j/QxmhRzr3tgf8SrFixlY/zxWpNiz2BQCFHKwjOMRSRQJECI2WwIuXg2X15bLv6dTP7VN596oj73Yt21giUvaDomw8mTdOdfcpHJ/PyqAXRzFi0Y+Yiu7ss2LFjp4wi8VJdqIClqs2QQFhWboKqWg7zmuhJDQTAKw5c6eoNSqB0IMmvuDwVzhf82OqyDwp4MghESAAmkKJ1Al79WflHIUBXZllCLE8QkKKqtlSFCAOHpIL20dPYYeFq48gq0EtrBMfl4F4CdKUI0DHgSwKXIbhgp7J+p7il6LqLrEq+nueclrm60Xz2j+d/X5IIP/bLk+NP3mWstnRXZ758YW0uiveOmBpBdJJS1O9wBiEBlKjqZiAMZQgKBCiuSOu0vvo5gPMh4EoNlAEU6eA0qwBCGYUopnVoNoOhFUFrBRbAu4B5GaNXBM9MVVEvhHODqE5VYTxzFRWSQISgdShDcBleZ4R6kYqq4h8rsAsCVBWOJxxEFGpPDKVVCJ8HJXiqNisDYfOy+HL13kmpcJwAzjOEg9/UGjCRggg3xePB6VZt/6H7ymdny/LOBz9ul1/81sSYq1/YxKt/aRoukxYRRyT69bUR/XPP+lcRrK2KWSXDVcDmes8rYAhcHoLgKFYgRRDHYCcgo1Y1ZhApDXYrwo4WDjtVESHrO0ABSRoovCxShdWCMvNQ2sDGClnHQ0UEExOCERYwC4qcYayGsQqu7+GcwFgV6j48SHKDNngXIiplKuGXApcLbBzqTjLYOQN7SGETBShjoOXBLHsn4EKgogphhQoIt0jYXE7CRiGAqwQwJNYCYzW4cJg9mj0WN2q/r4h6LGKJBfs/Vzrz6l+aHvhsYRbiEp3WqEFtWK1k33G9ylkqAS0cYdiE0JggnHish/aZAuNbaxiZtii6jMP7c+iIMLnLoj6qAIc1ZhCYfSJjmwLNoUR1Fx2Gtxl0zni0D5VoDBtkJYPhMD7dQNED5k/0kHcYU3tT6Egwd8YhqSlMXxjDRMFMzT3p0J4tMLyVoBLC0hwQWYuRPRrpcIWjGWDhVM6u9Bger6mlMw6jUwZzR3OcfrJEs1UDNQBKGGNbDdpnHACFxmgImk4c7LnxqVhlXVFZnzE+ZbE459A5zVBaozGqZP5U/zRBd/Zca3dqI/roo71yeDLWrXGjXLYe6pJKe0Ea7bMuK7psmZ0hYjhxUDqCGTi3kAcQFMGVhaDshs3g3KrSKB1KxwtHPRojGo0JwpmjGZQyqI3aUM1cZuQ9hk0Dh43zkG0zA5EFysz5B+9cONYcsfqCa8yMZwcuNE4c7GF4yiKyGg99aQHQHtmSgY0iZL1QRe21SyzNFxjbHmPppMPskwUmdluAgPYZYHxbgqzI8cT9y9CGsGfXMKK0Ii/aYIIe+2rndGep7N7yg9GeXqfE4f0OS/MZOksFZi6uwTNj8XQPw5MNdBZLKKXRmLDoL7Lc99nFpy64ttGsN5LJ4wd6VOxjZD1Gb9lh5qIajGX0u+XvdxaKDzdGcEdtSM3c8+mFo5fcPDTU2tIa835Vk1fCcA4tMizkoVAMlKDkDnqLBmolkVvJ9kFaKWi9aoO1qey0DjbXxgrwQNFjmARIGgQiQW8h8Mm2X9KAKxxOH8uQ9Tn4CBM63xZmC8TWOGEqz5zoAVDotX11DKHIPBrDCXZcOITTxzpYXsyw++oGbF3hxJNdMAM2DoGAUiHEUgowKjh/pUOgYCKCMrL69wjoLBTIluF8Zspe26E1bnD4kTaSpsbo1gRlUcKY4H/yjIMfdAxXCOaPZ6jVYlo+4+ALjckdDcwd78F5D5somAiwMcT30esuun6ReyycKFFvxrbfZp0vc9gkFVZIg6hWVX4qYCswJrRx1moxTj/VhVEqGFilRBQg7NDwnit7GwgWA4DRqOBMR3doZN2gKePTCYoeoTvvYazA1gFfODRHDCgCsp7D8IQNwKQIkobSN75sdC8AzB3K0DnjocRg6wUp5p7IoIzCrqsTNMc0GmNVZTNnSKkwsStGc9xg4XCJKCFMXWhWAM/WFHDmWIHmOLDnmgbas4zOAmBrQNIaRFsKV93W3GYtIesIbA3Yc02C4YkYvcVQqdUm2OEzT7lw/ZnD2SMG7Ilu+sHWvqzjsTzrMbnXIh6yKPoEsEZ3sUCRGhXF6s3b9savbIzGMy5j3PjS4Zm8A/QXBfH0eoCWBmafAWFOXckJs4eIwHMJMoBhH6ITZjIAFTalp/r94sjcYZeQRiGOCERgBmsNHSUqNhHIJCxlBrKJBTzDOQ4dbV0HV0DSRgQTExd9YOGYI6UgYGKlLFyuIALUGjXJGMg6BBMbpI1a0G9HWDoGmKgGbYHFkwyIRaOuQCUQxYw4VWifDGi5VPlWrWGgtQI5BWMcikyweGKVZAKvEKVGmKE1kPYWuGg0W4XrAXCsAaeLjLg1VktczrXI6gzMy2WB5vB4Wo8MSo4jNzTJpsxFtUYa4CZQZE4VBZNSGtsuql1ICjDWwEaATcPGLvqMxVleDz8hFPjYM1wmeTqu5wGfiBfyFXPJiJeQKHoBC29PR3m/ydSvLZx0SmuVEZFSGjAR6c4iZ0cfLubZi48SpX0REg5jCK4EfKHAjiVKDNcaarTMZajMIaRA4iG9LudKEzkn4kN4LCAKZQUBjKZAh2IEpJyqZIgEkVUQj2BSUgKxQpkLlBEIOSgT6F7eC8QHGIV0FWH5NXSrAs7ESLZsN9u6S7y0vMBnQEBaV0nSRJr1smJsm50a2xbtOn3YnZx9onhs+uLoorimdp152C1mHV5ujeshFVEMDomFiVUbRMtZW0jZQMmUJedFA3wqpAYEwDkBTCgoKlkBZZ0A21pbavcldVoWQYsZxAMBaVthuxGyrFdccPDuYnRowtxrYzVujA3AkQKZWMdKubN5r3g0z5HHOdlBWp8xr9QPlNLodwtz+izmLZmjVknsmDIi2LRF0+KFo5ogsrAVdQ2QUPupyvsACbSmlRxjACPoyjz4wLFHQwPGVuE4C7ysR1VChLQGUhnkpoqIjOsmw0wmxjCIoLRT2kJpi9hz2e0s8kEHLmrj3HK+XGyf8Q+7QhxIfL/HZ7URzUwggS+XChFWTivlqUpsFQkx0UoxhFCh5SWg9CCHUgJAudItRLExnbP8Y91ONleW4ha7y+eg2Qnn5mBnDh+qNeiNRplX18YUuKo8igNa4wbPeHkLXMH7iugcvMlEQK/H2P/5/gf7S/z7Y1uRL552ZdJU5XW3N8pemx1EqDakwEyiALigvVCVhHhQEFAEcKBurWL7WPGqgIBLAXu9QpuSKvt0ZVX0MwGlYADiQ4MdM3GRybI2pJQhqwDxTMIulIZdyct532VRTNHkblXrd9HunC1yHSmtLOkycy53IipCaSL4U4/jzVt3m5cPTxiURbBIAzRwgLYMMCMlXEFXBNIhqV+cK7A4m70/qZmHbKLrSotqjkTrBSRMsdL6dLZoPrHtYn1V5zReXR8JJA/wah5j7Hq4fgWsqpB0bQFBhImd+SOf/N2FO1UJPPVggbFtBtf9QB0Lx0vknRJjOyzKEtACFLmAvYfSKmTaMmAHE8QJSscwNUFkBOI9bDNC2tTw3uPEIwWIFIYmJbA/UcK1CWcOEzwYW2Yi+EKjKDz6nRIKBtwntJcYURQWShuCOCDPAFEEEYbruxBR1TSKHqPIPHREUBFBypCYwgju+XSC57xm6KrhW+zLhyeBordawtgUlt2A9ykVouHI8l8OTZhTJx4rfirrcjQ0lG7UIGGQJHtuli1l4ZqRtSHkrGr2A+jdFRWkEcr5mz7KXnjD7T/VtJ/+L+1iUGTLuwJX8c1cIXBluHBXBr/BPmBfNqUV4bMTpAnh4FcLnHy0wMTuGF4KzB/PEccJdlxjsXyS8ejfBM4BacDWCRM7AoHlvntyqFofaT2GIoOzxx2a4wbD0wHJUBFBPMMzBV+8BgxdAXg3ga+1Ce+97AeaEUS8tVUir8MP2VApps3AXBXOQwRECVmbYJgdG5ez9Dtuo4AIipQnIXGFH+svZ6gvGxTZarVyLdK8DvGh1StKjYJQiaLnxsocinWGpQXByLR5GvIjYJuAMhoLxwo8/uUSZUlIUgJ7wNYVHvtiiYP39nHFs2J0Ozm+fMdZjA+N4Q1X1XH6cIG//2PgbCmIoLF1p8ILfoSgVYy7/6qLxo4eprfHaLY0nrgnw5adBvVhA1cIFucdxiZjDI1r9HoFnBBYBFycvyhFBPS7grv+UuH6NzldFGq0yACbA/3lgLGtFYusKXjISvVYoDTBJqHBTCBDRY4uCKJ05T/XmTiIlCUnIxNWhibpMwe/MfeyxaVoYnRLHa50FUt9/daQqkSgK/Q5SjRmn8rRXihOjm5Jv2Gsdtc+VzCzAzhwb7eqKAY1JxUS3LhGmDvA+MYnSozuYnQWcxz+hkd7XjA0rCCsgEgj7wBpE7jx1fUdWS++4LIXpVOxSSYnd6k9W7bb5OJnKO9KgJQgSoVaE9B5B2deMz18WMe1jonsoTTVDz+5v3PGO0F/WYFL4PShHFumIizNCh67J8fIpIUvDZpbGI3xsHloUw3SGN+usG8fGHBLhx49g9ZoDUobOOdglFoxdUwIiIBU0lUBh4usxuJCD64sMbOveRQEDRKlNKAiWS8gAkE8peKo1prAh31BLrHxb49ujbcpZeFKWlcLWSl8VFwCGwPeEdpzxZGFE8W/3razdWd3zrhte0YwtZPxxINdMIc7tXVCZBT2f9bD+RxnjwAnH/XothlR06M5quBKQdpUuOYlzZZn3Kp0ei2odXXcxO7WlmRq+8XJMBmdGhN24cROQK0pE3oPlH1gbMaIK2yedeWMy/yxl/3C2CPs1QP1EezXWn1+9kjmbAycOFLgyQdK7Lo4gnIa+XKEol/ApgomFTAzlOjVRoGawvUvA9qnusW+m+p/0l5Q/aLv3rnryiTO+grEa9eLVqvSFXXMWAE7YPE0TrL3vxSluE9B3cYeETNk0Ly8IiCtBDYhHPiat1/+UC7Naf2XjcuS1zsnrx4eNyh6oWVD0bn0I6WBxjAwd7RAkkSfO/EA/XUrzVEfDtFFr8PoLDnUWgrGEJ68u8Sjd3rkbYP5EznYG7TGFWwd0FYhF8JNr2xcrSN+ZdyQF9aGon2NEbMlrqmKJ6dgqs4ELtdQrTbUZGpNQCkQMxLvMeNKPyOObu51POc9N9tdLPdffXvtjpl9yR3zx9zjSY0QxYCKBVmHQGcItSZgCoPRyRhFmYNJUBYexIQyC5/zwKeXj11128jvuZL/hY7ouokRg6yzWq7cWHrXBohrwKlDDo2h9HP7P+v/FFmBPderVGkibQQm2SAgruo0RY/lwJ2Cl/+nGkrH7z70QH/YWDyr1owSghk0YK+pHCqwc+j3XFcb+WprNPntK26Zgo4YvhfObZXgua+YxgOf6qDsC+aPe5w6xNh3VYRuR8FVo1gUgEueVXvYeA/XAAAgAElEQVRWkfGbGkPmOUMTZl+tZRAlapUmzGFRimxNdZQ3r6hTVXMjCsFDZDV0AiQNpVxhppuj0XRr3L3AO/8T26/XHx3aMfp/PfK3/XlQldhGAm0AnxGSmkH/jIN4YMeFTShF66rC9RHdzzv0/gN3Lb+ntUVNka7qZBv5dAzAMMQBZYZHamn8ezN7RuB9D85JgE4pULXWBwnVhw1tIdSaCg//DaM21rl76gLzw7aGn0ka9LbWmMEKIlvlj3GNsHCixKH9/p3jM/rP5k7xyTgxKMvVurI2hIk9OQ49WiCpKZiYkDRWb1AEuO5VtYvTIbw9HcELpkbtTGM4gtIhSAAHVH0t4wubha0bX6+y9WruUkhyB2ClItRaBo1ho13Jl0aJunShWd4+tKX+EXHmvV/9n93uWhpyAE4J4hTieoRaU4drq05/9hhzYwv9xfK8f0KoeOfk7uT5cRKtNJsNCPnaAMcf70vekV8bm7YfmH3cP26sDjmRIjBTKBhm6lzOIFU7J+sC2aLCFS9K0BjVJyd2Jk/YukZjXKE5eG5RaE4oNCcIjXHC2LbowOf/tDiZ9RV0TDAJYNJQ2p071Uan00OcnMv84QK45Yfqvzg0qT4+fWH6xm176zNDoxZggquGUQyEs5ZDR5tUn9c+N5Lw1x7PHCi8vgjnJ1IYn0mw77r61TuvqP1KYxR/e/Pr0tewp3OboZWg6DnMH8+quCxUWxUUTjxcuAf//uxX0qZ9aGg8wfCUxfAWi+GJ1efYjMXwWJotnVSffPcr5h5vnxTEQw5caYxaifwC/rAu9vWekfUUOgseeS/gWXGq4ByGiELewgMNGtAIinCz2mKYSOPAXX1Etr+iHaUDRmYKxE21gcBEuOR58bW7Mvn1rbvt80a22pgoQP2FOz+DZm1ivrY7QqtNTEl1LG8g19CG44RR4XcKo1NKNUb1jaeP5H9w86uaL1RG/Yf7P9U/tdF8Zh2Ph+4+CV3x04nC+j3rdcM1IiSuDP6R3foPZAsoA1Vk3Jyd9fjQu8/gFW9vYvKCKjZXDNICivhc4iIRQRsgSgkmFrAXVKiqhEFGK9jlum0qwTdIFAmyZUZvTd609+bQXyMbKDM3vSr9F3Fdfmtyb2NbfcSAfRg28bSCqSq8xqyaHaUDol1mVcQ0qP8klQA5+B/vw0YSv56ps5bVWhSAcqEpbeueZCRt6p84cyS/4uoXp285/aS/d23uFiWEXVc3sf9LZ9chUCJELFDiqz7ZtWtV9dOKgzKRUZNjKRYXPIp+hdCoSoeEoSpm+gYBBbaMtlQ1MK1EAwLhVVpRtYsGcA9V9tUahFEua3ZnYwtw9sQa5uoz6ybv8lu1oXdMX5gOkaoSNX56mpwxAUbyLtSYnBMUmSDvcF9Z7hIrxU5RyM5ZPJjJmaG4gYg0kNYMbKqgABSVJdhMq5gByYOfGpmIkKTqluOP9//fPTfYt913R/GhlQ2kCEOjEYyidZpMEChASK/6j3XpSYg2xZci3bbAcbU7/JqOAoWAgW0UkHiFvAcszzH6y6HlI9DlA1tHzsOvFARn3u8rGDc4F3DVy4Eo9SuLf8mz6ylEfq01rv/N+EyaioT+0PNxEElhJSsv+h690yV6S37elbi36PODUUJHu2dwoLaFTw9PGDOgf7P3snhIvAjvSFrugrKPHVFaXBOn6qrakE5qTQsbh2v27jxsWQaKfuj83n5JbdepI/3/dvGz02Gl1R8tHPXMHEogVz57DN+4cz5QxyppcDV1S2hz5EQEEqeap7YnyHqBr+0KDiylksGloOxuZuJUBbvUCUkCWCuQOCwSC63jLZ+DMakQlqqouhANJC21slP33lBP8i7/ikn0T49NJ5HIKuJ8DndUAVFVKugtOyzMZlnRU19yJd9RZPzFJFEH2EkmTO5L/6PrJi4rccENKcBhtlyR53jwDoAluuvZbzIRe4pchlbZ58v7bdw6h+UfbA2by4YmEp021EpzFp/Dkw2m0yYKkzvS1qkn8/f5UsqdV8d/dvCrPSYiJA2NaA1gp1A1kG3GplQDuhfZqb228YI3x/AFMLQ1g/c+oPdKAYoDQ+gcDZINNtkTSk+wFQfuvCRXCeUCFgGJoMyB616uEdeA7gJwyXNqVkT+XZzon90yk0SCqm9oE20cmLLuWcb88aJdFuXnoyT6Pa3whcK7/lf/n7Yf3aLR7wnqY2qFqCgbQzglIAYe/Oxy2Z3XpU2oxw6z1768/nl2eP/CSX/78nzvp0Ym7fWtLcbaVMEXVcfdhs1XZkBkFbbuSWuzh3rvE+Z89/XJB30hEtc0Ln32GO7/2zloo8I6VIjJRohIVffNHjS+E+nUhSGknj1A6C5KlZIwTMSIUr95mC0DNWXA5wxXMMTLCoa0cVfICjkxEE20AZJ6aDskAnZelSrx+BHO1S9u2ZUG4bjN0V1rA1Bz6lCWHXm0e8fyaXkpe3rtgS/1//rhvys6X//Esv+2JvYS8MCnuuU9n+ycBeGDvsQL54+7Hz38UHd/+4zz2q6ClBsfrgj+dWJ3OpQt82+yw3NRMWcjO+jioxUIfLPGCxYgSgETU/71j2en33zhKbzh0lkcvKtEfdisaVvTACIA0fl7p7QBoiRgbKSfvuVgoNZaEbhQuPw2jdpQJWQvLzMR3jW+M03B5wpnYNJMAmQZ4/iB/tG5p4qfdH152b0f7d95/6d62T/GBI+vf3RZvv7RXv/ej/c+wI6ePftE7/3HD/a6zAITY11AtFZIUUQY3ZrMFAW/d2hSX+lLCZOGYx26ANdZlnNNhDKhY7TIoLolo1sySga8rmYYq1D20Do81WYZOLnQRqGMBhld8ZZpU28eknSBZ0HmGL2erwY8AJN77Z7Ogv/loYl41NhVjt3a9w6KgO3TJeYO9e6NjHndY3/n//SLH1z6pxn7RcB9n1w+e/8nsl/oLrj/8/jj3WP9ZQ8Tr9KH12p5WQTf2hoxV505XLwtblDiC4t9l4wh7zqwF4iXFeD6nCChojTHNcF0HdhmCDZmiOPQSOM9mD28K+FduV5AShGMJaRDCtoS8p6g6EuVbG3ewqYqDSIVIr6hcYUt21OM74xNe879+6Exe3Xa0ptqjtLBrLXPOJw4mH2y6OIlT91dfukf6rh2peA7Nclj7eOBT3f+pOjjtacOZw/1lh2MrXKbjfMbHNAatWQT82pf4i2qkkRU1XG0ovNe3wpLwRNcrlE4DXhaqeILqg5CDk+1HkkQeC8oMoYrBYopwOaCc/swNkAsCgB3gWe9ro7RHRqu4JdqrX9oaItVAzxtnXBUuJmFWYe5w9nHlKY33vep7smn2+nMgqLPGJ4MfDhXhuv0jlevpLItvhq+5D0j7wvKXODL6unlnN1NBIgXfP2j7a9ogx+ZO5zt7ywEIW30ewMkZXTa2t4S/+T4XrrEpoTaaLxSfpaN7SwbO1sYKJlRDOLx6kOCqwg8cGXUegENQt+sX0VZCQF2Q7v1eT7SFcDxx0swC9KWNPsd/tnRaVuHWk0KV4RDlVmbdzjycOezRZ9/9Gsfac8XvYp0v6axyTtBmTHyLiOKFeKaxk2vbeKCG2qIE4vRqQjN4QQEAxIDOAXyBq1Rg+FxjUYzxswlFlt2RWhNRBiZjJA2DIpsvZC8FyRNg/FtMY48WNxta/onTh/PDmVdDiH/Rn/kQ/g9NBHt7pwt3r7vllTvuXoI7PhpB2QEwYmQgU8iQWokJKWVNLlqSPDi4cWvD7ONAZIaYWhMIWkEn8EcQDu9iYAGjlApoOgLJi+IsOv6CItz/Z+JY3VLXFPw+bnv0RGQdRhLc9kjo9PRWw98sX9m5uIExhDqzdD+QSqUjye3Rdh6UYTOnIKKa9BKgQFc9fxhtO4BtBXomFB0gnbkfQdFFpc/K0yzUqqFK18Zku/DD3jUUoX5WY+vfWwOeU9Qq1inWY9x0TOauPDmBrqLAmvpK0kte9v8ifwPJnelw9ps8KESgobmWES9ZffKIvP/HSyfcyWTZV4Zarsxz6zCbLXjYpu+5hfG4DJgy4wL3RYVnZmIoKvCm1nfFBwcnCsD2c8M0AeRlWEQ5zSrEcDMyPpMr/31GmpjMn3iCf+vRicS48tz5yFoEwgjc0ezxdFp8/apXclDe6+sBxveAg59xeOhz/fRXfQYnwJueeUwdt2owBnw4GczHH6oD0gUKMFFaLgSveociQJYWOYMdgQdMVwPyLsMlwu6BWN0UuPa7xvCg5/N0FtkxE2BVkFb8z7gS0avIMT16EPC+e6FE8VvjO+woVdoDUTEHEZ611tRY2ku+6kdlyefP/D1nrepAp9n/lBoEZZo8gI9svMKC3bAscf6aC8Va+ziakKnNla5vBAcExiA1hIao1baoDdRWxVKy0PjmiMrmH2i/6ZIR3vjRJ2DEgxGKC/NlVCR/EHStB9bPuPR74Rn0eYwH26RYVON23++iR3XKSydAPodbOo7vuWgjYDeMmNyR4rrXjyMyb0Rag2DpdMevpBVHyOBDmUTen+nXfx9b8nD6HNv3zOQNhS0Ubd5J8+5646FvitWC7wbN7SOAAL5+aNu4a6Pd/C1v+pi6YyrGooDmUS4Anf9OQKqmppU0KL5M4yz82E3ksKmiSo4+JjGmFrwXtCb5xemTaPpPCqe9xj9nnuoMWze6wpGZEMngokIUUyBHNLSeMXbtmD3NRZLJ/EdH31LBPTagtqo4OZXDOGSW4ew78YahrdGIAp5kInDNPwzh3w+PmN/tTPvF1yx/lpoJfpVSGq23l/m187saYGdZBA6BxYTDr5XRygf/Wref/db5vDOn5/F3BMl0paqTJyC0qtrYta3G4cQ0WiC0YIoJLOgFelg0xKuQFBvRadIuWtZ6MqkYTaNYgjA4plCohr+8PCD/bnJ3TH6drWyqk8DpRfc/jPD2Hm9wtnja5JkfOeFxI6wdMphZErjgpvH4LPgi6KmWmlg3Xt1A9ri73sq+0h7ofixoUm7rgeVOLRUJnWFzlm++caXjmxlj1Nl7pFCn49qppI6mamaQVYIyIQOv0GPrPeMsvQDH0TrZg6ABZwLDBEaIxplFIgU55Qq1zxsorP2KRaG+76hCTti7GB2wnrfk/UZRe4e2HFZ8oEkUSgzRlGs3m3eF0xfZtGaUFic/c5N+n1aQUWE5bOMIivRGFEQJZA1154XgeLcmFDvXzhW3NYcjXaoNXnOYI6QsQo2NTPW0otUgkVeabI+F+6Riv8RtwjoAhQpUDVUiCh0Myoym4Clg3QnCnmSyxllSfCeoOn8maE2WOx3ih3K4IZa0yhV2eaNpfTOfMFJXX2wMWoWGsNmQ/YnkBLo9Qn9xc1nyRERLnpWumtsxvS7p3BKvokpI9oQTI2Q1ICtF6vhkw+5RdJ0znl7SwIxHunwuUmmZ4bKzENKFZ/pLpU/OrTFUlms2doc+qZqrai5cCJ/RpTI8aGJ6DzzISrsUjOi2IemZLU6/EJHQMQBz9wEzWZ4UShdIJsPuuIC5HF+78yQgjQ/pzZkrzFGwfP6DnilQ37V75WntszEnzx90K2rsAoDUaJgazpUNdV685g0Q3TNUorz9EOLc3JTa8S8KYrR5qcBhHQEdOYdHr3TYXyn+ddZ1zenL7TvyfrnjrXRWqHTdlg45s+ZyhOE6DC8VX2i33Wva26xdVpTwR9cq0105D1fVy771uh0XFRZ5HknpVDVlQH2YO8B1vCe4TyjyN1mFVUVksiK2MElII5CG7qip0nyqSmCW5O6GhsIYx1pQwHdRQeT0D02NY/OHijXOVAuBY1xhanRYM/PAWMNrI1B7VnqNcejT594JHtzb5J+BD75z1GqqgYtglIStF2HobBxqtA+VaI9715VFOXPjE4lP78w66G1h/j19tNEgvZxgBWQ1AbDBNfFQqi37BcW54rHyx5fbRO1YiVkTQAQp+bi9kIxAsh597QCQSkFYwx8FL5ERBD6IjUUPIDBN6iajQNUAr0o4G9SShDSeaYS0kA7ch4uely3qTaDujutidzCt5C4Mq2ZTx6679xvYfReoJYEy3MKoSls/aM5pcvD9/TcyUeB5eP2/qkr/P7jj2bvmt5nRqMUJ9lzjT0IbBYaoiJfsgH50iaSTTdUcuwJ+UUT6XbasJ+/9+MZWuMlUOh1nK0wXk2hMW4wNEowybmmLl/Egsvk77KevyKurfeQgXQCJDXVWJjlOjs5T5m46toqWdoLBfK+gB1D0/q5EoNK8vr9ylTV/AlSBHajK88/kXBgvvrdgrI8s5FtbJousQdcyR1TmnsWjpw7urMsCCNbPYbGBeUmxQU1R86kSs9cJf+H0fm/dCWuTFuqFOE3Ls65KfGIQ+Ow3B3FVO8v8wV5D31bc3ONYXu6OWyarqdGTzxafu3CZ6qPjE6n75vdr8/KxlFLBLiC0D5bQKflSuFt7aM+qu8rMu+FIz2YvERrRsGYhJD1mbznzWeyCsDCbGLw8JRB3mfoCPCVnXROUDpBr79Zybva8UoLKKLAoIkCKYLOM8CIBPBSQMVF6IDbsOsUhSFBSmOOWc5scs9QVtBZBJ68S28a+ey9KdmycGrpPYjpFVN7aoc7i+VnOm3e1WsXFza3RKc19FcAFc+dbN+s+vDTu1t3upLzouBLOgvlVSB31jn12JZttl648q1PPdi7RArz9q9/pPvExs/Ke4ILnmkxviO0WG58jExFB3qLvu1KjCu9frQaGDCK4ZHBc+2czESpwFxih2jftbX0x/9LDVwS+nkYmCtVRUERQetNWD1Q4fvdtAVIC9gFVLiaebXa7r3OPIWErjUWA1DroreB1F0OiFNPUIqTA87x2kgrHQFOPOTxhT8u0Bg9V4LPzc0etvLGy56d/uH4pP7lg/e6QnH0F0WOq+OG+peKzZ3KIXU5PuoKr5OW+lEiFP0Ormufdn+epPbU+IX2h0dnVG95Mbr9xF93f69burs+9+H2ezZ+Vps9bqcWfBGj3zk3ch2dcYeiGE+J8Dgptc4MMgczVx9enYFAm0BjRNBckMkXNLgAfCRgOAjbSgYCsn5zXpwxFOi5Uai7eE+BoXKeGcosgFYx0iRCmGKIleF4g78zmL3jQ4/emWVlViVlK9oDzD6mcODvNZQS5L1zBZT15PDEeONXR6fsX+kYc7OPlJi60H7NxOg2htUniyXxCyeLxR2XJb/Jws3TR/qHk8iCmT4xvS/9cJFLZkkdOfx1YGQP/9XVtzUuE+bDWyfU5pThquo8LHpdrSxKCUOTqtfv8HKZhyhRsJ4zDqVRSxtQSg+mxqwbrFTNjSqKnHvteYYvCMkEYBIdSCODiZJebR5mCys4F777QAZPOX+nWVASjUhbxEmVuLlV4EEF3ps0xtWZp+5ibL+SML5HYSWtMsDYNKFzBmj/XYSh8fXlCQD44p+Vs699Z/Kr4ol0DGy/zCAZxscWTxeXpM3axcPT9FCnW6A+En+ElDJZp4/6cAo7zMOzh5Y5qdkvHHw4tEqOqKQ3tl29y8SqbI7Hm+R0gs68RtkNX+05uMN+nuHEgyWKXtLtn6X9o1N4bpxCDWhbA+2B0rAmWSEebjT3HL4C1jTGqbb7BgPvGItnFPJso0eUzdDsqiTrqoqlDoOPhNSa4ULnQiZEgn6Wod0OxD32QRsHbX6dhZL6HZlqzynYBBie1KumQQCdCG55g8Ao4MHPACPbNoxMYcE9H8ll7/VGuguE3lmL4W3qvu5jxcRT92XvaIybHxYXl3MHcxHNJRcWmHJ07LHil+aOZs+99kX1n+steZAQTh30Pkq4ndQFGyZWgkggTkGchlZYaWYmIhSOceqww/zhjC98Hkx/WaBVjAFiIBKSVXbBXGGTr5KUKreEgrRPwR+/R0LJYofAtKoJqRygHldsEiRoCpOhkmq0CUggijZN3NYGFiYmdBYYRaeEMoP5cGHaExHBl6L6HX7NM95gRmcuid7dXijvXisAt0ywqeDG1weD8OBngZGt5zK9VAR0jwD9BYXj94On9iWfeOTLi7+2/ZLaa5pDyZ83xzTOHCkgpJD33YtPPJb/7MzFrf8776I9tCVG2RMsnfbnweYE4jS4MBWwv54BogS45vbGTd0l/gXAvWD2gFfa5qH8IAxbI0RJaDzLc4ctu5JN+QhhXgP5hZNF9rU7eij6glt/OMHkpA5jbFiDWIF8dB4TV8WOXA1SCpM85LyAcgi1CQoWnMXhjIMBehJEaxSh1cKIc+Wrl06XF267JH7D7MH8wXXBRkmIEuCmHw4Mnwf/JjSFrTumACYvFiTDDKUEQ9v0HScOmnd0Ft17Zi7GAyT6ISKFsR16x9FHsncp0uXUbvsn84ddiG24SsKrUFFEYCKN2BrkPUGeA4o2z1+2XpA878RD5X9VsBcbpCAbNFANyvElUDJVY8miapzo5hYHJMj6Jc0dX0LWZ/hyC/T/19qbR0l2nXWCv7u8JV7skftSW9ZekqskWVYZSV4keWtjbLpNT7OMMUO7j90emjMz3XQzwzHuAbrPMN30aWjg0DDMHINxH7ABA8aAjWWJxRIS2kollUq1ZC1ZWblGRsb6lnvvN3/cF5ERmZFZhZs6J/6R6lS8uPfd737LbxFyS0CQbfUhd3SzuQC4x8Fd280mt8t+5gPo/oE2mrGhUHALvjddUnJ/+s4A13HQatLp2kryyeuvdn5k2AWdKRGIHOjYRdiyaVDUshllfdmgfEDAzbEUBc0ujs74f7p0KfknK/Pxv9t/r/8x1WGN9Rvxj7c3cP/knP+nYDivEz5wUrpPGORdXHhuCU9+/a/xxIcexD2njmCzluzYHyGA6oL+hArlCc+3yn+Os5NqaFIzIuHs3XlBKjzLZHpqUng1S1ntKh0cDqmDuhgdDg4Cgx7IQPoXsl8LgPM0CDICDSDF++fwdmcdjyNsmn31lWTos9fXCM1OiA9/poLT780jqrOUTUAIyrxH5YcAWhukg4L8eq6CD28sJx8JSvxTo4f50vzL5qOuK1YK4/x5Mqj1J6BdwIchg0zggBKGuK3xkz/9C/i+f/I9+P5//E6srMT2pUt/fPmAzNZe44cEl3a6zIZ0qhmBw4pusDvIzlolEgYpBEy6QaZfIoW2TsHAuIHIQCcGnbZGHHZRMPaECE5DR95dvg5n3SJrl8ZqilZViU4KBf5qaXp4H7HT0jj7aBH3vz9n77GxbpZkYbK5MsPiGwbtTavmXtnHXwjKWKkvO+G1l9QPSskiR7gvMEePG82fev1JNcB8MQmQHWeYOeHA92x4zuUycB2JH/0//z1+5ee/iv/rs5/G6Uf3o7kZdV/ODoRaUIbBYTzVERqy7IyBG/tb92q0EyilOWpoZsCkgZQExrvcHtM75TvqICZSISK5heHizH4wRNSbp7E87BA4EaRDOzZQCAbpGMSRokzFPDsy6//6sbNiF4itwcisC2Y44s4QhoBruTlOxC3o0cdSNi+/7DlyMWqrw3HHKD/rXuBSHZEOu+H6g7W44kAmQ/B9q7hl0ucPsgEStYHra8t49o+Wkc2Owi9Za7XqSmKmTzi/sbSZPK4UH3E8YUU4+gUkUgFTkxCEpL2HwKxvvVmXn8ftCSSeaqeKYc1S1hXLgOjyhVgXHN/3D/ezHFj3jYjBXQ7mINXqZGDCyuHGoUZjjd4sTYo/qcw4v7a5ouYdd+cp0woYmXVRnnAQhcPrLh0DIwc42A17igyxZRB7rtUIP1qZ9r4gXdlubSQ/6uXENwqjbF7cwwb4TKRtgakTAjIYaJYCDgLuQpPG6ssBJk8nYMUOtGJgnP3J+CHn0+sL4SfChn67UW5eCI5+nWcCoCKCRAKCs2ugM8YmX3HLSsdAd+dBDKJLQBPDUD1koBRHGBskKcDPKMuOG3ZoLcrT/vqpYy6KqSwmpeJXXTpL9aaJ37wZ/2czxv6flXmVjMzwbSfDevkURgVK4xK7zXikB6YiW5KNz3G8+MdtzL+c0OGHMthcC9/JmZhgnOKVm+2TM8eCz5nY1V29mq6hlBtYheC9kKmcWzrKxJSDTZOgsaZw49VIHzjlfZEx+or08EujR/kPBjmPG0UD4YQUYXNdI4l3hxHagtVQ2FbWENFshTWtLXAmiYe0ejjZVg1LOHRkUZxxmPrlOLufVsYYnFRtl2gwRxDSOlclbTQ/98kk+Uc/C3gu+lSgOIzW8IoKE+W87QOmnFGT7AhxZelBqQh1TUB52oGfE8hW5GR5LJjnklpGGd8R3sXabVp58cv1rXZRHdh/n4P3fTqD9sbdYbalA2wuNHHpLwXm3uZg/oWQbr0Zt+99IljJlSRlcgxasf65FYwmRKFAX7I4eHqs/xAb2++yd3x/EXHHoDAmerg4ELfaQWpYszR1BubC2OFTVtiLT/JeVb3LBLfHVusOr3pMNWFfXy+AAwH8/k8M+r+QElDFa1CV1/D4h+7Hez4+hU6NISg6KE1wqNCGtXSjigBi6aEBAyJlEwcYuCpEIgMsuwF3giLNtGvgteWtFolSNjXe/isOncm7snSPe6xaUW9975E4j3HWet7V/VLSjDHceiOB8DROvyfgBhQoBabjLYYeAeDavlgqXewdiV4KXCTDnOkjfm7maBY6ATbXQsSh2aL4cFi91R0bJCweQeY4hEtIIo0k5lY8fK+8hG+hb9gQjX5KjxXThKiVjns5R5DjCLPX0HBfxL6xSfzVH13Dk1+8jKjh46EPFfHBT+5DNsijMim7c6LrAKBDkJsDVKIRhxpKCc09M6Ijfj42UEZTJleR7vQRe+zjDmH6hMCjP+ihsT5IO2CMv73d6Xy82ak3gc58ghZ/20dzr+wbx6sjR7E+v8A0Z4Rk04XyWla9kWj4erAtv4rdlks4ABOkly6b6MLXNJKIcOxdhMJUKuubSr9pPaQO4sYKySJJkxIvpaKIXfgu/WigPYAbjNseu/QZDr3VnsqwybHZWIY7+zpqr9u2iODWraoyW8Szf34R//d/+jP8yD9/DG87SvsAACAASURBVB/78XuRz/twszBJ245DmlVCu8YQ1Rl0yDocXHEPGUMwUnA9fYodcXyxxcvxONZX++j5HMgKMIGM2FzXE+u11cc9qWZDdUH+7Y11lXMnn5uIgs8dvD/4zSt/FXfCJjAz50PI1ILUDAded9eCdqGecAmAsaS6FEcvPNlE1DKYuT+PygG5VYMagJuhI29jYT+cbMVN/V+8ezebiHYNgd19bdcNkg7hX3zZdpAXL0X4D9+3hKxysF15joggHI4DpQLO/fUNfO5/y+LMYxM49QGBwMsiUxB4/ksxqosENyMwVmeJTti6m4GOQ8TMMRKCsszRW/+etAa1PN0gPwA2NlqnlpeblROH7v++ufjeZKNx40OL7QvvbDf1985fW3h4A+GJkXLZf9v3TH3+6jOm+ujH8li50YEKd0G4sj7F+r0CDgPXOuFhq4mwaWBMBow5aXvMpFOFIUkCMQv51d3tF1u5OoENlV3poYLN7gDBpE0oTbD4gQ8LhC2Cn2Xg5A5/zTDYxZauwL4TOfzGv38N+d+u4vv+xVlMTJWxuaIQNayDSBLyxBA2mhuWfehkWD1usmZzRfTeXBFoBDyEiW040BEgAnPg9flvfWl5Zf3yVPben87lCt/8znd95KsXzi2devbC3z5halwuXW1+4rEPjix+908Vnk7a2Fi5RhopfWf4CcIdXS6JGAABBtdmx8RSZzNLHNDKqgQPxSTAMEDbG05isCtAuwOIBjq/1F+/2aEV7TstZt75CacStakathQuv7oG6dwdMtFoQrbooFD24LgcQjAEIxHijrFJDOcFuGyUMf4040BYp7kaaXb1uW4ngIM5EbzxG5CZGDqxolBvffzIU4dmj/3M+uZf/NDlxp99rpIcXR176cCbC/PxaYU6VFSqz85OPzs6FcwDOEUGL772ZKdx/B2ZO1ahd3IRI8OglUglQHmPCteVCGbcGV4HkeHQytZABAPDrDQDbZ/fDpy8dG6EnRo6hgAhEasY74DBLS9gn6+tKXz+Pz6DsdyJnZkOszAvFWu0OjHCMME9jxV8bxSlwsxoYf89+VudJd46/q4MLv6ZRHMVALG2n+UbILOfmNGCC92smk7S9rbkyZQPRMfBD1yFQQekOf7m6+fa0/6jn3n3mZnf+otX/+ifB2LkE66kR5RoQicJpqcnf3eqUvntoMTnASRconnq8QxT8d6dgj1mm11yFxlNFIYJ2m2TypNxcMdqAdm22ZAsjgtukY1ZwEn1EYRML3lw7JK4DAqo0s6iTCtwFeFqrDD/h19aQzapYmQ8i2Sd8PjHD4vqSpwpj/ulqMkzSZxkstnsSEJvORJGJ3KFfKHkZvjU2Ix/oBmF081a+FOtTfXF+kWG6+c4wg1g34MsG2j4pWlckB7P1m/Td+gEMu70P6hG+6YHERzC0fcsQScSTCjweoLnvnH1jYff/Q/+zdzB0XdVJnHm1epNuCuZ+tnvOPW7y5eSZ+K2ghu4uPFKDEbgQrIBEeIda7KHtyYjew9KLikbFMAVWT873tXi6zpbsWF1kL00uuQhFQI6sqLnkHv42FHal9olxEkOr7SPX24T/vq1SzUxjeaZx7734EmuCpOZYnwgkwkq2aI7K5gsMphioeyPSW88FwQuoADmGhw8XcDz3+ygttJ4dHQm+L3Lf+nriQMOTv0zMGNMQESl1evms0mH1fIjvF6eYYce+Thnl/5K96JwayPC4bd6OP2uud7ztxaBwH0ApUP4eKGEqaWlqLWwbLKz2WPK9z158j1bg7cXv7qJo2/PQLhsr3gPGj58tozBGDAEZ/q4G3zkf/ERh0B+LEanliBXTqt0ToDcfgelxEljOBJNNsylF5YxBInhF59JU8p+qv4QXgxxgfgL//YGuM9PTk0Xvrj/aGkum3eRz07CdYEoJoAnIFII4xDtZoh6NUS1uYhWA3jk0ftw5NQU5i8sZS+dW/PPfPdEa2qWg2eAVk2tVBfMFS/jPu85bI14dCRTwWqu5DCZSRFRhuA4ApV92NKPE/bZgxl89M0X258Znaal1eqyw6l4cqayPxt12Hj9NSBbAdZvx6D0bjaG7ZrF9XqVQ+6hruW01oTcCOHQdxgkEZAkBlFMPe6WIYJJPXAldSGu2nasXR8ICmnPSqYf3h2Q7Z6p7YZzTTeOLj6j2quXWviuHx4bI6EOHXtgFPVaiBefP48oWkcn7KDZaqLVbqPZbKEdtmDQ6fVL9k1MYv/MfqzfjrNe1pXjRzzky8D6Asjx+G8GRfy2dHhTcDhxJBzXp05tBYbJ9AFig+yIQH6MD2T1bgaPLb2Oz/3NpfPZ6NKCBpxgSuzDvW/L/6yXxVdby4TNFsNffL4OZVLTKtwhAeVbXljbm6QyADhn+tZrFD73OxpRk/Do/8QwcUxavZ8Ufs1FmiSoxPacugUc5wyuZOCCkKRm5IYIZpdKh3WPURriaFuIY8zG5KV5LT/7/51EmJjrL//l0msU4d7lW3U8/ezv3UXOA7TCEJwBnu9Mnf3AZLE46tk+MMGsXFXh7YtJ6DoOHI6oE8ZRcT9QGONbqo4GPQbdNtx3cb1az9YxD+DGfsBDaXb//OR+59c6G2hoIuTLDIUJgfpyPPjjdglxu94/HCDLinDKUzx3z7s54g4hX9ZgJk0O0o/kXfV91xKIGLcjW5UwRC0GnXC4Hod0LdB7S+Z++BvTTWt2jPTTXla2wPDk117H1TfXa2GkNsIWUB5xIVC+q1R7s7MOcKBYDqY6jWQsja/Mz1n6fKdBuz9fGlq6oH5iWyeAS3zl8EPyXx8an9sAZgBUcHD/2DeNwepm1dLhr73aQdJJIDw7VGPcshJor0Sb7a7gpSIkQQXte9+XqrKU2RbhgEzqj6dBpMG7Mlo9dXmTpth6MJDyXRo6dId2T08qmjl45r8Z1FvrOm5judPRCPI+xrITd7VBK6uLcF3A4WJ2bSEZUxEllED7ATB6yMHxR3wrhjRk1XRinVHKkxxIAKbsBwmgWlBzDwa/9cDh4ysCh/G2gw+/eGhu8peXryIKW/aeuvpKB2EHkI5MCVZ8eCLN+uZOQxKFLc04jrgNWrtOWLthfZi6HQijmZWUDu1nANpAZGcTWlmOqooNksgqL2KPVg/oTuavFv+19NQpuDwT+3l+u7kZQjoOciVvj2NZQgYHMOqewmRwD5QBNmrN5sr1KGc0O8lcZE0ClKck5t7mYu4s21Je7Iv7ns8we1QiKDPrkN6dKCvAHQE6jfjEy+cXZo+XyjcfPDP3qcY1/kKUvtG+b2sUnRB0bHpSL3syprqj2l2SBOkYB0C2VWXobHBoZc04TL+cZcpWl9sXxYCloj6A6zCQ200S7qCccadugNFgbgjE+SQIzFK7nsD1syhlJwCUUJKjKGRLyOfKKOcrKJYC5PI+CvkAft5HpighM0CmAkgt24yhDcB0PVFJAzOn7bNefnZwg4QDeAWCae3MQCUYbl1qv/9qYzP7gUcPfN7z8HzLUXCkZSrMn4vQbig4HusV+tjFXBfWCtaCaPjwEyQdgMCTteum/be/qxE2CO/4BMP4qLTQAmE1wbuj+m29OAMGDsZss5QEpQ+Upghs+HtORNDaDK2DthbKQHBCe5mp8Tn/UqMaI9oEzpw5jSP7jmBkMgs/l4GXsUUyXAzlLU8ezIyajsw4GTt6cHKD/3/6NLBwXsLLGluDCcB3GJq3sKO45JwhcFBeuRa/u4IsJqcKX8/NAMq1E14vx3D7q210Ggp+jt8RAj1AAGFDlKooNeVgMCvzSn3jj1poGcKZ78ph6kQ/s4MNL1RZCjTseioZQ31a1cOLs66+XI/3uUu4kw6Dn2fIT2nIQCwla6YtPASzJwOABXfVkoMGM1rz2Kjp5/8wsWHzeguLt2/iLQ/Nob3sIA6B9WsJSjMSj3zvBGRMcCSD6ux8eD8P1JbiE29cWDs9XvQWKpXgRZ0AwrWpueMDTkYAiGHSyakxVteV9sTspOIf2A0qDeokhBtaoQVCFJkUXm37jlobJKEahiy1wtpJYtllDuMpyov3EJS7NkvvAA92PNtGeuX5Gzh1drwdjMq29AdJNMYAcZMobqMpXWijWTvugPk5lNt1bdYus1ptvVjZaN3+9NRs/oU3n21969W/WcJL516DywtYv5BFHBq4GYaVm0CQlXjiYyOoLpkdhSURUMoxrL7WemxNNf1TR/d90/X4zdVrYa8zH2WstqVwhTVdhNUxsKgrtuuv7deP3R5ukhhQCfjR+xzxY/+yiCgkTB/l0GlC0P232fBWj50HydQ/WxHrVT9mr5SSqDfAoiEhjnqjVo1WswmdVJbakbq6cKk2mvEKTSGF4ZI1Nxe1SEK2KSU69XXjNNcIcYQs58S0Ml7URM7zMoKb0RO3F1a+cO97Sj9067r/1OhKgEzOQa4sEIe8J8L04p9XwQThif9xdAdzz3EAcrBv/ab6gSwyGJvI/HFYM0pFW5tJBJAyQGK5U73u7x5FD4NN980ufUtjGYtuZUZk73uvYzVRCzF0YkOVdeUi67K8o1nKrQYodxggbHGqU51gtgu7oUfd57uMvPve2DhhWHqT0DqNtkpQXYLCxAy/7WSomCsxnh8XcAMUXR/j6pxxbl/SggsmOYd0M0D2oCn42RhBvgAFfmDp1urn3/qB0X9z7lX+WztHywxxZHVwRAkQ9W1/oQBUF8J3v35h9dTUiHfTcenVF5++nkqbAYwbJI0CWtXUapruqhbtrQd2UfyV1pc3ri1Q6+I3YyRt4OT7DUozaUhMLX+6aEtpTJf2zmA0pX0gAjMEl1s55q5N3p2AeHfqvwtJKEw58Avc4YbzymiwMXWSj3GJvA7B0CHEoeatKsHxBA6csQxuNyPhZgzcHMHxOTwfEE4O08fkzJsvr/3iRz556t6Tbxn/2aevNGr9K9Wlb65etGTd/o5yYdLD8rX2A8tUx5GJ2Uv5QnHJkQZuitdzXIbr1xSi2PqBbxV87A6/d49Qn6bZxkBmyszbd79EEhK8fEpQ6KJzU0N5AJBd3DJjVu2KGQDaWOKvgmXYEXa9gxj6IVR7vFZkJZunj3AURrlJ2lDNusl1VhFurIUqbJFwfSHBDfyAozjGMX5YQripuN12hh8BuYqP0w9PlozGv1q91S49+OHS//r872+GPaUobRUktatTc/Ut3JsTYGJzlR7Iwsf0oeAbxVm+cfpdI72/k8kDtcUNNNdCiL7vJmOGWgwM3kBm15oktQrg2QorZgocKgK0MjDpyaV0vmbSUCSpB/YmyJSd4GbssU4ijSSxTvO7xa4twQq2dxHLAD8r8a7vPI7CaFDdXOv86otPLr2/thL70sPK3JlcsTLr5FhKQbfG7Dz9UYQ4ZKn8mI3jYQPtsGEariP1gZnZ6RevrT9+4XaU/+Xf2Qi7j9qAxtm35PAPf3wcpk/B3AsYOg194sb11neM5P3FyX25r3EC+X0pu8xZmRjDrfHgYBq2x0FhKQkhhQ/sCHG2Lo9XrqrVN/9CI2wCpz/AUJ5hW6BPbSUQ7B3UT6JkAJMMImDgwoIWVWhDHrn49v6wrSRh8zbhDz/r4WO/BJMr+n88MiN/plOvf3ZsYnRCs5C5vp29JKFVfVeRnZ8ww3pGUqoNbC4DmxthJuzEntEgeG34WbE8N+Xq991X6H11HBnMHsygcd1F2Nr6AaIIRAmdaG/GztwZ93kvkC/dfL0x0CbKBEAUWmfKQU21bh+P7XrXdpd0WB0kJSAkaPGiSn7v5xtoEWH6ZB6VWZ4yEwcV9+Vg/mmFyVkfrc/Q3e3DnRXDCCoyWJsnxBFDfS1Subz/XyQ3J0mZ/yHZlFi9FsNzXIStrXCg4tQow1GIk5jWboRxbVXdIpZsMobbUdJ6I9zEa/e8dfrllUumNlLY+klxZFApCEQ1QPdNV7OHEKy+Fj3BucLkvsqfQXHteBm4jHr1oJflEEhASts5UP8Mf7d0gQ0mSrTXISPiSKerKkkjlRYpic5AIa2DTJJCVg3ryZFYJleqmU0MXLIBMYsds5A7quzZ/pLjG1QXgf/2o8CHf1rj9W8tr8/dV/7JWmPzuCunziTMRcQIYRRRuxHWDOnEQHu1avN6GLbfdKR3mTFxodnoXMp42QXPdzbATAziauF8aP7m9zpW9I9bhvq+ox5+6CcnrXxYulpeDmjHmLtyce3dfiG+OTpVeCpudcWbuo1jWwdyJiClhJR8W6a7dx20VzQxBlAGqEw77Ox78ojaQH4kvbJEd2rArbcCAKnDdLJoCAzWM8DNWRqJDgGTNkv3qoOsGyS7Q95pAQqMMazejHHx5SXkRz2s325d3Hd89CeXblW/oBIY7sRXDfSVOKSXtFErxVL2ulE432klayzraCmF/oP/+ipV8hMolHOoh7dRW+X4gR85u0UxSQgjky4+/pnpnWofRbDGFfOOhY3NsXvO+L9fqvhvrFxtDjJcssALX4lxe15BeiwFt28dIE575djUE0UfNlFVVhLTnTgqsk980tZBwWgEMjp91hTDZobArig1O1Iq9U4VlsrHGdv1oegugEYMXesACeYyMG5RoTI1eQ0C90/jHH331csrRSbiVyYnRpfdnGhWN6p45g8XaWO5jus3b2BkbBS+l7ljXk9ESJDg4sXmgLATAMyJYHz+2tr3h2hh/9yRr3AfNDm3raHnA5zXEDY1Mtt22GizrV+wx2/ehTkBQzru6Li+miAKAZEjwLFtJJPWQaZL4OqXMGVpoSocDiGtEvoA0XTPIMbuEOAscpVLoL4kcP63J3D2U4uImhxXXtqIb5wzf/7nX70A7rRw330nIYSLN69cwtHj+/7OeUlxTMCbq+GpJzd3Bv/cTGl+cWlfpSgXp8crLxlt9cG3X/RCcsvYcAaXmQs+EA6HwaB3PWCpIhaXTF19IYq+8H800EkI/+w/5nH47V1pArYFlAcghSBwycBV2uoBB4cBaYMkNEhCBmP4Hq2NuxlYpwYCqWQugSGJCe11CZExu/eR/o5/iAhMMDz03nGATe58ewVD0RPJW/bl/mTkED+HEr1UXzWDdyoBeU8gigySyPTsdrbqGAKJvQtynUYoYrtGHNvghL0c7Syou46pwVAK/eWsH6banRMZgJNt+QiH7V6l3mWI6/PpAmBdIDduZnDui+PIlBIQ/f1sEGNAvuRCa9at2Ac+KiaA4cDojP9KedT9lbildywilwzNVY0osvoPwsHAh4kUW7DLeJl6fF3sDpWGXdegKBB4AhYWR30w4K3rRsbaipZTSiHnMj2GXnr/pH6ge62hobvp9xAY22pEilRItX7LRZC7i8XnNv7HoYZJ5Zkt6UnZ0Gzdh3DqoVGokEEICaJB4VRtAHB2nru40FwBueM7F7gwyvHN/1rD4ushspWdcwXGWI8Weqf3kXapk7pHiHT66fNtYrxrU5e+MN2d6vrVdafBZAhIWxA2w9uj1qE7xTnaKuKoW1EbrF3x8NqXR5EdSfakJDLG0OlE8DMO9h0eAQNDvZogV3LAklGY9ghUwpAbCxEUgaBkEJqqFWbt8+hkDJh/Tq8uv4GlYd8jHIb1BWUN0zmDjvv8HtKP0amEzG4Kh3daDwYwMqSUonY7QUvHULSN8NX3zNKVtmpNdOqcm4LnjQaiPpHzPUcOfO8NYmBggkM4YuB3+XkOGImNaz6EEw/dGKMI1bUWCtkiTt13GPc/fADSiVFbi3DPg2Ws/r/HkNxk6NQ7mH14DXP3zyGKIpx/6hkczDyMnFdGFBrQnS46AxRGOL75q03Mv5ygODFcu677A9id38fhXRXrDslK4w4eeDyLsEUolgU4LKKXgdkrpsvyTkxKZqD0kuUE4aY5V8sq8e7m0Hi3zVLqETYHQ47MACuXBS7+SQWzj9za+h7OkEQG60tNnLiX4+RD4zg4+TCcwMWta+t453cfhjtWw+ILBlpHFkzIARXZ5qNJOIgrXG8+i+LCoyhNc/gyC5EhhPFwAQ3pMyzNx2jVFPyMAZLheSkzJtVBoG/rjlQJYMg4k0dk9okfLiAOgWxFIQm1ZdmL9JpJ50GcejGNeh5OhlJXLNdqHPA96HV0F6A9IouEsVqoWx8dE4SjkYQGK9cYpBdbieR6gtJIgLc9dgj3np3ED/3YWczdM4KNahNCcHRaCVob2rLBd3mVhRToVAWe/oOr0MEi6u0NXH6tjiArbbHI0BMwZALIlDjO/2kb8y+E1pR3u4XxNjtjtmuafefJi62ESMcdY6WvY40osjY7hjQIGoYSGEpsododW9sLkINLq5zLOOt5N7A9zOM4kM6N9ghx3Ia57X/NDYC1WwIrCyMIsgXcWrsKYgqPfuggpo8fRW0lxuK1FqLQT9FFd/nmkk2rg5yHoKTx5o3X8aVfKeCzv/wWVCbsYdaNLT9uLQE/48AvuHa8wHcL5wKc/92j27YCVmmGmDsMTKcNapnqZ/f8F1JUTzfNtmhGA0MG0NY4KWkSdJTCmvZ4PQzuIklIdeWG7aN0Yzgii81b92JmSuK9HzuAyqzE8rWWLZzd/z5HDaMYMr6PjmZYuaXw8Eck1heBeGXrhdEaaK0Rwo6CH8htzsn9nQS640bslfCkSm2ecJFzM2Sx72xLt6F71Zhuq0dy26NTfbmhUawnRkGC9cyI8e3WK10whNitr8rQCds4eKyM93/qvdh/SmH9VnvLPPbvpYgFHG4NK+Io7Qf3NboSDew/5aK+7qBd15C7vBRd7DT7NnIESmFXRiGJO2i0NuxIpTABOKLPfLXP+IJrbIH9ecqy9rMcrs9t2OKsJ1Py7U68KcXFaaWHfogMVhcMxg8rHHksxPqt+O91c+7mT9gCjj/kojLto9U0YCL14NzxSYtUtsfs6w71HOcMKmJ8c4WjtsKhFEtZIFYz1nUZsjmBbE5Asp6mb9piIANNFivMeBcKRENQ8Xcfd0EAaQadDOfVtOuEg/cKHH9UoLZAQ001iAAhBByXwJjetV4qlIHNTWbbIX+HI885UF8D9h1zsLboolnVPU+f7SNrzu8SPLJbN5uTU5piQSbP7XS4zZDEXRYJYBhBs26zNG0tgFhPJYSStJfEDQxnIAi5rQs+eAH1r8WQe5yB29Mp5I4NEgyoVQ3G3i5w+oMSt1/fuUHGEPJ5geOP+I8YSmZLk963/IKvKnnhPvoDHuoJ+NGzjN64QNe+8QdX8PCH9j9y+v5jH4qb8srBycI3Dt8nwvJ0PvMPP8MZEb/iF7ectAa/Bzj2bhfrtwKcf6YOx9uZDVi+1HCf1QHQZr+KAQ02SwGmluejzktfbSJsEe57IovKjOwdQTKASVLYldLdDlnXloMBksFxGYKsgwgM0uU16VhyFxeDGyAdwPU4jOa9mmin/nmaJIidAMIwJBx+UOCtH3KxcYNBCNoJMCz5aHrtB6+du/0b0/sr02GTv9JsxIaT55x+zCXOuIDbNsVK8Q824uh2a8P8xNTk9CGCopyHl+rVOBQS/kP3+6xS1i8s3Vb/+7mv19aE3HlChEtYvy7gZfjetc6wgEJdgUMOkXa9+zM+lg5BARZHTWoz4yKTsfFSa3tIun28rqybFGmSYAwDGdvKCJvAxiJBxxy5kkAcqiKxBLnIiv6Q2QoLRECnE0JwB8JNa4xtxnWELj9nZ4hr1xnKDxvsf7SJlcs7bWmEI8BzOPLS01d/NY7iuQNHD8DxxdlIefACgULF3vSdpo+N9fyD2cAko7OOU5j0IH2wmSPqgUY1gesz5Aou3nimff+rz9Zq55+v/lhtSdlm8EAIUyjkxzE6noOReofyVm94N8SJrNvHtLkzs22a7R0XRjBGibGDsnno0zl4AXDrWgdhO4GBsD6CtGUVICW3fScF6jkOj84wjB0lxC1g//38+6+/Fv/Pfg7QUQSjjQ1z6RskJNDYUFYnTXjIjXCo9jZneWbRQo7LdvhA+BkOYxK0Ox0wT+z43UHFxeKN+j+trpn73/rwLLJ5j4QLVsjLLRgTgExO4tDxcagYjhtwi2VwAceVqExuLVR+RKLxDL73/f905tdEJn6zvc3wmBHBy7m4/DSwdoNhu1J+P6qHtt1hXADNqsbarQ7iWCLs6FReORXuY7YZWlsNPdfxfmJkGv+yvYrrvu8CZOsgzuwadaFeMunrtZEhNKvEWg2Dt5+V6LTMvuvnGz+FOHsAXKC2qaxfKUvz+VTdlzMfrY0Yi1fqOD5WgJvlPeBHN/gaskCI7VGdHIbmZowrL7QR1Xda6t3/npyzvtB+gJCFI11wB0w4qayX6nGB7VWorWx8knrNKTXYQJQ+UB73kS2405olH7vnbeXPJBTtiF4OIyydU1h8w7Ijdty5bOsF7YZzP2/t1W683gElOaiaQHXdwJCwNaZJSxgQOPJoN/RHq0vhxeoN/ERp3AMXVgqOO4DQBDdr+kKcsABFpQjFca7P/mMX2RH2gcXr4b9trOvD2cCkEpC2D8UYQbop0l8CXpZQcAziWOHmhTbGZzLgjtgyQIJV+zB60PKFMyBsEpKWh4nRabS3Uf1dVyLpmFO1BRydLOZx8/qKcjwjjzxQtMhLsh0BSsWelNYwCnCxVe1vl+YPCsDodIY3VzefqC7HP3/h+ZU1vi3uygxhYzUPx3dg2J6ez7YzIIFOy2D5RgvthkIQZBBHlgjH0z6hdFiaDXM4rkS7rbB2u/Wp8nRQHzvIfvH6OWqp2MAYk4qbpyxvAQLnDFoT45yTcFXdK6vJlXnxc77InspOCeg0EDOIXs9OiK3ZhmCAEzgITBb1WwniVoQDp4I+bU4OwRhcIQdCXNwhHD4j8YFPZ1EoA/ltc6GRceDS5fW3b3TaB973D/YltYYy555uyKtv1HD87QEOn5y0xa/pnmgGRqyn7Ctk2j3WqeepsnJrxYqH88+pY6Nz7XsmDxWeDhuDTVwnZ+A4EqQZ+I7xKRsEkHCrs3r7Uoiw4aBUztguBCM4bursKJjFZAtua0rSCPIS6q+kfAAABgdJREFUop2rtKr0Uxt+4k8elj9jDKkus6GLpJUmYekklXEp0Xzuy63qqQ/iAaPFiVzGSU8KBgFfvSzGxkulCHHTkr44BxrVGNp4CHLW8gyUyjwmg1mcrehj1Ott3HwTA1rTRIQz78971QX9XoOY56YSPvuWSUBVceWFGG9+q4NcaQMT0+Ue7R1kh4KZAodfQI8Rt31sXZly4bmZkbBtPnzy4fzT9bXBDcoUCdefZmBGg/HBjIcxGnBgdjNAZ1mhXdfIBZZNYwYM/NJeZbxtXMMAT3Ioptz5l9tnR6al2X+vtym8yCTKgLkpLk4LgDjAiLWkw7JnPuL9bBTFj4MbrtCGMbynoEh9dQ3BWCN2mZpCdSgVeLDMthuvtzF+0ENpwlrKCwm4/mAvjgzBcSWymQB8ZDCUuDmO5hrbpxqFEw+ezaJZay9T22udeHB0vFxWufPPLuHck2vIVJZRKOVw7J4ZZIuuNSqsalw8t4h2J4KXkZieLWFkoggnY1ersg+YmS0jXGs/ePuNqPy133ljw/PEYNFa1fBz+yBEHtQnrGB7lynA3QE2VxRuX4lseBUR4jYh6fCePoE9CBw6QZ8si733JZcwpBG21X0q5j8ch9SG5i1uDPEknQdlPIAkoELTrm1sHm1t+D9QLpcEYCFA6HM77D9AvbiuLU4syG7xghjjCOsKN86F4PdZdrTgtinYD3PmjOBKjkLRw/bOTr4EtFT4ntXWwjF1q40bN51qfS28ODoqT3NH5erVGBthC+tXmjBsEcdeqePo3CyMJrz2xjVca14HyIVEBiV3CSNBGW4hQmkCyGfy2FjPwpP+mdtXm4+s3ap/hfch0AwA5sTwvOlUTGobaJPbC7S6GGPxcgxmXPgegwrtyjg+31a1pxQWbDd1NjBaYGpfboo79HM3Xm13FOI/ZgzRZqOThrjUj5oMGDOu74mM4Iynx5TtqDrZ9os3nTd05Ta7/y2bd1GvAdWlGPki76F5zDaoloJG02wi3IbCmJ4rjC2eW/meZbrgbCxkEWD0eAfX9i8utrwAOXgsg4jVkAWhTQleX3kFb6w+BwcBJI0jjxIcxmBgQLGLagyoGnDtRh0cmyjwMgQ3xUOFwne+84Nnv9KotrfVX4TqJR9xzfRUFrvRgwFQsUZ1KQYnH35grcdMap7B73Io1L3EOeMwxIsKpshY6DJGxHicjhu6LHhJxKQh6dnMzPAtVONe3Vk+pG5jKVHJD6wYBhccgCQGfyDN5syGubCZIGwOfkvYVizjB1+6b//9T3oyaIMrqXjANcWGkdQeK0BjnEG2W2D0jlcutr9rU98SETJsbvxA/cjcgS/Uqu1LGlHgIENM5S3nlmbAwKBMRE42Kh08Mf5GZSyQ1YWy2o4ufWmthdV6tA36CzAOIhhrEZ2R4MI2g+/Y4KXhk05tCIJz+IEDk3AimN6IRbItFXQZJ7G/sValCadEpJzUGXGwQDNEjBEgeHe4k1KfGYEMMaMsZqW5GSIxHYzns0hCw8JOknn4B4l97Re2mFRhm1BscADOllrWVl9sTXD564EbwHV9MjyEYK7FjxOHAxcECc1jMzJZ+PLyrRO/6m0edDQMG62MN6dmi68061HEueAS6UtCAIcDQCBODJyM5q4niXNo4QwOIKUEklgjbCUwmvfBil1wQuC4LvMChbXVJjJBJsXCb9ORY8PwgynZJ/V66EYSBkK93kKkIw+c2PpSaxD6KwTfLGRLP3d7szmzFMUhYs603tplIoJSWnkB+W5AXrtOLWOM4cKIJEYcFKRfmZSjxTE+lsmLoN1IjG0swWFC0dyD7NKlZyJ634+IwbdIAM11A+kMSs0sXkjMpRc3zPzfxsjlSlBiEzG/DY0OQC6ymIWmBLF7C/c8eGD5S79wbfn6fBshS/DRf2RQ5nk89TvzULxhMihBxNMgQ+DIQDAXjfYKcjN1ZIM85GF3IMVy8sALX27j9qUY0pXb3CAZ6YSeff2paFa6THaidpFJyriuJ8kYMj0EjX25DbMCIT1dPdZjekORNbFnTKDR7jDF40K5krslpNDH77Vb/f8DT9H6er9NkjMAAAAASUVORK5CYII=">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Seguridad física en equipos y servidores</h1>
+<div id="table-of-contents">
+<h2>&Iacute;ndice</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb597b57">1. Introducción</a>
+<ul>
+<li><a href="#org564a058">1.1. Estaciones de trabajo y servidores</a></li>
+<li><a href="#orga24d7e0">1.2. Grupos de trabajo (Workgroups)</a></li>
+</ul>
+</li>
+<li><a href="#org13c69eb">2. Acceso físico de personas</a>
+<ul>
+<li><a href="#org0ea107a">2.1. Cerraduras</a></li>
+<li><a href="#org54ef359">2.2. Personal de vigilancia.</a></li>
+<li><a href="#org8bec328">2.3. Cámaras de seguridad</a></li>
+<li><a href="#orgea6f7fb">2.4. Alarma contra intrusos.</a></li>
+</ul>
+</li>
+<li><a href="#org391b37c">3. Condiciones climáticas y ambientales.</a>
+<ul>
+<li><a href="#org18d39b0">3.1. Temperatura</a></li>
+<li><a href="#orgd393d0a">3.2. Humedad</a></li>
+<li><a href="#org23de92a">3.3. Polvo</a></li>
+<li><a href="#orgf0859eb">3.4. Agua</a></li>
+<li><a href="#org40cbb40">3.5. Fuego</a></li>
+<li><a href="#org055e3b9">3.6. Sistemas de extinción.</a></li>
+<li><a href="#orgda64ebe">3.7. Tipos de fuego.</a></li>
+<li><a href="#org9b7fcec">3.8. Agentes extintores</a></li>
+<li><a href="#org911476e">3.9. Vías de evacuación y señalización.</a></li>
+</ul>
+</li>
+<li><a href="#orgff5c53e">4. El entorno físico de un centro de proceso de datos (CPD)</a>
+<ul>
+<li><a href="#org71158b5">4.1. Niveles TIER</a></li>
+</ul>
+</li>
+<li><a href="#org71f5f59">5. Sujeción y factores de forma en entorno profesional: el Rack</a></li>
+<li><a href="#org15a3bb7">6. Electricidad</a>
+<ul>
+<li><a href="#org2f7917e">6.1. La red eléctrica</a></li>
+<li><a href="#org9c80eef">6.2. Enchufes</a></li>
+<li><a href="#org9fc2e24">6.3. Conectores y entradas normalizados (IEC)</a></li>
+<li><a href="#org2eaaa9a">6.4. Protección eléctrica</a></li>
+<li><a href="#org4d52ccf">6.5. Cálculo aproximado del consumo eléctrico</a></li>
+<li><a href="#orgd8afd26">6.6. Problemas en el suministro eléctrico</a></li>
+<li><a href="#orgce223be">6.7. Regletas protectoras de sobretensiones.</a></li>
+<li><a href="#org7d78c1c">6.8. Reguladores automáticos de voltaje (AVR)</a></li>
+<li><a href="#orgc37fb19">6.9. Sistemas de Alimentación Ininterrumpida (SAI)</a></li>
+<li><a href="#org5c64274">6.10. Grupos electrógenos</a></li>
+</ul>
+</li>
+<li><a href="#org1e7372c">7. Referencias</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgb597b57" class="outline-2">
+<h2 id="orgb597b57"><span class="section-number-2">1</span> Introducción</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+En este tema hablaremos de las amenazas se que presentan al hardware de una manera directa, es decir, desde un punto de vista absolutamente físico, y de las medidas de seguridad más comunes ante cada una de ellas.
+</p>
+
+<p>
+Hablaremos desde el punto de vista de empresas que utilizan un esquema de servidores y estaciones de trabajo, que es una manera sensata de trabajar si se requiere escalar los sistemas y prestar atención a la seguridad de la información… aunque por supuesto, prácticamente todo lo que hablemos puede ser extrapolado a pequeñas empresas o pequeños sistemas basados en equipos únicos o grupos de trabajo sin servidores dedicados.
+</p>
+</div>
+
+
+<div id="outline-container-org564a058" class="outline-3">
+<h3 id="org564a058"><span class="section-number-3">1.1</span> Estaciones de trabajo y servidores</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Las empresas de producción de bienes y servicios suelen organizar su trabajo en base a estructuras estaciones de trabajo/servidores.
+</p>
+
+<p>
+Las estaciones de trabajo (workstations), donde se sientan las personas, son considerados clientes, <i>consumidores de servicios</i>. Son ordenadores dedicados al usuario, y configurados de acuerdo a esta mentalidad.
+Algunos otros ordenadores, los servidores (servers), son configurados como <i>prestadores de servicios</i> a las estaciones de trabajo, a través de la red. En general, toda su capacidad debe dedicarse a ello. Es decir, los usuarios no deben trabajar en ellos directamente.
+</p>
+
+
+<div class="figure">
+<p><img src="media/red-con-servidor.png" alt="red-con-servidor.png" />
+</p>
+<p><span class="figure-number">Figura 1: </span>Esquema de red con un servidor</p>
+</div>
+
+<p>
+De esta manera, se centraliza la información en servidores, así como otros recursos compartidos:
+</p>
+<ul class="org-ul">
+<li>Aplicaciones internas</li>
+<li>Almacenamiento compartido</li>
+<li>Comunicaciones compartidas</li>
+<li>Otros recursos, como impresoras, etc.</li>
+</ul>
+
+<p>
+Esta forma de organización centralizada aporta las siguientes ventajas:
+</p>
+<ul class="org-ul">
+<li>Implica mucho mayor control sobre la información (que se encuentra siempre en los servidores)</li>
+<li>Facilita las tareas de administración y configuración, ya que el mayor esfuerzo se centra en los servidores.</li>
+<li>Aumenta la seguridad (disponibilidad e integridad), ya que se centraliza también el foco de atención de la seguridad en los servidores.</li>
+<li>Con respecto a las estaciones de trabajo, como la información no reside generalmente en ellas, las tareas de seguridad pueden centrarse algo menos en la disponibilidad e integridad, y dirigirse hacia la confidencialidad.</li>
+</ul>
+
+<p>
+Ser servidor o estación de trabajo es un <b>papel</b>. Un servidor es, básicamente, un ordenador en el que se decide que su misión va a ser prestar servicios a las estaciones de trabajo a través de la red. No es imprescindible hacer otras consideraciones de hardware o software. Cualquier ordenador puede ser un servidor: es decir, ser servidor es un rol, una función… y no una característica.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga24d7e0" class="outline-3">
+<h3 id="orga24d7e0"><span class="section-number-3">1.2</span> Grupos de trabajo (Workgroups)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Las instalaciones SOHO (Small Office/Home Office) pueden estar en un modelo de grupo de trabajo (workgroup), donde no hay servidores dedicados.
+En cada estación de trabajo se guarda información.
+Asimismo, cada estación de trabajo puede prestar servicios a las demás (compartir archivos, comunicaciones, impresoras…), y consumir servicios que prestan otras estaciones.
+</p>
+<ul class="org-ul">
+<li>Es un modelo cómodo para infraestructuras muy pequeñas</li>
+<li>Dificulta la administración, ya que las amenazas y configuraciones se descentralizan y multiplican.</li>
+<li>Aumenta los riesgos de las amenazas de seguridad, ya que quedan dispersas y multiplicadas por las estaciones de trabajo, que, en cierto modo <i>se convierten también en servidores</i>.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/red-soho.png" alt="red-soho.png" />
+</p>
+<p><span class="figure-number">Figura 2: </span>Esquema de red SOHO, sin servidor definido</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13c69eb" class="outline-2">
+<h2 id="org13c69eb"><span class="section-number-2">2</span> Acceso físico de personas</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Desde el punto de vista de la seguridad física, en algunos casos puede suponer una amenaza el acceso de personas no autorizadas a determinadas dependencias o instalaciones.
+El espacio donde se encuentra el hardware puede contar con restricciones físicas a las personas. Algunas serán correctivas y otras preventivas. Muchas de éstas restricciones nos son familiares:
+</p>
+<ul class="org-ul">
+<li>Puertas con algún tipo de cerradura</li>
+<li>Personal del vigilancia</li>
+<li>Cámaras</li>
+<li>Alarmas</li>
+</ul>
+</div>
+
+<div id="outline-container-org0ea107a" class="outline-3">
+<h3 id="org0ea107a"><span class="section-number-3">2.1</span> Cerraduras</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Las cerraduras con una llave pueden impedir el acceso de personas… pero más allá de la cerradura tradicional, otros sistemas de acceso como tarjetas, contraseñas o la biometría pueden realizar otras tareas como la autentificación y el control de acceso de las personas.
+Estas formas de acceso se basan en :
+</p>
+<ul class="org-ul">
+<li>Poseer algo (como una tarjeta, un llavero). Existen varias tecnologías, como las tarjetas magnéticas, los chips de radiofrecuencia, las tarjetas inteligentes etc.</li>
+</ul>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" style="margin-left:auto;margin-right:auto;">
+<caption class="t-above"><span class="table-number">Tabla 1</span> Tarjetas magnéticas, tarquetas inteligentes, chip RFID</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><img src="media/tarjeta-banda-magnetica.png" alt="tarjeta-banda-magnetica.png" /></td>
+<td class="org-left"><img src="media/tarjeta-chip-inteligente.png" alt="tarjeta-chip-inteligente.png" /></td>
+<td class="org-left"><img src="media/llave-magnetica.png" alt="llave-magnetica.png" /></td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Saber algo (como una contraseña)</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/teclado-acceso-pin.png" alt="teclado-acceso-pin.png" />
+</p>
+<p><span class="figure-number">Figura 3: </span>Control de acceso mediante PIN</p>
+</div>
+
+<ul class="org-ul">
+<li>Ser algo: Exhibir algún rasgo o característica física intransferible: Biometría.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/lector-huella-digital.png" alt="lector-huella-digital.png" />
+</p>
+<p><span class="figure-number">Figura 4: </span>Control de acceso mendiante huella digital (biometría)</p>
+</div>
+
+
+<p>
+Trataremos estas tecnologías más adelante, en otro tema, cuando hablemos del acceso físico a los sistemas.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54ef359" class="outline-3">
+<h3 id="org54ef359"><span class="section-number-3">2.2</span> Personal de vigilancia.</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Según la legislación Española, las tareas de vigilancia se encomiendan a un profesional vigilante o guardia de seguridad privada, que pertenecen obligatoriamente a una empresa de seguridad y siguen un proceso de selección y acreditación de acuerdo a normativa.
+“Se reserva al personal de seguridad privada estrictamente las funciones de vigilancia y seguridad activa de bienes y personas -diurna y nocturna- y el control de sistemas de seguridad; entendiéndose por vigilancia y seguridad activa aquella que incluye la posibilidad de repeler cualquier agresión al bien que se vigila”
+</p>
+
+
+<div class="figure">
+<p><img src="media/vigilante-de-seguridad.png" alt="vigilante-de-seguridad.png" />
+</p>
+<p><span class="figure-number">Figura 5: </span>Personal de vigilancia</p>
+</div>
+
+<p>
+Principalmente, sus funciones se centran en:
+</p>
+<ol class="org-ol">
+<li>Control de accesos cuando existan mecanismos de seguridad incorporados contra la comisión de infracciones o limitación de la entrada de determinadas personas.</li>
+<li>Control de sistemas de seguridad contra la comisión de delitos y faltas</li>
+<li>Vigilancia y seguridad de los bienes y las personas que se encuentren en los inmuebles con posibilidad de represión.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org8bec328" class="outline-3">
+<h3 id="org8bec328"><span class="section-number-3">2.3</span> Cámaras de seguridad</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Las cámaras son una medida típicamente pasiva, ya que en general, su misión es grabar lo sucedido, de tal manera que si se produce un ataque, se pueda reducir su impacto.
+</p>
+
+
+<div class="figure">
+<p><img src="media/camara-de-segurdad.png" alt="camara-de-segurdad.png" />
+</p>
+<p><span class="figure-number">Figura 6: </span>Cámara de vigilancia</p>
+</div>
+
+<p>
+A veces, la cámara no solo graba, sino que un vigilante de seguridad puede estar viendo en tiempo real lo que sucede en otras dependencias, y en ese caso, impedir un ataque. En ese caso, la cámara junto con el vigilante forma un mecanismo de seguridad activa&#x2026; pero la cámara por sí sola no tiene esa clara vertiente de seguridad activa.
+</p>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-orgea6f7fb" class="outline-3">
+<h3 id="orgea6f7fb"><span class="section-number-3">2.4</span> Alarma contra intrusos.</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Es un sistema encargado de detectar la intrusión de personas no autorizadas o por medios no autorizados al recinto, especialmente durante horas en las que no debe haber personas en él.
+</p>
+
+
+
+<p>
+Consta de:
+</p>
+<ul class="org-ul">
+<li>Un módulo central, que es básicamente un ordenador con software (recibe comúnmente el nombre de “central de alarma”)</li>
+<li>Una consola con teclas que activa y desactiva el sistema de detectores y que permite una interacción con la central de alarma</li>
+<li>Detectores de presencia, que utilizan microondas, ultrasonidos o sondas de temperatura. Según el tipo detectan cambios de volumen del aire o temperatura.</li>
+<li>Detectores de apertura de puertas, rotura de ventanas, etc.</li>
+<li>Una batería auxiliar, que proporciona corriente en el caso de un corte de energía (Intencionado o fortuito)</li>
+<li>Puede haber pulsadores de emergencia, normalmente disimulados que disparan la alarma</li>
+<li>Una sirena y luces con intención disuasoria</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" style="margin-left:auto;margin-right:auto;">
+<caption class="t-above"><span class="table-number">Tabla 2</span> Centralitas y sensores de alarma</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><img src="media/centralita-alarma.png" alt="centralita-alarma.png" /></td>
+<td class="org-left"><img src="media/centralita-y-sensores-alarma.png" alt="centralita-y-sensores-alarma.png" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+La alarma está conectada a la línea telefónica, con el fin de mandar un aviso a la empresa de seguridad responsable de la alarma (Que sabe qué cliente tiene apuros por el CALLER-ID, identificador de llamada) y en algunos casos también mensajes pregrabados (a policía, etc…) También suelen estar conectadas de manera redundante a través de redes de telefonía móvil.
+</p>
+
+<p>
+Es conveniente tener en cuenta algunos mitos, que son rotundamente falsos:
+</p>
+<ul class="org-ul">
+<li>Cualquier alteración de los sensores (ej: intentar romperlos o manipularlos) dispara la alarma</li>
+<li>Los sensores láser no existen en la realidad: sólo en el cine y la TV.</li>
+<li>Si una cerradura electrónica está conectada a la central de alarma, su rotura o manipulación abre la puerta, sin disparar primero la alarma.</li>
+</ul>
+
+<p>
+Los sensores, pulsadores suelen estar conectados en estrella:
+</p>
+<ul class="org-ul">
+<li>Una configuración en BUS abarata costes y simplifica la instalación, pero reduce la seguridad.</li>
+<li>Las conexiones inalámbricas sufren interferencias de manera mucho más frecuente que el cable, así que no se suelen utilizar</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org391b37c" class="outline-2">
+<h2 id="org391b37c"><span class="section-number-2">3</span> Condiciones climáticas y ambientales.</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Aunque el hardware, en general puede operar correctamente en diversas condiciones ambientales, es conveniente mantenerlo en una franja concreta de éstas.
+Los factores que más afectan a la electrónica son temperatura, humedad y polvo
+</p>
+</div>
+
+<div id="outline-container-org18d39b0" class="outline-3">
+<h3 id="org18d39b0"><span class="section-number-3">3.1</span> Temperatura</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Los equipos electrónicos  de consumo pueden funcionar correctamente con una temperatura ambiental del aire en un rango de 10 a 32ºC.
+Generan bastante calor interno, con lo que es conveniente que el ambiente en el que se encuentran esté lo más fresco posible.
+Si los equipos conviven con personas, pueden estar perfectamente a las temperaturas en las que vivimos las personas.
+Si se encuentran aislados (por ejemplo, en un cuarto de servidores o un datacenter) podría ser conveniente mantenerlos a baja temperatura, pero no es realmente necesario y el gasto energético de bajar la temperatura podría ser muy elevado, así que mantenerlos a unos 22ºC ya se consideraría adecuado. 
+</p>
+
+<p>
+En las salas aisladas de un datacenter, por normativa internacional, la temperatura promedio en el ambiente debe ser de 22.3ºC. Por lo general, esta temperatura es menor y se acerca a los 10ºC.
+</p>
+
+<p>
+Ten en cuenta, que en estos rangos de temperatura, hablamos de la temperatura del aire de la habitación. En el interior de los ordenadores el aire estará más caliente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd393d0a" class="outline-3">
+<h3 id="orgd393d0a"><span class="section-number-3">3.2</span> Humedad</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+El aire contiene una pequeña cantidad de agua en estado gaseoso (o incluso líquido en suspensión). La cantidad de vapor que contiene el aire en un instante dado con respecto al máximo que puede contener es la es la humedad relativa. Se expresa con un tanto por ciento.
+Si la humedad es del 100%, quiere decir que el aire contiene la máxima cantidad de vapor que puede llevar disuelto antes de expulsarlo en forma líquida.
+La humedad máxima varía con la temperatura. La relativa, por lo tanto, también.
+Para los equipos electrónicos, es conveniente mantenerla entre el 40% y el 50% con respecto a la humedad máxima. En ningún caso se recomienda el funcionamiento de material electrónico con una humedad superior al 80%
+</p>
+
+
+<p>
+En ambientes de humedad alta, puede eliminarse humedad mediante deshumidificadores, que condensan el agua del aire, la devuelven al estado líquido haciéndolo pasar por una rejilla fría.
+Los deshumidificadores pueden conectase a un desagüe para evacuar el agua en estado líquido.
+</p>
+
+
+<div class="figure">
+<p><img src="media/deshumidificador.png" alt="deshumidificador.png" />
+</p>
+<p><span class="figure-number">Figura 7: </span>Deshumificador doméstico</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org23de92a" class="outline-3">
+<h3 id="org23de92a"><span class="section-number-3">3.3</span> Polvo</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+El polvo se compone de  partículas sólidas de todo tipo en suspensión (fibras, tierra, pelos y piel de animales y humanos, polen, resinas…) .
+Es un gran enemigo de los sistemas informáticos:
+</p>
+<ul class="org-ul">
+<li>Recubre los circuitos y propicia la acumulación de humedad, provocando óxido o desperfectos relacionados con la electricidad.</li>
+<li>Se adhiere a dispositivos lectores (Ej: los cabezales de dispositivos ópticos).</li>
+<li>Se adhiere a piezas móviles (Ej: Ventiladores, motores de dispositivos ópticos, ratones, y todo tipo de periféricos)</li>
+</ul>
+
+
+<p>
+Si en nuestras instalaciones el polvo supone un problema, se puede paliar con filtros de partículas. El filtro es básicamente una malla de fibras por la que se fuerza el paso del aire mediante ventiladores. Las partículas de polvo quedan adheridas al filtro y cuando está muy sucio se limpia o se cambia.
+</p>
+
+<p>
+Hay que tener en cuenta que los sistemas de climatización de los CPD, el aire acondicionado ya incluye filtro de partículas y deshumidifica por el propio enfriamiento.
+</p>
+
+
+<div class="figure">
+<p><img src="media/filtro-de-polvo.png" alt="filtro-de-polvo.png" />
+</p>
+<p><span class="figure-number">Figura 8: </span>Filtro de polvo y partículas</p>
+</div>
+
+<p>
+Algunos equipos pueden aislarse en un recinto hermético, de tal manera que toda la circulación de aire esté controlada, y la mayor parte del aire pase por un filtro.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf0859eb" class="outline-3">
+<h3 id="orgf0859eb"><span class="section-number-3">3.4</span> Agua</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Es necesario tomar algunas precauciones absolutamente evidentes con respecto a pequeñas fugas de agua:
+</p>
+<ul class="org-ul">
+<li>Los baños y salidas de agua deben situarse a distancia de las salas que alojen hardware. Si no es posible, debe contarse con sistemas de desviación y absorción (Ej: desagües)</li>
+<li>El hardware debe estar alejado de ventanas y otras posibles fuentes de filtraciones.</li>
+<li>En general, nunca debe apoyarse directamente sobre el suelto, sino elevado sobre éste.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org40cbb40" class="outline-3">
+<h3 id="org40cbb40"><span class="section-number-3">3.5</span> Fuego</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+El fuego es una amenaza mucho más seria de lo que puede parecer en un primer momento. Las averías eléctricas son fuente frecuentemente de pequeños incendios. La mayor parte de éstos pequeños incendios pueden ser controlados, pero si no lo son, un fuego puede extenderse y descontrolarse rápidamente.
+</p>
+
+<p>
+Vamos a hablar de algunas medidas de seguridad comunes con respecto al fuego.
+</p>
+</div>
+
+<div id="outline-container-org0fc134b" class="outline-4">
+<h4 id="org0fc134b"><span class="section-number-4">3.5.1</span> Barreras</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+Algunos muros están construidos con especial resistencia al fuego, para evitar que se propague. Contienen materiales aislantes e incluso refrigerantes. Se sellan sus resquicios con masillas y siliconas ignífugas
+</p>
+
+<p>
+Las puertas cortafuegos son para el paso de personas. Se cierran solas con algún mecanismo de muelle y tienen unas palancas para abrirlas
+</p>
+
+<p>
+Suelen estar clasificadas con un rótulo “DF” seguido del número de minutos que resisten un fuego directo (Ej: una puerta DF-30 resiste 30 minutos de fuego directo)
+</p>
+
+
+<div class="figure">
+<p><img src="media/puertas-antiincendios.png" alt="puertas-antiincendios.png" />
+</p>
+<p><span class="figure-number">Figura 9: </span>Puertas de seguridad antiincencios</p>
+</div>
+
+<p>
+Las compuertas cortafuegos se colocan en conductos (ventilación, aire acondicionado, calefacción). Impiden que el fuego se propague por estos medios
+Su cierre es automático.
+</p>
+
+
+<div class="figure">
+<p><img src="media/compuerta-cortafuegos-ventilacion.png" alt="compuerta-cortafuegos-ventilacion.png" />
+</p>
+<p><span class="figure-number">Figura 10: </span>Compuertas antiincencios para conductos de calefacción</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32bfcaf" class="outline-4">
+<h4 id="org32bfcaf"><span class="section-number-4">3.5.2</span> Detectores:</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+Hay de varios tipos. Se sitúan en partes altas. Están conectados a la central de alarma
+</p>
+
+
+<p>
+La central de alarma del edificio puede estar dedicada a la detección y extinción de incendios, o bien puede ser la misma central de alarma que se utilice para la detección de intrusos (en ese caso se llaman sistemas mixtos -es lo más común-).
+En cualquier caso, la central de alarma hará una o más de éstas acciones:
+</p>
+<ul class="org-ul">
+<li>Disparar una sirena para avisar de la detección del fuego</li>
+<li>Disparar sistemas de extinción automáticos (como agua nebulizada)</li>
+<li>Avisar a una empresa de seguridad mediante la línea telefónica fija o móvil.</li>
+<li>Avisar a un servicio de emergencia (tipo 112) mediante un sistema pregrabado.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/detector-humo.png" alt="detector-humo.png" />
+</p>
+<p><span class="figure-number">Figura 11: </span>Detector de humo</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org055e3b9" class="outline-3">
+<h3 id="org055e3b9"><span class="section-number-3">3.6</span> Sistemas de extinción.</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>Automáticos: En muchos entornos en los que hay instalados ordenadores se cuenta con sistemas de extinción automáticos instalados en el edificio y sus dependencias. 
+<ul class="org-ul">
+<li>Principalmente se basan en esparcir algún agente extintor en el ambiente, como el agua nebulizada,</li>
+<li>Puede sustituir el oxígeno del aire por algún otro gas que impida la combustión, como  gas inergen (una mezcla de nitrógeno, argón y CO<sub>2</sub>)</li>
+<li>Los gases limpios (HF's, como el FE13 y el FM200) actúan directamente sobre el fuego a concentraciones relativamente bajas. Se almacenan como gases licuados y apagan el fuego por enfriamiento de la llama. Tienen menor toxicidad que el CO<sub>2</sub> y no afectan a la capa de ozono.</li>
+<li>También son gases de este tipo los hidrocarburos halogenados, derivados del gas halón, utilizados durante mucho tiempo, pero actualmente <i>prohibidos</i> por su efecto sobre la capa de ozono.</li>
+</ul></li>
+</ul>
+
+
+
+
+<div class="figure">
+<p><img src="media/aspersor-incendios.png" alt="aspersor-incendios.png" />
+</p>
+<p><span class="figure-number">Figura 12: </span>Aspersor para la extinción automática de incendios</p>
+</div>
+
+<ul class="org-ul">
+<li>Manuales:  Basados en la dispersión manual de algún agente…. Es decir, utilizar “extintores”.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/extintores.png" alt="extintores.png" />
+</p>
+<p><span class="figure-number">Figura 13: </span>Extintores manuales</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgda64ebe" class="outline-3">
+<h3 id="orgda64ebe"><span class="section-number-3">3.7</span> Tipos de fuego.</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+Hay varios tipos de fuego, según el material que esté ardiendo. Los más comunes son:
+</p>
+<ul class="org-ul">
+<li>Tipo A: Material combustible sólido, como madera, papel, etc… que forma brasa</li>
+<li>Tipo B: Líquidos altamente inflamables (alcohol, gasolina, aceites)</li>
+<li>Tipo C: Gases inflamables (butano, propano, gas natural)</li>
+</ul>
+
+<p>
+Además, es posible que se presente el fuego donde pueden haber cargas eléctricas, así que hablamos de fuego con riesgo de electrocución. (Antiguamente llamado Tipo E. Ya no se llama así): Materiales que conducen, producen o almacenan corriente (ej: Baterías, SAIs, cables).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9b7fcec" class="outline-3">
+<h3 id="org9b7fcec"><span class="section-number-3">3.8</span> Agentes extintores</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+Los principales agentes extintores para uso manual son:
+</p>
+<ul class="org-ul">
+<li>CO2: Se trata del dióxido de carbono, un gas que no es peligroso para los humanos en bajas concentraciones. Es adecuado para fuegos A y B, y algo menos para el C.</li>
+<li>Polvo polivalente ABC: se trata de un agente en polvo adecuado para fuegos de tipos A, B y C</li>
+</ul>
+
+<p>
+Con respecto al fuego con riesgo de electrocución el CO2 es adecuado, pero el polvo ABC no siempre. En el caso de utilizar un extintor de polvo polivalente ABC es necesario asegurarse de que esté certificado su uso en caso de riesgo de electrocución.
+</p>
+
+<p>
+Los principales agentes extintores para uso automático son:
+</p>
+<ul class="org-ul">
+<li>Agua nebulizada. Puede dañar equipos. Es necesario tomar precauciones ante riesgo de electrocución</li>
+<li>Gases eliminadores del oxígeno. Tradicionalmente se han utilizado derivados del gas halón, pero dañan la capa de ozono. Existen soluciones alternativas, como el gas inergén.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org911476e" class="outline-3">
+<h3 id="org911476e"><span class="section-number-3">3.9</span> Vías de evacuación y señalización.</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+Distintas normas europeas indican cómo debe ser la señalización referida a los incendios. En todos los casos se trata de señales verdes que se colocan en partes altas.
+</p>
+
+
+<div class="figure">
+<p><img src="media/senalizacion-emergencia.png" alt="senalizacion-emergencia.png" />
+</p>
+<p><span class="figure-number">Figura 14: </span>Señalización de las vías de evaluación</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgff5c53e" class="outline-2">
+<h2 id="orgff5c53e"><span class="section-number-2">4</span> El entorno físico de un centro de proceso de datos (CPD)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Un Centro de Proceso de Datos (CPD) es una instalación que alberga un sistema principal de redes, ordenadores y recursos para procesar toda la información de una empresa u organismo (o varios)
+Otros nombres: Centro de cálculo, Datacenter.
+</p>
+
+<p>
+Los hay muy grandes, propiedad de las grandes empresas tecnológicas con muchos miles de servidores y mucha capacidad de almacenamiento (Google, Amazon, Microsoft, etc)&#x2026; Los hay muy pequeños, propiedad de pequeñas empresas de producción de bienes y servicios o tecnológicas, con unas pocas decenas de servidores&#x2026; y los hay de cualquier tamaño intermedio.
+</p>
+
+<p>
+A veces, los datacenter son de uso exclusivo de una única empresa, y en otras ocasiones, se “alquilan” sus servicios, de tal manera que cualquier empresa pueda contratar servicios en el datacenter de Google.
+</p>
+
+<p>
+Eso ocurre con los datacenter grandes (Ej: Amazon web services,Microsoft Azure&#x2026; )&#x2026; o con los datacenter más pequeños (Ej: Nexica, fatcow -un proveedor de hosting-)
+</p>
+
+
+
+<div class="figure">
+<p><img src="media/exterior-datacenter.png" alt="exterior-datacenter.png" />
+</p>
+<p><span class="figure-number">Figura 15: </span>Datacenter de Google en Montain View, California, EEUU. 45000 servidores</p>
+</div>
+
+<p>
+I
+</p>
+
+<div class="figure">
+<p><img src="media/interior-datacenter.png" alt="interior-datacenter.png" />
+</p>
+<p><span class="figure-number">Figura 16: </span>Interior del Datacenter de un proveedor de hosting y servicios web (ThePlanet)</p>
+</div>
+
+<p>
+Vamos a comentar acerca de los principales factores de riesgo que pueden suponer amenazas a la seguridad física, junto con las medidas de seguridad más habituales.
+-Electricidad (cortes, inestabilidad)
+</p>
+<ul class="org-ul">
+<li>Acometidas duplicadas, de distintas compañías, de tal modo que se reduzca la probabilidad de que dos o más produzcan problemas simultáneamente.</li>
+<li>SAIs. Generan energía durante un tiempo muy limitado.</li>
+<li>Grupos electrógenos (generan electricidad quemando gasóleo). Tienen un tiempo de arranque considerable y un mantenimiento complicado.
+(El tiempo de arranque de un grupo electrógeno puede compensarse con un SAI. Si no se dispone de él, es necesario tener en cuenta el tiempo que tarda el grupo en porporcionar corriente)</li>
+</ul>
+<ul class="org-ul">
+<li>Incendios
+<ul class="org-ul">
+<li>Alarmas detectoras de incendios (normalmente, conectadas a una empresa de seguridad).</li>
+<li>Extintores automáticos y manuales.</li>
+<li>Sistemas mixtos de alarmas(Un sistema mixto es sistema de alarma contra intrusos que también gestiona la detección del fuego)</li>
+</ul></li>
+<li>Redes internas (LAN)
+<ul class="org-ul">
+<li>Duplicación de redes</li>
+</ul></li>
+<li>Redes externas (WAN)
+<ul class="org-ul">
+<li>Duplicación de proveedores</li>
+</ul></li>
+<li>Climatización (temperatura, humedad, polvo)
+<ul class="org-ul">
+<li>Control ambiental con refrigeración, deshumidificadores, filtros de polvo</li>
+</ul></li>
+<li>Acceso físico de personas
+<ul class="org-ul">
+<li>Vigilantes de seguridad 24 horas</li>
+<li>Control del perímetro y zonas interiores mediante cámaras o vigilantes de seguridad</li>
+<li>Puertas con acceso controlado y blindadas en las áreas más críticas</li>
+<li>Tarjetas, llaves, contraseñas, sistemas biométricos.</li>
+</ul></li>
+</ul>
+
+
+<p>
+Con respecto a la propia construcción de un CPD, se suelen tener en cuenta algunas características peculiares del edificio:
+</p>
+<ul class="org-ul">
+<li>Suelos con alta capacidad de carga (las máquinas pesan mucho)</li>
+<li>Doble suelo para evitar electrocución e inundación</li>
+<li>Construcción antisísmica (resistente a movimientos de tierra)</li>
+<li>Paredes con tratamiento ignífugo</li>
+<li>Aislamiento térmico en muros y ventanas</li>
+<li>Bahías de carga (para la entrada y salida de material voluminoso)</li>
+<li>Puertas y compuertas antifuego</li>
+</ul>
+
+<p>
+También es importante en algunos casos, decidir dónde y cómo ubicar las instalaciones, teniendo en cuenta aspectos como:
+</p>
+<ul class="org-ul">
+<li>Coste del terreno</li>
+<li>Servicios</li>
+<li>Suministros eléctricos</li>
+<li>Poca probabilidad de catástrofes naturales, etc.</li>
+<li>Transporte</li>
+</ul>
+
+
+<p>
+Por último, una consideración acerca de la duplicación de sistemas en un Datacenter. Ya hemos comentado que en los CPD es común duplicar algunos sistemas, como las acometidas de electricidad o las redes. En algunos casos, se opta por duplicar completamente el centro, en otras instalaciones alejadas, de tal manera que tengan los mismos datos y el mismo funcionamiento, para que en caso de fallo en un datacenter, el otro siga operativo.
+</p>
+</div>
+
+<div id="outline-container-org71158b5" class="outline-3">
+<h3 id="org71158b5"><span class="section-number-3">4.1</span> Niveles TIER</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asociados a cuatro niveles de disponibilidad definidos. A mayor número en el Tier, mayor disponibilidad, y por lo tanto mayores costes asociados en su construcción y más tiempo para hacerlo. A día de hoy se han definido cuatro Tier diferentes, y ordenados de menor a mayor son:
+</p>
+</div>
+
+<div id="outline-container-org5846bf7" class="outline-4">
+<h4 id="org5846bf7"><span class="section-number-4">4.1.1</span> Tier I: Centro de datos Básico: Disponibilidad del 99.671%.</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<ul class="org-ul">
+<li>El servicio puede interrumpirse por actividades planeadas o no planeadas.</li>
+<li>No hay componentes redundantes en la distribución eléctrica y de refrigeración.</li>
+<li>Puede o no puede tener suelos elevados, generadores auxiliares o UPS.</li>
+<li>La infraestructura del datacenter deberá estar fuera de servicio al menos una vez al año por razones de mantenimiento y/o reparaciones.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgda047a8" class="outline-4">
+<h4 id="orgda047a8"><span class="section-number-4">4.1.2</span> Tier II: Centro de datos Redundante: Disponibilidad del 99.741%.</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li>Menos susceptible a interrupciones por actividades planeadas o no planeadas.</li>
+<li>Tiene suelos elevados, generadores auxiliares o UPS.</li>
+<li>Conectados a una única línea de distribución eléctrica y de refrigeración.</li>
+<li>Componentes redundantes (N+1). 
+<ul class="org-ul">
+<li>Una única línea alimenta a dos SAI. Cada SAI es capaz de mantener a todos (N) los equipos.</li>
+</ul></li>
+<li>El mantenimiento de esta línea de distribución o de otras partes de la infraestructura requiere una interrupción del servicio.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1c24a1a" class="outline-4">
+<h4 id="org1c24a1a"><span class="section-number-4">4.1.3</span> Tier III: Centro de datos Concurrentemente Mantenibles: Disponibilidad del 99.982%.</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<ul class="org-ul">
+<li>Permite planificar actividades de mantenimiento sin afectar al servicio de computación, pero eventos no planeados pueden causar paradas no planificadas.</li>
+<li>Componentes redundantes (N+1)</li>
+<li>Conectados  múltiples líneas de distribución eléctrica y de refrigeración, pero únicamente con una activa.</li>
+<li>Hay suficiente capacidad y distribución para poder llevar a cabo tareas de mantenimiento en una línea mientras se da servicio por otras.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgddb872a" class="outline-4">
+<h4 id="orgddb872a"><span class="section-number-4">4.1.4</span> Tier IV: Centro de datos Tolerante a fallos: Disponibilidad del 99.995%.</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<ul class="org-ul">
+<li>Permite planificar actividades de mantenimiento sin afectar al servicio de computación críticos, y es capaz de soportar por lo menos un evento no planificado del tipo ‘peor escenario’ sin impacto crítico en la carga.</li>
+<li>Conectados múltiples líneas de distribución eléctrica y de refrigeración con múltiples componentes redundantes</li>
+<li>Componentes redundantes  2(N+1)
+<ul class="org-ul">
+<li>Duplicación de sistemas N+1. Implica que cada uno de los cuatro SAI puede mantener a todos los equipos. Hay dos líneas de alimentación exterior. Cada ordenador se conecta a los dos SAI de forma separada.</li>
+</ul></li>
+</ul>
+
+
+
+<div class="figure">
+<p><img src="media/tier.png" alt="tier.png" />
+</p>
+<p><span class="figure-number">Figura 17: </span>Resumen de niveles TIER</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71f5f59" class="outline-2">
+<h2 id="org71f5f59"><span class="section-number-2">5</span> Sujeción y factores de forma en entorno profesional: el Rack</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+El armario RACK es la forma estándar de configurar instalaciones de hardware formados por múltiples dispositivos. Está respaldado por varias organizaciones de estándares.
+</p>
+
+<p>
+Un armario RACK común mide 19” (pulgadas) de ancho (482.6mm) en la parte interior. Es decir&#x2026; por fuera es algo más ancho, pero los aparatos que encajan dentro miden 19” de ancho. Incluye dos raíles laterales en la parte frontal con perforaciones para sujetar aparatos. Los dispositivos van sujetos sólo por delante.
+</p>
+
+
+<div class="figure">
+<p><img src="media/rack.png" alt="rack.png" />
+</p>
+<p><span class="figure-number">Figura 18: </span>Armarios rack</p>
+</div>
+
+
+<p>
+La altura de los dispositivos que se montan en rack es múltiplo de una unidad llamada “U” (Una pulgada y tres cuartos, es decir&#x2026; 1.75 pulgadas&#x2026; o sea&#x2026; 4.5 cm aproximadamente).
+</p>
+
+
+<div class="figure">
+<p><img src="media/rail-rack.png" alt="rail-rack.png" />
+</p>
+<p><span class="figure-number">Figura 19: </span>Dimensiones de los railes de un rack</p>
+</div>
+
+<p>
+Pueden existir raíles también en la parte del fondo, para sujetar equipos pesados, o especialmente bandejas sobre las que colocar dichos equipos.
+</p>
+
+<p>
+La medida del fondo no está normalizada, aunque son comunes medidas como 600, 800 y 1000 mm.
+</p>
+
+<p>
+Los armarios rack suelen anclarse en el suelo con pernos para que no se deslicen. Es necesario asegurarse de que el suelo va a resistir el peso del rack y su contenido.
+</p>
+
+
+<div class="figure">
+<p><img src="media/anclaje-suelo-rack.png" alt="anclaje-suelo-rack.png" />
+</p>
+<p><span class="figure-number">Figura 20: </span>Dispositivos de anclaje al suelo</p>
+</div>
+
+<p>
+Los armarios RACK sirven normalmente para contener:
+</p>
+<ul class="org-ul">
+<li>Ordenadores servidores</li>
+<li>Dispositivos de comunicaciones (routers, switches, patchpanels)</li>
+<li>Dispositivos de almacenamiento masivo TIPO RAID</li>
+<li>Suele también ponerse hardware y otros dispositivos de seguridad
+<ul class="org-ul">
+<li>SAI (en la parte inferior, por el peso)</li>
+<li>Ventiladores/Disipadores/Filtros de aire (en la parte superior, por el calor)</li>
+<li>La toma de corriente eléctrica (es decir, una regleta con enchufes&#x2026; pero de 19” de ancho y 1U de alto) se instala en la parte inferior.</li>
+</ul></li>
+</ul>
+
+<p>
+Casi todos los aparatos integrados en un Rack se manejan por red. Es poco habitual incluir monitores y/o teclados, pero es posible
+</p>
+
+<p>
+La versión mural del armario RACK está pensada para pequeños dispositivos de comunicaciones (switches, hubs, patchpanels, routers y cables)
+</p>
+
+
+<div class="figure">
+<p><img src="media/rack-mural.png" alt="rack-mural.png" />
+</p>
+<p><span class="figure-number">Figura 21: </span>Pequeño armario rack, adecuado para instalación mural</p>
+</div>
+
+<p>
+Los dispositivos de comunicaciones suelen servirse en varios factores de forma.
+</p>
+<ul class="org-ul">
+<li>El comúnmente llamado SOHO (Small Office, Home Office), sin forma estándar y normalmente de sobremesa</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/dispositivo-soho-no-enracable.png" alt="dispositivo-soho-no-enracable.png" /> 
+</p>
+<p><span class="figure-number">Figura 22: </span>Switch/router SOHO de sobremesa (no enracable)</p>
+</div>
+
+<ul class="org-ul">
+<li>En formato para rack, de 19”</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/switch-enracable.png" alt="switch-enracable.png" />   
+</p>
+<p><span class="figure-number">Figura 23: </span>Switch enracable</p>
+</div>
+
+
+<p>
+Con los ordenadores pasa lo mismo, aunque estemos poco habituados.
+</p>
+
+<ul class="org-ul">
+<li>Los ordenadores de escritorio SOHO y estaciones de trabajo suelen venir montados en cajas de pie con factores de forma ATX µATX, ITX y algunas otras.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="media/servidor-no-enracable.png" alt="servidor-no-enracable.png" />
+</p>
+<p><span class="figure-number">Figura 24: </span>Servidor de sobremesa, no enracable</p>
+</div>
+
+<ul class="org-ul">
+<li>Los servidores, en un rack de 19” tienen al menos dos factores de forma específicos en sus cajas: Pizza box y Blade</li>
+</ul>
+
+
+<p>
+Un servidor en factor de forma <b>pizza box</b> es la forma más simple de caja para rack: 19” de ancho y 1U de alto. Es un ordenador completo autocontenido con su fuente de alimentación, red, dispositivos de E/S y almacenamiento, etc Las conexiones van atrás.
+En el momento actual&#x2026; en una caja pizza box pueden ir varios ordenadores completos.
+</p>
+
+
+<div class="figure">
+<p><img src="media/servidor-pizzabox.png" alt="servidor-pizzabox.png" />
+</p>
+<p><span class="figure-number">Figura 25: </span>Servidor tipo <i>pizza box</i></p>
+</div>
+
+
+
+
+<p>
+Los servidores Blade no están completos. Encajan en un contenedor (“vaina”, “horno”) que es la que se monta en rack. Ese contenedor centraliza algunos servicios, normalmente alimentación, comunicaciones, y en algunos casos E/S y almacenamiento
+</p>
+
+
+<div class="figure">
+<p><img src="media/servidor-blade.png" alt="servidor-blade.png" />
+</p>
+<p><span class="figure-number">Figura 26: </span>Servidor tipo blade</p>
+</div>
+
+<p>
+Es común encontar también dispositivos RAID montados en rack. Como ya sabes, se trata de un sistema de discos redundantes, en el que se permite el fallo de un disco sin perder la información. Cuando un disco falla, en los sistemas profesionales, puede sustituirse “en caliente”
+</p>
+
+
+<p>
+Un equipo RAID para rack mide, por supuesto 19” de ancho y un múltiplo de “U” de alto, Tiene huecos para almacenar varios discos duros. Cada disco va montado en una bandeja (llamada caddy), que permite su montaje y extracción de manera rápida e independiente. Cuando un disco falla, el sistema avisa… y se sustituye por uno nuevo de idénticas características. Todo el conjunto funciona como un único disco de red.
+</p>
+
+
+<div class="figure">
+<p><img src="media/raid-enracable.png" alt="raid-enracable.png" />
+</p>
+<p><span class="figure-number">Figura 27: </span>Equipo RAID enracable</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org15a3bb7" class="outline-2">
+<h2 id="org15a3bb7"><span class="section-number-2">6</span> Electricidad</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org2f7917e" class="outline-3">
+<h3 id="org2f7917e"><span class="section-number-3">6.1</span> La red eléctrica</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+En España, el suministro de corriente eléctrica se hace con corriente alterna (que es la forma de transportar corriente a largas distancias, con éstos parámetros fijos:
+</p>
+<ul class="org-ul">
+<li>Tensión: 230 Volts (Con ±10V de oscilaciones permitidas, es decir, entre 220 y 240 Volts)</li>
+<li>Frecuencia: 50 Hertz</li>
+</ul>
+
+<p>
+Los dispositivos electrónicos (ordenadores, periféricos, comunicaciones…) utilizan corriente continua, así que la corriente alterna se transforma en continua en cada dispositivo, mediante fuentes de alimentación o transformadores.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c80eef" class="outline-3">
+<h3 id="org9c80eef"><span class="section-number-3">6.2</span> Enchufes</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+En España se utilizan básicamente dos tomas de enchufe: Schuko y Europlug, ambas normalizadas por la CEE, para suministrar corriente alterna.
+</p>
+
+<p>
+Los dispositivos que necesitan corriente continua, disponen de una fuente de alimentación (un transformador), que se conecta a enchufes Schuko o europlug mediante los conectores  IEC, normalizados a nivel internacional.
+</p>
+</div>
+
+<div id="outline-container-orga22baf1" class="outline-4">
+<h4 id="orga22baf1"><span class="section-number-4">6.2.1</span> Schuko</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+Schuko es el nombre coloquial, aunque absolutamente aceptado, de un sistema de enchufe y toma de corriente (que se define en el estándar CEE 7/4 Tipo F). "Schuko" es la forma abreviada del término alemán Schutzkontakt (literalmente: contacto protector), lo que sencillamente indica que tanto el enchufe como la toma están equipados con contactos de protección a tierra (en foma de ganchos laterales en lugar de clavijas). Los conectores Schuko se usan normalmente en circuitos de 230 V, 50 Hz y para corrientes no superiores a 16 A. 
+</p>
+
+
+<div class="figure">
+<p><img src="media/enchufe-schuco.png" alt="enchufe-schuco.png" />
+</p>
+<p><span class="figure-number">Figura 28: </span>Enchufe schuko</p>
+</div>
+
+<p>
+(En el sistema francés y belga, utilizan un conector y enchufe similar, pero que tiene una tercera patilla para la conexión a tierra, en lugar de ganchos. Algunos enchufes schuko son compatibles con éste sistema.)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfcac1a9" class="outline-4">
+<h4 id="orgfcac1a9"><span class="section-number-4">6.2.2</span> Europlug</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+La Europlug es una clavija de enchufe plano de dos polos, diseñada para corrientes de hasta 2,5 A. Fue ideada para funcionar, de forma segura, en las tomas de corriente de todos los paises europeos, con excepción del sistema que se usa en Gran Bretaña, Chipre, Gibraltar, Irlanda y Malta. Se puede enchufar en tomas de corriente schuko.
+</p>
+
+
+<div class="figure">
+<p><img src="media/enchufe-europlug.png" alt="enchufe-europlug.png" />
+</p>
+<p><span class="figure-number">Figura 29: </span>Enchufe europlug</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9fc2e24" class="outline-3">
+<h3 id="org9fc2e24"><span class="section-number-3">6.3</span> Conectores y entradas normalizados (IEC)</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Los fabricantes de dispositivos, para abaratar costes, mantener la compatibilidad eléctrica y las características de seguridad han optado por utilizar en las fuentes de alimentación y transformadores una serie de conectores y entradas de corriente normalizados.
+</p>
+
+<p>
+Existen varios tipos de conectores y entradas normalizados, aunque en informática se utilizan básicamente cuatro.
+</p>
+
+<p>
+Los fabricantes de aparatos electrónicos optan por colocar una entrada de corriente en el aparato, y utilizar un cable de alimentación que por un lado lleve un enchufe Schuko o Europlug, y por el otro un conector parejo a la entrada. En otros paises, puede utilizarse la misma fuente con conector IEC y otro cable de alimentación adaptado al sistema del país.
+</p>
+
+<p>
+Los conectores utilizados en la CE están normalizados por la norma IEC 60320 (International ElectrotechnicalCommision).  
+</p>
+
+<p>
+Los conectores y entradas IEC  se denominan por una letra “C” y un número. Los números impares corresponden a un conector, y los pares a una entrada. La entrada siempre presenta “pines” al descubierto, mientras que el conector dispone de agujeros en los que encajan los pines. 
+</p>
+
+<p>
+Es decir&#x2026;: En los conectores y entradas IEC
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" style="margin-left:auto;margin-right:auto;">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Conector</th>
+<th scope="col" class="org-left">Da corriente</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">tiene agujeros</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">está en el cable de corriente</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">No lo toques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Entrada</td>
+<td class="org-left">Toma corriente</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">tiene pines</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">está en la fuente de alimentación</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Si ves los pines, es porque no está el conector. No hay corriente.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<ul class="org-ul">
+<li>C5/C6: 2.5 amperes máximo con toma de tierra. (Apodado “Mickey Mouse” o “Hoja de trébol”)  Se utiliza en portátiles.</li>
+</ul>
+
+<div class="figure">
+<p><img src="media/conector-c5-c6.png" alt="conector-c5-c6.png" />
+</p>
+<p><span class="figure-number">Figura 30: </span>Conector C5</p>
+</div>
+
+
+<ul class="org-ul">
+<li>C7/C8: 2.5 amperes máximo  sin toma de tierra. (Apodado “El 8” o “la escopeta”). Se utiliza en periféricos y dispositivos de comunicaciones.</li>
+</ul>
+
+<div class="figure">
+<p><img src="media/conector-c7-c8.png" alt="conector-c7-c8.png" />
+</p>
+<p><span class="figure-number">Figura 31: </span>Conector C7</p>
+</div>
+
+<ul class="org-ul">
+<li>C13/C14: 10 A máximo con toma de tierra. Se utiliza en ordenadores de sobremesa, monitores, periféricos, sais, etc.</li>
+</ul>
+
+<div class="figure">
+<p><img src="media/conector-c13-c14.png" alt="conector-c13-c14.png" />
+</p>
+<p><span class="figure-number">Figura 32: </span>Conector C13</p>
+</div>
+
+
+
+<ul class="org-ul">
+<li>C19/C20: 16 A máximo con toma de tierra. Se utiliza en grandes instalaciones. Servidores y SAIs de alta potencia</li>
+</ul>
+
+<div class="figure">
+<p><img src="media/conector-c19-c20.png" alt="conector-c19-c20.png" />
+</p>
+<p><span class="figure-number">Figura 33: </span>Conector C19</p>
+</div>
+
+
+<p>
+Más información en la página de <a href="https://es.wikipedia.org/wiki/Conector_IEC">wikipedia sobre conectores IEC</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2eaaa9a" class="outline-3">
+<h3 id="org2eaaa9a"><span class="section-number-3">6.4</span> Protección eléctrica</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+La red eléctrica proporciona tensiones nominales de entre 220 y 240V La potencia que suministra la red (kiloWatts – kW) se estipula por contrato.
+</p>
+</div>
+
+<div id="outline-container-org800b701" class="outline-4">
+<h4 id="org800b701"><span class="section-number-4">6.4.1</span> El Interruptor de Control de Potencia.</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<p>
+La instalación eléctrica debe ir acorde a la potencia suministrada. Un Interruptor de Control de Potencia (ICP) se coloca a la entrada del suministro, después de los contadores para garantizar que no se consume más allá de la potencia contratada. Hay uno a la entrada de cada cliente. Se coloca más para control de consumo que para seguridad.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5576b0a" class="outline-4">
+<h4 id="org5576b0a"><span class="section-number-4">6.4.2</span> Los interruptores magnetotérmicos</h4>
+<div class="outline-text-4" id="text-6-4-2">
+<p>
+Protegen un circuito. Cada uno admite una determinada corriente máxima, que se mide en Amperes (A). Los magnetotérmicos vienen marcados con la letra “C” -de Current, corriente- y una cantidad, que indica el paso máximo de corriente que permiten “C16 → 16 Amperios máximo”. Saltan ante cortocircuitos y consumo excesivo (sobrecarga del circuito)
+Es capaz de interrumpir la corriente eléctrica de un circuito cuando ésta sobrepasa ciertos valores máximos (Que se expresan en amperios)
+</p>
+
+
+<div class="figure">
+<p><img src="media/magnetotermico-doble.png" alt="magnetotermico-doble.png" />
+</p>
+<p><span class="figure-number">Figura 34: </span>Mangetotérmico doble</p>
+</div>
+
+
+
+<div class="figure">
+<p><img src="media/magnetotermico-simple.png" alt="magnetotermico-simple.png" />
+</p>
+<p><span class="figure-number">Figura 35: </span>Magnetotérmico simple</p>
+</div>
+
+<p>
+(NOTA: no confundas el hecho de que un magnetotérmico pueda estar rotulado como C16 con el conector IEC C16, que obviamente, no tiene nada que ver)
+</p>
+
+<p>
+La desconexión magnética protege de los cortocircuitos y la térmica de las sobrecargas
+</p>
+
+<p>
+Un exceso de corriente se puede producir:
+</p>
+<ul class="org-ul">
+<li>Porque realmente estamos demandando mucha corriente, al enchufar al circuito demasiados dispositivos</li>
+<li>Porque se produce un mal funcionamiento (cortocircuito).</li>
+</ul>
+
+<p>
+En el primer caso, basta calcular aproximadamente el consumo de los aparatos de un circuito y desconectar algunos hasta no sobrepasar la capacidad del magnetotérmico
+</p>
+
+<p>
+En el segundo caso, rastreamos el origen del mal funcionamiento:
+Si es un dispositivo, se desconecta y se sustituye
+Si es en la instalación, se deja en manos de un electricista
+</p>
+
+<p>
+Se pueden colocar varios magnetotérmicos jerárquicamente (ej: uno en una oficina, otro en la planta, otro en la entrada del edificio)&#x2026; En general, ante un problema salta siempre el más cercano al problema, y que además dejará pasar menos cantidad de corriente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ec6bd3" class="outline-4">
+<h4 id="org3ec6bd3"><span class="section-number-4">6.4.3</span> El interruptor diferencial</h4>
+<div class="outline-text-4" id="text-6-4-3">
+<p>
+Se coloca en las instalaciones eléctricas con el fin de proteger a las personas de las derivaciones causadas por faltas de aislamiento entre los conductores activos y tierra o masa de los aparatos. Lo distinguirás fácilmente por el botón marcado con una “T”.
+</p>
+
+
+<div class="figure">
+<p><img src="media/diferencial.png" alt="diferencial.png" />
+</p>
+<p><span class="figure-number">Figura 36: </span>Diferencial</p>
+</div>
+
+
+<p>
+Los interruptores diferenciales suelen instalarse en menor cantidad, y protegen varios circuitos de posibles fugas de corriente.
+</p>
+
+<p>
+El botón “T” (de Test) sirve para comprobar que funciona correctamente, ya que son propensos a averías.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c6c178" class="outline-4">
+<h4 id="org4c6c178"><span class="section-number-4">6.4.4</span> La toma de Tierra.</h4>
+<div class="outline-text-4" id="text-6-4-4">
+<p>
+La instalación eléctrica, además de los dos cables que traen la corriente alterna cuenta con un tercero conectado a tierra.
+(La <b>FASE</b> –que siempre es rojo, marrón o negro- es el conductor que realmente trae la potencia. El <b>NEUTRO</b>, que siempre es azul es realmente el retorno del circuito. No transporta corriente si no se cierra el circuito con la fase. La <b>TIERRA</b> –en amarillo y verde- está conectado a un gran clavo en los cimientos del edificio.
+</p>
+
+<p>
+El enchufe schuko garantiza las fugas a tierra de corrientes descontroladas y estáticas en aquellos aparatos construidos de manera adecuada para ello.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2c1f938" class="outline-4">
+<h4 id="org2c1f938"><span class="section-number-4">6.4.5</span> Doble aislamiento</h4>
+<div class="outline-text-4" id="text-6-4-5">
+<p>
+Algunos aparatos disponen de un doble aislamiento de sus partes activas (tanto neutro como fase). En ese caso, no requieren conexión a tierra. Van marcados con éste símbolo en su carcasa. Pueden llevar un enchufe Europlug o Schuko sin toma de tierra.
+</p>
+
+
+<div class="figure">
+<p><img src="media/simbolo-doble-aislamiento.png" alt="simbolo-doble-aislamiento.png" />
+</p>
+<p><span class="figure-number">Figura 37: </span>Símbolo de doble aislamiento</p>
+</div>
+
+
+<div class="figure">
+<p><img src="media/schuko-sin-tierra.png" alt="schuko-sin-tierra.png" />
+</p>
+<p><span class="figure-number">Figura 38: </span>Enchufe schuco válido para equipo con doble aislamiento (sin tierra)</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc587158" class="outline-4">
+<h4 id="orgc587158"><span class="section-number-4">6.4.6</span> Adaptadores, ladrones, regletas</h4>
+<div class="outline-text-4" id="text-6-4-6">
+<p>
+En ningún caso están especialmente recomendados los “adaptadores”, “ladrones” o regletas de corriente si pueden evitarse. Pero es necesario tener en cuenta que NUNCA DEBE UTILIZARSE UN ADAPTADOR CON ENTRADA EUROPLUG Y CONECTOR SCHUKO. Ya que permitiría enchufar aparatos con enchufe Schuko (de hasta 16A), cuando una entrada europlug solo está certificada para 2.5A.
+</p>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" style="margin-left:auto;margin-right:auto;">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Entrada</th>
+<th scope="col" class="org-left">Conector</th>
+<th scope="col" class="org-left">Intensidad</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Schuko</td>
+<td class="org-left">Europlug</td>
+<td class="org-left">Hasta 2.5A</td>
+<td class="org-left"><img src="media/adaptador-schuko-europlug.png" alt="adaptador-schuko-europlug.png" /></td>
+</tr>
+
+<tr>
+<td class="org-left">Schuko</td>
+<td class="org-left">Schuko</td>
+<td class="org-left">Hasta 16A</td>
+<td class="org-left"><img src="media/adaptador-schuko-schuko.png" alt="adaptador-schuko-schuko.png" /></td>
+</tr>
+
+<tr>
+<td class="org-left">Schuko</td>
+<td class="org-left">Schuko y Europlug</td>
+<td class="org-left">Hasta 16A (en schuko)</td>
+<td class="org-left"><img src="media/adaptador-schuko-schukoeuroplug.png" alt="adaptador-schuko-schukoeuroplug.png" /></td>
+</tr>
+
+<tr>
+<td class="org-left">¿Europlug?</td>
+<td class="org-left">Compatibles con Schuko.</td>
+<td class="org-left">No permitido</td>
+<td class="org-left"><img src="media/adaptador-europlug-schuko.png" alt="adaptador-europlug-schuko.png" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4d52ccf" class="outline-3">
+<h3 id="org4d52ccf"><span class="section-number-3">6.5</span> Cálculo aproximado del consumo eléctrico</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+Todos los circuitos eléctricos permiten un consumo máximo instantáneo de corriente, expresado en Amperios. En última instancia, si lo sobrepasamos, el interruptor magnetotérmico que protege el circuito saltará, debido al exceso de demanda de corriente.
+La demanda eléctrica máxima de un dispositivo debe venir indicada por el fabricante del mismo, expresada en Amperes (Amperios)… o bien, el consumo expresado en Watts (Vatios).
+En ese caso, y sólo como aproximación (teniendo en cuenta que para ser exactos es necesario hacer otras consideraciones), podemos considerar que
+\[P=V·I\]
+</p>
+
+<p>
+Siendo:
+</p>
+<ul class="org-ul">
+<li>\(P\): Potencias expresadas en Watts (Vatios)</li>
+<li>\(V\): Tensiones expresadas en Volts (Voltios. En España, 230)</li>
+<li>\(I\): Intensidades de corriente expresadas en Amperes (Amperios).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd8afd26" class="outline-3">
+<h3 id="orgd8afd26"><span class="section-number-3">6.6</span> Problemas en el suministro eléctrico</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+Los problemas más habituales en el suministro eléctrico pueden ser de diversa índole:
+</p>
+<ul class="org-ul">
+<li>La ausencia de suministro: Directamente, se pierde por completo la tensión eléctrica&#x2026; no hay suministro&#x2026; se queda a 0 Voltios. Los ordenadores se apagan y se producen pérdidas de datos. Es lo que comúnmente conocemos como "se ha ido la luz", o si es generalizado, le llamamos apagón.</li>
+<li>Microcorte: Un microcorte es una ausencia de suministro durante un periodo muy breve de tiempo&#x2026; pero no deja de ser una ausencia de suministro. Ante microcortes muy breves, es posible que un ordenador siga funcionando, pero lo más probable es que le afecte: Si la pérdida de suministro es durante un tiempo muy leve, el equipo puede producir fallos en eléctricos en el interior de sus circuitos con consecuencia de cuelgues, reinicios o funcionamiento errático, y si la pérdida es significativa, directamente apagados y reinicios.</li>
+<li>Bajadas de tensión. Si la tensión eléctrica (el Voltaje) no es suficiente durante un cierto periodo de tiempo, es decir, tiene algo menos de «fuerza» de lo que debiera, los circuitos podrían empezar a funcionar mal, con consecuencia decuelgues, reinicios o funcionamiento errático, y si la pérdida es significativa, directamente apagados y reinicios.</li>
+<li>Subidas de tensión: Lo contrario que una bajada&#x2026; el suministro viene con más tensión, algo más de «fuerza» de lo esperado&#x2026; pues puede dañar algunos circuitos, provocando seguramente daños permanentes en el hardware, a diferencia de los tres problemas anteriores (la ausencia, el microcorte y la bajada), que en general provocan daños en la información, pero no en el hardware.</li>
+<li>Picos de tensión:Es una subida fuerte de tensión (el voltaje sube mucho, viene con mucha «fuerza») pero durante un periodo de tiempo muy breve. Casi siempre provoca daños permanetes en el hardware.</li>
+<li>Ruido eléctrico o interferencias. Se produce cuando la forma de la onda de corriente alterna sufre pequeñas deformaciones. Casi siempre es producido por aparatos cercanos, que contengan motores. Éstos inducen electromagnéticamente ese ruido en los cables eléctricos. No suele ser especialmente grave para los ordenadores.</li>
+<li>Aumento o decremento de la frecuencia. Bastante inusual, se produce cuando la corriente alterna no cambia exactamente a la frecuencia que se espera (50 Hz en España -50 veces por segundo-).</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgce223be" class="outline-3">
+<h3 id="orgce223be"><span class="section-number-3">6.7</span> Regletas protectoras de sobretensiones.</h3>
+<div class="outline-text-3" id="text-6-7">
+<p>
+Las regletas protectoras están pensadas para evitar subidas y picos de tensión. Es una medida muy económica. Pero OJO: algunas sólo protegen de cortocircuitos
+</p>
+
+
+<div class="figure">
+<p><img src="media/regleta-protectora.png" alt="regleta-protectora.png" />
+</p>
+<p><span class="figure-number">Figura 39: </span>Regleta protectora, con fusible y toma de tierra para televisión y teléfono</p>
+</div>
+
+<p>
+Las más simples, llevan en su interior un fusible, que se coloca en serie con la entrada de la fase o del neutro. El fusible se “quema” con corrientes elevadas. La regleta queda inutilizada, pero protege al equipo en caso de cortocircuito. Un fusible no protege frente a tensiones elevadas
+</p>
+
+
+<div class="figure">
+<p><img src="media/fusible.png" alt="fusible.png" />
+</p>
+<p><span class="figure-number">Figura 40: </span>Fusible</p>
+</div>
+
+<p>
+Sólo protegen de picos de tensión las que se basan en “varistores” (o componentes similares). Un varistor (variable resistor) es un componente electrónico cuya resistencia disminuye cuando la tensión eléctrica que se le aplica aumenta.  El varistor protege el circuito de variaciones y picos bruscos de tensión. Se coloca en paralelo al circuito a proteger y absorbe todos los picos mayores a su tensión nominal. El varistor sólo suprime picos transitorios; si lo sometemos a una tensión elevada constante, conduce totalmente –provocando que un magnetotérmico corte la corriente-. O bien algunos se funden (como un fusible) y deja de conducir. El varistor se puede combinar con un fusible normal.
+</p>
+
+
+<div class="figure">
+<p><img src="media/varistor.png" alt="varistor.png" />
+</p>
+<p><span class="figure-number">Figura 41: </span>Varistor</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7d78c1c" class="outline-3">
+<h3 id="org7d78c1c"><span class="section-number-3">6.8</span> Reguladores automáticos de voltaje (AVR)</h3>
+<div class="outline-text-3" id="text-6-8">
+<p>
+También llamados “Estabilizadores de tensión”. Un AVR es un circuito eléctrico basado en varios bobinados que intenta conseguir siempre una tensión de salida de 230V.
+Protege de bajadas y subidas de tensión, y también elimina ruidos.
+No obstante, tiene un límite, y no puede operar con tensiones de entrada inferiores a 175V ni superiores a 275V (aproximadamente).
+</p>
+
+<p>
+Son dispositivos muy útiles, pero están desapareciendo como dispositivo independiente, ya que suelen estar integrados en SAIs.
+</p>
+
+
+<div class="figure">
+<p><img src="media/avr.png" alt="avr.png" />
+</p>
+<p><span class="figure-number">Figura 42: </span>Regulador de voltaje</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc37fb19" class="outline-3">
+<h3 id="orgc37fb19"><span class="section-number-3">6.9</span> Sistemas de Alimentación Ininterrumpida (SAI)</h3>
+<div class="outline-text-3" id="text-6-9">
+<p>
+SAI son las siglas en español de Sistema de Alimentación Ininterrupida. A menudo lo vemos abreviado también como UPS, del inglés Uninterruptiblepowersupply.
+Básicamente, un SAI es un aparato basado en baterías que es capaz de proporcionar corriente a los aparatos electrónicos como ordenadores ante la ausencia de corriente en el suministro eléctrico normal.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" style="margin-left:auto;margin-right:auto;">
+<caption class="t-above"><span class="table-number">Tabla 3</span> Vista frontal y trasera de un SAI tipo SOHO</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><img src="media/sai-fontal.png" alt="sai-fontal.png" /></td>
+<td class="org-left"><img src="media/sai-trasera.png" alt="sai-trasera.png" /></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>
+Los SAIs contienen en su interior algún tipo de batería, capaz de acumular electricidad. El SAI se enchufa a la red eléctrica y con esa energía va recargando su batería. Los aparatos electrónicos que se quieran proteger se enchufan al SAI. Ante un suministro de energía eléctrica deficiente en la red eléctrica, el SAI proporcionará energía eléctrica al aparato que tenga enchufado sacándola de su batería, y evitando que se apague. Si es un ordenador, el evitar un apagado brusco evitará pérdidas de información.
+</p>
+
+
+<div class="figure">
+<p><img src="media/conexion-sai-pc.png" alt="conexion-sai-pc.png" />
+</p>
+<p><span class="figure-number">Figura 43: </span>Conexión entre SAI y ordenador</p>
+</div>
+
+<p>
+Esa es la idea básica de un SAI, pero con el tiempo, han ido evolucionando y perfeccionándose, evitando otros problemas que puede presentar el suministro de corriente, además de la pérdida de tensión eléctrica (voltaje).
+El SAI se conecta al suministro de la red eléctrica mediante un cable de alimentación que tenga un enchufe normalizado del país correspondiente (enchufe schukoen España), y los ordenadores se conectan a él bien mediante el mismo tipo de enchufe (Schuko) o bien mediante alguno de los conocidos conectores IEC, en especial el C13/C14.
+</p>
+
+<p>
+Casi todos los SAIs disponen de alguna aplicación de monitorización: se conectan al equipo que protegen por un cable serie, usb o por red. El programa de monitorización puede realizar acciones como hibernar el equipo, vaciar cachés de disco, apagar de manera seguro.
+</p>
+</div>
+
+<div id="outline-container-org8342751" class="outline-4">
+<h4 id="org8342751"><span class="section-number-4">6.9.1</span> La batería, el cargador y el inversor.</h4>
+<div class="outline-text-4" id="text-6-9-1">
+<p>
+Las baterías de los SAI suelen ser de plomo y ácido, muy similares a los de los coches y las motos. Tienen una vida limitada, de unos pocos años, luego se van degradando.
+</p>
+
+
+<div class="figure">
+<p><img src="media/foto-sai-bateria.png" alt="foto-sai-bateria.png" />
+</p>
+<p><span class="figure-number">Figura 44: </span>Batería interna de un SAI</p>
+</div>
+
+<p>
+No se suelen utilizar otro tipo de baterías, como las de Níquel e Hidruro Metálico, o las de iones de litio debido a que en general, no son capaces de entregar demasiada energía rápidamente y presentan algunos inconvenientes. No obstante, algunas sí son aptas para su utilización en SAIs, pero encarecen mucho el producto.
+Pueden encontrarse repuestos de la batería de casi todos los modelos de una cierta calidad. Las baterías reemplazadas deben ser procesadas convenientemente, ya que son contaminantes. No deben tirarse a la basura.
+La batería acumula corriente continua (DC), a diferencia de la alterna, que es la que viene por la red eléctrica, y tambien la que esperan los aparatos eléctricos conectados al SAI, así que para que la batería se recargue, el SAI lleva en su interior un circuito llamado cargador, que como ya te imaginas, convierte la AC en DC y la inyecta en la batería hasta que ésta llega a su máxima capacidad.
+Análogamente, si desde la batería se debe proporcionar AC a un ordenador, pero la batería sólo puede proporcionar DC, se necesita un circuito llamado inversor, que toma la DC de la batería, y la convierte en AC, cambiando también la tensión de salida (desde los 12 o 24V que suele tener una batería de ácido a los 220V necesarios para un ordenador). A este circuito, también se le suele llamar rizador u ondulador.
+</p>
+
+<p>
+Hay muchos tipos de SAI, y cuentan con todo tipo de circuitos auxiliares&#x2026; pero bueno&#x2026; se pueden observar dos grandes grupos: Los off-line y los on-line. Dentro de los primeros, cabe dedicar una mención especial a los que además, regulan el voltaje.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17f3866" class="outline-4">
+<h4 id="org17f3866"><span class="section-number-4">6.9.2</span> Off-Line pasivos, también llamados "Stand-by".</h4>
+<div class="outline-text-4" id="text-6-9-2">
+<p>
+Los sai off-line son los más comunes, los más sencillos y también los más económicos. Constan de un cargador que le proporciona la carga a la batería a partir de la AC del suministro eléctrico normal, y un inversor que proporciona AC corriente al aparato enchufado a partir de la batería.
+Pero el SAI Off-line sólo obtiene energía de la batería cuando hay una ausencia de suministro, un microcorte o una bajada de tensión importante. Para ello, un circuito conmutador está constantemente vigilando el suministro eléctrico, y cuando su tensión cae por debajo de un cierto límite, conmuta la salida a la batería.
+</p>
+
+
+<div class="figure">
+<p><img src="media/sai-offline.png" alt="sai-offline.png" />
+</p>
+<p><span class="figure-number">Figura 45: </span>SAI offline</p>
+</div>
+
+<p>
+El conmutador tarda un cierto tiempo en detectar el problema&#x2026; en general, es rápido, pero durante un corto periodo de tiempo, la salida presentará el problema que el SAI intentará subsanar. A este tiempo, se le llama tiempo de conmutación  o de  transferencia.
+Aunque no lo hayamos dibujado, muchos de ellos cuentan con un sencillo filtro en la entrada que elimina los posibles ruídos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org66ceaf3" class="outline-4">
+<h4 id="org66ceaf3"><span class="section-number-4">6.9.3</span> Off-Line interactivos, o activos, o con estabilizador o AVR</h4>
+<div class="outline-text-4" id="text-6-9-3">
+<p>
+El estabilizador (AVR- AutomaticVoltageRegulator) es un circuito que es capaz de proporcionar una tensión de salida constante (230V en el caso de España), aunque la entrada tenga pequeñas fluctuaciones. Un SAI interactivo dispone de un AVR en la entrada de corriente alterna (desde la red eléctrica), y proporciona al cargador de la batería y a la salida de AC una tensión constante. Los AVR tienen un rango de trabajo. Si la entrada cae por debajo de los 175V o sube por encima de los 270V (aproximadamente), no podrán estabilizarla, y el conmutador deberá conmutar la salida a la batería.
+</p>
+
+
+<div class="figure">
+<p><img src="media/sai-con-avr.png" alt="sai-con-avr.png" />
+</p>
+<p><span class="figure-number">Figura 46: </span>SAI offline interactivo</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org11e9d32" class="outline-4">
+<h4 id="org11e9d32"><span class="section-number-4">6.9.4</span> On line, en línea o de doble conversión.</h4>
+<div class="outline-text-4" id="text-6-9-4">
+<p>
+Son la "gama alta" de los SAI. En estos SAI no hay conmutador, y en la salida nunca se obtiene la corriente directamente de la entrada. En su lugar, la batería está constantemente cargándose, y la salida se obtiene siempre de la batería.
+</p>
+
+
+<div class="figure">
+<p><img src="media/sai-online.png" alt="sai-online.png" />
+</p>
+<p><span class="figure-number">Figura 47: </span>SAI online</p>
+</div>
+
+<p>
+Los SAI en línea no necesitan estabilizador, ya que la salida siempre está limpia. Además, con esa doble conversión que se produce siempre, la salida queda aislada de la entrada, a diferencia de los off-line, en los que la salida está directamente conectada a la entrada cuando ésta suministra energía.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org813d224" class="outline-4">
+<h4 id="org813d224"><span class="section-number-4">6.9.5</span> El By-pass de los SAI online:</h4>
+<div class="outline-text-4" id="text-6-9-5">
+<p>
+Dado que un SAI online siempre está operando con la batería, ésta no se puede sustituir sin pérdida de suministro.
+El Bypass (del inglés by-pass) es un simple conmutador, que conecta directamente la entrada de AC con la salida de AC en un SAI online, con la única intención de poder realizar tareas de mantenimiento en la batería.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge428995" class="outline-4">
+<h4 id="orge428995"><span class="section-number-4">6.9.6</span> Capacidad y tiempo de suministro.</h4>
+<div class="outline-text-4" id="text-6-9-6">
+<p>
+Los SAIs no fueron ideados para proporcionar energía a los equipos durante mucho tiempo. La idea es mantener la corriente el tiempo necesario para que el equipo pueda salvaguardar los datos adecuadamente (por ejemplo, cerrando bases de datos, servicios, o hibernando), bien manualmente o bien automáticamente&#x2026; es decir&#x2026; hablamos de minutos.
+Para poder hacerlo automáticamente, casi todos los SAI pueden conectarse al equipo mediante un cable USB (o un cable serie RS-232 en algunos casos). En el equipo se instala un software de control que puede realizar alguna tarea de salvaguarda cuando el SAI indica que está actuando porque no hay suministro.
+A través de ese cable también se suelen obtener otros datos, como la cantidad de carga de las baterías, o el tiempo que podrá suministrar energía el SAI si se va la corriente.
+Los fabricantes de SAI nos dan una idea de su capacidad utilizando una unidad de medida poco conocida: el Voltio-Amperio (VA). Esa unidad de medida tiene que ver con la potencia aparente que es capaz de proporcionar el SAI.
+Sin embargo, cuando compramos un ordenador (u otro equipo), los fabricantes nos acostumbran a hablarnos de su "consumo" en Watios&#x2026; e incluso, en algunos casos, en Amperios. ¿Cómo saber si un SAI podrá dar corriente a un determinado equipo? aplica estas reglas:
+</p>
+<ul class="org-ul">
+<li>Si expresan la potencia en Watios, divide ese valor por 0.7. El resultado serán los Voltio-Amperios que deberá tener el SAI. Ej: Para un equipo de 450W se necesita un SAI de al menos 643VA (Sacado de dividir 450/0.7)</li>
+<li>Si expresan la corriente que consumen en Amperios, multiplica por 230 (la tensión AC). El resultado serán los Voltio-Amperios que deberá tener el SAI. Ej.: Para un equipo que necesite 3A, se necesita un SAI de al menos 690VA (Sacado de multiplicar 3×230).</li>
+</ul>
+
+<p>
+Resumiendo:
+</p>
+
+<p>
+\[P_{voltioamperio} = V_{voltios} \times I_{amperios}\]
+</p>
+
+<p>
+\[P_{voltioamperio} = \frac{P_{watios}}{0.7}\]
+</p>
+
+
+<p>
+La explicación es que, en el caso de corriente continua (y algunos aparatos de corriente alterna, como bombillas):
+</p>
+
+<p>
+\[P_{voltioamperio} = P_{watios}\]
+</p>
+
+<p>
+También hay veces que se llama \(P_{voltioamperio}\) a la potencia aparente, y \(P_{watios}\) a la potencia efectiva. El factor \(0.7\) es debido al desfase entre la subida de tensión y la subida de intensidad. Cuanto menos desfase haya, más se parecerá a \(1\), y más caro será el SAI.
+</p>
+
+
+<p>
+Hay SAIs de todos los tamaños, desde los muy muy pequeños para equipos domésticos y de pequeña oficina hasta los muy muy grandes, para grandes instalaciones y servidores, como éste de la foto, de 500000VA.
+</p>
+
+<div class="figure">
+<p><img src="media/sai-en-rack.png" alt="sai-en-rack.png" />
+</p>
+<p><span class="figure-number">Figura 48: </span>SAI para una gran instalación</p>
+</div>
+
+<p>
+Cabe destacar que existen equipos de medidas normalizadas para armarios rack. Muy útiles para proteger ordenadores y dispositivos de comunicación del mismo armario. Cuando los SAI se colocan en RACK en general, se hace en la parte inferior, debido a dos motivos: por un lado, en la parte inferior es donde suelen estar las tomas eléctricas, y por el otro, las baterías de plomo pesan mucho, así que colocándolos abajo es donde menos sufre el armario por el peso del SAI.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org5c64274" class="outline-3">
+<h3 id="org5c64274"><span class="section-number-3">6.10</span> Grupos electrógenos</h3>
+<div class="outline-text-3" id="text-6-10">
+<p>
+Generan electricidad quemando un combustible (normalmente gasoil).
+Tienen un tiempo de conmutación muy grande (se puede compensar con un SAI intermedio o manteniendo el grupo en marcha)
+Requieren mucho mantenimiento.
+</p>
+
+
+
+<div class="figure">
+<p><img src="media/sai-grande.png" alt="sai-grande.png" />
+</p>
+<p><span class="figure-number">Figura 49: </span>Grupo electrógeno</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1e7372c" class="outline-2">
+<h2 id="org1e7372c"><span class="section-number-2">7</span> Referencias</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Adaptado de <a href="https://www.linkedin.com/in/victorjfernandez/">Víctor J. Fernández</a></li>
+<li><a href="SI-T-02-seguridad-fisica.pdf">Versión en PDF</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Álvaro González Sotillo</p>
+<p class="date">Created: 2019-01-19 sáb 12:23</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

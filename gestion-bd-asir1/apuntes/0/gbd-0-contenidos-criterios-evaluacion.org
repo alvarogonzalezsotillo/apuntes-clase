@@ -1,0 +1,394 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  GESTIÓN DE BASES DE DATOS 
+#+SUBTITLE: (CÓDIGO: 0372)
+#+KEYWORDS: 0372
+
+* Cómo serán las clases
++ Teoría
+  - Basada en apuntes
+  - Con un libro de texto  
++ Ejercicios
+  - Se realizan en clase o en casa
+  - Se ponen en común al día siguiente
++ Práctica
+  - Máquinas virtuales
++ Trabajos
+
+* Materiales 
++ Memoria USB
++ Correo electrónico
++ Acceso a Internet fuera del aula
++ Portátil propio (opcional)
+  - No se puede usar la red del centro 
+  - Se puede usar la wifi
+** Libro de texto
++ Gestión de Bases de Datos
++ Editorial: Garceta
++ Autor: Iván López Montalbán;  Mª Jesús Castellano Pérez
++ ISBN: 978-84-1545-294-2
+[[file:portada-libro.gif]]
+
+* Entrega de Trabajos
+- Via *Moodle*
+  + Nuestro curso es [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189][aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189]]
+
+  + El curso es accesible incluso sin usuario
+- Se utilizará Microsoft Office (*DOC*, *DOCX*)
+  + Opcionalmente, *PDF* o LibreOffice (*ODT*)
+- Se tendrá en cuenta
+  + La corrección técnica de los trabajos
+  + La fecha de entrega
+  + Expresión, sintaxis, ortografía
+  + La apariencia profesional
+
+
+* Normas
+- Retrasos y faltas
+- Uso de los ordenadores
+  - No pueden utilizarse para tareas distintas de las encargadas por el profesor
+  - Se respetará a otros alumnos
+- Móviles
+  - No.
+  - Un /smartwatch/ se considera un móvil.
+    
+
+
+** Averías de los ordenadores
+- Los problemas se comunican al profesor en cuanto se detectan
+- Se deben hacer copias de seguridad para no perder los datos de los discos
+  - Pen Drive
+  - Disco Externo
+  - Correos enviados a uno mismo
+  - Copias en los ordenadores de otros compañeros
+- Norma fundamental: 
+*Si se pierde porque no hay copia, es que no era importante*
+
+* Cómo será la evaluación
+- Trabajos
+- Actitud
+  - Puntualidad, interés, preguntas al profesor, puesta en común de resultados, comportamiento...
+- Exámenes
+  - Dos parciales y un final por evaluación
+  - Se necesita un mínimo de *3,5* en cada parcial para hacer media
+- Entrega de trabajos
+  - Individuales
+  - Un trabajo entregado tarde puntua como máximo *6*
+
+#+include: "../../../common/calculo-notas.org"
+
+* Temas del libro de referencia
+
+** Sistemas de almacenamiento de la información
+
+- Ficheros
+- Bases de Datos
+- Los Sistemas Gestores de Base de Datos
+
+
+** Diseño lógico de bases de datos
+
+- Representación del problema 
+- El modelo de datos 
+- Diagramas E/R 
+- El modelo E/R ampliado
+- Construcción de un diagrama E/R 
+- El modelo relacional
+- Transformación de un diagrama E/R al modelo relacional 
+- Normalización 
+
+** Diseño físico de bases de datos
+
+- Notación para la sintaxis 
+- Herramientas gráficas proporcionadas por los SGBD
+- Intérpretes de comandos de los SGBD
+- El lenguaje de definición de datos 
+- Creación de bases de datos
+- Modificación de una base de datos 
+- Borrado de bases de datos 
+- Creación de tablas 
+- Modificación de tablas 
+- Borrado de tablas
+- Renombrado de tablas 
+
+** Realización de Consultas
+
+- El lenguaje DML 
+- La sentencia SELECT 
+- Consultas básicas 
+- Filtros
+- Ordenación 
+- Consultas de resumen
+- Subconsultas
+- Consultas multitabla
+- Consultas reflexivas 
+- Consultas con tablas derivadas 
+
+** Edición de los datos
+
+- Herramientas gráficas para la edición de los datos
+- La sentencia INSERT 
+- La sentencia INSERT extendida 
+- INSERT y SELECT 
+- La sentencia UPDATE 
+- La sentencia DELETE 
+- La sentencias UPDATE y DELETE con subconsultas 
+- Borrado y modificación de registros con relaciones 
+- Transacciones 
+- Acceso concurrente a los datos 
+- 
+** Construcción de Guiones
+ 
+- ¿Por qué PL/SQL?
+- Otros lenguajes de programación 
+- Bloques de Código Anóonimos en PL/SQL 
+- Tipos de datos en PL/SQL
+- Operadores y expresiones 
+- Entrada y salida para la depuración
+- Estructuras de Control 
+- Estructuras funcionales: procedimientos y funciones
+- Sentencias SQL en PL/SQL
+- Acceso a la Base de Datos. Cursores
+- Excepciones en PL/SQL
+- Disparadores o Triggers
+
+** Seguridad de los datos
+
+- Recuperación de fallos 
+- Tipos de copias de seguridad 
+- Copias de seguridad y restauración en MySQL
+- Copias de seguridad y restauración en Oracle
+- Restauración de copias en Oracle con RMAN
+- Copias de seguridad y restauración en DB2
+- Exportación e importación de datos. Transferencia de datos entre sistemas gestores
+- Herramientas gráficas para la salvaguarda de la información 
+
+
+* Contenidos
+
+- Decreto 12/2010, de 18 de marzo
+
+** Sistemas de almacenamiento de la información:
+- Ficheros (planos, indexados y acceso rápido, de marcas, entre otros).
+- Bases de Datos (BD). Conceptos, usos y tipos según el modelo de datos, la ubicación de la información.
+- Sistemas gestores de bases de datos (SGBD): funciones, componentes y tipos.
+** Diseño conceptual y lógico de bases de datos:
+- Modelos de datos: relacional y orientado a objetos.
+- La representación del problema. El modelo conceptual: los diagramas E/R (Entidad/Relación).
+  - Entidades y atributos. Identificadores principales.
+  - Relaciones: cardinalidad y correspondencia.
+  - Relaciones de dependencia en existencia y en identificación.
+- El modelo E/R ampliado:
+  - Atributos multivaluados y compuestos.
+  - Jerarquías y generalizaciones.
+  - Asociaciones.
+- El modelo relacional: Terminología del modelo relacional. Características de una relación. Claves primarias y claves ajenas.
+- Paso del diagrama E/R al modelo relacional.
+- Normalización. Dependencias funcionales. Formas normales. Conveniencia de la desnormalización.
+- El modelo orientado a objetos. Conceptos generales.
+    - Diagramas de clases y de objetos.
+** Diseño físico de bases de datos:
+- Herramientas gráficas proporcionadas por el sistema gestor para la implementación de la base de datos.
+- Lenguaje estándar de consulta SQL (Standard Query Language).
+  - Lenguaje de definición de datos DDL (Data Definition Language): Creación, modificación y eliminación de objetos de la base de datos.
+  - Lenguaje de manipulación de datos DML (Data Manipulation Language): Selección, inserción, modificación y eliminación de registros.
+  - Lenguaje de control de datos DCL (Data Control Language): Confirmación/anulación de transacciones.
+- Creación, modificación y eliminación de bases de datos.
+- Creación, modificación y eliminación de tablas. Tipos de datos.
+- Implementación de restricciones sobre tablas: clave primaria, clave ajena, unicidad, chequeo, valores por defecto.
+- Truncado de tablas.
+** Realización de consultas:
+- Herramientas gráficas, proporcionadas por el sistema gestor o externas, para la realización de consultas.
+- Selección de registros:
+  - Elección de origen de datos: tablas, vistas, selecciones.
+  - Filtrado de registros.
+  - Orden de los resultados devueltos.
+- Tratamiento de valores nulos.
+- Consultas de resumen. Agrupamiento de registros. Filtrado sobre agrupaciones.
+- Operaciones de conjuntos sobre consultas: unión, intersección y diferencia.
+- Vinculación de tablas: claves primarias y ajenas. Composiciones internas y externas.
+- Subconsultas:
+  - Devolución de valores individuales.
+  - Devolución de listas de valores.
+  - Devolución de tuplas de valores.
+  - Correlacionadas.
+- Consultas jerárquicas.
+** Edición de los datos:
+- Herramientas gráficas, proporcionadas por el sistema gestor o externas, para la edición de la información.
+- Sentencias de inserción, eliminación y actualización de registros:
+  - A partir de datos proporcionados por el usuario.
+  - A partir de datos recuperados mediante subconsultas.
+- Subconsultas y combinación de órdenes de edición.
+- Transacciones. Estados temporales intermedios de la base de datos. Sentencias de procesamiento de transacciones.
+- Acceso simultáneo a los datos: políticas de bloqueo. Niveles de bloqueo (fila, tabla).
+** Creación de otros objetos de la base de datos:
+- Vistas. Vistas montadas sobre múltiples tablas. Operaciones sobre vistas.
+- Sinónimos de objetos.
+- Enlaces a otras bases de datos.
+** Optimización de consultas:
+- Creación de índices. Monocampo vs. multicampo.
+- Índices únicos y con duplicados.
+- Índices basados en funciones.
+- Criterios para la creación de índices.
+- Plan de ejecución de sentencias. Análisis comparativo.
+- Métodos de vinculación de tablas.
+- Optimización basada en costes vs. basada en reglas.
+- Sugerencias (hints) de ejecución.
+** Construcción de guiones:
+- Introducción. Conceptos generales del lenguaje de programación integrado en el SGBD.
+- Tipos de datos, identificadores, variables.
+- Operadores. Estructuras de control.
+- Cursores.
+- Procedimientos y funciones almacenados.
+- Excepciones.
+** Gestión de seguridad de los datos:
+- Tipos de fallos.
+- Recuperación de fallos.
+- Copias de seguridad.
+- Herramientas gráficas y utilidades proporcionadas por el sistema gestor para la realización de copias de seguridad.
+- Sentencias para la realización y recuperación de copias de seguridad.
+- Herramientas gráficas y utilidades para importación y exportación de datos.
+- Transferencia de datos entre sistemas gestores.
+** Bases de datos distribuidas:
+- Conceptos y diseño.
+- Casos de idoneidad.
+- Técnicas de fragmentación: vertical, horizontal, mixta.
+- Técnicas de distribución de datos.
+- Esquemas de asignación y replicación de datos.
+
+
+* Criterios de evaluación
+** Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de sistemas gestores.
+Criterios de evaluación:
+a) Se han analizado los distintos sistemas lógicos de almacenamiento y sus funciones.
+b) Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado.
+c) Se han identificado los distintos tipos de bases de datos en función de la ubicación de la información.
+d) Se ha reconocido la utilidad de un sistema gestor de bases de datos.
+e) Se ha descrito la función de cada uno de los elementos de un sistema gestor de bases de datos.
+f) Se han clasificado los sistemas gestores de bases de datos.
+**  Diseña modelos lógicos normalizados interpretando diagramas entidad/relación.
+Criterios de evaluación:
+a) Se ha identificado el significado de la simbología propia de los diagramas entidad/ relación.
+b) Se han utilizado herramientas gráficas para representar el diseño lógico.
+c) Se han identificado las tablas del diseño lógico.
+d) Se han identificado los campos que forman parte de las tablas del diseño lógico.
+e) Se han identificado las relaciones entre las tablas del diseño lógico.
+f) Se han definido los campos clave.
+g) Se han aplicado las reglas de integridad.
+h) Se han aplicado las reglas de normalización hasta un nivel adecuado.
+i) Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico.
+** Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos.
+Criterios de evaluación:
+a) Se han definido las estructuras físicas de almacenamiento.
+b) Se han creado tablas.
+c) Se han seleccionado los tipos de datos adecuados.
+d) Se han definido los campos clave en las tablas.
+e) Se han implantado todas las restricciones reflejadas en el diseño lógico.
+f) Se ha verificado mediante un conjunto de datos de prueba que la implementación se ajusta al modelo.
+g) Se han utilizado asistentes y herramientas gráficas.
+h) Se ha utilizado el lenguaje de definición de datos.
+i) Se ha definido y documentado el diccionario de datos.
+** Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
+Criterios de evaluación:
+a) Se han identificado las herramientas y sentencias para realizar consultas.
+b) Se han realizado consultas simples sobre una tabla.
+c) Se han realizado consultas que generan valores de resumen.
+d) Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas.
+e) Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas.
+f) Se han realizado consultas con subconsultas.
+g) Se han valorado las ventajas e inconvenientes de las distintas opciones válidas para llevar a cabo una consulta determinada.
+** Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
+Criterios de evaluación:
+a) Se han identificado las herramientas y sentencias para modificar el contenido de la base de datos.
+b) Se han insertado, borrado y actualizado datos en las tablas.
+c) Se ha incluido en una tabla la información resultante de la ejecución de una consulta.
+d) Se han adoptado medidas para mantener la integridad y consistencia de la información.
+e) Se han diseñado guiones de sentencias para llevar a cabo tareas complejas.
+f) Se ha reconocido el funcionamiento de las transacciones.
+g) Se han anulado parcial o totalmente los cambios producidos por una transacción.
+h) Se han identificado los efectos de las distintas políticas de bloqueo de registros.
+** Ejecuta tareas de aseguramiento de la información, analizándolas y aplicandomecanismos de salvaguarda y transferencia.
+Criterios de evaluación:
+a) Se han identificado herramientas gráficas y en línea de comandos para la administración de copias de seguridad.
+b) Se han realizado copias de seguridad.
+c) Se han restaurado copias de seguridad.
+d) Se han identificado las herramientas para importar y exportar datos.
+e) Se han exportado datos a diversos formatos.
+f) Se han importado datos con distintos formatos.
+g) Se ha interpretado correctamente la información suministrada por los mensajes de error y los ficheros de registro.
+h) Se ha transferido información entre sistemas gestores.
+
+
+
+* Contenidos básicos
+- Incluídos solo como referencia
+- No son aplicables en la Comunidad de Madrid
+
+** Sistemas de almacenamiento de la información:
+- Ficheros (planos, indexados y acceso directo, entre otros).
+- Bases de datos. Conceptos, usos y tipos según el modelo de datos, la ubicación de la información.
+- Sistemas gestores de base de datos: funciones, componentes y tipos.
+** Diseño lógico de bases de datos:
+- Modelo de datos.
+- La representación del problema: los diagramas E/R entidades y relaciones. Cardinalidad. Debilidad.
+- El modelo E/R ampliado.
+- El modelo relacional: Terminología del modelo relacional. Características de una relación. Claves primarias y claves ajenas.
+- Paso del diagrama E/R al modelo relacional.
+- Normalización.
+** Diseño físico de bases de datos:
+- Herramientas gráficas proporcionadas por el sistema gestor para la implementación de la base de datos.
+- El lenguaje de definición de datos.
+- Creación, modificación y eliminación de bases de datos.  
+- Creación, modificación y eliminación de tablas. Tipos de datos.  
+- Implementación de restricciones.  
+** Realización de consultas:
+- Herramientas gráficas proporcionadas por el sistema gestor para la realización deconsultas.
+- La sentencia SELECT.
+- Selección y ordenación de registros. Tratamiento de valores nulos.
+- Consultas de resumen. Agrupamiento de registros.
+- Unión de consultas.
+- Composiciones internas y externas.
+- Subconsultas.
+** Edición de los datos:
+- Herramientas gráficas proporcionadas por el sistema gestor para la edición de la información.
+- Las sentencias INSERT, DELETE y UPDATE.
+- Subconsultas y combinaciones en órdenes de edición.
+- Transacciones. Sentencias de procesamiento de transacciones.
+- Acceso simultáneo a los datos: políticas de bloqueo.
+
+** Construcción de guiones:
+- Introducción. Lenguaje de programación.
+- Tipos de datos, identificadores, variables.  
+- Operadores. Estructuras de control.
+
+** Gestión de la seguridad de los datos:
+- Recuperación de fallos.
+- Copias de seguridad.
+- Herramientas gráficas y utilidades proporcionadas por el sistema gestor para la realización y recuperación de copias de seguridad.
+- Sentencias para la realización y recuperación de copias de seguridad.
+- Herramientas gráficas y utilidades para importación y exportación de datos.
+- Transferencia de datos entre sistemas gestores.
+
+
+* Orientaciones pedagógicas.                                       :noexport:
+
+
+Este módulo profesional contiene la formación necesaria para desempeñar la función de gestor de bases de datos. La gestión de bases de datos incluye aspectos como:
+- La planificación y realización del diseño físico de una base de datos.
+- La inserción y manipulación de datos.
+- La planificación y realización de consultas.
+- La planificación y ejecución de importaciones, exportaciones y migraciones de datos.
+- La planificación y aplicación de medidas de aseguramiento de la información.
+#+reveal: split 
+Las actividades profesionales asociadas a esta función se aplican en:
+- La implantación de bases de datos.
+- La gestión de la información almacenada en bases de datos.
+- La interpretación de diseños lógicos de bases de datos.
+- La realización del diseño físico de una base de datos a partir de un diseño lógico.
+- La implementación de bases de datos.
+- La realización de operaciones con datos almacenados.
+- La importación y exportación de datos.
+- El aseguramiento de la información
+
+  
+* Referencias
+#+include: "../../../common/footer.org"

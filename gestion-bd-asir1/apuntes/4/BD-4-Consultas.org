@@ -1,0 +1,714 @@
+#+include: "../../../common/header.org"
+#+OPTIONS:   toc:2
+
+* RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
+
+** ¿Cuáles son las descripciones de los cursos que son requisito para otro curso?
+#+begin_src sql
+select distinct pre.DESCRIPTION
+from course c, course pre
+where c.PREREQUISITE = pre.course_no;
+select
+  c.description as descripcion,
+  p.description as pre_descripcion
+from
+  course c, course p
+where
+  c.prerequisite = p.course_no;
+#+end_src
+
+#+BEGIN_SRC sql
+select 
+  c.description, p.description as prerequisite
+from
+  course c left outer join course p on c.prerequisite = p.course_no;
+#+END_SRC
+
+** Lista de alumnos, ordenados por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
+#+BEGIN_SRC sql
+select
+  salutation, last_name, first_name, state
+from
+  student s, zipcode z
+where
+  s.zip = z.zip
+order by
+  last_name, first_name;
+#+END_SRC
+** Lista de los 20 primeros alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
+#+begin_src sql
+select salutation, last_name, first_name, state
+from(
+  select salutation, upper(last_name) as last_name, first_name, state
+  from student s, zipcode z
+  where s.zip = z.zip
+  order by 2 asc, first_name asc
+)
+where rownum <= 20
+#+end_src
+
+OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY;
+
+** Lista de los 20 siguientes alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
+#+begin_src sql
+select fila, salutation, last_name, first_name, state
+from(
+  select rownum as fila, salutation, last_name, first_name, state
+  from(
+    select salutation, upper(last_name) as last_name, first_name, state
+    from student s, zipcode z
+    where s.zip = z.zip
+    order by 2 asc, first_name asc
+  )
+)
+where fila > 20 and fila <= 40
+#+end_src
+
+** Lista de los 20 últimos alumnos, ordenados (ascendente) por apellidos y nombre (saludo, apellidos, nombre, estado de origen)
+#+begin_src sql
+select fila, salutation, last_name, first_name, state
+from(
+  select rownum as fila, salutation, last_name, first_name, state
+  from(
+    select salutation, upper(last_name) as last_name, first_name, state
+    from student s, zipcode z
+    where s.zip = z.zip
+    order by 2 asc, first_name asc
+  )
+)
+where --fila es de las últimas 20
+fila > (select count(*) from student)-20
+#+end_src
+
+** Lista de las secciones con el número máximo de alumnos que podrían estar en esa sección
+** Lista de las secciones y el número de alumnos matriculados en la sección
+** Lista de las secciones que tienen matriculados su número máximo de alumnos
+#+begin_src sql
+select section_id 
+from section s
+where capacity = (select count(*) 
+                   from enrollment where 
+                   section_id=s.section_id)
+#+end_src
+
+#+begin_src sql
+select * from  
+  
+    (select 
+      section_id as seccion_matriculados, 
+      count(student_id) as matriculados
+    from
+      enrollment
+    group by
+      section_id  
+    order by
+      section_id),
+  
+    (select 
+      section_id as seccion_capacidad,
+      capacity
+    from
+      section)
+
+where
+  seccion_matriculados = seccion_capacidad
+  and matriculados = capacity;
+#+end_src
+
+#+begin_src sql
+select * from ( 
+    select 
+      s.section_id,
+      s.capacity,
+      count(e.student_id) as total
+    from
+      section s, enrollment e
+    where
+      s.section_id = e.section_id
+    group by
+      s.section_id, s.capacity
+)
+where
+  total = capacity;
+  #+end_src
+
+#+begin_src sql
+select 
+  s.section_id,
+  s.capacity,
+  count(e.student_id) as total
+from
+  section s, enrollment e
+where
+  s.section_id = e.section_id
+group by
+  s.section_id, s.capacity
+having
+  count(e.student_id) = capacity;
+#+end_src
+
+
+
+** Nombres que tiene algún profesor pero que no tiene ningún alumno
+#+begin_src sql
+select distinct first_name from instructor
+minus
+select distinct first_name from student;
+#+end_src
+
+
+** Nombres que tiene algún profesor y algún alumno
+#+begin_src sql
+select distinct first_name from instructor
+intersect
+select distinct first_name from student;
+#+end_src
+
+
+** Lista de todos los usuarios de la base de datos (sin duplicados) que han creado o modificado filas
+#+begin_src sql
+select table_name from user_tables;
+
+select distinct u
+from 
+(
+  select created_by u from grade_conversion 
+  union
+  select modified_by u from grade_conversion 
+  union
+  select created_by u from grade_type 
+  union
+  select modified_by u from grade_type 
+  union
+  select created_by u from grade
+  union
+  select modified_by u from grade
+  union
+  select created_by u from grade_type_weight 
+  union
+  select modified_by u from grade_type_weight 
+  union
+  select created_by u from enrollment 
+  union
+  select modified_by u from enrollment 
+  union
+  select created_by u from section 
+  union
+  select modified_by u from section 
+  union
+  select created_by u from course 
+  union
+  select modified_by u from course 
+  union
+  select created_by u from instructor 
+  union
+  select modified_by u from instructor 
+  union
+  select created_by u from student 
+  union
+  select modified_by u from student 
+  union
+  select created_by u from zipcode 
+  union
+  select modified_by u from zipcode 
+)
+#+end_src
+
+** Lista de las notas parciales obtenidas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
+#+begin_src sql
+-- quiero el nombre, apellidos, nota, curso y tipo de nota 
+select
+  first_name, last_name, numeric_grade, course_no, grade_type_code
+
+-- que está en las tablas  grade y student
+from 
+  student st, grade g, enrollment e, section se
+where
+  -- unión de enrollment con grade
+  e.student_id = g.student_id and
+  e.section_id = g.section_id and
+  -- unión de enrollment y student
+  e.student_id = st.student_id and
+  -- unión de enrollment con section
+  e.section_id = se.section_id and
+  salutation = 'Rev';
+#+end_src
+
+** Lista de las notas parciales otorgadas por los reverendos (nombre y apellidos del alumno, nota numérica, curso, tipo de nota)
+#+begin_src sql
+-- quiero el nombre, apellidos, nota, curso y tipo de nota 
+select
+  st.first_name, st.last_name, 
+  numeric_grade, course_no, grade_type_code
+  ,i.first_name, i.salutation
+
+-- que está en las tablas  grade y student
+from 
+  student st, grade g, enrollment e, section se, instructor i
+where
+  -- unión de enrollment con grade
+  e.student_id = g.student_id and
+  e.section_id = g.section_id and
+  -- unión de enrollment y student
+  e.student_id = st.student_id and
+  -- unión de enrollment con section
+  e.section_id = se.section_id and
+  -- unión de instructor con section
+  se.instructor_id = i.instructor_id and
+  i.salutation = 'Rev';
+#+end_src
+
+
+** Lista del número de alumnos de cada estado que asisten al curso "Operating Systems" (número de alumnos, estado)
+
+#+begin_src sql
+select count(*) as numeroalumnos, state 
+from zipcode 
+where zip in(
+    select zip from student where student_id in(
+      select student_id from enrollment where section_id=(
+        select section_id from section where course_no=(
+          select course_no 
+          from course 
+          where lower(description) like '%operating system%'
+        )
+      )
+    )
+)
+group by state;
+#+end_src
+
+
+#+BEGIN_SRC sql
+select count(*), state from
+zipcode z, student st, enrollment e, section se, course c
+where
+  z.zip = st.zip and
+  st.student_id = e.student_id and
+  e.section_id = se.section_id and
+  se.course_no = c.course_no and
+  lower(description) like '%operating system%'
+group by
+  state;
+#+END_SRC
+** Lista de los profesores y los cursos que imparten (nombre, apellidos, descripción del curso)
+#+BEGIN_SRC sql
+select distinct first_name, last_name, description
+from 
+  instructor i 
+  join section s on i.instructor_id = s.instructor_id
+  join course c on c.course_no = s.course_no
+order by last_name, first_name, description;
+
+
+select distinct first_name, last_name, description
+from 
+  instructor i, section s, course c
+where
+   i.instructor_id = s.instructor_id and
+   c.course_no = s.course_no
+order by last_name, first_name, description;
+
+select distinct
+  (select last_name from instructor where instructor_id = section.instructor_id) as last_name,
+  (select first_name from instructor where instructor_id = section.instructor_id) as first_name,
+  (select description from course where course_no = section.course_no) as description
+from section
+order by last_name, first_name, description;
+#+END_SRC
+** Lista de los profesores y las secciones que imparten (nombre, apellidos, descripción del curso, identificador de sección)
+
+** ¿Qué profesor o profesores imparten más cursos? (nombre y apellidos)
+** ¿Qué profesor o profesores imparten más secciones? (nombre y apellidos)
+
+#+begin_src sql
+create view secciones_por_profesor(numerosecciones,instructor_id) as
+select 
+  count(section_id), instructor_id
+from 
+  section
+group by
+  instructor_id;
+  
+select first_name, last_name
+from secciones_por_profesor s, instructor i
+where 
+  i.instructor_id = s.instructor_id and
+  numerosecciones = (select max(numerosecciones) from secciones_por_profesor);
+#+end_src
+
+** ¿Qué profesor o profesores imparten en menos secciones?
+
+** Lista de profesores y número de alumnos a los que imparten algún curso (nombre, apellidos, número de alumnos)
+
+** Lista de profesores y número de alumnos a los que imparten algún curso, por sección (nombre, apellidos, descripción del curso, identificador de sección, número de alumnos)
+
+** Lista de las notas que se van a asignar en la sección 102 (tipo de nota, cuántas notas de ese tipo, cuánto cuenta este tipo de nota en la nota del curso)
+
+** Lista de las notas que se van a asignar (identificador de sección, tipo de nota, cuántas notas de ese tipo, cuánto cuenta este tipo de nota en la nota del curso)
+
+** Lista de las descripciones de los cursos que está siguiendo Angela Torres
+
+
+** Notas parciales medias obtenidas por los alumnos por cada tipo de nota (descripción de tipo de nota, nota media obtenida)
+
+** Notas parciales medias obtenidas por los alumnos por cada tipo de nota, clasificado por estado de origen (descripción de tipo de nota, estado, nota media obtenida)
+
+** Notas parciales medias obtenidas por los alumnos por cada tipo de nota, clasificado por estado de origen (descripción de tipo de nota, estado, nota media obtenida)
+
+** Notas parciales medias obtenidas por los alumnos, clasificado por profesor (nombre del profesor, apellidos, nota media)
+
+** Nombre y apellidos del profesor que suele poner notas más altas
+
+** Nota numérica de la alumna Angela Torres en la sección 102
+** Cálculo de la nota de cada alumno 
+Se realiza un promedio de cada tipo de nota.
+Estos promedios se ponderan con el peso especificado.
+Nota: ignoramos el criterio de no contar la más baja
+
+** ¿En qué cursos está matriculada Ángela Torres?
+
+** ¿En qué cursos no está matriculada Ángela Torres?
+
+** Notas numéricas de la alumna Angela Torres en todos sus cursos (nota numérica, descripción del curso)
+
+** Notas de la alumna Angela Torres en todos sus cursos (nota numérica, nota alfabética, descripción del curso)
+
+** Notas numéricas de todos los alumnos en sus cursos (nombre, apellidos, nota numérica, descripción del curso)
+
+** Notas numéricas los alumnos de la sección número (nombre, apellidos, nota numérica, descripción del curso)
+
+** ¿Cuánto dinero se ha ingresado por las matrículas en los cursos?
+
+** Lista de los profesores que también son alumnos (nombre, apellidos)
+
+** Lista de los alumnos que no son profesores (nombre, apellidos)
+
+** Lista ordenada de los 10 mejores alumnos de acuerdo a la media de sus notas parciales (ranking, nombre, apellidos, nota media)
+
+** Lista ordenada de los 10 siguientes mejores alumnos de acuerdo a la media de sus notas parciales (ranking, nombre, apellidos, nota media)
+
+** Lista de secciones con menos de 15 alumnos matriculados (descripción del curso, identificador de sección, número de alumnos)
+
+** Facturación desde que se creó la academia
+#+begin_src sql
+select 
+  -- course.course_no, cost, enrollment.student_id
+  sum(cost)
+from
+  enrollment, section, course
+where
+  enrollment.section_id = section.section_id and
+  section.course_no = course.course_no;
+#+end_src
+
+** Lista de ingresos por curso (descripción de curso, ingresos)
+#+begin_src sql
+select c.course_no, description, sum(cost)
+from
+  enrollment         e
+  inner join section s on e.section_id = s.section_id
+  inner join course  c on c.course_no = s.course_no
+group by
+  c.course_no, description;
+#+end_src
+
+
+#+begin_src sql
+select c.course_no, description, nvl(cost,0)*count(student_id)
+from
+  enrollment         e
+  full join section s on e.section_id = s.section_id
+  full join course  c on c.course_no = s.course_no
+group by
+  c.course_no, description, cost;
+#+end_src
+
+** Lista de ingresos por profesor (nombre, apellidos, ingresos)
+#+begin_src  sql
+select last_name, first_name, nvl(sum(cost),0)
+from
+  enrollment         e
+  left join section s on e.section_id = s.section_id
+  full join course  c on c.course_no = s.course_no
+  right join instructor i on s.instructor_id = i.instructor_id
+group by i.instructor_id, last_name, first_name;
+
+
+select last_name, first_name, sum(nvl(cost,0)*
+  (case when student_id is null then 0 else 1 end))
+from
+  enrollment         e
+  full join section s on e.section_id = s.section_id
+  full join course  c on c.course_no = s.course_no
+  full join instructor i on s.instructor_id = i.instructor_id
+group by i.instructor_id, last_name, first_name
+having last_name  is not null;
+
+select first_name, last_name, 
+  sum( case
+         when student_id is null then 0
+         else cost 
+       end
+     )  
+from
+  enrollment         e
+  full join section s on e.section_id = s.section_id
+  full join course  c on c.course_no = s.course_no
+  full join instructor i on s.instructor_id = i.instructor_id
+where
+  first_name is not  null
+group by first_name, last_name  ;
+#+end_src
+** Lista de ingresos por alumno (nombre, apellidos, ingresos)
+** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito 'SIN PRERREQUISITO'.
+#+begin_src sql
+select 
+  c.description, p.description
+from 
+  course c, course p
+where
+  c.prerequisite = p.course_no
+union
+select 
+  c.description, 'SIN PREREQUISITO'
+from
+  course c
+where
+  c.prerequisite is null;
+#+end_src
+  
+
+#+begin_src sql
+select 
+  c.description, p.description
+from 
+  course c left join course p on c.prerequisite = p.course_no;
+#+end_src
+
+** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito NULL.
+** Lista de las secciones con mas de 12 alumnos matriculados
+** Lista de estados y el número de alumnos matriculados de ese estado
+** Lista de los estados con más de 10 alumnos matriculados
+#+begin_src sql
+select
+  z.state, count(student_id)
+from
+  student s, zipcode z
+where
+  s.zip = z.zip
+group by
+  z.state
+having
+  count(student_id) >= 10;
+#+end_src
+
+** Lista de los estados con menos de 11 alumnos matriculados
+** Estado(s) con más alumnos matriculados
+#+begin_src sql
+create view estado_de_estudiante(estudiante,estado) as
+select
+  student_id, state
+from
+  student, zipcode
+where
+  student.zip = zipcode.zip;
+
+create view estudiantes_por_estado(estudiantes, estado) as
+select 
+  count(*), estado
+from 
+  estado_de_estudiante
+group by
+  estado;
+  
+create view estado_con_mas_estudiantes as
+select 
+  estado, estudiantes
+from 
+  estudiantes_por_estado 
+where
+  estudiantes=(select max(estudiantes) from estudiantes_por_estado);
+#+end_src
+ 
+  
+  
+#+begin_src sql
+select
+  z.state, count(student_id)
+from
+  student s, zipcode z
+where
+  s.zip = z.zip
+group by
+  z.state
+having
+  count(student_id) >= all(select count(student_id) from
+  student s, zipcode z
+where
+  s.zip = z.zip
+group by
+  z.state);
+#+end_src
+
+** Qué curso (descripción) tiene más profesores
+#+begin_src sql
+create view profesores_por_curso as
+select c.description, c.course_no, count(*) as numeroprofes
+from 
+  instructor i, section s, course c
+where
+  i.instructor_id = s.instructor_id and
+  s.course_no = c.course_no
+group by
+  c.course_no, c.description;
+  
+select description, numeroprofes 
+from profesores_por_curso
+where numeroprofes = (
+  select max(numeroprofes) 
+  from profesores_por_curso  
+);
+#+end_src
+
+
+** Estado cuyos alumnos tienen mejor nota media (de sus notas parciales)
+** Número de alumnos por estado que ha sacado más de un 85 en la media de tareas de "homework" (HM)
+#+begin_src sql
+select state, count(*) alumnosconmasde85
+from (
+  select z.zip, s.student_id, avg(g.numeric_grade)
+  from
+    zipcode z, student s, enrollment e, grade g
+  where
+    z.zip = s.zip and
+    s.student_id = e.student_id and
+    e.student_id = g.student_id and
+    e.section_id = g.section_id and
+    g.GRADE_TYPE_CODE = 'HM'
+  group by
+    z.zip, s.student_id
+  having
+    avg(g.numeric_grade)>85
+  ) e , zipcode z
+where
+  e.zip = z.zip
+group by
+state;
+#+end_src
+
+** Lista de alumnos del código postal con más alumnos
+#+begin_src sql
+create view alumnosporzip(cuantos,zip) as
+select 
+  count(first_name), zip 
+from
+  student
+group by zip
+order by 1 desc;
+
+
+select * from student where zip=
+(
+select 
+  zip 
+from 
+  alumnosporzip 
+where 
+  cuantos=(select max(cuantos) from alumnosporzip)
+);
+#+end_src
+
+** Nombre y apellidos del profesor que ha dado las peores notas (media de sus notas más baja)
+** Nombre y apellidos del alumno con la nota media más alta.
+
+** Listado de nombre y apellido de profesores junto con los nombres de los cursos que imparten
+
+#+BEGIN_SRC sql
+select distinct
+  first_name, last_name, description
+from
+  instructor i, course c, section s
+where
+  s.COURSE_NO = c.COURSE_NO and
+  s.INSTRUCTOR_ID = i.INSTRUCTOR_ID;
+#+END_SRC
+
+#+BEGIN_SRC sql
+select distinct
+  first_name, last_name, description
+from
+  instructor i 
+  join section s on s.INSTRUCTOR_ID = i.INSTRUCTOR_ID
+  join course c on s.COURSE_NO = c.COURSE_NO;
+#+END_SRC
+
+** Listado de secciones, nombre del curso que se imparte en la sección y cuántas plazas libres quedan en la sección
+
+#+begin_src sql
+   create view matriculadosporseccion as
+select 
+  s.section_id,
+  count(student_id) as matriculados
+from 
+  enrollment e
+  right join section s on e.section_id = s.section_id
+group by
+  s.section_id
+order by
+  section_id;
+
+select 
+  s.section_id,
+  description,
+  capacity,
+  matriculados,
+  capacity -matriculados as libres
+from 
+  section s, course c, matriculadosporseccion m
+where 
+  s.course_no = c.course_no and
+  s.section_id = m.section_id
+order 
+  by section_id;
+#+end_src
+
+#+begin_src sql
+select 
+  section_id,
+  description,
+  capacity,
+  (select count(*) from enrollment e where e.section_id=s.section_id) as matriculados,
+  capacity-(select count(*) from enrollment e where e.section_id=s.section_id) as libres
+from 
+  section s, course c
+where 
+  s.course_no = c.course_no
+order 
+  by section_id;
+#+end_src_
+
+
+
+
+
+#+begin_src sql
+select 
+  s.section_id,
+  description,
+  capacity,
+  count(student_id) as matriculados,
+  capacity - count(student_id) as plazaslibres
+from 
+  section s 
+  join course c on s.course_no = c.course_no
+  left outer join enrollment e on s.section_id = e.section_id
+group by
+  s.section_id, description, capacity
+order by 
+  section_id;
+   #+end_src
+
+** Cuánto dinero se necesita para matricularse en todas las secciones que imparte la profesora Anita Morris
+** Lista de cada profesor, y cuánto dinero se necesita para matricularse en todas sus secciones
+** Para qué profesor se necesita más dinero para matricularse en todas sus secciones

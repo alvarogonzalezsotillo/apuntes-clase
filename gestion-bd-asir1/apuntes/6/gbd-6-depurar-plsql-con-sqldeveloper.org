@@ -1,0 +1,185 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Depuración de PLSQL con SQLDeveloper
+
+#+latex_header: \lstset{emph={begin,declare,serveroutput,trigger,on,before,after,each, if, elsif, exit, while, loop}, emphstyle=\color{Blue}\ttfamily\bfseries}
+
+
+* Ejemplo 
+- [[https://es.wikipedia.org/wiki/Algoritmo_de_Euclides][Algoritmo de Euclides]] para el máximo común divisor de dos números
+
+** Diagrama de flujo
+#+begin_src plantuml :file ./media/sqldeveloper-flujo-mcd.svg
+start
+
+if (n1 > n2) then (yes)
+  :a ← n1;
+  :b ← n2;
+else (no)
+  :a ← n2;
+  :b ← n1;
+endif
+
+while (b != 0) is (true)
+  :res ← b;
+  :b ← a MOD b;
+  :a ← res;
+endwhile (false)
+
+:return a;
+stop
+#+end_src
+
+#+RESULTS:
+[[file:./media/sqldeveloper-flujo-mcd.svg]]
+
+** Código PLSQL
+#+begin_src sql
+create or replace function MCD(n1 number,n2 number) return number
+is
+   a number;
+   b number;
+   res number;
+begin 
+    if (n1>n2) then
+        a := n1;
+        b := n2;
+    else  
+        a := n2;
+        b := n1;
+    end if;
+    
+    while( b!=0 ) loop
+        res := b;
+        b := mod(a,b);
+        a := res;
+    end loop; 
+    
+    return res;
+end;
+/
+#+end_src
+
+
+
+** Lista de procedimientos y funciones
+
+[[file:media/sqldeveloper-funciones-definidas.png]]
+
+
+** Compilar para depurar
+- Para poder depurar, debe compilare para depurar
+- Si no, los /breakpoints/ no funcionarán
+
+[[file:media/sqldeveloper-compilar-para-debug.png]]
+
+** Poner un /breakpoint/
+- Un /breakpoint/ es una línea donde la ejecución parará temporalmente para poder inspeccionar el estado de las variables
+- =f5= o botón derecho sobre los números de línea
+[[file:media/sqldeveloper-poner-breakpoint.png]]
+
+** Bloque de invocación
+- Es un bloque anónimo que invocará a la función/procedimiento
+- Permite introducir valor a los parámetros de entrada, y recoger parámetros de salida y retorno de la función
+
+[[file:media/sqldeveloper-bloque-para-debuguear.png]]
+
+** Avance del programa
+[[file:media/sqldeveloper-avance-programa.png]]
+- Abortar la ejecución
+- Colocar el cursor en la siguiente instrucción a ejecutar
+- /Step over/ =F8=: Ejecutar la siguiente línea, sin entrar en funciones
+- /Step into/ =F7=: Ejecutar la siguiente línea, entrando en funciones
+- /Step out/: Ejecutar hasta acabar la función actual
+- Continuar hasta siguiente /breakpoint/ =F9=
+- Parar la ejecución y comenzar a debuguear
+- Deshabilitar todos los /breakpoints/
+
+** Ventana =Data=
+- Contiene el valor de las variables de la función/procedimiento
+- Su valor se irá actualizando cuando avance el programa
+[[file:media/sqldeveloper-ventana-data.png]]
+
+
+
+* Habilitar el /debug/
+- Privilegios
+- Habilitar puestos de depuración
+- Modo =DBMS_DEBUG= en vez de =DBMS_DEBUG_JDWP= (evita conexión inversa desde el servidor)
+
+** Privilegios
+#+begin_example
+Executing PL/SQL: ALTER SESSION SET PLSQL_DEBUG=TRUE
+Executing PL/SQL: CALL DBMS_DEBUG_JDWP.CONNECT_TCP( '192.168.1.119', '34685' )
+ORA-01031: insufficient privileges
+ORA-06512: at "SYS.DBMS_DEBUG_JDWP", line 68
+ORA-06512: at line 1
+This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privileges.
+#+end_example
+
+#+begin_src sql
+grant debug connect session to USUARIOQUEDEBUGEA; 
+grant debug any procedure to USUARIOQUEDEBUGEA;
+#+end_src
+
+** Habilitar puestos de depuración
+- La instancia de Oracle puede limitar los ordenadores que pueden debuguear
+#+begin_src sql
+begin
+    dbms_network_acl_admin.append_host_ace
+        (host=>'IP DEL CLIENTE QUE DEBUGUEA',
+         ace=> sys.xs$ace_type( privilege_list=>sys.XS$NAME_LIST('JDWP') ,
+                                principal_name=>'USUARIO QUE DEBUGUEA',
+                                principal_type=>sys.XS_ACL.PTYPE_DB) );
+end;
+/
+
+grant execute on DBMS_DEBUG_JDWP to USUARIOQUEDEBUGEA;
+#+end_src
+
+
+* Alternativas a depurar
+- No siempre es fácil depurar
+- No se puede volver atrás al depurar
+- Con algo de práctica, las *trazas* pueden ser más útiles
+
+** Ejemplo con trazas
+#+begin_src sql
+create or replace function MCD(n1 number,n2 number) return number
+is
+   a number;
+   b number;
+   res number;
+begin 
+    if (n1>n2) then
+        dbms_output.put_line( 'n1 es mayor' );
+        a := n1;
+        b := n2;
+    else 
+        dbms_output.put_line( 'n2 es mayor' );
+        a := n2;
+        b := n1;
+    end if;
+    
+    while( b!=0 ) loop
+        dbms_output.put_line( 'Al principio: a:' || a || ' b: ' || b );
+        res := b;
+        b := mod(a,b);
+        a := res;
+        dbms_output.put_line( 'Al final:     a:' || a || '  b: ' || b );
+    end loop; 
+    
+    dbms_output.put_line( 'retorno:' || res );
+
+    return res;
+end;
+#+end_src
+
+** Ejemplo con trazas
+[[file:media/sqldeveloper-trazas.png]]
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+

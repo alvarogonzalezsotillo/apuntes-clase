@@ -1,0 +1,262 @@
+% Created 2022-01-21 vie 12:39
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=2.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Trabajo de scripts de shell}
+\rhead{ASGBD}
+\usepackage{tabularx}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.0.50 (Org mode 9.4.6)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\captionsetup{font=scriptsize}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\StudentData
+
+
+
+
+La última versión de este documento se puede descargar de \url{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts-2022.pdf}
+
+
+
+
+\section{\emph{Scripts} de inicio y parada de \textbf{Oracle} (1 punto)}
+\label{sec:org0000000}
+
+Crea dos \emph{scripts} para iniciar y parar \textbf{Oracle}
+\begin{itemize}
+\item \texttt{/home/alumno/scripts/oraclestart.sh}
+\item \texttt{/home/alumno/scripts/oraclestop.sh}
+\end{itemize}
+
+
+\section{Arrancar automáticamente \textbf{Oracle} cuando se inicie el servidor (2 puntos)}
+\label{sec:org0000003}
+
+
+\begin{itemize}
+\item \textbf{Oracle} debe levantarse cuando la máquina se inicie, y apagarse cuando la máquina se cierre.
+\item Oracle se iniciará solo si se indica en el fichero \texttt{/etc/oratab}.
+
+\item En el fichero \texttt{/home/alumno/logs/oracle.log} se dejará una traza de cuando se arrancó y se paró la máquina, y si fue necesario arrancar o parar \textbf{Oracle}. Por ejemplo:
+
+\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se arranca},captionpos=b,numbers=none}
+\begin{lstlisting}
+      2022-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2022-02-10-12:40:01 - Oracle arrancando porque /etc/oratab indica Y
+      2022-02-10-12:40:20 - Oracle arrancado
+\end{lstlisting}
+
+\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se para},captionpos=b,numbers=none}
+\begin{lstlisting}
+      2022-02-10-12:41:00 - Solicitud de parar Oracle
+      2022-02-10-12:41:20 - Oracle parado
+\end{lstlisting}
+
+\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} no se arranca},captionpos=b,numbers=none}
+\begin{lstlisting}
+      2022-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2022-02-10-12:40:01 - Oracle no se arranca porque /etc/oratab indica N
+\end{lstlisting}
+\end{itemize}
+
+
+\begin{Aviso}
+\begin{itemize}
+\item Los \emph{scripts} no cambian el fichero \texttt{/etc/oratab}, solo lo consultan.
+\item Asegúrate de que el \emph{script} no lee líneas de comentarios, o de otros \texttt{SID}
+\end{itemize}
+\end{Aviso}
+
+
+\section{Crea usuarios de base de datos (2 puntos)}
+\label{sec:org0000006}
+\begin{itemize}
+\item Crea un script de nombre \texttt{/home/alumno/scripts/nuevos-usuarios-oracle.sh} que lea de su entrada estándar
+\item Cada línea será un nombre de usuario a crear
+\item Cada usuario se creará con permisos connect y resource
+\item Si el usuario ya existe, no se hará nada con él
+\end{itemize}
+
+\lstset{language=bash,label=lst:nuevos-usuarios-ejemplo,caption={Ejemplo de uso},captionpos=b,numbers=none}
+\begin{lstlisting}
+  echo pepe juan manolo | ./nuevos-usuarios-oracle.sh
+  pepe: no existe, se crea con contraseña pepe y se le dan roles
+  juan: ya existe, no se hace nada
+  manolo: no existe, se crea con contraseña manolo y se le dan roles
+\end{lstlisting}
+
+\section{Borra un usuario de la base de datos (2 puntos)}
+\label{sec:org0000009}
+\begin{itemize}
+\item Crea un script de nombre \texttt{/home/alumno/scripts/quita-usuario-oracle.sh} que bloquee el usuario pasado como parámetro
+\begin{itemize}
+\item Si el usuario no existe, informará de ello y tendrá un errorlevel de \texttt{1}
+\item Si se invoca con primer parámetro \texttt{-{}-drop} y segundo el usuario, borrará el usuario.
+\item Si se invoca sin parámetros, o incorrectos, mostrará el texto de ayuda del listado \ref{lst:quita-usuario-ayuda}
+\end{itemize}
+\end{itemize}
+
+\lstset{language=bash,label=lst:quita-usuario-ayuda,caption={Ayuda del script \texttt{quita-usuario-oracle.sh}},captionpos=b,numbers=none}
+\begin{lstlisting}
+
+  Borra o bloquea un usuario de oracle.
+  
+  Uso: quita-usuario-oracle.sh <usuario>
+       quita-usuario-oracle.sh --drop <usuario>
+\end{lstlisting}
+
+\begin{Aviso}
+En la salida del \emph{script} debe quedar claro si el usuario se borra o bloquea
+\end{Aviso}
+
+
+
+\section{Almacena información periódicamente en la base de datos (3 puntos)}
+\label{sec:org000000c}
+Programa un \emph{script} para que cada minuto almacene en la tabla \texttt{ESTADO} la siguiente información
+
+\begin{itemize}
+\item \texttt{uptime}: Tiempo activo del servidor (\texttt{uptime -p})
+\item \texttt{procesos}: Número de procesos activos en el servidor
+\item \texttt{disco}: Número de KB usados en el punto de montaje raíz
+\item \texttt{conexiones}: Número de conexiones TCP abiertas
+\end{itemize}
+
+
+\lstset{language=SQL,label=lst:tabla.sql,caption={Creación de la tabla \texttt{ESTADO}},captionpos=b,numbers=none}
+\begin{lstlisting}
+  create table ESTADO(
+    uptime varchar(40),
+    procesos varchar(40),
+    disco varchar(40),
+    conexiones varchar(40)
+  );
+\end{lstlisting}
+
+
+\begin{Aviso}
+Pistas para realizar el \emph{script}:
+\begin{itemize}
+\item Los \emph{heredocs} pueden \href{http://superuser.com/questions/456615/how-to-pass-variables-to-a-heredoc-in-bash}{contener variables}
+\item \href{https://www.cyberciti.biz/tips/processing-the-delimited-files-using-cut-and-awk.html}{Cortar columnas} con \texttt{awk}
+\item \href{https://linuxconfig.org/commands-on-how-to-delete-a-first-line-from-a-text-file-using-bash-shell}{Quitar las primeras líneas} de la salida con el comando \texttt{tail}
+\end{itemize}
+\end{Aviso}
+
+
+\section{Envía un correo periódicamente (2 puntos)}
+\label{sec:org000000f}
+\begin{itemize}
+\item Programa un \emph{script} para que cada minuto envíe un correo con la información de la tabla \texttt{ESTADO}.
+\item El correo se enviará a \texttt{alvarogonzalez.profesor@gmail.com}
+\item Con copia a \texttt{alvaro@alvarogonzalez.no-ip.biz}
+\item Indica tu nombre en el asunto del correo
+\item El fichero tendrá \href{https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus\#654723}{formato CSV}. Se debe poder abrir directamente con \textbf{excel} y visualizar su resultado en filas y columnas.
+\end{itemize}
+
+
+
+
+
+\section{Instrucciones de entrega}
+\label{sec:org0000012}
+
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual. Solo se puede hacer por parejas si no hay ordenadores suficientes.
+\item El profesor comprobará el funcionamiento del sistema el día indicado.
+\item Sube en la tarea del aula virtual un ZIP con todos los ficheros que has creado o modificado:
+\begin{itemize}
+\item \emph{Scripts}
+\item \emph{units} de \texttt{systemd}
+\item Ficheros de \texttt{cron} / \texttt{anacron}
+\end{itemize}
+\end{itemize}
+\end{document}

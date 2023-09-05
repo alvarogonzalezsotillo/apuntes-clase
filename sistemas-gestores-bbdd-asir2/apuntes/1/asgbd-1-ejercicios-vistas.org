@@ -1,0 +1,88 @@
+#+INCLUDE: "../../../common/header.org"
+
+
+* Roles
+Responde a las siguientes preguntas acerca de los roles definidos en tu sistema con una sentencia SQL ejecutada por el usuario indicado
+- ¿Cuáles son los nombres de los roles definidos en tu base de datos?
+- Lista de roles concedidos a otros roles (rol concedido, rol al que se le concede)
+- Lista de privilegios concedidos a roles (privilegio, tabla sobre la que se concede, rol al que se le concede)
+
+#+begin_comment
+DBA_ROLES
+DBA_ROLE_PRIVS
+ROLE_TAB_PRIVS
+ROLE_SYS_PRIVS
+ROLE_ROLE_PRIVS
+#+end_comment
+
+* Privilegios
+- Lista de privilegios de tabla otorgados entre los usuarios creados en tu base de datos para la práctica de permisos (propietario, tabla, usuario con privilegio concedidos)
+- Lista de privilegios de columna otorgados entre los usuarios creados en tu base de datos para la práctica de permisos (propietario, tabla, columna, usuario con privilegio concedido)
+- Lista de roles concedidos a usuarios (rol concedido, usuario que lo tiene)
+- Lista de usuarios (no roles) que pueden ver la vista dba_users
+#+begin_comment
+TABLE_PRIVILEGES
+dba_tab_privs
+dba_col_privs
+#+end_comment
+
+* Vistas
+- Lista de vistas de cada usuario (usuario, nombredevista)
+- Lista de dependencias de las vistas, que son las tablas de las que las vistas sacan sus datos    
+
+* /tablespaces/
+- Lista de ficheros de datos, con sus tablespaces (fichero,tablespace)
+- Lista de ficheros completa para realizar un  backup de la base de datos: datafiles y controlfiles
+
+#+begin_comment
+dba_tablespaces
+dba_data_files
+dba_temp_files
+v$controlfile
+#+end_comment
+
+* Cuotas
+- Lista de usuarios y cuotas en /tablespaces/ (usuario, tablespace, cuota)
+#+begin_comment
+dba_ts_quotas
+#+end_comment
+
+* Tablas
+- Lista de tablas de los usuarios, junto con el tablespace donde están almacenadas (usuario, tabla, tablespace)
+#+BEGIN_COMMENT
+dba_tables_
+#+END_COMMENT
+
+* Sinónimos
+- A qué tabla apunta un sinónimo (owner,sinónimo, tabla)
+- Lista de sinónimos públicos (sinónimo, tabla)
+- Lista de sinónimos cuyo destino no existe (owner,sinónimo)
+#+BEGIN_COMMENT
+DBA_SYNONYMS
+#+end_comment
+
+
+
+* Procedimientos y funciones
+- Lista de funciones de usuarios (usuario, función)
+- Lista de procedimientos de usuarios (usuario, función)
+- Lista de errores de compilación de las funciones y procedimientos (usuario, función o procedimiento, linea, mensaje de error)
+#+BEGIN_COMMENT
+DBA_SOURCE
+DBA_PROCEDURES
+DBA_ERRORS
+DBA_OBJECTS
+#+end_comment
+
+
+
+
+* Perfiles
+- Lista de perfiles de la base de datos (nombre perfil)
+- Lista de usuarios con su perfil (usuario, nombre perfil)
+- Lista de limitaciones de los perfiles (nombre de perfil, nombre del parámetro, valor)
+
+#+begin_comment
+select * from dba_users;
+select * from dba_profiles;
+#+end_comment

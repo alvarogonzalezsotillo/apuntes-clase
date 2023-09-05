@@ -1,0 +1,178 @@
+   
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil toc:nil title:nil
+
+#+LATEX_HEADER: \lhead{Trabajo de scripts de shell}
+#+LATEX_HEADER: \rhead{ASGBD}
+#+LATEX_HEADER: \usepackage{tabularx}
+
+# +latex: \StudentData
+
+
+
+
+La última versión de este documento se puede descargar de https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts.pdf
+
+
+
+
+* /Scripts/ de inicio y parada de *Oracle* (1 punto)
+
+  Crea dos /scripts/ para iniciar y parar *Oracle*
+  - =/home/alumno/scripts/oraclestart.sh=
+  - =/home/alumno/scripts/oraclestop.sh=
+  
+
+* Arrancar automáticamente *Oracle* cuando se inicie el servidor (2 puntos)
+
+  
+  - *Oracle* debe levantarse cuando la máquina se inicie, y apagarse cuando la máquina se cierre.
+  - Oracle se iniciará solo si se indica en el fichero =/etc/oratab=. 
+  
+  - En el fichero =/home/alumno/logs/oracle.log= se dejará una traza de cuando se arrancó y se paró la máquina, y si fue necesario arrancar o parar *Oracle*. Por ejemplo:
+
+    #+caption: Ejemplo de =/home/alumno/logs/oracle.log= cuando *Oracle* se arranca
+    #+begin_src bash
+      2017-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2017-02-10-12:40:01 - Oracle arrancando porque /etc/oratab indica Y
+      2017-02-10-12:40:20 - Oracle arrancado
+    #+end_src
+
+    #+caption: Ejemplo de =/home/alumno/logs/oracle.log= cuando *Oracle* se para
+    #+begin_src bash
+      2017-02-10-12:41:00 - Solicitud de parar Oracle
+      2017-02-10-12:41:20 - Oracle parado
+    #+end_src
+
+    #+caption: Ejemplo de =/home/alumno/logs/oracle.log= cuando *Oracle* no se arranca
+    #+begin_src bash
+      2017-02-10-12:40:00 - Solicitud de arrancar Oracle
+      2017-02-10-12:40:01 - Oracle no se arranca porque /etc/oratab indica N
+    #+end_src
+
+    
+#+latex: \begin{Aviso}
+ Los /scripts/ no cambian el fichero =/etc/oratab=, solo lo consultan.
+#+latex: \end{Aviso} 
+ 
+
+* Crea usuarios de base de datos (2 puntos)
+  Crea un script de nombre =/home/alumno/scripts/nuevo-usuario-oracle.sh= que cree un nuevo usuario de oracle. Si se invoca sin parámetros, o con más de dos, mostrará el texto de ayuda del listado [[lst:nuevo-usuario-ayuda]]
+
+  #+caption: Ayuda del script =nuevo-usuario-oracle.sh=
+  #+name: lst:nuevo-usuario-ayuda
+  #+begin_src bash
+
+  Crea un usuario nuevo de oracle, con permisos connect y resource.
+  Si el usuario ya existe, lo desbloquea y le cambia la contraseña.
+  
+  Uso: nuevo-usuario-oracle.sh <usuario> <contraseña>
+  #+end_src
+
+   
+#+latex: \begin{Aviso}
+  En la salida del /script/ debe quedar claro si el usuario se crea (porque no existe), o solo es desbloqueado.
+#+latex: \end{Aviso} 
+ 
+ 
+
+
+  
+
+
+* Almacena información periódicamente en la base de datos (3 puntos)
+#+begin_comment
+ df -k | awk '{print $3}'
+ while read -r line
+ do
+     name="$line"
+     echo "Name read from file - $name"
+ done < "$filename"
+  #+end_comment
+
+  Programa un /script/ para que cada minuto almacene en la tabla =DF= la información del comando =df -k=. Esta tabla (listado [[lst:tabla.sql]]) tendrá como columnas:
+  
+  - =hora=: Hora de lanzamiento del comando
+  - =sistema=: Nombre del tipo de sistema de ficheros
+  - =tamano=: Tamaño en KB del sistema de ficheros
+  - =usado=: Tamaño usado, en KB
+  - =montado=: Punto de montaje
+  
+
+  #+caption: Creación de la tabla =DF=
+  #+name: lst:tabla.sql
+  #+begin_src sql
+  create table DF(
+    hora varchar(40),
+    sistema varchar(40),
+    tamano varchar(40),
+    usado varchar(40),
+    montado varchar(40)
+  );
+  #+end_src
+
+  #+latex: \begin{minipage}{\textwidth}
+  #+caption: Ejemplo de salida del comando =df -k=
+  #+name: lst:df-k
+  #+begin_src bash
+Filesystem     1K-blocks      Used Available Use% Mounted on
+udev             4002180         0   4002180   0% /dev
+tmpfs             804488     19756    784732   3% /run
+/dev/sda1      237874840 183034916  42733532  82% /
+tmpfs            4022440    437328   3585112  11% /dev/shm
+tmpfs               5120         4      5116   1% /run/lock
+tmpfs            4022440         0   4022440   0% /sys/fs/cgroup
+/dev/sdb5      689521880 595546232  58926896  91% /home/windows
+cgmfs                100         0       100   0% /run/cgmanager/fs
+tmpfs             804488        88    804400   1% /run/user/1000
+  #+end_src
+  #+latex: \end{minipage} 
+   
+#+latex: \begin{Aviso}
+ Pistas para realizar el /script/:
+  - Los /heredocs/ pueden [[http://superuser.com/questions/456615/how-to-pass-variables-to-a-heredoc-in-bash][contener variables]]
+  - [[https://www.cyberciti.biz/tips/processing-the-delimited-files-using-cut-and-awk.html][Cortar columnas]] con =awk=
+  - Leer líneas [[http://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable][una por una]] y meterlas en una variable:
+  - [[https://linuxconfig.org/commands-on-how-to-delete-a-first-line-from-a-text-file-using-bash-shell][Quitar la primera línea]] de la salida de =df -k= con el comando =tail=
+  - El /script/ debería seguir los siguientes pasos:
+    1. Quitar la primera línea de la salida de =df -k=
+    2. Leer cada línea con =while= y =read=
+    3. Sacar los campos de cada línea con =awk=
+    4. Ejecutar una sentencia =SQL= con los datos extraidos
+#+latex: \end{Aviso}   
+
+* Envía un correo periódicamente (2 puntos)
+
+  
+  - Programa un /script/ para que cada minuto envíe un correo con la información promedio del comando  =df -k=. Puedes usar como base para la consulta el listado [[lst:promedio.sql]]
+  - El correo se enviará a =alvarogonzalez.profesor@gmail.com=
+  - Con copia a =alvaro@alvarogonzalez.no-ip.biz=
+  - Indica tu nombre en el asunto del correo  
+  - El fichero tendrá [[https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus#654723][formato CSV]]. Se debe poder abrir directamente con *excel* y visualizar su resultado en filas y columnas.
+
+#+latex: \begin{minipage}{\textwidth}
+#+caption: Consulta tipo para extraer información promedio
+#+name: lst:promedio.sql
+#+begin_src sql -n
+  select 
+    sistema, avg(tamano), avg(usado), montado
+  from 
+    DF
+  group by
+    sistema, montado;
+#+end_src
+#+latex: \end{minipage}
+    
+
+
+
+* Instrucciones de entrega
+
+- El ejercicio se realizará y entregará de manera individual.
+- El profesor comprobará el funcionamiento del sistema el día indicado.
+- Sube en la tarea del aula virtual un ZIP con todos los ficheros que has creado o modificado:
+  - /Scripts/
+  - /units/ de =systemd=
+  - Ficheros de =cron= / =anacron=
+  

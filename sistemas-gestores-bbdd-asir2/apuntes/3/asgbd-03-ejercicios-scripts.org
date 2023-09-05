@@ -1,0 +1,478 @@
+* Pinta una línea
+Haz un script que reciba dos argumentos:
+- un carácter
+- un número entero
+
+Si no recibe los dos argumentos, o no cuplen las normas, escribirá un texto de ayuda.
+Si los dos argumentos son correctos, dibujará una línea horizontal con el caracter repetido el número de veces indicado
+
+** solución                                                        :noexport:
+#+begin_src bash
+#!/bin/bash
+
+
+echo INICIO 
+ayuda(){
+    echo 'argumentos: <caracter> <numero>'
+}
+
+CARACTER=$1
+NUMERO=$2
+
+CARACTER=a
+NUMERO=20
+
+
+LONGITUD=$(printf "%s" "$CARACTER" | wc -m)
+echo LOGITUD=$LONGITUD
+
+if [[ "$LONGITUD" -ne "1" ]]
+then
+    echo El caracter no es correcto
+    ayuda
+    exit 1
+fi
+
+esnumero(){
+    local CADENA="$1"
+    echo $CADENA | grep -e "[0-9][0-9]*"
+}
+
+if ! esnumero "$NUMERO" 
+then
+    echo El número no es correcto
+    ayuda
+    exit 1
+fi
+
+echo HACIENDO LINEA
+
+for INDICE in $(seq 1 $NUMERO)
+do
+    printf "%s" $CARACTER
+done
+printf "\n"
+#+end_src
+
+#+RESULTS:
+
+* Adivina un número
+Haz un script que adivine un número en el que está pensando el usuario. El número debe estar entre 1 y 31. El script propondrá un número, y el usuario responderá =si=, =mayor= o =menor=.
+
+Pista: en la primera pregunta, el número está entre 1 y 31, así que se pregunta por 16 (el medio). Si dice menor, el número estará entre 1 y 15, y pregunto por 8. Si ahora dice mayor, estará entre 9 y 15, pregunto por 12...
+
+** Ejemplo (con el número 1)
+#+begin_example
+PIENSA UN NUMERO ENTRE 1 Y 31
+Es 16 el número? (si/mayor/menor):menor
+
+Es 8 el número? (si/mayor/menor):menor
+
+Es 4 el número? (si/mayor/menor):menor
+
+Es 2 el número? (si/mayor/menor):menor
+
+Es 1 el número? (si/mayor/menor):si
+He acertado que el número es 1
+#+end_example
+** solución :noexport:
+
+#+begin_src sh
+#!/bin/bash
+
+MAX=31
+MIN=1
+
+pregunta(){
+  PREGUNTA=$((($MAX+$MIN)/2))
+  read -p "Es $PREGUNTA el número?" RESPUESTA
+  if [[ "$RESPUESTA" = "mayor"  ]]
+  then
+    MIN=$(($PREGUNTA+1))
+    return 0
+  elif [[ "$RESPUESTA" = "menor" ]]
+  then
+    MAX=$(($PREGUNTA-1))
+    return 0
+  else
+    echo "He acertado que el número es $RESPUESTA"
+    return 1
+  fi
+}
+
+while pregunta
+do
+  echo
+done
+#+end_src
+
+#+RESULTS:
+: He acertado que el número es
+
+* Analiza directorio
+
+El script recibe un nombre de directorio. Por cada elemento dentro de ese directorio:
+- Si es un fichero, contará el número de líneas de ese fichero
+- Si es un directorio, contará el número de ficheros dentro de ese directorio
+
+Supondremos que no hay espacios en los nombres de fichero, para que sea más fácil
+
+** Solución :noexport:
+
+#+begin_src bash :results raw
+#!/bin/bash
+
+IFS=$'\n'
+
+DIR="$1"
+
+if [[ "$DIR" = "" ]]
+then
+  DIR=/home/alvaro
+fi
+
+informacion(){
+  local COSA="$1"
+  if [ -d "$COSA" ]
+  then
+    echo "$COSA" es un directorio y tiene $(ls "$COSA" | wc -l) elementos
+  else
+    echo "$COSA" es un fchero y tiene $(cat "$COSA" | wc -l) filas
+  fi
+}
+
+
+for COSA in $(ls "$DIR")
+do
+   informacion "$DIR"/"$COSA"
+done
+
+#+end_src
+
+#+RESULTS:
+/home/alvaro/1 es un fchero y tiene 340 filas
+/home/alvaro/2020-05-12 09-35-14.mkv es un fchero y tiene 448 filas
+/home/alvaro/apuntes-clase es un directorio y tiene 33 elementos
+/home/alvaro/certificado.pfx es un fchero y tiene 37 filas
+/home/alvaro/Cloud es un directorio y tiene 3 elementos
+/home/alvaro/Desktop es un directorio y tiene 3 elementos
+/home/alvaro/dlang es un directorio y tiene 3 elementos
+/home/alvaro/Documents es un directorio y tiene 9 elementos
+/home/alvaro/Downloads es un directorio y tiene 16 elementos
+/home/alvaro/eclipse-workspace es un directorio y tiene 0 elementos
+/home/alvaro/fichero.txt es un fchero y tiene 2 filas
+/home/alvaro/github es un directorio y tiene 13 elementos
+/home/alvaro/#!home!alvaro!Cloud!cedro365!sincronizado-alvaro-vaio!2019-2020-Alonso-De-Avellaneda!planificacion-administracion-redes-asir1!cisco!vlan.org# es un fchero y tiene 34 filas
+/home/alvaro/#!home!alvaro!Cloud!cedro365!sincronizado-alvaro-vaio!2019-2020-Alonso-De-Avellaneda!sistemas-gestores-bbdd-asir2!evaluacion!practica-scripts-extraordinaria-2020-06-02!VILLARTA!inserta-datos.sh# es un fchero y tiene 24 filas
+/home/alvaro/#!home!alvaro!.emacs.d!config.el# es un fchero y tiene 1282 filas
+/home/alvaro/#!home!alvaro!kk.sh# es un fchero y tiene 31 filas
+/home/alvaro/kk.sh es un fchero y tiene 14 filas
+/home/alvaro/listado-alumnos0.odb es un fchero y tiene 0 filas
+/home/alvaro/listado-alumnos1.odb es un fchero y tiene 0 filas
+/home/alvaro/Mail es un directorio y tiene 0 elementos
+/home/alvaro/Music es un directorio y tiene 0 elementos
+/home/alvaro/OneDrive es un directorio y tiene 0 elementos
+/home/alvaro/openssl.conf es un fchero y tiene 13 filas
+/home/alvaro/ordenado.txt es un fchero y tiene 6 filas
+/home/alvaro/Pictures es un directorio y tiene 25 elementos
+/home/alvaro/#.profile# es un fchero y tiene 29 filas
+/home/alvaro/prueba es un directorio y tiene 6 elementos
+/home/alvaro/prueba.sh es un fchero y tiene 19 filas
+/home/alvaro/pt es un directorio y tiene 7 elementos
+/home/alvaro/Public es un directorio y tiene 0 elementos
+/home/alvaro/#!sudo:root@alvaro-vaio:!etc!ImageMagick-6!policy.xml# es un fchero y tiene 96 filas
+/home/alvaro/Templates es un directorio y tiene 0 elementos
+/home/alvaro/unicode-test.txt es un fchero y tiene 530 filas
+/home/alvaro/uto.txt es un fchero y tiene 530 filas
+/home/alvaro/Videos es un directorio y tiene 9 elementos
+
+
+
+* Backup de un directorio
+Haz un script que haga un backup de un directorio.
+- Si el directorio $HOME/backups no existe, se creará
+- Los contenidos del directorio se añadirán a un fichero ZIP que se guardará en la carpeta =$HOME/backups=.
+- El fichero ZIP se llamará =backup-HHMM.zip=, siendo HHMM la hora actual.
+
+** Solución :noexport:
+   #+begin_src sh
+#!/bin/bash                                                                                                                                                  
+
+if [ -d "$HOME/backups" ]
+then
+    echo El directorio de backups ya existe
+else
+    echo Procedemos a crearlo
+    mkdir -p $HOME/backups
+fi
+
+
+
+echo el directorio existe por lo tanto procedemos a hacer el backup del directorio que nos diga
+
+if [ $# -eq 1 ]
+then
+    direc=$1
+else
+    read -p "Digame un directorio: " direc
+fi
+
+direc=$(realpath "$direc")
+
+
+if [ -d "$direc" ]
+then
+    pushd $HOME/backups
+    DATE=$(date +%R)
+    zip -r backup-$DATE.zip "$direc"
+    popd
+else
+    echo "$direc" No es un directorio
+fi
+
+   #+end_src
+
+* Listado de tarjetas de red, para activar o desactivar
+- Han un script con wiptail que muestre el estado de las tarjetas de red con su nombre
+- Cuando se selecciona una tarjeta, se pasa de UP a DOWN, o al revés
+
+
+
+
+#+begin_example
+  ┌──────────────────────────────────────┐
+  │        lo        lo-UP               │ 
+  │        enp4s0    enp4s0-UP           │ 
+  │        wlp0s20f3 wlp0s20f3-UP        │ 
+  │        vboxnet0  vboxnet0-UP         │ 
+  │                                      │ 
+  │                                      │ 
+  │       <Ok>           <Cancel>        │ 
+  │                                      │ 
+  └──────────────────────────────────────┘ 
+#+end_example
+
+
+
+  
+** solución  :noexport:
+#+begin_src bash
+#!/bin/bash
+
+
+lista_de_interfaces(){
+    ip link | grep "^[0-9]" | cut -d ":" -f 2
+}
+
+interfaz_on(){
+    local INTERFACE=$1
+    ip link show $INTERFACE | grep -w UP > /dev/null
+}
+
+interfaz_on_texto(){
+    local INTERFACE=$1
+    if interfaz_on $INTERFACE
+    then
+        echo UP
+    else
+        echo DOWN
+    fi
+}
+
+
+lista_de_opciones(){
+    for INTERFACE in $(lista_de_interfaces)
+    do
+        echo "$INTERFACE" "$INTERFACE-$(interfaz_on_texto $INTERFACE)"
+    done 
+}
+
+mostrar_menu_interfaces(){
+    whiptail  --menu "Elija interfaz" 10 40 4 $(lista_de_opciones)  3>&2 2>&1 1>&3
+}
+
+cambiar_estado_interfaz(){
+    local INTERFACE=$1
+
+    if interfaz_on $INTERFACE
+    then
+        sudo ip link set $INTERFACE down
+    else
+        sudo ip link set $INTERFACE up
+    fi
+}
+
+bucle(){
+    local OPCION
+    local OK=0
+
+    while [[ $OK -eq 0 ]]
+    do
+        OPCION=$(mostrar_menu_interfaces)
+        OK=$?
+        echo SE HA SELECCIONADO: $OPCION - $?
+
+        if [[ $OK -eq 0 ]]
+        then
+            cambiar_estado_interfaz $OPCION
+        fi
+    done
+}
+
+bucle
+#+end_src
+   
+* Arranca o para *Oracle*
+Haz un script con whiptail que muestre un menú con tres entradas:
+- Primera entrada
+  - Si la instancia de *Oracle*  está iniciada, la primera entrada pondrá =Apagar Oracle=, y al pulsarse la instancia se apagará.
+  - Si la instancia de *Oracle*  está apagada, la primera entrada pondrá =Iniciar Oracle=, y al pulsarse la instancia se iniciará.
+  - Después, se volverá a mostrar el cuadro de diálogo  
+- La segunda entrada será similar a la primera, pero para el listener.
+- La tercera será la opción para terminar el programa      
+
+** Solución :noexport:
+#+BEGIN_SRC sh
+#!/bin/bash
+
+
+source variables-oracle.sh
+
+ejecutar_en_instancia(){
+    sqlplus / as sysdba
+}
+
+instancia_ping(){
+    ejecutar_en_instancia <<EOF
+select * from dual;
+EOF
+}
+
+encender_instancia(){
+    ejecutar_en_instancia <<EOF
+startup open;
+EOF
+}
+
+apagar_instancia(){
+    ejecutar_en_instancia <<EOF  & 
+shutdown immediate;
+EOF
+
+    SQLPLUS=$!
+    contador=0
+    while kill -0 $SQLPLUS
+    do
+	contador=$(($contador + 1))
+	sleep 1
+        whiptail --title "Oracle" --gauge "Apagando instancia" 8 78 $contador
+    done
+}
+
+encender_listener(){
+    lsnrctl start
+}
+
+apagar_listener(){
+    lsnrctl stop
+}
+
+
+instancia_encendida(){
+    #ORA-01034: ORACLE not available
+
+    if instancia_ping | grep ORA-01034 > /dev/null
+    then
+	false
+    else
+	true
+    fi
+}
+
+listener_encendido(){
+    #TNS-12541: TNS:no listener
+    if lsnrctl status | grep TNS-12541 > /dev/null
+    then
+	false
+    else
+	true
+    fi
+}
+
+
+instancia_mensaje_opcion(){
+
+    if instancia_encendida
+    then
+	echo Instancia encendida "->" Apagar
+    else
+	echo Instancia apagada "->" Encender
+    fi
+}
+
+listener_mensaje_opcion(){
+    if listener_encendido
+    then
+	echo Listener encendido "->" Apagar
+    else
+	echo Listener apagado "->" Encender
+    fi
+}
+
+
+mostrar_menu(){
+    whiptail \
+	--title "Oracle" \
+        --menu "Enciende o apaga compontenes de Oracle" \
+        18 50 10 \
+        L "$(listener_mensaje_opcion)" \
+        I "$(instancia_mensaje_opcion)" 3>&2 2>&1 1>&3
+}
+
+
+cambiar_estado_instancia(){
+
+    if instancia_encendida
+    then
+	apagar_instancia
+    else
+	encender_instancia
+    fi
+}
+
+cambiar_estado_listener(){
+    if listener_encendido
+    then
+	apagar_listener
+    else
+	encender_listener
+    fi
+}
+
+
+ejecutar_menu(){
+    while true
+    do
+	local opcion=$(mostrar_menu)
+	if [[ $opcion = "L" ]]
+	then
+	    cambiar_estado_listener
+	fi
+
+	if [[ $opcion = "I" ]]
+	then
+	    cambiar_estado_instancia
+	fi
+
+	if [[ $opcion = "" ]]
+	then
+	    return 0
+	fi
+	
+    done
+
+}
+
+ejecutar_menu
+#+END_SRC
+

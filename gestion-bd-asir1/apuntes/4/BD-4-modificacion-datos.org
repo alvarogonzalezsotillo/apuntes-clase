@@ -1,0 +1,61 @@
+
+**    "Fred Crocitto" vive en "New Milford"
+#+begin_src  sql
+update student set zip = (
+  select zip from zipcode where city = 'New Milford'
+)
+where last_name='Crocitto' and first_name='Fred';
+#+end_src
+**    Pasa grade_type a español
+#+begin_src sql
+update grade_type 
+set description = case description
+  when 'Final' then 'Final'
+  when 'Homework' then 'Deberes'
+  when 'Midterm' then 'Intertrimestral'
+  when 'Participation' then 'Participación'
+  when 'Project' then 'Proyecto'
+  when 'Quiz' then 'Cuestionario'
+end;
+#+end_src
+**    Todos los cursos de Java empiezan el 3 de septiembre del 2007.
+#+begin_src sql
+update section
+set start_date_time=to_date('03-09-2007','DD-MM-YYYY')
+where (select description from course c where c.course_no = section.course_no) like '%Java%';
+
+
+update section
+set start_date_time=to_date('03-09-2007','DD-MM-YYYY')
+where course_no in (select course_no from course where description like '%Java%');
+#+end_src
+**    Los teléfonos de estudiantes y profesores se amplían para incluir el prefijo internacional, de 15 a 20 caracteres. El prefijo de todos los teléfonos conocidos es '+1' (Estados Unidos).
+#+begin_src 
+update 
+#+end_src
+**    Los teléfonos no conocidos de alumnos pasan a ser 'desconocido'.
+#+begin_src sql
+update student set phone='desconocido' where phone is null;
+#+end_src
+**    Todas la notas parciales de "Intermediate Java Programming" que imparte "Marilyn Frantzen" son un 30.
+#+begin_src 
+update 
+#+end_src
+**    El profesor Mr Tom Wojick da un aprobado general a todos sus alumnos en la nota final (80).
+#+begin_src sql
+update enrollment set final_grade=80
+where section_id in (
+  select section_id from section where instructor_id=(
+    select instructor_id from instructor where first_name like '%Tom%' and last_name like '%Wojick%'
+  )
+);
+#+end_src
+
+**    Las notas de los cursos de "Nina Schori" se calcularán solo como la nota del examen final, el resto de notas se ignora (0% de la nota final).
+#+begin_src 
+update 
+#+end_src
+**    La nota final de "Intro to Programming" que imparte "Nina Schori" será la nota del examen final menos un 10%.
+#+begin_src 
+update 
+#+end_src

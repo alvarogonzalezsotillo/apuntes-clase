@@ -1,0 +1,372 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Comandos IOS
+#+SUBTITLE: 
+#+KEYWORDS: IOS, Packet Tracer
+
+* General
+- ~CTRL-ALT-6~ para parar un comando incorrecto
+- ~?~ para conseguir siguientes comandos
+- ~TAB~ para autocompletar
+- Un comando con =no= deshace el comando
+
+
+** Introducción de comandos 
+#+ATTR_LATEX: :align |l|p{12cm}|
+| Tabulación                | Completa una entrada de nombre de comando parcial.                                                                           |
+| Retroceso                 | Borra el carácter a la izquierda del cursor.                                                                                 |
+| Ctrl-D                    | Borra el carácter donde está el cursor.                                                                                      |
+| Ctrl-K                    | Borra todos los caracteres desde el cursor hasta el final de la línea de comandos.                                           |
+| Esc D                     | Borra todos los caracteres desde el cursor hasta el final de la palabra.                                                     |
+| Ctrl-U o Ctrl-X           | Borra todos los caracteres desde el cursor hasta el comienzo de la línea de comandos.                                        |
+| Ctrl-W                    | Borra la palabra a la izquierda del cursor.                                                                                  |
+| Ctrl-A                    | Desplaza el cursor hacia el principio de la línea.                                                                           |
+| Flecha izquierda o Ctrl-B | Desplaza el cursor un carácter hacia la izquierda.                                                                           |
+| Esc B                     | Desplaza el cursor una palabra hacia la izquierda.                                                                           |
+| Esc F                     | Desplaza el cursor una palabra hacia la derecha.                                                                             |
+| Flecha derecha o Ctrl-F   | Desplaza el cursor un carácter hacia la derecha.                                                                             |
+| Ctrl-E                    | Desplaza el cursor hasta el final de la línea de comandos.                                                                   |
+| Flecha arriba o Ctrl-P    | Vuelve a introducir el comando que se encuentra en el búfer del historial, a partir de los comandos más recientes.           |
+| Ctrl-R, Ctrl-I o Ctrl-L   | Vuelve a mostrar la petición de entrada del sistema y la línea de comando después de que se recibe un mensaje de la consola. |
+
+
+** Listados largos (=--more--=)
+#+ATTR_LATEX: :align |l|p{12cm}|
+| Tecla Entrar      | Muestra la siguiente línea.                                             |
+| Barra espaciadora | Muestra la siguiente pantalla.                                          |
+| Cualquier tecla   | Termina la cadena que se muestra y vuelve al modo EXEC con privilegios. |
+
+** Interrupción de comandos
+#+ATTR_LATEX: :align |l|p{12cm}|
+| Ctrl-C       | Cuando está en cualquier modo de configuración, termina el modo de configuración y regresa al modo EXEC con privilegios. Cuando está en modo de configuración, interrumpe y regresa al símbolo del sistema. |
+| Ctrl-Z       | Cuando está en cualquier modo de configuración, termina el modo de configuración y regresa al modo EXEC con privilegios.                                                                                    |
+| Ctrl-Shift-6 | Secuencia de pausa multiuso. Se la utiliza para interrumpir búsquedas DNS, traceroutes, pings.                                                                                                              |
+| Ctrl-6       | Secuencia de pausa multiuso. Se la utiliza para interrumpir búsquedas DNS, traceroutes, pings.                                                                                                              |
+
+** Modos
+- =Press RETURN to get started.=
+  - Desactivado
+- =Router>=
+  - =show= para mostrar información
+  - =enable= para configurar (privileged commands)
+- =Router#=
+  - Resto de comandos
+  - =configure terminal= para cambiar la configuración
+- =Router(config)#=
+  - Raíz de la configuración
+
+** Para activar la configuración
+#+begin_src java
+Router> enable
+Router# configure terminal
+Router(config)#
+#+end_src
+
+** Salvar la configuración
+#+BEGIN_EXAMPLE
+Router# write memory
+Router# copy running-config startup-config
+#+END_EXAMPLE
+
+* Direcciones IP
+
+** Asignar IP
+#+BEGIN_EXAMPLE
+Router(config)# interface fa0/0
+Router(config-if)# ip address 192.168.6.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Router(config)#
+#+END_EXAMPLE
+
+** Consultar IP
+#+BEGIN_EXAMPLE
+Router> show ip interface
+Router> show ip interface brief
+#+END_EXAMPLE
+
+* Enrutamiento
+** Añadir ruta
+#+BEGIN_EXAMPLE
+Router(config)# ip route 172.16.0.0 255.255.255.0 192.168.6.254
+#+END_EXAMPLE
+
+También se puede usar una interfaz de red en vez de un gateway. Esto es útil en interfaces serie (donde solo hay un destino posible)
+#+BEGIN_EXAMPLE
+Router(config)# ip route 172.16.0.0 255.255.255.0 s0/0/1
+#+END_EXAMPLE
+
+** Borrar ruta
+#+BEGIN_EXAMPLE
+Router(config)# no ip route 172.16.0.0 255.255.255.0 192.168.6.254
+#+END_EXAMPLE
+
+
+** Consultar rutas
+#+BEGIN_EXAMPLE
+Router> show ip route
+#+END_EXAMPLE
+
+* VLAN
+
+** Consultar VLANs
+#+BEGIN_EXAMPLE 
+Switch> show vlan brief
+Switch> show interfaces trunk
+Switch> show interfaces f0/1 switchport
+#+END_EXAMPLE
+
+** Crear una VLAN
+#+BEGIN_EXAMPLE 
+Switch(config)#vlan 2
+Switch(config-vlan)#name nombredevlan
+Switch(config-vlan)#exit
+#+END_EXAMPLE
+
+** Asignar un puerto a una VLAN (access)
+#+BEGIN_EXAMPLE 
+Switch(config)#interface FastEthernet0/1
+Switch(config-if)#switchport access vlan 2
+#+END_EXAMPLE
+
+** Asignar un puerto como trunk
+#+BEGIN_EXAMPLE 
+Switch(config)#interface FastEthernet0/1
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk native vlan 99
+Switch(config-if)#switchport trunk allowed vlan 1,2,5
+#+END_EXAMPLE
+
+** Permitir/denegar una VLAN en un puerto trunk
+#+BEGIN_EXAMPLE
+Switch(config)#interface FastEthernet0/1
+Switch(config-if)#switchport trunk allowed vlan remove 2
+Switch(config-if)#switchport trunk allowed vlan add 2
+#+END_EXAMPLE
+
+** Routers
+- Los routers pueden tener interfaces virtuales, a las que llegan las tramas 802.1q de cierta VLAN.
+- Estas interfaces se configuran como las demás, y se añaden a la tabla de rutas de la misma forma
+
+#+caption: Crea la interfaz virtual =fa0/0.1= sobre la interfaz real =fa0/0=, que recibirá las tramas 802.1q de la VLAN 2.
+#+BEGIN_EXAMPLE
+Router(config)# interface fa0/0.1
+Router(config-subif)# encap dot1q 2
+Router(config-subif)# ip address 192.168.6.1 255.255.255.0
+Router(config-subif)# exit
+Router(config)# interface fa0/0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+#+END_EXAMPLE
+
+#+reveal: split
+#+caption: Mostrar información de las interfaces (incluido VLAN) en un router
+#+BEGIN_EXAMPLE
+Router# show interfaces
+#+END_EXAMPLE
+
+
+* STP
+Consultar y poner la prioridad de un switch
+#+BEGIN_EXAMPLE
+Switch# show spanning-tree 
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+Switch(config)# spanning-tree vlan 1 priority 1
+#+END_EXAMPLE
+
+* Link agregation
+
+Se añader a un mismo =channel-group= todos los enlaces conectados al mismo switch.
+
+#+begin_example
+Switch(config)# interface fa0/1
+Switch(config-if)# channel-group 1 mode active
+
+Switch# show etherchannel summary
+#+end_example
+
+
+
+* RIP
+Habilitar RIP para dos redes conectadas directamente
+#+begin_example
+Router(config)#router rip
+Router(config-router)#network 192.168.1.0 
+Router(config-router)#network 200.200.1.0
+#+end_example
+
+Comprobar la configuración RIP
+#+begin_example
+Router# show ip protocols
+Router# show ip rip database
+#+end_example
+
+
+Habilitar versión 2
+#+begin_example
+Router(config)#router rip
+Router(config-router)# version 2
+#+end_example
+
+Interfaz pasiva, en la que no hay otros routers y por tanto no se envia información de routing
+#+begin_example
+Router(config)#router rip
+Router(config-router)# passive-interface g0/0
+#+end_example
+
+
+* ACL
+
+Consultar ACLs definidas
+#+begin_example
+Router# show ip access-list
+#+end_example
+
+Asociar una ACL a una interfaz
+#+begin_example
+Router(config)# interface fa0/1
+Router(config-if)# ip access-group <numero ACL> <out o in>
+#+end_example
+
+Desasociar una ACL de una interfaz
+#+begin_example
+Router(config)# interface fa0/1
+Router(config-if)# no ip access-group <numero ACL> <out o in>
+#+end_example
+
+** ACL estándar
+Crear una ACL o añadir una regla
+#+BEGIN_example
+Router(config)# access-list <numero> <permit o deny>  <host|source source-wildcard|any>
+#+END_example
+
+Borrar una ACLs
+#+BEGIN_example
+Router(config)# no access-list <numero> 
+#+END_example
+
+** ACL extendidas
+Protocolo IP (hay más opciones, no explicadas aquí)
+#+BEGIN_example
+Router(config)# access-list <numero> <permit o deny> ip
+   <host|source source-wildcard|any>
+   <host|destination destination-wildcard|any>
+#+END_example
+
+Protocolo ICMP
+#+BEGIN_example
+Router(config)# access-list <numero> <permit o deny> icmp
+   <host|source source-wildcard|any>
+   <host|destination destination-wildcard|any>
+#+END_example
+
+
+
+** ACL extendidas TCP y UDP
+
+Protocolo TCP
+#+BEGIN_example
+Router(config)# access-list <numero> <permit o deny> TCP
+   <host|source source-wildcard|any> [puerto]
+   <host|destination destination-wildcard|any> [puerto]
+   [established]
+#+END_example
+
+Protocolo UDP
+#+BEGIN_example
+Router(config)# access-list <numero> <permit o deny> UDP
+   <host|source source-wildcard|any> [puerto]
+   <host|destination destination-wildcard|any> [puerto]
+#+END_example
+
+| Operador de puerto | Significa    |
+|--------------------+--------------|
+| eq                 | ~=~ igual    |
+| lt                 | ~<~ Menor    |
+| ne                 | ~≠~ No igual |
+| gt                 | ~>~ Mayor    |
+
+
+
+
+
+** ACL con nombre
+#+begin_example
+Router(config)# ip access-list standard NOMBRE
+#+end_example
+* NAT
+
+Información del estado de NAT
+#+begin_example
+Router# show running-config
+Router# show ip nat translations
+Router# show ip nat statistics 
+#+end_example
+
+Borrar todas las entradas de NAT dinámico
+#+begin_example
+no ip nat source static
+#+end_example
+
+Borrar todas las entradas de NAT estático
+#+begin_example
+no ip nat source static
+#+end_example
+
+
+** PAT
+- Defina el grupo de direcciones globales que se debe usar para la traducción de sobrecarga.
+  - =ip nat pool <name> <start-ip> <end-ip> {netmask <netmask> | prefix-length <prefix-length>}=
+- Defina una lista de acceso estándar que permita las direcciones que se deben traducir. 
+  - =access-list <access-list-number> permit <source> [source-wildcard]=
+- Especifique la lista de acceso y el grupo que se definieron en los pasos anteriores para establecer la traducción de sobrecarga. 
+  - =ip nat inside source list <access-list-number> pool <name> overload=
+- Identificar la interfaz interna. 
+  - =interface <tipo-número>=
+  - =ip nat inside=
+- Identificar la interfaz externa.
+  - =interface <tipo-número>=
+  - =ip nat outside=
+
+** NAT dinámica
+- Defina el conjunto de direcciones globales que se debe usar para la traducción.
+  - =ip nat pool <name> <start-ip> <end-ip> {netmask  <netmask> | prefix-length  <prefix-length>}=
+- Configure una lista de acceso estándar que permita las direcciones que se deben traducir.
+  - =access-list <access-list-number> permit <source> [source-wildcard]=
+- Especifique la lista de acceso y el grupo que se definieron en los pasos anteriores para establecer la traducción dinámica de origen.
+  - =ip nat inside source list <access-list-number> pool <name>=
+- Identifique la interfaz interna.
+  - =interface <type-number>=
+  - =ip nat inside=
+- Identifique la interfaz externa.
+  - =interface <type-number>=
+  - =ip nat outside=
+
+
+** NAT estática
+- Se establece la traducción estática entre una dirección local interna y una dirección global interna.
+  - =Router(config)# ip nat inside source static <local-ip> <global-ip>=
+  - Introduzca el comando =no ip nat inside source static= del modo de configuración global para eliminar la traducción dinámica de origen.
+- Especificar la interfaz interna. 
+  - =Router(config)# interface <type-number>=
+- Marque la interfaz como conectada al interior. 
+  - =Router(config-if)# ip nat inside=
+- Salga del modo de configuración de interfaz. 
+  - =Router(config-if)# exit=
+- Especificar la interfaz externa. 
+  - =Router(config)# interface <type-number>=
+- Marque la interfaz como conectada al exterior.
+  - =Router(config-if)# ip nat outside=
+
+
+
+
+** Generales
+#+begin_example
+show ip nat translations
+debug ip nat
+#+end_example
+
+* Referencias
+#+include: "../../../common/footer.org"

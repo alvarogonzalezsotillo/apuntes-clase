@@ -1,0 +1,31 @@
+* Qué he aprendido
+- *Centos* y *Oracle* no funcionan con menos de 2,5GB de RAM
+- Hay versiones de *SQLDeveloper* que no funcionan
+- La instalación de *SQLDeveloper* no pone bien los permisos
+- La tecla de *Windows* no funciona en los *mac pro*
+- No sabéis buscar con el ordenador
+
+
+* Qué habéis aprendido
+- No se puede dejar para luego lo de arreglar errores
+  - Grabar
+  - Actualizar
+- No se puede dejar para luego lo de entender un concepto
+- Los programas fallan
+  - Hay que grabar desde el principio
+  - Hay que tener versiones históricas de los datos
+- Es mejor arreglar los errores en un *nivel alto* de abstracción
+  - Mejor en el *E/R* que en el *relacional*
+  - Mejor en el *relacional* que en el *SQL*
+  - Mejor en el *SQL* que al meter los datos
+- Es mejor utilizar una versión correcta que arreglar errores a mano
+  - Chiste del leñador y el hacha
+- Hace falta saber normalizar para hacer bien los diagramas E/R
+- Hace falta saber E/R para hacer bien la normalización
+- Hay más de una forma correcta de hacer un E/R
+  - Pero después puede ser más fácil o más difícil manejar la base de datos
+- No es lo mismo
+  - Tener tarjeta de red
+  - Tener tarjeta de red configurada
+  - Tener tarjeta de red configurada con conexión a la red local
+  - Tener tarjeta de red configurada con conexión a internet

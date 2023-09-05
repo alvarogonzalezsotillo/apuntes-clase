@@ -1,0 +1,105 @@
+https://mystery.knightlab.com/
+
+* FIND REPORT
+#+begin_src sql
+ select * from crime_scene_report where type='murder' and city='SQL City' and date='20180115';    
+#+end_src
+
+#+begin_example
+Security footage shows that there were 2 witnesses.
+The first witness lives at the last house on "Northwestern Dr". 
+The second witness, named Annabel, lives somewhere on "Franklin Ave".
+#+end_example
+
+* FIRST WITNESS
+#+begin_src sql
+select * from person where address_street_name='Northwestern Dr' and address_number=(select max(address_number) from person);
+select * from interview where person_id=14887;
+#+end_src
+
+#+begin_example
+I heard a gunshot and then saw a man run out. He had a "Get Fit Now Gym" bag. The membership number on the bag started with "48Z". Only gold members have those bags. The man got into a car with a plate that included "H42W".
+#+end_example
+
+* SECOND WITNESS
+#+begin_src sql
+select * from person where address_street_name='Franklin Ave' and name like '%Annabel%';
+select * from interview where person_id=16371;
+#+end_src
+
+#+begin_example
+I saw the murder happen, and I recognized the killer from my gym when I was working out last week on January the 9th.
+#+end_example
+
+* BAGS STARTED WITH 48Z
+#+begin_src sql
+select * from get_fit_now_member where id like '%48Z%';
+#+end_src
+
+#+begin_example
+48Z38 48Z7A 48Z55
+#+end_example
+
+* PLATES CONTAINING H42W
+#+begin_src sql
+select * from drivers_license where plate_number like '%H42W%';
+#+end_src
+
+#+begin_example
+H42W0X 0H42W2 4H42WR
+#+end_example
+
+
+* PEOPLE WITH SUCH BAGS AND PLATES
+#+begin_src sql
+select * from person where 
+id in (select person_id from get_fit_now_member  where id like '%48Z%') and
+license_id in (select id from drivers_license where plate_number like '%H42W%');
+#+end_src
+
+#+begin_example
+id: 67318
+#+end_example
+
+* INTERVIEW WITH MURDERER
+#+begin_src sql
+select * from interview where person_id=67318;
+#+end_src
+
+#+begin_example
+I was hired by a woman with a lot of money. 
+I don't know her name but I know she's around 5'5" (65") or 5'7" (67").
+She has red hair and she drives a Tesla Model S.
+I know that she attended the SQL Symphony Concert 3 times in December 2017. 
+#+end_example
+
+* TESLA MODEL S AND RED HAIR
+#+begin_src sql
+select id from drivers_license where car_make = 'Tesla' and car_model='Model S' and hair_color='red';
+#+end_src
+
+* CONCERTS
+#+begin_src sql
+select person_id,count(date) as times from facebook_event_checkin where event_name='SQL Symphony Concert' and date between 20171200 and 20171232 group by person_id having times=3;
+#+end_src
+
+#+begin_example
+person_id: 24556 99716
+#+end_example
+
+* TESLA MODEL S AND RED HAIR AND CONCERTS
+#+begin_src sql
+select * from person where
+
+license_id in (
+      select id from drivers_license where car_make = 'Tesla' and car_model='Model S' and hair_color='red'
+) and 
+
+id in (
+      select person_id as times from facebook_event_checkin 
+      where event_name='SQL Symphony Concert' and 
+      date between 20171200 and 20171232 
+      group by person_id 
+      having count(date)=3
+);
+#+end_src

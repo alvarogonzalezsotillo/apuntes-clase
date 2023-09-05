@@ -1,0 +1,21 @@
+Abre dos sesiones con Oracle. Ejecuta las órdenes que hagan falta para demostrar que funciona el nivel de aislamiento <code>read committed</code>. Apúntalas aquí
+{
+}
+
+Abre dos sesiones con Oracle. Ejecuta las órdenes que hagan falta para demostrar que funciona el nivel de aislamiento <code>serializable</code>. Apúntalas aquí
+{
+}
+
+Abre dos sesiones con Oracle. Ejecuta las órdenes que hagan falta para demostrar que el nivel de aislamiento <code>serializable</code> tiene limitaciones (ORA-08177). Apúntalas aquí
+{
+}
+
+Abre dos sesiones con Oracle. Ejecuta las órdenes que hagan falta para que una sesión bloquee a otra indefinidamente. Apúntalas aquí
+{
+}
+
+Abre dos sesiones con Oracle. Ejecuta las órdenes que hagan falta para detectar un bloqueo entre sesiones. Termina el bloqueo eliminando la sesión bloqueante. Apúntalas aquí
+{
+}
+
+

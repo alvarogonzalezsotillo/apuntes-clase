@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A42A406-DF17-FC39-0851-773BDED17DDB" name="EntrenadorEntrenado">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:08 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="fechainicio" id="162DABB0-E357-DE7F-353D-A52097E26E8B">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:17 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fechafin" id="3C91F28E-607E-7C1D-28DE-522A4B6FA043">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:25 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ipersona" id="2F9FEE03-8D38-ECC8-F515-CAC2FD002019">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:47 UTC</createdTime>
+<generatorID>D27F3528-D943-9DDF-2349-DD6ACB3528D1</generatorID>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<referedAttribute>B2628635-5667-C91F-19A2-3CA9067F2F5A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ipersona1" id="09780905-7234-E61E-342D-B965CE58642C">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:58 UTC</createdTime>
+<generatorID>243B3541-1F14-AD2D-38CB-43B3742A5470</generatorID>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<referedAttribute>B2628635-5667-C91F-19A2-3CA9067F2F5A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A868D01F-D36C-15EB-7CE6-561ABC292E34" name="EntrenadorEntrenado PK">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-06 12:22:23 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>162DABB0-E357-DE7F-353D-A52097E26E8B</attributeRef>
+<attributeRef>09780905-7234-E61E-342D-B965CE58642C</attributeRef>
+<attributeRef>2F9FEE03-8D38-ECC8-F515-CAC2FD002019</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

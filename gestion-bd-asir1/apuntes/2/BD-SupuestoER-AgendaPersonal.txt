@@ -1,0 +1,26 @@
+Realiza un diagrama E-R y su paso a modelo relacional teniendo en cuenta que se debe- Minimizar las apariciones de atributos NULL
+- Utilizar el mecanismo de herencia cuando sea posible 
+- Indicar los atributos identificadores aparecen en el diagrama E-R si lo pide el cliente. Aparecen en el modelo lógico si aparecen en el diagrama E-R o se necesitan para representar las interrelaciones.
+- Indicar los atributos únicos del modelo lógico, aunque no sean la clave primaria.
+
+
+
+
+Un gestor de correo electrónico maneja la siguiente información
+
+- Los correos se almacenarán en carpetas, con cierto nombre. Una carpeta puede contener correos, u otras carpetas. Un correo o carpeta aparece en una sola carpeta. La carpeta de nivel superior no aparece en ninguna carpeta.
+
+- Los correos recibidos tienen una fecha de envío, un remitente, un texto, varios ficheros adjuntos y varios destinatarios. Cada destinatario aparece como ENVIADO A o CON COPIA A. Los correos tienen un identificador único.
+
+- Los correos están inicialmente marcados como no leídos. 
+
+- Un correo puede ser la respuesta a un correo anterior (envíado o recibido). Cuando se responde a un correo, se incluye en el correo el identificador del correo respondido.
+
+- Inicialmente, los correos recibidos se almacenan en la carpeta ENTRADA. El usuario puede crear reglas organizar los correos, especificando que los correos recibidos de cierto remitente se almacenan en cierta carpeta.
+
+- Se guarda una lista de contactos. Por cada contacto se quiere conocer su nombre, apellidos, direcciones de correo, y dirección postal
+
+- Se deben almacenar también los correos enviados. Los correos enviados tienen la misma información que los recibidos, y se guardan en la carpeta ENVIADOS
+
+- Se desea que el usuario pueda organizar los correos por conversaciones (como GMail)
+

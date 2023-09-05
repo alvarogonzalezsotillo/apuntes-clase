@@ -1,0 +1,136 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica RAID en Ubuntu}
+
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+
+
+\section{Enunciado}
+Realiza los siguientes ejercicios, respondiendo a todas las preguntas y documentando cada paso (opciones seleccionadas, comandos introducidos, pantallazos de resultados obtenidos...).
+
+Antes de comenzar, es necesario estar familiarizado con el manejo que Linux realiza de los discos y particiones. Puede consultarse \enlace{http://www.skullbox.net/newsda.php}{http://www.skullbox.net/newsda.php}
+
+\subsection{Preparar una máquina virtual}
+Crea una máquina virtual basada en Debian (Debian, Ubuntu)
+\begin{itemize}
+\item No se necesita mucha memoria (128 MB para Debian sin interfaz gráfico)
+\item Se recomienda Debian 6 o superior
+\end{itemize}
+
+\subsection{Soporte de RAID en el \textit{Kernel}}
+Debemos asegurarnos que el \textit{kernel} soporta RAID por software. Para ello:
+\begin{itemize}
+\item Carga el módulo de kernel \texttt{raid456}, \texttt{raid0}, \texttt{raid1} y \texttt{raid10} con el comando \texttt{modprobe}
+\item Comprueba que el directorio \texttt{/proc/mdstat} existe (en otro caso, el \textit{kernel} no soporta RAID)
+\item Instala la utilidad \texttt{madm} para manejar RAID utilizando \texttt{apt-get}
+  \begin{itemize}
+  \item Si es necesario, \enlace{http://rapido-facil.blogspot.com.es/2011/09/configurar-proxy-para-apt-get-aptitude.html}{modifica el proxy que usa \texttt{apt-get}}.
+\end{itemize}
+\end{itemize}
+
+\subsection{Creación de RAID nivel 0}
+
+\begin{itemize}
+\item Inserta en la máquina virtual dos discos duros pequeños (por ejemplo, de 100MB).
+\item Localiza estos nuevos discos en \texttt{/dev/disks}. Apunta sus nombres (algo así como \texttt{/dev/sdX}).
+\item Crea un RAID de nivel 0 con estos dos nuevos discos y el comando \texttt{madm}
+  \begin{itemize}
+  \item Consulta \url{https://raid.wiki.kernel.org/index.php/RAID_setup\#RAID-0} u otra página similar
+  \end{itemize}
+\item Localiza el nuevo disco RAID en \texttt{/dev/disks}
+\item Crea un sistema de ficheros \texttt{ext3} en este disco
+  \begin{itemize}
+  \item Consulta \url{http://www.tldp.org/HOWTO/Partition/formatting.html} u otra página similar
+  \end{itemize}
+\item Monta el sistema de ficheros creado en \texttt{/raid/miraid0}.
+  \begin{itemize}
+  \item Consulta \url{http://blog.desdelinux.net/como-montar-una-particion-en-linux/} u otra página similar
+  \end{itemize}
+\item Escribe algún fichero en este nuevo disco
+\end{itemize}
+
+
+\subsection{Creación de RAID nivel 5}
+Este apartado es muy parecido al anterior, siendo el nivel de RAID la única diferencia importante.
+\begin{itemize}
+\item Inserta en la máquina virtual varios discos duros de \textbf{100MB} de tamaño, para conseguir un RAID nivel 5 de \textbf{300MB} ¿Cuántos se necesitan?
+\item Localiza estos nuevos discos en \texttt{/dev/disks}
+\item Crea un RAID de nivel 5 con estos dos nuevos discos y el comando \texttt{madm}
+\item Localiza el nuevo disco RAID en \texttt{/dev/disks}
+\item Crea un sistema de ficheros \texttt{ext3} en este disco
+\item Monta el sistema de ficheros creado en \texttt{/raid/miraid5}.
+\item Escribe algún fichero en este nuevo disco
+\end{itemize}
+
+
+\subsection{Información de la configuración RAID}
+Graba la información de los RAID para un uso posterior
+\begin{itemize}
+\item Usa el comando \texttt{mdadm} como se indica en  \url{https://raid.wiki.kernel.org/index.php/RAID_setup#Saving_your_RAID_configuration_.282011.29}
+\item Vuelca la información de los RAID en la memoria de esta práctica
+\item Consigue que los RAID estén disponibles después de reiniciar Linux (\url{http://www.linuceum.com/Server/srvRAIDAuto.php})
+\end{itemize}
+
+
+\section{Qué se valorará}
+El trabajo debe ser un \textit{tutorial} de cómo instalar y configurar un RAID en Linux. Por tanto, no es correcto:
+\begin{itemize}
+\item Incluir los enunciados en el trabajo
+\item Simplemente, poner pantallazos
+\end{itemize}
+
+
+Se valorará:
+\begin{itemize}
+\item Que cada paso quede bien documentado. 
+\item La corrección técnica (que funcione)
+\item Que esté correctamente redactado como para que nuestro lector lo entienda
+\item La apariencia profesional del análisis:
+  \begin{itemize}
+  \item Estética
+  \item Organización
+  \item Homogeneidad de formatos y estilos
+  \end{itemize}
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+
+
+  \item Los trabajos pueden entregarse:
+    \begin{itemize}
+    \item En formato \textbf{DOC} o \textbf{DOCX}.
+    \item En formato \textbf{ODT}.
+    \item En formato \textbf{PDF}. 
+    \item Como una entrada en un blog.  
+    \end{itemize}
+  \end{itemize}
+
+  La entrega se realizará en la tarea correspondiente del \enlace{http://aulavirtual2.educa.madrid.org/course/category.php?id=2724}{aula virtual}. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+
+  
+\end{itemize}
+\end{document}

@@ -1,0 +1,152 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+\renewcommand{\hmwkClass}{Seguridad Informática}
+\renewcommand{\hmwkTitle}{Práctica de gusano (\textit{malware}) en Windows}
+
+
+\usepackage{blindtext}
+
+% CAJAS
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{Actividad}[1][Actividad]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+{\primerapagina}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{Objetivo de la práctica}
+Durante el desarrollo de esta práctica, el alumno infectará una máquina virtual de Windows con un gusano. Los objetivos  de la práctica son:
+\begin{itemize}
+\item Reconocer los gusanos como un proceso más del sistema operativo (si no se instala un \textit{rootkit})
+\item Localizar el gusano y eliminarlo del sistema de forma manual, sin utilizar un antivirus.
+\end{itemize}
+
+
+\section{Preparación de una máquina virtual}
+Instalar un gusano es una operación \textit{arriesgada}, por lo que no se recomienda utilizar la máquina real para esta práctica. Necesitaremos una máquina virtual con las siguientes características:
+\begin{itemize}
+\item Sistema operativo Windows 7,8 o 10
+\item No se necesitan más de 2G de memoria
+\item Conexión a Internet, para bajar el malware.
+\item Deberá tener \textit{Windows Defender} y cualquier otro antivirus desactivado
+  
+\end{itemize}
+
+\begin{homeworkProblem}[: Instalación del gusano (1 punto)]
+  Descarga el gusano:
+
+  \begin{center}
+    \begin{minipage}{.8\textwidth}
+      \begin{center}
+        \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-informatica-smr2dual/Worm.VBS.Dunihi.C/article\_FB.vbs.zip}{https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-informatica-smr2dual/Worm.VBS.Dunihi.C/article\_FB.vbs.zip}
+      \end{center}
+    \end{minipage}
+  \end{center}
+
+  También se puede conseguir el gusano desde el \textattachfile[description=El malware,subject=el malware,color=0 0 0]{../../Worm.VBS.Dunihi.C/article_FB.vbs.zip}{fichero adjunto a este PDF}.
+
+  
+
+  El fichero está comprimido con la contraseña \texttt{virus}. Utiliza un programa como 7-Zip para descomprimirlo. Colócalo en el escritorio y ejecútalo.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Localización y eliminación del gusano (4 puntos)]
+  Utiliza herramientas como \enlace{https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx}{procexp} y \enlace{https://technet.microsoft.com/en-us/sysinternals/bb963902.aspx}{autoruns} para:
+  \begin{enumerate}
+  \item Localizar el programa del gusano
+  \item Localizar de qué forma se ejecuta cada vez que se inicia Windows
+  \item Detectar si el gusano se está comunicando con algún otro programa utilizando la red (\textit{llamada a casa})
+  \item Desactivar y eliminar el gusano
+  \end{enumerate}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Eliminación del gusano por un antivirus (2 puntos)]
+  Vuelve a instalar el gusano. Después, instala un antivirus y observa cómo detecta y elimina el gusano. Es posible que necesites ejecutar una búsqueda manual de todo el disco.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Contagia un \textit{pen drive} (3 puntos)]
+  \begin{Actividad}[Precaución]
+    Utiliza una memoria USB que no contenga datos importantes, porque por seguridad deberá formatearse al finalizar la práctica.
+  \end{Actividad}
+  Conecta la unidad USB a la máquina virtual y:
+  \begin{itemize}
+  \item Desactiva o desinstala el antivirus.  
+  \item Crea dos archivos de texto en el directorio raiz del USB, y dos directorios. Cada uno de los dos directorios tendrá a su vez otros dos ficheros.
+  \item Vuelve a instalar el gusano con la unidad USB aún conectada.
+  \item Observa los cambios que se han producido en la unidad USB. Descríbelos en el trabajo.
+  \item Desinstala de nuevo el gusado del disco duro.
+  \item Desinstala el gusano de la unidad USB.
+  \end{itemize}
+
+  \begin{Actividad}[Precaución]
+    Aunque creas que has desinstalado el gusano del la unidad USB, formatéala para mayor seguridad
+  \end{Actividad}
+\end{homeworkProblem}
+
+\section{Qué se valorará}
+El trabajo debe ser un \textit{\textbf{tutorial}} de cómo localizar manualmente un \textit{malware}. Por tanto, no es correcto:
+\begin{itemize}
+\item Incluir los enunciados en el trabajo
+\item Simplemente, poner pantallazos
+\end{itemize}
+
+
+Se valorará:
+\begin{itemize}
+\item Que cada paso quede bien documentado. 
+\item La corrección técnica (que funcione)
+\item Que esté correctamente redactado, de forma que nuestro lector lo entienda 
+\item La apariencia profesional:
+  \begin{itemize}
+  \item Estética
+  \item Organización
+  \item Homogeneidad de formatos y estilos
+  \end{itemize}
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \item En este caso, todos los integrantes del grupo deben subir el trabajo al aula virtual.
+
+  \end{itemize}
+\item Los trabajos pueden entregarse:
+  \begin{itemize}
+  \item Como una entrada en un blog (preferido)  
+  \item En formato \textbf{DOC} o \textbf{DOCX}.
+  \item En formato \textbf{ODT}.
+  \item En formato \textbf{PDF}. 
+
+  \end{itemize}
+
+  
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}  
+
+\end{document}

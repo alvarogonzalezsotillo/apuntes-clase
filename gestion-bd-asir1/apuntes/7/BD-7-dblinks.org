@@ -1,0 +1,154 @@
+#+include: "../../../common/header.org"
+#+Title: Bases de datos distribuidas (dblinks)
+
+
+* Introducción
+- Hasta ahora, la base de datos es un *SPOF* (/single point of failure/)
+- Para evitar este problema, las bases de datos se suelen distribuir
+  - Se reparten los datos entre varios servidores
+  - Los datos pueden estar o no replicados
+
+** Ventajas de la distribución
+- Tolerancia a fallos
+- Escalabilidad y balanceo de carga
+  - CPU
+  - Disco
+- Posiblemente, mayor velocidad de lectura
+
+** Desventajas
+- Mayor complejidad
+  - Despliegue
+  - Lógica de los programas clientes
+  - ACID más difícil (aunque suele estar resuelto por los SGBD)
+- Generalmente, escrituras más lentas
+
+* Particiones de los datos
+- Horizontal
+  - Las /filas/ de una tabla se reparten entre servidores
+- Vertical
+  - Las /columnas/ de una tabla se reparten entre servidores
+- Mixta
+  - Horizontal y vertical combinadas
+
+** Partición horizontal
+
+| FECHA | NOMBRE  | PADRE  | MADRE | SITIO            |
+|-------+---------+--------+-------+------------------|
+| xxxxx | yyyyyy  | zzzz   | wwwww | Santiago Apóstol |
+| xxxxx | yyyyyyy | zzzz   | wwwww | Santiago Apóstol |
+
+#+html: <br>
+
+| FECHA | NOMBRE | PADRE | MADRE | SITIO            |
+|-------+--------+-------+-------+------------------|
+| xxxxx | yyyyyy  | zzzz   | wwwww | Almudena         |
+| xxxxx | yyyyyyy | zzzz   | wwwww | Almudena         |
+
+#+html: <br>
+
+
+| FECHA | NOMBRE  | PADRE | MADRE | SITIO           |
+|-------+---------+-------+-------+-----------------|
+| xxxxx | yyyyyy  | zzzz  | wwwww | Sagrada Familia |
+| xxxxx | yyyyyyy | zzzz  | wwwww | Sagrada Familia |
+
+#+html: <br>
+
+- El registro eclesiástico se divide por parroquias
+- La tabla completa se recupera con =UNION=
+
+
+** Partición vertical
+
+| DNI (pk) | FACTURA | CUENTAS DE BANCO | HERENCIAS | LOTERÍA | ALQUILER |
+|----------+---------+------------------+-----------+---------+----------|
+|          |         |                  |           |         |          |
+|          |         |                  |           |         |          |
+
+- Las facturas son personales.
+- Las cuentas las conoce el banco
+- El gestor maneja las herencias, alquileres y premios de lotería
+- La información completa de las finanzas se recupera con un JOIN  
+
+* /DBLink/
+- Un servidor de Oracle hace de cliente de otro servidor
+- Puede servir para particionado vertical/horizontal
+- Las transacciones se coordinan entre todos los servidores de base de datos
+  - /ACID/
+  
+** Fichero =tnsnames.ora=
+- Es el fichero que usan los /clientes/ de Oracle
+- Incluye todos los servidores conocidos por los clientes
+- En =$ORACLE_HOME/network/admin/tnsnames.ora=
+- En este ejemplo:
+  - =XE= : Nombre de la conexión
+  - =HOST= : Nombre/IP del servidor
+  - =PORT= : Puerto TCP de conexión
+  - =SERVICE_NAME= : SID
+#+begin_src lisp
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = profebd.local)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )
+#+end_src
+
+** Creación de /dblink/
+
+- Suponiendo una conexión de nombre =B=
+#+begin_src sql
+Create database link LNK_DE_A_a_B 
+  connect to USUARIO 
+  identified by CONTRASEÑA 
+  USING 'B';
+#+end_src
+
+- Referencia a tablas remotas:
+#+begin_src sql
+select * from TABLA@LNK_DE_A_a_B; 
+#+end_src
+
+- Llamada a funciones/procedimientos remotos:
+#+begin_src sql
+procedimiento@LNK_DE_A_a_B( parametro );
+#+end_src
+
+** Cadena de conexión
+- La cadena de conexión puede ser:
+  - *Un nombre de =tnsnames.ora=*
+  - Desde la versión =10.2=, puede ser *=host:port/service=*
+    - Si el puerto es =1521=, puede omitirse
+
+#+begin_src sql
+Create database link LNK_DE_A_a_B 
+  connect to USUARIO 
+  identified by CONTRASEÑA 
+  USING 'servidorB.com/XE';
+#+end_src
+
+
+** Cerrar conexiones
+- Cada usuario que utilice el dblink crea una conexión
+- Se cierra automáticamente cuando el usuario cierre su conexión inicial
+- Se puede forzar el cierre con
+#+begin_src sql
+ALTER SESSION CLOSE DATABASE LINK linkname;
+#+end_src
+
+** Ejercicio
+#+ATTR_LATEX: :align |p{7cm}|p{7cm}|
+| SERVIDOR A                                                        | SERVIDOR B                                                        |
+|-------------------------------------------------------------------+-------------------------------------------------------------------|
+| Crea el usuario ~DBLINKA~                                         | Crea el usuario ~DBLINKB~                                         |
+| Crea la tabla ~TABLAA(clave integer, valor varchar(255))~         | Crea la tabla ~TABLAB(clave integer, valor varchar(255))~         |
+| Crea un /dblink/ al otro servidor                                 | Crea un /dblink/ al otro servidor                                 |
+| Crea un sinónimo para acceder a =TABLAB= sin el /@dblink/         | Crea un sinónimo para acceder a =TABLAA= sin el /@dblink/         |
+| Crea una vista =TABLATOTAL=, con las filas de =TABLAA= y =TABLAB= | Crea una vista =TABLATOTAL=, con las filas de =TABLAA= y =TABLAB= |
+#+html: <br>
+- Las columnas de =TABLATOTAL= serán =(usuario,clave,valor)=, donde =usuario= indica si la fila viene de =DBLINKA= o =DBLINKB=
+
+* Referencias
+#+include: "../../../common/footer.org"

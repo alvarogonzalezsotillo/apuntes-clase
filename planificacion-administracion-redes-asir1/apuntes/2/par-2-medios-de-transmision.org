@@ -1,0 +1,383 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Medios de transmisión
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+
+* Introducción
+Los medios de transmisión son el medio físico que facilita el transporte de la información.  La calidad de la transmisión dependerá de sus características.  
+
+- Medios guiados
+  - Cable de pares trenzados
+  - Cable coaxial
+  - Fibra óptica
+
+
+- Medios no guiados
+  - Ondas de radio
+  - Microondas
+  - Infrarrojos
+  - Ondas de luz
+
+
+
+
+* Medios guiados 
+- Transmiten impulsos eléctricos o lumínicos.  Los bits se “transforman” en la tarjeta de red. Ésta los convierte en señales eléctricas o lumínicas respetando ciertos criterios definidos por el protocolo usado en esa red.
+
+- Cada cable tiene unas características propias:
+  - Velocidad de transmisión
+  - Alcance
+  - Calidad (ausencia de ruido/interferencias)
+  - Tipo de transmisión (digital, analógica)
+
+
+
+
+
+* Cables de pares trenzados 
+- El trenzado se comporta como un apantallamiento (la interferencia se anula a sí misma en la siguiente vuelta)
+- El más común consta de 8 hilos trenzados dos a dos identificados por colores. 
+- Fabricados en cobre.  
+- Transmiten la información en modo de impulsos eléctricos.
+- Se clasifican en categorías, por el número de trenzas por unidad de longitud. 
+  - A mayor trenzado, menos interferencias y mayor velocidad de transferencia. 
+- Afectado por la atenuación
+  -  Para aumentar ésta, se hace uso de repetidores.
+
+
+
+
+** Cables de pares trenzados 
+- UTP (Unshielded Twisted Pair): 
+  - Pares trenzados sin apantallar
+  - Más barato
+  - Más fáciles de instalar
+
+
+- STP (Shielded Twisted Pair): 
+  - Apantallamiento cada par de hilos.
+  - Mayor calidad, resistencia a interferencias
+  - Mayor grosor
+
+
+- FTP (Foiled Twisted Pair): 
+  - Pantalla común a todos los pares
+
+
+[[file:media/utp-stp-ftp.png]]
+
+
+
+*** UTP
+- Cuatro pares de alambres codificados por color que han sido trenzados y cubiertos por un revestimiento de plástico flexible. 
+- Se utiliza en las LAN Ethernet.
+- Barato y fácil de instalar.
+
+[[file:media/utp.png]]
+
+
+***  TIA/EIA-568A y TIA/EIA-568B 
+- Definen características del cableado LAN:
+  - Tipos de cables
+  - Longitudes del cable
+  - Conectores
+  - Terminación de los cables
+  - Métodos para realizar pruebas de cable
+
+#+reveal: split
+- UTP Categoria 6
+[[file:media/categoria6-utp.png]]
+1. Cubierta 
+2. Par trenzado 
+3. Separador de pares en forma de cruz.
+
+#+reveal: split
+- FTP Categoría 5
+[[file:media/categoria5e-ftp.png]]
+
+1. Cubierta exterior 
+2. Pantalla de protección ext.  
+3. Hilo de drenaje.  
+4. Pantalla de aluminio ext.  
+5. Hilos, incluye aislante con código de color.
+
+#+reveal: split
+- STP Categoría 6
+[[file:media/categoria6-stp.png]]
+1. Cubierta exterior 
+2. Pantalla de aluminio (1 por cada par) 
+3. Hilo de drenaje 
+4. Hilos, incluye aislante con código de color.  
+
+
+** Conectores típicos
+
+*** RJ11
+- Típico de conexiones telefónicas
+[[file:media/rj11.png]]
+
+
+
+*** RJ45
+- Ethernet
+- El conector RJ11 es compatible con puertos RJ45
+[[file:media/rj45.png]]
+
+
+*** DB9
+- Típico de puerto serie
+[[file:media/db9.png]]
+
+
+
+*** DB25
+- Puerto paralelo (antes, el de impresora)
+[[file:media/db25.png]]
+
+** RJ45
+
+- Conector RJ45 Usada para conectar redes de cableado estructurado, (categorías 4, 5, 5e, 6 y 6a).
+- RJ es un acrónimo inglés de “Registered Jack”.  
+- Posee ocho "pines" o conexiones eléctricas, que normalmente se usan como extremos de cables de par trenzado.  
+- La especificación EIA-TIA 568, describe los códigos de color de los cables para colocar pines a las asignaciones (diagrama de pines o contactos) para 
+  - Cable directo de Ethernet 
+  - Cable de conexión cruzada.
+
+*** Cable recto
+- Se utiliza para conectar equipos de nivel 3 con equipos de nivel 1-2
+[[file:media/recto.png]]
+[[http://bignewsoftware.blogspot.com.es/2011/04/norma-eia-tia-568a-568b.html][Fuente: bignewsoftware]]
+
+https://es.wikipedia.org/wiki/TIA-568B
+
+*** Cable cruzado
+- Se utiliza para conectar equipos de niveles equivalentes (3 con 3, 2 con 2)
+[[file:media/cruzado.png]]
+
+*** Cable PoE
+- /[[https://es.wikipedia.org/wiki/Power_over_Ethernet][Power over Ehternet]]/
+[[file:media/recto-cruzado-poe.png]]
+
+*** ¿Se necesitan todos estos cables?
+- La mayoría de equipos modernos detectan automáticamente al otro equipo
+- Se /cruzan/ ellos mismos si es necesario
+- Hay algunas excepciones, como Cisco
+
+
+*** Construcción de cables
+- Conector (macho): [[https://www.youtube.com/watch?v=Wywi_J6NUeg]]
+- Roseta (hembra): [[https://www.youtube.com/watch?v=0gxNZoPcnP4][https://www.youtube.com/watch?v=0gxNZoPcnP4]]
+
+
+* Estándares
+- TIA/EIA 568B
+  - Define características del cableado completo (junto con rosetas, conectores,…)
+- ISO/IEC 11801
+  - Define características del cable (MHz soportados e impedancia)
+- Ethernet
+  - Define características del cableado, aplicadas a un protocolo físico y de enlace concretos (distancias máximas, retardos máximos,…)
+
+#+reveal:split
+
+| TIA/EIA 568B | ISO/IEC 11801 | Maximum Data Rate   |
+|--------------+---------------+---------------------|
+|              | Class A       | 100 khz             |
+| Cat 1        | Class B       | Up to 1 Mbps (1Mhz) |
+| Cat 2        |               | 4 Mbps              |
+| Cat 3        | Class C       | 16 Mbps             |
+| Cat 4        |               | 20 Mbps             |
+| Cat 5        | Class D       | 100 Mbps (100 Mhz)  |
+| Cat 5e       |               | 1000 Mbps (100 Mhz) |
+|              | Class E       | 200 Mhz             |
+| Cat 6        |               | Up to 250-400 Mhz   |
+| Cat 6e       |               | Up to 625 Mhz       |
+| Cat 7        | Class F       | Up to 600-700 Mhz   |
+| Cat 8        |               | Up to 2 GHz         |
+
+
+** Categorías IEEE
+- De acuerdo a su rendimiento (velocidades / uso) 
+  - Categoría 1 (1 Mhz). Hilo telefónico para voz.
+  - Categoría 2 (4 Mhz). Par trenzado sin apantallar de cobre.
+  - Categoría 3 (16 Mhz – 10 Mbps).
+  - Categoría 4 (20 Mhz – 20 Mbps).
+  - Categoría 5 (100 Mhz – 100 Mbps).
+  - Categoría 6 (250 Mhz – 1 Gbps).
+  - Categoría 7 (600 Mhz – 10 Gbps).
+  - Categoría 8 (en desarrollo)
+
+** Ethernet
+| Tecnología | Velocidad de transmisión | Tipo de cable                           | Distancia máxima | Topología                                          |
+|------------+--------------------------+-----------------------------------------+------------------+----------------------------------------------------|
+| 10Base2    | 10 Mbps                  | Coaxial                                 | 185 m            | Bus (Conector T)                                   |
+| 10BaseT    | 10 Mbps                  | Par Trenzado                            | 100 m            | Estrella (Hub o Switch)                            |
+| 10BaseF    | 10 Mbps                  | Fibra óptica                            | 2000 m           | Estrella (Hub o Switch)                            |
+| 100BaseT4  | 100Mbps                  | Par Trenzado (categoría 3UTP)           | 100 m            | Estrella. Half Duplex (hub) y Full Duplex (switch) |
+| 100BaseTX  | 100Mbps                  | Par Trenzado (categoría 5UTP)           | 100 m            | Estrella. Half Duplex (hub) y Full Duplex (switch) |
+| 100BaseFX  | 100Mbps                  | Fibra óptica                            | 2000 m           | No permite el uso de hubs                          |
+| 1000BaseT  | 1000Mbps                 | 4 pares trenzado (categoría 5e ó 6UTP ) | 100 m            | Estrella. Full Duplex (switch)                     |
+| 1000BaseSX | 1000Mbps                 | Fibra óptica (multimodo)                | 550 m            | Estrella. Full Duplex (switch)                     |
+| 1000BaseLX | 1000Mbps                 | Fibra óptica (monomodo)                 | 5000 m           | Estrella. Full Duplex (switch)                     |
+
+** Categoría vs Clase
+- La categoría es un estándar de la calidad del cable
+- La clase es un estándar de la calidad de la red completa
+  - Cable 
+  - Rosetas/conectores
+  - Equipos de interconexión
+- Lo interesante es conseguir una buena *clase*
+  - Para lo que es necesario usar materiales de una buena *categoría*
+
+#+reveal: split
+[[file:media/categorias.png]]
+
+** Certificación del cable
+
+- Tras la instalación de componentes de cierta categoría, es necesario certificar la red
+   - Para comprobar su clase
+- Un analizador de cable mide los problemas que pueden producirse en el cable        
+   - [[https://en.wikipedia.org/wiki/Copper_cable_certification][https://en.wikipedia.org/wiki/Copper_cable_certification]]
+- La *clase* de la red se determina por el peor cable instalado.
+
+[[file:media/analizador-de-cable.jpg]]
+
+* Coaxial 
+- Conductor de cobre rodeado de una capa de aislante flexible, 
+- Sobre este material aislante hay una malla de cobre que actúa como
+  - segundo alambre del circuito 
+  - apantallamiento para el conductor interno
+- La envoltura del cable recubre el blindaje 
+[[file:media/coaxial.png]]
+
+#+reveal: split
+- Hoy en día ha caído en /desuso/ en la redes de área local.
+- Aún se usa en televisión
+  - Tiene un gran ancho de banda con muy pocas interferencias
+- Tipos
+  - Thicknet: original
+  - Thinnet: más barato y manejable
+
+
+* Fibra óptica 
+- La información se transmite en forma de pulsos de luz.  
+- En cada instante se hay presencia o ausencia de señal luminosa.
+  - Se pueden usar diferentes colores para una multiplexación por fecuencia
+- En un extremo se coloca un LED emisor de luz o un láser
+- En el extremo opuesto se sitúa un detector de luz.
+
+** Ventajas de la fibra óptica
+- Gran ancho de banda.
+- La atenuación es mínima.
+- No hay interferencias, no se producen campos magnéticos.
+- Longitud del cable, capacidad y velocidad son muy altas.
+- Seguridad de datos: sólo se puede acceder (pinchar) el cable por medios destructivos.
+- Seguridad frente a accidentes: no hay corriente eléctrica alguna, no es peligroso.
+
+** Inconvenientes de la fibra óptica
+- Las fibras son frágiles 
+- Los transmisores y receptores son caros.  
+- Empalmar un cable es difícil.  
+- Necesitan un conversor eléctrico para conectar al ordenador
+  - No hay chips ópticos.
+
+
+
+
+** Principio físico
+- Consiste en dos cilindros coaxiales de vidrios transparentes y de diámetros muy pequeños. 
+- El cilindro interior se llama núcleo y el exterior envoltura.  
+- El índice de refracción del núcleo es mayor que el de la envoltura
+- En el límite entre núcleo y envoltura se produce una reflexión total de la luz, 
+  - Como consecuencia la luz no puede escapar del núcleo, quedando guiada dentro de él.
+
+[[file:media/fibra-optica-funcionamiento.png]]
+
+
+** Tipos
+- Multimodo
+  - El diámetro del núcleo es muy superior a la longitud de onda de la luz:
+  - De índice *escalonado*: el índice de refracción es constante en el núcleo.
+  - De índice *gradual*: el índice de refracción varía dentro del núcleo hasta igualar al del revestimiento.  
+
+- Monomodo: 
+  - El diámetro del núcleo es poco mayor que la longitud de onda. 
+  - Únicamente se propaga un rayo de luz. 
+  - Necesita un diodo láser de elevado coste. 
+
+#+reveal:split
+[[file:media/multimodo-monomodo.png]]
+
+#+reveal:split
+[[file:media/multimodo-monomodo-ii.png]]
+
+
+** Conectores
+[[file:media/conectores-opticos.png]]
+
+
+** Cables de fibra óptica
+[[file:media/fibra-optica-interior.png]]
+
+
+[[https://sites.google.com/site/desarrollosticaura/proyecto-de-ict/stdp-y-tba/4-fibra-optica][Fuente]]
+
+[[file:media/cable-submarino-corte.png]]
+
+
+[[http://omicrono.elespanol.com/2016/09/cables-submarinos/][Fuente]]
+
+
+
+
+
+
+* Medios no guiados
+- Las señales no viajan por un canal cerrado
+- Ventajas
+  - Bajo coste
+  - Comodidad
+- Desventajas
+[[file:media/probemas-medios-no-guiados.png]]
+
+** Espectro electromagnético
+[[file:media/espectro-electromagenico-medios-no-guiados.png]]
+
+#+reveal: split
+[[file:media/espectro-electromagnetico-uhf-vhf.png]]
+
+** Bluetooth
+- IEEE 802.15
+- Baja velocidad
+- Bajo gasto de energía
+- Corto alcance (PAN)
+
+** Wimax
+- IEEE 802.16
+- /Worldwide Interoperability for Microwave Access/
+- Utiliza ondas de radio en las frecuencias de 2,5 a 3,5 Ghz.
+- Se usa en zonas de difícil acceso para medios guiados (por terreno o por número de usuarios).
+
+
+
+** Wifi
+- IEEE 802.11
+- Destinada a LAN
+- Microondas y radiofrecencia
+[[file:media/wifi.png]]
+
+#+reveal: split
+| Estándar      | Frecuencia    | Velocidad | Alcance    |
+|---------------+---------------+-----------+------------|
+| IEEE 802.11a  | 5GHz          | 54mbps    | 50 metros  |
+| IEEE 802.11b  | 2.4GHz        | 11mbps    | 100 metros |
+| IEEE 802.11g  | 2.4GHz        | 54mbps    |            |
+| IEEE 802.11n  | 2.4GHz y 5GHz | 600mbps   | 70 metros  |
+| IEEE 802.11ac | 5GHz          | 1.3Gbs    |            |
+| IEEE 802.11ad | 60Gz          | 4.6GBs    |            |
+
+** Canales wifi
+[[file:media/canales-wifi.png]]
+
+* Referencias
+#+include: "../../../common/footer.org"

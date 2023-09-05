@@ -1,0 +1,411 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+\usepackage[spanish]{babel}
+
+
+
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{changepage}   % for the adjustwidth environment
+\usepackage{svg}
+\usepackage{attachfile2}
+\usepackage{currfile}
+\usepackage{multicol}
+\usepackage{alltt}
+\usepackage{framed}
+\usepackage{caption}
+\usepackage{eurosym}
+\usepackage{seqsplit}
+\usepackage{tabularx}
+\usepackage{xcomment}
+
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=blue
+}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.8in
+\headsep=0.25in
+\linespread{1.1} % Line spacing
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+% Set up the header and footer
+\pagestyle{fancy}
+%\lhead{\hmwkAuthorName} % Top left header
+\lhead{\hmwkClass}
+\rhead{\hmwkTitle} % Top right header
+\chead{} % Top center head
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{ \thepage\ / \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+\renewcommand{\ttdefault}{pcr}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+%\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+%\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+%\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+%\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{Ejercicio \arabic{homeworkProblemCounter} #1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+%\clearpage
+}
+
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Redefine el hmwkTitle} % Assignment title
+\newcommand{\hmwkDueDate}{asdfadsf} % Due date
+\newcommand{\hmwkClass}{Redefine hmwkClass} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Álvaro González Sotillo} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancybox}
+\newcommand{\codigo}[1]{\texttt{#1}}
+
+
+% CUADRITO
+\newsavebox{\fmboxx}
+\newenvironment{cuadritoantiguo}[1][14cm]
+{\noindent \begin{center} \begin{lrbox}{\fmboxx}\noindent\begin{minipage}{#1}}
+{\end{minipage}\end{lrbox}\noindent\shadowbox{\usebox{\fmboxx}} \end{center}}
+
+
+
+
+
+
+\newenvironment{entradasalida}[2][14cm]
+{
+  \newcommand{\elnombredelafiguradeentradasalida}{#2}
+  \begin{figure}[h]
+    \begin{cuadrito}[#1]
+      \begin{scriptsize}
+\begin{alltt}
+}
+{%
+\end{alltt}%
+      \end{scriptsize}%
+    \end{cuadrito}%
+    \caption{\elnombredelafiguradeentradasalida}
+  \end{figure}
+}
+
+
+\newenvironment{entradasalidacols}[2][14cm]
+{
+\newcommand{\elnombredelafiguradeentradasalida}{#2}
+%\begin{wrapfigure}{}{0.1}
+\begin{cuadrito}[#1]
+\begin{scriptsize}
+\begin{alltt}
+}
+{
+\end{alltt}
+\end{scriptsize}
+\end{cuadrito}
+\captionof{figure}{\elnombredelafiguradeentradasalida}
+%\end{wrapfigure}
+}
+
+
+\usepackage{pgffor}
+\newcommand{\ficheroautoref}[0]{%
+  \foreach \ficherotex in {../../../common/plantilla-ejercicio.tex,../../common/plantilla-ejercicio.tex,../common/plantilla-ejercicio.tex,../apuntes/common/plantilla-ejercicio.tex}{
+
+    \IfFileExists{\ficherotex}%
+    {%
+      \textattachfile[mimetype=text/plain,%
+      author={plantilla-ejercicio.tex},
+      description={La plantilla},%
+      subject={La plantilla}]%
+      {\ficherotex}%
+      {}%
+      % RECUPERO ESPACIO VERTICAL PERDIDO
+      \vspace{-6em}%
+    }%
+    {}%
+  }
+  
+
+  \IfFileExists{\currfilename}
+  {
+    \textattachfile[mimetype=text/plain,
+    author={\currfilename},
+    description={El fichero TEX original para crear este documento, no sea que se nos pierda},
+    subject={El fichero TEX original para crear este documento, no sea que se nos pierda}]
+    {\currfilename}
+    {}
+  }
+  {}
+}
+
+\newcommand{\entradausuario}[1]{\textit{\textbf{#1}}}
+
+\newcommand{\enlace}[2]{\textcolor{blue}{{\href{#1}{#2}}}}
+
+\newcommand{\adjuntarfichero}[3]{
+\textattachfile[mimetype=text/plain,
+color={0 0 0},
+description={#3},
+subject={#1}]
+{#1}
+{\textcolor{blue}{\codigo{#2}}}
+}
+
+\newcommand{\adjuntardoc}[2]{%
+\textattachfile[mimetype=text/plain,%
+color={0 0 0},%
+description={#1},%
+subject={#1}]%
+{#1}%
+{\textcolor{blue}{#2}}%
+}%
+
+
+\newcommand{\plantilladeclase}[2]{
+\adjuntarfichero{#1.java}{#2}{Plantilla para la clase #2}
+}
+
+% https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Encoding_issue
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
+
+\lstset{
+  inputencoding=utf8,
+  captionpos=b,
+  frame=single,
+  basicstyle=\small\ttfamily,
+  showstringspaces=false,
+  numbers=none,
+  numbers=left,
+  xleftmargin=2em,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+\renewcommand{\lstlistingname}{Listado}
+\captionsetup[lstlisting]{font={footnotesize},labelfont=bf,position=bottom}
+\captionsetup[figure]{font={footnotesize},labelfont=bf}
+\lstnewenvironment{listadojava}[2]
+{
+  \lstset{language=Java,caption={#1},label={#2}}
+  \noindent\minipage{\linewidth}%
+}
+{\endminipage}
+
+% LISTADO SHELL
+\lstnewenvironment{listadoshell}[2]
+{
+  \lstset{language=bash,caption={#1},label={#2}}
+  \noindent\minipage{\linewidth}%
+}
+{\endminipage}
+
+% LISTADO TXT
+\lstnewenvironment{listadotxt}[2]
+{
+  \lstset{caption={#1},label={#2}, keywords={}}
+  \noindent\minipage{\linewidth}%
+}
+{\endminipage}
+
+% LISTADO SQL
+\lstnewenvironment{listadosql}[2]%
+{%
+  %(el 1 )caption es #1\\%
+  %(el 2) label es #2\\%
+  \lstset{language=sql,caption={#1},label={#2},morekeywords={if,end}}%
+  \noindent\minipage{\linewidth}%
+}
+{\endminipage}
+  
+
+
+
+
+
+
+\newcommand{\graficosvg}[3][14cm]{
+\begin{figure}[htbp]
+\centering
+\textattachfile{#2.svg}{
+\color{black}
+\includesvg[width=#1]{#2}
+}
+\caption{#3}
+\end{figure}
+}
+
+
+\newcommand{\graficosvguml}[3][7cm]{
+  \texttt{\graficosvg[#1]{#2}{#3}}
+}
+
+
+\newcommand{\primerapagina}{
+\newpage
+\ficheroautoref
+\tableofcontents
+\newpage
+}
+
+% CAJAS
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Grupo:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+% TEXTO EN MONOESPACIO PERO QUE SE PARTE EN LINEAS
+\usepackage{seqsplit}
+\newcommand{\tecnico}[1]{\texttt{\seqsplit{#1}}}
+
+% REEMPLAZAR TEXTO, NO LO USO
+\def\replace#1#2#3{%
+ \def\tmp##1#2{##1#3\tmp}%
+   \tmp#1\stopreplace#2\stopreplace}
+\def\stopreplace#1\stopreplace{}
+
+% PARA QUE SALGA EN imenu
+\newcommand{\imenu}[1]{#1}

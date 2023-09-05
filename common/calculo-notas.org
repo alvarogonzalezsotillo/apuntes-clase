@@ -1,0 +1,28 @@
+
+** Cálculo de la nota
+- Nota de la evaluación
+  #+begin_example
+  trabajos*0.20 + exámenes*0.80
+  #+END_example
+  - Nota de exámenes: La mayor de las siguientes:
+    - Media de la nota de los parciales
+    - Examen final
+  - Nota de trabajos:
+    - La media de los trabajos de la evaluación
+    - Todos los trabajos tienen que estar entregados
+- Nota del módulo
+  - Media de las notas de las evaluaciones
+  - Todas las evaluaciones tienen que estar aprobadas
+
+# - Las notas pueden calcularse con [[file:calculo-notas/calculo-notas.html?evaluaciones=2][el calculador de notas.]]
+
+** Detalles sobre la calificación
+- Son necesarios todos los trabajos para poder aprobar
+- Las colaboraciones en clase pueden premiarse con aumento de nota de la parte de trabajos
+- En un problema de un trabajo o examen, se necesita la totalidad para poder puntuar el problema
+  - Los conocimientos y esfuerzo para conseguir el 80% de un problema suelen ser bajos
+  - La dificultad real suele estar en el 20% restante del problema
+  - Ejemplo: ¿Dónde está la dificultad?
+    1. Instala Windows (10% de dificultad)
+    2. Instala Linux junto a Windows (20% de dificultad)
+    3. Haz que cada S.O. pueda ver los ficheros del otro (70% restante)

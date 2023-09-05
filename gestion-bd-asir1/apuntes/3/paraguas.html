@@ -1,0 +1,18 @@
+<script>
+  var lluviaAntesDeAyer = true;
+  var lluviaAyer = false;
+  var previsionLluviaHoy = true;
+
+  var llevoParaguas =
+      (lluviaAyer && previsionLluviaHoy) ||
+      (lluviaAntesDeAyer && lluviaAyer);
+
+  document.write(
+`
+  Llovió antes de ayer:${lluviaAntesDeAyer}<br>
+  Llovió ayer:${lluviaAyer}<br>
+  Previsión lluvia hoy:${previsionLluviaHoy}<br>
+  Me llevo el paraguas:${llevoParaguas}
+`
+  );
+</script>

@@ -1,0 +1,41 @@
+[
+    {
+        "nombre": "Rosa 27-03-2023",
+        "apellidos": "Martin",
+        "edad": "29",
+        "ruta": "persona0.jpg"
+    },
+    {
+        "nombre": "Mario",
+        "apellidos": "Vargas Llosa",
+        "edad": "72",
+        "ruta": "persona1.jpg"
+    },
+    {
+        "nombre": "Miguel Angel",
+        "apellidos": "Muñoz Molina",
+        "edad": "29",
+        "ruta": "persona2.jpg"
+        
+    },
+    {
+        "nombre": "Pablo",
+        "apellidos": "González Crespo",
+        "edad": "29",
+        "ruta": "persona3.jpg"
+    },
+    {
+        "nombre": "Ana María",
+        "apellidos": "Gutiérrez Puebla",
+        "edad": "29",
+        "ruta": "persona4.jpg"
+    }
+    ,
+    {
+        "nombre": "Para corregir",
+        "apellidos": "Uno nuevo",
+        "edad": "2999",
+        "ruta": "persona-para-corregir.jpg"
+    }
+
+]

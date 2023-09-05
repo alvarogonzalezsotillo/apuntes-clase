@@ -1,0 +1,23 @@
+
+TICKETS(id,fecha,hora) 
+  PK(id)
+
+LINEASTICKETS(idlinea,cantidad,id,nombre) 
+  PK(idlinea) 
+  FK(id)->TICKETS(id) 
+  FK(nombre)->ARTICULOS(nombre)
+
+ARTICULOS(nombre,preciobase,nombreiva) 
+  PK(nombre) 
+  FK(nombreiva)->TIPOIVA(nombre)
+
+TIPOIVA(nombre,porcentaje) 
+  PK(nombre)
+
+OFERTASUNOGRATIS(nombreoferta,cuantosarticulos,cuantosgratis,fechainicio,fechafin,nombre) 
+  PK(nombreoferta) 
+  FK(nombre)->ARTICULOS(nombre)
+
+OFERTASDESCUENTO(nombreoferta,cuantosarticulos,descuento,fechainicio,fechafin,nombre) 
+  PK(nombreoferta) 
+  FK(nombre)->ARTICULOS(nombre)

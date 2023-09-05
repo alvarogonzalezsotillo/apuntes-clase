@@ -1,0 +1,149 @@
+\input{../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica de seguridad en el sistema}
+
+
+\usepackage{blindtext}
+
+% CAJAS
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{Actividad}[1][Actividad]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+{\primerapagina}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Durante el desarrollo de esta práctica, el alumno provocará varios agujeros de seguridad en sistemas Linux, que un usuario sin privilegios podría aprovechar para tomar el control del sistema. De esta forma podrá comprobar como errores más o menos sutiles pueden convertir un sistema en inseguro.
+
+Además, investigará qué tipo de niveles de acceso puede tener un usario en el sistema y la forma de modificarlos.
+
+
+\begin{homeworkProblem}[: Aprovecha un fallo de seguridad (provocado) en \textbf{Linux} (2 puntos)]
+  Haz que el fichero \texttt{/etc/groups} y \texttt{/etc/passwd} de un sistema \textbf{Linux} tenga permisos 777. Crea un usuario normal, sin ningún permiso especial, y consigue utilizando ese usuario ser \texttt{root}.
+
+  \begin{Actividad}[Pistas]
+    \begin{itemize}
+    \item Puedes cambiar la password del root, o bien…
+    \item Puedes añadir usuarios al grupo admin y al grupo sudo, que son especiales para el comando sudo
+    \end{itemize}
+  \end{Actividad}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Elección de una buena contraseña (1 punto)]
+  \begin{itemize}
+  \item Crea el hash de la contraseña \textbf{pass} (por ejemplo con el comando \texttt{md5sum} o \texttt{sha256sum}). No uses \texttt{mkpasswd}, pues utiliza una \textbf{sal}.
+  \item Intenta encontrar el \textit{hash} de la contraseña en Internet. Si lo encuentras, es que la contraseña \textbf{pass} no es demasiado buena.
+  \item Cambia la contraseña por una mejor, y que no aparezca su \textit{hash} en los buscadores
+  \end{itemize}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Escalada de privilegios en \textbf{Linux} (2 puntos)]
+  
+  \begin{itemize}
+  \item Consulta información del permiso \texttt{s} en el manual de \texttt{chmod}
+  \item Crea un usuario no administrador de nombre \textbf{normal}
+  \item Crea una copia de la \textit{shell} (\texttt{/usr/bin/bash}) en el directorio \textit{home} de \textbf{normal} (\texttt{/home/normal/shell-de-root})
+  \item Haz que \texttt{shell-de-root} tenga como propietario a \texttt{root} y tenga el permiso \texttt{s}
+  \item Ejecuta \texttt{shell-de-root -p} siendo el usuario \textbf{normal}. ¿Qué ocurre?
+  \end{itemize}
+\end{homeworkProblem}
+
+\newcommand{\tutorialcuota}{https://www.howtoforge.com/tutorial/linux-quota-ubuntu-debian}
+\begin{homeworkProblem}[: Implementa el uso de cuotas de disco en \textbf{Linux} (3 puntos)]
+  \begin{itemize}
+  \item Instala la el sistema de cuotas con \texttt{apt-get install quota}
+  \item Consulta \enlace{\tutorialcuota}{\tutorialcuota}
+    
+  \item Crea un usuario con una cuota de 1000 KBytes. Llena su cuota (por ejemplo, bajando imágenes de Internet) y observa qué ocurre.
+  \end{itemize}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Listas de control de acceso (1 punto)]
+
+  Haz una lista de qué permisos pueden otorgarse/negarse en \textbf{Windows} a
+
+  \begin{itemize}
+  \item Ficheros
+  \item Procesos (utiliza el programa \texttt{procexp.exe})
+  \item Entradas de registro (utiliza \texttt{regedit.exe})
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Auditoría de accesos en \textbf{Linux} (1 punto)]
+  \begin{itemize}
+  \item Realiza acciones relativas a accesos en \textbf{Linux}:
+    
+    \begin{itemize}
+    \item Intenta hacer login con un usuario que no existe
+    \item Intenta hacer sudo con contraseña incorrecta
+    \item Intenta hacer sudo con un usuario que no tiene acceso a sudo
+    \end{itemize}
+  \item Localiza en qué fichero de log (\texttt{/var/log}) se han reportado dichos sucesos ¿qué información se obtiene?
+  \end{itemize}
+\end{homeworkProblem}
+
+
+\section{Qué se valorará}
+En la memoria del trabajo se valorará:
+\begin{itemize}
+\item Que cada paso quede bien documentado. 
+\item La corrección técnica (que funcione)
+\item Que esté correctamente redactado, de forma que nuestro lector lo entienda 
+\item La apariencia profesional:
+  \begin{itemize}
+  \item Estética
+  \item Organización
+  \item Homogeneidad de formatos y estilos
+  \end{itemize}
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \item En este caso, todos los integrantes del grupo deben subir el trabajo al aula virtual.
+
+  \end{itemize}
+\item Los trabajos pueden entregarse:
+  \begin{itemize}
+  \item En formato \textbf{DOC} o \textbf{DOCX}.
+  \item En formato \textbf{ODT}.
+  \item En formato \textbf{PDF}. 
+  \item Como una entrada en un \textbf{blog}
+
+  \end{itemize}
+  
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}  
+
+\end{document}

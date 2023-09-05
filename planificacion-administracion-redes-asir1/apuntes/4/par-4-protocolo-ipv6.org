@@ -1,0 +1,246 @@
+ #+INCLUDE: "../../../common/header.org"
+#+TITLE:  Protocolo IPv6
+#+SUBTITLE: 
+#+KEYWORDS: 
+
+* Introducción
+
+
+- En IPv4, las direcciones son de 32 bits
+  - 2^32 direcciones posibles, unos 4000 millones
+  - Inicialmente fueron direcciones /suficientes/
+  - Actualmente, se encuentran agotadas
+- Ante la escasez de direcciones, se palia el problema con
+  - CIDR
+  - Direcciones privadas, con acceso NAT (siguientes temas)
+  - Direcciones dinámicas (DHCP), para los accesos ADSL 
+- Estas soluciones solo son *temporales*
+
+* IPv6
+- Las direcciones tienen 128 bits de longitud
+  - 2^128 son más o menos 300 trillones de trillones de direcciones
+  - De momento parecen /suficientes/
+- Ejercicio comparativo: La tierra tiene un radio de 6370 Km aproximadamente
+  ¿Cuántas direcciones IPv4 hay por m^2?
+  ¿Cuántas direcciones IPv6 hay por m^2?
+
+** Direcciones IPv6
+- Se especifican en hexadecimal, separando grupos de 16 bits con “:”
+- Ejemplo de dirección IPv6
+  =2001:0db8:85a3:0000:0000:8a2e:0370:7334=
+- Simplificaciones
+  - Se pueden omitir los ceros iniciales de cada grupo
+    =2001:db8:85a3:0:0:8a2e:370:7334= 
+  - Se pueden omitir varios grupos que valgan 0 (solo una vez)
+    =2001:db8:85a3::8a2e:370:7334= 
+
+
+** Direcciones reservadas
+
+#+ATTR_LATEX: :align |l|p{10cm}|
+| Dirección                  | Descripción                                                                                                                        |
+|----------------------------+------------------------------------------------------------------------------------------------------------------------------------|
+| ~::/128~                   | Dirección indefinida. Ningún host puede tener esta dirección. Como ~0.0.0.0~ en IPv4                                               |
+| ~::1/128~                  | El propio host (~127.0.0.0/8~ en IPv4)                                                                                             |
+| ~fe80::interfaz/10~        | /[[https://es.wikipedia.org/wiki/Direcci%C3%B3n_de_Enlace-Local][link-local]]/. Equivalentes a APIPA (~169.254.0.0/16~ en IPv4). El identificador de interfaz es el EUI-64 bits. Se usa notación ~%~ |
+| ~ffc0::subred:interfaz/10~ | /site-local/. Como /link-local/, pero permitiendo subredes. *[[https://www.ietf.org/rfc/rfc3879.txt][Ya no se usan]]*.                                                       |
+| ~fc00::/7~                 | /[[https://en.wikipedia.org/wiki/Unique_local_address][Unique-local]]/. Parecidas a las redes privadas de IPv4                                                                             |
+| ~ff00::/8~                 | Grupos [[https://en.wikipedia.org/wiki/Multicast_address#IPv6][multicast]].                                                                                                                  |
+| ~2001:0DB8::/32~           | Ejemplos para [[https://www.apnic.net/get-ip/faqs/ipv6-documentation-prefix/][documentación]]                                                                                                        |
+| ~2000::/3~                 | /Global Unicast Address/. Internet.                                                                                                |
+
+(https://en.wikipedia.org/wiki/Reserved_IP_addresses)
+** /link-local/ con /eui-64/
+- Inicialmente, Windows y Linux calculaban las direcciones /link-local/ con el [[https://es.wikipedia.org/wiki/Direcci%25C3%25B3n_IPv6#EUI-64_Modificado][eui-64]]
+- Actualmente, Windows utiliza una dirección aleatoria
+[[file:media/link-local-eui-64.png]]
+
+
+
+
+** Tipos de comunicación
+- *Unicast*
+  - El paquete se envía a una dirección concreta de destino
+  - Esto también existe en IPv4 y en Ethernet
+- *Broadcast*
+  - En IP4, con todos los bits de host a 1
+  - En Ethernet hay broadcast a toda la red (todos los bits a 1)
+  - En IPv6, *no* hay, aunque se puede usar =FF01::1= ([[https://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml][Multicast: All Nodes Address]])
+- *Multicast*
+  - El paquete se envía a varios hosts de, posiblemente, varias redes (=FF01::/16=)
+  - En [[https://en.wikipedia.org/wiki/Multicast_address#IPv4][IPv4]], con direcciones de clase D
+- *[[https://tools.ietf.org/html/rfc4291#section-2.6][Anycast]]*
+  - El paquete se envía a un solo host de un conjunto de hosts
+
+** Subnetting en IPv6
+- Conceptualmente es igual que en IPv4
+- El IETF recomienda en su [[https://tools.ietf.org/html/rfc3177][RFC 3177]] que todas las redes sean al menos /64
+- Se recomienda:
+  - Usuarios en el ámbito doméstico, con conexiones permanentes o bajo demanda deberían recibir una máscara /48.
+  - Pequeñas y grandes empresas deberían recibir /48.
+  - Conjuntos muy grandes de abonados deberían recibir un /47.
+  - Redes móviles, como vehículos o teléfonos móviles, un /64.
+
+#+begin_src sh
+This document provides recommendations to the addressing registries
+(APNIC, ARIN and RIPE-NCC) on policies for assigning IPv6 address
+blocks to end sites.  In particular, it recommends the assignment of
+/48 in the general case, /64 when it is known that one and only one
+subnet is needed and /128 when it is absolutely known that one and
+only one device is connecting.
+#+end_src
+
+** Ejercicio subnetting
+Dada la red ~2001:0DB8:7200::/39~, se desea dividirla en 8 redes de igual tamaño. Indica en forma de tabla las redes resultantes, primer host, último host y cantidad de hosts en cada red
+
+*** Solución :noexport:
+
+
+* Configuración de IPv6
+
+** Linux [[https://debian-handbook.info/browse/es-ES/stable/sect.ipv6.html][Debian]]
+#+begin_src sh
+iface eth0 inet6 static 
+  address 2607:f0d0:2001:000a:0000:0000:0000:0002/64
+  gateway 2607:f0d0:2001:000a:0000:0000:0000:0001
+#+end_src
+
+Activar enrutamiento IPv6:
+#+begin_src s
+sysctl net.ipv6.conf.all.forwarding=1
+#+end_src
+
+Añadir una ruta
+#+begin_src sh
+route -A inet6 add <red>/<mascara> gw <gateway> [dev <interfaz>]
+#+end_src
+
+** Windows
+- En las propiedades del adaptador, como IPv4
+[[file:media/configurar-ipv6-windows.png]]
+
+
+** IOS
+- Se puede utilizar el sufijo eui64, o indicar completamente la dirección
+  #+begin_src sh
+  ipv6 address 2001:0DB8:c18:1::/64 eui 64
+  ipv6 address 2001:0DB8:c18:1::1/64
+  #+end_src
+
+- Para añadir rutas: En el ejemplo, se indica que para llegar a la red =2001:db8::/32= se va por el router =2001:db8:3000:1=.
+  #+begin_src 
+  ipv6 route 2001:DB8::/32 2001:DB8:3000:1
+  #+end_src
+
+- Para activar el enrutamiento y consultar las rutas
+  #+begin_src 
+  ipv6 unicast-routing 
+  show ipv6 route
+  #+end_src
+
+
+* Convivencia IPv4/IPv6
+- Todos los sistemas operativos actuales cuentan con pila IPv6
+- Los /backbones/ de Internet funcionan con IPv6
+- Los ISP siguen funcionando con IPv4
+- Pocas empresas utilizan IPv4 de forma general
+- Para hacerlo interoperable hay varias soluciones
+  - IPv4 mapeada a IPv6
+  - Túneles dinámicos de IPv6 sobre IPv4
+  - [[https://en.wikipedia.org/wiki/IPv6_transition_mechanism#Dual-Stack_Lite_.28DS-Lite.29][DSLite]]
+
+** Interoperabilidad
+
+#+ATTR_LATEX: :align |l|p{10cm}|
+| Rango           | Tipo de túnel                                                                                                                               |
+|-----------------+---------------------------------------------------------------------------------------------------------------------------------------------|
+| ~::ffff:0:0/96~ | IPv4-mapeada. En un entorno IPv6, los programas que sólo entiendan IPv4 utilizan este tipo de direcciones, traducidas por IPv6 directamente |
+| ~::0:0/96~      | Túnel dinámico, para transmitir IPv6 sobre IPv4 de forma automática                                                                         |
+
+
+#+reveal: split
+- Cuando se mezclan direcciones IPv4 e IPv6, la notación es mixta
+  - ~::ffff:192.168.10.6~: IPv4 mapeada
+  - ~::192.168.10.6~: túnel dinámico
+
+*** IPv4 mapeada a IPv6
+
+#+caption: IPv4 viajando por red IPv6
+[[file:media/ipv6-ipv4-mapped.svg]]
+
+#+reveal:split
+
+#+caption: IPv4 mapeada a IPv6
+[[file:media/ipv6-ipv4-mapped.png]]
+
+Fuente: [[http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm][tcpipguide]]
+
+
+
+*** IPv6 compatible con IPv4 (túnel dinámico)
+
+#+caption: IPv6 viajando por red IPv4
+[[file:media/ipv6-ipv4-compatible.svg]]
+
+#+reveal: split
+
+#+caption: IPv6 compatible con IPv4 (túnel dinámico)
+[[file:media/ipv6-ipv4-compatible.png]]
+
+Fuente: [[http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm][tcpipguide]]
+
+
+* Ejercicios
+
+** Linux
+- Configura una máquina virtual linux en modo bridged con ip6
+  - Dirección =fe80::xx/112= 
+  - =xx= es tu número de ordenador (1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, 10, 11, …)
+- Haz ping al resto de ordenadores de tus compañeros
+  #+begin_src sh
+  ping6 -I <interfaz> fe80::xx
+  #+end_src
+
+** Windows
+- Configura una máquina virtual Windows 7 en modo bridged con ipv6
+  - Dirección =fe80::xx00/112= 
+  - =xx= es tu número de ordenador (1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, 10, 11, …)
+- Haz ping al resto de ordenadores de tus compañeros (=interfaz= hace falta si hay más de una interfaz)
+  #+begin_src sh
+  ping -6 fe80::xx%interfaz
+  ping -6 fe80::xx00%interfaz
+  #+end_src
+- Haz ping desde tu Linux a los Windows
+
+** Windows
+- Configura una máquina Windows con dos tarjetas en diferentes redes internas
+- Configura máquinas virtuales en cada una de las redes, con *la misma* dirección ipv6 /link local/
+- Haz ping desde windows a esas direcciones /link local/ sin determinar la interfaz, y comprueba cuál de las dos máquinas encuentra.
+
+** IOS
+Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan conexión entre sí.
+- Activar /unicast routing/: =Router(config)# ipv6 unicast-routing=
+- Activar RIP: =Router(config-if)# ipv6 rip process1 enable=
+
+[[file:pkt/ejercicio-ipv6.pkt][Fichero PKT]] 
+#+latex: \attachfile{./pkt/ejercicio-ipv6.pkt}
+
+[[file:pkt/ejercicio-ipv6.png]] 
+
+* NDP
+- ARP es un protocolo para IPv4
+- IPv6 utiliza [[https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol][Network Discovery Protocol]]
+- Linux: =ip -6 neigh show=
+- Windows: =netsh interface ipv6 show neighbors=  
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+
+
+* nat66 :noexport:
+https://blog.apnic.net/2018/02/02/nat66-good-bad-ugly/
+
+* IP6 routers cisco :noexport:
+  https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_rip/configuration/xe-3s/asr1000/ip6-rip-xe.html

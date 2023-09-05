@@ -1,0 +1,100 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+\usepackage{needspace}
+
+
+
+
+\renewcommand{\hmwkTitle}{Práctica red IP}
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+
+\section{Objetivo de la práctica}
+Tras la práctica, se espera que el alumno haya conseguido:
+\begin{itemize}
+\item Comprender el modo \textit{puente} (\textit{bridged}) de los sistemas de virtualización
+\item Familizarizarse con los  mecanismos de configuración de redes IP en varios sistemas operativos
+\end{itemize}
+
+Está dispobile la \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-red-ip.pdf}{última versión de la práctica en este enlace}.
+
+
+
+\section{Descripción del problema}
+Se realizará el sistema de máquinas virtuales descrito en la figura~\ref{fig:redesip}. Debe haber conectividad IP entre
+\begin{itemize}
+\item Los ordenadores de clase y el servidor Debian
+\item Entre todos los servidores Debian de otros compañeros
+\item El cliente Windows y el cliente Debian
+\item Entre los clientes y el servidor Debian
+\end{itemize}
+
+\begin{figure}[h]
+  \center\includegraphics{media/practica-red-ip.pdf}
+  \caption{Diagrama de conexiones de red}
+  \label{fig:redesip}
+\end{figure}
+
+La conectividad IP puede comprobarse con comandos como \texttt{ping}, \texttt{pathping}, \texttt{mtr} o \texttt{tracert}
+
+
+\section{Características de las máquinas virtuales}
+\begin{itemize}
+\item El servidor Debian deberá ser configurado sin utilizar el modo gráfico ni \textit{network-manager}
+\item Se recomienda utilizar distribuciones Debian frente a Ubuntu, por el ahorro de memoria RAM. Sin entorno gráfico, Debian funciona correctamente con 512MB.
+\item Por la misma razón, Windows 7 es preferible a Windows 10.
+  
+\item El número \textit{n} corresponde con el número de identificación del PC real en clase, que se apuntará en esta hoja de cálculo: \url{http://bit.ly/2sji9gQ}
+\end{itemize}
+
+\section{Qué se valorará}
+Se entregará un documento (entrada de blog, \texttt{DOCX}, \texttt{PDF} \ldots) con los pasos que se han seguido para la creación de la red y su configuración, así como la salida de los comandos que muestran la conectividad de los ordenadores.
+
+Se tendrá en cuenta:
+\begin{itemize}
+\item La corrección técnica
+\item La claridad
+\item La apariencia profesional: gramática, ortografía, homogeneidad \ldots
+\end{itemize}
+
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera
+  individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
+
+
+
+\end{document}
+
+
+
+
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/planificacion-administracion-redes-asir1/apuntes/4/11-Capa_de_Red.pdf
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/planificacion-administracion-redes-asir1/apuntes/4/12-Enrutamiento_dinamico.pdf
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/planificacion-administracion-redes-asir1/apuntes/4/EjerciciosIp-Enunciados.pdf
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/planificacion-administracion-redes-asir1/apuntes/4/IPv6.pdf
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/planificacion-administracion-redes-asir1/apuntes/4/par-4-protocolo-ip.pdf
+https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-red-ip.pdf

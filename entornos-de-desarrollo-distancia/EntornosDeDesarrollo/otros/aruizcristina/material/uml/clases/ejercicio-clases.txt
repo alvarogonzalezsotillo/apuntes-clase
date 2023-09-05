@@ -1,0 +1,12 @@
+Una empresa (caracterizada por su nombre, CIF y dirección administrativa) se encuentra organizada en distintas oficinas. Cada oficina tiene una dirección postal y un teléfono. Existe una oficina especial, el cuartel general, que además tiene un número de fax y un apartado de correos.
+
+Las oficinas se organizan en departamentos. Un departamento tiene un nombre. Los departamentos tienen asignados empleados. Un empleado actuá de jefe de departamento.
+
+De todos los empleados se debe conocer su nombre, apellidos y DNI.
+
+Nos gustaría poder realizar distintas acciones:
+- Obtener un listado de las distintas oficinas de la empresa
+- Obtener un listado de los departamentos de una oficina
+- Obtener un listado de los departamentos de todas las oficinas
+- Obtener un listado de todos los empleados de un departamento, destacando el jefe
+- Obtener un listado de todos los empleados de todas las oficinas, destacando el jefe.

@@ -1,0 +1,450 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  ADMINISTRACIÓN DE SISTEMAS GESTORES DE BASES DE DATOS 
+#+SUBTITLE: (CÓDIGO: 0377)
+#+KEYWORDS: 0377
+
+* Cómo serán las clases
++ Teoría
+  - Basada en apuntes
+  - Con un libro de texto  
++ Ejercicios
+  - Se realizan en clase o en casa
+  - Se ponen en común al día siguiente
++ Práctica
+  - Máquinas virtuales
++ Trabajos
+
+* Materiales 
++ Memoria USB
++ Correo electrónico
++ Acceso a Internet fuera del aula
++ Portátil propio (opcional)
+  - No se puede usar la red del centro 
+** Libro de texto
++ Administración de Sistemas Gestores de Bases de Datos
++ Editorial: Garceta
++ Autor: Iván López Montalbán; John Ospino Rivas; Mª Jesús Castellano Pérez
++ ISBN: 978-84-1622-829-4
+[[file:portada-libro.gif]]
+
+* Entrega de Trabajos
+- Via *Moodle*
+  + Nuestro curso es https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=65
+  + El curso es accesible incluso sin usuario
+- Se utilizará Microsoft Office (*DOC*, *DOCX*)
+  + Opcionalmente, *PDF* o LibreOffice (*ODT*)
+- Se tendrá en cuenta
+  + La corrección técnica de los trabajos
+  + La fecha de entrega
+  + Expresión, sintaxis, ortografía
+  + La apariencia profesional
+
+
+* Normas
+- Retrasos y faltas
+- Uso de los ordenadores
+  - No pueden utilizarse para tareas distintas de las encargadas por el profesor
+  - Se respetará a otros alumnos
+- Móviles
+  - No.
+  - Un /smartwatch/ se considera un móvil.
+
+
+** Averías de los ordenadores
+- Los problemas se comunican al profesor en cuanto se detectan
+- Se deben hacer copias de seguridad para no perder los datos de los discos
+  - Pen Drive
+  - Disco Externo
+  - Correos enviados a uno mismo
+  - Copias en los ordenadores de otros compañeros
+- Norma fundamental: 
+*Si se pierde porque no hay copia, es que no era importante*
+
+* Cómo será la evaluación
+- Trabajos
+- Actitud
+  - Puntualidad, interés, preguntas al profesor, puesta en común de resultados, comportamiento...
+- Exámenes
+  - Dos parciales y un final por evaluación
+  - Se necesita un mínimo de *3,5* en cada parcial para hacer media
+- Entrega de trabajos
+  - Individuales
+  - Un trabajo entregado tarde puntua como máximo *6*
+
+#+include: "../../../common/calculo-notas.org"
+
+
+
+* Temas del libro de referencia
+
+** Instalación y configuración de MySQL
+   - El SGBD MySQL
+     - Funciones de MySQL
+     - Arquitectura de MySQL
+   - Instalación desde el gestor de paquetes yum
+     - Comprobar la instalación correcta a través de yum
+   - Instalación compilando el código fuente 
+   - Instalación de una versión 5.1 de MySQL a través del código fuente
+     - Arranque del servidor MySQL 
+     - Configuración del autoarranque del servidor MySQL
+     - Incorporación de las herramientas clientes al PATH 
+     - Configuración del lenguaje de los mensajes SGBD
+   - Instalación de una versión 5.6 de MySQL desde código fuente 
+   - Configuración de la seguridad post-instalación 
+   - Ficheros Log en MySQL
+     - El log de errores
+     - El log general de consultas
+     - El registro de consultas lentas 
+     - El log binario
+   - Instalación de phpMyAdmin 
+   - Prácticas
+** Acceso a la información en MySQL
+   - El acceso a la información 
+   - Creación de usuarios
+     - Los nombres de cuenta
+     - Borrado de usuarios 
+     - Modificación de usuarios
+   - Los privilegios
+     - El sistema de privilegios de MySQL 
+     - Gestión de permisos con phpMyAdmin
+     - Uso de conexiones cifradas mediante SSL
+   - El catálogo de metadatos de MySQL 
+   - Las vistas 
+   - Prácticas
+** Automatización de tareas en MySQL. Scripts de administración
+   - Los scripts o guiones 
+   - Script SQL en MySQL
+     - Ejecución de scripts SQL en MySQL
+   - Scripts de Sistema Operativo para el DBA de MySQL 
+   - Server Side Scripting. Otro tipo de scripts
+   - Herramientas gráficas para scripts. MySQL Workbench
+     - Creación automática de scripts SQL con MySQL Workbench
+     - Creación automática de scripts de servidor Python con MySQLWorkbench
+   - Métodos de ejecución de scripts
+     - Elección del método de ejecución adecuado
+   - Scripts para el DBA
+     - Los scripts y las notificaciones a través del correo electrónico
+     - Scripts para backups 
+     - Scripts de mantenimiento 
+     - Scripts para Logs
+   - Prácticas
+** Tuning de MySQL
+   - Introducción al tuning de bases de datos
+     - ¿Cómo se optimiza MySQL Server?
+   - Elementos susceptibles de ser optimizados
+     - El motor de almacenamiento 
+     - El software 
+     - La caché y la tasa de aciertos
+     - Los buffers 
+     - La red 
+     - Plantillas de parámetros preconfiguradas
+   - El planificador. Análisis de consultas
+     - Las consultas lentas. SLOW QUERY LOG
+   - Los índices
+     - El script mysqlisxchk 
+     - El comando ANALYZE TABLE
+   - La fragmentación de la tablas
+     - El comando OPTIMIZE TABLE
+   - El script mysqltuner 
+   - Consejos para optimizar 
+   - Prácticas
+** Bases de datos Distribuidas y Replicadas con MySQL
+   - SGBD distribuidos
+     - Componentes de una BBDD distribuida
+   - Creación de bases de datos distribuidas: MySQL Cluster 
+   - Instalación de un cluster MySQL 
+   - Mantenimiento y gestión de un cluster MySQL
+     - Control de un nodo de gestión 
+     - Parada y arranque de un nodo 
+     - Control de un nodo SQL 
+     - Control de un nodo de datos
+   - La replicación de los datos 
+   - Configuración de la replicación en MySQL 
+   - Herramientas de gestión: MySQL Monitor
+     - Descarga de MySQL Monitor Service Manager y sus agentes 
+     - Instalación y configuración del Service Manager 
+     - Puesta en marcha del Service Manager 
+     - Instalación y configuración de los agentes
+   - Prácticas
+** Instalación y configuración de Oracle
+   - Funciones de Oracle
+   - Instalación y configuración de Oracle
+     - Prerrequisitos de la instalación de Oracle 
+     - El asistente para la instalación de Oracle 
+     - La postinstalación
+   - Puesta en marcha: Un poco de arquitectura
+     - Estructura de una instancia en Oracle 
+     - Configuración manual de la instancia 
+     - Creación de la base de datos 
+     - Estados de una instancia 
+     - Ficheros que componen la base de datos
+   - Configuración de la red: El listener
+     - El fichero tnsnames
+   - Apagado de una base de datos 
+   - Configuración automática de la instancia a través del asistente DBCA 
+   - Prácticas
+** Estructura de la información y acceso en Oracle
+
+   - Los métodos de autentificación en Oracle 
+   - La gestión de los usuarios en Oracle
+     - El sistema de privilegios de Oracle 
+     - El fichero de passwords orapwd
+   - Los roles 
+   - Los perfiles 
+   - Gestión del espacio de almacenamiento
+   - Sentencias SQL para la gestión de almacenamiento
+   - El catálogo de metadatos
+     - Las vistas estáticas 
+     - Las vistas dinámicas
+   - Oracle Enterprise Manager Database Control
+     - El servicio dbconsole
+   - Prácticas
+** Automatización de tareas y creación de scripts en Oracle
+   - Herramientas para creación de scripts
+     - Herramientas de texto
+   - Planificación de tareas de administración con scripts 
+   - Scripts en BASH para Oracle
+     - Script para inicio y parada automática de Oracle 
+     - Arranque de más de una instancia 
+     - Ejemplo de script avanzado
+   - Scripts para backups
+     - Ejemplo de script para backup físico en frío 
+     - Scripts para backups lógicos. El datapump
+   - El Recovery Manager (rman)
+     - Funcionamiento de rman 
+     - Instalación del catálogo de recuperación de rman 
+     - Scripts con RMAN. Backups y Restores 
+     - Script para backup completo con rman
+     - Consulta de los backups disponibles 
+     - Script con RMAN para recuperación
+   - Eventos de sistema 
+   - Excepciones servererror
+   - Prácticas
+** Tuning en Oracle
+   - Herramientas de monitorización de Oracle
+     - Consolas gráficas: Enterprise Manager, Grid Control, Toad
+     - Vistas dinámicas
+     - dbms_monitor 
+     - La traza 10046: alter session, oradebug, sql_trace 
+     - Informes AWR
+   - Elementos y parámetros susceptibles de ser monitorizados
+     - Caso práctico 1 
+     - Caso práctico 2
+   - Optimización en Oracle
+     - Instancia 
+     - Recursos 
+     - Estadísticas 
+     - Particionamiento y paralelización 
+     - Consultas
+   - Herramientas y sentencias para la gestión de índices 
+   - Herramientas para la creación de alertas de rendimiento
+   - Prácticas
+** Oracle y las BBDD distribuidas
+   - Bases de datos e instancias distribuidas en Oracle 
+   - Técnicas de fragmentación 
+   - Consultas distribuidas
+     - DB Links
+     - Ejecución de consultas distribuidas
+   - Transacciones distribuidas
+     - TWO-PHASE COMMIT 
+     - Ejemplo de transacción distribuida
+   - Optimización de consultas sobre bases de datos distribuidas
+     - Optimización mediante consultas derivadas 
+     - Optimización mediante hints
+   - Prácticas
+
+
+* Contenidos
+
+- Decreto 12/2010, de 18 de marzo
+
+** Instalación y configuración de un sistema gestor de base de datos
+- Funciones del sistema gestor de base de datos (SGBD). Componentes. Tipos.
+- Arquitectura del sistema gestor de base de datos. Arquitectura ANSI/SPARC.
+- Sistemas gestores de base de datos comerciales y libres.
+- El administrador de bases de datos DBA (DataBase Administrator). Funciones.
+- Lenguaje estándar de consulta SQL.
+- Instalación y configuración de un SGBD. Configuración de Parámetros relevantes.
+- Integración del SGBD en el sistema operativo: sistema de ficheros, control de usuarios…
+- Instalación de un SGBD de dos capas.
+- Relación entre el SGBD y la Base de Datos (BD): instancias de BD.
+- Estructura del diccionario de datos.
+- Ficheros LOG.
+- Arquitectura del SGBD: archivos en disco, espacios de memoria, procesos.
+** Acceso a la información
+- Tipos de objetos de la BD.
+- Creación, modificación y eliminación de vistas.
+- Operaciones DML sobre vistas.
+- Creación, modificación y eliminación de usuarios.
+- Asignación y retirada de permisos a usuarios. Puntos de acceso al sistema.
+- Paquetes de permisos: los roles. Creación y eliminación. Asignación y retirada de permisos a roles. Asignación y retirada de roles a usuarios.
+- Normativa legal vigente sobre protección de datos.
+- Límites en el SGBD: los perfiles. Creación. Asignación y retirada de límites a usuarios.
+** Automatización de tareas: construcción de guiones de administración
+- Herramientas para la creación de guiones; procedimientos de ejecución.
+- Planificación de tareas administrativas mediante guiones.
+- Eventos del sistema: arranque/parada de la BD, conexión/desconexión de usuarios, creación de objetos.
+- Disparadores: sobre tablas, sobre vistas, asociados a eventos del sistema.
+- Excepciones.
+- Generación de consultas dinámicas.
+** Optimización del rendimiento: monitorización y optimización
+- Herramientas de monitorización disponibles en el sistema gestor.
+- Elementos y parámetros susceptibles de ser monitorizados.
+- Optimización:
+ + Espacio de almacenamiento.
+ + Procesos.
+ + Uso de memoria.
+- Optimización de consultas: plan de ejecución.
+- Herramientas y sentencias para la gestión de índices.
+- Herramientas para la creación de alertas de rendimiento.
+** Operaciones de mantenimiento y recuperación de errores
+- Arranque y parada de la BD.
+- Copias de seguridad:
+ + Lógicas vs. físicas.
+ + En frío vs. en caliente.
+ + Totales, incrementales, acumulativas.
+- Herramientas gráficas y utilidades proporcionadas por el sistema gestor para la realización de copias de seguridad.
+- Sentencias para la realización y recuperación de copias de seguridad.
+- Recuperación de la BD a partir de copias de seguridad.
+- Recuperación de archivos de configuración y datos dañados.
+- Tareas de actualización y migración de la BD.
+** Aplicación de criterios de disponibilidad a bases de datos distribuidas y replicadas
+- Bases de datos distribuidas: objetivo.
+- Tipos de SGBD distribuidos.
+- Componentes de un SGBD distribuido.
+- Técnicas de fragmentación.
+- Técnicas de asignación.
+- Consultas distribuidas.
+- Transacciones distribuidas.
+- Optimización de consultas sobre bases de datos distribuidas.
+- Replicación.
+- Configuración del «nodo maestro» y los «nodos esclavos».
+** Protección de datos y confidencialidad
+- Legislación vigente en materia de protección de datos.
+- Monitorización de la actividad de los usuarios del SGBD. Auditoría: sesiones, sentencias, objetos…
+- Cifrado de datos y de comunicaciones.
+
+
+* Criterios de evaluación
+
+** Implanta sistemas gestores de bases de datos analizando sus características y ajustándose a los requerimientos del sistema.
+- Se ha reconocido la utilidad y función de cada uno de los elementos de un sistema gestor de bases de datos.
+- Se han analizado las características de los principales sistemas gestores de bases de datos.
+- Se ha seleccionado el sistema gestor de bases de datos.
+- Se ha identificado el software necesario para llevar a cabo la instalación.
+- Se ha verificado el cumplimiento de los requisitos hardware.
+- Se han instalado sistemas gestores de bases de datos.
+- Se ha documentado el proceso de instalación.
+- Se ha interpretado la información suministrada por los mensajes de error y ficheros de registro.
+- Se han resuelto las incidencias de la instalación.
+- Se ha verificado el funcionamiento del sistema gestor de bases de datos.
+
+
+** Configura el sistema gestor de bases de datos interpretando las especificaciones técnicas y los requisitos de explotación.
+
+- Se han descrito las condiciones de inicio y parada del sistema gestor.
+- Se ha seleccionado el motor de base de datos.
+- Se han asegurado las cuentas de administración.
+- Se han configurado las herramientas y software cliente del sistema gestor.
+- Se ha configurado la conectividad en red del sistema gestor.
+- Se han definido las características por defecto de las bases de datos.
+- Se han definido los parámetros relativos a las conexiones (tiempos de espera,número máximo de conexiones, entre otros).
+- Se ha documentado el proceso de configuración.
+ 
+** Implanta métodos de control de acceso utilizando asistentes, herramientas gráficas y comandos del lenguaje del sistema gestor.
+
+- Se han creado vistas personalizadas para cada tipo de usuario.
+- Se han creado sinónimos de tablas y vistas.
+- Se han definido y eliminado cuentas de usuario.
+- Se han identificado los privilegios sobre las bases de datos y sus elementos.
+- Se han agrupado y desagrupado privilegios.
+- Se han asignado y eliminado privilegios a usuarios.
+- Se han asignado y eliminado grupos de privilegios a usuarios.
+- Se ha garantizando el cumplimiento de los requisitos de seguridad.
+** Automatiza tareas de administración del gestor describiéndolas y utilizando guiones de sentencias.
+
+- Se ha reconocido la importancia de automatizar tareas administrativas.
+- Se han descrito los distintos métodos de ejecución de guiones.
+- Se han identificado las herramientas disponibles para redactar guiones.
+- Se han definido y utilizado guiones para automatizar tareas.
+- Se han identificado los eventos susceptibles de activar disparadores.
+- Se han definido disparadores.
+- Se han utilizado estructuras de control de flujo.
+- Se han adoptado medidas para mantener la integridad y consistencia de la información.
+** Optimiza el rendimiento del sistema aplicando técnicas de monitorización y realizando adaptaciones.
+- Se han identificado las herramientas de monitorización disponibles para el sistema gestor.
+- Se han descrito las ventajas e inconvenientes de la creación de índices.
+- Se han creado índices en tablas y vistas.
+- Se ha optimizado la estructura de la base de datos.
+- Se han optimizado los recursos del sistema gestor.
+- Se ha obtenido información sobre el rendimiento de las consultas para su optimización.
+- Se han programado alertas de rendimiento.
+- Se han realizado modificaciones en la configuración del sistema operativo para mejorar el rendimiento del gestor.
+** Aplica criterios de disponibilidad analizándolos y ajustando la configuración del sistema gestor.
+- Se ha reconocido la utilidad de las bases de datos distribuidas.
+- Se han descrito las distintas políticas de fragmentación de la información.
+- Se ha implantado una base de datos distribuida homogénea.
+- Se ha creado una base de datos distribuida mediante la integración de un conjunto de bases de datos preexistentes.
+- Se ha configurado un «nodo» maestro y varios «esclavos» para llevar a cabo la replicación del primero.
+- Se ha configurado un sistema de replicación en cadena.
+- Se ha comprobado el efecto de la parada de determinados nodos sobre los sistemas distribuidos y replicados.
+
+* Contenidos básicos
+- Incluídos solo como referencia
+- No son aplicables en la Comunidad de Madrid
+- Real Decreto 1629/2009, de 30 de octubre
+
+** Instalación y configuración de un sistema gestor de base de datos:
+-  Funciones del sistema gestor de base de datos (SGBD). Componentes. Tipos.
+-  Arquitectura del sistema gestor de base de datos. Arquitectura ANSI/SPARC.
+-  Sistemas gestores de base de datos comerciales y libres.
+-  Instalación y configuración de un SGBD. Parámetros relevantes.
+-  Instalación de un SGBD de dos capas.
+-  Configuración de los parámetros relevantes.
+-  Estructura del diccionario de datos.
+-  Ficheros LOG.
+** Acceso a la información:
+-  Creación, modificación y eliminación de vistas.
+-  Creación y eliminación de usuarios.
+-  Asignación y desasignación de derechos a usuarios. Puntos de acceso al sistema.
+-  Definición de roles. Asignación y desasignación de roles a usuarios.
+-  Normativa legal vigente sobre protección de datos.
+** Automatización de tareas: construcción de guiones de administración:
+-  Herramientas para creación de guiones; procedimientos de ejecución.
+-  Planificación de tareas de administración mediante guiones.
+-  Eventos.
+-  Disparadores.
+-  Excepciones.
+-  Herramientas de monitorización disponibles en el sistema gestor.
+-  Elementos y parámetros susceptibles de ser monitorizados.
+-  Optimización.
+-  Herramientas y sentencias para la gestión de índices.
+-  Herramientas para la creación de alertas de rendimiento.
+** Aplicación de criterios de disponibilidad a bases de datos distribuidas y replicadas:
+-  Bases de datos distribuidas.
+-  Tipos de SGBD distribuidos.
+-  Componentes de un SGBD distribuido.
+
+** Optimización del rendimiento: monitorización y optimización:
+-  Técnicas de fragmentación.
+-  Técnicas de asignación.
+-  Consulta distribuida.
+-  Transacciones distribuidas.
+-  Optimización de consultas sobre bases de datos distribuidas.
+-  Replicación.
+-  Configuración del «nodo maestro» y los «nodos esclavos».
+
+* Orientaciones pedagógicas.                   :noexport:
+
+
+Este módulo profesional contiene la formación necesaria para desempeñar la función de conectar ordenadores, dispositivos y electrónica de red en una red de área local. La definición de estas funciones incluye aspectos como:
+−  El diseño de la estructura de una red local, identificando los elementos que deben integrarla.
+−  El conexionado y configuración de los elementos de la red local.
+−  La monitorización de la red local.
+−  La resolución de incidencias físicas y lógicas de la red local.
+−  La creación de redes virtuales.
+−  La conexión de la red local a una red de área extensa.
+
+
+* Referencias
+#+include: "../../../common/footer.org"

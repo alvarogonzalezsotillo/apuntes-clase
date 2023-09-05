@@ -1,0 +1,119 @@
+\input{../../../common/plantilla-ejercicio.tex}
+
+\renewcommand{\hmwkTitle}{Análisis de tráfico con \textbf{Wireshark}}
+
+\renewcommand{\hmwkClass}{Plan. y Admin. de Redes}
+
+
+\begin{document}
+
+\primerapagina
+
+
+\section{Objetivos de la práctica}
+En esta práctica se espera que el alumno se familiarice con:
+\begin{itemize}
+\item La encapsulación de los protocolos de nivel $n$ en los protocolos $n-1$.
+\item Utilización de la herramienta \textbf{Wireshark}, incluidos sus filtros.
+\item Búsqueda autónoma de información en Internet.
+\item La correspondencia entre los niveles ISO/OSI y los protocolos de una red real.
+  
+\end{itemize}
+
+La última versión de este documento está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/1/par-1-trabajo-wireshark.pdf
+}{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/1/par-1-trabajo-wireshark.pdf
+}
+
+\begin{homeworkProblem}[: Protocolos de nivel 2]
+
+  \begin{itemize}
+  \item Monitoriza la red durante uno o dos minutos. 
+  \item Haz una lista de los protocolos de nivel 2 que encuentres.
+    \begin{itemize}
+    \item \small{No hablamos del nivel de enlace ISO/OSI, sino los del segundo nivel según  \textbf{whiresark}}
+    \end{itemize}
+  \item Compara esos protocolos entre sí
+    \begin{itemize}
+    \item ¿A qué nivel del ISO/OSI corresponden?
+    \item ¿Cuáles son más modernos?
+    \item Compara los datos de su cabecera ¿qué informaciones incluye cada uno?
+    \end{itemize}
+  \end{itemize}
+  
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Tramas de \textit{broadcast}]
+
+  Las tramas de \textit{broadcast} son las que tienen la dirección del nivel de enlace \texttt{FF:FF:FF:FF:FF:FF}.
+
+  Monitoriza la red durante uno o dos minutos y determina qué tramas de las recibidas son de \textit{broadcast}. Haz una lista de las pilas de protocolos que viajan sobre tramas de \textit{broadcast}, e incluye al menos 3 pantallazos de estas pilas como ejemplo.
+
+  
+  \begin{adjustwidth}{2cm}{}
+    \small{Una \enlace{https://en.wikipedia.org/wiki/Protocol_stack}{pila de protocolos} es la lista de todos los protocolos, desde el físico hasta el más alto.}
+  \end{adjustwidth}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[¿Qué protocolos viajan sobre el nivel de enlace?]
+  Más de un protocolo puede utilizar el nivel de enlace para enviar sus datos. En esos casos, el nivel de enlace debe apuntar a qué protocolo se le entregarán los datos en el ordenador de destino.
+  \begin{adjustwidth}{2cm}{}
+  \small{No hablamos del segundo nivel en \textbf{wireshark}, sido del nivel de enlace en ISO/OSI}
+  \end{adjustwidth}
+  
+  Captura el tráfico de la red durante uno o dos minutos. Haz una lista de los protocolos que viajen sobre los niveles de enlace que encuentres, y crea una tabla con el nombre de protocolo y su código. Como ejemplo:
+  \begin{itemize}
+  \item Hay tramas \textit{Ethernet} que llevan \textit{IP} (\texttt{0x0800}). Hay que apuntar \textit{IP}.
+  \item Pero no apuntes el \textit{Transmission Control  Protocol}, porque no va directamente sobre el nivel de enlace (\textit{Ethernet II}) sino dentro de un nivel de red (\textit{IP})
+  \end{itemize}
+  % https://en.wikipedia.org/wiki/Logical_link_control
+% https://en.wikipedia.org/wiki/IEEE_802.2#LSAP_values
+\end{homeworkProblem}
+
+% \begin{homeworkProblem}[ (Opcional): Haz una redacción alternativa del ejercicio anterior]
+% El ejercicio anterior es algo confuso. Redacta un enunciado alternativo que te parezca más claro, para que los alumnos de futuros cursos lo entiendan mejor.
+% \end{homeworkProblem}
+
+\clearpage
+\section{Qué se valorará}
+
+\begin{itemize}
+\item La corrección técnica 
+\item Que esté correctamente redactado (ortografía, gramática)
+\item La apariencia profesional:
+  \begin{itemize}
+  \item Estética
+  \item Organización
+  \item Homogeneidad de formatos y estilos
+  \end{itemize}
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \item En este caso, todos los integrantes del grupo deben subir el trabajo al aula virtual, y el trabajo debe especificar todos sus autores.
+  \end{itemize}
+
+\item Los trabajos pueden entregarse:
+  \begin{itemize}
+  \item En formato \textbf{DOC} o \textbf{DOCX}.
+  \item En formato \textbf{ODT}.
+  \item En formato \textbf{PDF}. 
+  \item Como una entrada en un \textbf{blog} 
+
+  \end{itemize}
+  
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}  
+
+
+\begin{comment}
+\url{https://networkengineering.stackexchange.com/questions/5300/what-is-the-difference-between-ethernet-ii-and-802-3-ethernet}
+\url{https://en.wikipedia.org/wiki/IEEE_802.3}
+\end{comment}
+
+
+\end{document}

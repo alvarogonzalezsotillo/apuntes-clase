@@ -1,0 +1,144 @@
+#+include: ../../../common/header.org
+
+
+
+#+title: Conexión inicial a un switch =2960SF=
+#+subtitle: Configuración de la SVI de un switch para su gestión remota mediante =ssh=
+
+#+latex: \setlength{\parskip}{1em}
+#+latex: \setlength{\parindent}{0em}
+
+* Conectar con puerto serie (=console=)
+Hay dos puertos de consola
+- Un puerto miniusb, que no utilizaremos
+- Un puerto serie con interfaz física RJ45
+
+#+attr_latex: :width 0.2\textwidth
+[[file:puerto-consola-cisco.jpg]]  
+
+Utilizaremos un cable USB-RJ45, que incluye la electrónica necesaria para simular un puerto serie via USB.
+
+#+attr_latex: :width 0.3\textwidth
+[[file:cable-usb-rj45.jpg]]
+
+El programa que utilizaremos será putty (desde Windows) o screen (desde Linux)
+
+** Desde Linux
+    El puerto serie será seguramente =/dev/ttyUSB0=
+    #+begin_src bash
+sudo screen /dev/ttyUSB0
+    #+end_src
+
+** Desde Windows
+   Comprobaremos primero si el /driver/ del puerto serie está instalado, y cuál es el nombre del puerto serie, en el *Administrador de dispositivos*
+
+   #+attr_latex: :width 0.4\textwidth
+   [[file:puerto-serie-en-windows.png]]
+
+   Utilizaremos ese puerto serie (por ejemplo =COM3=) en la conexión con *putty*. Se usarán 115200 baudios, 8 bits de datos, 1 de parada, sin paridad ni control de flujo.
+
+   #+attr_latex: :width 0.4\textwidth
+   [[file:configuracion-puerto-serie-putty.png]]
+   
+* Proteger la configuración del switch
+
+*No utilizaremos el asistente de configuración inicial.*
+
+#+begin_src Lisp
+Would you like to enter the initial configuration dialog? [yes/no]: no
+#+end_src
+
+Configuraremos una contraseña para pasar a modo privilegiado (el que se activa con =enable=). Se usará la contraseña =enablep=
+
+#+BEGIN_SRC lisp
+enable secret enablep
+#+END_SRC
+
+* Identificación del switch
+Cambiaremos el nombre interno del switch, su clave RSA de =ssh= y crearemos usuarios.
+
+El nombre será el nombre de la pegatina identificativa, separando las palabras con un guión =-=.
+
+La clave RSA tendrá 1024 bits de longitud.
+
+#+BEGIN_SRC lisp
+# PULSAREMOS INTRO UN PAR DE VECES PARA QUE SALGA EL PROMPT
+Switch#configure terminal 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname switch-1-puesto-4
+switch-1-puesto-4(config)#ip domain-name avellaneda
+switch-1-puesto-4(config)#crypto key generate rsa
+The name for the keys will be: switch-1-puesto-4.avellaneda
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...
+#+END_SRC
+
+
+
+* Dirección IP del Switch
+Los switches no necesitan dirección IP para su trabajo, pero sí para ser gestionados.
+
+La dirección IP a asignar será =172.31.PP.SS/16=, donde =PP= es el número de puesto y =SS= el número de switch.
+
+Se asigna la dirección a una interfaz virtual en la VLAN 1, que inicialmente agrupa a todos los puertos del switch.
+
+
+#+BEGIN_SRC lisp
+interface Vlan1
+no shutdown
+ip address 172.31.4.1 255.255.0.0
+#+END_SRC
+
+* Acceso SSH
+Crearemos un usuario SSH con privilegio alto, para tener acceso directo al modo privilegiado y habilitaremos la entrada por todas las VTY
+
+#+BEGIN_SRC lisp
+username alumno privilege 15 secret alumno
+line vty 0 15
+login local
+#+END_SRC
+* Acceso HTTP
+Aunque no sea muy operativo (necesita Java habilitado en el navegador), activaremos el acceso HTTP. Los usuarios y contraseñas son los mismos que para SSH.
+
+#+begin_src lisp
+ip http server
+ip http authentication local
+#+end_src
+
+
+* Comprobación 
+- Desconectaremos el cable de puerto serie, y conectaremos el ordenador con el switch con un cable de red.
+- Configuraremos la dirección de red del ordenador para que esté en la misma red que la dirección IP del switch.
+- Nos conectaremos al switch mediante el protocolo SSH, y comprobaremos que podemos acceder al modo privilegiado y la configuración.
+- También nos conectaremos mediante HTTP.  
+
+* Finalización de la práctica
+En un caso real, la configuración del switch debería hacerse permanente con =copy running-config startup-config=. En nuestro caso, dejaremos la configuración sin guardar para que *el switch esté disponible para el siguiente compañero* que lo utilice.
+
+En el caso de que el switch no tenga la configuración de fábrica:
+- Reiniciar el switch con el cable de consola conectado
+- Pulsar el botón =mode= del frontal del switch antes de 15 segundos
+- Ejecutar el comando =flash_init= y =boot=
+  
+#+begin_src lisp
+Using driver version 3 for media type 1
+Base ethernet MAC Address: 40:a6:e8:ab:fa:80
+Xmodem file system is available.
+The password-recovery mechanism is enabled.
+
+The system has been interrupted prior to initializing the
+flash filesystem.  The following commands will initialize
+the flash filesystem, and finish loading the operating 
+system software:
+
+    flash_init
+    boot
+
+
+switch: flash_init
+Initializing Flash...
+#+end_src

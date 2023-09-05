@@ -1,0 +1,221 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
+\renewcommand{\hmwkTitle}{Práctica de conexiones TCP}
+
+
+
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\section{Objetivo de la práctica}
+Los objetivos  de la práctica son:
+\begin{itemize}
+\item Familiarizarse con los conceptos de puerto y conexión
+\item Implementar NAT
+\item Exponer servicios a través de un NAT
+\end{itemize}
+
+
+La última versión de esta práctica está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/6/par-6-practica-nat.pdf}{este enlace}.
+
+
+\section{Preparación del entorno}
+\begin{itemize}
+\item  \textbf{A}: Máquina virtual Linux (recomendado Debian)
+  \begin{itemize}
+  \item No necesita mucha memoria (256 MBytes)
+    
+  \item Tendrá una tarjeta de red \textit{bridged} con la dirección \texttt{192.168.255.N/24} (siendo \texttt{N} tu número de ordenador apuntada en  \url{http://bit.ly/2sji9gQ}.
+  \item Tendrá una tarjeta de red \textit{bridged} con una IP en la red del aula, para la comunicación con Internet, en modo DHCP.
+  \item Tendrá una tarjeta de red \textit{internal}, con una dirección privada clase B.
+
+  \end{itemize}
+
+
+
+\item \textbf{B}: Máquina virtual Windows, versión \textit{profesional}, \textit{ultimate} o equivalente.
+  \begin{itemize}
+  \item  No necesita mucha memoria (256 MBytes)
+  \item Tendrá una tarjeta de red \textit{internal} , con una dirección privada clase B
+  \end{itemize}
+\item \textbf{C}: Máquina virtual Linux
+  \begin{itemize}
+  \item No necesita mucha memoria (256 MBytes)
+  \item Tendrá una tarjeta de red \textit{internal}, con una dirección privada clase B
+  \end{itemize}
+  
+\item  La máquina \textbf{A}, \textbf{B} y \textbf{C} deben poder conectarse a nivel IP por sus tarjetas \textit{internal}. \textbf{A} es el router por defecto de \textbf{B} y \textbf{C}.
+\end{itemize}
+
+
+
+\begin{homeworkProblem}[: Activa el NAT en la máquina A (2 puntos)]
+  \begin{itemize}
+  \item Activa el flag de enrutamiento de Linux en \textbf{A}
+  \item Desactiva NAT. Recuerda volver a desactivarlo y comenzar de cero cada vez que realices una prueba.
+    \begin{comment}
+      iptables -t nat –F
+    \end{comment}
+  \item Activa NAT. Puedes usar, entre otras, las instrucciones de \enlace{http://albertomolina.wordpress.com/2009/01/09/nat-con-iptables/}{albertomolina}, apartado \textit{Source NAT}
+  \item Comprueba que las máquinas \textbf{B} y \textbf{C} pueden acceder a internet, con \textbf{pathping} o similar.
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Conéctate a B por medio de escritorio remoto, desde tu PC físico (1 punto)]
+  \begin{itemize}
+    
+  \item Busca qué puerto utiliza el protocolo RDP y ábrelo (\enlace{http://albertomolina.wordpress.com/2009/01/09/nat-con-iptables/}{albertomolina}, apartado prerouting)
+  \item Activa el escritorio remoto en \textbf{B} (Propiedades del sistema $\rightarrow$ Remoto $\rightarrow$ Permitir escritorio remoto)
+    
+  \item Habilita algún usuario para que pueda conectarse por medio de escritorio remoto
+  \item Conéctate desde tu PC físico con la orden \texttt{mstsc} en  Windows (o \texttt{rdesktop}/\texttt{remmina} si el ordenador físico tiene Linux)
+  \end{itemize}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Conéctate a B desde el equipo B de otro compañero (1 punto)]
+  Necesitarás repetir los pasos anteriores, pero para otra tarjeta de red (la de dirección \texttt{192.168.255.N}).
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Convierte a B en un servidor de ficheros (carpetas compartidas) ]
+  \begin{itemize}
+  \item Abre los puertos necesarios en \textbf{A} para que pueda accederse a \textbf{B} como servidor de ficheros (\enlace{http://www.chicagotech.net/netforums/viewtopic.php?t=5067}{ayuda}).
+  \item Debe poder accederse desde cualquier red externa.
+  \item  Los puertos TCP se indican con el flag \texttt{-p tcp}. Los puertos UDP se indican con el flag \texttt{-p udp}.
+    
+  \item Comparte alguna carpeta en B. Recuerda que en Windows
+    \begin{itemize}
+    \item Es mejor desactivar “Utilizar el uso compartido simple de archivos”
+    \item El usuario que se utiliza para acceder remotamente debe tener contraseña
+    \end{itemize}
+
+  \end{itemize}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Haz que A y C puedan ser administrados mediante SSH desde la red del aula ]
+  \begin{itemize}
+  \item Instala openssh-server en los dos ordenadores, si no está ya instalado.
+  \item Abre los puertos necesarios para llegar a \textbf{C} por SSH desde la red del aula.
+    
+  \item Debe ser posible, desde la red del aula y la \texttt{192.168.255.N/24}, conectarse simultáneamente a \textbf{A} y \textbf{C} por SSH.
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Comprueba el NAT con \texttt{tcpdump} ]
+  \begin{itemize}
+  \item Abre dos consolas en la máquina \textbf{A}. Utiliza \texttt{tcpdump} para ver en una consola los paquetes ICMP enviados y recibidos (\enlace{https://forum.ivorde.com/tcpdump-how-to-to-capture-only-icmp-ping-echo-requests-t15191.html}{forum.ivorde.com}) por la tarjeta conectada a internet. En la otra consola, visualiza los paquetes ICMP de la tarjeta de red interna.
+    \begin{itemize}
+    \item También puede usarse \texttt{WireShark}
+    \end{itemize}
+  \item Ejecuta un \texttt{ping} a internet desde la máquina \textbf{B}.
+  \item Comprueba que la máquina \textbf{A}, además de enrutar, está cambiado las direcciones IP de origen y destino.
+  \end{itemize}
+\end{homeworkProblem}
+
+
+\section{Normas de entrega}
+\begin{itemize}
+\item Avisa al profesor para que compruebe el funcionamiento de cada ejercicio 
+\item Se entregará una memoria con el formato acostumbrado. No es necesario explicar cada paso (en modo tutorial), solo demostrar que se han realizado las tareas.
+\item La memoria incluirá
+
+  \begin{itemize}
+  \item Un esquema de la red 
+  \item Las órdenes realizadas en el servidor Linux para conseguir realizar el NAT correctamente.
+  \item Pantallazos que demuestren que se han realizado las tareas pedidas
+  \item
+    \begin{small}
+      Nota: Las órdenes que manejan NAT en Linux deben comenzar siempre desde la primera. Se recomienda hacer un script SH para las órdenes.
+    \end{small}
+    
+  \end{itemize}
+
+\end{itemize}
+
+
+\begin{comment}
+#!/bin/bash
+
+INTERNET=eth0
+ALUMNOS=eth2
+INTERNA=eth1
+
+SERVIDORWINDOWS=172.16.0.1
+LINUXINTERNO=172.16.0.2
+
+
+# ACTIVA ENRUTAMIENTO
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+
+# LIMPIAR TABLAS
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
+
+# NAT POR TARJETA CON INTERNET enp0s3
+iptables -t nat -A POSTROUTING -o $INTERNET -j MASQUERADE
+
+# NAT POR TARJETA ENTRE ALUMNOS
+iptables -t nat -A POSTROUTING -o $ALUMNOS -j MASQUERADE
+
+# ABRIR 3389 A SERVIDORWINDOWS
+iptables -t nat -A PREROUTING -p tcp -i $INTERNET --dport 3389 -j DNAT --to $SERVIDORWINDOWS:3389
+iptables -t nat -A PREROUTING -p tcp -i $ALUMNOS --dport 3389 -j DNAT --to $SERVIDORWINDOWS:3389
+
+# ABRIR 222 A LINUXINTERNO
+iptables -t nat -A PREROUTING -p tcp -i $INTERNET --dport 222 -j DNAT --to $LINUXINTERNO:22
+iptables -t nat -A PREROUTING -p tcp -i $ALUMNOS --dport 222 -j DNAT --to $LINUXINTERNO:22
+
+
+# CARPETAS COMPARTIDAS SERVIDOR WINDOWS
+TCPPORTS="139 445"
+UDPPORTS=""
+for PORT in $TCPPORTS
+do
+    iptables -t nat -A PREROUTING -p tcp --dport $PORT -i $INTERNET -j DNAT --to $SERVIDORWINDOWS:$PORT
+    iptables -t nat -A PREROUTING -p tcp --dport $PORT -i $ALUMNOS -j DNAT --to $SERVIDORWINDOWS:$PORT
+done
+for PORT in $UDPPORTS
+do
+    iptables -t nat -A PREROUTING -p udp --dport $PORT -i $INTERNET -j DNAT --to $SERVIDORWINDOWS:$PORT
+    iptables -t nat -A PREROUTING -p udp --dport $PORT -i $ALUMNOS -j DNAT --to $SERVIDORWINDOWS:$PORT
+done
+
+
+# COMO QUEDAN LAS TABLAS
+iptables-save
+
+# VIGILAR EL PING PARA VER EL NAT
+tcpdump -v -v -n -i $INTERNA icmp&
+tcpdump -v -v -n -i $INTERNET icmp&
+
+
+\end{comment}
+
+\end{document}

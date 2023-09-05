@@ -1,0 +1,418 @@
+<html>
+
+    <head>
+        
+        <meta charset="utf-8"> 
+
+        <script type="text/javascript" src="js/jquery-1.10.2.js">
+        </script>
+
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.js">
+        </script>
+
+        <script type="text/javascript" src="js/colapsable.js">
+        </script>
+
+        <script type="text/javascript" src="js/explicacion.js">
+        </script>
+
+        <script type="text/javascript" src="js/autocreacion.js">
+        </script>
+
+        
+        <link href="css/calculo-notas.css"rel="stylesheet" />
+		<link href="css/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet" />
+        
+        <script type="text/javascript">
+            
+            var porcentajeExamenes = .65;
+            var porcentajeTrabajos = .30;
+            var porcentajeActitud = .05;
+            
+            
+		
+
+            function aseguraNumeroEvaluaciones(numero){
+                var evElement = $(".evaluacion").first();
+                var parent = evElement.parent();
+                for( var i = 0 ; i < numero-1 ; i++ ){
+                    parent.append( evElement.clone() ); 
+                }
+            }
+            
+            function convertirExplicaciones(){
+                
+                function tantoPorUnoACadena(tpu){
+                    var porcentaje = Math.floor(tpu*100);
+                    return porcentaje + "%";
+                }
+                
+                var examenes = tantoPorUnoACadena(porcentajeExamenes);
+                var trabajos = tantoPorUnoACadena(porcentajeTrabajos);
+                var actitud = tantoPorUnoACadena(porcentajeActitud);
+                
+                var explicacionModulo = "La nota del módulo es la media de las notas de las evaluaciones, redondeada. " +
+                    "Si alguna evaluación puntua por debajo de 5, la nota máxima será un 4.";
+
+                var explicacionEvaluacion = "La nota de la evaluación se calcula a partir de las notas de los " +
+                    "exámenes, trabajos y actitud. Es una suma poderada en la que los exámenes cuentan un " + examenes +
+                    " los trabajos un " + trabajos + " y la actitud un " + actitud;
+
+                var explicacionExamenes = "Si se tiene más de un 3,5 en cada parcial, se calcula su media. " +
+                            "La nota será la media de los parciales o la del final, la que sea mayor. " +
+                            "Si se suspendiera la evaluación, en Junio habría una recuperación de la parte de exámenes de la nota. " +
+                            "(Los trabajos podrían recuperarse volviendo a entregarlos con los fallos corregidos). ";
+
+                var explicacionTrabajos = "En cada evaluación habrá una cantidad variable de trabajos (al menos uno). La nota de los trabajos será la " +
+                        "media de las notas obtenidas. " +
+                        "Para recuperar un trabajo, se deberá entregar de nuevo con los errores corregidos. Se avisará al profesor " +
+                        "de qué trabajos se han reenviado el día del examen final de la evaluación. Un trabajo entregado tarde, o un " +
+                        "trabajo reenviado para recuperar nota, puede obtener como máximo un 6 de puntuación.";
+
+                var explicacionActitud = "La actitud se determina por la proactividad y ganas de trabajar que demuestra un alumno en clase." +
+                            "La nota de actitud se calcula, en su mayor medida, por las veces que el alumno se presenta voluntario para " +
+                            "resolver problemas en la pizarra, por las faltas de asistencia no justificadas y por la colaboración que "+
+                            "demuestre con otros compañeros";
+
+
+                
+
+                Explicacion.convertirEnExplicacion(".explicacion-examenes",explicacionExamenes);
+                Explicacion.convertirEnExplicacion(".explicacion-trabajos",explicacionTrabajos);
+                Explicacion.convertirEnExplicacion(".explicacion-actitud",explicacionActitud);
+                Explicacion.convertirEnExplicacion(".explicacion-evaluacion",explicacionEvaluacion);
+                Explicacion.convertirEnExplicacion(".explicacion-modulo",explicacionModulo);
+            }
+            
+    		function ajustaCampoNota( jqueryInput ){
+    			var inputPattern = "((10)|(([0-9])(\\.[0-9]*)?)|(\\.[0-9]*))"
+
+				jqueryInput.prop("pattern",inputPattern).
+				            prop("min","0").
+						    prop("max","10").
+						    prop("step",".1");
+			}
+            
+            function registraCalculadorNotaEvaluaciones(){
+
+                function calculaNotaEvaluacion(evaluacion){
+                    var elems = [".evaluacion-examenes",".evaluacion-trabajos",".evaluacion-actitud"];
+                    var percentage = [porcentajeExamenes,porcentajeTrabajos,porcentajeActitud];
+                    var suma = 0;
+                    for( i in elems ){
+                        var id = elems[i];
+                        var val = $(id,$(evaluacion)).val();
+                        var v = parseFloat( val ) || 0;
+                        suma = suma + v*percentage[i];
+                    }
+                    $(".evaluacion-total",evaluacion ).val(suma).change();
+                }
+
+                var listener = function(event){
+                    var evaluacion = $(event.currentTarget).parents(".evaluacion").first();
+                    calculaNotaEvaluacion(evaluacion);
+                };
+                
+                $(".evaluacion-examenes").change(listener);
+                $(".evaluacion-trabajos").change(listener);
+                $(".evaluacion-actitud").change(listener);
+            }
+
+            function registraCalculadorNotaModulo(){
+            
+                function calculaNotaModulo(){
+                    var evaluaciones = $(".evaluacion-total");
+                    var numero = evaluaciones.size();
+                    var suma = 0;
+                    var aprobadasTodas = true;
+                    evaluaciones.each( function(number,elem){
+                        var v = parseFloat( $(elem).val() ) || 0;
+                        if( v < 5 ){
+                            aprobadasTodas = false;
+                        }
+                        suma += v;
+                    });
+                    var notaModulo = suma/numero;
+                    if( !aprobadasTodas ){
+                        notaModulo = Math.min(4,notaModulo);
+                    }
+                    $(".modulo-total").val(notaModulo);
+                }
+
+                $(".evaluacion-total").change(calculaNotaModulo);
+            }
+            
+            
+
+            function calculaNotaTrabajos(trabajos){
+
+                var notaEvaluacionTrabajos = $(".evaluacion-trabajos",trabajos);
+                var notasTrabajos = $(".nota-trabajo",trabajos); 
+                var cantidad = notasTrabajos.length;
+                var suma = 0;
+                notasTrabajos.each( function(number,element){
+                    var v = parseFloat(element.value);  
+                    v = isNaN(v) ? 0 : v;
+                    suma = suma + v;
+                });
+                var nota = suma/(Math.max(cantidad-1,1));
+
+                notaEvaluacionTrabajos.val(nota).change();
+            }
+                
+            
+            
+            function registraCalculadorNotaExamenes(){
+                
+                function _registraCalculadorExamenes( number, elem ){
+                    var context = $(elem);
+                    function _calculadorExamenes(){
+                        var total = $(".evaluacion-examenes",context);
+                        var parciales = $(".evaluacion-examenes-parcial",context);
+                        var recuperacion = $(".evaluacion-examenes-recuperacion",context);
+                        var final = $(".evaluacion-examenes-final",context);
+                        
+                        var finalV = parseFloat( final.val() ) || 0;
+                        var recuperacionV = parseFloat( recuperacion.val() ) || 0;
+                        var p1 = parseFloat( parciales.get(0).value ) || 0;
+                        var p2 = parseFloat( parciales.get(1).value ) || 0;
+                        
+                        var mediaP = (p1 + p2)/2;
+                        if( p1 < 3.5 || p2 < 3.5 ){
+                            // LOS PARCIALES PUEDEN APROBAR SI CADA UNO DE ELLOS ES SUPERIOR A 3.5
+                            mediaP = Math.min(mediaP,4);
+                        }
+                        var nota = Math.max(finalV,mediaP);
+
+                        nota = Math.max(nota,recuperacionV);
+
+                        total.val(nota).change();
+                    }
+                    
+                    $(".evaluacion-examenes-parcial",context).change( _calculadorExamenes );
+                    $(".evaluacion-examenes-recuperacion",context).change( _calculadorExamenes );
+                    $(".evaluacion-examenes-final",context).change( _calculadorExamenes );
+                }
+                
+                $(".examenes").each( _registraCalculadorExamenes );
+            }
+            
+            
+
+            
+    
+            function toLog( jq ){
+                var o = $(jq);
+                return o.html() + " -- " + o.prop("class");
+            }
+            
+            function campoTotalDeLlave(llave){
+                var divTotal = $(llave).prev();
+                var input = $("input",divTotal);
+                if( input.size() != 1 ){
+                    throw "Esperaba solo uno:" + toLog(input);
+                }
+                console.log( "campo input:" + toLog(input) );
+                return input.first();
+            }
+                    
+            function ready(){
+
+                function getParameterByName(name) {
+                    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+                    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+                
+                function actualizaCalculados(){
+                    console.log("Actualizando calculados" );
+
+                    var inp = $('input:not(".calculado")');
+                    var inpCalc = $("input.calculado"); 
+                    inp.prop("readonly","");
+                    inpCalc.prop( "readonly", "readonly" );
+                }
+
+                    
+
+                var numeroEvaluaciones = parseInt( getParameterByName("evaluaciones") ) || 3;
+                aseguraNumeroEvaluaciones(numeroEvaluaciones);
+                
+                convertirExplicaciones();
+                
+                ajustaCampoNota( $("input.nota") );
+				
+                registraCalculadorNotaExamenes();
+                registraCalculadorNotaEvaluaciones();
+                registraCalculadorNotaModulo();
+                
+                actualizaCalculados();
+                
+
+                var recalculandoNotas = false;
+                function recalculaNotas(){
+                    if( recalculandoNotas ){
+                        return;
+                    }
+                    try{
+                        recalculandoNotas = true;
+                        var camposPorActualizar = $("input").filter(':not(".trabajo-por-crear *")');                
+                        camposPorActualizar.change();
+                    }
+                    finally{
+                        recalculandoNotas = false;
+                    }
+                }
+                
+                function actualizaTotalCalculado(llave){
+                    llave = $(llave);
+                    var input = campoTotalDeLlave(llave);
+                    if( llave.hasClass( "llave-cerrada" ) ){
+                        input.removeClass( "calculado" );
+                    }
+                    else{
+                        input.addClass( "calculado" );
+                    }
+                    
+                    recalculaNotas();
+                    actualizaCalculados();
+                }
+                
+                Colapsable.actualizaLlavesExpandibles();
+                Colapsable.avisaColapsadoExpandido( function(llave){
+                    actualizaTotalCalculado(llave);
+                });
+
+                
+                function actualizaAutocreacionesDeTrabajos(){
+
+                    var templateElem = $(".trabajo").first();
+                    var fieldSelector = "input.nota";
+                    var classToRemove = "trabajo-por-crear";
+                    var removeSelector = ".quita-trabajo";
+                    var changeCB = function(){
+                        var t = $(".trabajos");
+                        t.each( function(number,elem){
+                            calculaNotaTrabajos($(elem));
+                        });
+                    }
+                    var creationCB = changeCB;
+                    var removeCB = changeCB;
+
+                    Autocreacion.actualizaAutocreaciones(".trabajo",fieldSelector,classToRemove,removeSelector,creationCB,removeCB,changeCB);
+                }
+                
+                actualizaAutocreacionesDeTrabajos();
+                
+            }
+            
+	
+            
+            $(document).ready(ready);
+            
+
+        </script>
+        
+    </head>        
+
+    <body>
+        
+        <div class="modulo">
+
+            <div class="total">
+                <label>Nota del módulo</label>
+                <div class="explicacion-modulo explicacion">
+                </div>
+                <input class="nota modulo-total" type="number"/>
+            </div>
+
+
+            <div class="calculo-modulo colapsable">
+                <div class="evaluacion">
+
+                    <div class="total">
+                        <label>Nota de la evaluación <span class="autonumerico-evaluacion"></span> </label>
+                        <div class="explicacion-evaluacion explicacion">
+                        </div>
+                        <input class="nota evaluacion-total" type="number"/>
+                    </div>
+
+                    <div class="calculo-total colapsable">
+
+                        <div class="examenes">
+                            <div class="total">
+                                <label>Nota de exámenes</label>
+                                <div class="explicacion-examenes explicacion"></div>
+                                <input class="nota evaluacion-examenes" type="number"/>
+                            </div>
+
+
+                            <div class="calculo-examenes colapsable">    
+
+                                <div class="parcial">
+                                    <label class="estrecho">Parcial 1</label>
+                                    <input class="nota evaluacion-examenes-parcial" type="number"/>
+                                </div>
+
+                                <div class="parcial">
+                                    <label class="estrecho">Parcial 2</label>
+                                    <input class="nota evaluacion-examenes-parcial" type="number"/>
+                                </div>
+
+                                <div class="final">
+                                    <label class="estrecho">Final</label>
+                                    <input class="nota evaluacion-examenes-final" type="number" id="evaluacion1-final"/>
+                                </div>
+
+                                <div class="recuperacion">
+                                    <label class="estrecho">Recuperación</label>
+                                    <input class="nota evaluacion-examenes-recuperacion" type="number"/>
+                                </div>
+                                
+                                <!--div class="nofloat">&nbsp;</div-->
+                            </div>
+
+                        </div>
+
+                        <div class="trabajos">
+
+                            <div class="total">
+                                <label>Nota de trabajos</label>
+                                <div class="explicacion-trabajos explicacion">
+                                </div>    
+                                <input class="nota evaluacion-trabajos" type="number"/>
+                            </div>
+
+                            
+                            <div class="calculo-trabajos colapsable">
+                                <div class="trabajo trabajo-por-crear">
+                                    <label class="estrecho">Trabajo <span class="autonumerico-trabajo"></span></label>
+                                    <input class="nota nota-trabajo" type="number"/>
+                                    <span class="quita-trabajo">Eliminar</span>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="actitud">
+                            <div class="total">
+                                <label>Nota de actitud</label>
+                                <div class="explicacion-actitud explicacion"></div>
+                                <input class="nota evaluacion-actitud" type="number" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        
+    </body>
+
+
+</html>

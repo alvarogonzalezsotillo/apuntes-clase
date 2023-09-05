@@ -1,0 +1,49 @@
+.reveal section img{
+    border: 0px;
+}
+
+.reveal pre code{
+    max-height: none;
+}
+
+.creditos{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+}
+
+.creditos a{
+    font-size: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: gray;
+}
+
+.creditos img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.reveal a{
+    border-bottom: 1px solid black;
+}
+
+.reveal .slide-menu-button a{
+    border-bottom: 0px;
+}
+
+body{
+    background: white;
+    background-color: white;
+}
+
+div.figure, caption.t-bottom{
+    font-size: 0.75em;
+}
+
+.reveal .slide-menu-button {
+  left: 30px;
+  top: 30px !important;
+}

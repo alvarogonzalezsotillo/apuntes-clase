@@ -1,0 +1,109 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Producto cartesiano y JOIN
+
+* Producto cartesiano
+- Es una operación de conjuntos
+- Para calcular $P = A \times B$
+  - Por cada elemento $a \in A$
+    - Por cada elemento $b \in B$
+      - $(a b)$ es un elemento de $P$
+- Ejemplo
+  - $A =$ {Juan, María}
+  - $B =$ {González, Pérez, García}
+  - $P =$ {Juan González, Juan Pérez, Juan García, María González, María Pérez, María García}
+- Se llama /producto/ porque $|P| = |A| \cdot |B|$   
+
+* Tabla orginal
+- Solo un pedido al día
+- No respeta 3FN (=Precio= depende de parte de la clave)
+
+#+caption: VENTAS
+| _Producto_ | Precio | Cantidad | _Fecha pedido_ | _Cliente_ |
+|------------+--------+----------+----------------+-----------|
+| Pera       |      1 |        2 |            1-1 | Pepe      |
+| Manzana    |      2 |        4 |            1-1 | Pepe      |
+| Naranja    |      3 |        3 |            1-1 | María     |
+| Manzana    |      2 |        6 |            1-2 | María     |
+| Pera       |      1 |        5 |            1-2 | Juan      |
+| Naranja    |      3 |        3 |            1-2 | Juan      |
+
+
+* Tablas normalizadas
+
+#+caption: PRODUCTOS
+| _Producto_ | Precio |
+|------------+--------|
+| Pera       |      1 |
+| Manzana    |      2 |
+| Naranja    |      3 |
+
+#+caption: PEDIDOS
+| _Producto_ | Cantidad | _Fecha pedido_ | _Cliente_ |
+|------------+----------+----------------+-----------|
+| Pera       |        2 |            1-1 | Pepe      |
+| Manzana    |        4 |            1-1 | Pepe      |
+| Naranja    |        3 |            1-1 | María     |
+| Manzana    |        6 |            1-2 | María     |
+| Pera       |        5 |            1-2 | Juan      |
+| Naranja    |        3 |            1-2 | Juan      |
+
+* Cómo recuperar información original
+- La tabla original VENTAS puede seguir siendo necesaria para un informe
+- Se puede recuperar con los siguientes pasos:
+  - Se calcula la tabla PRODUCTOS $\times$ PEDIDOS
+  - Quitamos las filas que no respeten la /foreign key/
+
+** PRODUCTOS $\times$ PEDIDOS
+#+html: <font size="-1">
+| PRODUCTO.producto | PRODUCTO.precio | PEDIDOS.producto | PEDIDOS.cantidad | PEDIDOS.Fecha pedido | PEDIDOS.cliente |
+|-------------------+-----------------+------------------+------------------+----------------------+-----------------|
+| *Pera*            |               1 | *Pera*           |                2 |                  1-1 | Pepe            |
+| Pera              |               1 | Manzana          |                4 |                  1-1 | Pepe            |
+| Pera              |               1 | Naranja          |                3 |                  1-1 | María           |
+| Pera              |               1 | Manzana          |                6 |                  1-2 | María           |
+| *Pera*            |               1 | *Pera*           |                5 |                  1-2 | Juan            |
+| Pera              |               1 | Naranja          |                3 |                  1-2 | Juan            |
+| Manzana           |               2 | Pera             |                2 |                  1-1 | Pepe            |
+| *Manzana*         |               2 | *Manzana*        |                4 |                  1-1 | Pepe            |
+| Manzana           |               2 | Naranja          |                3 |                  1-1 | María           |
+| *Manzana*         |               2 | *Manzana*        |                6 |                  1-2 | María           |
+| Manzana           |               2 | Pera             |                5 |                  1-2 | Juan            |
+| Manzana           |               2 | Naranja          |                3 |                  1-2 | Juan            |
+| Naranja           |               3 | Pera             |                2 |                  1-1 | Pepe            |
+| Naranja           |               3 | Manzana          |                4 |                  1-1 | Pepe            |
+| *Naranja*         |               3 | *Naranja*        |                3 |                  1-1 | María           |
+| Naranja           |               3 | Manzana          |                6 |                  1-2 | María           |
+| Naranja           |               3 | Pera             |                5 |                  1-2 | Juan            |
+| *Naranja*         |               3 | *Naranja*        |                3 |                  1-2 | Juan            |
+#+html: </font>
+
+
+** PRODUCTOS $\times$ PEDIDOS, filtrado
+- Nos quedamos solo con las filas =where PRODUCTO.producto = PEDIDOS.producto=
+#+html: <font size="-1">
+| PRODUCTO.producto | PRODUCTO.precio | PEDIDOS.producto | PEDIDOS.cantidad | PEDIDOS.Fecha pedido | PEDIDOS.cliente |
+|-------------------+-----------------+------------------+------------------+----------------------+-----------------|
+| *Pera*            |               1 | *Pera*           |                2 |                  1-1 | Pepe            |
+| *Pera*            |               1 | *Pera*           |                5 |                  1-2 | Juan            |
+| *Manzana*         |               2 | *Manzana*        |                4 |                  1-1 | Pepe            |
+| *Manzana*         |               2 | *Manzana*        |                6 |                  1-2 | María           |
+| *Naranja*         |               3 | *Naranja*        |                3 |                  1-1 | María           |
+| *Naranja*         |               3 | *Naranja*        |                3 |                  1-2 | Juan            |
+#+html: </font>
+
+* Sintaxis SQL
+#+BEGIN_SRC sql
+select 
+  *
+from 
+  PRODUCTOS,PEDIDOS
+where
+  PRODUCTOS.producto = PEDIDOS.producto;
+#+END_SRC
+
+#+BEGIN_SRC sql
+select 
+  *
+from 
+  PRODUCTOS join PEDIDOS on PRODUCTOS.producto = PEDIDOS.producto;
+#+END_SRC

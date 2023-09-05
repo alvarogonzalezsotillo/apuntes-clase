@@ -1,0 +1,233 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Sistemas de numeración
+# #+HTML_HEAD_EXTRA: <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+* El lenguaje de los ordenadores
+
+- Desde el punto de vista del usuario
+  - Interfaces de comandos
+  - Interfaces gráficas
+  - Comandos por voz
+  - Lenguajes de programación
+
+- Pero a bajo nivel
+  - Solo hay números
+
+#+attr_latex: :width 0.5\textwidth
+[[file:media/matrix.png]]
+
+
+* Números
+- Estamos acostrumbrados a un sistema de numeración *decimal*
+  - Tenemos *10* símbolos para los números
+  - cuando llegamos al último, añadimos un acarreo
+
+
+** Contar con otras bases
+
+- ¿Cuántos PIN distintos puede tener una tarjeta bancaria?
+- ¿Cuántos números puedo expresar en un byte?
+- Más difícil: ¿Cuántas matrículas de automóvil hay?
+
+** Binario
+- ¿Cuántos /símbolos/ podemos representar con el voltaje de los circuitos?
+  - La mejor opción es *2*: Sí hay corriente, no hay corriente
+  - Es un sistema *binario*
+
+** Binario
+
+| Decimal | =Binario= | Decimal | =Binario= |
+|---------+-----------+---------+-----------|
+|       0 | =0=       |       8 | =1000=    |
+|       1 | =1=       |       9 | =1001=    |
+|       2 | =10=      |      10 | =1010=    |
+|       3 | =11=      |      11 | =1011=    |
+|       4 | =100=     |      12 | =1100=    |
+|       5 | =101=     |      13 | =1101=    |
+|       6 | =110=     |      14 | =1110=    |
+|       7 | =111=     |      15 | =1111=    |
+
+------
+Intenta completar esta tabla hasta 11111_{(2}
+
+** De binario a decimal 
+- Cada dígito binario tiene el valor de una potencia de 2
+- Se suman sus valores
+
+   
+|   | Dígitos binarios     |   0 |  1 |  0 |  0 | 1 | 1 | 0 |  1 |
+|---+----------------------+-----+----+----+----+---+---+---+----|
+| / |                      |   < |  < |  < |  < | < | < | < | <> |
+|   | Valor de la posición | 128 | 64 | 32 | 16 | 8 | 4 | 2 |  1 |
+|   | Valor en este número |   0 | 64 |  0 |  0 | 8 | 4 | 0 |  1 |
+|---+----------------------+-----+----+----+----+---+---+---+----|
+| / |                      |   < |    |    |    |   |   |   |  > |
+|   | Suma total           |  77 |    |    |    |   |   |   |    |
+#+TBLFM: @6$3=vsum(@4$3..@4$10)
+
+*** Ejercicios
+
+- Calcula el valor decimal de:
+  - 1100101_{(2}
+  - 01101101_{(2}
+  - 100100100_{(2}
+- Ampliación: Haz una hoja excel que permita hacer las cuentas anteriores
+
+** De decimal a binario
+1. Se divide entre 2 el número
+2. Apuntamos el resto
+3. Si el cociente es mayor que 0, volvemos al paso 1
+4. El número en binario son los restos en orden inverso
+
+#+reveal: split
+#+attr_latex: :width 0.5\textwidth
+[[file:media/decimal-a-binario.jpg]]
+
+[[http://www.wikihow.com/Convert-from-Decimal-to-Binary][Créditos: WiKihow]]
+
+
+** Ejercicios
+- Convierte a binario:
+  - 154_{(10}
+  - 104_{(10}
+  - 54_{(10}
+  - 1054_{(10}
+  - 1045_{(10}
+
+
+** Método rápido (restando en vez de dividiendo)
+- Para convertir 185_{(10} a binario:
+  | Por convertir | Potencia de dos | ¿Puedo restar? | Para el siguiente paso |
+  |---------------+-----------------+----------------+------------------------|
+  |           185 |             128 |              1 | 185-128=57             |
+  |            57 |              64 |              0 |                        |
+  |            57 |              32 |              1 | 57-32=25               |
+  |            25 |              16 |              1 | 25-16=9                |
+  |             9 |               8 |              1 | 9-8=1                  |
+  |             1 |               4 |              0 |                        |
+  |             1 |               2 |              0 |                        |
+  |             1 |               1 |              1 |                        |
+- 10111001_{(2}
+
+** Ejercicios
+- Convierte a binario por el método rápido:
+  - 154_{(10}
+  - 104_{(10}
+  - 54_{(10}
+  - 1054_{(10}
+  - 1045_{(10}
+
+
+** Ejercicios
+- Consigue llegar a 1024
+  - https://poweroftwo.nemoidstudio.com/1024
+- Sigue en casa
+  - https://play.google.com/store/apps/details?id=com.tpcstld.twozerogame&hl=es_419 
+
+
+* Otras bases numéricas
+- El número 10 y el número 2 no son más especiales que otros números
+- Los procedimientos descritos para binario valen para otras bases
+
+** Teorema fundamental de la numeración
+- Nuestros sistemas de numeración son posicionales
+  - El /valor/ de un dígito depende de su /posición/
+  - Cada posición tiene un valor multiplicativo de la /base/ elevada a la /posición/
+  $$ (d_n,d_{n-1},...,d_2,d_1,d_0) = \sum_{i=0}^{n} d_i \cdot b^i $$
+- Más en la [[https://es.wikipedia.org/wiki/Sistema_de_numeraci%25C3%25B3n#Teorema_fundamental_de_la_numeraci.C3.B3n][Wikipedia]]
+
+
+** Ejemplo: Base 3
+
+|   | Base                 |    3 |     |     |    |    |    |   |    |
+|---+----------------------+------+-----+-----+----+----+----+---+----|
+|   | Dígitos              |    0 |   1 |   0 |  0 |  1 |  2 | 0 |  1 |
+|---+----------------------+------+-----+-----+----+----+----+---+----|
+| / |                      |    < |   < |   < |  < |  < |  < | < | <> |
+|   | Valor de la posición | 2187 | 729 | 243 | 81 | 27 |  9 | 3 |  1 |
+|   | Valor en este número |    0 | 729 |   0 |  0 | 27 | 18 | 0 |  1 |
+|---+----------------------+------+-----+-----+----+----+----+---+----|
+| / |                      |    < |     |     |    |    |    |   |  > |
+|   | Suma total           |  775 |     |     |    |    |    |   |    |
+#+TBLFM: @4$3=@1$3^7::@4$4=@1$3^6::@4$5=@1$3^5::@4$6=@1$3^4::@4$7=@1$3^3::@4$8=@1$3^2::@4$9=@1$3^1::@4$10=@1$3^0::@5$3=@2*@4::@5$4=@2*@4::@5$5=@2*@4::@5$6=@2*@4::@5$7=@2*@4::@5$8=@2*@4::@5$9=@2*@4::@5$10=@2*@4::@7$3=vsum(@5$3..@5$10)
+
+
+** Ejemplo: Base 5
+
+|   | Base                 |     5 |       |      |     |     |    |   |    |
+|---+----------------------+-------+-------+------+-----+-----+----+---+----|
+|   | Dígitos              |     0 |     0 |    0 |   0 |   1 |  2 | 0 |  1 |
+|---+----------------------+-------+-------+------+-----+-----+----+---+----|
+| / |                      |     < |     < |    < |   < |   < |  < | < | <> |
+|   | Valor de la posición | 78125 | 15625 | 3125 | 625 | 125 | 25 | 5 |  1 |
+|   | Valor en este número |     0 |     0 |    0 |   0 | 125 | 50 | 0 |  1 |
+|---+----------------------+-------+-------+------+-----+-----+----+---+----|
+| / |                      |     < |       |      |     |     |    |   |  > |
+|   | Suma total           |   176 |       |      |     |     |    |   |    |
+#+TBLFM: @4$3=@1$3^7::@4$4=@1$3^6::@4$5=@1$3^5::@4$6=@1$3^4::@4$7=@1$3^3::@4$8=@1$3^2::@4$9=@1$3^1::@4$10=@1$3^0::@5$3=@2*@4::@5$4=@2*@4::@5$5=@2*@4::@5$6=@2*@4::@5$7=@2*@4::@5$8=@2*@4::@5$9=@2*@4::@5$10=@2*@4::@7$3=vsum(@5$3..@5$10)
+
+** Traducción entre bases distintas de 10
+- Para traducir de base A a base B
+  - Traducir de base A a decimal (con el teorema fundamental de la numeración)
+  - Traducir de decimal a base B (con divisiones sucesivas) 
+
+** Bases numéricas utilizadas en informática
+- El binario es cómodo para los circuitos, pero no para las personas
+- A medio camino entre el binario y el decimal, se encuentran:
+  - Números octales (base 8)
+  - Números hexadecimales (base 16)
+
+** Ejercicios
+- Pasa a decimal (Ojo, uno tiene /trampa/):
+  - 10F0_{(16}
+  - 1070_{(8}
+  - ABCDEFG_{(16}
+  - 1080_{(8}
+
+
+** ¿Por qué estas bases? (8, 16)
+- Al ser 16 potencia de 2, puede cambiarse entre estas bases /agrupando/ números
+- Ejemplo: Pasar 1A4_{(16} a binario
+  | 1 | 0001 |
+  | A | 1010 |
+  | 4 | 0100 |
+- Por tanto, 1A4_{(16} es 0001 1010 0100_{(2}
+
+** Resumen de cambios de base
+#+attr_latex: :width 0.5\textwidth
+file:media/cambios-de-base-numerica.svg
+
+** Ejercicios
+
+|   |  Binario | Decimal | Octal | Hexadecimal |
+|---+----------+---------+-------+-------------|
+| / |       <> |      <> |    <> | <>          |
+|   | 10010001 |         |       |             |
+|   |          |     876 |       |             |
+|   |          |         |  2310 |             |
+|   |          |         |       | AF0         |
+|   |      111 |         |       |             |
+|   |          |     999 |       |             |
+|   |          |         |   777 |             |
+|   |          |         |       | FFF         |
+
+#+BEGIN_NOTES
+
+|   |  Binario | Decimal | Octal | Hexadecimal |
+|---+----------+---------+-------+-------------|
+|   | 10010001 |     145 |       |             |
+|   |          |     876 |       |             |
+|   |          |    1224 |  2310 |             |
+|   |          |    2800 |       | AF0         |
+|   |      111 |       7 |       |             |
+|   |          |     999 |       |             |
+|   |          |     511 |   777 |             |
+|   |          |    4095 |       | FFF         |
+
+
+#+END_NOTES
+
+
+* Referencias
+#+include: "../../../common/footer.org"

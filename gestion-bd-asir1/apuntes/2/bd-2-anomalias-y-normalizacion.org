@@ -1,0 +1,314 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Anomalías y formas normales
+
+
+* Introducción
+- El diseño de base de datos es necesario para evitar anomalías
+  - De inserción
+  - De modificación
+  - De borrado
+- Las anomalías hacen el uso de una base de datos
+  - Engorroso
+  - Lento
+  - Propenso a errores
+- A medio plazo, las anomalías hacen /fracasar/ una base de datos
+
+
+* Anomalías
+
+
+** Cambios de la BD (diseño E-R)
+- Desde el punto de vista del diseño E-R, un *cambio* en la base de datos es:
+  - Modificación de atributos de una instancia de entidad
+  - Modificación de atributos de una instancia de interrelación
+  - Creación/borrado de una nueva instancia de entidad
+  - Creación/borrado de una nueva instancia de interrelación
+
+** Cambios de la BD (relaciones)
+- Desde el punto de vista del diseño relacional, un *cambio* en la base de datos es:
+  - Modificación de atributos de una fila
+  - Creación de una fila
+  - Borrado de una fila
+
+** Anomalía
+- Decimos que hay una anomalía cuando *un* cambio en el mundo real implica *más de un* cambio en la base de datos relacional
+  - Anomalía de inserción
+  - Anomalía de borrado
+  - Anomalía de modificación
+
+Nota: el concepto de /cambio en el mundo real/ no es una definición precisa
+
+*** Anomalía de inserción/borrado
+
+| ~Idempleado~ | ~NombreP~      | ~Puesto~       | ~Salario~ | ~Centro~           | ~DirecciónC~ | ~Teléfono~ |
+|--------------+----------------+----------------+-----------+--------------------+--------------+------------|
+| 123A         | Ana Almansa    | Profesor       |    20.000 | Informática        | Complutense  |        123 |
+| 456B         | Bernardo Botín | Administrativo |    15.000 | Matemáticas        | Complutense  |        456 |
+| 789C         | Carlos Crespo  | Catedrático    |    30.000 | CC . Empresariales | Somosaguas   |        789 |
+| 012D         | David Díaz     | Ayudante       |    10.000 | Informática        | Complutense  |        123 |
+
+- ¿Cómo inserto un empleado que aún no tiene centro de trabajo?
+- ¿Cómo inserto un centro de trabajo que aún no tiene empleados?
+
+*** Anomalía de modificación   
+| ~Idempleado~ | ~NombreP~      | ~Puesto~       | ~Salario~ | ~Centro~           | ~DirecciónC~ | ~Teléfono~ |
+|--------------+----------------+----------------+-----------+--------------------+--------------+------------|
+| 123A         | Ana Almansa    | Profesor       |    20.000 | Informática        | Complutense  |        123 |
+| 456B         | Bernardo Botín | Administrativo |    15.000 | Matemáticas        | Complutense  |        456 |
+| 789C         | Carlos Crespo  | Catedrático    |    30.000 | CC . Empresariales | Somosaguas   |        789 |
+| 012D         | David Díaz     | Ayudante       |    10.000 | Informática        | Complutense  |        123 |
+
+- ¿Cómo muevo la facultad de informática a Somosaguas?
+
+
+*** Origen de las anomalías
+- Redundancia de las interrelaciones
+- Mala elección de la clave
+- Mala elección de la cardinalidad de las interrelaciones
+
+
+* Dependencias funcionales  
+- Decimos que un campo B depende funcionalmente de otro A si, al conocer el valor de A, conocemos el valor de B.
+- Las dependencias pueden ser
+  - Solo de un campo a otro campo: =A= \rightarrow =B=
+  - De varios campos a un campo: =(A,B)= \rightarrow =C=
+- Las dependencias se extraen del *significado* de los datos
+  - Sólo el cliente/usuario final conoce dicho significado
+  - El diseñador de bases de datos debe extraer dicho conocimiento y formalizarlo
+
+** Ejemplo
+- Se desea una base de datos que guarde los atributos =(DNI, Nombre, CódigoTienda, DirecciónTienda, Fecha, Turno)=
+- Los empleados tienen un turno, y cada día pueden trabajar en una tienda. 
+- No hay dos tiendas en la misma dirección
+- Dependencias:
+  - DNI \rightarrow Nombre
+  - DNI \rightarrow Turno
+  - CódigoTienda \rightarrow DirecciónTienda  
+  - DirecciónTienda \rightarrow CódigoTienda
+  - (DNI, Fecha) \rightarrow CódigoTienda
+- Hay más dependencias, pero pueden deducirse de las anteriores
+  - Por ejemplo (DNI, Fecha, Turno) \rightarrow DirecciónTienda
+    
+#+reveal: split
+#+BEGIN_SRC dot :file ./media/ejemplo-formas-normales-1.svg :exports results :cmd dot :cmdline -Tsvg
+digraph {
+                compound=true
+                label=""
+                node [shape="ellipse",margin=0]
+
+
+                subgraph cluster_dnifecha {
+                         style="rounded"
+                         DNI
+                         Fecha
+                }
+
+                DNI -> Turno
+
+                DNI -> Nombre
+
+                DNI -> CodigoTienda  [ltail=cluster_dnifecha]
+                CodigoTienda -> DireccionTienda
+                DireccionTienda -> CodigoTienda 
+                
+}n
+#+end_src
+
+#+RESULTS:
+[[file:./media/ejemplo-formas-normales-1.svg]]
+
+** Ejercicio
+- Se desea una base de datos que guarde los atributos =(DNI, Nombre, CódigoTienda, DirecciónTienda, Fecha, Turno)=
+- Los empleados no tienen un turno fijo, y cada día pueden trabajar en una tienda en un turno
+- En una misma dirección puede haber varias tiendas
+
+*** Solución
+#+BEGIN_SRC dot :file ./media/ejercicio-formas-normales-1.svg :exports results :cmd dot :cmdline -Tsvg
+  digraph {
+                  compound=true
+                  label=""
+                  node [shape="ellipse",margin=0]
+
+
+                  subgraph cluster_dnifecha {
+                           style="rounded"
+                           DNI
+                           Fecha
+                  }
+
+                  DNI -> CodigoTienda [ltail=cluster_dnifecha]
+                  DNI -> Turno [ltail=cluster_dnifecha]
+
+                  DNI -> Nombre
+
+                  CodigoTienda -> DireccionTienda
+                
+  }
+#+END_SRC
+
+#+RESULTS:
+[[file:./media/ejercicio-formas-normales-1.svg]]
+
+
+
+* Normalización
+- Procedimiento para eliminar anomalías en la base de datos
+- Es formal: a partir de las /dependencias funcionales/ es un procedimiento automático
+
+** Clave de una relación
+- La clave de una relación es el conjunto mínimo de campos que es imposible que se repitan en la relación
+  - Coinciden con los campos de los que depende funcionalmente el resto de campos
+- Sirven para /localizar/ cada fila de la relación
+- Si hay varias claves posibles
+  - Todas ellas son *claves candidatas*
+  - Se elige una como *clave primaria*
+
+** Primera forma normal (1FN)
+- Una relación está en [[https://es.wikipedia.org/wiki/Primera_forma_normal][1FN]] si no tiene atributos multivaluados
+
+*** Ejemplo 1FN
+
+| ~IDCliente~ | ~Nombre~ | ~Apellido~ |                 ~Teléfono~ |
+|-------------+----------+------------+----------------------------|
+|         123 | Rachel   | Ingram     |               555-861-2025 |
+|         456 | James    | Wright     | 555-403-1659, 555-776-4100 |
+|         789 | Cesar    | Dure       |               555-808-9633 |
+
+- La clave es =IDCLIENTE=
+- La relación se parte en dos:
+  - Una con todos los atributos que respetan 1FN
+  - Otra con la clave =IDCLIENTE= y el atributo que no respeta 1FN
+
+#+reveal: split
+| ~IDCliente~ | ~Nombre~ | ~Apellido~ |
+|-------------+----------+------------|
+|         123 | Rachel   | Ingram     |
+|         456 | James    | Wright     |
+|         789 | Cesar    | Dure       |
+
+| ~IDCliente~ |   ~Teléfono~ |
+|-------------+--------------|
+|         123 | 555-861-2025 |
+|         456 | 555-403-1659 |
+|         456 | 555-776-4100 |
+|         789 | 555-808-9633 |
+
+
+** Segunda forma normal (2FN)
+- Una relación está en [[https://es.wikipedia.org/wiki/Segunda_forma_normal][2FN]] si
+  - Está en 1FN
+  - Todos los atributos que no son parte de una clave candidata dependen de la totalidad de las claves candidatas
+- Como consecuencia, si está en 1FN y la clave candidata es de un atributo, está en 2FN
+
+*** Ejemplo 2FN
+| ~Empleado~ | ~Habilidad~     | ~Lugardetrabajo~  |
+|------------+-----------------+-------------------|
+| Jones      | Mecanografía    | 114 Main Street   |
+| Jones      | Taquigrafía     | 114 Main Street   |
+| Jones      | Tallado         | 114 Main Street   |
+| Bravo      | Limpieza ligera | 73 Industrial Way |
+| Ellis      | Alquimia        | 73 Industrial Way |
+| Ellis      | Malabarismo     | 73 Industrial Way |
+| Harrison   | Limpieza ligera | 73 Industrial Way |
+
+- La clave es =(Empleado,Habilidad)=
+- =Lugardetrabajo= depende de =Empleado=
+- Hay anomalías de modificación
+- Hay redundancias de datos
+
+#+reveal: split
+- Para conseguir 2FN se parte la relación en dos
+  - Se deja la clave y todos los atributos que dependen totalmente de ella
+  - Se crea una relación con el atributo que depende de una parte de la clave, con esa parte de la clave
+| ~Empleado~ | ~Lugaractualdetrabajo~ |
+|------------+------------------------|
+| Jones      | 114 Main Street        |
+| Bravo      | 73 Industrial Way      |
+| Ellis      | 73 Industrial Way      |
+| Harrison   | 73 Industrial Way      |
+
+| ~Empleado~ | ~Habilidad~     |
+|------------+-----------------|
+| Jones      | Mecanografía    |
+| Jones      | Taquigrafía     |
+| Jones      | Tallado         |
+| Bravo      | Limpieza ligera |
+| Ellis      | Alquimia        |
+| Ellis      | Malabarismo     |
+| Harrison   | Limpieza ligera |
+
+** Tercera forma normal (3FN)
+- Una relación está en [[https://es.wikipedia.org/wiki/Tercera_forma_normal][3FN]] si
+  - Está en 2FN
+  - No hay dependencias transitivas de la clave
+
+*** Ejemplo 3FN
+| ~Torneo~             |  ~Año~ | ~Ganador~      | ~Fechadenacimientodelganador~ |
+|----------------------+------+----------------+---------------------------------|
+| Indiana Invitational | 1998 | Al Fredrickson | 21 de julio de 1975             |
+| Cleveland Open       | 1999 | Bob Albertson  | 28 de septiembre de 1968        |
+| Des Moines Masters   | 1999 | Al Fredrickson | 21 de julio de 1975             |
+| Indiana Invitational | 1999 | Chip Masterson | 14 de marzo de 1977             |
+- La clave es =(Torneo,Año)= 
+- =Fecha de nacimiento= depende de =Ganador=, que depende de la clave
+- Hay anomalías de modificación
+
+#+reveal: split
+- Para conseguir 3FN se parte la relación en 2
+  - Se deja la clave y los atributos sin dependencia transitiva
+  - Se crea una relación que tiene como clave y campos la dependencia transitiva
+| ~Torneo~             |  ~Año~ | ~Ganador~      |
+|----------------------+------+----------------|
+| Indiana Invitational | 1998 | Al Fredrickson |
+| Cleveland Open       | 1999 | Bob Albertson  |
+| Des Moines Masters   | 1999 | Al Fredrickson |
+| Indiana Invitational | 1999 | Chip Masterson |
+
+| ~Ganador~      | ~Fechadenacimiento~      |
+|----------------+--------------------------|
+| Chip Masterson | 14 de marzo de 1977      |
+| Al Fredrickson | 21 de julio de 1975      |
+| Bob Albertson  | 28 de septiembre de 1968 |
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+* NO INCLUIDO :noexport:
+
+    AB → C
+    BD → EF
+    AD → GH
+    A → I
+    H → J
+
+
+#+BEGIN_SRC dot :file ./media/ejercicio-normalizacion-abstracto.svg :exports results :cmd dot :cmdline -Tsvg :session *dot*
+digraph {
+                compound=true
+                label=""
+                node [shape="ellipse",margin=0]
+
+
+                A -> I
+                H -> J
+
+                AB -> C 
+                BD -> E 
+                BD -> F 
+
+                AD -> G 
+                AD -> H 
+
+                A -> AD
+                A -> AB
+                B -> AB
+                B -> BD
+                D -> AD
+                D -> BD
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/ejercicio-normalizacion-abstracto.svg]]
+

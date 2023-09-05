@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5F3801DA-C699-9E33-4601-5D5FF82EC448" name="Persona">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-05 12:45:23 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ipersona" id="B2628635-5667-C91F-19A2-3CA9067F2F5A">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-05 12:45:28 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombrepersona" id="4B107A71-F7E6-D379-B5FC-6D379EAADE86">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-05 12:56:24 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E2A8BFC7-52D1-D76A-17CB-8C0DBCE5E729" name="Jugador PK">
+<createdBy>alvaro</createdBy>
+<createdTime>2019-11-05 12:45:31 UTC</createdTime>
+<ownerDesignName>grand-slam</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="C122E773-A687-515D-F88B-CAD663A85C33" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B2628635-5667-C91F-19A2-3CA9067F2F5A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

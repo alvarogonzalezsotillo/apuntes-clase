@@ -1,0 +1,230 @@
+#+INCLUDE: "./header.org"
+#+TITLE: Estudiar FP
+#+OPTIONS: org-re-reveal-title-slide:nil re-reveal-title-slide:nil reveal-title-slide:nil toc:nil  timestamp:nil author:nil num:nil
+
+
+#+REVEAL_TITLE_SLIDE:
+
+
+
+
+#+begin_export html
+<style>
+  .reveal h2,   .reveal h3, section{
+      text-shadow:
+        -2px -2px 4px #FFFFFF, 2px -2px 4px #FFFFFF,  -2px 2px 4px #FFFFFF,  2px 2px 4px #FFFFFF,
+        -2px -2px 4px #FFFFFF, 2px -2px 4px #FFFFFF,  -2px 2px 4px #FFFFFF,  2px 2px 4px #FFFFFF,
+        -2px -2px 4px #FFFFFF, 2px -2px 4px #FFFFFF,  -2px 2px 4px #FFFFFF,  2px 2px 4px #FFFFFF;
+  }
+</style>
+
+#+end_export
+
+
+* Estudiar informática
+Desplaza con el dedo o usa estas teclas para moverte por la presentación: 
+|----------+----------------------------|
+| Tecla    | Acción                     |
+|----------+----------------------------|
+| =n=      | Avanzar ( *N* ext )        |
+| =p=      | Retroceder ( *P* revious ) |
+| =CTRL += | Más grande                 |
+| =CTRL -= | Más pequeño                |
+| =?=      | Mostrar resto de acciones  |
+|----------+----------------------------|
+
+
+
+* La Formación Profesional
+:PROPERTIES:
+:reveal_background: ./avatares-muchas-profesiones.jpg
+:END:
+
+- Estudios o aprendizajes que están encaminados a la inserción laboral
+- Vertiente práctica y cercanía a las empresas
+- La duración de los estudios es más breve que los universitarios
+- La incorporación laboral se puede realizar con mayor rapidez
+- Posibilidad de realizar prácticas en el extranjero
+
+
+#+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;bottom:1em"><a href="http://www.freepik.com">Designed by Freepik</a></div>
+
+
+** Acceso
+[[file:requisitos-y-baremo-acceso.png]]
+
+** Inserción laboral Grado Medio (2018)
+[[file:insercion-laboral-2018-grado-medio.png]]
+
+
+** Inserción laboral Grado Superior (2018)
+[[file:insercion-laboral-2018-grado-superior.png]]
+** Datos actualizados de inserción laboral
+- Datos generales 
+  - https://www.educacionyfp.gob.es/servicios-al-ciudadano/estadisticas/laborales/insercion.html
+- Datos de Formación Profesional
+  - http://estadisticas.mecd.gob.es/EducaDynPx/educabase/index.htm?type=pcaxis&path=/laborales/insercion/famprof&file=pcaxis&l=s0
+
+** FP presencial y dual
+| Presencial               | Dual                            |
+|--------------------------+---------------------------------|
+| 2 años en el centro      | 1 año                           |
+| Prácticas de 1 trimestre | 3 trimestres                    |
+| Prácticas no remuneradas | Prácticas remuneradas           |
+| Módulos en el centro     | Módulos entre centro  y empresa |  
+
+* La informática, estereotipada
+:PROPERTIES:
+:reveal_background: ./matrix.gif
+:END:
+
+#+html: <div style="font-size:2em">
+- Whatsapp [[file:whatsapp.64.png]] , Instagram [[file:instagram.64.png]], Tik tok [[file:tiktok.64.png]], Twitch [[file:twitch.64.png]]
+- Creadores de contenidos
+- Videojuegos
+- Hackers
+#+html: </div>
+** Pero también es informática
+- Organizar la información de una empresa en una base de datos
+- Preparar las copias de /backup/ de los servidores
+- Gestionar las cuentas de usuario de la empresa, y sus permisos
+- Instalar /drivers/ de impresoras y otros dispositivos
+- Desarrollar nuevos programas para ordenador, /tablet/, móvil...
+- Crear páginas web, tanto estáticas como dinámicas
+- Integrar diferentes servicios (/API/) proporcionados por servidores externos  
+
+* Quién hace qué (muy aproximado)
+#+begin_src dot :file ./quien-hace-que.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box", style="rounded"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+
+  {rank = same}
+
+
+  "F.P. Básica" [shape="rarrow"]
+  "F.P. Básica" -> "Grado Medio"
+  "F.P. Básica" -> "Mantenimiento básico en pequeña oficina"
+
+  "Grado Medio" [shape="rarrow"]
+  "Grado Medio" -> "Grado Superior (ASIR)"
+  "Grado Medio" -> "Grado Superior (DAM y DAW)"
+  "Grado Medio" -> "Mantenimiento de sistemas informáticos"
+
+  "Grado Superior (ASIR)" [shape="rarrow"]
+  "Grado Superior (ASIR)" -> "Implantación de nuevos sistemas"
+
+  "Grado Superior (DAM y DAW)" [shape="rarrow"]
+  "Grado Superior (DAM y DAW)" -> "Universidad (desarrollo)"
+  "Grado Superior (DAM y DAW)" -> "Cursos de especialización\nVideojuegos\nBigdata\nSeguridad"
+  "Grado Superior (DAM y DAW)" -> "Programación de nuevos sistemas"
+
+  [shape="rarrow"] "Grado Superior (ASIR)"
+  "Grado Superior (ASIR)" -> "Universidad (sistemas)"
+  "Grado Superior (ASIR)" -> "Cursos de especialización\nVideojuegos\nBigdata\nSeguridad"
+
+  {rank = same; "F.P. Básica" ; "Mantenimiento básico en pequeña oficina" }
+  {rank = same;"Grado Medio" ; "Mantenimiento de sistemas informáticos" }
+  {rank = same; "Grado Superior (ASIR)" ; "Implantación de nuevos sistemas"}
+  {rank = same; "Grado Superior (DAM y DAW)" ; "Programación de nuevos sistemas"}
+  
+}
+#+end_src
+
+#+RESULTS:
+[[file:./quien-hace-que.svg]]
+
+
+** Mantenimiento informático
+:PROPERTIES:
+:-reveal_background: ./depositphotos_55855867-stock-illustration-computer-repair-service.jpg
+:reveal_background: ./isometric-it-people-concept.jpg
+:END:
+# +html: <div style="position:absolute;top:-1em;z-index:-1000;text-align:center;width:100%"><img src="./depositphotos_55855867-stock-illustration-computer-repair-service.jpg" style="width:40%; display:inline-block" ></div>
+
+
+- Montaje de redes y equipos informáticos
+- Configuración de redes y equipos: usuarios, permisos
+- Despliegue de servicios en red: sitios web, almacenamiento de ficheros, mensajería...  
+- Tratamiento de datos con programas ofimáticos
+- Soporte a usuarios (ayudar a usar las herramientas)
+- Instalación de /software/, local o en la nube
+- Actualización de la web corporativa
+- Seguridad: /firewall/ coroporativo, usuarios y permisos, actualizaciones...  
+
+  
+#+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;bottom:1em"><a href='https://www.freepik.es/vectores/centro-datos'>Vector de centro de datos creado por macrovector - www.freepik.es</a></div>
+
+** Desarrollo informático
+:PROPERTIES:
+:reveal_background: ./programando-con-gente.jpg
+:END:
+# +html: <div style="position:absolute;top:-1em;z-index:-1000;text-align:center;width:100%"><img src="./programando-con-gente.jpg" style="width:100%; display:inline-block" ></div>
+
+
+- Creación de nuevas aplicaciones
+  - Escritorio
+  - Móvil/tableta
+  - Web
+- Programación de sistemas: /drivers/, microcontroladores...    
+- Integración de aplicaciones ya existentes
+- Certificación y pruebas de aplicaciones  
+- Mejoras y arreglos de aplicaciones antiguas
+- Dirección de proyectos
+
+  
+
+#+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;bottom:1em"><a href="https://www.freepik.com/vectors/people">People vector created by storyset - www.freepik.com</a></div>
+
+
+* ¿Me dedico a la informática?
+
+[[file:venn-diagram.png]]
+
+# https://academo.org/demos/venn-diagram-generator/
+
+** Características personales deseables
+- Buenas notas ([[file:respuestas-posibles-preguntas/baremacion-anexo_ii_gm.pdf][baremo grado medio]]) ([[file:respuestas-posibles-preguntas/baremacion-anexo_iia_gs.pdf][baremo grado superior]])
+- Disposición al autoaprendizaje
+- Habilidades interpersonales y comunicativas
+- Matemáticas, especialmente en el desarrollo de aplicaciones
+- Inglés  
+
+#+BEGIN_NOTES
+[[file:respuestas-posibles-preguntas/preferencias-anexo_iii_gm.pdf]]
+[[file:respuestas-posibles-preguntas/preferencias-anexo_iii_gs.pdf]]
+#+END_NOTES  
+** Esto no es informática
+:PROPERTIES:
+:reveal_background: ./hacker.jpg
+:END:
+
+O al menos, es una parte muy pequeña
+#+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;bottom:1em"> <a href='https://www.freepik.com/vectors/anonymous-hacker'>Anonymous hacker vector created by macrovector_official - www.freepik.com</a>  </div>
+
+
+** Cómo saber si me gusta
+- Programación: [[https://scratch.mit.edu/][Scratch]] << [[https://codecombat.com/][Code Combat]] << [[https://www.aceptaelreto.com/][Acepta el reto]]
+- Bases de datos: [[https://sqlpd.com/][SQL Police Department]] << [[https://mystery.knightlab.com/][SQL Murder Mystery]]
+- Sistemas: [[http://web.mit.edu/mprat/Public/web/Terminus/Web/main.html][Terminus game]] << [[https://ubuntu.com/download][Instalar linux]]
+- Sistemas y redes: [[https://overthewire.org/wargames/bandit/bandit0.html][Bandit]]
+
+#+begin_NOTES
+- Inserción laboral
+- Porcentaje de aprobados  
+#+end_notes
+* Más información
+- Para volverlo a ver
+  
+  [[file:qr.png]]
+  
+- [[file:respuestas-posibles-preguntas/madfpb-informatica-y-comunicaciones.pdf][Básica]], [[file:respuestas-posibles-preguntas/Ficha_IFCM01-smr.pdf][SMR]], [[file:respuestas-posibles-preguntas/Ficha_IFCS02-dam.pdf][DAM]], [[file:respuestas-posibles-preguntas/Ficha_IFCS03-daw.pdf][DAW]]
+- [[https://www.todofp.es/][todofp.es]], [[https://www.descubrelafp.org/][descubrelafp.org]]
+- [[https://play.google.com/store/apps/details?id=org.madrid.fpmad&hl=es_ES][Aplicación FPMad]]  
+   
+# https://alvarogonzalezsotillo.github.io/apuntes-clase/charlas-motivacionales/informatica/1/charla-informatica-a-eso-bachillerato.html
+# #+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;top:0em"> <img width="10%" src="./qr.png"> </div>
+
+

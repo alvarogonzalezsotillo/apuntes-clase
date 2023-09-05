@@ -1,0 +1,164 @@
+# #+include: "../../../common/header.org"
+* RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
+
+** Identificador del producto más vendido, por unidades
+   #+begin_src sql
+select codigoproducto, sum(cantidad)
+from detallepedidos
+group by codigoproducto
+having sum(cantidad)=(
+  select max(unidades) from(
+    select codigoproducto, sum(cantidad) as unidades
+    from detallepedidos
+    group by codigoproducto
+  )
+);
+  #+end_src
+
+   #+begin_src sql
+with unidadesvendidas as(
+  SELECT codigoproducto,sum(cantidad) unidades from detallepedidos
+  group by codigoproducto
+)
+select codigoproducto,unidades from unidadesvendidas where unidades=(
+  select max(unidades) from unidadesvendidas
+);
+   #+end_src
+** Nombre del producto más vendido, por facturación
+   #+begin_src sql
+create or replace view facturacionproducto(codigoproducto,facturacion) as
+select codigoproducto, sum(cantidad*preciounidad)
+from detallepedidos
+group by codigoproducto
+order by 2 desc;
+
+
+
+select 
+  p.codigoproducto,p.nombre,f.facturacion
+from 
+  facturacionproducto f, productos p
+where 
+  f.codigoproducto = p.codigoproducto and
+  f.facturacion = (
+    select max(facturacion) from facturacionproducto
+  );
+   #+end_src
+** Identificador del producto más caro
+   #+begin_src sql
+SELECT codigoproducto, precioventa from productos
+where precioventa=(
+  select max(precioventa) from productos
+);
+   #+end_src
+** Nombre del producto más caro de la gama "Herramientas"
+   #+begin_src sql
+select nombre 
+from productos
+where 
+  gama = 'Herramientas' and
+  precioventa = (select max(precioventa) from productos where gama='Herramientas');
+   #+end_src
+** Nombre del producto más caro de cada gama de productos (gama,nombreproducto)
+   #+begin_src sql
+
+select gama, nombre
+from productos
+where precioventa = (select max(precioventa) from productos p where p.gama=productos.gama);
+
+create or replace view preciomaximodegama(gama,maximoprecioventa) as
+select gama, max(precioventa) as maximoprecioventa
+from productos
+group by gama;
+  
+select p.gama, p.nombre
+from 
+  productos p join preciomaximodegama g on p.gama = g.gama
+where
+  p.precioventa = g.maximoprecioventa;
+
+   #+end_src
+** Nombre de la gama con el producto más caro
+** Identificador del producto con más margen comercial en euros. Suponemos que un precio de compra 0€ es desconocido, y no se tiene en cuenta.
+** Nombre del producto con más margen comercial en porcentaje sobre el precio de compra.
+** Número de subordinados directos de cada empleado (codigo,nombre,apellido1,numerodesubordinados). Los empleados sin subordinados *no* deben aparecer.
+   #+begin_src sql
+select
+  jefes.codigoempleado as codigojefe,
+  jefes.nombre as nombrejefe,
+  jefes.apellido1 as apellidojefe,
+  count(empleados.codigoempleado) numerosubordinados
+from
+  empleados, empleados jefes
+where
+  empleados.codigojefe = jefes.codigoempleado
+group by
+  jefes.codigoempleado, jefes.nombre, jefes.apellido1;
+   #+end_src
+** Número de subordinados directos de cada empleado (codigo,nombre,apellido1,numerodesubordinados). Los empleados sin subordinados *sí* deben aparecer.
+   #+begin_src sql
+select
+  jefes.codigoempleado as codigojefe,
+  jefes.nombre as nombrejefe,
+  jefes.apellido1 as apellidojefe,
+  count(empleados.codigoempleado) numerosubordinados
+from
+  empleados, empleados jefes
+where
+  empleados.codigojefe = jefes.codigoempleado
+group by
+  jefes.codigoempleado, jefes.nombre, jefes.apellido1
+
+union
+
+select codigoempleado, nombre, apellido1, 0
+from empleados
+where 
+  codigoempleado not in (select nvl(codigojefe,-1) from empleados);
+
+
+
+
+select
+  jefes.codigoempleado as codigojefe,
+  jefes.nombre as nombrejefe,
+  jefes.apellido1 as apellidojefe,
+  count(empleados.codigoempleado)
+from
+  empleados 
+  right outer join empleados jefes on empleados.codigojefe = jefes.codigoempleado
+group by
+  jefes.codigoempleado, jefes.nombre, jefes.apellido1;
+
+   #+end_src
+** Volumen de facturación de cada cliente (codigocliente,nombrecliente,eurosfacturacion). Un cliente que no haya facturado aparecerá con 0€.
+   #+begin_src sql
+select 
+  c.nombrecliente, 
+  c.codigocliente, 
+  nvl(sum(cantidad*preciounidad),0) as totallinea,
+  case when sum(cantidad*preciounidad) is null then 0 else sum(cantidad*preciounidad) end
+from
+  (pedidos p 
+  join detallepedidos d on p.codigopedido = d.codigopedido)
+  right outer join clientes c on c.codigocliente = p.codigocliente 
+group by
+  c.codigocliente, c.nombrecliente
+order by codigocliente;
+   #+end_src
+** Volumen de pagos de cada cliente (codigocliente,nombrecliente,eurospagados). Un cliente que no haya pagado aparecerá con 0€
+** Clientes que aun no han pagado todo lo facturado (codigocliente,nombrecliente)
+** Mejor cliente, el que más ha facturado (codigocliente,nombrecliente)
+** Codigo y nombre del producto más de moda (el que han comprado más clientes)
+** Número de empleados por oficina (codigoficina,numeroempleados)
+** Código de la oficina con más empleados
+** Número de clientes representados por oficina (códigooficina,numeroclientes)
+** Código de la oficina con más clientes representados
+** Clientes morosos, que han facturado más que han pagado (codigocliente,nombrecliente)
+** Cantidad cobrada con cada medio de pago (formapago,euros)
+** Número de veces que se ha usado cada medio de pago (formapago,veces)
+** Empleados que tienen jefes fuera de su oficina (codigoempleado,nombreempleado,codigooficinaempleado,codigooficinajefe)
+** Producto más caro de cada gama (gama,codigoproducto,nombreproducto)
+** Código de los pedidos con algún descuento, aquellos con algún producto más barato que en la lista de precios general.
+
+

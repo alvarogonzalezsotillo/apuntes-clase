@@ -1,0 +1,48 @@
+
+#+INCLUDE: "./header.org"
+#+latex_header: \usepackage[skins]{tcolorbox}
+#+latex_header: \usepackage{multicol}
+#+latex_header: \usepackage{changepage} %ajdustwidth
+#+latex_header: \usepackage{fancybox}
+#+latex_header: \usepackage{attachfile2}
+
+
+#+LATEX_HEADER: \lhead{Extraordinaria 2021 (es el \\lhead)}
+#+LATEX_HEADER: \rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+
+
+
+
+
+#+begin_export latex
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+#+end_export

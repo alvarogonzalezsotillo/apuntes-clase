@@ -1,0 +1,4 @@
+3.	(2 puntos) Normaliza la siguiente tabla utilizada para llevar un registro de pruebas de caja blanca y caja negra sobre una función que recibe varios valores de entrada y un solo valor de salida. Ten en cuenta que se va a realizar más de un caso de prueba por cada clase de equivalencia o camino_crítico.
+ 
+
+T( nombre_caso_prueba, clase_de_equivalencia, nombre_camino_crítico, nodo_camino_crítico, valor_entrada, valor_esperado, valor_obtenido)

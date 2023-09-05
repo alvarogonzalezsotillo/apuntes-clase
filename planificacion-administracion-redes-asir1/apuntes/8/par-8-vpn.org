@@ -1,0 +1,163 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Redes privadas virtuales
+#+KEYWORDS: VPN
+
+
+
+* VPN
+- /Virtual Private Network/
+- La interconexión entre dos sistemas se realiza a través de una red insegura
+- Pero garantizando la seguridad de la comunicación
+  - Confidencialidad
+  - Integridad
+
+** Encriptación
+- Consiste en ocultar la información que se envía
+- Sólo el receptor puede interpretar la información del emisor
+- Para el resto de sistemas intermedios los datos no significan nada
+- Esto aumenta la *confidencialidad*
+- Al dificultar la modificación de la información por sistemas intermedios, mejora la *integridad*
+
+** Autentificación
+- Consiste en saber con quién nos conectamos
+- El sistema remoto deben autentificarse
+  - Los clientes suelen usar contraseñas
+  - Los servidores suelen usar certificados
+- Aumenta la *confidencialidad*
+- Al evitar que otras personas operen en nuestra red mejora *integridad*
+
+** Datos sobre los datos (/metadatos/)
+- La encriptación oculta los datos que se transmitan
+  - Pero los routers intermedios siguen enrutando cada paquete
+  - Pueden saber 
+    - Cuántos paquetes se envían
+    - A qué horas
+    - Con cuántos datos
+- Para evitar este problema se puede usar [[https://es.wikipedia.org/wiki/Tr%25C3%25A1fico_de_relleno][tráfico de relleno]]
+  - No se podrá distinguir información real de la de relleno
+  - Problema: mayor consumo de ancho de banda
+
+* Tipos de VPN
+- Acceso remoto
+- Punto a punto
+- Interna (VPN over LAN)
+
+** Acceso remoto
+- Usuarios finales utilizan una VPN para conectarse a la LAN de su empresa
+- Se utiliza cualquier red final disponible
+  - Particular, 3G, aeropuertos, hoteles...
+
+#+caption: VPN de acceso remoto
+[[file:media/vpn-acceso-remoto.svg]]
+
+By [[https://commons.wikimedia.org/wiki/User:Ludovic.ferre][Ludovic.ferre]]  [[https://commons.wikimedia.org/w/index.php?curid=10101288][Own work]]  [[https://creativecommons.org/licenses/by-sa/4.0][CC BY-SA 4.0]]
+
+** Punto a punto
+- Los LAN de la misma empresa utilizan un enlace de VPN a modo de red local
+- Permite a diferentes sedes trabajar como si estuviesen en la central
+
+#+caption: VPN de acceso punto a punto
+[[file:./media/vpn-punto-a-punto.svg]]
+
+By [[https://commons.wikimedia.org/wiki/User:Ludovic.ferre][Ludovic.ferre]]  [[https://commons.wikimedia.org/w/index.php?curid=10101288][Own work]]  [[https://creativecommons.org/licenses/by-sa/4.0][CC BY-SA 4.0]]
+
+** VPN over LAN
+- Los accesos a la LAN pueden ser poco seguros
+  - Wifi
+  - Puntos de red no vigilados
+- La LAN puede segmentarse (por ejemplo, VLAN), y permitir solo conexiones a la LAN más interna por una VPN
+
+#+caption: VPN over LAN
+[[file:./media/vpn-over-lan.svg]]
+
+By [[https://commons.wikimedia.org/wiki/User:Ludovic.ferre][Ludovic.ferre]]  [[https://commons.wikimedia.org/w/index.php?curid=10101288][Own work]]  [[https://creativecommons.org/licenses/by-sa/4.0][CC BY-SA 4.0]]
+
+
+* Tunnelling
+
+** Encapsulación de protocolos
+- Según el modelo ISO/OSI, unos protocolos se encapsulan dentro de otros
+- Los protocolos superiores solo son datos para los inferiores
+
+#+caption: Pila típica de protocolos
+[[file:media/pila-de-protocolos.svg]]
+
+** Encriptación de datos
+- Cualquier capa puede encriptar los datos que envía
+- Y los datos son los protocolos superiores
+
+** Tunnelling
+- Un nivel de red puede encriptarse y volver a meterse como datos a cualquier nivel
+- Los extremos de la comunicación utilizan interfaces virtuales
+  - Los datos enviados por esa interfaz se encriptan y se envían por una interfaz real
+
+#+caption: Ejemplo de /tunneling/ en el nivel 3
+[[file:media/pila-de-protocolos-tunelling-red.svg]]
+
+
+* Tunnelling (ejemplo a nivel de red)
+
+
+#+caption: Ejemplo de proceso para /tunnelling/ a nivel 3
+[[file:media/interfaces-virtuales.svg]]
+
+
+
+* Tunneling: Nivel
+- VPN a nivel de enlace (ethernet)
+  - Se transmiten los broadcasts de ethernet
+  - Funcionan: DHCP, ARP,...
+  - Drivers [[https://en.wikipedia.org/wiki/TUN/TAP][TAP]]
+- VPN a nivel de red (IP)
+  - Se transmiten paquetes IP y broadcasts IP
+  - Funcionan: TCP, UDP, ICMP, enrutamiento...
+  - Drivers [[https://en.wikipedia.org/wiki/TUN/TAP][TUN]]
+- VPN a nivel de transporte (TCP)
+  - La VPN conecta con un programa en la otra red (dirección IP y puerto TCP)
+
+[[https://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html][Túneles SSH]]
+
+
+* VPN: Protocolos
+-  PPTP
+  -  Muy extendido
+  -  Puede encapsular cualquier protocolo
+  -  Seguridad más débil
+-  L2TP
+  -  Utiliza IPSec para el cifrado
+-  IPSec
+  -  Soportado por OSI
+  -  Más complejo, pero más flexible
+  -  Fácil implementación en sistemas Windows
+
+** Ejercicio: VPN en Windows
+- Crea un servidor VPN Windows en la /red interna 1/
+- Conéctate desde un cliente VPN en la /red interna 2/
+- Comprueba con =pathping= que a través de la VPN solo se da un salto
+
+#+caption: Diagrama lógico de la red con VPN
+[[file:media/ejercicio-vpn.svg]]
+
+- Red interna 1: =192.168.1.0/24=
+- Red interna 2: =192.168.2.0/24=
+- Los ordenadores son los primeros de la red. El router es el último de la red.
+
+** Ejercicio: VPN con SSH
+- Crea un servidor VPN SSH en la /red interna 1/
+- Conéctate desde un cliente VPN en la /red interna 2/
+- Comprueba con =pathping= que a través de la VPN solo se da un salto
+
+#+caption: Diagrama lógico de la red con VPN
+[[file:media/ejercicio-vpn.svg]]
+
+- Red interna 1: =192.168.1.0/24=
+- Red interna 2: =192.168.2.0/24=
+- Los ordenadores son los primeros de la red. El router es el último de la red.
+- Red VPN: =10.0.0.0/24=
+
+
+https://help.ubuntu.com/community/SSH_VPN
+
+
+* Referencias
+#+include: "../../../common/footer.org"

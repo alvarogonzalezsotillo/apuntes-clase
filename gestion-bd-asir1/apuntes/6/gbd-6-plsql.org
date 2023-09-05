@@ -1,0 +1,1097 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: PLSQL
+
+#+latex_header: \lstset{emph={begin,declare,serveroutput,trigger,on,before,after,each, if, elsif, exit, while, loop}, emphstyle=\color{Blue}\ttfamily\bfseries}
+
+
+
+
+* Introducción
+- PLSQL es un lenguaje de programación ejecutado en los servidores Oracle
+  - Con acceso a todas las sentencias SQL
+  - Incluye variables, funciones, control de flujo...
+- PLSQL es un lenguaje imperativo
+  - Completa a SQL, que es un lenguaje declarativo
+
+** Palabras reservadas
+- Vista [[https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_2048.htm#REFRN30204][=V$RESERVED_WORDS=]]
+- Definen estructuras de programa
+- No pueden ser usados como identificadores
+
+
+** Identificadores
+- Nombres definidos por el programador
+  - No puede ser una palabra reservada
+  - Constante, variable, excepción, paquete, función, procedimiento, tabla, cursor...
+  - Hasta 30 caracteres
+  - Comienza por una letra. 
+  - Puede contener =$=, =#=, pero no puede contener operadores =+­%=/*= 
+
+* Bloques anónimos
+
+#+caption: Bloque anónimo
+#+begin_src sql
+
+select * from pepe where nombre='a';
+
+SET SERVEROUTPUT ON;
+begin
+  dbms_output.put_line('Hola');
+END;
+/
+
+#+end_src
+
+* Variables
+- Valores referenciados por un identificador
+- Deben declararse al principio de los bloques
+
+#+begin_src sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+  msg varchar(255);
+BEGIN
+  msg := 'Hola';
+  dbms_output.put_line(msg);
+END;
+/
+#+end_src
+
+** Tipos de variable
+- Se pueden utilizar todos los tipos SQL
+  - =char=, =varchar=
+  - =number=, =integer=, =float=
+  - =date=, =timestamp=
+  - =blob=, =clob=
+- Tipos propios de PLSQL
+  - =bool=
+  - =pls_integer=
+
+** Tipos referidos
+- =%type= : Tipo de un campo de una tabla
+- =%rowtype= : Tipo compuesto, referido a una fila de una tabla
+
+
+#+begin_src sql
+create table cliente( id integer, nombre varchar(255) );
+
+DECLARE
+  filacliente cliente%rowtype;
+BEGIN
+  filacliente.id := 1;
+  filacliente.nombre := 'María';
+  insert into cliente values filacliente;
+END;
+/
+#+end_src
+
+* Control de flujo
+
+** Condicional
+#+begin_src sql
+DECLARE
+  numero integer := 1;
+BEGIN
+  if( numero < 0 ) then
+    dbms_output.put_line( 'Menor que cero');
+  elsif( numero > 0 ) then
+    dbms_output.put_line( 'Mayor que cero');
+  else
+    dbms_output.put_line( 'Igual que cero');
+  end if;
+END;
+/
+#+end_src
+
+** Condicional múltiple (I)
+
+#+begin_src sql
+case
+  when vsalario<0 then
+    dbms_output.put_line('Incorrecto');
+  when vsalario=0 THEN
+    dbms_output.put_line('Gratis!');  
+  when vsalario<10000 then
+    dbms_output.put_line('Salado!');
+  when vsalario<90000 then
+    dbms_output.put_line('Mas o menos');
+  else
+    dbms_output.put_line('Correcto');
+end case;
+#+end_src
+
+** Condicional múltiple (II)
+#+begin_src sql
+case v_job_grade
+  when 1 THEN
+    dbms_output.put_line('Jefe!');
+  when 2 then
+    dbms_output.put_line('Jefecito');
+  when 3 then
+    dbms_output.put_line('Empleado regular');
+  ELSE
+    dbms_output.put_line('CEO');
+end case;
+#+end_src
+
+** Ejemplos de =case=
+Queremos implementar un servicio de traducción de español a inglés. El servicio no está disponible los lunes
+
+
+*** =case= como sentencia con un valor
+#+begin_src sql
+declare
+    v varchar(100) := 'Hasta luego';
+begin
+    if to_char(sysdate,'D')=1 then
+        dbms_output.put_line('es mi día libre' );
+    else    
+           
+        case v
+            when 'Hola' then
+                dbms_output.put_line('Hello' );
+            when 'Adiós' then
+                dbms_output.put_line('Bye' );
+            else
+                dbms_output.put_line('No traduction' );
+        end case;        
+    end if;    
+end;
+/
+#+end_src
+
+*** =case= como sentencia con múltiples comparaciones
+#+begin_src sql
+declare
+    v varchar(100) := 'Hola';
+begin
+    case 
+        when to_char(sysdate,'D')=1 then
+            dbms_output.put_line('es mi día libre' );
+        when v='Hola' then
+            dbms_output.put_line('Hello' );
+        when v='Adiós' then
+            dbms_output.put_line('Bye' );
+        else
+            dbms_output.put_line('No traduction' );
+    end case;        
+end;
+/
+#+end_src
+
+
+*** =case= como expresión con múltiples comparaciones
+#+begin_src sql
+declare
+    v varchar(100) := 'Hola';
+    traduccion varchar(100);
+begin
+    traduccion := case 
+        when to_char(sysdate,'D')=1 then
+            'es mi día libre'
+        when v='Hola' then
+            'Hello'
+        when v='Adiós' then
+            'Bye'
+        else
+            'No traduction'
+    end;
+    dbms_output.put_line(traduccion);
+end;
+/
+#+end_src
+
+
+*** =case= como expresión con un valor
+#+begin_src sql
+declare
+    v varchar(100) := 'Hola';
+    traduccion varchar(100);
+begin
+    if to_char(sysdate,'D')=1  then
+        traduccion := 'es mi día libre';
+    else  
+        traduccion := case v
+            when 'Hola' then
+                'Hello'
+            when 'Adiós' then
+                'Bye'
+            else
+                'No traduction'
+        end;
+    end if;   
+    dbms_output.put_line(traduccion);
+end;
+/
+#+end_src
+
+*** Case usado en sentencias =sql=
+#+begin_src sql
+select nombre, precioventa, case 
+  when precioventa >= 100 then 'carísimo'
+  when precioventa >= 10 then 'caro'
+  else 'barato' end as rango
+from productos
+order by 3;
+#+end_src
+
+
+#+begin_src sql
+select nombre,precioventa, 'caro'
+from productos
+where precioventa >= 10
+union
+select nombre,precioventa, 'barato'
+from productos
+where precioventa < 10;
+#+end_src
+
+
+** Bucle =loop=
+#+BEGIN_SRC sql
+LOOP
+    -- Instrucciones
+    IF (expresion) THEN
+      -- Instrucciones
+      EXIT;
+    END IF;
+END LOOP;
+#+END_SRC
+
+** Bucle =while=
+#+BEGIN_SRC sql
+WHILE (expresion) LOOP
+    -- Instrucciones
+END LOOP;
+#+END_SRC
+
+** Bucle =for=
+#+BEGIN_SRC sql
+DECLARE
+  c PLS_INTEGER DEFAULT 0;
+BEGIN
+  FOR c IN REVERSE 1..10 LOOP
+    dbms_output.put_line ('Contador = '||c);
+  END LOOP;
+END;
+#+END_SRC
+
+** Ejercicios
+- Imprime los números del 1 al 100
+- Imprime la suma de los números del 1 al 100 
+- Imprime los números pares del 1 al 100
+- Imprime los números primos del 1 al 100
+- Imprime la suma de los números primos del 1 al 100
+- Encuentra un número primo mayor de 1000000
+- Calcula el máximo común divisor entre 1234516 y 77636519368
+- Calcula el mínimo común múltiplo entre 1234516 y 77636519368
+
+
+** Ejercicios
+- Imprime un rectángulo de tamaño 8x6
+  #+begin_example
+  ########
+  ########
+  ########
+  ########
+  ########
+  ########
+  #+end_example
+- Imprime un tablero de ajedrez de tamaño NxM (con la función =MOD=)
+  #+begin_example
+  # # # #
+   # # # #
+  # # # #
+   # # # #
+  # # # #
+   # # # #
+  #+end_example
+
+*** solucion :noexport:
+#+begin_src sql
+create or replace procedure imprime_tablero(ancho integer, alto integer) is
+begin
+    dbms_output.new_line();
+    for fila in 1..alto
+    loop
+        imprime_fila(fila,ancho);
+    end loop;
+end;
+/
+
+
+
+
+create or replace procedure IMPRIME_FILA(fila integer, ancho integer) is
+begin
+    for columna in 1..ancho
+    loop
+        if mod(fila+columna,2) = 1 then
+            dbms_output.put('#');
+        else
+            dbms_output.put('_');
+        end if;
+    end loop;
+    dbms_output.put_line('');
+end;
+/
+
+begin
+    imprime_tablero(10,10);
+    imprime_tablero(20,20);
+    imprime_tablero(30,30);
+end;
+/
+#+end_src
+
+
+
+* Funciones y procedimientos
+- Son bloques de código identificados con un nombre
+- Pueden invocarse desde otros bloques de código
+- En la invocación, se utilizan parámetros
+  - De entrada
+  - De salida
+
+([[https://www.youtube.com/watch?v=etfuyJgq6-E&list=PLPYjb2UQXp7RWDkSfbEkSAmyQmLcYYTs1&index=3&t=0s][youtube]])
+
+** Funciones
+- Las funciones devuelven *siempre* un valor
+- Pueden recibir parámetros
+- Por convenio:
+  - El resultado de una función solo depende de sus parámetros
+  - Una función no cambia la base de datos
+
+*** Ya hemos usado funciones
+
+#+begin_src sql
+select to_date('01-01-01','dd-MM-yyyy') from dual;
+select * from student where mod(studentid,2)=0;
+
+sqrt, upper, substr, len, nvl...
+#+end_src
+
+*** Funciones propias
+- Se pueden crear nuevas funciones, usando las que ya existen
+  
+#+BEGIN_SRC sql
+CREATE OR REPLACE FUNCTION es_par(numero IN number)
+RETURN boolean
+IS
+  resto number;
+BEGIN
+  resto := mod(numero,2);
+  if( resto = 0 ) then
+    return true;
+  else
+    return false;
+  end if;
+END;
+/
+#+END_SRC 
+
+*** Invocar una función
+Las funciones pueden invocarse:
+- Desde otra función o procedimiento
+- Desde un bloque anónimo
+- Desde SQL (ver más adelante)
+
+#+begin_src sql
+CREATE OR REPLACE FUNCTION es_par_varchar(numero IN number)
+RETURN varchar
+IS
+BEGIN
+  -- AQUÍ SE INVOCA LA FUNCIÓN DEL APARTADO ANTERIOR
+  if( es_par(numero) ) then
+    return 'Sí es par';
+  else
+    return 'No es par';
+  end if;
+END;
+/
+
+DECLARE
+  n number := 32;
+BEGIN
+  dbms_output.put_line( 'El número ' || n || ' ' || es_par_varchar(n) );
+END;
+/
+
+#+end_src
+
+*** Funciones en SQL
+- Una función puede utilizarse en SQL
+#+BEGIN_SRC sql
+select empno, es_par_varchar(empno) from empleados;
+select es_par_varchar(89) from dual;
+#+END_SRC
+- Una función que devuelve un tipo que no existe en SQL no se puede usar
+#+BEGIN_SRC sql
+select es_par(89) from dual;
+ORA-00902: tipo de dato no válido
+00902. 00000 -  "invalid datatype"
+#+END_SRC
+
+*** Funciones predefinidas
+| ~replace~ | ~sysdate~   | ~lpad~   | ~instr~  |
+| ~substr~  | ~nvl~       | ~trim~   | ~trunc~  |
+| ~upper~   | ~to_date~   | ~mod~    | ~length~ |
+| ~lower~   | ~to_char~   | ~decode~ |          |
+| ~rpad~    | ~to_number~ |          |          |
+
+[[https://docs.oracle.com/cd/B19306_01/server.102/b14200/sql_elements004.htm#i34510][Formatos de ~to_number~]]
+
+[[https://ss64.com/ora/syntax-fmt.html][Formatos de ~to_date~]]
+
+*** Ejemplos de ~to_date~ y  ~to_char~
+#+begin_src sql
+declare
+  fechaentexto varchar(255);
+  fecha date;
+begin
+  fechaentexto := '11/may/18';
+  fecha := to_date(fechaentexto,'DD/MON/YY');
+  dbms_output.put_line( to_char(fecha,'DD "de" MONTH "de" YYYY'));
+end;
+/
+
+
+declare
+    pi number(20,10) := 3.141597265;
+begin
+    dbms_output.put_line( to_char(pi, 'B9999' ) );
+end;
+/
+#+end_src
+
+*** Ejercicios               
+- Imprime un listado con la inicial de los empleados y sus apellidos
+  #+begin_example
+  A. Pérez
+  F. González
+  M. Ruiz
+  #+end_example
+- Convierte la cadena =11/MAY/20= a fecha, e imprímela como =11 de Mayo de 2020=
+- Imprime el número PI con 0,3 y 4 decimales.
+
+*** Ejercicios
+- Haz una función que devuelva =1= si un número es primo o =0= si es compuesto
+  - Tiene que /devolver/ un valor, no /imprimir/ un valor
+- Haz una función que devuelva capitalizada la palabra recibida
+  - Si recibe =paLABRa= debe devolver =Palabra=
+- Haz una función que devuelva capitalizada una frase, capitalizando cada palabra 
+
+*** Ejercicio resuelto: =capitalizar=
+
+#+begin_src sql
+create or replace function capitalizar( palabra varchar ) return varchar as
+  inicial char(1);
+  resto varchar(1024);
+begin
+  inicial := substr(palabra,1,1);
+  resto := substr(palabra,2,length(palabra)-1);
+  return upper(inicial) || lower(resto);
+end;
+#+end_src
+
+
+** Procedimientos
+- Los procedimentos no devuelven un valor
+  - Pero pueden tener parámetros =out=
+#+BEGIN_SRC sql
+CREATE OR REPLACE PROCEDURE aumenta_salario(vempno IN number)
+IS
+BEGIN
+  update empleados 
+    set salario=salario+100
+    where empno = vempno;
+END;
+/
+#+END_SRC 
+
+** Parámetros =in=
+- Es el tipo de parámetros por defecto
+- Un parámetro =in= se pasa /por valor/
+- Se copia el valor introducido en el parámetro 
+- Un cambio del parámetro no afecta al bloque llamante
+
+#+begin_src sql
+create or replace procedure suma_uno(n in numeric) is
+begin
+  n := n +1;
+end;
+/
+
+declare
+  numero numeric(10,0);
+begin
+  numero := 3;
+  sumauno(numero);
+  dbms_output.put_line(numero);
+end;
+/
+#+end_src
+
+
+** Parámetros =out=
+- Un parámetro =out= se pasa /por referencia/
+- Un cambio del parámetro afecta al bloque llamante
+
+#+begin_src sql
+create or replace procedure suma_uno(n in out numeric) is
+begin
+  n := n +1;
+end;
+/
+
+declare
+  numero numeric(10,0);
+begin
+  numero := 3;
+  sumauno(numero);
+  dbms_output.put_line(numero);
+end;
+/
+#+end_src
+
+
+
+* Sentencias SQL en PLSQL
+
+- Desde PLSQL pueden utilizarse las sentencias del DML
+  - =select=
+  - =update=
+  - =insert=
+  - =delete=
+
+([[https://www.youtube.com/watch?v=BWeKWaPwKnA&list=PLPYjb2UQXp7RWDkSfbEkSAmyQmLcYYTs1&index=4&t=0s][youtube]])
+** Variables en =select=
+
+- Se puede leer el valor de un campo y guardarlo en una variable con =select ... into ... from...=
+- Hay que asegurarse que la /query/ devuelve solo una fila
+- El número de columnas debe coincidir con el número de variables
+
+#+BEGIN_SRC sql
+create table empleados( empno number(20), salario number(8,2), nombre varchar(255));
+insert into empleados(empno,salario,nombre) values (1,2000,'María');
+insert into empleados(empno,salario,nombre) values (2,1000,'Juan');
+
+DECLARE
+  vempno NUMBER := 2;
+  vsalario NUMBER;
+BEGIN
+  SELECT salario INTO vsalario FROM empleados WHERE empno=vempno;
+  dbms_output.put_line('El empleado ' || vempno || ' tiene un sueldo de '||vsalario||'€');
+end;
+/
+#+END_SRC
+
+- Es fácil confundir variables con nombres de columna. 
+- Convenio: comenzar todas las variables con =v=
+
+** Ventaja de los tipos =%type=
+- Una variable puede copiar su tipo de una columna de una tabla
+- Así, si cambia la definición de la tabla (con un =alter table=), el PLSQL sigue siendo válido
+#+BEGIN_SRC sql
+DECLARE
+  vempno empleados.empno%TYPE := 2;
+  vsalario empleados.salario%TYPE;
+BEGIN
+  SELECT salario INTO vsalario FROM empleados WHERE empno=vempno;
+  dbms_output.put_line('El empleado ' || vempno || ' tiene un sueldo de '||vsalario||'€');
+end;
+/
+#+END_SRC
+
+
+** Ventaja de los tipos =%rowtype=
+- Una variable puede contener todas las columnas de una fila
+- Si cambia la definición de la tabla (con un =alter table=), el PLSQL sigue siendo válido
+#+BEGIN_SRC sql
+DECLARE
+  vempno empleados.empno%TYPE := 2;
+  vempleado empleados%ROWTYPE;
+BEGIN
+  SELECT * INTO vempleado FROM empleados WHERE empno=vempno;
+  dbms_output.put_line('El empleado ' || vempno || ' tiene un sueldo de '|| vempleado.salario ||'€');
+  dbms_output.put_line('El empleado ' || vempno || ' se llama '|| vempleado.nombre ||'€');
+end;
+/
+#+END_SRC
+
+
+** Variables en =insert=, =update=, =delete=
+- Se utilizan como un valor inmediato
+#+BEGIN_SRC sql
+declare
+  vempno number;
+begin
+  vempno := 100;
+  insert into empleados(empno, salario, nombre)
+         values( vempno, 1000, 'Manolo');
+  update empleados 
+         set salario = salario + 100
+         where empno = vempno;
+  delete from empleados where empno = vempno;
+end;
+/
+#+END_SRC
+
+
+** Ventaja de los tipos =%rowtype= en =insert=
+- Una variable =%ROWTYPE= se puede usar en un =insert=
+- El resultado puede ser más limpio
+#+BEGIN_SRC sql
+DECLARE
+  vempleado empleados%ROWTYPE;
+BEGIN
+  vempleado.empno := 4;
+  vempleado.salario := 3000;
+  vempleado.nombre := 'Susana';
+  insert into empleados values vempleado;
+end;
+/
+#+END_SRC
+
+
+** Recorrer consultas
+- =for= puede recorrer las filas de una consulta
+- En cada vuelta, la variable del =for= tiene el =%ROWTYPE= de la consulta
+#+BEGIN_SRC sql
+DECLARE
+  salariototal number := 0;
+  numeroempleados number := 0;
+  mediasalario number := 0;
+begin
+  for empleado in (select * from empleados) loop
+    dbms_output.put_line(empleado.nombre || ' con salario ' || empleado.salario );
+    numeroempleados := numeroempleados + 1;
+    salariototal := salariototal +empleado.salario;
+  end loop;
+  dbms_output.put_line( 'Hay ' || numeroempleados || ' empleados ');
+  dbms_output.put_line( 'Sus sueldos suman ' || salariototal );
+
+  mediasalario := salariototal / numeroempleados;
+  dbms_output.put_line( 'La media de los sueldos es ' || mediasalario);
+end;
+/
+#+END_SRC
+
+
+
+* Control de errores
+- Si se produce un error, se lanza una *excepción*
+  - Se interrumpe el flujo de programa
+  - Hasta que se *atrapa*
+  - Puede atraparse en cada bloque/función/procedimiento
+
+#+BEGIN_SRC sql
+DECLARE
+  -- Declaraciones
+BEGIN
+  -- Ejecucion
+EXCEPTION
+  -- Excepcion
+END;
+#+END_SRC
+
+([[https://youtu.be/jQfWrMDQKvY][youtube]])
+
+** Sección /exception/
+- Se especifican varios tipos de excepción que se esperan
+#+BEGIN_SRC sql
+DECLARE
+  -- Declaraciones
+BEGIN
+  -- Ejecucion
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN 
+    -- Se ejecuta cuando ocurre una excepcion de tipo NO_DATA_FOUND
+  WHEN ZERO_DIVIDE THEN
+    -- Se ejecuta cuando ocurre una excepcion de tipo ZERO_DIVIDE
+  WHEN OTHERS THEN
+    -- Se ejecuta cuando ocurre una excepcion de un tipo no tratado
+    -- en los bloques anteriores
+END;
+#+END_SRC
+
+** Ejemplo
+#+BEGIN_SRC sql
+create table empleados( empno number(20), salario number(8,2), nombre varchar(255));
+insert into empleados(empno,salario,nombre) values (1,2000,'María');
+insert into empleados(empno,salario,nombre) values (2,1000,'Juan');
+
+DECLARE
+  unavariable varchar(255);
+BEGIN
+  select nombre into unavariable from empleados;
+EXCEPTION
+  WHEN TOO_MANY_ROWS THEN 
+    dbms_output.put_line('select...into ha devuelto más de una fila!');
+  WHEN NO_DATA_FOUND THEN
+    dbms_output.put_line('select...into no ha devuelto ninguna fila!');
+  WHEN OTHERS THEN
+    dbms_output.put_line('Error no previsto:' || sqlcode || ': ' || sqlerrm );
+END;
+#+END_SRC
+
+
+** Excepciones predefinidas
+- Estas son algunas (hay muchas)
+| ~NO_DATA_FOUND~    | ~TOO_MANY_ROWS~ | ~ACCESS_INTO_NULL~ |
+| ~INVALID_NUMBER~   | ~NO_DATA_FOUND~ | ~VALUE_ERROR~      |
+| ~ROWTYPE_MISMATCH~ | ~ZERO_DIVIDE~   |                    |
+
+https://www.techonthenet.com/oracle/exceptions/named_system.php
+
+** =SQLCODE= y =SQLERRM=   
+- Funciones predefinidas
+- =SQLCODE=: Número de error (independiente del idioma)
+- =SQLERRM=: 
+  - Sin parámetros: Mensaje de error en el idioma de la base de datos
+  - Con un parámetro: mensaje de ese =sqlcode=
+
+#+BEGIN_SRC sql
+DECLARE
+  result NUMBER;
+BEGIN
+  SELECT 1/0 INTO result FROM DUAL;
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.put_line('Error:'||TO_CHAR(SQLCODE));
+    DBMS_OUTPUT.put_line(SQLERRM);
+END;
+#+END_SRC
+
+** ¿Qué excepciones hay que atrapar?
+- Una excepción debe ser /excepcional/
+- El flujo normal de programa debe evitarlas
+  - Un ~select into~ debe estar hecho para devolver como mucho una fila
+  - Antes se debería hacer ~select count()~ con un ~if~ para comprobar que devuelve una fila
+- Solo se atrapa si se puede solucionar el error, si no se deja pasar
+  - No tiene sentido que imprimamos /Ha habido un error/, pero que la función/procedimiento que nos llamó no lo sepa
+  - Si nadie lo atrapa, llega hasta el usuario, que es el que tiene que enterarse y el que lo podrá arreglar
+
+** Excepciones de usuario
+- En ocasiones queremos enviar un mensaje de error personalizado
+- Están disponibles los números de error entre =-20001= y =­20999=
+- Se pueden atrapar con =when others= y comprobarse con =SQLCODE=
+
+#+BEGIN_SRC sql
+  DECLARE
+    n number;
+  BEGIN
+    SELECT count(*) into n from empleados
+    if( n < 10 ) then
+      RAISE_APPLICATION_ERROR(-20001,'La empresa necesita al menos 10 empleados');
+    end if;
+  EXCEPTION 
+    WHEN OTHERS THEN
+      if( sqlcode = -20001) then
+        dbms_output.put_line('Pocos empleados');
+      end if;
+  END;
+#+END_SRC
+
+
+
+
+* [[https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7004.htm][Disparadores]] (/triggers/)
+- Las funciones y procedimientos se invocan desde /fuera/ de la base de datos
+- Los disparadores los lanza la propia base de datos en respuesta a eventos
+- Cada tabla tiene sus propios eventos
+- Los disparadores se pueden lanzar /antes/ o /después/ del evento
+- Los disparadores se pueden lanzar una vez por cada fila afectada, o una vez para toda la sentencia SQL
+
+([[https://youtu.be/WXqkI5Jnsmo][youtube 1]]) ([[https://youtu.be/pt7jJehGlU0][youtube 2]]) ([[https://youtu.be/eAAU1kbCvbs][youtube 3]])
+
+** Sintaxis (casi) completa
+#+BEGIN_SRC sql
+CREATE [OR REPLACE] TRIGGER <nombre_trigger>
+  {BEFORE|AFTER}
+  {DELETE|INSERT|UPDATE [OF col1, col2, ..., colN]
+  [OR {DELETE|INSERT|UPDATE [OF col1, col2, ..., colN]...]}
+  ON <nombre_tabla>
+  [FOR EACH ROW [WHEN (<condicion>)]]
+DECLARE
+  -- variables locales
+BEGIN
+  -- Sentencias
+[EXCEPTION]
+  -- Sentencias control de excepcion
+END;
+#+END_SRC
+
+** Ejemplo: Al menos 10 empleados
+
+#+BEGIN_SRC sql
+CREATE or replace TRIGGER personal_minimo
+BEFORE DELETE ON empleados
+declare
+  n number;
+begin
+  SELECT count(*) into n from empleados;
+  if( n < 10 ) then
+    RAISE_APPLICATION_ERROR(-20001,'La empresa necesita al menos 10 empleados');
+  end if;
+end;
+/
+#+END_SRC
+
+** Eventos DML
+| Evento DML   |                                          |
+|--------------+------------------------------------------|
+| ~delete~     | Borrado de una fila                      |
+| ~insert~     | Insercción de una fila                   |
+| ~update~     | Modificación de fila                     |
+| ~update of~  | Modificación de un campo de una fila     |
+| ~instead of~ | Anula la orden, pero no provoca un error |
+
+- Se pueden combinar para un mismo /trigger/
+  - Las funciones =INSERTING=, =UPDATING= y =DELETING= sirven para diferenciar por qué se ha lanzado
+
+
+*** Ejemplo de /trigger/ en varios eventos DML
+#+BEGIN_SRC sql
+CREATE or replace TRIGGER ejemplo_or
+BEFORE DELETE OR UPDATE OR INSERT ON empleados
+begin
+  case 
+    when inserting THEN
+      dbms_output.put_line('Insertando empleados');
+    when updating then
+      dbms_output.put_line('Actualizando empleados');
+    when deleting then
+      dbms_output.put_line('Borrando empleados');
+    else
+      dbms_output.put_line('Inesperado');
+  end case;
+end;
+/
+#+END_SRC
+
+** Eventos DDL
+
+| Evento DDL              |                         |
+|-------------------------+-------------------------|
+| ALTER                   | Modificación de objetos |
+| COMMENT                 |                         |
+| CREATE                  | Creación de objetos     |
+| DDL                     |                         |
+| DROP                    | Borrado de Objetos      |
+| GRANT                   | Otorgar privilegios     |
+| RENAME                  |                         |
+| REVOKE                  | Quitar privilegios      |
+| TRUNCATE                |                         |
+
+
+
+** Eventos de sistema
+
+| Evento DDL              |                         |
+|-------------------------+-------------------------|
+| ANALYSE                 |                         |
+| ASSOCIATE STATISTICS    |                         |
+| AUDIT                   |                         |
+| DISASSOCIATE STATISTICS |                         |
+| LOGON                   | Entrada de usuario      |
+| LOGOFF                  | Salida de usuario       |
+| NOAUDIT                 |                         |
+| RENAME                  |                         |
+| SERVERERROR             |                         |
+| STARTUP                 | Servidor arrancado      |
+| SHUTDOWN                | Servidor parado         |
+| SUSPEND                 |                         |
+
+
+** =for each row=
+- Por defecto, un /trigger/ se lanza una vez por cada sentencia SQL que provoque cambios
+- Si se especifica =for each row=, se lanza una vez por cada fila cambiada
+
+** Momentos del evento
+- Se puede lanzar
+  - =before=
+  - =after=
+  - =instead of=: No se ejecuta el SQL, sino otro alternativo. Útil para vistas modificables.
+- Las variables =:old= y =:new= existen en los /triggers/ tipo =for each row=
+  - =:old=: Variable tipo =%rowtype= con los datos antiguos de la fila
+  - =:new=: Datos nuevos de la fila
+
+*** Resumen de momentos y variables
+| Momento  | Evento   | =:old=  | =:new=            |
+|----------+----------+---------+-------------------|
+| ~before~ | ~delete~ | Lectura |                   |
+| ~before~ | ~insert~ |         | Lectura/escritura |
+| ~before~ | ~update~ | Lectura | Lectura/escritura |
+| ~after~  | ~delete~ | Lectura |                   |
+| ~after~  | ~insert~ |         | Lectura           |
+| ~after~  | ~update~ | Lectura | Lectura           |
+
+
+** Ejemplo típico: Autonuméricos
+#+BEGIN_SRC sql
+create sequence empleado_empno_seq;
+CREATE or replace TRIGGER asignar_empleado_empno
+BEFORE INSERT ON empleados
+for each row
+begin
+  if :new.empno is null then
+    :new.empno = empleado_empno_seq.nextval;
+  end if;
+end;
+/
+#+END_SRC
+
+
+** Ejemplo típico: auditoría
+- Se necesitan los datos del usuario que creo y modificó un empleado por última vez
+
+#+BEGIN_SRC sql
+create table empleados( empno number(20), salario number(8,2), nombre varchar(255));
+insert into empleados(empno,salario,nombre) values (1,2000,'María');
+insert into empleados(empno,salario,nombre) values (2,1000,'Juan');
+
+
+alter table empleados add (
+  createdby varchar(255),
+  createddate timestamp,
+  modifiedby varchar(255),
+  modifieddate timestamp 
+);
+#+END_SRC
+
+*** Actualizar campos =createdXXXX=
+
+#+BEGIN_SRC sql
+create or replace trigger audit_creacion_empleados
+  before insert 
+  on empleados
+  for each row
+begin
+  dbms_output.put_line('Empleado ' || :new.nombre || ' creado por:' || user );
+  :new.createdby := user;
+  :new.createddate := systimestamp;
+end;
+/
+#+END_SRC
+
+*** Actualizar campos =modifiedXXXX=
+
+#+BEGIN_SRC sql
+create or replace trigger audit__modificacion_empleados
+  before update 
+  on empleados
+  for each row
+begin
+  dbms_output.put_line('Empleado ' || :new.nombre || ' modificado por:' || user );
+  :new.modifiedby := user;
+  :new.modifieddate := systimestamp;
+end;
+/
+#+END_SRC
+
+
+** Ejemplo típico: desnormalización
+- Imaginemos que necesitamos saber la masa salarial total
+#+begin_src sql
+create or replace function MASA_SALARIAL return number 
+as
+  total number;
+begin
+  select sum(salario) into total from empleados;
+  return total;
+end;
+/
+#+end_src
+
+- Ventajas: simple, rendimiento es escritura
+- Desventajas: rendimiento en lectura, se consulta cada vez
+
+*** Con triggers
+#+begin_src sql
+create table cantidadesprecalculadas(nombre varchar(255), valor number(20,2));
+
+create or replace trigger mantener_masa_salarial
+after insert or update or delete
+on empleados
+for each row
+begin
+  if inserting then
+    update cantidadesprecalculadas set valor=valor + :new.salario where nombre = 'masasalarial';
+  elsif deleting then
+    update cantidadesprecalculadas set valor=valor - :old.salario where nombre = 'masasalarial';
+  elsif updating then
+    update cantidadesprecalculadas set valor=valor - v:old.salario + :new.salario where nombre = 'masasalarial';
+  end if;
+end;
+/
+
+create or replace function MASA_SALARIAL_PRECALCULADA return number 
+as
+  total number;
+begin
+  select valor into total from cantidadesprecalculadas where nombre='masasalarial';
+  return total;
+end;
+/
+#+end_src
+
+*** Ventajas de la desnormalización
+- La tabla =masasalarial= tiene un atributo calculado, que depende de otros datos
+  - No está normalizada
+  - Es más complicado que la función =MASA_SALARIAL=
+  - Es más lento en escritura
+- Pero es mucho más eficiente en lectura, porque no se calcula cada vez que se consulta
+
+*** Prueba de rendimiento
+- Estas consultas simples suelen [[https://docs.oracle.com/database/121/TGDBA/tune_result_cache.htm#TGDBA618][estar ya optimizadas]] por el gestor de base de datos
+#+begin_src sql
+set serveroutput off;
+begin
+  for i in 1 .. 10000 loop
+     insert into empleados(empno,salario,nombre)
+     values(100+i, i, 'Nombre Inventado');
+  end loop;
+end;
+/
+set serveroutput on;
+#+end_src
+
+#+begin_src sql
+declare
+  numero number;
+begin
+  for i in 1 .. 1000 loop
+    select /*+ NO_RESULT_CACHE */ masa_salarial_precalculada into numero from dual;
+  end loop;
+end;
+/
+#+end_src
+
+
+
+
+
+* Referencias
+
+- [[file:BD-6-Ejemplos-PLSQL.org][Ejercicios]]
+
+#+INCLUDE: "../../../common/footer.org"
+
+
+* Oculto :noexport:
+#+BEGIN_NOTES
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/gestion-bd-asir1/apuntes/6/BD-6-Ejemplos-PLSQL.org
+https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/BD-6-Ejemplos-PLSQL.org
+https://alvarogonzalezsotillo.github.io/2017-2018-Alonso-De-Avellaneda/gestion-bd-asir1/apuntes/6/gbd-6-plsql.org
+https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/6/gbd-6-plsql.reveal.html
+#+END_NOTES
+
+
+#+begin_src sql
+SET PAGESIZE 10000
+select KEYWORD from v$reserved_words order by keyword;
+#+END_src
+
+

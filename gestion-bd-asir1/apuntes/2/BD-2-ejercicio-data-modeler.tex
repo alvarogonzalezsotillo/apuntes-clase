@@ -1,0 +1,75 @@
+\input{../../../common/plantilla-ejercicio.tex}
+
+\renewcommand{\hmwkTitle}{Diseño de base de datos con \textbf{Data Modeler}}
+
+\renewcommand{\hmwkClass}{Gestión de Base de Datos}
+
+
+\begin{document}
+
+\primerapagina
+
+
+\section{Objetivo de la práctica} En esta práctica se espera que el alumno:
+\begin{itemize}
+\item Realice adecuadamente el diseño conceptual de una base de datos
+\item Conozca el modelo entidad/relación
+\item Se familiarice con la herramienta \textbf{Data Modeler}
+  
+\end{itemize}
+
+La última versión de este documento está disponible en \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/2/BD-2-ejercicio-data-modeler.pdf}{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/2/BD-2-ejercicio-data-modeler.pdf}
+
+
+\section{Enunciado}
+
+Se desea obtener el modelo conceptual para una base de datos que manejará el catálogo y los pedidos de una multinacional minorista de muebles.
+\begin{itemize}
+\item Cada mueble puede ser vendido en varias temporadas (2020, 2021, 2022\ldots).
+\item Cada mueble puede ser de una colección (dormitorio Estival, cocina Etrusca, salón Belén…). No es obligatorio que un mueble pertenezca a una colección.
+  
+\item Un mueble es de un tipo (mesa de comedor, armario, aparador, silla\ldots)
+\item Un modelo concreto de mueble tiene unas dimensiones (alto $\times$ ancho $\times$ profundidad). Por ejemplo, la misma mesa puede venderse en tamaño 80$\times$120 y 80$\times$150.
+\item Las colecciones pueden tener distintos acabados:
+  \begin{itemize}
+  \item Varios colores disponibles.
+  \item Varios tipos de cristales (opaco, transparente, ahumado…).
+  \end{itemize}
+\item El precio de un mueble puede depender de las dimensiones del mueble. Por ejemplo:
+  \begin{itemize}
+  \item Una mesa de 80$\times$120 cuesta 100{\euro}
+  \item La misma mesa de y 80$\times$150 cuesta 130{\euro} (por las nuevas dimensiones)
+  \end{itemize}
+\item Los sobreprecios por los acabados no dependen de las dimensiones, ni de los muebles
+  \begin{itemize}
+  \item Una mesa de 80$\times$120 (de 100{\euro}) tiene un sobreprecio de 30{\euro} por pintura lacada blanca.
+  \item La misma mesa de y 80$\times$150 (de 130{\euro}) tiene el mismo sobreprecio de 30{\euro} por pintura lacada blanca, aunque sea más grande.
+  \item Una estantería cualquiera también tendría un sobreprecio de 30{\euro} por la pintura lacada blanca.
+  \end{itemize}
+\end{itemize}
+
+
+Se desea que los clientes puedan buscar en el catálogo y realizar su pedido, con los siguientes requisitos:
+\begin{itemize}
+\item Se puede visualizar el catálogo por temporada o tipo de mueble. También se pueden incluir filtros por colección y por dimensiones del mueble.
+\item Un cliente debe estar registrado para realizar pedidos. Se conocerá de él su nombre, apellidos, DNI y correo electrónico.
+\item El cliente puede realizar pedidos de muebles que no pertenezcan a la misma colección, ni temporada. También se debe dejar libertad a la cantidad de cada mueble y su acabado.
+\item El pedido incluirá la fecha de compra, y su importe total se calculará a partir de los precios de los muebles incluidos.
+\item Los muebles incluidos en un pedido pueden entregarse en una sola entrega o en varias. Se apuntará qué muebles se entregaron con cada entrega, y su fecha.
+\end{itemize}
+
+\section{Normas de entrega}
+Se pide un diseño de \textbf{Oracle Data Modeler} con este supuesto. Se entregará
+\begin{itemize}
+\item El fichero \texttt{DMD} del modelo, junto con el directorio de \textbf{Data Modeler} asociado.
+\item Un archivo \texttt{PDF} del diagrama \textit{lógico} de \textbf{Data Modeler} (coincide con el \textit{conceptual} de clase)
+\item El diagrama puede inluir las notas necesarias para poder entenderse sin tener que recurrir al fichero \texttt{DMD}: atributos de las interrelaciones, aclaraciones del dominio de los atributos...
+\end{itemize}
+
+La entrega se realizará en la tarea correspondiente del \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=8885}{aula virtual}.
+
+% La autoría del trabajo puede ser por parejas. A pesar de ello, cada alumno debe subir al aula virtual una copia del trabajo.
+La autoría del trabajo será individual. Se Admiten trabajos por pareja si en clase se comparte el ordenador. En ese caso, cada alumno debe subir al aula virtual una copia del trabajo.
+
+
+\end{document}

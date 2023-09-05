@@ -1,0 +1,153 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+
+#+OPTIONS: author:nil date:nil 
+
+#+LATEX_HEADER: \lhead{SQLDeveloper}
+#+LATEX_HEADER: \rhead{Diseño de un diagrama E/R}
+
+
+#+title: Diseño de un diagrama E/R en SQLDeveloper
+
+* Objetivo de la práctica:
+En esta práctica se espera que el alumno:
+- Realice adecuadamente el diseño conceptual de una base de datos
+- Conozca el modelo entidad/relación
+- Se familiarice con la herramienta DataModeler, incluida en SQLDeveloper
+  
+
+
+La última versión de este documento está disponible en [[https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/2/BD-2-ejercicio-data-modeler-ii.pdf][el aula virtual]]
+
+
+* Enunciado (muebles) :noexport:
+
+Se desea obtener el modelo conceptual para una base de datos que manejará el catálogo y los pedidos de una multinacional minorista de muebles.
+
+- Cada mueble puede ser vendido en varias temporadas (2018, 2019, 2020…).
+- Cada mueble puede ser de una colección (dormitorio Estival, cocina Etrusca, salón Belén…). No es obligatorio que un mueble pertenezca a una colección.
+  
+- Un mueble es de un tipo (mesa de comedor, armario, aparador, silla\ldots)
+- Un modelo concreto de mueble tiene unas dimensiones (alto  $\times$  ancho  $\times$  profundidad). Por ejemplo, la misma mesa puede venderse en tamaño 80 $\times$ 120 y 80 $\times$ 150.
+- Las colecciones pueden tener distintos acabados:
+  
+  - Varios colores disponibles.
+  - Varios tipos de cristales (opaco, transparente, ahumado…).
+  
+- El precio de un mueble puede depender de las dimensiones del mueble. Por ejemplo:
+  
+  - Una mesa de 80 $\times$ 120 cuesta 100\euro
+  - La misma mesa de y 80 $\times$ 150 cuesta 130\euro (por las nuevas dimensiones)
+  
+- Los sobreprecios por los acabados no dependen de las dimensiones, ni de los muebles
+  
+  - Una mesa de 80  $\times$  120 (de 100\euro) tiene un sobreprecio de 30\euro por pintura lacada blanca.
+  - La misma mesa de y 80 $\times$ 150 (de 130\euro) tiene el mismo sobreprecio de 30\euro por pintura lacada blanca, aunque sea más grande.
+  - Una estantería cualquiera también tendría un sobreprecio de 30\euro por la pintura lacada blanca.
+
+Se desea que los clientes puedan buscar en el catálogo y realizar su pedido, con los siguientes requisitos:
+
+- Se puede visualizar el catálogo por temporada o tipo de mueble. También se pueden incluir filtros por colección y por dimensiones del mueble.
+- Un cliente debe estar registrado para realizar pedidos. Se conocerá de él su nombre, apellidos, DNI y correo electrónico.
+- El cliente puede realizar pedidos de muebles que no pertenezcan a la misma colección, ni temporada. También se debe dejar libertad a la cantidad de cada mueble y su acabado.
+- El pedido incluirá la fecha de compra, y su importe total se calculará a partir de los precios de los muebles incluidos.
+- Los muebles incluidos en un pedido pueden entregarse en una sola entrega o en varias. Se apuntará qué muebles se entregaron con cada entrega, y su fecha.
+
+* Enunciado
+Se desea obtener el modelo conceptual para una base de datos que manejará el catálogo y los pedidos de una empresa dedicada a la venta de ordenadores configurables  por internet.
+
+- Cada modelo de ordenador se dedica a un uso: hogar, empresa, /gaming/... (como la tienda de [[https://www.dell.es][dell]]) 
+- Cada modelo tiene unas especificaciones de base (procesador, memoria, tarjeta gráfica...), con un precio inicial (como los ordenadores [[https://www.lenovo.com/es/es/laptops/thinkpad/edge-series/E15-G2/p/20TDCTO1WWESES2/customize?][Thinkpad]])
+  - No todas las mejoras son compatibles con todos los modelos de ordenador (por ejemplo, no se pueden poner 64GB de RAM en todos los modelos)
+  - Cada mejora es de una característica del ordenador: memoria RAM, memoria de disco, tipo de tarjeta gráfica... Solo se puede aplicar una mejora dentro de una de estas características. Por ejemplo, no se pueden elegir 8GB y 16GB a la vez.
+  - Algunas características son incompatibles con otras. Por ejemplo, [[https://www.lenovo.com/us/en/faqs/pc-life-faqs/what-is-vpro/][no se puede tener una tarjeta de red vpro con un procesador i3]].  
+  - Cada mejora tiene un precio adicional. El precio de la mejora depende del modelo de ordenador (por ejemplo, subir a 64GB cuesta más en un ordenador /gaming/ que en uno para el hogar)
+
+- Los clientes se registran con su nombre, identificador fiscal de su país y correo electrónico.
+- Un cliente puede realizar varios pedidos. Cada pedido puede incluir varios ordenadores.
+- Los clientes pueden especificar una dirección de entrega distinta para cada pedido.  
+- El cliente puede navegar en la web por el catálogo de ordenadores
+  - Puede consultar por uso y ver todos los modelos
+  - Puede configurar cada modelo a su gusto, y una vez configurado añadirlo a un pedido, o dejarlo guardado para un futuro.
+      
+
+
+#+latex: \begin{adjustwidth}{1.3cm}{1.3cm}\begin{footnotesize}
+#+latex: \begin{Aviso}[información suficiente]
+No todas las restricciones pueden conseguirse dentro del modelo E/R, pero debe haber suficiente información en la base de datos para que el programa que la maneja pueda implementar las restricciones que falten.
+#+latex: \end{Aviso}
+#+latex: \end{footnotesize}\end{adjustwidth}
+
+#+latex: \newpage
+** Opcional: prueba tu modelo ER
+Para comprobar que el modelo ER es correcto, intenta /encajar/ la siguiente información en las entidades e interrelaciones que has obtenido.
+
+Pasa el modelo ER anterior a tablas, e introduce los siguientes datos que aporta el cliente de la base de datos:
+
+#+latex: \begin{adjustwidth}{1.3cm}{1.3cm}\begin{footnotesize}
+#+latex: \begin{Aviso}[Esta información no son las tablas]
+Esta información se da en forma tabular por comodidad, pero no tiene la estructura de la base de datos.
+- Algunos datos se dan multivaluados, pero en las tablas deben aparecer correctamente.
+- Algunos campos clave no se explicitan.
+- Informaciones que se dan por separado pueden ser de la misma entidad.  
+#+latex: \end{Aviso}
+#+latex: \end{footnotesize}\end{adjustwidth}
+
+#+latex: \begin{footnotesize}
+| CLIENTES      |              |          |                 |
+| Email         | Nombre       | Idfiscal | Lista de deseos |
+|---------------+--------------+----------+-----------------|
+| pepe@ibm.es   | Pepe Pérez   |    11111 |                 |
+| maria@aol.com | María Peláez |    22222 | ~conf5~         |
+| juan@3m.es    | Juan Gómez   |    33333 |                 |
+
+
+
+| MODELOS  |         |                       |
+| Idmodelo | Gama    | Especificaciones base |
+|----------+---------+-----------------------|
+| ~mod1~   | empresa | 4GB de RAM, 128GB SSD |
+| ~mod2~   | empresa | 8GB de RAM, 512GB SSD |
+| ~mod3~   | hogar   | 4GB de RAM, 128GB SSD |
+
+| CARACTERÍSTICAS |      |                                                                |   |
+| Descripción     | Tipo | Precio (si no aparece, no es compatible con el modelo)         |   |
+|-----------------+------+----------------------------------------------------------------+---|
+| 8GB             | RAM  | 50€ para ~mod1~, 30€ para ~mod3~                               |   |
+| 16GB            | RAM  | 100€ para ~mod1~, 100€ para ~mod2~, 60€ para ~mod3~            |   |
+| 512GB           | SSD  | 30€ para ~mod3~                                                |   |
+| 1T              | SSD  | 100€ para ~mod2~, 60€ para ~mod3~. Incompatible con 8GB de RAM |   |
+
+| PEDIDOS      |                                             |                |
+| Cliente      | Líneas de pedido                            | Dirección      |
+|--------------+---------------------------------------------+----------------|
+| Pepe Pérez   | 1 unidad de ~conf1~ y 2 unidades de ~conf2~ | Calle Arriba 4 |
+| Pepe Pérez   | 1 unidad de ~conf3~                         | Calle Abajo 3  |
+| María Pelaéz | 1 unidad de ~conf4~                         | Calle Mayor 1  |
+
+| CONFIGURACIONES |                                      |
+| Idconfiguracion | Descripción                          |
+|-----------------+--------------------------------------|
+| ~conf1~         | ~mod1~ básico                        |
+| ~conf2~         | ~mod3~ básico                        |
+| ~conf3~         | ~mod2~ con 1T de SSD con 16GB de RAM |
+| ~conf4~         | ~mod1~ con 8GB de RAM                |
+| ~conf5~         | ~mod3~ con 512GB de SSD              |
+
+#+latex: \end{footnotesize}
+
+
+* Normas de entrega
+Se pide un diseño de *Oracle Data Modeler* con este supuesto. Se entregará
+
+- El fichero =DMD= del modelo, junto con el directorio de *Data Modeler* asociado.
+- Un archivo =PDF= del diagrama /lógico/ de *Data Modeler* (coincide con el /conceptual/ de clase)
+- El diagrama puede inluir las notas necesarias para poder entenderse sin tener que recurrir al fichero =DMD=: atributos de las interrelaciones, aclaraciones del dominio de los atributos...
+
+La entrega se realizará en la tarea correspondiente del [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=8885&forceview=1][aula virtual]].
+
+La autoría del trabajo puede ser por parejas, si no hay suficientes ordenadores disponibles. A pesar de ello, cada alumno debe subir al aula virtual una copia del trabajo.
+# La autoría del trabajo será individual.
+
+
+

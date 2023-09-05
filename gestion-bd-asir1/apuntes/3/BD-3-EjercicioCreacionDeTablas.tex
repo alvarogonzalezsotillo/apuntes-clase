@@ -1,0 +1,183 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+\newcommand{\anio}{2017}
+
+
+
+\renewcommand{\hmwkTitle}{Diseño E/R, paso a SQL e inserción de datos}
+\renewcommand{\hmwkClass}{Gestión de Bases de Datos}
+
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+%\setlist[itemize]{parsep=0em}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+Se pretende que el alumno sea capaz de pasar desde las necesidades de datos de una empresa hasta las órdenes SQL necesarias para implementar dicha necesidad en Oracle
+
+Se puede descargar \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/3/BD-3-EjercicioCreacionDeTablas.pdf}{la última versión de la práctica en este enlace}
+
+\section{Modelo de datos}
+Una compañía de alquiler de coches desea informatizar su gestión.  Su flota de coches se divide en tres categorías: Functional, Advance y Prestige. Cada categoría puede tener diferentes modelos de coche con diferentes acabados. Un modelo concreto puede pertenecer a varias categorías, si el acabado es distinto. El precio por día del alquiler depende de la categoría asignada al coche.
+
+La categoría no depende directamente del acabado del coche: el departamento comercial asigna la categoría atendiendo a criterios de coste y demanda.
+
+Se desea saber los siguientes datos en el acabado de los coches, entre otros:
+\begin{itemize}
+\item aire acondicionado, climatizador, navegador, bluetooth, mp3, cambio automático, techo solar
+\end{itemize}
+
+De cada coche de la flota se desea saber:
+\begin{itemize}
+\item Marca, modelo y color
+\item Categoría
+\item Acabado
+\item Matrícula y número de bastidor
+\end{itemize}
+
+De cada alquiler de coche se desea saber:
+\begin{itemize}
+\item Datos del cliente (nombre, apellidos, DNI/NIE/pasaporte, edad,
+  género)
+\item  Delegación donde se recoge el coche, y delegación donde se
+  dejará el coche
+\item  Número de Km inicial y final
+\item  Fecha de inicio y fin del alquiler
+\item  Descuento comercial aplicado
+\end{itemize}
+
+
+\begin{homeworkProblem}[: Realizar el diagrama \textbf{ER} con Oracle \textbf{SQLDeveloper} (2 puntos)]
+  En el diagrama deben ser visibles (al menos):
+  \begin{itemize}
+  \item Los nombres de las entidades
+  \item Los atributos de las entidades
+  \item Las relaciones entre las entidades
+  \end{itemize}
+
+  Puede entregarse en su lugar el modelo relacional.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Crear las tablas de Oracle utilizando \textbf{SQL} (1 punto)]
+  Se entregará un fichero de texto de extensión \texttt{.SQL} con las órdenes \textbf{SQL} de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
+
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}[: Insertar datos en las tablas (2 puntos)]
+  Se insertarán los siguientes datos en las tablas. Los campos no especificados se
+  rellenarán a gusto del alumno:
+
+  \begin{enumerate}
+  \item  \texttt{Pedro Martínez Martínez} alquiló un Mercedes Clase B verde con
+    Matrícula \texttt{1234ABC} el \texttt{1-1-\anio} al \texttt{1-2-\anio}. Tenía cambio automático, y
+    realizó 200 km.
+  \item  \texttt{Pedro Martínez Martínez} alquiló un Renault Fluenze con Matrícula
+    \texttt{1111ABC} el \texttt{1-3-\anio} al \texttt{1-4-\anio}. Tenía navegador y bluetooth, y realizó
+    100 km.
+  \item  Los precios por día de las categorías Functional, Advance y Prestige
+    son de 95\euro, 120\euro y 200\euro, respectivamente
+
+  \item  Los coches con cambio automático o navegador se están clasificando
+    como categoría \texttt{Prestige}. Los que tienen bluetooth, en la categoría
+    \texttt{Advance}.
+  \item  \texttt{Juan Pérez Pérez} alquiló un Renault Kangoo con Matrícula \texttt{4321ABC} el
+    \texttt{1-3-\anio} al \texttt{1-4-\anio}. Tenía bluetooth, y se le aplicó un descuento del \texttt{5\%}.
+    Recogió el coche en Madrid, y lo devolvió en Sevilla.
+  \item  \texttt{Manolo Bombo Bombo} alquiló un Renault Modus el \texttt{1-3-\anio}, y aún no lo
+    ha devuelto. Tenía bluetooth, y lo recogió en Barcelona.
+  \end{enumerate}
+
+  Para comprobar los datos introducidos, se consultarán las siguientes vistas:
+  
+  \begin{listadosql}{Vistas a crear}{lst:vistas1}
+  V_ALQUILERES(nombrecliente, matricula, marca, modelo, categoria, fechainicio, fechafin, descuento)
+  V_ACABADOS(matricula, tienebluetooth, tienenavegador, tienecambioautomatico)
+  V_CATEGORIAS(categoria, preciodia)
+  \end{listadosql}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[: Modificar las tablas (2 puntos)]
+
+  Tras la puesta en marcha del sistema, la dirección de la empresa necesita modificar las tablas ya existentes para almacenar nueva información:
+  
+  \begin{itemize}
+  \item La empresa se ha dado cuenta que necesita realizar revisiones
+    periódicas a los coches. Necesita saber, por cada coche:
+    \begin{itemize}
+    \item Tipo de revisión (ITV, mantenimiento)
+    \item Nº de kilómetros (o fecha máxima) para esa revisión.
+    \item Nº de kilómetros y fecha en la que se pasaron las anteriores revisiones.
+    \end{itemize}
+
+
+  \item  Algunos coches se han repintado de otros colores. Se necesita saber qué colores ha tenido un coche, en qué fechas.
+  \item  Se desea añadir un acabado para asientos calefactados.
+  \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[: Inserción de nuevos datos (2 puntos)]
+
+  \begin{itemize}
+  \item El coche con matrícula \texttt{1234ABC} se compró \texttt{verde} el \texttt{1-1-\anio}. Se repintó a \texttt{rojo} el \texttt{1-6-\anio}.
+  \item  Los Renault deben realizar un mantenimiento cada 15000 km.
+    
+  \item \texttt{1111ABC} realizó su primera revisión el \texttt{1-3-\anio}.
+  \item \texttt{4321ABC} se compró el \texttt{1-2-\anio}, y lleva dos revisiones, el \texttt{1-4-\anio} y el \texttt{1-10-\anio}.
+
+  \item Los Mercedes realizan un mantenimiento cada 20000 km. 
+  \item \texttt{1234ABC}   se compró el \texttt{1-1-\anio}, y se revisó por primera vez el \texttt{1-4-\anio}.
+  \item Todos los coches se revisan a los 4 años en la ITV.
+  \item El coche con matrícula \texttt{1111ABC} tiene asientos calefactados.
+  \end{itemize}
+
+  Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
+  
+  \begin{listadosql}{Vistas a crear tras las modificaciones}{lst:vistas2}
+  V_REVISIONESREALIZADAS(matricula, tiporevision, kilometros, fecha)
+  V_PROXIMASREVISIONES(matricula, tiporevision, kilometros, fecha)
+  V_ACABADOS2(matricula, tienebluetooth, tienenavegador, tienecambioautomatico, tieneasientoscalefactados)
+  V_COLORES(matricula,color,fechainiciocolor)
+  \end{listadosql}
+
+\end{homeworkProblem}
+
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item Entrega tu trabajo en un fichero \texttt{ZIP}:
+  \begin{itemize}
+  \item La imagen de tu modelo ER  con SQLDeveloper: \texttt{\textbf{1.modelo-er.pdf}}
+  \item El script de creación de tablas y vistas: \texttt{\textbf{2.creacion.sql}}
+  \item El script de inserción de datos en las tablas: \texttt{\textbf{3.insercion.sql}}
+  \item El script de modificación de las tablas y creación de vistas: \texttt{\textbf{4.modificacion.sql}}
+  \item El script de inserción de datos en las tablas modificadas: \texttt{\textbf{5.insercion.sql}}
+  \end{itemize}
+\item Los nombres de los ficheros incluyen un número (para que estén ordenados). No incluyas mayúsculas. No incluyas acentos. No pongas espacios. No añadas palabras, letras ni números a los nombres.
+\item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+  
+\end{itemize}
+\end{document}
+
+
+
+

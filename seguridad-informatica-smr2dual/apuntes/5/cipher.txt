@@ -1,0 +1,113 @@
+Muestra o altera el cifrado de directorios [archivos] en particiones NTFS.
+
+  CIPHER [/E | /D | /C]
+         [/S:directorio] [/B] [/H] [nombreDeRuta [...]]
+
+  CIPHER /K [/ECC:256|384|521]
+
+  CIPHER /R:nombreDeArchivo [/SMARTCARD] [/ECC:256|384|521]
+
+  CIPHER /U [/N]
+
+  CIPHER /W:directorio
+
+  CIPHER /X[:archivoEfs] [nombreDeArchivo]
+
+  CIPHER /Y
+
+  CIPHER /ADDUSER
+         [/CERTHASH:hash | /CERTFILE:nombreDeArchivo | /USER:nombreDeUsuario]
+         [/S:directorio] [/B] [/H] [nombreDeRuta [...]]
+
+  CIPHER /FLUSHCACHE [/SERVER:nombreDeServidor]
+ 
+  CIPHER /REMOVEUSER /CERTHASH:hash
+         [/S:directorio] [/B] [/H] [nombreDeRuta [...]]
+
+  CIPHER /REKEY [nombreDeRuta [...]]
+
+    /B        Anular si se detecta un error. De forma predeterminada, CIPHER
+              contin£a ejecut ndose aunque se detecten errores.
+    /C        Muestra informaci¢n sobre el archivo cifrado.
+    /D        Descifra los archivos o directorios especificados.
+    /E        Cifra los archivos o directorios especificados. Los directorios
+              se marcar n para que los archivos agregados posteriormente se
+              cifren. El archivo cifrado podr¡a descifrarse al modificarse si
+              el directorio principal no est  cifrado. Se recomienda cifrar
+              el archivo y el directorio principal.
+    /H        Muestra los archivos con los atributos de sistema u ocultos.
+              Estos archivos se omiten de forma predeterminada.
+    /K        Crea un nuevo certificado y una nueva clave para usar con EFS.
+              Si se elige esta opci¢n, se omite el resto de opciones.
+
+              Nota: de forma predeterminada, /K crea un certificado y una
+                    clave que siguen la directiva de grupo actual. Si se
+                    especifica EEC, se crear  un certificado autofirmado
+                    con el tama¤o de clave especificado.
+
+    /N        Esta opci¢n s¢lo funciona con /U e impedir  que se actualicen
+              las claves. Se usa para buscar todos los archivos cifrados en
+              las unidades locales.
+    /R        Genera una clave y un certificado EFS, los guarda en un
+              archivo .PFX (que contiene el certificado y la clave privada)
+              y en un archivo .CER (que contiene s¢lo el certificado).
+              Un administrador puede agregar el contenido del
+              archivo .CER a la directiva de recuperaci¢n EFS para crear la
+              clave de recuperaci¢n para los usuarios e importar el archivo
+              .PFX para recuperar archivos individuales. Si se especifica
+              SMARTCARD, escribe el certificado y la clave de recuperaci¢n en
+              una tarjeta inteligente. Se genera un archivo .CER (que contiene
+              s¢lo el certificado). No se genera ning£n archivo .PFX.
+
+              Nota: de forma predeterminada, /R crea un certificado y una
+                    clave de recuperaci¢n RSA de 2048 bits. Si se especifica
+                    ECC, debe ir seguido de un tama¤o de clave de 256, 384
+                    o 521.
+
+    /S        Realiza la operaci¢n especificada en el directorio indicado y en
+              todos sus archivos y subdirectorios.
+    /U        Intenta procesar todos los archivos cifrados en unidades
+              locales. Esto actualizar  la clave de cifrado de archivos del
+              usuario o las claves de recuperaci¢n a las actuales en caso de
+              que hayan cambiado. Esta opci¢n no funciona con otras opciones a
+              excepci¢n de /N.
+    /W        Quita datos de espacio en disco disponible en todo el
+              volumen. Si se elige esta opci¢n, se omitir n todas las dem s
+              opciones. El directorio especificado puede estar en cualquier
+              ubicaci¢n del volumen local. Si es un punto de montaje o apunta
+              a un directorio en otro volumen, se quitar n los datos del
+              volumen.
+    /X        Hace una copia de seguridad del certificado y las claves EFS en
+              el archivo nombreDeArchivo. Si el archivoEfs se proporciona, se
+              har  una copia de seguridad del certificado o certificados
+              actuales del usuario usados para cifrar el archivo. De lo
+              contrario, se har  una copia de seguridad
+              del certificado y las claves EFS actuales del usuario.
+    /Y        Muestra la vista en miniatura del certificado EFS actual en el
+              equipo local.
+    /ADDUSER  Agrega un usuario a los archivos cifrados especificados. Si se
+              proporciona CERTHASH, el cifrado buscar  un certificado con este
+              hash SHA1. Si se proporciona CERTFILE, el cifrado extraer  el
+              certificado del archivo. Si se proporciona USER, el cifrado
+              intentar  ubicar el certificado del usuario en Servicios
+              de dominio de Active Directory.
+    /FLUSHCACHE
+              Borra la memoria cach‚ de claves EFT del usuario que realiza
+              la llamada en el servidor especificado.
+              Si no se proporciona el nombre del servidor, CIPHER borra
+              la memoria cach‚ de claves de usuario en el equipo local.
+    /REKEY    Actualiza los archivos cifrados especificados para usar la clave
+              EFS configurada actual.
+    /REMOVEUSER
+              Quita un usuario de los archivos especificados. CERTHASH
+              debe ser el hash SHA1 del certificado que se va a quitar.
+
+    directorio       Ruta de acceso de un directorio.
+    nombreDeArchivo  Nombre de archivo sin extensi¢n.
+    nombreDeRuta     Especifica un patr¢n, archivo o directorio.
+    archivoEfs       Ruta de acceso de un archivo cifrado.
+
+    Si se usa sin par metros, CIPHER muestra el estado del cifrado del
+    directorio actual y de todos los archivos que contiene. Puede usar varios
+    nombres de directorio y caracteres comod¡n. Debe usar espacios entre
+    los diferentes par metros.
