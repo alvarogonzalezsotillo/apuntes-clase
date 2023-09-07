@@ -55,17 +55,26 @@ sudo apt install virtualbox-5.2
 
 
 
+
+
+* Instalar oraclelinux8 :noexport:
+tmux, avahi, , git, sshfs, epel, mdns4
+sudo yum install tmux avahi git 
+dnf install oracle-epel-release-el8
+sudo yum install nss-mdns sshfs
+yum whatprovides <fichero>
+
+
 * Instalación del software de base de datos
 
 ** Prerequisitos
 - Será una máquina virtual de VirtualBox
-  - [[https://iesavellaneda-my.sharepoint.com/:u:/g/personal/alvaro_gonzalezsotillo_iesavellaneda_onmicrosoft_com/EXY7H7CIAjhFqo4TyIK_wC8BTD9aCVC5-0RUdKsg2WeLhg][Enlace al fichero OVA]]
-  - En clase puede bajarse desde el [[http://nasavellaneda.local/alvaro/maquinas-virtuales/centos7-oracle-inicial-2018.ova][NAS]] (más rápido)
+  - En clase puede bajarse desde el [[http://nasavellaneda.local/alvaro/maquinas-virtuales][NAS]] (más rápido)
 - El fichero =OVA= del profesor ya tiene:
-  - *Centos 7* instalado (inglés)
-  - *Oracle 12c y 18c* descargado
-- En otros sistemas operativos (*Fedora*) hay un [[https://patrickhurley.wordpress.com/2015/11/30/freeze-of-oracle-dbca-and-startup-nomount-running-on-linux-on-virtualbox-5/][problema con Virtual Box y la paravirtualización]]
-
+  - *Oracle Linux 9 instalado* instalado (inglés)
+- Se debe bajar también el ZIP de instalación: [[https://www.oracle.com/database/technologies/oracle-database-software-downloads.html][=LINUX.X64.213000_db_home.zip=]]
+- Se necesita =java=
+  - =sudo yum install java-11-openjdk=  
 
 ** Resolver el propio nombre
 - Cambiar el nombre de la máquina 
@@ -75,37 +84,9 @@ sudo apt install virtualbox-5.2
     - =127.0.0.1=
     - =::1=
 - Reiniciar la máquina
-
-** Antes de empezar :noexport:
-- Para Fedora y 11g
-- Necesitamos varios componentes de Linux.
-  - Su firma ([[https://docs.oracle.com/cd/E52668_01/E39381/html/ol_import_gpg.html]])
-
-#+begin_src sh
-wget http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol7
-rpm --import ./RPM-GPG-KEY-oracle-ol7
-#+end_src
-
-  - Instalación
-
-#+begin_src sh
-cd /etc/yum.repos.d/
-wget http://public-yum.oracle.com/public-yum-ol7.repo
-yum install oracle-rdbms-server-11gR2-preinstall
-yum update --skip-broken
-#+end_src
-
+- Después de eso, se debería encontrar por nombre: =ping nombrealumnoASGBD.local=
+  
 (referencia em https://oracle-base.com/blog/2015/03/26/oracle-linux-7-1-preinstall-packages-available-for-11gr2-and-12cr1/)
-
-** Antes de empezar :noexport:
-- Actualizar los repositorios Centos
-
-#+begin_src sh
-sudo yum clean all # Reinicia los repositorios
-wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm # nos bajamos un repositorio extra
-rpm -ihv epel-release-7-10.noarch.rpm # instalamos ese repositorio
-sudo yum update #opcional, puede necesitar mucho tiempo
-#+end_src
 
 ** Entorno gráfico
 - El instalador más cómodo de Oracle necesita un sistema de ventanas
@@ -118,32 +99,32 @@ sudo yum update #opcional, puede necesitar mucho tiempo
     #+begin_src sh
     ssh -X alumno@servidor
     #+end_src
-  - Arrancar un servidor *vnc* en *Centos*
+  - Arrancar un servidor *vnc*
     #+begin_src sh
-    sudo yum install vnc-server # o tigervnc-server
+    sudo yum install tigervnc-server
     vncserver :0
     #+end_src
 
-** Oracle 18c
+** Oracle 21c
 
 *** Descomprimir el instalador
- - Descomprimiremos sus ficheros en el directorio =$HOME/oracle-install-18c=
+ - Descomprimiremos sus ficheros en el directorio =/opt/oracle-install=
    - Sugerencia: línea de comandos =unzip=
-   - Directorio =$HOME/oracle-install/=
-   - Fichero: =LINUX.X64_180000_db_home.zip= 
+   - Directorio =/opt/oracle-install/=
  - Para hacer sitio, podemos borrar los ficheros =zip= una vez descomprimidos
 
 *** Arrancar el instalador
  1. Se arranca con =./runInstaller=
- 2. Instalar sólo el /software/ de la base de DATOS
+    - Puede que falte una librería: =sudo yum install libnsl=
+ 2. Instalar sólo el /software/ de la base de datos
  3. Elegir /Single instance database/
  5. Edición Enterprise
 
 *** Directorios de Oracle
  Dejamos los directorios por defecto:
- - Oracle Base: =/home/alumno/oracle-18c=
- - /Software/ en =/home/alumno/oracle-install-18c=
- - /Inventory/ en =/home/alumno/oraInventory=
+ - Oracle Base: =/opt/app/alumno=
+ - /Software/ en =/opt/oracle-install-18c=
+ - /Inventory/ en =/opt/app/oraInventory=
    - Dejamos el grupo a =alumno=
 
 *** Grupos de /Linux/
@@ -152,21 +133,25 @@ sudo yum update #opcional, puede necesitar mucho tiempo
    - Es un grupo administrador en *Centos*
    - El usuario =alumno= ya pertenece a él 
 
+*** Ejecución de scripts como =root=
+- La instalación necesitará modificar el sistema, pero se ha lanzado como =alumno=
+- No dejaremos que el instalador ejecute nada como =root=, lo haremos manualmente
+ 
 *** Comprobaciones
  - Ignoramos la falta de memoria
  - El instalador detectará algunos errores, pero genera unos /scripts/ de /fix/
    - Son parámetros del /kernel/ de Linux
    - Los /scripts/ se ejecutan como administrador
-
+   - =sudo bash runfixup.sh=  
+  
  - Se necesitan instalar varios paquetes de software
    - =sudo yum install= /=paquete=/
    - Es necesario que la máquina virtual tenga acceso a internet (debería estar en /Bridged/, pero también funciona /NAT/)
 
  #+BEGIN_NOTES
-sudo yum install compat-libcap1 libstdc++-devel gcc-c++ ksh libaio-devel compat-libstdc++-33
+sudo yum install sudo yum install sysstat ksh make glibc-devel   
  #+END_NOTES
 
-También hay un paquete de dependencias (=oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm=), que se puede instalar con =yum localinstall=
 
 *** Resumen
  - Se debe grabar la información de la hoja de resumen
@@ -174,7 +159,7 @@ También hay un paquete de dependencias (=oracle-database-preinstall-18c-1.0-1.e
  [[file:media/response-file-18c.png]]
 
 *** /scripts/ de configuración
-- /home/alumno/oraInventory/orainstRoot.sh
+- /opt/home/alumno//oraInventory/orainstRoot.sh
 
 #+begin_src sh
 [alumno@centos7 oraInventory]$ sudo ./orainstRoot.sh 
@@ -188,7 +173,7 @@ The execution of the script is complete.
 #+end_src
 
 
-- /home/alumno/oracle-install-18c/root.sh
+- /home/alumno/oracle-install/root.sh
 
 #+begin_src sh
 [alumno@centos7 oracle-install-18c]$ sudo ./root.sh
@@ -196,7 +181,7 @@ Performing root user operation.
 
 The following environment variables are set as:
     ORACLE_OWNER= alumno
-    ORACLE_HOME=  /home/alumno/oracle-install-18c
+    ORACLE_HOME=  /opt/oracle-install
 
 Enter the full pathname of the local bin directory: [/usr/local/bin]: 
    Copying dbhome to /usr/local/bin ...
@@ -212,7 +197,7 @@ Now product-specific root actions will be performed.
 Do you want to setup Oracle Trace File Analyzer (TFA) now ? yes|[no] : 
 
 Oracle Trace File Analyzer (TFA - Non Daemon Mode) is available at :
-    /home/alumno/oracle-install-18c/suptools/tfa/release/tfa_home/bin/tfactl
+    /opt//oracle-install/suptools/tfa/release/tfa_home/bin/tfactl
 
 Note :
 1. tfactl will use TFA Daemon Mode if TFA already running in Daemon Mode and user has access to TFA
@@ -221,13 +206,13 @@ Note :
 OR
 
 Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this script :
-    /home/alumno/oracle-install-18c/suptools/tfa/release/tfa_home/install/roottfa.sh
+    /opt//oracle-install/suptools/tfa/release/tfa_home/install/roottfa.sh
 #+end_src
 
 
 *** Finalización
  - Necesitamos definir algunas variables de entorno (ficheros =~/.profile=, =~/.bash_profile=, =~/.bashrc=)
-   - =ORACLE_HOME=: =/home/alumno/oracle-install-18c=
+   - =ORACLE_HOME=: =/opt/oracle-install=
    - Incluir =$ORACLE_HOME/bin= en el =PATH=
  - También se puede usar [[http://www.orafaq.com/wiki/Oraenv][el comando =oraenv=]] para definir estas variables
 
@@ -333,7 +318,44 @@ digraph {
 ** Paravirtualización :noexport:
 - =dbca= se puede colgar si la paravirtualización está a algún valor que no sea =none=
 
-    
+
+** ¡Ya se puede conectar!
+
+- Es necesario informar a =sqlplus= del =SID=
+- Pero solo se puede conectar desde la máquina local  
+
+#+begin_src bash
+[alumno@oraclelinux-r8 ~]$ ORACLE_SID=asir sqlplus / as sysdba                            
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Sep 7 13:48:47 2023                                       
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.                                                    
+
+
+Connected to:
+Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production                                     
+Version 21.3.0.0.0
+
+SQL> show pdbs;
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                            
+---------- ------------------------------ ---------- ----------                                            
+         2 PDB$SEED                       READ ONLY  NO                                                    
+         3 PDASIR                         READ WRITE NO                                                    
+SQL> alter session set container=PDASIR
+  2  ;
+
+Session altered.
+
+SQL> select * from dual;
+
+D
+-
+X
+
+SQL>
+#+end_src
 
 * Creación de un /listener/ 
 - Permiten las conexiones de clientes remotos
@@ -408,17 +430,6 @@ SQL>
 #+end_src
 
 
-
-* Conexión en local
-- Después de la creación de un /listener/ y una instancia, ya podemos conectarnos a la base de datos
-- Recordatorio: Debemos tener configuradas las variabales de entorno
-  - =ORACLE_SID= : el nombre que de la base de datos (=asir=)
-  - =PATH= : debe incluir =$ORACLE_HOME/bin=
-  - Se pueden poner también con =oraenv=
-
-#+BEGIN_SRC sh
-sqlplus / as sysdba  
-#+END_SRC
     
 
 
@@ -445,34 +456,19 @@ sqlplus / as sysdba
   - Nombres netbios de Windows
   - Nombres zeroconf/avahi de Linux/Mac (*preferido*)
 
-*** avahi 
-- Instalar =avahi= y =avahi-tools=
-- Activar opciones =publish-hinfo= y =publish-workstation=
-- Desactivar el firewal
-- Importante: el nombre afecta al fichero =listener.ora=
-- El nombre de red será el que tengamos más =.local=
-  - Por ejemplo, =profebd.local=
-- Con esto un windows puede encontrar a un linux
-  - Para que Linux encuentre a otro linux, hay que cambiar =/etc/nsswitch.conf=
-  - En *Centos*, hay que instalar =nss_mdns=
 
-*** Samba 
-- [[https://www.howtoforge.com/samba-server-installation-and-configuration-on-centos-7]]
-  - =sudo yum install samba samba-client samba-common=
-  - =systemctl enable smb.service=
-  - =systemctl enable nmb.service=
-  - Cambiar el fichero =smb.conf=, el =netbios name=
-    - *Ojo*: máximo 15 caracteres, sin guiones
-- Importante: el nombre afecta al fichero =listener.ora=
-
-
-** Configuración de las conexiones (*sqlplus*) :noexport:
+** Configuración de las conexiones (*sqlplus*)
 - El cliente =sqlplus= utiliza las conexiones definidas en el fichero =tnsnames.ora=
 - Con el comando =netca=
   - Elegir los nombres locales (/Local net service name configuration/)
 - Se puede usar también una cadena de conexión
-  - =usuario@password@servidor:puerto/sid=
-  - =sys@\"servidor:puerto/sid\" as sysdba=  
+  #+begin_src bash
+    sqlplus username/password@host:port/service
+
+    sqlplus sys/alumno@centosprofe.local/asir as sysdba
+
+    sqlplus sys@\"host:port/service\" as sysdba
+  #+end_src
 
 
 ** Acceso via Web :noexport:
@@ -491,15 +487,7 @@ sqlplus / as sysdba
   - https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-sqlplus-linux.x64-19.3.0.0.0dbru.zip
 - Tras descomprimir, hay que definir las variables =ORACLE_HOME= y =LD_LIBRARY_PATH= al directorio de instalación
 - Puede ser necesaria la libería =libaio=
-- Para contectarse:
 
-#+begin_src bash
-  sqlplus username/password@host:port/service
-  
-  sqlplus sys/alumno@centosprofe.local/asir as sysdba
-
-  sqlplus sys@\"host:port/service\" as sysdba
-#+end_src
 
 
 #+BEGIN_NOTES
@@ -536,21 +524,6 @@ See the Instant Client Home Page for more information.
 
 #+END_NOTES
 
-** Instalación de *SQLDeveloper* en Centos
-- Se necesita *JDK 1.8*
-- Se instalan los ficheros =sqldeveloper-4.1.5.21.78-1.noarch.rpm= y =jdk-8u111-linux-x64.rpm=
-  - http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-  - http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html
-- Arracar =sqldeveloper= desde la consola
-  - Preguntará por el directorio de instalación del JDK
-
-** Instalación de *SQLDeveloper* en Ubuntu
-- Se necesita *JDK 1.8*
-- Se descarga el fichero  =sqldeveloper-xxxxx-no-jre.zip=
-  - http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html
-- Se descomprime y se ejecuta =sqldeveloper.sh=
-
-
 ** Reinicio del servidor :noexport:
 - Comprobar =/etc/oratab=
   - Deberá estar configurada para iniciarse con el sistema
@@ -568,16 +541,13 @@ See the Instant Client Home Page for more information.
     IPADDR=10.1.35.xxx
     #+end_src
   - [[https://docs.google.com/spreadsheets/d/1onVe6zpdLe_MWj4k5iQ7bGc5K43kVZ9fhMONyG9whMU/edit#][Lista de direcciones]]
-- Si tengo un portátil, es más cómo tener dos tarjetas en la máquina virtual
-  1) Host-only: Dirección que funciona siempre desde el windows
-  2) Bridged: A enganchar en la wifi, con la dirección apuntada en la [[https://docs.google.com/spreadsheets/d/1onVe6zpdLe_MWj4k5iQ7bGc5K43kVZ9fhMONyG9whMU/edit#][hoja excel de direcciones IP]]
 - También se puede usar =sudo nmtui=
   
 * Cosas que hemos aprendido /de pasada/
 - Variables de entorno
   - Variable =PATH=
-- Conexiones por *ssh*
-  - Con redirección del *Xserver*
+- Conexiones remotas
+  - *ssh* con redirección del *Xserver*
   - Con *vnc*  
 - Edición de ficheros de texto
 - Instalación de paquetes en *Centos*
@@ -603,6 +573,7 @@ Nada de esto es /directamente/ bases de datos...
 | ~netstat~   | Ver conexiones de red                    |
 | ~nc~        | Conectarse por TCP o UDP                 |
 | ~systemctl~ | Activa y desactiva servicios (firewall)  |
+| ~nmtui~     | Control de conexiones de red             |
   
 ** Comandos, /shell/ y variables 
 | ~$variable~     | Valor de una variable (de =export= y =env= )        |
@@ -668,13 +639,4 @@ digraph {
 
 * Referencias
 #+include: "../../../common/footer.org"
-
-* oracle21 :noexport:
-https://docs.oracle.com/en/database/oracle/oracle-database/21/ladbi/running-rpm-packages-to-install-oracle-database.html#GUID-BB7C11E3-D385-4A2F-9EAF-75F4F0AACF02
-
-Se instala como usuario oracle, arrancar dbca en vncserver
-
-para que funcione vncserver quitar wayland de /etc/gdm/custom.conf https://help.realvnc.com/hc/en-us/articles/4417193011857-How-do-I-disable-Wayland-to-use-VNC-Connect-
-
-
 
