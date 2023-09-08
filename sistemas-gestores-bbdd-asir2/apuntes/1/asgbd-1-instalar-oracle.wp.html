@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-07 jue 20:03 -->
+<!-- 2023-09-08 vie 12:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -204,16 +204,16 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000031">1. Instalación del software de base de datos</a></li>
-<li><a href="#org0000040">2. Instancia / <i>listener</i> / base de datos</a></li>
-<li><a href="#org0000049">3. Creación de una instancia de base de datos</a></li>
-<li><a href="#org000004f">4. Creación de un <i>listener</i></a></li>
-<li><a href="#org0000055">5. Arrancar y parar la base de datos</a></li>
-<li><a href="#org0000065">6. Conexión remota</a></li>
-<li><a href="#org0000068">7. Dirección IP</a></li>
-<li><a href="#org0000071">8. Cosas que hemos aprendido <i>de pasada</i></a></li>
-<li><a href="#org0000076">9. Diagrama resumen</a></li>
-<li><a href="#org0000079">10. Referencias</a></li>
+<li><a href="#org0000039">1. Instalación del software de base de datos</a></li>
+<li><a href="#org0000046">2. Creación de una instancia de base de datos</a></li>
+<li><a href="#org0000055">3. Instancia / <i>listener</i> / base de datos</a></li>
+<li><a href="#org000005b">4. Creación de un <i>listener</i></a></li>
+<li><a href="#org000006b">5. Conexión remota</a></li>
+<li><a href="#org000006e">6. Dirección IP</a></li>
+<li><a href="#org0000074">7. Arrancar y parar la base de datos</a></li>
+<li><a href="#org000007d">8. Cosas que hemos aprendido <i>de pasada</i></a></li>
+<li><a href="#org0000082">9. Diagrama resumen</a></li>
+<li><a href="#org0000085">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -250,8 +250,8 @@ window.addEventListener("load",()=>{
 
 </script>
 
-<div id="outline-container-org0000031" class="outline-2">
-<h2 id="org0000031"><span class="section-number-2">1.</span> Instalación del software de base de datos</h2>
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">1.</span> Instalación del software de base de datos</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-org0000000" class="outline-3">
@@ -333,8 +333,8 @@ Arrancar un servidor <b>vnc</b>
 </div>
 </div>
 
-<div id="outline-container-org000002e" class="outline-3">
-<h3 id="org000002e"><span class="section-number-3">1.4.</span> Oracle 21c</h3>
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">1.4.</span> Oracle 21c</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
 <div id="outline-container-org0000009" class="outline-4">
@@ -351,8 +351,8 @@ Arrancar un servidor <b>vnc</b>
 </div>
 </div>
 
-<div id="outline-container-org000000c" class="outline-4">
-<h4 id="org000000c"><span class="section-number-4">1.4.2.</span> Arrancar el instalador</h4>
+<div id="outline-container-org000000f" class="outline-4">
+<h4 id="org000000f"><span class="section-number-4">1.4.2.</span> Arrancar el instalador</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <ol class="org-ol">
 <li>Se arranca con <code>./runInstaller</code>
@@ -363,11 +363,33 @@ Arrancar un servidor <b>vnc</b>
 <li>Elegir <i>Single instance database</i></li>
 <li>Edición Enterprise</li>
 </ol>
+
+
+<div id="org000000c" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/1.png" alt="1.png" />
+</p>
+</div>
+
+
+
+<div id="org000000d" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/2.png" alt="2.png" />
+</p>
+</div>
+
+
+
+<div id="org000000e" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/3.png" alt="3.png" />
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org000000f" class="outline-4">
-<h4 id="org000000f"><span class="section-number-4">1.4.3.</span> Directorios de Oracle</h4>
+
+
+<div id="outline-container-org0000014" class="outline-4">
+<h4 id="org0000014"><span class="section-number-4">1.4.3.</span> Directorios de Oracle</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <p>
 Dejamos los directorios por defecto:
@@ -380,11 +402,25 @@ Dejamos los directorios por defecto:
 <li>Dejamos el grupo a <code>alumno</code></li>
 </ul></li>
 </ul>
+
+
+
+<div id="org0000012" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/4.png" alt="4.png" />
+</p>
+</div>
+
+
+
+<div id="org0000013" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/5.png" alt="5.png" />
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org0000012" class="outline-4">
-<h4 id="org0000012"><span class="section-number-4">1.4.4.</span> Grupos de <i>Linux</i></h4>
+<div id="outline-container-org0000018" class="outline-4">
+<h4 id="org0000018"><span class="section-number-4">1.4.4.</span> Grupos de <i>Linux</i></h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ul class="org-ul">
 <li>Elegir <code>wheel</code> 
@@ -393,21 +429,35 @@ Dejamos los directorios por defecto:
 <li>El usuario <code>alumno</code> ya pertenece a él</li>
 </ul></li>
 </ul>
+
+
+
+<div id="org0000017" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/6.png" alt="6.png" />
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org0000015" class="outline-4">
-<h4 id="org0000015"><span class="section-number-4">1.4.5.</span> Ejecución de scripts como <code>root</code></h4>
+<div id="outline-container-org000001c" class="outline-4">
+<h4 id="org000001c"><span class="section-number-4">1.4.5.</span> Ejecución de scripts como <code>root</code></h4>
 <div class="outline-text-4" id="text-1-4-5">
 <ul class="org-ul">
 <li>La instalación necesitará modificar el sistema, pero se ha lanzado como <code>alumno</code></li>
 <li>No dejaremos que el instalador ejecute nada como <code>root</code>, lo haremos manualmente</li>
 </ul>
+
+
+
+<div id="org000001b" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/7.png" alt="7.png" />
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org0000019" class="outline-4">
-<h4 id="org0000019"><span class="section-number-4">1.4.6.</span> Comprobaciones</h4>
+<div id="outline-container-org0000021" class="outline-4">
+<h4 id="org0000021"><span class="section-number-4">1.4.6.</span> Comprobaciones</h4>
 <div class="outline-text-4" id="text-1-4-6">
 <ul class="org-ul">
 <li>Ignoramos la falta de memoria</li>
@@ -425,36 +475,43 @@ Dejamos los directorios por defecto:
 </ul></li>
 </ul>
 
-<div class="NOTES" id="org0000018">
+
+
+<div id="org000001f" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/8.png" alt="8.png" />
+</p>
+</div>
+
+
+<div class="NOTES" id="org0000020">
 <p>
 sudo yum install sudo yum install sysstat ksh make glibc-devel   
 </p>
 
 </div>
-
-<p>
-También hay un paquete de dependencias (<code>oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm</code>), que se puede instalar con <code>yum localinstall</code>
-</p>
 </div>
 </div>
 
-<div id="outline-container-org000001d" class="outline-4">
-<h4 id="org000001d"><span class="section-number-4">1.4.7.</span> Resumen</h4>
+
+<div id="outline-container-org0000025" class="outline-4">
+<h4 id="org0000025"><span class="section-number-4">1.4.7.</span> Resumen</h4>
 <div class="outline-text-4" id="text-1-4-7">
 <ul class="org-ul">
 <li>Se debe grabar la información de la hoja de resumen</li>
 </ul>
 
 
-<div id="org000001c" class="figure">
-<p><img src="media/response-file-18c.png" alt="response-file-18c.png" />
+
+<div id="org0000024" class="figure">
+<p><img src="./media/pantallazos-instalacion-oracle-21/9.png" alt="9.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0000020" class="outline-4">
-<h4 id="org0000020"><span class="section-number-4">1.4.8.</span> <i>scripts</i> de configuración</h4>
+
+<div id="outline-container-org0000028" class="outline-4">
+<h4 id="org0000028"><span class="section-number-4">1.4.8.</span> <i>scripts</i> de configuración</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <ul class="org-ul">
 <li>/opt/home/alumno//oraInventory/orainstRoot.sh</li>
@@ -515,8 +572,8 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 
 
-<div id="outline-container-org0000023" class="outline-4">
-<h4 id="org0000023"><span class="section-number-4">1.4.9.</span> Finalización</h4>
+<div id="outline-container-org000002b" class="outline-4">
+<h4 id="org000002b"><span class="section-number-4">1.4.9.</span> Finalización</h4>
 <div class="outline-text-4" id="text-1-4-9">
 <ul class="org-ul">
 <li>Necesitamos definir algunas variables de entorno (ficheros <code>~/.profile</code>, <code>~/.bash_profile</code>, <code>~/.bashrc</code>)
@@ -529,11 +586,11 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 </div>
 
-<div id="outline-container-org0000028" class="outline-4">
-<h4 id="org0000028"><span class="section-number-4">1.4.10.</span> Relación entre ficheros de inicio de <i>shell</i></h4>
+<div id="outline-container-org0000030" class="outline-4">
+<h4 id="org0000030"><span class="section-number-4">1.4.10.</span> Relación entre ficheros de inicio de <i>shell</i></h4>
 <div class="outline-text-4" id="text-1-4-10">
 
-<div id="org0000026" class="figure">
+<div id="org000002e" class="figure">
 <p><img src="./media/ficheros-inicio-bash.svg" alt="ficheros-inicio-bash.svg" class="org-svg" />
 </p>
 </div>
@@ -541,8 +598,8 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 
 
-<div id="outline-container-org000002b" class="outline-4">
-<h4 id="org000002b"><span class="section-number-4">1.4.11.</span> Reiniciar</h4>
+<div id="outline-container-org0000033" class="outline-4">
+<h4 id="org0000033"><span class="section-number-4">1.4.11.</span> Reiniciar</h4>
 <div class="outline-text-4" id="text-1-4-11">
 <ul class="org-ul">
 <li>En un servidor real no se hace, pero aquí es lo más cómodo para que funcionen las nuevas variables de entorno</li>
@@ -568,73 +625,10 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 
 
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">2.</span> Instancia / <i>listener</i> / base de datos</h2>
+
+<div id="outline-container-org0000046" class="outline-2">
+<h2 id="org0000046"><span class="section-number-2">2.</span> Creación de una instancia de base de datos</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>Instancia: 
-<ul class="org-ul">
-<li>Varios procesos funcionando</li>
-<li>Permite manipular <b>una</b> o <b>varias</b> base de datos (En <i>Oracle</i> solo una)</li>
-</ul></li>
-
-<li>Base de datos 
-<ul class="org-ul">
-<li>Varios <b>ficheros</b></li>
-<li>Contienen datos, índices, esquema,&#x2026;</li>
-</ul></li>
-
-<li>Listener
-<ul class="org-ul">
-<li>Proceso que admite <b>conexiones</b> de clientes</li>
-<li>En otros SGBD (<i>MySQL</i>) la instancia es su propio <i>listener</i></li>
-<li>Conecta los clientes con la instancia pedida</li>
-</ul></li>
-</ul>
-</div>
-
-<div id="outline-container-org0000035" class="outline-3">
-<h3 id="org0000035"><span class="section-number-3">2.1.</span> Instancias y bases de DATOS</h3>
-<div class="outline-text-3" id="text-2-1">
-
-<div id="org0000034" class="figure">
-<p><img src="./media/diagrama-instancias-bbdd.png" alt="diagrama-instancias-bbdd.png" />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">2.2.</span> Ejemplo (I) de listener</h3>
-<div class="outline-text-3" id="text-2-2">
-
-<div id="org0000038" class="figure">
-<p><img src="./media/cliente-listener-instancia.png" alt="cliente-listener-instancia.png" />
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org000003d" class="outline-3">
-<h3 id="org000003d"><span class="section-number-3">2.3.</span> Ejemplo (II) de listener</h3>
-<div class="outline-text-3" id="text-2-3">
-
-<div id="org000003c" class="figure">
-<p><img src="./media/cliente-listener-instancia-complejo.png" alt="cliente-listener-instancia-complejo.png" />
-</p>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-<div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">3.</span> Creación de una instancia de base de datos</h2>
-<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Comando <code>dbca</code></li>
 <li>No estará en el <code>PATH</code> si no se ha incluido (por ejemplo, con <code>oraenv</code>)</li>
@@ -646,11 +640,36 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </ul></li>
 <li>Guardad la información de la página de resumen (por si acaso)</li>
 </ul>
+
+
+
+<div id="org000003c" class="figure">
+<p><img src="./media/dbca/1.png" alt="1.png" />
+</p>
 </div>
 
-<div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">3.1.</span> <i>Password management</i></h3>
-<div class="outline-text-3" id="text-3-1">
+
+<div id="org000003d" class="figure">
+<p><img src="./media/dbca/2.png" alt="2.png" />
+</p>
+</div>
+
+
+<div id="org000003e" class="figure">
+<p><img src="./media/dbca/3.png" alt="3.png" />
+</p>
+</div>
+
+
+<div id="org000003f" class="figure">
+<p><img src="./media/dbca/4.png" alt="4.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">2.1.</span> <i>Password management</i></h3>
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Lista de usuarios</li>
 <li>Se puede
@@ -662,9 +681,9 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 </div>
 
-<div id="outline-container-org0000046" class="outline-3">
-<h3 id="org0000046"><span class="section-number-3">3.2.</span> ¡Ya se puede conectar!</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">2.2.</span> ¡Ya se puede conectar!</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Es necesario informar a <code>sqlplus</code> del <code>SID</code></li>
 <li>Pero solo se puede conectar desde la máquina local</li>
@@ -707,8 +726,75 @@ SQL&gt;
 </div>
 </div>
 
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">4.</span> Creación de un <i>listener</i></h2>
+
+
+<div id="outline-container-org0000055" class="outline-2">
+<h2 id="org0000055"><span class="section-number-2">3.</span> Instancia / <i>listener</i> / base de datos</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Instancia: 
+<ul class="org-ul">
+<li>Varios procesos funcionando</li>
+<li>Permite manipular <b>una</b> o <b>varias</b> base de datos (En <i>Oracle</i> solo una)</li>
+</ul></li>
+
+<li>Base de datos 
+<ul class="org-ul">
+<li>Varios <b>ficheros</b></li>
+<li>Contienen datos, índices, esquema,&#x2026;</li>
+</ul></li>
+
+<li>Listener
+<ul class="org-ul">
+<li>Proceso que admite <b>conexiones</b> de clientes</li>
+<li>En otros SGBD (<i>MySQL</i>) la instancia es su propio <i>listener</i></li>
+<li>Conecta los clientes con la instancia pedida</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org000004a" class="outline-3">
+<h3 id="org000004a"><span class="section-number-3">3.1.</span> Instancias y bases de DATOS</h3>
+<div class="outline-text-3" id="text-3-1">
+
+<div id="org0000049" class="figure">
+<p><img src="./media/diagrama-instancias-bbdd.png" alt="diagrama-instancias-bbdd.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000004e" class="outline-3">
+<h3 id="org000004e"><span class="section-number-3">3.2.</span> Ejemplo (I) de listener</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<div id="org000004d" class="figure">
+<p><img src="./media/cliente-listener-instancia.png" alt="cliente-listener-instancia.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">3.3.</span> Ejemplo (II) de listener</h3>
+<div class="outline-text-3" id="text-3-3">
+
+<div id="org0000051" class="figure">
+<p><img src="./media/cliente-listener-instancia-complejo.png" alt="cliente-listener-instancia-complejo.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-org000005b" class="outline-2">
+<h2 id="org000005b"><span class="section-number-2">4.</span> Creación de un <i>listener</i></h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Permiten las conexiones de clientes remotos</li>
@@ -726,8 +812,8 @@ SQL&gt;
 </ul>
 </div>
 
-<div id="outline-container-org000004c" class="outline-3">
-<h3 id="org000004c"><span class="section-number-3">4.1.</span> Arrancar y parar el listener</h3>
+<div id="outline-container-org0000058" class="outline-3">
+<h3 id="org0000058"><span class="section-number-3">4.1.</span> Arrancar y parar el listener</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><p>
@@ -756,88 +842,13 @@ Comprobar si la instancia se ha conectado
 </div>
 </div>
 
-
-
-<div id="outline-container-org0000055" class="outline-2">
-<h2 id="org0000055"><span class="section-number-2">5.</span> Arrancar y parar la base de datos</h2>
+<div id="outline-container-org000006b" class="outline-2">
+<h2 id="org000006b"><span class="section-number-2">5.</span> Conexión remota</h2>
 <div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><p>
-Se necesitan las variables <code>ORACLE_HOME</code>, <code>ORACLE_SID</code>, <code>PATH</code>, <code>ORACLE_BASE</code>.
-</p>
-<ul class="org-ul">
-<li>Se definen <b>manualmente</b> con ayuda del script <code>oraenv</code>:</li>
-</ul>
-<div class="org-src-container">
-<pre class="src src-sh">  <span style="color: #729fcf;">source</span> oraenv
-</pre>
-</div></li>
-<li><p>
-Arrancar y parar la base de datos
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">  dbstart $<span style="color: #ff6347;">ORACLE_HOME</span>
-  dbshut $<span style="color: #ff6347;">ORACLE_HOME</span>
-</pre>
-</div></li>
-<li><p>
-Arrancar y parar el <i>listener</i>. Comprobar que se admiten conexiones
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">  lsnrctl start
-  lsnrctl stop
-  lsnrctl status
-</pre>
-</div></li>
-</ul>
 </div>
-
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">5.1.</span> A mí <b>dbstart</b> y <b>dbshut</b> no me funcionan</h3>
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">5.1.</span> Acceso por redes</h3>
 <div class="outline-text-3" id="text-5-1">
-<p>
-Se puede hacer <i>a mano</i>. Lo veremos en el próximo tema.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">[alumno@centos7 ~]$ export <span style="color: #ff6347;">ORACLE_SID</span>=asir
-[alumno@centos7 ~]$ sqlplus / as sysdba
-
-SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
-
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2014, Oracle.  All rights reserved.
-
-Connected to an idle instance.
-
-SQL&gt; startup open
-ORACLE instance started.
-
-Total System Global Area 1207959552 bytes
-Fixed Size                  2923776 bytes
-Variable Size             822084352 bytes
-Database Buffers          369098752 bytes
-Redo Buffers               13852672 bytes
-Database mounted.
-Database opened.
-SQL&gt; 
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-<div id="outline-container-org0000065" class="outline-2">
-<h2 id="org0000065"><span class="section-number-2">6.</span> Conexión remota</h2>
-<div class="outline-text-2" id="text-6">
-</div>
-<div id="outline-container-org000005b" class="outline-3">
-<h3 id="org000005b"><span class="section-number-3">6.1.</span> Acceso por redes</h3>
-<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Es necesario conocer la IP de nuestro servidor
 <ul class="org-ul">
@@ -858,9 +869,9 @@ SQL&gt;
 </div>
 
 
-<div id="outline-container-org0000058" class="outline-4">
-<h4 id="org0000058"><span class="section-number-4">6.1.1.</span> Conexión remota</h4>
-<div class="outline-text-4" id="text-6-1-1">
+<div id="outline-container-org000005e" class="outline-4">
+<h4 id="org000005e"><span class="section-number-4">5.1.1.</span> Conexión remota</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Es necesario conocer la IP o el nombre del ordenador remoto</li>
 <li>Si nos fiamos de <code>DHCP</code>, cada día puede ser una IP distinta</li>
@@ -876,9 +887,9 @@ SQL&gt;
 </div>
 
 
-<div id="outline-container-org000005e" class="outline-3">
-<h3 id="org000005e"><span class="section-number-3">6.2.</span> Configuración de las conexiones (<b>sqlplus</b>)</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org0000064" class="outline-3">
+<h3 id="org0000064"><span class="section-number-3">5.2.</span> Configuración de las conexiones (<b>sqlplus</b>)</h3>
+<div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>El cliente <code>sqlplus</code> utiliza las conexiones definidas en el fichero <code>tnsnames.ora</code></li>
 <li>Con el comando <code>netca</code>
@@ -901,9 +912,9 @@ Se puede usar también una cadena de conexión
 </div>
 
 
-<div id="outline-container-org0000062" class="outline-3">
-<h3 id="org0000062"><span class="section-number-3">6.3.</span> Instalación de <b>sqlplus</b></h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-org0000068" class="outline-3">
+<h3 id="org0000068"><span class="section-number-3">5.3.</span> Instalación de <b>sqlplus</b></h3>
+<div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>El cliente <b>sqlplus</b> viene en la instalación de <b>oracle</b></li>
 <li>Pero también puede instalarse por separado:
@@ -918,7 +929,7 @@ Se puede usar también una cadena de conexión
 
 
 
-<div class="NOTES" id="org0000061">
+<div class="NOTES" id="org0000067">
 <p>
 See the Instant Client Home Page for more information.
 </p>
@@ -981,9 +992,9 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </div>
 
 
-<div id="outline-container-org0000068" class="outline-2">
-<h2 id="org0000068"><span class="section-number-2">7.</span> Dirección IP</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org000006e" class="outline-2">
+<h2 id="org000006e"><span class="section-number-2">6.</span> Dirección IP</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Pondremos IP estática
 <ul class="org-ul">
@@ -1003,8 +1014,81 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </div>
 </div>
 
-<div id="outline-container-org0000071" class="outline-2">
-<h2 id="org0000071"><span class="section-number-2">8.</span> Cosas que hemos aprendido <i>de pasada</i></h2>
+<div id="outline-container-org0000074" class="outline-2">
+<h2 id="org0000074"><span class="section-number-2">7.</span> Arrancar y parar la base de datos</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><p>
+Se necesitan las variables <code>ORACLE_HOME</code>, <code>ORACLE_SID</code>, <code>PATH</code>, <code>ORACLE_BASE</code>.
+</p>
+<ul class="org-ul">
+<li>Se definen <b>manualmente</b> con ayuda del script <code>oraenv</code>:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">  <span style="color: #729fcf;">source</span> oraenv
+</pre>
+</div></li>
+<li><p>
+Arrancar y parar la base de datos
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  dbstart $<span style="color: #ff6347;">ORACLE_HOME</span>
+  dbshut $<span style="color: #ff6347;">ORACLE_HOME</span>
+</pre>
+</div></li>
+<li><p>
+Arrancar y parar el <i>listener</i>. Comprobar que se admiten conexiones
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lsnrctl start
+  lsnrctl stop
+  lsnrctl status
+</pre>
+</div></li>
+</ul>
+</div>
+
+<div id="outline-container-org0000071" class="outline-3">
+<h3 id="org0000071"><span class="section-number-3">7.1.</span> A mí <b>dbstart</b> y <b>dbshut</b> no me funcionan</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Se puede hacer <i>a mano</i>. Lo veremos en el próximo tema.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">[alumno@centos7 ~]$ export <span style="color: #ff6347;">ORACLE_SID</span>=asir
+[alumno@centos7 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
+
+<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2014, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL&gt; startup open
+ORACLE instance started.
+
+Total System Global Area 1207959552 bytes
+Fixed Size                  2923776 bytes
+Variable Size             822084352 bytes
+Database Buffers          369098752 bytes
+Redo Buffers               13852672 bytes
+Database mounted.
+Database opened.
+SQL&gt; 
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-org000007d" class="outline-2">
+<h2 id="org000007d"><span class="section-number-2">8.</span> Cosas que hemos aprendido <i>de pasada</i></h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Variables de entorno
@@ -1033,8 +1117,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </p>
 </div>
 
-<div id="outline-container-org000006b" class="outline-3">
-<h3 id="org000006b"><span class="section-number-3">8.1.</span> Comandos</h3>
+<div id="outline-container-org0000077" class="outline-3">
+<h3 id="org0000077"><span class="section-number-3">8.1.</span> Comandos</h3>
 <div class="outline-text-3" id="text-8-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1114,8 +1198,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 </div>
 
-<div id="outline-container-org000006e" class="outline-3">
-<h3 id="org000006e"><span class="section-number-3">8.2.</span> Comandos, <i>shell</i> y variables</h3>
+<div id="outline-container-org000007a" class="outline-3">
+<h3 id="org000007a"><span class="section-number-3">8.2.</span> Comandos, <i>shell</i> y variables</h3>
 <div class="outline-text-3" id="text-8-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1173,11 +1257,11 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 
 
 
-<div id="outline-container-org0000076" class="outline-2">
-<h2 id="org0000076"><span class="section-number-2">9.</span> Diagrama resumen</h2>
+<div id="outline-container-org0000082" class="outline-2">
+<h2 id="org0000082"><span class="section-number-2">9.</span> Diagrama resumen</h2>
 <div class="outline-text-2" id="text-9">
 
-<div id="org0000074" class="figure">
+<div id="org0000080" class="figure">
 <p><img src="./media/diagrama-instalacion-oracle.svg" alt="diagrama-instalacion-oracle.svg" class="org-svg" />
 </p>
 </div>
@@ -1188,8 +1272,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 
 
 
-<div id="outline-container-org0000079" class="outline-2">
-<h2 id="org0000079"><span class="section-number-2">10.</span> Referencias</h2>
+<div id="outline-container-org0000085" class="outline-2">
+<h2 id="org0000085"><span class="section-number-2">10.</span> Referencias</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Formatos:
@@ -1211,7 +1295,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-07 jue 20:03</p>
+<p class="date">Created: 2023-09-08 vie 12:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

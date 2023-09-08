@@ -118,7 +118,20 @@ yum whatprovides <fichero>
     - Puede que falte una librería: =sudo yum install libnsl=
  2. Instalar sólo el /software/ de la base de datos
  3. Elegir /Single instance database/
- 5. Edición Enterprise
+ 4. Edición Enterprise
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/1.png]]
+ 
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/2.png]]
+
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/3.png]]
+     
+
 
 *** Directorios de Oracle
  Dejamos los directorios por defecto:
@@ -127,15 +140,31 @@ yum whatprovides <fichero>
  - /Inventory/ en =/opt/app/oraInventory=
    - Dejamos el grupo a =alumno=
 
+     
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/4.png]]
+
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/5.png]]
+
 *** Grupos de /Linux/
 
  - Elegir =wheel= 
    - Es un grupo administrador en *Centos*
-   - El usuario =alumno= ya pertenece a él 
+   - El usuario =alumno= ya pertenece a él
+
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/6.png]]
 
 *** Ejecución de scripts como =root=
 - La instalación necesitará modificar el sistema, pero se ha lanzado como =alumno=
 - No dejaremos que el instalador ejecute nada como =root=, lo haremos manualmente
+  
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/7.png]]
  
 *** Comprobaciones
  - Ignoramos la falta de memoria
@@ -148,6 +177,11 @@ yum whatprovides <fichero>
    - =sudo yum install= /=paquete=/
    - Es necesario que la máquina virtual tenga acceso a internet (debería estar en /Bridged/, pero también funciona /NAT/)
 
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/8.png]]
+     
+
  #+BEGIN_NOTES
 sudo yum install sudo yum install sysstat ksh make glibc-devel   
  #+END_NOTES
@@ -156,7 +190,10 @@ sudo yum install sudo yum install sysstat ksh make glibc-devel
 *** Resumen
  - Se debe grabar la información de la hoja de resumen
 
- [[file:media/response-file-18c.png]]
+
+ #+reveal:split
+[[file:./media/pantallazos-instalacion-oracle-21/9.png]]
+   
 
 *** /scripts/ de configuración
 - /opt/home/alumno//oraInventory/orainstRoot.sh
@@ -268,36 +305,6 @@ digraph {
  #+END_SRC
 
 
-* Instancia / /listener/ / base de datos
-- Instancia: 
-  - Varios procesos funcionando
-  - Permite manipular *una* o *varias* base de datos (En /Oracle/ solo una)
-
-- Base de datos 
-  - Varios *ficheros*
-  - Contienen datos, índices, esquema,...
-
-- Listener
-  - Proceso que admite *conexiones* de clientes
-  - En otros SGBD (/MySQL/) la instancia es su propio /listener/
-  - Conecta los clientes con la instancia pedida
-
-** Instancias y bases de DATOS
-
-[[file:./media/diagrama-instancias-bbdd.png]]
-
-** Ejemplo (I) de listener
-
-[[file:./media/cliente-listener-instancia.png]]
-
-
-** Ejemplo (II) de listener
-
-[[file:./media/cliente-listener-instancia-complejo.png]]
-
-
-
-
 
 * Creación de una instancia de base de datos
 
@@ -308,6 +315,19 @@ digraph {
   - Que no sea una /container database/
   - Recordad la contraseña 
 - Guardad la información de la página de resumen (por si acaso)
+
+
+ #+reveal:split
+[[file:./media/dbca/1.png]]
+
+ #+reveal:split
+[[file:./media/dbca/2.png]]
+
+ #+reveal:split
+[[file:./media/dbca/3.png]]
+
+ #+reveal:split
+[[file:./media/dbca/4.png]]
 
 ** /Password management/
 - Lista de usuarios
@@ -357,6 +377,40 @@ X
 SQL>
 #+end_src
 
+
+
+* Instancia / /listener/ / base de datos
+- Instancia: 
+  - Varios procesos funcionando
+  - Permite manipular *una* o *varias* base de datos (En /Oracle/ solo una)
+
+- Base de datos 
+  - Varios *ficheros*
+  - Contienen datos, índices, esquema,...
+
+- Listener
+  - Proceso que admite *conexiones* de clientes
+  - En otros SGBD (/MySQL/) la instancia es su propio /listener/
+  - Conecta los clientes con la instancia pedida
+
+** Instancias y bases de DATOS
+
+[[file:./media/diagrama-instancias-bbdd.png]]
+
+** Ejemplo (I) de listener
+
+[[file:./media/cliente-listener-instancia.png]]
+
+
+** Ejemplo (II) de listener
+
+[[file:./media/cliente-listener-instancia-complejo.png]]
+
+
+
+
+
+
 * Creación de un /listener/ 
 - Permiten las conexiones de clientes remotos
 - Comando =netca=
@@ -380,59 +434,6 @@ SQL>
   #+begin_src sh
   lsnrctl status
   #+end_src
-
-
-
-* Arrancar y parar la base de datos
-
-- Se necesitan las variables =ORACLE_HOME=, =ORACLE_SID=, =PATH=, =ORACLE_BASE=.
-  - Se definen *manualmente* con ayuda del script =oraenv=:
-  #+begin_src sh
-  source oraenv
-  #+end_src
-- Arrancar y parar la base de datos
-  #+begin_src sh
-  dbstart $ORACLE_HOME
-  dbshut $ORACLE_HOME
-  #+end_src
-- Arrancar y parar el /listener/. Comprobar que se admiten conexiones
-  #+begin_src sh
-  lsnrctl start
-  lsnrctl stop
-  lsnrctl status
-  #+end_src
-
-** A mí *dbstart* y *dbshut* no me funcionan
-
-Se puede hacer /a mano/. Lo veremos en el próximo tema.
-
-#+begin_src sh
-[alumno@centos7 ~]$ export ORACLE_SID=asir
-[alumno@centos7 ~]$ sqlplus / as sysdba
-
-SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
-
-Copyright (c) 1982, 2014, Oracle.  All rights reserved.
-
-Connected to an idle instance.
-
-SQL> startup open
-ORACLE instance started.
-
-Total System Global Area 1207959552 bytes
-Fixed Size                  2923776 bytes
-Variable Size             822084352 bytes
-Database Buffers          369098752 bytes
-Redo Buffers               13852672 bytes
-Database mounted.
-Database opened.
-SQL> 
-#+end_src
-
-
-    
-
-
 
 * Conexión remota
 
@@ -542,7 +543,58 @@ See the Instant Client Home Page for more information.
     #+end_src
   - [[https://docs.google.com/spreadsheets/d/1onVe6zpdLe_MWj4k5iQ7bGc5K43kVZ9fhMONyG9whMU/edit#][Lista de direcciones]]
 - También se puede usar =sudo nmtui=
-  
+
+* Arrancar y parar la base de datos
+
+- Se necesitan las variables =ORACLE_HOME=, =ORACLE_SID=, =PATH=, =ORACLE_BASE=.
+  - Se definen *manualmente* con ayuda del script =oraenv=:
+  #+begin_src sh
+  source oraenv
+  #+end_src
+- Arrancar y parar la base de datos
+  #+begin_src sh
+  dbstart $ORACLE_HOME
+  dbshut $ORACLE_HOME
+  #+end_src
+- Arrancar y parar el /listener/. Comprobar que se admiten conexiones
+  #+begin_src sh
+  lsnrctl start
+  lsnrctl stop
+  lsnrctl status
+  #+end_src
+
+** A mí *dbstart* y *dbshut* no me funcionan
+
+Se puede hacer /a mano/. Lo veremos en el próximo tema.
+
+#+begin_src sh
+[alumno@centos7 ~]$ export ORACLE_SID=asir
+[alumno@centos7 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL> startup open
+ORACLE instance started.
+
+Total System Global Area 1207959552 bytes
+Fixed Size                  2923776 bytes
+Variable Size             822084352 bytes
+Database Buffers          369098752 bytes
+Redo Buffers               13852672 bytes
+Database mounted.
+Database opened.
+SQL> 
+#+end_src
+
+
+    
+
+
+
 * Cosas que hemos aprendido /de pasada/
 - Variables de entorno
   - Variable =PATH=
