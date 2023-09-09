@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2022-10-10 lun 13:55 -->
+<!-- 2023-09-09 sáb 17:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -191,7 +191,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
 <script src="../../../common/reveal.js-menu/menu.js"></script>
@@ -206,10 +206,10 @@
 <ul>
 <li><a href="#org000000c">1. Exportar datos</a></li>
 <li><a href="#org0000012">2. Importar datos</a></li>
-<li><a href="#org000001d">3. Ejercicio (1)</a></li>
-<li><a href="#org0000024">4. Ejercicio (2)</a></li>
-<li><a href="#org0000036">5. Otras soluciones</a></li>
-<li><a href="#org0000039">6. Referencias</a></li>
+<li><a href="#org000001f">3. Ejercicio (1)</a></li>
+<li><a href="#org0000027">4. Ejercicio (2)</a></li>
+<li><a href="#org0000039">5. Otras soluciones</a></li>
+<li><a href="#org000003c">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -260,21 +260,21 @@ window.addEventListener("load",()=>{
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #8ae234;">Export</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:32:15 2016
 
-Copyright (c) 1982, 2015, <span style="color: #8ae234; font-weight: bold;">Oracle</span> <span style="color: #ff6347;">and</span>/or its affiliates.  All rights reserved.
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 
 The Data Pump export utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
 
-   Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #7ae074741f52;"> </span>Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
 
 You can control how Export runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>expdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
-by various parameters. To specify parameters, you <span style="color: #8ae234; font-weight: bold;">use</span> <span style="color: #ff6347;">keywords</span>:
+by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
 
-   Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-   Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
-               or TABLES=(T1:P1,T1:P2), <span style="color: #729fcf; font-weight: bold;">if</span> T1 is partitioned table
-
+  <span style="color: #7ae074741f52;"> </span>Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #7ae074741f52;"> </span>Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span> <span style="color: #497c5f2b7271;"> </span> <span style="color: #525256bc54ba;"> </span> <span style="color: #531f7a133434;"> </span> <span style="color: #531f7a133434;"> </span> <span style="color: #497c5f2b7271;"> </span>or TABLES=(T1:P1,T1:P2), <span style="color: #729fcf; font-weight: bold;">if</span> T1 is partitioned table
+             
 USERID must be the first parameter on the command line.
 
 ------------------------------------------------------------------------------
@@ -288,7 +288,7 @@ N corresponds to the object<span style="color: #f57900; font-weight: bold;">'</s
 
 ACCESS_METHOD
 Instructs Export to use a particular method to unload data.
-Valid keyword values are: [AUTOMATIC], DIRECT_PATH <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">EXTERNAL_TABLE</span>.
+Valid keyword values are: [AUTOMATIC], DIRECT_PATH and EXTERNAL_TABLE.
 
 ATTACH
 Attach to an existing job.
@@ -303,11 +303,11 @@ Valid keyword values are: ALL, DATA_ONLY, [METADATA_ONLY] and NONE.
 
 COMPRESSION_ALGORITHM
 Specify the compression algorithm that should be used.
-Valid keyword values are: [BASIC], LOW, MEDIUM <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">HIGH</span>.
+Valid keyword values are: [BASIC], LOW, MEDIUM and HIGH.
 
 CONTENT
 Specifies data to unload.
-Valid keyword values are: [ALL], DATA_ONLY <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">METADATA_ONLY</span>.
+Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
 
 DATA_OPTIONS
 Data layer option flags.
@@ -322,11 +322,11 @@ For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
 
 ENCRYPTION
 Encrypt part or all of a dump file.
-Valid keyword values are: ALL, DATA_ONLY, ENCRYPTED_COLUMNS_ONLY, METADATA_ONLY <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">NONE</span>.
+Valid keyword values are: ALL, DATA_ONLY, ENCRYPTED_COLUMNS_ONLY, METADATA_ONLY and NONE.
 
 ENCRYPTION_ALGORITHM
 Specify how encryption should be done.
-Valid keyword values are: [AES128], AES192 <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">AES256</span>.
+Valid keyword values are: [AES128], AES192 and AES256.
 
 ENCRYPTION_MODE
 Method of generating encryption key.
@@ -380,7 +380,7 @@ Specify log file name [export.log].
 
 LOGTIME
 Specifies that messages displayed during export operations be timestamped.
-Valid keyword values are: ALL, [NONE], LOGFILE <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">STATUS</span>.
+Valid keyword values are: ALL, [NONE], LOGFILE and STATUS.
 
 METRICS
 Report additional job information to the export log file [NO].
@@ -421,12 +421,12 @@ SOURCE_EDITION
 Edition to be used <span style="color: #729fcf; font-weight: bold;">for</span> extracting metadata.
 
 STATUS
-Frequency (secs) job status is to be monitored <span style="color: #8ae234; font-weight: bold;">where</span>
-<span style="color: #ff6347;">the</span> <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+Frequency (secs) job status is to be monitored where
+the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
 
 TABLES
 Identifies a list of tables to export.
-For example, <span style="color: #ff6347;">TABLES</span>=HR.EMPLOYEES,<span style="color: #ff6347;">SH</span>.SALES:SALES_1995.
+For example, TABLES=HR.EMPLOYEES,SH.SALES:SALES_1995.
 
 TABLESPACES
 Identifies a list of tablespaces to export.
@@ -443,11 +443,11 @@ List of tablespaces from which metadata will be unloaded.
 
 VERSION
 Version of objects to export.
-Valid keyword values are: [COMPATIBLE], <span style="color: #ff6347;">LATEST</span> or any valid database version.
+Valid keyword values are: [COMPATIBLE], LATEST or any valid database version.
 
 VIEWS_AS_TABLES
 Identifies one or more views to be exported as tables.
-For example, <span style="color: #ff6347;">VIEWS_AS_TABLES</span>=HR.EMP_DETAILS_VIEW.
+For example, VIEWS_AS_TABLES=HR.EMP_DETAILS_VIEW.
 
 ------------------------------------------------------------------------------
 
@@ -483,8 +483,8 @@ Start or resume current job.
 Valid keyword values are: SKIP_CURRENT.
 
 STATUS
-Frequency (secs) job status is to be monitored <span style="color: #8ae234; font-weight: bold;">where</span>
-<span style="color: #ff6347;">the</span> <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+Frequency (secs) job status is to be monitored where
+the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
 
 STOP_JOB
 Orderly shutdown of job execution and exits the client.
@@ -607,20 +607,20 @@ Job <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span styl
 <pre class="src src-C">
 <span style="color: #8ae234;">Import</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:31:18 2016
 
-Copyright (c) 1982, 2015, <span style="color: #8ae234; font-weight: bold;">Oracle</span> <span style="color: #ff6347;">and</span>/or its affiliates.  All rights reserved.
+Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 
 The Data Pump Import utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
-
-     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
-
+   
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+   
 You can control how Import runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>impdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
-by various parameters. To specify parameters, you <span style="color: #8ae234; font-weight: bold;">use</span> <span style="color: #ff6347;">keywords</span>:
-
-     Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
-
+by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
+   
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span>Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+   
 USERID must be the first parameter on the command line.
 
 ------------------------------------------------------------------------------
@@ -635,7 +635,7 @@ N corresponds to the object<span style="color: #f57900; font-weight: bold;">'</s
 ACCESS_METHOD
 Instructs Import to use a particular method to load data.
 Valid keyword values are: [AUTOMATIC], CONVENTIONAL, DIRECT_PATH
-<span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">EXTERNAL_TABLE</span>.
+and EXTERNAL_TABLE.
 
 ATTACH
 Attach to an existing job.
@@ -646,14 +646,14 @@ Utilize cluster resources and distribute workers across the Oracle RAC [YES].
 
 CONTENT
 Specifies data to load.
-Valid keywords are: [ALL], DATA_ONLY <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">METADATA_ONLY</span>.
+Valid keywords are: [ALL], DATA_ONLY and METADATA_ONLY.
 
 DATA_OPTIONS
 Data layer option flags.
 Valid keywords are: DISABLE_APPEND_HINT and SKIP_CONSTRAINT_ERRORS.
 
 DIRECTORY
-Directory object to be used <span style="color: #729fcf; font-weight: bold;">for</span> dump, log <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #8ae234; font-weight: bold;">SQL</span> <span style="color: #ff6347;">files</span>.
+Directory object to be used <span style="color: #729fcf; font-weight: bold;">for</span> dump, log and SQL files.
 
 DUMPFILE
 List of dump files to import from [expdat.dmp].
@@ -702,7 +702,7 @@ Log file name [import.log].
 
 LOGTIME
 Specifies that messages displayed during import operations be timestamped.
-Valid keyword values are: ALL, [NONE], LOGFILE <span style="color: #8ae234; font-weight: bold;">and</span> <span style="color: #ff6347;">STATUS</span>.
+Valid keyword values are: ALL, [NONE], LOGFILE and STATUS.
 
 MASTER_ONLY
 Import just the master table and then stop the job [NO].
@@ -766,15 +766,15 @@ SQLFILE
 Write all the SQL DDL to a specified file.
 
 STATUS
-Frequency (secs) job status is to be monitored <span style="color: #8ae234; font-weight: bold;">where</span>
-<span style="color: #ff6347;">the</span> <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+Frequency (secs) job status is to be monitored where
+the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
 
 STREAMS_CONFIGURATION
 Enable the loading of Streams metadata [YES].
 
 TABLE_EXISTS_ACTION
 Action to take <span style="color: #729fcf; font-weight: bold;">if</span> imported object already exists.
-Valid keywords are: APPEND, <span style="color: #ff6347;">REPLACE</span>, [SKIP] and TRUNCATE.
+Valid keywords are: APPEND, REPLACE, [SKIP] and TRUNCATE.
 
 TABLES
 Identifies a list of tables to import.
@@ -789,8 +789,8 @@ Edition to be used <span style="color: #729fcf; font-weight: bold;">for</span> l
 TRANSFORM
 Metadata transform to apply to applicable objects.
 Valid keywords are: DISABLE_ARCHIVE_LOGGING, INMEMORY, INMEMORY_CLAUSE,
-LOB_STORAGE, OID, PCTSPACE, SEGMENT_ATTRIBUTES, STORAGE, <span style="color: #8ae234; font-weight: bold;">and</span>
-<span style="color: #ff6347;">TABLE_COMPRESSION_CLAUSE</span>.
+LOB_STORAGE, OID, PCTSPACE, SEGMENT_ATTRIBUTES, STORAGE, and
+TABLE_COMPRESSION_CLAUSE.
 
 TRANSPORTABLE
 Options <span style="color: #729fcf; font-weight: bold;">for</span> choosing transportable data movement.
@@ -810,14 +810,14 @@ Only valid in NETWORK_LINK mode import operations.
 
 VERSION
 Version of objects to import.
-Valid keywords are: [COMPATIBLE], LATEST, or any valid <span style="color: #8ae234; font-weight: bold;">database</span> <span style="color: #ff6347;">version</span>.
+Valid keywords are: [COMPATIBLE], LATEST, or any valid database version.
 Only valid <span style="color: #729fcf; font-weight: bold;">for</span> NETWORK_LINK and SQLFILE.
 
 VIEWS_AS_TABLES
 Identifies one or more views to be imported as tables.
 For example, VIEWS_AS_TABLES=HR.EMP_DETAILS_VIEW.
 Note that in network import mode, a table name may be appended
-to the <span style="color: #8ae234; font-weight: bold;">view</span> <span style="color: #edd400; font-weight: bold;">name</span>.
+to the view name.
 
 ------------------------------------------------------------------------------
 
@@ -844,8 +844,8 @@ Start or resume current job.
 Valid keywords are: SKIP_CURRENT.
 
 STATUS
-Frequency (secs) job status is to be monitored <span style="color: #8ae234; font-weight: bold;">where</span>
-<span style="color: #ff6347;">the</span> <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+Frequency (secs) job status is to be monitored where
+the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
 
 STOP_JOB
 Orderly shutdown of job execution and exits the client.
@@ -863,8 +863,8 @@ Valid keywords are: IMMEDIATE.
 
 <div class="org-src-container">
 <pre class="src src-shell">impdp system/alumno <span style="color: #ff6347;">SCHEMAS</span>=alumno <span style="color: #ff6347;">remap_schema</span>=alumno:profesor <span style="color: #ad7fa8; font-style: italic;">\</span>
-            <span style="color: #ff6347;">directory</span>=EXPORTDIR <span style="color: #ad7fa8; font-style: italic;">\</span>
-            <span style="color: #ff6347;">dumpfile</span>=profesor.dmp
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ff6347;">directory</span>=EXPORTDIR <span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ff6347;">dumpfile</span>=profesor.dmp
 </pre>
 </div>
 
@@ -904,8 +904,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org000001d" class="outline-2">
-<h2 id="org000001d"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
+<div id="outline-container-org000001f" class="outline-2">
+<h2 id="org000001f"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Crea la base de datos de multas en el usuario <code>multas</code> (<a href="../1/sql/multas.sql">../1/sql/multas.sql</a>)</li>
@@ -914,8 +914,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ul>
 </div>
 
-<div id="outline-container-org0000016" class="outline-3">
-<h3 id="org0000016"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
 <div class="outline-text-3" id="text-3-1">
 
 <div id="org0000015" class="figure">
@@ -925,11 +925,11 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 </div>
 
-<div id="outline-container-org000001a" class="outline-3">
-<h3 id="org000001a"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
+<div id="outline-container-org000001c" class="outline-3">
+<h3 id="org000001c"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
 <div class="outline-text-3" id="text-3-2">
 
-<div id="org0000019" class="figure">
+<div id="org000001a" class="figure">
 <p><img src="./media/dependencias-impdp.svg" alt="dependencias-impdp.svg" class="org-svg" />
 </p>
 </div>
@@ -938,8 +938,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000024" class="outline-2">
-<h2 id="org0000024"><span class="section-number-2">4.</span> Ejercicio (2)</h2>
+<div id="outline-container-org0000027" class="outline-2">
+<h2 id="org0000027"><span class="section-number-2">4.</span> Ejercicio (2)</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li>Crear la base de datos
@@ -959,11 +959,11 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ol>
 </div>
 
-<div id="outline-container-org0000021" class="outline-3">
-<h3 id="org0000021"><span class="section-number-3">4.1.</span> Tareas</h3>
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">4.1.</span> Tareas</h3>
 <div class="outline-text-3" id="text-4-1">
 
-<div id="org0000020" class="figure">
+<div id="org0000022" class="figure">
 <p><img src="./media/tareas-carreras.svg" alt="tareas-carreras.svg" class="org-svg" />
 </p>
 </div>
@@ -972,8 +972,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000036" class="outline-2">
-<h2 id="org0000036"><span class="section-number-2">5.</span> Otras soluciones</h2>
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">5.</span> Otras soluciones</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>RMAN</li>
@@ -981,8 +981,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ul>
 </div>
 
-<div id="outline-container-org0000027" class="outline-3">
-<h3 id="org0000027"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Solución de <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/rcmquick.htm#BRADV89346">Oracle para backups</a></li>
@@ -1000,8 +1000,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000030" class="outline-3">
-<h3 id="org0000030"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>Los datos están en ficheros <code>dbf</code></li>
@@ -1021,8 +1021,8 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </p>
 </div>
 
-<div id="outline-container-org000002a" class="outline-4">
-<h4 id="org000002a"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
+<div id="outline-container-org000002d" class="outline-4">
+<h4 id="org000002d"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li>El fichero <code>pfile</code> o <code>spfile</code> indica dónde está el fichero de control
@@ -1049,8 +1049,8 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </div>
 </div>
 
-<div id="outline-container-org000002d" class="outline-4">
-<h4 id="org000002d"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
+<div id="outline-container-org0000030" class="outline-4">
+<h4 id="org0000030"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 Si solo se restauran los ficheros de datos (y se tienen suficientes ficheros de <code>log</code>)
@@ -1080,8 +1080,8 @@ Database altered.
 </div>
 
 
-<div id="outline-container-org0000033" class="outline-3">
-<h3 id="org0000033"><span class="section-number-3">5.3.</span> Ejercicio</h3>
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">5.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-5-3">
 <ol class="org-ol">
 <li>Localiza los ficheros de datos de tu instancia</li>
@@ -1096,8 +1096,8 @@ Database altered.
 
 
 
-<div id="outline-container-org0000039" class="outline-2">
-<h2 id="org0000039"><span class="section-number-2">6.</span> Referencias</h2>
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
@@ -1119,7 +1119,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2022-10-10 lun 13:55</p>
+<p class="date">Created: 2023-09-09 sáb 17:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2022-10-10 lun 13:48 -->
+<!-- 2023-09-09 sáb 17:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PLSQL para completar un esquema relacional</title>
@@ -191,7 +191,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
 <script src="../../../common/reveal.js-menu/menu.js"></script>
@@ -205,8 +205,8 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org000000a">1. Introducción</a></li>
-<li><a href="#org0000038">2. Ejemplo: Academia</a></li>
-<li><a href="#org000003b">3. Referencias</a></li>
+<li><a href="#org0000039">2. Ejemplo: Academia</a></li>
+<li><a href="#org000003c">3. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -308,8 +308,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org0000038" class="outline-2">
-<h2 id="org0000038"><span class="section-number-2">2.</span> Ejemplo: Academia</h2>
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">2.</span> Ejemplo: Academia</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Soportado en el modelo relacional:
@@ -327,8 +327,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org000000e" class="outline-3">
-<h3 id="org000000e"><span class="section-number-3">2.1.</span> Esquema relacional</h3>
+<div id="outline-container-org000000f" class="outline-3">
+<h3 id="org000000f"><span class="section-number-3">2.1.</span> Esquema relacional</h3>
 <div class="outline-text-3" id="text-2-1">
 
 <div id="org000000d" class="figure">
@@ -337,8 +337,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000011" class="outline-3">
-<h3 id="org0000011"><span class="section-number-3">2.2.</span> Tablas</h3>
+<div id="outline-container-org0000012" class="outline-3">
+<h3 id="org0000012"><span class="section-number-3">2.2.</span> Tablas</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">PROFESORES</span>(
@@ -363,8 +363,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000035" class="outline-3">
-<h3 id="org0000035"><span class="section-number-3">2.3.</span> Operaciones</h3>
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">2.3.</span> Operaciones</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Consultas</li>
@@ -374,8 +374,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 
-<div id="outline-container-org0000014" class="outline-4">
-<h4 id="org0000014"><span class="section-number-4">2.3.1.</span> Consultas</h4>
+<div id="outline-container-org0000015" class="outline-4">
+<h4 id="org0000015"><span class="section-number-4">2.3.1.</span> Consultas</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li><code>select</code> sobre las tablas (o vistas que se pudieran hacer)</li>
@@ -383,8 +383,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000017" class="outline-4">
-<h4 id="org0000017"><span class="section-number-4">2.3.2.</span> Inserciones: profesores</h4>
+<div id="outline-container-org0000018" class="outline-4">
+<h4 id="org0000018"><span class="section-number-4">2.3.2.</span> Inserciones: profesores</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li>Procedimientos del tipo <code>CREA_XXX</code></li>
@@ -410,8 +410,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org000001a" class="outline-4">
-<h4 id="org000001a"><span class="section-number-4">2.3.3.</span> Ejemplo de inserción de profesor</h4>
+<div id="outline-container-org000001b" class="outline-4">
+<h4 id="org000001b"><span class="section-number-4">2.3.3.</span> Ejemplo de inserción de profesor</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
@@ -426,8 +426,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org000001d" class="outline-4">
-<h4 id="org000001d"><span class="section-number-4">2.3.4.</span> Inserciones: alumnos</h4>
+<div id="outline-container-org000001e" class="outline-4">
+<h4 id="org000001e"><span class="section-number-4">2.3.4.</span> Inserciones: alumnos</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">sequence</span> <span style="color: #edd400; font-weight: bold;">ALUMNO_SECUENCIA</span>;
@@ -444,8 +444,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org0000020" class="outline-4">
-<h4 id="org0000020"><span class="section-number-4">2.3.5.</span> Inserciones: materias y cursos</h4>
+<div id="outline-container-org0000021" class="outline-4">
+<h4 id="org0000021"><span class="section-number-4">2.3.5.</span> Inserciones: materias y cursos</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">procedure</span> <span style="color: #edd400; font-weight: bold;">CREA_MATERIA</span>(pmaterianombre <span style="color: #8ae234; font-weight: bold;">varchar</span>)
@@ -467,8 +467,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000023" class="outline-4">
-<h4 id="org0000023"><span class="section-number-4">2.3.6.</span> Ejemplo de inserción de materias y cursos</h4>
+<div id="outline-container-org0000024" class="outline-4">
+<h4 id="org0000024"><span class="section-number-4">2.3.6.</span> Ejemplo de inserción de materias y cursos</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
@@ -487,8 +487,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000026" class="outline-4">
-<h4 id="org0000026"><span class="section-number-4">2.3.7.</span> Inserciones: matriculaciones</h4>
+<div id="outline-container-org0000027" class="outline-4">
+<h4 id="org0000027"><span class="section-number-4">2.3.7.</span> Inserciones: matriculaciones</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <ul class="org-ul">
 <li>En el procedimiento de inserción, pueden controlarse errores que el modelo relacional no puede expresar</li>
@@ -511,8 +511,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000029" class="outline-4">
-<h4 id="org0000029"><span class="section-number-4">2.3.8.</span> Prueba de inserción de 11 alumnos en un curso</h4>
+<div id="outline-container-org000002a" class="outline-4">
+<h4 id="org000002a"><span class="section-number-4">2.3.8.</span> Prueba de inserción de 11 alumnos en un curso</h4>
 <div class="outline-text-4" id="text-2-3-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
@@ -537,8 +537,8 @@ window.addEventListener("load",()=>{
 
 
 
-<div id="outline-container-org000002c" class="outline-4">
-<h4 id="org000002c"><span class="section-number-4">2.3.9.</span> Borrados : alumnos</h4>
+<div id="outline-container-org000002d" class="outline-4">
+<h4 id="org000002d"><span class="section-number-4">2.3.9.</span> Borrados : alumnos</h4>
 <div class="outline-text-4" id="text-2-3-9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">procedure</span> <span style="color: #edd400; font-weight: bold;">BORRA_ALUMNO</span>(palumnoid <span style="color: #8ae234; font-weight: bold;">integer</span>)
@@ -553,8 +553,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org000002f" class="outline-4">
-<h4 id="org000002f"><span class="section-number-4">2.3.10.</span> Borrados : profesores</h4>
+<div id="outline-container-org0000030" class="outline-4">
+<h4 id="org0000030"><span class="section-number-4">2.3.10.</span> Borrados : profesores</h4>
 <div class="outline-text-4" id="text-2-3-10">
 <ul class="org-ul">
 <li>En el procedimiento de borrado, pueden controlarse errores que el modelo relacional no puede expresar</li>
@@ -581,8 +581,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000032" class="outline-4">
-<h4 id="org0000032"><span class="section-number-4">2.3.11.</span> Modificaciones</h4>
+<div id="outline-container-org0000033" class="outline-4">
+<h4 id="org0000033"><span class="section-number-4">2.3.11.</span> Modificaciones</h4>
 <div class="outline-text-4" id="text-2-3-11">
 <ul class="org-ul">
 <li>No es fácil controlar las modificaciones con procedimientos</li>
@@ -593,8 +593,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org000003b" class="outline-2">
-<h2 id="org000003b"><span class="section-number-2">3.</span> Referencias</h2>
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">3.</span> Referencias</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Formatos:
@@ -616,7 +616,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2022-10-10 lun 13:48</p>
+<p class="date">Created: 2023-09-09 sáb 17:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2022-10-10 lun 13:48 -->
+<!-- 2023-09-09 sáb 17:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PLSQL</title>
@@ -191,7 +191,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
 <script src="../../../common/reveal.js-menu/menu.js"></script>
@@ -465,17 +465,17 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
     v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hasta luego'</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span>
     if to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-        dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
+    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
     <span style="color: #729fcf; font-weight: bold;">else</span>    
-           
-        <span style="color: #729fcf; font-weight: bold;">case</span> v
-            <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-                dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
-            <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-                dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
-            <span style="color: #729fcf; font-weight: bold;">else</span>
-                dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
-        <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;        
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>  
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">case</span> v
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;        
     <span style="color: #729fcf; font-weight: bold;">end</span> if;    
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -492,14 +492,14 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
     v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hola'</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span>
     <span style="color: #729fcf; font-weight: bold;">case</span> 
-        <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-            dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
-        <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-            dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
-        <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-            dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
-        <span style="color: #729fcf; font-weight: bold;">else</span>
-            dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
     <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;        
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -518,14 +518,14 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
     traduccion <span style="color: #8ae234; font-weight: bold;">varchar</span>(100);
 <span style="color: #729fcf; font-weight: bold;">begin</span>
     traduccion := <span style="color: #729fcf; font-weight: bold;">case</span> 
-        <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-            <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>
-        <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-            <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
-        <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-            <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
-        <span style="color: #729fcf; font-weight: bold;">else</span>
-            <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
     <span style="color: #729fcf; font-weight: bold;">end</span>;
     dbms_output.put_line(traduccion);
 <span style="color: #729fcf; font-weight: bold;">end</span>;
@@ -545,16 +545,16 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
     traduccion <span style="color: #8ae234; font-weight: bold;">varchar</span>(100);
 <span style="color: #729fcf; font-weight: bold;">begin</span>
     if to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1  <span style="color: #729fcf; font-weight: bold;">then</span>
-        traduccion := <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>;
+    <span style="color: #7ae074741f52;"> </span>   traduccion := <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>;
     <span style="color: #729fcf; font-weight: bold;">else</span>  
-        traduccion := <span style="color: #729fcf; font-weight: bold;">case</span> v
-            <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-                <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
-            <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-                <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
-            <span style="color: #729fcf; font-weight: bold;">else</span>
-                <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
-        <span style="color: #729fcf; font-weight: bold;">end</span>;
+    <span style="color: #7ae074741f52;"> </span>   traduccion := <span style="color: #729fcf; font-weight: bold;">case</span> v
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">end</span>;
     <span style="color: #729fcf; font-weight: bold;">end</span> if;   
     dbms_output.put_line(traduccion);
 <span style="color: #729fcf; font-weight: bold;">end</span>;
@@ -600,8 +600,8 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
 <pre class="src src-sql">LOOP
     <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
     IF (expresion) <span style="color: #729fcf; font-weight: bold;">THEN</span>
-      <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
-      EXIT;
+    <span style="color: #7ae074741f52;"> </span> <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
+    <span style="color: #7ae074741f52;"> </span> EXIT;
     <span style="color: #729fcf; font-weight: bold;">END</span> IF;
 <span style="color: #729fcf; font-weight: bold;">END</span> LOOP;
 </pre>
@@ -1153,10 +1153,10 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <span style="color: #729fcf; font-weight: bold;">begin</span>
   vempno := 100;
   <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno, salario, nombre)
-         <span style="color: #729fcf; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #ad7fa8; font-style: italic;">'Manolo'</span>);
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #ad7fa8; font-style: italic;">'Manolo'</span>);
   <span style="color: #729fcf; font-weight: bold;">update</span> empleados 
-         <span style="color: #729fcf; font-weight: bold;">set</span> salario = salario + 100
-         <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">set</span> salario = salario + 100
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
   <span style="color: #729fcf; font-weight: bold;">delete</span> <span style="color: #729fcf; font-weight: bold;">from</span> empleados <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -1406,13 +1406,13 @@ Imprime un listado con la inicial de los empleados y sus apellidos
   <span style="color: #729fcf; font-weight: bold;">BEGIN</span>
     <span style="color: #729fcf; font-weight: bold;">SELECT</span> <span style="color: #729fcf;">count</span>(*) <span style="color: #729fcf; font-weight: bold;">into</span> n <span style="color: #729fcf; font-weight: bold;">from</span> empleados
     if( n &lt; 10 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-      RAISE_APPLICATION_ERROR(-20001,<span style="color: #ad7fa8; font-style: italic;">'La empresa necesita al menos 10 empleados'</span>);
+    <span style="color: #7ae074741f52;"> </span> RAISE_APPLICATION_ERROR(-20001,<span style="color: #ad7fa8; font-style: italic;">'La empresa necesita al menos 10 empleados'</span>);
     <span style="color: #729fcf; font-weight: bold;">end</span> if;
   <span style="color: #729fcf; font-weight: bold;">EXCEPTION</span> 
     <span style="color: #729fcf; font-weight: bold;">WHEN</span> OTHERS <span style="color: #729fcf; font-weight: bold;">THEN</span>
-      if( sqlcode = -20001) <span style="color: #729fcf; font-weight: bold;">then</span>
-        dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Pocos empleados'</span>);
-      <span style="color: #729fcf; font-weight: bold;">end</span> if;
+    <span style="color: #7ae074741f52;"> </span> if( sqlcode = -20001) <span style="color: #729fcf; font-weight: bold;">then</span>
+    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Pocos empleados'</span>);
+    <span style="color: #7ae074741f52;"> </span> <span style="color: #729fcf; font-weight: bold;">end</span> if;
   <span style="color: #729fcf; font-weight: bold;">END</span>;
 </pre>
 </div>
@@ -1544,13 +1544,13 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <span style="color: #729fcf; font-weight: bold;">begin</span>
   <span style="color: #729fcf; font-weight: bold;">case</span> 
     <span style="color: #729fcf; font-weight: bold;">when</span> inserting <span style="color: #729fcf; font-weight: bold;">THEN</span>
-      dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Insertando empleados'</span>);
+    <span style="color: #7ae074741f52;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Insertando empleados'</span>);
     <span style="color: #729fcf; font-weight: bold;">when</span> updating <span style="color: #729fcf; font-weight: bold;">then</span>
-      dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Actualizando empleados'</span>);
+    <span style="color: #7ae074741f52;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Actualizando empleados'</span>);
     <span style="color: #729fcf; font-weight: bold;">when</span> deleting <span style="color: #729fcf; font-weight: bold;">then</span>
-      dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Borrando empleados'</span>);
+    <span style="color: #7ae074741f52;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Borrando empleados'</span>);
     <span style="color: #729fcf; font-weight: bold;">else</span>
-      dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Inesperado'</span>);
+    <span style="color: #7ae074741f52;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Inesperado'</span>);
   <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -1978,8 +1978,8 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">set</span> serveroutput <span style="color: #729fcf; font-weight: bold;">off</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span>
   <span style="color: #729fcf; font-weight: bold;">for</span> i <span style="color: #729fcf; font-weight: bold;">in</span> 1 .. 10000 loop
-     <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre)
-     <span style="color: #729fcf; font-weight: bold;">values</span>(100+i, i, <span style="color: #ad7fa8; font-style: italic;">'Nombre Inventado'</span>);
+    <span style="color: #7ae074741f52;"> </span><span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre)
+    <span style="color: #7ae074741f52;"> </span><span style="color: #729fcf; font-weight: bold;">values</span>(100+i, i, <span style="color: #ad7fa8; font-style: italic;">'Nombre Inventado'</span>);
   <span style="color: #729fcf; font-weight: bold;">end</span> loop;
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -2034,7 +2034,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2022-10-10 lun 13:48</p>
+<p class="date">Created: 2023-09-09 sáb 17:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

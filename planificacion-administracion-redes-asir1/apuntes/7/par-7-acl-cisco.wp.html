@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2022-10-10 lun 13:54 -->
+<!-- 2023-09-09 sáb 17:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Listas de control de acceso en routers CISCO</title>
@@ -192,7 +192,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>h2::before,h1::before,h3::before,h4::before{ clear: both; }</style>
 <script src="../../../common/reveal.js-menu/menu.js"></script>
@@ -470,36 +470,36 @@ Se desea que la red <code>10.0.0.0/15</code> no sea enrutada, excepto el equipo 
 Permitir el host <code>10.0.1.1</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">         access-list 1 permit host 10.0.1.1
+<pre class="src src-sh">    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>access-list 1 permit host 10.0.1.1
 </pre>
 </div></li>
 <li><p>
 Prohibir la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">         access-list 1 deny 10.0.0.0 0.1.255.255
+<pre class="src src-sh">    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>access-list 1 deny 10.0.0.0 0.1.255.255
 </pre>
 </div></li>
 <li><p>
 Permitir el resto de redes
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">         access-list 1 permit any
+<pre class="src src-sh">    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>access-list 1 permit any
 </pre>
 </div></li>
 <li><p>
 Explicitar la regla final de denegación (va a estar de todas formas, pero ayuda a no olvidarse de ella)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">         access-list 1 deny any
+<pre class="src src-sh">    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>access-list 1 deny any
 </pre>
 </div></li>
 <li><p>
 Asociar esta ACL a la interfaz de entrada de la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">         interface Fa0/0
-         ip access-group 1<span style="color: #729fcf; font-weight: bold;"> in</span>
+<pre class="src src-sh">    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>interface Fa0/0
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>ip access-group 1<span style="color: #729fcf; font-weight: bold;"> in</span>
 </pre>
 </div></li>
 </ul>
@@ -693,8 +693,8 @@ Modificación en el firewall:
 <div class="org-src-container">
 <pre class="src src-sh">  R1# show access-lists 1
   Standard IP access list 1
-     10 deny   192.168.10.99
-     20 permit 192.168.0.0, wildcard bits 0.0.255.255
+    <span style="color: #7ae074741f52;"> </span>10 deny   192.168.10.99
+    <span style="color: #7ae074741f52;"> </span>20 permit 192.168.0.0, wildcard bits 0.0.255.255
   R1#
 
   R1# configure terminal      
@@ -995,7 +995,7 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2022-10-10 lun 13:54</p>
+<p class="date">Created: 2023-09-09 sáb 17:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
