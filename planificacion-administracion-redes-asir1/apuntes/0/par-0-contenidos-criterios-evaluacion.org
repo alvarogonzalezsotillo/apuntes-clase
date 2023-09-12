@@ -2,7 +2,7 @@
 #+TITLE:  PLANIFICACIÓN Y ADMINISTRACIÓN DE REDES 
 #+SUBTITLE: (CÓDIGO: 0370)
 #+KEYWORDS: 0370
-
+#+REVEAL_HLEVEL: 7
 
 * Cómo serán las clases
 + Teoría
@@ -83,8 +83,8 @@
 - Packet tracer VS Linux & Windows
   - Packet tracer es necesario para simular switches
   - Para simular redes y routers se sienten más reales las máquinas virtuales
-  - Versión 8.0.0 (no es la última, pero funciona bien en Windows y Ubuntu)
-- Curso: [[https://lms.netacad.com/course/view.php?id=754599]]
+  - Versión 8.2.1 (aunque cambie durante el curso, usaremos esta)
+- Curso NETACAD:
   - Se necesita un /[[https://www.netacad.com/portal/user/redeem/token][redeem token]]/ para matricularse
   - Los repartiré en clase
 
