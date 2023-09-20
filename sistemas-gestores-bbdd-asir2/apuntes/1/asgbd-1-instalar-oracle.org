@@ -335,10 +335,6 @@ digraph {
   - Bloquearse o desbloquearse
   - Cambiar su contraseña
 
-** Paravirtualización :noexport:
-- =dbca= se puede colgar si la paravirtualización está a algún valor que no sea =none=
-
-
 ** ¡Ya se puede conectar!
 
 - Es necesario informar a =sqlplus= del =SID=
