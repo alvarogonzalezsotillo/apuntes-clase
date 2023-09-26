@@ -609,19 +609,19 @@ Nada de esto es /directamente/ bases de datos...
 ... pero ha sido necesario para instalar *Oracle*
 
 ** Comandos
-| ~cd~        | Cambia el directorio actual              |
-| ~echo~      | Escribe los parámetros pasados           |
-| ~df~        | Espacio de disco usado                   |
-| ~unzip~     | Descomprime un *zip*                     |
-| ~updatedb~  | Actualiza la lista de ficheros del disco |
-| ~locate~    | Busca un fichero la lista de =updatedb=  |
-| ~ssh~       | Conexión remota                          |
-| ~grep~      | Busca líneas con un texto                |
-| ~nano~      | Editor de ficheros                       |
-| ~netstat~   | Ver conexiones de red                    |
-| ~nc~        | Conectarse por TCP o UDP                 |
-| ~systemctl~ | Activa y desactiva servicios (firewall)  |
-| ~nmtui~     | Control de conexiones de red             |
+| ~cd~              | Cambia el directorio actual                            |
+| ~echo~            | Escribe los parámetros pasados                         |
+| ~df~              | Espacio de disco usado                                 |
+| ~unzip~           | Descomprime un *zip*                                   |
+| ~updatedb~        | Actualiza la lista de ficheros del disco para =locate= |
+| ~locate, whereis~ | Busca un fichero por nombre                            |
+| ~ssh~             | Conexión remota                                        |
+| ~grep~            | Busca líneas con un texto                              |
+| ~nano~            | Editor de ficheros                                     |
+| ~netstat~         | Ver conexiones de red                                  |
+| ~nc~              | Conectarse por TCP o UDP                               |
+| ~systemctl~       | Activa y desactiva servicios (firewall)                |
+| ~nmtui~           | Control de conexiones de red                           |
   
 ** Comandos, /shell/ y variables 
 | ~$variable~     | Valor de una variable (de =export= y =env= )        |
