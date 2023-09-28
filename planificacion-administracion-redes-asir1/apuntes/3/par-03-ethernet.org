@@ -270,6 +270,12 @@ file:media/retransmision-hub.png
 #+caption: La primera comunicación entre A y B inundará la red
 [[file:media/muchos-switch.png]]
 
+** Actividades Cisco
+- 1.3.6 Configurar SSH para acceso remoto a switch: https://contenthub.netacad.com/srwe-dl/1.3.6
+- 2.1.8 Actividad reenvío de tramas en el switch: https://contenthub.netacad.com/srwe-dl/2.1.8
+- 2.2.4 Prueba teórica dominios de difusión: https://contenthub.netacad.com/srwe-dl/2.2.4
+- 2.3.2 Prueba teórica de conceptos de switches: https://contenthub.netacad.com/srwe-dl/2.3.2
+
 * ARP
 
 - Es un protocolo que se encuentra en la frontera de las capas de red y enlace, aunque generalmente aparece como protocolo de red.  
