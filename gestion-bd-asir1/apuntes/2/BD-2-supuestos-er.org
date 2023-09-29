@@ -422,9 +422,9 @@ Crear el esquema entidad/relación que permita gestionar reservas de vuelos, de 
 
 * Recetas de cocina
 
-Crear el esquema entidad/relación que permita gestionar los datos sobre preparación de recetas de cocina
+Crear el esquema entidad/relación que permita gestionar los datos sobre un libro de preparación de recetas de cocina
 - Un libro con varias recetas de cocina
-- Clasificadas por categorías: postres, primeros, segundos, tapas...
+- Clasificadas por categorías: postres, primeros, segundos, tapas, (opcional: oriental, picante...)
 - Tienen que tener
   - Número de comensales
   - Tiempo de preparación
