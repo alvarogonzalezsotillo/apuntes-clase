@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ES" xml:lang="ES">
 <head>
-<!-- 2023-09-09 sáb 17:17 -->
+<!-- 2023-09-27 mié 18:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ethernet. Switchs y Hubs</title>
@@ -212,9 +212,9 @@
 <li><a href="#org0000012">3. Precedente de Ethernet (802.3)</a></li>
 <li><a href="#org0000031">4. Ethernet (802.3)</a></li>
 <li><a href="#org000003e">5. Direcciones MAC</a></li>
-<li><a href="#org000005c">6. Equipos de interconexión</a></li>
-<li><a href="#org0000068">7. ARP</a></li>
-<li><a href="#org000006b">8. Referencias</a></li>
+<li><a href="#org000005f">6. Equipos de interconexión</a></li>
+<li><a href="#org000006b">7. ARP</a></li>
+<li><a href="#org000006e">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -805,8 +805,8 @@ ifconfig eth0 up
 </div>
 </div>
 
-<div id="outline-container-org000005c" class="outline-2">
-<h2 id="org000005c"><span class="section-number-2">6.</span> Equipos de interconexión</h2>
+<div id="outline-container-org000005f" class="outline-2">
+<h2 id="org000005f"><span class="section-number-2">6.</span> Equipos de interconexión</h2>
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-org0000041" class="outline-3">
@@ -945,10 +945,22 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
+
+<div id="outline-container-org000005c" class="outline-3">
+<h3 id="org000005c"><span class="section-number-3">6.9.</span> Actividades Cisco</h3>
+<div class="outline-text-3" id="text-6-9">
+<ul class="org-ul">
+<li>1.3.6 Configurar SSH para acceso remoto a switch: <a href="https://contenthub.netacad.com/srwe-dl/1.3.6">https://contenthub.netacad.com/srwe-dl/1.3.6</a></li>
+<li>2.1.8 Actividad reenvío de tramas en el switch: <a href="https://contenthub.netacad.com/srwe-dl/2.1.8">https://contenthub.netacad.com/srwe-dl/2.1.8</a></li>
+<li>2.2.4 Prueba teórica dominios de difusión: <a href="https://contenthub.netacad.com/srwe-dl/2.2.4">https://contenthub.netacad.com/srwe-dl/2.2.4</a></li>
+<li>2.3.2 Prueba teórica de conceptos de switches: <a href="https://contenthub.netacad.com/srwe-dl/2.3.2">https://contenthub.netacad.com/srwe-dl/2.3.2</a></li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org0000068" class="outline-2">
-<h2 id="org0000068"><span class="section-number-2">7.</span> ARP</h2>
+<div id="outline-container-org000006b" class="outline-2">
+<h2 id="org000006b"><span class="section-number-2">7.</span> ARP</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Es un protocolo que se encuentra en la frontera de las capas de red y enlace, aunque generalmente aparece como protocolo de red.</li>
@@ -957,8 +969,8 @@ ifconfig eth0 up
 </ul>
 </div>
 
-<div id="outline-container-org000005f" class="outline-3">
-<h3 id="org000005f"><span class="section-number-3">7.1.</span> Comando ARP (Linux)</h3>
+<div id="outline-container-org0000062" class="outline-3">
+<h3 id="org0000062"><span class="section-number-3">7.1.</span> Comando ARP (Linux)</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Consultar las direcciones conocidas</li>
@@ -985,8 +997,8 @@ ifconfig eth0 up
 </div>
 </div>
 
-<div id="outline-container-org0000062" class="outline-3">
-<h3 id="org0000062"><span class="section-number-3">7.2.</span> Comando ARP (Windows)</h3>
+<div id="outline-container-org0000065" class="outline-3">
+<h3 id="org0000065"><span class="section-number-3">7.2.</span> Comando ARP (Windows)</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>Consultar las direcciones conocidas</li>
@@ -1019,8 +1031,8 @@ ifconfig eth0 up
 </div>
 </div>
 
-<div id="outline-container-org0000065" class="outline-3">
-<h3 id="org0000065"><span class="section-number-3">7.3.</span> <i>Unicast Poll</i></h3>
+<div id="outline-container-org0000068" class="outline-3">
+<h3 id="org0000068"><span class="section-number-3">7.3.</span> <i>Unicast Poll</i></h3>
 <div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
 <li>El mensaje inicial de una pregunta ARP es de <i>broadcast</i>, para que todo el mundo lo reciba y pueda contestar.</li>
@@ -1036,8 +1048,8 @@ ifconfig eth0 up
 
 
 
-<div id="outline-container-org000006b" class="outline-2">
-<h2 id="org000006b"><span class="section-number-2">8.</span> Referencias</h2>
+<div id="outline-container-org000006e" class="outline-2">
+<h2 id="org000006e"><span class="section-number-2">8.</span> Referencias</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Formatos:
@@ -1059,7 +1071,7 @@ ifconfig eth0 up
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:17</p>
+<p class="date">Created: 2023-09-27 mié 18:47</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
