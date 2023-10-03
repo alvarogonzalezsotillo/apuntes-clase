@@ -101,11 +101,12 @@ end;
 #+end_notes
 
 ** Ejercicio: /tablespace/ por defecto
-- Consulta el /tablespace/ por defecto de los usarios (=dba_users_=)
+- Consulta el /tablespace/ por defecto de los usuarios (=dba_users=)
 - Cambia el /tablespace/ por defecto de un usuario (=alter user=)
 - Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
 - Cambia el /tablespace/ por defecto por defecto (=alter database=)
-  
+ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
+
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
 graph{
@@ -163,9 +164,22 @@ A database's data is collectively stored in the datafiles that constitute each t
 
 #+reveal: split
 - *Oracle* tiene dos modos de autentificar usuarios
-  - Autentificación de sistema operativo
+  - Autentificación de sistema operativo (parámetro =os_authent_prefix=)
   - Autentificación con seguridad nativa de *oracle*
 - Al instalarlo, elegimos que el grupo =wheel= era administrador
+
+#+begin_notes
+SQL> SHOW PARAMETER os_authent_prefix
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+os_authent_prefix                    string      ops$
+SQL>
+
+-- UNIX
+CREATE USER ops$tim_hall IDENTIFIED EXTERNALLY;
+GRANT CREATE SESSION TO ops$tim_hall;
+#+end_notes
 
 ** Creación de usuarios
 #+begin_src sql
