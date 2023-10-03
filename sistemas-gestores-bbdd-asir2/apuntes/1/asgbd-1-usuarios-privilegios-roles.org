@@ -100,6 +100,12 @@ end;
 /
 #+end_notes
 
+** Ejercicio: /tablespace/ por defecto
+- Consulta el /tablespace/ por defecto de los usarios (=dba_users_=)
+- Cambia el /tablespace/ por defecto de un usuario (=alter user=)
+- Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
+- Cambia el /tablespace/ por defecto por defecto (=alter database=)
+  
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
 graph{
