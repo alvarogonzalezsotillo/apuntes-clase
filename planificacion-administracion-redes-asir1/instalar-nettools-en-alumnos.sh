@@ -40,7 +40,7 @@ echo "--------"
 echo "--------"
 
 mkdir -p outdir
-parallel-ssh --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 120 --askpass --user $USUARIO --errdir outdir --outdir outdir --extra-args "-o StrictHostKeyChecking=no" "sudo apt-get --fix-broken install; sudo apt-get -y install netcat net-tools; sudo chmod +x /home/logo-avellaneda.png" 
+parallel-ssh --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 120 --askpass --user $USUARIO --errdir outdir --outdir outdir --extra-args "-o StrictHostKeyChecking=no" "sudo apt-get --fix-broken install; sudo apt-get -y install netcat net-tools" 
 
 echo "--------"
 echo "--------"

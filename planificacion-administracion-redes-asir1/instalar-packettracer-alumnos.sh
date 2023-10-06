@@ -1,12 +1,10 @@
 #!/bin/bash
 
-DEB_URL=http://nasavellaneda.local/alvaro/pt-820/CiscoPacketTracer_820_Ubuntu_64bit.deb
+DEB_URL=http://nasavellaneda.local/alvaro/packet-tracer/CiscoPacketTracer_821_Ubuntu_64bit.deb
 AULA=a33
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(
-    echo a33pc06.local
-    return
     local AULA=${1:-$AULA_DEFECTO}
     for ORDENADOR in $(seq 1 16)
     do
@@ -43,7 +41,7 @@ echo "--------"
 echo "--------"
 
 mkdir -p outdir
-parallel-ssh --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 120 --askpass --user $USUARIO --errdir outdir --outdir outdir --extra-args "-o StrictHostKeyChecking=no" "wget -O instalacion.deb $DEB_URL; yes si | sudo dpkg -i instalacion.deb; rm instalacion.deb" 
+parallel-ssh --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 120 --askpass --user $USUARIO --errdir outdir --outdir outdir --extra-args "-o StrictHostKeyChecking=no" "wget -c -O instalacion.deb $DEB_URL; yes si | sudo dpkg -i instalacion.deb; rm instalacion.deb" 
 
 echo "--------"
 echo "--------"
