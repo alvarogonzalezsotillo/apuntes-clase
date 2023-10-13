@@ -23,8 +23,8 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 
   Crea un tablespace
   - De nombre =PARAOTROS=.
-  - Con dos ficheros que se guardarán en =/datos/paraotros=.
-  - El tamaño de cada fichero será como máximo de 100 MBytes
+  - Con dos ficheros que se guardarán en =/datos/paraotros=. (50%)
+  - El tamaño de cada fichero será como máximo de 100 MBytes. (50%)
   
 * (2 puntos) Crear usuarios para tus compañeros 
 
@@ -49,7 +49,9 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 #+latex:  \end{multicols}
   *Nota*: Son muchos usuarios, así que es aconsejable utilizar un /script/ en vez de crearlos manualmente.
 
-  Tu propio usuario tendrá como /tablespace/ por defecto =USERS=, y los demás =PARAOTROS=. Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su /tablespace/ por defecto. Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en =PARAOTROS=, y no podrán escribir nada en =USERS=.
+  Tu propio usuario tendrá como /tablespace/ por defecto =USERS=, y los demás =PARAOTROS= (33%)
+  Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su /tablespace/ por defecto (33%)
+  Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en =PARAOTROS=, y no podrán escribir nada en =USERS= (33%).
   
   Cuando tengas listos los usuarios:
     - Los datos de conexión a cada servidor [[https://docs.google.com/spreadsheets/d/17A6TpGOixGVVZr1VlocN6ZhMuKqmQjD3XedyIne4ows/edit#gid=0][se indicarán en esta hoja excel]]
@@ -57,7 +59,32 @@ La última versión de este documento está accesible en [[https://alvarogonzale
     - Pide a algunos compañeros que comprueben su usuario
     - Pide al profesor que compruebe su usuario
   
-* (1 punto) =PROFESOR= con permisos especiales 
+* (2 puntos) Creación de las tablas
+  Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con =ALTER USER=).
+
+  - Crea un /tablespace/ de nombre =CARRERAS=, con un /datafile/ en el directorio =/datos/carreras= (20%)
+  - Con tu propio usuario, crea las tablas en ese /tablespace/ (80%)
+    - Utiliza el [[https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql][/script/ =carreras-coches.sql=]] para la creación de las tablas
+    - Tendrás que modificar el /script/ para que tenga en cuenta el nuevo /tablespace/
+
+* (3 puntos) Dar acceso a otros usuarios a un campo de tus tablas 
+  Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
+  - Haz que el resto de usuarios pueda realizar =SELECT= sobre tus tablas. (20%)
+  - Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas (20%)
+    - Por ejemplo, el usuario =profesor= debería poder ejecutar =SELECT * FROM CIRCUITOS=, puesto que habrás creado un sinónimo del tipo =CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS=.
+
+ #+latex: \begin{Aviso}
+Son muchos usuarios. Agrúpalos de algún modo. (40%)
+ #+latex: \end{Aviso}
+      
+  Después, haz que puedan escribir en un campo de la tabla =RESULTADOS=:
+  - Crea un nuevo campo en la tabla =RESULTADOS=: =VALORACION=, de tipo =VARCHAR(20)=.
+  - Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden =GRANT= (20%)
+  - Pide a algún otro compañero que compruebe que funciona
+  - Pide al profesor que compruebe que funciona.
+
+    
+* (0.5 puntos) =PROFESOR= con permisos especiales 
   Haz que el usuario =PROFESOR= tenga permisos de lectura en las vistas de sistema
     - =DBA_COL_PRIVS=
     - =DBA_DATA_FILES=
@@ -73,30 +100,6 @@ La última versión de este documento está accesible en [[https://alvarogonzale
  #+latex: \begin{Aviso}
 Sin el usuario =PROFESOR= y los permisos especificados no se podrá corregir esta práctica
  #+latex: \end{Aviso}
-* (2 puntos) Creación de las tablas
-  Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con =ALTER USER=).
-
-  - Crea un /tablespace/ de nombre =CARRERAS=, con un /datafile/ en el directorio =/datos/carreras=.
-  - Con tu propio usuario, crea las tablas en ese /tablespace/
-    - Utiliza el [[https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql][/script/ =carreras-coches.sql=]] para la creación de las tablas
-    - Tendrás que modificar el /script/ para que tenga en cuenta el nuevo /tablespace/
-
-* (3 puntos) Dar acceso a otros usuarios a un campo de tus tablas 
-  Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
-  - Haz que el resto de usuarios pueda realizar =SELECT= sobre tus tablas.  
-  - Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas
-    - Por ejemplo, el usuario =profesor= debería poder ejecutar =SELECT * FROM CIRCUITOS=, puesto que habrás creado un sinónimo del tipo =CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS=.
-
- #+latex: \begin{Aviso}
-Son muchos usuarios. Agrúpalos de algún modo.
- #+latex: \end{Aviso}
-      
-  Después, haz que puedan escribir en un campo de la tabla =RESULTADOS=:
-  - Crea un nuevo campo en la tabla =RESULTADOS=: =VALORACION=, de tipo =VARCHAR(20)=. Tendrá como únicos valores posibles =MALO=, =ACEPTABLE=, =BUENO= y =MUY BUENO=.
-  - Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden =GRANT=
-  - Pide a algún otro compañero que compruebe que funciona
-  - Pide al profesor que compruebe que funciona.
-  
 * Instrucciones de entrega
 :PROPERTIES:
 :UNNUMBERED: t
