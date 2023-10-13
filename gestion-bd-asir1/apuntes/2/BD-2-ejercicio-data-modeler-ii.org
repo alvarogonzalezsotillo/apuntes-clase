@@ -57,7 +57,7 @@ Se desea que los clientes puedan buscar en el catálogo y realizar su pedido, co
 Se desea obtener el modelo conceptual para una base de datos que manejará el catálogo y los pedidos de una empresa dedicada a la venta de ordenadores configurables  por internet.
 
 - Cada modelo de ordenador se dedica a un uso: hogar, empresa, /gaming/... (como la tienda de [[https://www.dell.es][dell]]) 
-- Cada modelo tiene unas especificaciones de base (procesador, memoria, tarjeta gráfica...), con un precio inicial (como los ordenadores [[https://www.lenovo.com/es/es/laptops/thinkpad/edge-series/E15-G2/p/20TDCTO1WWESES2/customize?][Thinkpad]])
+- Cada modelo tiene unas especificaciones de base (procesador, memoria, tarjeta gráfica...), con un precio inicial (como los ordenadores [[https://www.lenovo.com/es/es/configurator/cto/index.html?bundleId=21JKCTO1WWES1][Thinkpad]])
   - No todas las mejoras son compatibles con todos los modelos de ordenador (por ejemplo, no se pueden poner 64GB de RAM en todos los modelos)
   - Cada mejora es de una característica del ordenador: memoria RAM, memoria de disco, tipo de tarjeta gráfica... Solo se puede aplicar una mejora dentro de una de estas características. Por ejemplo, no se pueden elegir 8GB y 16GB a la vez.
   - Algunas características son incompatibles con otras. Por ejemplo, [[https://www.lenovo.com/us/en/faqs/pc-life-faqs/what-is-vpro/][no se puede tener una tarjeta de red vpro con un procesador i3]].  

@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:18</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-10-03 mar 14:02</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -689,7 +689,22 @@ end;
 
 </section>
 <section id="slide-2-7">
-<h3 id="2-7"><span class="section-number-3">2.7.</span> Conceptos de almacenamiento</h3>
+<h3 id="2-7"><span class="section-number-3">2.7.</span> Ejercicio: <i>tablespace</i> por defecto</h3>
+<ul>
+<li>Consulta el <i>tablespace</i> por defecto de los usuarios (<code>dba_users</code>)</li>
+<li>Cambia el <i>tablespace</i> por defecto de un usuario (<code>alter user</code>)</li>
+<li>Consulta el <i>tablespace</i> por defecto por (<code>DATABASE_PROPERTIES</code>)</li>
+<li>Cambia el <i>tablespace</i> por defecto por defecto (<code>alter database</code>)</li>
+
+</ul>
+<p>
+ALTER TABLE &lt;TABLE NAME to be moved&gt; MOVE TABLESPACE &lt;destination TABLESPACE NAME&gt;
+</p>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-2-8">
+<h3 id="2-8"><span class="section-number-3">2.8.</span> Conceptos de almacenamiento</h3>
 
 <div id="org0000000" class="figure">
 <p><svg width="855pt" height="75pt"
@@ -846,13 +861,33 @@ A database's data is collectively stored in the datafiles that constitute each t
 <ul>
 <li><b>Oracle</b> tiene dos modos de autentificar usuarios
 <ul>
-<li>Autentificación de sistema operativo</li>
+<li>Autentificación de sistema operativo (parámetro <code>os_authent_prefix</code>)</li>
 <li>Autentificación con seguridad nativa de <b>oracle</b></li>
 
 </ul></li>
 <li>Al instalarlo, elegimos que el grupo <code>wheel</code> era administrador</li>
 
 </ul>
+
+<aside class="notes">
+<p>
+SQL&gt; SHOW PARAMETER os<sub>authent</sub><sub>prefix</sub>
+</p>
+
+<p>
+NAME                                 TYPE        VALUE
+-------------------------------&#x2013;&#x2014; ------&#x2013;&#x2014; -------------------------&#x2013;&#x2014;
+os<sub>authent</sub><sub>prefix</sub>                    string      ops$
+SQL&gt;
+</p>
+
+<p>
+&#x2013; UNIX
+CREATE USER ops$tim<sub>hall</sub> IDENTIFIED EXTERNALLY;
+GRANT CREATE SESSION TO ops$tim<sub>hall</sub>;
+</p>
+
+</aside>
 <div class="slide-footer"></div>
 
 </section>
