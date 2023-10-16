@@ -45,7 +45,7 @@ La última versión de este documento está accesible en [[https://alvarogonzale
     - ALEJANDRORIVIL
     - IRUBIOMARTIN  
     - ALVAROVICENTE1
-    - PROFESOR
+    - ALVAROGONZALEZ
 #+latex:  \end{multicols}
   *Nota*: Son muchos usuarios, así que es aconsejable utilizar un /script/ en vez de crearlos manualmente.
 
@@ -85,7 +85,7 @@ Son muchos usuarios. Agrúpalos de algún modo. (40%)
 
     
 * (0.5 puntos) =PROFESOR= con permisos especiales 
-  Haz que el usuario =PROFESOR= tenga permisos de lectura en las vistas de sistema
+  Haz un usuario =PROFESOR= con contraseña =PROFESOR= que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema
     - =DBA_COL_PRIVS=
     - =DBA_DATA_FILES=
     - =DBA_ROLES=

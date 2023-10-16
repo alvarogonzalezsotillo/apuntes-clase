@@ -105,7 +105,11 @@ end;
 - Cambia el /tablespace/ por defecto de un usuario (=alter user=)
 - Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
 - Cambia el /tablespace/ por defecto por defecto (=alter database=)
+- Cambiar una tabla de tablespace: =ALTER TABLE ... MOVE TABLESPACE=  
+
+#+begin_notes  
 ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
+#+end_notes
 
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
