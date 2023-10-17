@@ -66,6 +66,7 @@ La última versión de este documento está accesible en [[https://alvarogonzale
   - Con tu propio usuario, crea las tablas en ese /tablespace/ (80%)
     - Utiliza el [[https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql][/script/ =carreras-coches.sql=]] para la creación de las tablas
     - Tendrás que modificar el /script/ para que tenga en cuenta el nuevo /tablespace/
+    - Tu usuario necesitará cuota en ese /tablespace/  
 
 * (3 puntos) Dar acceso a otros usuarios a un campo de tus tablas 
   Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
