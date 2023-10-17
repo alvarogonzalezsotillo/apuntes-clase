@@ -51,7 +51,7 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 
   Tu propio usuario tendrá como /tablespace/ por defecto =USERS=, y los demás =PARAOTROS= (33%)
   Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su /tablespace/ por defecto (33%)
-  Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en =PARAOTROS=, y no podrán escribir nada en =USERS= (33%).
+  Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en =PARAOTROS=, y no podrán insertar datos en =USERS= (33%).
   
   Cuando tengas listos los usuarios:
     - Los datos de conexión a cada servidor [[https://docs.google.com/spreadsheets/d/17A6TpGOixGVVZr1VlocN6ZhMuKqmQjD3XedyIne4ows/edit#gid=0][se indicarán en esta hoja excel]]
@@ -93,6 +93,7 @@ Son muchos usuarios. Agrúpalos de algún modo. (40%)
     - =DBA_SYNONYMS=
     - =DBA_TAB_COLS=
     - =DBA_TAB_PRIVS=
+    - =DBA_TABLES= 
     - =DBA_TS_QUOTAS=
     - =DBA_USERS=
 
