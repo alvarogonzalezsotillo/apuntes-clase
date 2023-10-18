@@ -1,4 +1,4 @@
-% Created 2023-10-16 lun 11:43
+% Created 2023-10-17 mar 13:37
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -151,7 +151,7 @@ Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el pr
 
 Tu propio usuario tendrá como \emph{tablespace} por defecto \texttt{USERS}, y los demás \texttt{PARAOTROS} (33\%)
 Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su \emph{tablespace} por defecto (33\%)
-Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en \texttt{PARAOTROS}, y no podrán escribir nada en \texttt{USERS} (33\%).
+Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en \texttt{PARAOTROS}, y no podrán insertar datos en \texttt{USERS} (33\%).
 
 Cuando tengas listos los usuarios:
 \begin{itemize}
@@ -171,6 +171,7 @@ Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún com
 \begin{itemize}
 \item Utiliza el \href{https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql}{\emph{script} \texttt{carreras-coches.sql}} para la creación de las tablas
 \item Tendrás que modificar el \emph{script} para que tenga en cuenta el nuevo \emph{tablespace}
+\item Tu usuario necesitará cuota en ese \emph{tablespace}
 \end{itemize}
 \end{itemize}
 
@@ -209,6 +210,7 @@ Haz un usuario \texttt{PROFESOR} con contraseña \texttt{PROFESOR} que pueda ini
 \item \texttt{DBA\_SYNONYMS}
 \item \texttt{DBA\_TAB\_COLS}
 \item \texttt{DBA\_TAB\_PRIVS}
+\item \texttt{DBA\_TABLES}
 \item \texttt{DBA\_TS\_QUOTAS}
 \item \texttt{DBA\_USERS}
 \end{itemize}
