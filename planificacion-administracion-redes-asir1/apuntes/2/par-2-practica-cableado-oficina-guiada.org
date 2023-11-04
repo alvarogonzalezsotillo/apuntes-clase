@@ -19,27 +19,25 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 
 
 * Enunciado
-Un posible cliente pide un presupuesto para realizar la instalación de una LAN en una oficina.
+Un posible cliente pide un presupuesto para realizar la instalación de una LAN en una biblioteca.
 
-- La oficina tiene como dimensiones 15 \times 8  metros. Inicialmente, empezarán a trabajar 6 empleados, con vistas a  ampliar la plantilla hasta a 10 empleados.
-- El acceso a la red del edificio se realizará a través de un punto e red preexistente (ver plano).
-- El cliente indica que desearía tener una sala de reuniones con clientes externos, donde se dispondría de un proyector y acceso WI-FI a la red.
-- La oficina dispone de techo técnico
-- Pueden ignorarse las ventanas.
+- El edificio tiene 50 metros de fachada, y 60 metros de fondo.
+- El cableado vertical se aloja en el vano junto al ascensor, al lado de la fotocopiadora
+- No se dispone de suelo ni techo técnico.
+- Se desea que la fotocopiadora disponga de punto de red. Debe haber puntos de red en los tres despachos de biblioteca.
+- La sala de lectura necesita acceso wifi. Debe haber una antena a menos de 20 metros de cualquier portátil de la sala.
+- En la sala de lectura se instalarán 4 puntos de acceso en cada una de las columnas.
 
 
-[[file:media/plano-oficina-small.pdf]]
+[[file:./media/planta-biblioteca.jpg]]
 
 
 
 * Qué se entrega
 Un documento que incluya:
 - Planos aproximados de la situación de los puestos informáticos, puntos de red y racks
-  - Es necesario indicar dónde se situarán los puestos de trabajo (mesas y sillas), aunque el mobiliario no es
-    parte de lo que se debe presupuestar.
   - Si se necesitan separaciones o tabiques, deben indicarse también.
 - Presupuesto de los materiales
-  - Informáticos: Ordenadores, monitores, teclados, cables de vídeo, proyectores...
   - De red: cables, canaletas, rosetas, patch panels, switchs…
   - Desglosados por precio, cantidad, total sin IVA y total con IVA
   - Los materiales incluirán una URL o hiperlink en donde se puedan comprobar sus características y/o precio.
@@ -48,14 +46,9 @@ Un documento que incluya:
 
 
 * Qué se valorará
-- 1 punto: La aplicabilidad práctica de los planos
-  - Medidas realistas
-  - Comodidad de los empleados
-  - Los equipos informáticos no ``estorban''
-- 3 puntos: La completitud en la relación de materiales
+- 2 punto: La aplicabilidad práctica de los planos
+- 4 puntos: La completitud en la relación de materiales
 - 2 puntos: La compatibilidad de los materiales
-- 1 punto: La previsión de futuras necesidades de la oficina
-- 1 punto: Cumplimiento de necesidades actuales, aunque el cliente no las haya especificado
 - 2 puntos: La apariencia profesional del trabajo
 
 
@@ -71,31 +64,29 @@ Un documento que incluya:
 
 
 * Guía de compras
-
+** Dónde realizar las compras
+- http://www.cablematic.es
+- http://www.cablecom.es
+- http://www.senetic.es
+- http://esp.hyperlinesystems.com
+- http://www.universalnetworks.co.uk
+- O cualquier otro sitio especializado en componentes  
+- No se recomienda Amazon
 ** Diagrama de decisiones
 #+BEGIN_SRC dot :file ./media/tareas-en-la-practica.pdf :exports results :cmd dot :cmdline -Tpdf
 digraph {
   compound=true
   label=""
   node [shape="ellipse",margin=0];
-  rankdir=LR;
+  rankdir=TD;
 
 
-  "Cuántas personas en total" ->   "Decidir cuántas rosetas\n y enchufes"
-  "Cuántas personas en total" -> "Cuántas personas iniciales"
-  "Decidir cuántas rosetas\n y enchufes" -> "Decidir dónde van las rosetas"
-  "Cuántas personas en total" -> "Colocar las mesas"
-  "Cuántas personas iniciales" -> "Comprar ordenadores"
-  "Cuántas personas iniciales" -> "Comprar switch"
-  "Cuántas personas iniciales" -> "Extras no pedidos por el cliente"
+  "Decidir cuántas rosetas" -> "Decidir dónde van las rosetas"
+  "Decidir cuántas rosetas" -> "Comprar switch"
   "Decidir dónde van las rosetas" -> "Decidir por dónde va el cable"
   "Decidir por dónde va el cable" -> "Comprar cable"
-  "Decidir por dónde va el cable" -> "Canaletas\nColumnas\nBandejas\nRacks\n..." -> "Instalación"
-  "Colocar las mesas" -> "Decidir dónde van las rosetas"
-  "Decidir cuántas rosetas\n y enchufes" -> "Comprar patch pannels"
-  "Cuántas personas iniciales" -> "Comprar patch cords"
-  "Comprar proyector/pantala" -> "Instalación"
-  "Comprar punto acceso wifi" -> "Instalación"
+  "Decidir por dónde va el cable" -> "Canaletas\nColumnas\nBandejas\nRacks\nPuntos de acceso..."
+  "Decidir cuántas rosetas" -> "Comprar patch pannels"
                 
 
                 
@@ -105,6 +96,7 @@ digraph {
 
 #+RESULTS:
 [[file:./media/tareas-en-la-practica.pdf]]
+
 
 ** Ejemplo de posible Presupuesto
 | Artículo con URL | Unidades | Precio unitario |  Total |
