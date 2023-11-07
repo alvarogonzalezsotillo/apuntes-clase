@@ -633,7 +633,9 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 * Ejercicio (1)
 - Crea la base de datos de multas en el usuario =multas= ([[../1/sql/multas.sql]])
 - Exporta la base de datos al fichero =/datos/exports/multas.dump=
+  - Con el usuario =sys=
 - Importa las tablas en el usuario =copiamultas=
+  - Con un usuario que no sea =sys=
 
 ** Tareas para la exportación
 

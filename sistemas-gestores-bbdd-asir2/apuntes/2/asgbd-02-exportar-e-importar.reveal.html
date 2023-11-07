@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:18</p>
+<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-11-07 mar 12:52</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1171,8 +1171,16 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 <h2 id="3"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
 <ul>
 <li>Crea la base de datos de multas en el usuario <code>multas</code> (<a href="../1/sql/multas.sql">../1/sql/multas.sql</a>)</li>
-<li>Exporta la base de datos al fichero <code>/datos/exports/multas.dump</code></li>
-<li>Importa las tablas en el usuario <code>copiamultas</code></li>
+<li>Exporta la base de datos al fichero <code>/datos/exports/multas.dump</code>
+<ul>
+<li>Con el usuario <code>sys</code></li>
+
+</ul></li>
+<li>Importa las tablas en el usuario <code>copiamultas</code>
+<ul>
+<li>Con un usuario que no sea <code>sys</code></li>
+
+</ul></li>
 
 </ul>
 <div class="slide-footer"></div>
