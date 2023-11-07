@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-11-07 mar 14:06</p>
+<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-11-07 mar 14:07</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1115,9 +1115,13 @@ Valid keywords are: IMMEDIATE.
 
 </section>
 <section id="slide-2-1">
-<h3 id="2-1"><span class="section-number-3">2.1.</span> INCLUDE/EXCLUDE una tabla</h3>
+<h3 id="2-1"><span class="section-number-3">2.1.</span> <code>INCLUDE/EXCLUDE</code> una tabla</h3>
 <ul>
-<li><code>INCLUDE</code> y <code>EXCLUDE</code> son filtros, como condiciones de <code>where</code></li>
+<li><code>INCLUDE</code> y <code>EXCLUDE</code> son filtros, como condiciones de <code>where</code>
+<ul>
+<li>Se puede usar <code>PARFILE</code> para no tener que escapar caracteres en la <i>shell</i></li>
+
+</ul></li>
 <li>Mejor utilizar <code>TABLES</code></li>
 
 </ul>
@@ -1128,6 +1132,7 @@ Valid keywords are: IMMEDIATE.
 </code></pre>
 </div>
 <div class="slide-footer"></div>
+
 
 </section>
 <section id="slide-2-2">

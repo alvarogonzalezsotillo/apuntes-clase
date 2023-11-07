@@ -591,14 +591,16 @@ Orderly shutdown of job execution and exits the client.
 Valid keywords are: IMMEDIATE.
 #+end_src
 
-** INCLUDE/EXCLUDE una tabla
+** =INCLUDE/EXCLUDE= una tabla
 
 - =INCLUDE= y =EXCLUDE= son filtros, como condiciones de =where=
+  - Se puede usar =PARFILE= para no tener que escapar caracteres en la /shell/
 - Mejor utilizar =TABLES=
     
 #+begin_src bash
 impdp USERNAME/PASSWORD schemas=USERNAME directory=backup dumpfile=full.dmp EXCLUDE=TABLE:\"like 'IMG_%%'\" EXCLUDE=TABLE:\"IN \(\'EMP\',\'DEPT\'\)\"
 #+end_src
+
 
 ** Importar un =schema= en otro =schema=
 - Importar un fichero del usuario =profesor= en el usuario =alumno=
