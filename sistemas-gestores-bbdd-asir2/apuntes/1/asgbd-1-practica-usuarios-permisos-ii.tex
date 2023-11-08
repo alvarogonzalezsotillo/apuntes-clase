@@ -1,0 +1,228 @@
+% Created 2023-10-17 mar 13:37
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{ASGBD}
+\rhead{Usuarios y niveles de acceso}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{Práctica de usuarios y niveles de acceso}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={Práctica de usuarios y niveles de acceso},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.6.9)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+
+
+
+
+\section*{Objetivo de la práctica}
+\label{sec:org0000000}
+En esta práctica utilizaremos a la base de datos \textbf{Oracle} como un verdadero servidor, conectándonos desde otros ordenadores. Para ello:
+\begin{itemize}
+\item Crearemos tablas en un \emph{tablespace} separado
+\item Crearemos un usuario para cada compañero de clase
+\item Asignaremos privilegios utilizando un rol
+\end{itemize}
+
+La última versión de este documento está accesible en \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos-ii.pdf}{este enlace}
+\section{(1 punto) Creación de un \emph{tablespace}}
+\label{sec:org0000003}
+
+Crea un tablespace
+\begin{itemize}
+\item De nombre \texttt{PARAOTROS}.
+\item Con dos ficheros que se guardarán en \texttt{/datos/paraotros}. (50\%)
+\item El tamaño de cada fichero será como máximo de 100 MBytes. (50\%)
+\end{itemize}
+
+\section{(2 puntos) Crear usuarios para tus compañeros}
+\label{sec:org0000006}
+
+Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el profesor. La contraseña inicial será la misma que el nombre (mayúsculas), excepto en tu usuario que debería ser una contraseña secreta:
+\begin{multicols}{3}
+\begin{itemize}
+\item RUBENAVILA3
+\item JORGEBAS
+\item DOMINIKCISLO
+\item JESUSCUEVAS4
+\item DAVIDCZARNECKI
+\item EMMANUELFERNAN
+\item NOELIAFERNANDE
+\item JOSELOPEZ16
+\item JESUSMUNOZ7
+\item MIGUELMUYO
+\item HUGOPABLO
+\item CREINA
+\item ALEJANDRORIVIL
+\item IRUBIOMARTIN
+\item ALVAROVICENTE1
+\item ALVAROGONZALEZ
+\end{itemize}
+\end{multicols}
+\textbf{Nota}: Son muchos usuarios, así que es aconsejable utilizar un \emph{script} en vez de crearlos manualmente.
+
+Tu propio usuario tendrá como \emph{tablespace} por defecto \texttt{USERS}, y los demás \texttt{PARAOTROS} (33\%)
+Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su \emph{tablespace} por defecto (33\%)
+Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en \texttt{PARAOTROS}, y no podrán insertar datos en \texttt{USERS} (33\%).
+
+Cuando tengas listos los usuarios:
+\begin{itemize}
+\item Los datos de conexión a cada servidor \href{https://docs.google.com/spreadsheets/d/17A6TpGOixGVVZr1VlocN6ZhMuKqmQjD3XedyIne4ows/edit\#gid=0}{se indicarán en esta hoja excel}
+\item El resto de usuarios podrán conectarse con \texttt{sqlplus USUARIO/USUARIO@HOST:1521/SIDOSERVICIO}
+\item Pide a algunos compañeros que comprueben su usuario
+\item Pide al profesor que compruebe su usuario
+\end{itemize}
+
+\section{(2 puntos) Creación de las tablas}
+\label{sec:org0000009}
+Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con \texttt{ALTER USER}).
+
+\begin{itemize}
+\item Crea un \emph{tablespace} de nombre \texttt{CARRERAS}, con un \emph{datafile} en el directorio \texttt{/datos/carreras} (20\%)
+\item Con tu propio usuario, crea las tablas en ese \emph{tablespace} (80\%)
+\begin{itemize}
+\item Utiliza el \href{https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql}{\emph{script} \texttt{carreras-coches.sql}} para la creación de las tablas
+\item Tendrás que modificar el \emph{script} para que tenga en cuenta el nuevo \emph{tablespace}
+\item Tu usuario necesitará cuota en ese \emph{tablespace}
+\end{itemize}
+\end{itemize}
+
+\section{(3 puntos) Dar acceso a otros usuarios a un campo de tus tablas}
+\label{sec:org000000c}
+Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
+\begin{itemize}
+\item Haz que el resto de usuarios pueda realizar \texttt{SELECT} sobre tus tablas. (20\%)
+\item Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas (20\%)
+\begin{itemize}
+\item Por ejemplo, el usuario \texttt{profesor} debería poder ejecutar \texttt{SELECT * FROM CIRCUITOS}, puesto que habrás creado un sinónimo del tipo \texttt{CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS}.
+\end{itemize}
+\end{itemize}
+
+\begin{Aviso}
+Son muchos usuarios. Agrúpalos de algún modo. (40\%)
+\end{Aviso}
+
+Después, haz que puedan escribir en un campo de la tabla \texttt{RESULTADOS}:
+\begin{itemize}
+\item Crea un nuevo campo en la tabla \texttt{RESULTADOS}: \texttt{VALORACION}, de tipo \texttt{VARCHAR(20)}.
+\item Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden \texttt{GRANT} (20\%)
+\item Pide a algún otro compañero que compruebe que funciona
+\item Pide al profesor que compruebe que funciona.
+\end{itemize}
+
+
+\section{(0.5 puntos) \texttt{PROFESOR} con permisos especiales}
+\label{sec:org000000f}
+Haz un usuario \texttt{PROFESOR} con contraseña \texttt{PROFESOR} que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema
+\begin{itemize}
+\item \texttt{DBA\_COL\_PRIVS}
+\item \texttt{DBA\_DATA\_FILES}
+\item \texttt{DBA\_ROLES}
+\item \texttt{DBA\_ROLE\_PRIVS}
+\item \texttt{DBA\_SYNONYMS}
+\item \texttt{DBA\_TAB\_COLS}
+\item \texttt{DBA\_TAB\_PRIVS}
+\item \texttt{DBA\_TABLES}
+\item \texttt{DBA\_TS\_QUOTAS}
+\item \texttt{DBA\_USERS}
+\end{itemize}
+
+
+\begin{Aviso}
+Sin el usuario \texttt{PROFESOR} y los permisos especificados no se podrá corregir esta práctica
+\end{Aviso}
+\section*{Instrucciones de entrega}
+\label{sec:org0000012}
+\begin{itemize}
+\item Esta práctica se corrige de forma semiautomática.
+\item El profesor se conectará a cada servidor de base de datos a comprobar la configuración en el día indicado.
+\end{itemize}
+\end{document}

@@ -1,0 +1,114 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+#+OPTIONS: author:nil date:nil num:t toc:t
+#+LATEX_HEADER: \lhead{ASGBD}
+#+LATEX_HEADER: \rhead{Usuarios y niveles de acceso}
+#+title: Práctica de usuarios y niveles de acceso
+
+
+
+
+
+* Objetivo de la práctica
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+En esta práctica utilizaremos a la base de datos *Oracle* como un verdadero servidor, conectándonos desde otros ordenadores. Para ello:
+- Crearemos tablas en un /tablespace/ separado
+- Crearemos un usuario para cada compañero de clase
+- Asignaremos privilegios utilizando un rol
+
+La última versión de este documento está accesible en [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos-ii.pdf][este enlace]]
+* (1 punto) Creación de un /tablespace/ 
+
+  Crea un tablespace
+  - De nombre =PARAOTROS=.
+  - Con dos ficheros que se guardarán en =/datos/paraotros=. (50%)
+  - El tamaño de cada fichero será como máximo de 100 MBytes. (50%)
+  
+* (2 puntos) Crear usuarios para tus compañeros 
+
+  Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el profesor. La contraseña inicial será la misma que el nombre (mayúsculas), excepto en tu usuario que debería ser una contraseña secreta:
+#+latex:  \begin{multicols}{3}
+    - RUBENAVILA3   
+    - JORGEBAS      
+    - DOMINIKCISLO  
+    - JESUSCUEVAS4  
+    - DAVIDCZARNECKI
+    - EMMANUELFERNAN
+    - NOELIAFERNANDE
+    - JOSELOPEZ16   
+    - JESUSMUNOZ7   
+    - MIGUELMUYO    
+    - HUGOPABLO     
+    - CREINA        
+    - ALEJANDRORIVIL
+    - IRUBIOMARTIN  
+    - ALVAROVICENTE1
+    - ALVAROGONZALEZ
+#+latex:  \end{multicols}
+  *Nota*: Son muchos usuarios, así que es aconsejable utilizar un /script/ en vez de crearlos manualmente.
+
+  Tu propio usuario tendrá como /tablespace/ por defecto =USERS=, y los demás =PARAOTROS= (33%)
+  Los usuarios necesitan poder conectarse a la base de datos y crear tablas en su /tablespace/ por defecto (33%)
+  Los usuarios de los otros alumnos tendrán una cuota de 10 MByte en =PARAOTROS=, y no podrán insertar datos en =USERS= (33%).
+  
+  Cuando tengas listos los usuarios:
+    - Los datos de conexión a cada servidor [[https://docs.google.com/spreadsheets/d/17A6TpGOixGVVZr1VlocN6ZhMuKqmQjD3XedyIne4ows/edit#gid=0][se indicarán en esta hoja excel]]
+    - El resto de usuarios podrán conectarse con =sqlplus USUARIO/USUARIO@HOST:1521/SIDOSERVICIO=
+    - Pide a algunos compañeros que comprueben su usuario
+    - Pide al profesor que compruebe su usuario
+  
+* (2 puntos) Creación de las tablas
+  Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con =ALTER USER=).
+
+  - Crea un /tablespace/ de nombre =CARRERAS=, con un /datafile/ en el directorio =/datos/carreras= (20%)
+  - Con tu propio usuario, crea las tablas en ese /tablespace/ (80%)
+    - Utiliza el [[https://raw.githubusercontent.com/alvarogonzalezsotillo/apuntes-clase/gh-pages/sistemas-gestores-bbdd-asir2/apuntes/1/sql/carreras-coches.sql][/script/ =carreras-coches.sql=]] para la creación de las tablas
+    - Tendrás que modificar el /script/ para que tenga en cuenta el nuevo /tablespace/
+    - Tu usuario necesitará cuota en ese /tablespace/  
+
+* (3 puntos) Dar acceso a otros usuarios a un campo de tus tablas 
+  Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
+  - Haz que el resto de usuarios pueda realizar =SELECT= sobre tus tablas. (20%)
+  - Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas (20%)
+    - Por ejemplo, el usuario =profesor= debería poder ejecutar =SELECT * FROM CIRCUITOS=, puesto que habrás creado un sinónimo del tipo =CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS=.
+
+ #+latex: \begin{Aviso}
+Son muchos usuarios. Agrúpalos de algún modo. (40%)
+ #+latex: \end{Aviso}
+      
+  Después, haz que puedan escribir en un campo de la tabla =RESULTADOS=:
+  - Crea un nuevo campo en la tabla =RESULTADOS=: =VALORACION=, de tipo =VARCHAR(20)=.
+  - Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden =GRANT= (20%)
+  - Pide a algún otro compañero que compruebe que funciona
+  - Pide al profesor que compruebe que funciona.
+
+    
+* (0.5 puntos) =PROFESOR= con permisos especiales 
+  Haz un usuario =PROFESOR= con contraseña =PROFESOR= que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema
+    - =DBA_COL_PRIVS=
+    - =DBA_DATA_FILES=
+    - =DBA_ROLES=
+    - =DBA_ROLE_PRIVS=
+    - =DBA_SYNONYMS=
+    - =DBA_TAB_COLS=
+    - =DBA_TAB_PRIVS=
+    - =DBA_TABLES= 
+    - =DBA_TS_QUOTAS=
+    - =DBA_USERS=
+
+  
+ #+latex: \begin{Aviso}
+Sin el usuario =PROFESOR= y los permisos especificados no se podrá corregir esta práctica
+ #+latex: \end{Aviso}
+* Instrucciones de entrega
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+- Esta práctica se corrige de forma semiautomática.
+- El profesor se conectará a cada servidor de base de datos a comprobar la configuración en el día indicado.
+  
+
+

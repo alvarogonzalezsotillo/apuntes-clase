@@ -105,7 +105,11 @@ end;
 - Cambia el /tablespace/ por defecto de un usuario (=alter user=)
 - Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
 - Cambia el /tablespace/ por defecto por defecto (=alter database=)
+- Cambiar una tabla de tablespace: =ALTER TABLE ... MOVE TABLESPACE=  
+
+#+begin_notes  
 ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
+#+end_notes
 
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
@@ -300,6 +304,12 @@ revoke select on unatabla from unusuario;
 -- AQUI NI unusuario NI otrousuario TIENEN PRIVILEGIO SOBRE unatabla
 #+end_src
 
+** Privilegios de sistema
+- No se aplican sobre tablas/objetos concretos
+  - =CREATE ANY TABLE=, =CREATE_ANY_VIEW=,...
+  - =CREATE SESSION=, =CREATE SYNONYM=,..
+  - =UNLIMITED TABLESPACE=, =SYSDBA=,...
+  -     
 * Roles
 - Asignar todos los privilegios a un usuario es trabajoso, pero factible
 - ¿Qué ocurre si tenemos que manejar a muchos usuario?
@@ -357,6 +367,21 @@ select * from session_roles;
 select * from session_privs;
 #+end_src
    
+** Consulta recursivas
+
+#+begin_src sql
+select * from dba_role_privs connect by prior granted_role = grantee start with grantee = '&USER' order by 1,2,3;
+
+select * from dba_sys_privs  where grantee = '&USER' or grantee in (
+  select granted_role from dba_role_privs connect by prior granted_role = grantee start with grantee = '&USER'
+)
+order by 1,2,3;
+
+select * from dba_tab_privs  where grantee = '&USER' or grantee in (
+  select granted_role from dba_role_privs connect by prior granted_role = grantee start with grantee = '&USER'
+)
+order by 1,2,3,4;
+#+end_src
 
 * Perfiles
 
