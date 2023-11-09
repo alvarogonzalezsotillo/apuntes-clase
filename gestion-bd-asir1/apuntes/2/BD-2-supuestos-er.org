@@ -814,3 +814,16 @@ Haz un diagrama ER para una base de datos que almacenará varios esquemas relaci
 
 ** Inserciones
 - La tabla "alumno" del esquema "academia" tiene 4 columnas: nombre (Varchar), apellido (varchar), dni (varchar), idalumno (integer)
+
+* Empresa de sitios web (chatgpt)
+Una empresa de mantenimiento web desea llevar un control de sus clientes, sus sitios web y los servicios que ofrece. Cada cliente puede tener uno o más sitios web, y cada sitio web puede requerir uno o más servicios. Además, los servicios tienen, el costo, y la fecha de inicio.
+
+Los clientes se identifican por un número de cliente único, y tienen información de contacto que incluye nombre, dirección, correo electrónico y teléfono. Los sitios web tienen un nombre único, una URL y una descripción. Los servicios ofrecidos por la empresa se identifican por un código único y tienen un nombre, una descripción y un precio base.
+
+Los servicios son:
+
+- Servicio de Mantenimiento Regular: Frecuencia de mantenimiento (mensual, trimestral, anual).
+- Servicio de Copia de Seguridad: Capacidad de almacenamiento en gigabytes.
+- Servicio de Seguridad: Nivel de protección (básico, avanzado, premium).
+
+Cada cliente puede contratar servicios para sus sitios web, y se debe llevar un registro de cuándo comenzaron a utilizar esos servicios, así como el costo total para el cliente. Además, es importante conocer el estado de pago de cada servicio contratado, que se factura mensualmente.

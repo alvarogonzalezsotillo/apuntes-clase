@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7DE1B792-EEA6-3CBC-1C15-7B564ED338A5" name="Seguridad">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:21 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="codigoSeguridad" id="D24475E9-7D45-810C-2209-F53BE515888C">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:28 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="precio" id="93D68729-6D2D-CB37-4F85-EC2862C19D9D">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:36 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nivel" id="05924C58-9BC4-AA4C-04B8-7CF0BB4871B2">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:42 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6E94B185-44ED-1901-5DEC-CB9209F0722A" name="Seguridad PK">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:35 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D24475E9-7D45-810C-2209-F53BE515888C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

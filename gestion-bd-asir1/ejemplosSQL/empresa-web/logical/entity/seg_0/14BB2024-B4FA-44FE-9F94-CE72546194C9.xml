@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="14BB2024-B4FA-44FE-9F94-CE72546194C9" name="Servicio">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:18:41 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="fechaInicio" id="71722352-A30C-D616-D09B-F482F6330071">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:18:47 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigoMantenimiento" id="9717695E-AABB-B332-739B-38AB7E3BAB38">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:20:20 UTC</createdTime>
+<generatorID>8B126E62-AB65-CCDC-39BF-A82725C7E35B</generatorID>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<referedAttribute>AF80A659-A64D-27C6-4D04-2956D1291C36</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigoCopia" id="BA802E32-2874-F565-CE89-E86BC6E03145">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:16 UTC</createdTime>
+<generatorID>D6DADEF1-62F2-1A4E-1C92-EFCCE3869338</generatorID>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<referedAttribute>07DF696B-AAC9-0222-BF9A-94D08A989E64</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigoSeguridad" id="D0FCBDC1-149B-A4FF-8172-C80A2F311B19">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:51 UTC</createdTime>
+<generatorID>2645C0C2-B78F-6025-8678-628EC52B22C9</generatorID>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<referedAttribute>D24475E9-7D45-810C-2209-F53BE515888C</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DF8BCE36-7E41-CDC3-F7BD-B5DE548C3B47" name="Servicio PK">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:18:52 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>71722352-A30C-D616-D09B-F482F6330071</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B34B92A8-1AC6-1474-2445-5E0232FC0C94" name="Pago">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:21:57 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="fechaPago" id="D7340AF1-0B89-121C-CB94-7962AA734635">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:22:02 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fechaInicio" id="D0DCA7A8-FC0B-7209-C763-6E3E08289F37">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:22:12 UTC</createdTime>
+<generatorID>FF86A1AD-8589-C43D-7B09-8BC79421C6CC</generatorID>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<referedAttribute>71722352-A30C-D616-D09B-F482F6330071</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6E089782-2066-7992-C68A-3FD44EA05033" name="Pago PK">
+<createdBy>alvaro</createdBy>
+<createdTime>2023-11-09 09:22:08 UTC</createdTime>
+<ownerDesignName>empresa-web</ownerDesignName>
+<engineerTo>
+<item key="761A1901-E5D0-7244-3BDF-653088F6AFB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D7340AF1-0B89-121C-CB94-7962AA734635</attributeRef>
+<attributeRef>D0DCA7A8-FC0B-7209-C763-6E3E08289F37</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
