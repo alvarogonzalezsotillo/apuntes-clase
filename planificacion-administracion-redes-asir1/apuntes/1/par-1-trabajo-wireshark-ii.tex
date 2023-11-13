@@ -1,0 +1,251 @@
+% Created 2023-10-06 vie 13:10
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Wireshark}
+\rhead{Planificación y administración de redes}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\author{Álvaro González Sotillo Álvaro González Sotillo}
+\date{\today}
+\title{Análisis de tráfico con Wireshark\\\medskip
+\large  }
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo Álvaro González Sotillo},
+ pdftitle={Análisis de tráfico con Wireshark},
+ pdfkeywords={ },
+ pdfsubject={ },
+ pdfcreator={Emacs 28.2 (Org mode 9.6.9)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\captionsetup{font=scriptsize}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+
+
+\section{Objetivos de la práctica}
+\label{sec:org0000000}
+En esta práctica se espera que el alumno se familiarice con:
+
+\begin{itemize}
+\item La encapsulación de los protocolos de nivel \(n\) en los protocolos \(n-1\).
+\item Utilización de la herramienta \textbf{Wireshark}, incluidos sus filtros.
+\item Búsqueda autónoma de información en Internet.
+\item La correspondencia entre los niveles ISO/OSI y los protocolos de una red real.
+\end{itemize}
+
+La última versión de este documento está disponible en \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/1/par-1-trabajo-wireshark-ii.pdf}{el aula virtual}.
+
+\clearpage
+
+\section{Tramas de \emph{broadcast}}
+\label{sec:org0000003}
+
+Las tramas de \emph{broadcast} son las que tienen la dirección del nivel de enlace \texttt{FF:FF:FF:FF:FF:FF}.
+
+\begin{itemize}
+\item Monitoriza la red durante uno o dos minutos y determina qué tramas de las recibidas son de \emph{broadcast}.
+\item Haz una lista de las pilas de protocolos (desde nivel de enlace hasta nivel de aplicación) que viajan sobre tramas de \emph{broadcast}, e incluye al menos 3 pantallazos de estas pilas como ejemplo.
+\item ¿Para qué se utilizan esos protocolos de nivel de aplicación?
+\end{itemize}
+
+\begin{adjustwidth}{2cm}{2cm}
+\begin{Aviso}[Pila de protocolos]
+Una \href{https://en.wikipedia.org/wiki/Protocol\_stack}{pila de protocolos} es la lista de todos los protocolos, desde el físico hasta el más alto.
+\end{Aviso}
+\end{adjustwidth}
+
+
+
+
+\section{¿Qué protocolos viajan sobre el nivel de enlace?}
+\label{sec:org0000006}
+Más de un protocolo puede utilizar el nivel de enlace para enviar sus datos. En esos casos, el nivel de enlace debe apuntar a qué protocolo se le entregarán los datos en el ordenador de destino.
+\begin{adjustwidth}{2cm}{2cm}
+\begin{Aviso}[Segundo nivel/nivel de enlace]
+No hablamos del segundo nivel en \textbf{wireshark}, sino del nivel de enlace en ISO/OSI.
+
+Es posible que un nivel de enlace ISO/OSI aparezca en segundo o tercer nivel en el \textbf{wireshark}.
+\end{Aviso}
+\end{adjustwidth}
+
+Captura el tráfico de la red durante uno o dos minutos. Haz una lista de los protocolos que viajen sobre los niveles de enlace que encuentres, y crea una tabla con el nombre de protocolo y su código. Como ejemplo:
+
+\begin{itemize}
+\item Hay tramas \emph{Ethernet} que llevan \emph{IP}. Hay que apuntar \texttt{0x0800}
+\item Pero no apuntes el \emph{Transmission Control  Protocol}, porque no va directamente sobre el nivel de enlace (\emph{Ethernet II}) sino dentro de un nivel de red
+\end{itemize}
+
+
+
+\section{Conversación \texttt{ping}}
+\label{sec:org0000009}
+
+\begin{itemize}
+\item Captura el tráfico mientras haces un \texttt{ping} al servidor de DNS de Google \texttt{8.8.8.8}
+\item Usa un filtro de Wireshark para mostrar solo esa conversación
+\item Incluye en el trabajo el pantallazo de la conversación y el filtro utilizado.
+\end{itemize}
+
+
+
+
+\section{Qué se valorará}
+\label{sec:org000000c}
+
+
+\begin{itemize}
+\item La corrección técnica
+\item Que esté correctamente redactado (ortografía, gramática)
+\item La apariencia profesional:
+\begin{itemize}
+\item Estética
+\item Organización
+\item Homogeneidad de formatos y estilos
+\end{itemize}
+\end{itemize}
+
+
+
+\section{Instrucciones de entrega}
+\label{sec:org000000f}
+
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+
+\begin{itemize}
+\item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+\item En este caso, todos los integrantes del grupo deben subir el trabajo al aula virtual, y el trabajo debe especificar todos sus autores.
+\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+\item Los trabajos pueden entregarse:
+\begin{itemize}
+\item En formato \texttt{DOC} o \texttt{DOCX}.
+\item En formato \texttt{ODT}.
+\item En formato \texttt{PDF}.
+\item Como una entrada en un \texttt{blog}, por ejemplo en \href{https://www.blogger.com/}{blogger} o en \href{https://wordpress.com/es/}{wordpress}.
+\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}
+\end{document}
