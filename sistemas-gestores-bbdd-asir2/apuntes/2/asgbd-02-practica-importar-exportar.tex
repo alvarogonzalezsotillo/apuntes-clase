@@ -1,0 +1,163 @@
+% Created 2023-11-13 lun 11:46
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{ASGBD}
+\rhead{Importar y exportar}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{Práctica de backup de una base de datos}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={Práctica de backup de una base de datos},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.6.9)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\captionsetup{font=scriptsize}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+\textattachfile[mimetype=text/plain,author={nba_oracle.sql},description={nba_oracle.sql},subject={nba_oracle.sql}]{../../../gestion-bd-asir1/ejemplosSQL/nba_oracle.sql}{} \vspace{-4em}
+\section*{Objetivo de la práctica}
+\label{sec:org0000000}
+En esta práctica se espera que el alumno:
+\begin{itemize}
+\item Se familiarice con las utilidades \emph{datapump} de Oracle
+\item Realice \emph{backups} y restauraciones de una base de datos
+\end{itemize}
+
+Se puede descargar la última versión de este fichero en \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/asgbd-02-practica-importar-exportar.pdf}{este enlace}.
+\section*{Preparación de la práctica}
+\label{sec:org0000003}
+\begin{itemize}
+\item Crea un usuario con un nombre basado en tus apellidos (por ejemplo, \texttt{GARCIAPEREZ}).
+\item Importa en ese usuario el fichero descargable \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/ejemplosSQL/nba\_oracle.sql}{\texttt{nba\_oracle.sql}} (también adjunto a este PDF)
+\item Registra un \texttt{DIRECTORY} en \texttt{/datos/backups}
+\item Crea el usuario \texttt{OPERARIOBACKUP}.
+\end{itemize}
+
+Incluye en la memoria todos los comandos utilizados, tanto de Oracle como de Linux.
+
+\section*{\emph{Backup} del usuario del alumno}
+\label{sec:org0000006}
+Realiza un \emph{backup} de todas las tablas del usuario utilizando el usuario \texttt{OPERARIOBACKUP}. En la memoria, incluye todos los permisos necesarios y la línea de comandos utilizada.
+
+\section*{Recupera el \emph{backup}}
+\label{sec:org0000009}
+\begin{itemize}
+\item Borra las filas de la tabla \texttt{PARTIDOS} en las que participe el equipo \texttt{Raptors}.
+\item Borra también las fichas de la tabla \texttt{PARTIDOS} en las que participe el equipo \texttt{Bulls}
+\item Después, recupera solo las 1044 filas de \texttt{Raptors} desde el \emph{backup}, usando el usuario \texttt{OPERARIOBACKUP}. En la memoria, incluye los comandos para borrar las filas y para recuperar el backup.
+\item En la base de datos final, debe haber partidos de \texttt{Raptors}, no debe haber partidos de \texttt{Bulls}, y los demás partidos no deben estar duplicados.
+\end{itemize}
+
+\section*{Incorpora otro \emph{backup}}
+\label{sec:org000000c}
+\begin{itemize}
+\item Usando el usuario \texttt{OPERARIOBACKUP}, importa el fichero \href{https://alvarogonzalezsotillo.gihub.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump}{\texttt{multas-practica.dump}} en el tu usuario.
+\item Incluye en la memoria los comandos exactos utilizados.
+\end{itemize}
+
+\section*{\emph{Backup} de algunas tablas}
+\label{sec:org000000f}
+Realiza un \emph{backup} de las tablas \texttt{JUGADORES} y \texttt{EQUIPOS}. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
+
+\section*{Qué se valorará}
+\label{sec:org0000012}
+\begin{itemize}
+\item La corrección técnica de los comandos utilizados
+\item La claridad en la explicación de dichos comandos
+\item Que no se concedan más permisos/privilegios de los necesarios a los usuarios / ficheros /directorios creados
+\end{itemize}
+
+\section*{Normas de entrega}
+\label{sec:org0000015}
+Se entregarán en un fichero ZIP:
+\begin{itemize}
+\item Los comandos utilizados para realizar la práctica. No es necesario un documento al uso, es suficiente un fichero de texto, siempre que esté claro y bien formateado.
+\item El archivo de \emph{backup} de las tablas \texttt{JUGADORES} y \texttt{EQUIPOS}, y los archivos de \emph{log} generado en el prodceso
+\end{itemize}
+
+La entrega se realizará en la tarea correspondiente del \href{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala}{aula virtual}.
+
+La autoría del trabajo será individual.
+\end{document}

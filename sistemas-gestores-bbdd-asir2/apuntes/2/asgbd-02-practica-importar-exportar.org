@@ -28,7 +28,7 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 - En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls=, y los demás partidos no deben estar duplicados.
 
 * Incorpora otro /backup/
-- Usando el usuario =OPERARIOBACKUP=, importa el fichero =multas-practica.dump= en el tu usuario.
+- Usando el usuario =OPERARIOBACKUP=, importa el fichero [[https://alvarogonzalezsotillo.gihub.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump][=multas-practica.dump=]] en el tu usuario.
 - Incluye en la memoria los comandos exactos utilizados.
     
 * /Backup/ de algunas tablas
