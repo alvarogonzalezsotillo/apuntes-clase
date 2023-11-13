@@ -27,6 +27,10 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 - Después, recupera solo las 1044 filas de =Raptors= desde el /backup/, usando el usuario =OPERARIOBACKUP=. En la memoria, incluye los comandos para borrar las filas y para recuperar el backup.
 - En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls=, y los demás partidos no deben estar duplicados.
 
+* Incorpora otro /backup/
+- Usando el usuario =OPERARIOBACKUP=, importa el fichero =multas-practica.dump= en el tu usuario.
+- Incluye en la memoria los comandos exactos utilizados.
+    
 * /Backup/ de algunas tablas
 Realiza un /backup/ de las tablas =JUGADORES= y =EQUIPOS=. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
 
