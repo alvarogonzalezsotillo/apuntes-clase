@@ -3,6 +3,7 @@
 #+LATEX_HEADER: \lhead{ASGBD}
 #+LATEX_HEADER: \rhead{Importar y exportar}
 #+latex: \textattachfile[mimetype=text/plain,author={nba_oracle.sql},description={nba_oracle.sql},subject={nba_oracle.sql}]{../../../gestion-bd-asir1/ejemplosSQL/nba_oracle.sql}{} \vspace{-4em}
+#+latex: \textattachfile[mimetype=text/plain,author={multas-practica.dump},description={multas-practica.dump},subject={multas-practica.dump}]{./multas-practica.dump}{} \vspace{-4em}
 #+title: Práctica de backup de una base de datos
 * Objetivo de la práctica
 En esta práctica se espera que el alumno:
