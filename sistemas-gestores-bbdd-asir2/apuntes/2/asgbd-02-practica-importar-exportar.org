@@ -32,7 +32,7 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 - Usando el usuario =OPERARIOBACKUP=, importa el fichero [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump][=multas-practica.dump=]] en el tu usuario.
 - Incluye en la memoria los comandos exactos utilizados.
     
-* (3 puntos)/Backup/ de algunas tablas
+* (3 puntos) /Backup/ de algunas tablas
 Realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
 
 * Qué se valorará
