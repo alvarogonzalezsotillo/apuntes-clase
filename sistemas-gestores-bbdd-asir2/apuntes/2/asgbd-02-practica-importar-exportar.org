@@ -24,9 +24,9 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 
 * Recupera el /backup/
 - Borra las filas de la tabla =PARTIDOS= en las que participe el equipo =Raptors=.
-- Borra también las fichas de la tabla =PARTIDOS= en las que participe el equipo =Bulls=  
+- Borra también las filas de la tabla =PARTIDOS= en las que participe el equipo =Bulls=  
 - Después, recupera solo las 1044 filas de =Raptors= desde el /backup/, usando el usuario =OPERARIOBACKUP=. En la memoria, incluye los comandos para borrar las filas y para recuperar el backup.
-- En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls=, y los demás partidos no deben estar duplicados.
+- En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls= (excepto contra los =Raptors=), y los demás partidos no deben estar duplicados.
 
 * Incorpora otro /backup/
 - Usando el usuario =OPERARIOBACKUP=, importa el fichero [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump][=multas-practica.dump=]] en el tu usuario.
