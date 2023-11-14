@@ -33,7 +33,7 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 - Incluye en la memoria los comandos exactos utilizados.
     
 * (3 puntos)/Backup/ de algunas tablas
-Realiza un /backup/ de las tablas =JUGADORES=, =MULTAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
+Realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
 
 * Qué se valorará
 - La corrección técnica de los comandos utilizados
@@ -43,7 +43,7 @@ Realiza un /backup/ de las tablas =JUGADORES=, =MULTAS= y =EQUIPOS=. Incluye en 
 * Normas de entrega
 Se entregarán en un fichero ZIP:
 - Los comandos utilizados para realizar la práctica. No es necesario un documento al uso, es suficiente un fichero de texto, siempre que esté claro y bien formateado.
-- El archivo de /backup/ de las tablas =JUGADORES=, =MULTAS= y =EQUIPOS=, y los archivos de /log/ generado en el prodceso
+- El archivo de /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=, y los archivos de /log/ generado en el prodceso
 
 La entrega se realizará en la tarea correspondiente del [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala][aula virtual]].
 
