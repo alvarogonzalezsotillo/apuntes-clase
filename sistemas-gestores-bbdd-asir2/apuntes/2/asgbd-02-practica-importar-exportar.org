@@ -33,7 +33,7 @@ Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERA
 - Incluye en la memoria los comandos exactos utilizados.
     
 * (3 puntos) /Backup/ de algunas tablas
-Realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados, el fichero de /log/ el fichero de backup generado.  
+Usando el usuario =OPERARIOBACKUP=, realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados, el fichero de /log/ el fichero de backup generado.  
 
 * Qué se valorará
 - La corrección técnica de los comandos utilizados
