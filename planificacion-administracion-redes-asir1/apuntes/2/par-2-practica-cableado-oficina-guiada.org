@@ -26,7 +26,8 @@ Un posible cliente pide un presupuesto para realizar la instalación de una LAN 
 - No se dispone de suelo ni techo técnico.
 - Se desea que la fotocopiadora disponga de punto de red. Debe haber puntos de red en los tres despachos de biblioteca.
 - La sala de lectura necesita acceso wifi. Debe haber una antena a menos de 20 metros de cualquier portátil de la sala.
-- En la sala de lectura se instalarán 4 puntos de acceso en cada una de las columnas.
+- En la sala de lectura se instalarán 4 puntos de acceso en cada una de las 6 columnas.
+- Inicialmente, solo se espera utilizar un punto de red por cada uno de los despachos de la biblioteca, y un punto de red por colummna.
 
 
 [[file:./media/planta-biblioteca.jpg]]
