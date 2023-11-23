@@ -764,6 +764,29 @@ Crear un diseño entidad/relación que permita modelar un sistema que sirva para
   - Un respawn
 
 
+* Liga de baloncesto
+
+- Equipos. Cada equipo un máximo de 12 jugadores.
+  - tiene una sede.
+  - dirección.
+  - ligas ganadas  
+- Tienen entrenadores máximo 4.
+- Son 10 equipos. Hay una ronda de ida y otra de vuelta.
+- Jugadores y entrenadores
+  - nº (para jugadores)
+  - dni
+  - nombre y apellidos
+- Registro de estadísticas por jugador, por partido y general en la liga:
+  - puntos
+  - rebotes
+  - pérdidas
+  - faltas
+- Final four: cuatro primeros equipos tras la liga. Es una liga de 4.
+- Se guarda información histórica de ligas pasadas.
+- Un jugador y un entrenador puede cambiar de equipo durante la liga, hasta febrero.  
+
+
+
 * Empresa
 
 - Una empresa tiene varios empleados.
