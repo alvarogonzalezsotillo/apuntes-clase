@@ -3,6 +3,7 @@
 #+LATEX_HEADER: \lhead{ASGBD}
 #+LATEX_HEADER: \rhead{Importar y exportar}
 #+latex: \textattachfile[mimetype=text/plain,author={nba_oracle.sql},description={nba_oracle.sql},subject={nba_oracle.sql}]{../../../gestion-bd-asir1/ejemplosSQL/nba_oracle.sql}{} \vspace{-4em}
+#+latex: \textattachfile[mimetype=text/plain,author={multas-practica.dump},description={multas-practica.dump},subject={multas-practica.dump}]{./multas-practica.dump}{} \vspace{-4em}
 #+title: Práctica de backup de una base de datos
 * Objetivo de la práctica
 En esta práctica se espera que el alumno:
@@ -10,7 +11,7 @@ En esta práctica se espera que el alumno:
 - Realice /backups/ y restauraciones de una base de datos
 
 Se puede descargar la última versión de este fichero en [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/asgbd-02-practica-importar-exportar.pdf][este enlace]].
-* Preparación de la práctica
+* (0 puntos) Preparación de la práctica
 - Crea un usuario con un nombre basado en tus apellidos (por ejemplo, =GARCIAPEREZ=).
 - Importa en ese usuario el fichero descargable [[https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/ejemplosSQL/nba_oracle.sql][=nba_oracle.sql=]] (también adjunto a este PDF)
 - Registra un =DIRECTORY= en =/datos/backups=
@@ -18,17 +19,23 @@ Se puede descargar la última versión de este fichero en [[https://alvarogonzal
 
 Incluye en la memoria todos los comandos utilizados, tanto de Oracle como de Linux.
 
-* /Backup/ del usuario del alumno
-Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERARIOBACKUP=. En la memoria, incluye todos los permisos necesarios y la línea de comandos utilizada.
+* (2 puntos) /Backup/ del usuario del alumno
+Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERARIOBACKUP=. En la memoria, incluye todos los permisos necesarios y la línea de comandos utilizada, así como la salida de los comandos
 
-* Recupera el /backup/
+* (3 puntos) Recupera el /backup/
 - Borra las filas de la tabla =PARTIDOS= en las que participe el equipo =Raptors=.
-- Borra también las fichas de la tabla =PARTIDOS= en las que participe el equipo =Bulls=  
+- Borra también las filas de la tabla =PARTIDOS= en las que participe el equipo =Bulls=  
 - Después, recupera solo las 1044 filas de =Raptors= desde el /backup/, usando el usuario =OPERARIOBACKUP=. En la memoria, incluye los comandos para borrar las filas y para recuperar el backup.
-- En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls=, y los demás partidos no deben estar duplicados.
+- En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls= (excepto contra los =Raptors=), y los demás partidos no deben estar duplicados.
 
-* /Backup/ de algunas tablas
-Realiza un /backup/ de las tablas =JUGADORES= y =EQUIPOS=. Incluye en la memoria los comandos utilizados y el fichero de backup generado.  
+Incluye las líneas de comandos utilizadas, así como la salida de los comandos  
+
+* (3 puntos) Incorpora otro /backup/
+- Usando el usuario =OPERARIOBACKUP=, importa el fichero [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump][=multas-practica.dump=]] en el tu usuario.
+- Incluye en la memoria los comandos exactos utilizados, y la salida de dichos comandos
+    
+* (2 puntos) /Backup/ de algunas tablas
+Usando el usuario =OPERARIOBACKUP=, realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados, el fichero de /log/ y el fichero de backup generado.  
 
 * Qué se valorará
 - La corrección técnica de los comandos utilizados
@@ -38,7 +45,7 @@ Realiza un /backup/ de las tablas =JUGADORES= y =EQUIPOS=. Incluye en la memoria
 * Normas de entrega
 Se entregarán en un fichero ZIP:
 - Los comandos utilizados para realizar la práctica. No es necesario un documento al uso, es suficiente un fichero de texto, siempre que esté claro y bien formateado.
-- El archivo de /backup/ de las tablas =JUGADORES= y =EQUIPOS=, y los archivos de /log/ generado en el prodceso
+- El archivo de /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=, y los archivos de /log/ generado en el proceso
 
 La entrega se realizará en la tarea correspondiente del [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala][aula virtual]].
 
