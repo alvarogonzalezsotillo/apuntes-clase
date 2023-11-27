@@ -20,20 +20,22 @@ Se puede descargar la última versión de este fichero en [[https://alvarogonzal
 Incluye en la memoria todos los comandos utilizados, tanto de Oracle como de Linux.
 
 * (2 puntos) /Backup/ del usuario del alumno
-Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERARIOBACKUP=. En la memoria, incluye todos los permisos necesarios y la línea de comandos utilizada.
+Realiza un /backup/ de todas las tablas del usuario utilizando el usuario =OPERARIOBACKUP=. En la memoria, incluye todos los permisos necesarios y la línea de comandos utilizada, así como la salida de los comandos
 
-* (2 puntos) Recupera el /backup/
+* (3 puntos) Recupera el /backup/
 - Borra las filas de la tabla =PARTIDOS= en las que participe el equipo =Raptors=.
 - Borra también las filas de la tabla =PARTIDOS= en las que participe el equipo =Bulls=  
 - Después, recupera solo las 1044 filas de =Raptors= desde el /backup/, usando el usuario =OPERARIOBACKUP=. En la memoria, incluye los comandos para borrar las filas y para recuperar el backup.
 - En la base de datos final, debe haber partidos de =Raptors=, no debe haber partidos de =Bulls= (excepto contra los =Raptors=), y los demás partidos no deben estar duplicados.
 
+Incluye las líneas de comandos utilizadas, así como la salida de los comandos  
+
 * (3 puntos) Incorpora otro /backup/
 - Usando el usuario =OPERARIOBACKUP=, importa el fichero [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/2/multas-practica.dump][=multas-practica.dump=]] en el tu usuario.
-- Incluye en la memoria los comandos exactos utilizados.
+- Incluye en la memoria los comandos exactos utilizados, y la salida de dichos comandos
     
-* (3 puntos) /Backup/ de algunas tablas
-Usando el usuario =OPERARIOBACKUP=, realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados, el fichero de /log/ el fichero de backup generado.  
+* (2 puntos) /Backup/ de algunas tablas
+Usando el usuario =OPERARIOBACKUP=, realiza un /backup/ de las tablas =JUGADORES=, =MATRICULAS= y =EQUIPOS=. Incluye en la memoria los comandos utilizados, el fichero de /log/ y el fichero de backup generado.  
 
 * Qué se valorará
 - La corrección técnica de los comandos utilizados

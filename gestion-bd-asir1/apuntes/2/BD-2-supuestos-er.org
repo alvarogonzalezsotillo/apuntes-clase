@@ -764,6 +764,56 @@ Crear un diseño entidad/relación que permita modelar un sistema que sirva para
   - Un respawn
 
 
+* Liga de baloncesto
+
+- Equipos. Cada equipo un máximo de 12 jugadores.
+  - tiene una sede.
+  - dirección.
+  - ligas ganadas  
+- Tienen entrenadores, máximo 4.
+- Son 10 equipos. Hay una ronda de ida y otra de vuelta.
+- Jugadores y entrenadores
+  - nº (para jugadores)
+  - dni
+  - nombre y apellidos
+- Registro de estadísticas por jugador, por partido y general en la liga:
+  - puntos
+  - rebotes
+  - pérdidas
+  - faltas
+- Final four: cuatro primeros equipos tras la liga. Es una liga de 4.
+- Se guarda información histórica de ligas pasadas.
+- Un jugador y un entrenador puede cambiar de equipo durante la liga, hasta febrero.  
+
+
+Se desea diseñar una base de datos para gestionar la información de una liga de baloncesto. La liga está compuesta por 10 equipos, cada uno con un máximo de 12 jugadores. Cada equipo tiene una sede con dirección, y se registra el número de ligas ganadas por cada equipo.
+
+Los equipos cuentan con entrenadores, con un límite máximo de 4 entrenadores por equipo. Además, se lleva un registro de estadísticas para cada jugador, incluyendo un número único de jugador, DNI, nombre y apellidos. Las estadísticas registradas son puntos, rebotes, pérdidas y faltas, tanto por partido como en general en la liga.
+
+La liga consta de dos rondas, una de ida y otra de vuelta, y al final de la temporada se celebra un evento denominado "Final Four", en el cual participan los cuatro primeros equipos de la liga. Este evento forma una liga independiente de 4 equipos.
+
+Adicionalmente, se almacena información histórica de ligas pasadas para su consulta.
+
+Durante el transcurso de la liga, tanto jugadores como entrenadores tienen la posibilidad de cambiar de equipo, hasta el mes de febrero.
+
+PERSONA(#dni,nombre)
+
+EQUIPO(#equipo,direccion)
+
+SEDE(#sede,equipo)
+
+LIGA(#liga <año de la liga> )
+
+FICHAJE(#dni,#equipo,#inicio,fin,jugadoroentrenador,nº)
+
+PARTIDO(#liga,#equipolocal,#equipovisitante,#idaovuelta)
+
+PARTIDOFINAL4(#liga,#equipolocal,#equipovisitante)
+
+ESTADISTICA_PARTIDO(#liga,#equipolocal,#equipovisitante,#idaovuelta,#dni,puntos,rebotes,pérdidas,faltas)
+
+
+
 * Empresa
 
 - Una empresa tiene varios empleados.
