@@ -110,6 +110,19 @@ digraph {
 | Total            |          |                 | 662.93 |
 |------------------+----------+-----------------+--------|
 
+
+* Fallos típicos 2023-2024                                         :noexport:
+- patch panel de fibra
+- Switch no de gigabit
+- antenas que no son wifi
+- comprar rj45 machos
+- sin codos para las canaletas o rejillas
+- canaletas demasiado pequeñas
+- rack grande o pequeño
+- canaletas encastradas en pared
+- PoE    
+              
+
 * Fallos típicos :noexport:
 - No se compran rosetas que se puedan poner sobre la pared, o que se puedan poner sobre la columna, o sobre la canaleta...
 - No se compran cables de red macho-macho
