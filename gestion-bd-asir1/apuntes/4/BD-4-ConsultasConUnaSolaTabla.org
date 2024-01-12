@@ -1,6 +1,17 @@
 
 * RESPONDE A CADA PREGUNTA CON UNA SOLA SENTENCIA SQL
 
+
+** Notas por encima de 90 o por debajo de 75 de las secciones 101 y 126
+#+begin_src sql
+select 
+  * 
+from 
+  grade
+where (numeric_grade > 90 or numeric_grade < 75) and (section_id = 101 or section_id = 126);
+#+end_src
+
+
 ** Media de las notas parciales (exámenes, trabajos,...)
 #+begin_src sql
 select avg(numeric_grade)
@@ -31,22 +42,35 @@ select count(*)
 from student;
 #+end_src
 ** Número de alumnos con tratamiento 'Ms'
+#+begin_src sql
 select count(*)
 from student
 where salutation='Ms.'
+#+end_src
 ** Número de alumnos con tratamiento 'Ms' o 'Mr'
 
+#+begin_src sql
 select count(*)
 from student
 where salutation in( 'Ms.', 'Mr.');
+#+end_src
 ** Número de alumnos que no son ni 'Ms' ni 'Mr'
+
 ** ¿Cuántos tratamientos (Ms, Mr...) hay en la base de datos?
 select count(distinct salutation) from student;
 ** ¿Cuáles son los tratamientos (Ms, Mr...) que hay en la base de datos?
 select distinct salutation from student;
+
+** ¿Cuántos tratamientos (Ms, Mr...) hay entre los alumnos? ¿y en toda la base de datos?
+#+begin_src sql
+select count(distinct salutation) from student;
+#+end_src
+#+end_src
 ** Alumnos cuyo apellido comience por 'a' (mayúscula o minúscula)
+#+begin_src sql
 select * from student
 where lower(first_name) like 'o%';
+#+end_src
 
 ** Alumnos con un nombre de 4 letras
 #+begin_src sql
