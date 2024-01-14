@@ -18,13 +18,12 @@ Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/plani
 
 
 * Descripción del problema
-Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servicio a un nuevo edificio con 5 plantas. Cada planta pertenecerá a una red IP distinta.
+Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servicio a un nuevo edificio con 4 plantas. Cada planta pertenecerá a una red IP distinta.
 - 1ª planta: Se prevén 100 puestos de trabajo, cada uno con su ordenador
 - 2ª planta: 150 puestos de trabajo
 - 3ª planta: 30 puestos de trabajo
 - 4ª planta: 200 puestos de trabajo
-- 5ª planta: 90 puestos de trabajo
-- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra red IP.  
+- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original.  
 
 
 El número =n= de la red se corresponde con el asignado al alumno en  [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
