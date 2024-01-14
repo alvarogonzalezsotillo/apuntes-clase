@@ -1,0 +1,142 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Docker
+
+* Qué es una máquina virtual
+- Un proceso implementa todo el /hardware/ de un PC
+  - Representa los discos como ficheros
+  - La tarjeta de vídeo utiliza una ventana en vez de un monitor
+  - La tarjeta de red real se comparte, utilizando redes virtuales  
+- La BIOS/UEFI consigue arrancar normalmente, y ejecuta un sistema operativo
+- Conclusión:
+  - Un proceso en una máquina virtual no sabe que es /virtual/
+  - Los procesos de la máquina virtual están *aislados* de la máquina real  
+
+* Qué es Docker
+- Docker integra diversas capacidades de aislamiento entre procesos que tiene Linux
+  - [[https://en.wikipedia.org/wiki/Chroot][chroot]]
+  - [[https://en.wikipedia.org/wiki/Cgroups][cgroups]]
+  - [[https://en.wikipedia.org/wiki/Linux_namespaces][namespaces]]
+- Usa además
+  - [[https://en.wikipedia.org/wiki/Mount_(Unix)][mount points]], para la comunicación entre /containers/
+  - [[https://linuxconfig.org/introduction-to-the-overlayfs][overlayfs]], para construir containers acumulando /capas/
+  - [[https://stackoverflow.com/questions/50282792/how-does-docker-network-work][iptables/netfilter]], para simular tarjetas de red
+- Conclusión
+  - [[https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/][Se pueden crear containers sin usar Docker]]
+  - Docker también aisla procesos entre sí  
+    
+* Máquina virtual /vs/ Docker
+
+** Comparación gráfica
+
+| [[file:media/esquema-maquina-virtual.png]]  | [[file:media/esquema-docker.png]]   |
+
+  
+** Tabla comparativa
+
+|                               | Docker                              | Máquina Virtual                                             |
+|-------------------------------+-------------------------------------+-------------------------------------------------------------|
+| SO                            | SO compartido entre contenedores    | Nuevo SO para cada VM                                       |
+| Seguridad                     | Menos seguro, se comparte el kernel | Más seguro, no se comparte nada                             |
+| Rendimiento                   | Rendimiento rápido                  | La virtualización es más lenta                              |
+| Tiempo de arranque            | Rápido (segundos)                   | Lento (minutos)                                             |
+| Necesidades de memoria        | Ligera                              | Requiere mucha memoria                                      |
+| Necesidades de almacenamiento | Normalmente megabytes               | Normalmente gigabytes                                       |
+| Portabilidad                  | En cualquier linux moderno          | El hardware emulado puede diferir entre diferentes sistemas |
+
+* Componentes Docker
+- *Cliente*: Usa el /socket/ de Docker para controlar el servidor
+- *Servidor* (demonio): Gestiona las imágenes contenedores
+- *Imagen*:
+  - Personalizadas: con un /dockerfile/
+  - Del registro: Imágenes prediseñadas (equivalentes a un fichero *OVA* para máquinas virtuales)
+- *Contenedor* Una imagen en ejecución    
+- *Registro*: Almacén público de imágenes
+
+* Portabilidad de Docker
+- ¿Hay Docker para Windows?
+  - Respuesta corta (y correcta): No
+  - Respuesta larga:
+    - Hay un /cliente/ Docker para Windows
+    - Se instala una máquina virtual con Linux
+    - El cliente Docker se conecta al servidor Docker de la máquina virtual
+
+* Instalación de Docker
+- [[https://docs.docker.com/engine/install/][Página oficial]]
+- Para Debian/Ubuntu:
+  - Desinstalar las versiones instaladas con =apt-get=
+    #+begin_src bash
+    for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
+    do
+        sudo apt-get remove $pkg
+    done
+    #+end_src
+  - Usar el /script/ (no recomendado en producción)
+    #+begin_src bash
+    curl https://get.docker.com/ | sh
+    #+end_src
+
+** Prueba de instalación
+- Solo =root= y el grupo =docker= pueden usar el servidor Docker
+  #+begin_src bash
+  docker run hello-world
+  #+end_src
+
+* Imágenes y /containers/  
+** Conceptos básicos
+- Una imagen se ejecuta en un /container/. La misma imagen se puede ejecutar en varios /containers/
+- Una imagen provee un programa a ejecutar cuando se ejecuta con =run=
+  - Cuando ese programa termina, el /container/ se destruye
+  - Se puede especificar otro programa a ejecutar
+  - Se puede conectar la consola a dicho programa  
+    
+  #+begin_src bash
+  docker run debian # crea un container y termina inmediatamente, bash no tiene entrada
+  docker run -it debian # crea un container y conecta la consola al programa por defecto 
+  docker run debian /bin/bash -c "echo Un mensaje y termino" 
+  #+end_src
+
+** Lista de containers e imágenes
+  #+begin_src bash
+  docker images
+  docker ps # containers en ejecucion
+  docker ps -a # todos los containers
+  #+end_src
+  - Conclusión: =run= no ejecuta /containers/, sino que crea y ejecuta /containers/
+    - =run= = =create= + =start=
+  - Los "parámetros" de un /container/ se especifican en su creación. No se pueden cambiar al ejecutarlos.  
+  - Los /container/ tienen un nombre. Si no se especifica, Docker inventa uno.
+* Volúmenes
+- Los /containers/ son inmutables.
+  - Los datos modificados en el /container/ son una capa adicional ([[https://linuxconfig.org/introduction-to-the-overlayfs][overlayfs]])
+  - Desaparecen al apagar el /container/
+- La persistencia se puede conseguir con
+  - volúmenes
+  - /mounts/
+
+** /mounts/
+- Equivalente a un =mount --bind=
+  #+begin_src bash
+  docker run -it --mount type=bind,src="$(pwd)",target=/src debian bash
+  #+end_src
+
+** Volúmenes
+- Puntos de montaje definidos al crear la imagen
+- Suelen ser directorios importantes para la aplicación /containerizada/
+  #+begin_src bash
+  docker run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
+  #+end_src
+  - =-dit= : *i* nteractive, *t* ty, *d* etached
+  - =-p 8080:80= : El puerto =8080= de la dirección =0.0.0.0= se conecta a la /ip/ del /container/, puerto =80=
+  - =-v= : El volumen =/usr/local/apache2/htdocs= será el directorio /home/  
+  - Resultado: Apache corriendo en el puerto 8080 sirviendo los ficheros del directorio /home/
+* Usuarios
+- Los usuarios en Linux se identifican por un número
+  - Docker comparte el /kernel/ con el sistema operativo  
+  - Por tanto, los usuarios de los /containers/ son los del Linux real
+- Conclusiones    
+  - Se comparten los identificadores, no los nombres
+  - El usuario /root/ es el mismo en todos los /containers/ y en el Linux real
+  - Cuidado con la seguridad!        
+
+* Avanzado: crear una imagen :noexport:
+https://docs.docker.com/get-started/02_our_app/
