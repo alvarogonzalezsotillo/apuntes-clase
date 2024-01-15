@@ -45,10 +45,14 @@ La última versión de este documento se puede descargar de https://alvarogonzal
       2017-02-10-12:41:20 - Oracle parado
     #+end_src
 
+    - Cuando no se arranque *Oracle*, porque se indica =N= en =oratab=, *systemd* intentará limpiar el servicio invocando la parada, por lo que puede que se invoque =systemctl stop= automáticamente y aparezca en el /log/
+  
     #+caption: Ejemplo de =/home/alumno/logs/oracle.log= cuando *Oracle* no se arranca
     #+begin_src bash
       2017-02-10-12:40:00 - Solicitud de arrancar Oracle
       2017-02-10-12:40:01 - Oracle no se arranca porque /etc/oratab indica N
+      2017-02-10-12:40:02 - Solicitud de parar Oracle
+      2017-02-10-12:40:03 - Oracle parado
     #+end_src
 
     
