@@ -151,6 +151,8 @@ tmpfs             804488        88    804400   1% /run/user/1000
   - Indica tu nombre en el asunto del correo  
   - El fichero tendrá [[https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus#654723][formato CSV]]. Se debe poder abrir directamente con *excel* y visualizar su resultado en filas y columnas.
 
+   
+
 #+latex: \begin{minipage}{\textwidth}
 #+caption: Consulta tipo para extraer información promedio
 #+name: lst:promedio.sql
@@ -164,7 +166,12 @@ tmpfs             804488        88    804400   1% /run/user/1000
 #+end_src
 #+latex: \end{minipage}
     
-
+Para ser un servidor de correo, se necesita [[https://docs.oracle.com/en/learn/oracle-linux-postfix/#configure-postfix][instalar Postfix]]
+#+begin_src bash -n
+sudo dnf install -y postfix
+sudo dnf remove -y sendmail
+sudo alternatives --set mta /usr/sbin/sendmail.postfix
+#+end_src
 
 
 * Instrucciones de entrega

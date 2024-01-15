@@ -140,3 +140,10 @@
 
 * Avanzado: crear una imagen :noexport:
 https://docs.docker.com/get-started/02_our_app/
+
+* Cache docker
+sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0
+
+{
+    "insecure-registries":["10.1.33.201:8090"]
+}
