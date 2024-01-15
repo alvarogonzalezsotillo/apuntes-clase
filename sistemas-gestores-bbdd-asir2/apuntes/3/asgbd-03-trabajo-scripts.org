@@ -172,8 +172,9 @@ tmpfs             804488        88    804400   1% /run/user/1000
 Para ser un servidor de correo, se necesita [[https://docs.oracle.com/en/learn/oracle-linux-postfix/#configure-postfix][instalar Postfix]]
 #+begin_src bash -n
 sudo dnf install -y postfix
-sudo dnf remove -y sendmail
-sudo alternatives --set mta /usr/sbin/sendmail.postfix
+sudo dnf remove -y sendmail #opcional
+sudo alternatives --set mta /usr/sbin/sendmail.postfix #opcional
+sudo systemctl start postfix
 #+end_src
 
 
