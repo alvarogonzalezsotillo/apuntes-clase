@@ -1,0 +1,55 @@
+#+INCLUDE: "../../../common/header.org"
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+LATEX_HEADER: \lhead{Red IP simple \textit{Packet Tracer}}
+#+LATEX_HEADER: \rhead{Planificación y administración de redes}
+
+
+#+title: Red IP simple /Packet Tracer/
+
+
+* Objetivo de la práctica
+Tras la práctica, se espera que el alumno haya conseguido:
+- Familiarizarse con la interfaz de /Packet Tracer/
+- Dividir adecuadamente una red en varias subredes
+    
+Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/par-4-practica-ip-packetracer.pdf][última versión de la práctica en este enlace]].
+
+
+
+* Descripción del problema
+Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servicio a un nuevo edificio con 4 plantas. Cada planta pertenecerá a una red IP distinta.
+- 1ª planta: Se prevén 100 puestos de trabajo, cada uno con su ordenador
+- 2ª planta: 150 puestos de trabajo
+- 3ª planta: 30 puestos de trabajo
+- 4ª planta: 200 puestos de trabajo
+- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original.  
+
+
+El número =n= de la red se corresponde con el asignado al alumno en  [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
+ 
+** Características del /subnetting/
+- Las redes tendrán el tamaño mínimo posible dados los hosts que contienen
+- Las parte no asignada de la red original se compodrá de redes contiguas tan grandes como sea posible
+
+** Características del diseño /Packet Tracer/  
+- Cada planta tendrá un /router/, su /switch/ (sistema horizontal), el primer host y el último host.
+- Los routers de las plantas se utirán por un switch (sistema vertical).
+- Habrá comunicación a nivel IP (=ping=) entre todos los puestos de trabajo.  
+
+
+* Qué se valorará
+Se entregará un fichero PKT con el contenido de la práctica, y un fichero de texto (PDF, DOCX, ODT) con el resultado del subnetting, incluyendo las redes que quedan libres. Todo ello, dentro de un fichero ZIP.
+
+Se tendrá en cuenta:
+- La corrección técnica
+- La claridad
+- La apariencia profesional: gramática, ortografía, homogeneidad \ldots
+
+* Instrucciones de entrega
+- El ejercicio se realizará y entregará de manera individual.
+  - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+- Sube el documento a [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189][la tarea correspondiente en el aula virtual]]
+- Presta atención al plazo de entrega (con fecha y hora).
+
+
