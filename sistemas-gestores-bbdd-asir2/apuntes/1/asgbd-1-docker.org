@@ -144,6 +144,16 @@ https://docs.docker.com/get-started/02_our_app/
 * Cache docker
 sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0
 
+/etc/docker/daemon.json
 {
     "insecure-registries":["10.1.33.201:8090"]
 }
+
+
+
+* a33pcprofesor :noexport:
+
+- para borrar del disco /
+  - /opt/android-studio
+  - file:///var/www/html/natali/EXAMEN.ova
+      
