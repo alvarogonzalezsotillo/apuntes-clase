@@ -168,7 +168,7 @@
 | =10.1.33.201:8090= |
 
 - Es un /registry/ inseguro (sin https).  
-- Para poder usarse hay que modificar/crear el fichero =etc/docker/daemon.json=
+- Para poder usarse hay que modificar/crear el fichero =/etc/docker/daemon.json=
 
 #+begin_src javascript  
 {
@@ -176,24 +176,17 @@
 }
 #+end_src
 
-* a33pcprofesor :noexport:
-
-- para borrar del disco /
-  - /opt/android-studio
-  - file:///var/www/html/natali/EXAMEN.ova
       
 
 * Práctica: instalar Oracle
 - Usaremos la imagen =container-registry.oracle.com/database/enterprise:21.3.0.0=
-  - El /registry/ de oracle requiere usuario y contraseña
-    - Usuario: el de la cuenta de Oracle
-    - Contraseña: el /auth token/ de la página https://container-registry.oracle.com 
-- Se recomienda usar el /registry/ del instituto
+- Se recomienda usar el /registry/ del instituto, que no necesita contraseña
   - =sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0=
 
 
 ** Instrucciones
 - Instrucciones: https://container-registry.oracle.com/ords/ocr/ba/database/enterprise
+
 #+begin_example
 docker run -d --name <container_name> \
  -p <host_port>:1521 -p <host_port>:5500 \
@@ -233,12 +226,30 @@ Parameters:
 #+end_example
 
 ** En nuestro caso
-- Solo el puerto =1521=
-- Ficheros en =/opt/oracle/oradata=
+- Puerto =1521= del container al =1521= de la máquina /host/
+- Ficheros de datos en =/opt/oracle/oradata= del la máquina /host/
 - Nombre del container =oracle-enterprise-21.3.0.0=
-- Haz un /script/ en la máquina real para ejecutar =sqlplus= como =SYSDBA=
+- SID: =ORADOCKER=
+- PDB: =PDBORADOCKER=  
+- Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA=
+  - =/opt/oracle/sqplus-as-sysdba.sh=
   - con =docker exec=
   - puede ayudarte =bash -c=
+- Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA= en la PDB
+  - =/opt/oracle/sqplus-as-sysdba-pdb.sh=
     
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
 * Avanzado: crear una imagen :noexport:
 https://docs.docker.com/get-started/02_our_app/
+
+* a33pcprofesor :noexport:
+
+- para borrar del disco /
+  - /opt/android-studio
+  - file:///var/www/html/natali/EXAMEN.ova
+    
