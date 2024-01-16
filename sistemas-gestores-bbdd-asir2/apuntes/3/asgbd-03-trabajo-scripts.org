@@ -153,8 +153,8 @@ tmpfs             804488        88    804400   1% /run/user/1000
 
   
   - Programa un /script/ para que cada minuto envíe un correo con la información promedio del comando  =df -k=. Puedes usar como base para la consulta el listado [[lst:promedio.sql]]
-  - El correo se enviará a =alvarogonzalez.profesor@gmail.com=
-  - Con copia a =alvaro@alvarogonzalez.no-ip.biz=
+  - El correo se enviará a =alvaro@alvarogonzalez.no-ip.biz=
+    - Con copia a =alvaro@debian12-alvaro.local=
   - Indica tu nombre en el asunto del correo  
   - El fichero tendrá [[https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus#654723][formato CSV]]. Se debe poder abrir directamente con *excel* y visualizar su resultado en filas y columnas.
 
