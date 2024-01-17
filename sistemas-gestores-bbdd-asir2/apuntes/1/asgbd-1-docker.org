@@ -28,7 +28,7 @@
 
 ** Comparación gráfica
 
-| [[file:media/esquema-maquina-virtual.png]]  | [[file:media/esquema-docker.png]]   |
+| [[file:media/esquema-maquina-virtual.png]] | [[file:media/esquema-docker.png]] |
 
   
 ** Tabla comparativa
@@ -129,6 +129,15 @@
   - =-p 8080:80= : El puerto =8080= de la dirección =0.0.0.0= se conecta a la /ip/ del /container/, puerto =80=
   - =-v= : El volumen =/usr/local/apache2/htdocs= será el directorio /home/  
   - Resultado: Apache corriendo en el puerto 8080 sirviendo los ficheros del directorio /home/
+
+* "Entrar" en un /container/
+- Se pueden ejecutar comandos en un /container/ en ejecución
+  #+begin_src bash
+  docker exec -it my-apache-app bash
+  #+end_src
+  - *-i*: Ejecutar de forma interactiva (redirigir entrada y salida estándar)
+  - *-t*: Ejecutar en un TTY (una consola)
+  
 * Usuarios
 - Los usuarios en Linux se identifican por un número
   - Docker comparte el /kernel/ con el sistema operativo  
@@ -136,24 +145,111 @@
 - Conclusiones    
   - Se comparten los identificadores, no los nombres
   - El usuario /root/ es el mismo en todos los /containers/ y en el Linux real
-  - Cuidado con la seguridad!        
+  - Cuidado con la seguridad!
 
-* Avanzado: crear una imagen :noexport:
-https://docs.docker.com/get-started/02_our_app/
+* /Docker registry/
+- Las imágenes se almacenan en registros
+  - El registro por defecto es https://registry.hub.docker.com
+  - Los siguientes comandos son equivalentes
+    #+begin_src bash
+    docker run hello-world
+    docker run registry.hub.docker.com/hello-world
+    #+end_src
+- Oracle tiene un registro para sus imágenes
+  - https://container-registry.oracle.com/
+  - Se necesita registro (gratis) en [[https://profile.oracle.com/myprofile/account/create-account.jspx][Oracle]]
+  - La contraseña del registro no es la de la cuenta de Oracle, sino el /Auth token/
+    #+begin_src bash
+    docker login container-registry.oracle.com/
+    #+end_src
 
-* Cache docker
-sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0
+** /Cache/ en el instituto
 
-/etc/docker/daemon.json
+| =10.1.33.201:8090= |
+
+- Es un /registry/ inseguro (sin https).  
+- Para poder usarse hay que modificar/crear el fichero =/etc/docker/daemon.json=
+
+#+begin_src javascript  
 {
     "insecure-registries":["10.1.33.201:8090"]
 }
+#+end_src
+
+      
+
+* Práctica: instalar Oracle
+- Usaremos la imagen =container-registry.oracle.com/database/enterprise:21.3.0.0=
+- Se recomienda usar el /registry/ del instituto, que no necesita contraseña
+  - =sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0=
 
 
+** Instrucciones
+- Instrucciones: https://container-registry.oracle.com/ords/ocr/ba/database/enterprise
+
+#+begin_example
+docker run -d --name <container_name> \
+ -p <host_port>:1521 -p <host_port>:5500 \
+ -e ORACLE_SID=<your_SID> \
+ -e ORACLE_PDB=<your_PDBname> \
+ -e ORACLE_PWD=<your_database_password> \
+ -e INIT_SGA_SIZE=<your_database_SGA_memory_MB> \
+ -e INIT_PGA_SIZE=<your_database_PGA_memory_MB> \
+ -e ORACLE_EDITION=<your_database_edition> \
+ -e ORACLE_CHARACTERSET=<your_character_set> \
+ -e ENABLE_ARCHIVELOG=true \
+ -v [<host_mount_point>:]/opt/oracle/oradata \
+container-registry.oracle.com/database/enterprise:21.3.0.0
+
+Parameters:
+ --name:                 The name of the container (default: auto generated
+ -p:                     The port mapping of the host port to the container port.
+                         Two ports are exposed: 1521 (Oracle Listener), 5500 (OEM Express)
+ -e ORACLE_SID:          The Oracle Database SID that should be used (default:ORCLCDB)
+ -e ORACLE_PDB:          The Oracle Database PDB name that should be used (default: ORCLPDB1)
+ -e ORACLE_PWD:          The Oracle Database SYS, SYSTEM and PDBADMIN password (default: auto generated)
+ -e INIT_SGA_SIZE:       The total memory in MB that should be used for all SGA components (optional)
+ -e INIT_PGA_SIZE:       The target aggregate PGA memory in MB that should be used for all server processes attached to the instance (optional)
+ -e ORACLE_EDITION:      The Oracle Database Edition (enterprise/standard, default: enterprise)
+ -e ORACLE_CHARACTERSET: The character set to use when creating the database (default: AL32UTF8)
+ -e ENABLE_ARCHIVELOG:   To enable archive log mode when creating the database (default: false). Supported 19.3 onwards.
+ -v /opt/oracle/oradata
+                         The data volume to use for the database. Has to be writable by the Unix "oracle" (uid: 54321) user inside the container
+                         If omitted the database will not be persisted over container recreation.
+ -v /opt/oracle/scripts/startup | /docker-entrypoint-initdb.d/startup
+                         Optional: A volume with custom scripts to be run after database startup.
+                         For further details see the "Running scripts after setup and on
+                         startup" section below.
+ -v /opt/oracle/scripts/setup | /docker-entrypoint-initdb.d/setup
+                         Optional: A volume with custom scripts to be run after database setup.
+                         For further details see the "Running scripts after setup and on startup" section below.
+#+end_example
+
+** En nuestro caso
+- Puerto =1521= del container al =1521= de la máquina /host/
+- Ficheros de datos en =/opt/oracle/oradata= del la máquina /host/
+- Nombre del container =oracle-enterprise-21.3.0.0=
+- SID: =ORADOCKER=
+- PDB: =PDBORADOCKER=  
+- Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA=
+  - =/opt/oracle/sqplus-as-sysdba.sh=
+  - con =docker exec=
+  - puede ayudarte =bash -c=
+- Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA= en la PDB
+  - =/opt/oracle/sqplus-as-sysdba-pdb.sh=
+    
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+* Avanzado: crear una imagen :noexport:
+https://docs.docker.com/get-started/02_our_app/
 
 * a33pcprofesor :noexport:
 
 - para borrar del disco /
   - /opt/android-studio
   - file:///var/www/html/natali/EXAMEN.ova
-      
+    
