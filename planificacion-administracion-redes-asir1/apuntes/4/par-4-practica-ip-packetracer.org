@@ -23,7 +23,7 @@ Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servi
 - 2ª planta: 150 puestos de trabajo
 - 3ª planta: 30 puestos de trabajo
 - 4ª planta: 200 puestos de trabajo
-- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original.  
+- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
 
 
 El número =n= de la red se corresponde con el asignado al alumno en  [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]

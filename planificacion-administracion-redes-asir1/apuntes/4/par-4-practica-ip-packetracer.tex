@@ -1,0 +1,202 @@
+% Created 2024-01-17 mié 13:46
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Red IP simple \textit{Packet Tracer}}
+\rhead{Planificación y administración de redes}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\author{Álvaro González Sotillo Álvaro González Sotillo}
+\date{\today}
+\title{Red IP simple \emph{Packet Tracer}\\\medskip
+\large  }
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo Álvaro González Sotillo},
+ pdftitle={Red IP simple \emph{Packet Tracer}},
+ pdfkeywords={ },
+ pdfsubject={ },
+ pdfcreator={Emacs 28.2 (Org mode 9.6.12)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\captionsetup{font=scriptsize}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+
+\section{Objetivo de la práctica}
+\label{sec:org0000000}
+Tras la práctica, se espera que el alumno haya conseguido:
+\begin{itemize}
+\item Familiarizarse con la interfaz de \emph{Packet Tracer}
+\item Dividir adecuadamente una red en varias subredes
+\end{itemize}
+
+Está dispobile la \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/par-4-practica-ip-packetracer.pdf}{última versión de la práctica en este enlace}.
+
+
+
+\section{Descripción del problema}
+\label{sec:org0000009}
+Una empresa tiene disponible la red \texttt{10.n.80.0/22}. La utilizará para dar servicio a un nuevo edificio con 4 plantas. Cada planta pertenecerá a una red IP distinta.
+\begin{itemize}
+\item 1ª planta: Se prevén 100 puestos de trabajo, cada uno con su ordenador
+\item 2ª planta: 150 puestos de trabajo
+\item 3ª planta: 30 puestos de trabajo
+\item 4ª planta: 200 puestos de trabajo
+\item Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
+\end{itemize}
+
+
+El número \texttt{n} de la red se corresponde con el asignado al alumno en  \href{http://bit.ly/2sji9gQ}{http://bit.ly/2sji9gQ}
+
+\subsection{Características del \emph{subnetting}}
+\label{sec:org0000003}
+\begin{itemize}
+\item Las redes tendrán el tamaño mínimo posible dados los hosts que contienen
+\item Las parte no asignada de la red original se compodrá de redes contiguas tan grandes como sea posible
+\end{itemize}
+
+\subsection{Características del diseño \emph{Packet Tracer}}
+\label{sec:org0000006}
+\begin{itemize}
+\item Cada planta tendrá un \emph{router}, su \emph{switch} (sistema horizontal), el primer host y el último host.
+\item Los routers de las plantas se utirán por un switch (sistema vertical).
+\item Habrá comunicación a nivel IP (\texttt{ping}) entre todos los puestos de trabajo.
+\end{itemize}
+
+
+\section{Qué se valorará}
+\label{sec:org000000c}
+Se entregará un fichero PKT con el contenido de la práctica, y un fichero de texto (PDF, DOCX, ODT) con el resultado del subnetting, incluyendo las redes que quedan libres. Todo ello, dentro de un fichero ZIP.
+
+Se tendrá en cuenta:
+\begin{itemize}
+\item La corrección técnica
+\item La claridad
+\item La apariencia profesional: gramática, ortografía, homogeneidad \ldots
+\end{itemize}
+
+\section{Instrucciones de entrega}
+\label{sec:org000000f}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\begin{itemize}
+\item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+\end{itemize}
+\item Sube el documento a \href{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
+\end{document}
