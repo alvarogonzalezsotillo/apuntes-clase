@@ -5,6 +5,12 @@ AULA=a33
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(
+    for pc in a33pc02.local a33pc05.local a33pc13.local a33pc12.local a33pc11.local
+    do
+        echo $pc
+    done    
+    return
+    
     local AULA=${1:-$AULA_DEFECTO}
     for ORDENADOR in $(seq 1 16)
     do
