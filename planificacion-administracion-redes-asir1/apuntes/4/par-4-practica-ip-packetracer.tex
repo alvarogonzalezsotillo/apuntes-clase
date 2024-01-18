@@ -1,4 +1,4 @@
-% Created 2024-01-18 jue 12:45
+% Created 2024-01-18 jue 12:54
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -174,7 +174,11 @@ El número \texttt{n} de la red se corresponde con el asignado al alumno en  \hr
 \begin{itemize}
 \item Cada planta tendrá un \emph{router}, su \emph{switch} (sistema horizontal), el primer host y el último host.
 \item Los routers de las plantas se utirán por un switch (sistema vertical).
-\item Habrá comunicación a nivel IP (\texttt{ping}) entre todos los puestos de trabajo de una planta
+\item Habrá comunicación a nivel IP (\texttt{ping})
+\begin{itemize}
+\item entre todos los hosts de una planta
+\item entre todos los routers, usando la red de routers
+\end{itemize}
 \item No se considera un error que no se pueda hacer \texttt{ping} entre plantas
 \end{itemize}
 
