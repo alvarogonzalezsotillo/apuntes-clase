@@ -320,9 +320,6 @@ select course_no
 from section
 group by course_no
 having count(*) =  (select max(veces) from vecesdecurso);
-
-
-
 #+END_SRC
 
 ** Lista de nombres distintos que hay en la base de datos (alumnos y profesores)
@@ -333,5 +330,20 @@ select first_name from instructor;
    #+end_src
 ** Profesor más polivalente, que está impartiendo más cursos distintos
 ** Lista de identificadores de curso y cuántos alumnos se pueden matricular en ese curso   
-** Identificador del curso más popular, el que más alumnos pueden pedir.
+** Identificador del curso que más alumnos pueden pedir, porque tiene más oferta de plazas
+#+begin_src sql
+select course_no from section
+group by course_no
+having sum(capacity) = (
+  select max(sum(capacity)) from section group by course_no
+)
+#+end_src
 
+** Lista de profesores y calle donde viven, sin número
+#+begin_src sql
+select 
+  first_name, 
+  last_name, 
+  substr(street_address,instr(street_address,' ')+1)
+from instructor
+#+end_src
