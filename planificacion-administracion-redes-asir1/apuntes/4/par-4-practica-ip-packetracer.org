@@ -23,7 +23,7 @@ Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servi
 - 2ª planta: 150 puestos de trabajo
 - 3ª planta: 30 puestos de trabajo
 - 4ª planta: 200 puestos de trabajo
-- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original.  
+- Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
 
 
 El número =n= de la red se corresponde con el asignado al alumno en  [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
@@ -35,7 +35,11 @@ El número =n= de la red se corresponde con el asignado al alumno en  [[http://b
 ** Características del diseño /Packet Tracer/  
 - Cada planta tendrá un /router/, su /switch/ (sistema horizontal), el primer host y el último host.
 - Los routers de las plantas se utirán por un switch (sistema vertical).
-- Habrá comunicación a nivel IP (=ping=) entre todos los puestos de trabajo.  
+- Habrá comunicación a nivel IP (=ping=)
+  - entre todos los hosts de una planta
+  - entre todos los routers, usando la red de routers  
+- No se considera un error que no se pueda hacer =ping= entre plantas  
+
 
 
 * Qué se valorará

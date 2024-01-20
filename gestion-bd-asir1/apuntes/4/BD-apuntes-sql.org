@@ -7,8 +7,8 @@
 2. =where=
 3. =group by=
 4. =having=
-5. =select=
-6. =order by=
+5. =order by=
+6. =select=
 
 #+begin_src sql
 select  

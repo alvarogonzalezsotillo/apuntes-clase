@@ -1,4 +1,4 @@
-% Created 2024-01-14 dom 18:23
+% Created 2024-01-18 jue 12:54
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -92,7 +92,7 @@
  pdftitle={Red IP simple \emph{Packet Tracer}},
  pdfkeywords={ },
  pdfsubject={ },
- pdfcreator={Emacs 29.1.90 (Org mode 9.6.10)}, 
+ pdfcreator={Emacs 28.2 (Org mode 9.6.12)}, 
  pdflang={Spanish}}
 \begin{document}
 
@@ -156,7 +156,7 @@ Una empresa tiene disponible la red \texttt{10.n.80.0/22}. La utilizará para da
 \item 2ª planta: 150 puestos de trabajo
 \item 3ª planta: 30 puestos de trabajo
 \item 4ª planta: 200 puestos de trabajo
-\item Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original.
+\item Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
 \end{itemize}
 
 
@@ -174,8 +174,14 @@ El número \texttt{n} de la red se corresponde con el asignado al alumno en  \hr
 \begin{itemize}
 \item Cada planta tendrá un \emph{router}, su \emph{switch} (sistema horizontal), el primer host y el último host.
 \item Los routers de las plantas se utirán por un switch (sistema vertical).
-\item Habrá comunicación a nivel IP (\texttt{ping}) entre todos los puestos de trabajo.
+\item Habrá comunicación a nivel IP (\texttt{ping})
+\begin{itemize}
+\item entre todos los hosts de una planta
+\item entre todos los routers, usando la red de routers
 \end{itemize}
+\item No se considera un error que no se pueda hacer \texttt{ping} entre plantas
+\end{itemize}
+
 
 
 \section{Qué se valorará}
