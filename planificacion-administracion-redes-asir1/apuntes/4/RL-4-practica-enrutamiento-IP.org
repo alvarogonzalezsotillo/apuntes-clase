@@ -1,128 +1,86 @@
-\input{../../..//common/plantilla-ejercicio.tex}
-\usepackage{eurosym}
-\usepackage{needspace}
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+LATEX_HEADER: \lhead{Red IP simple \textit{Packet Tracer}}
+#+LATEX_HEADER: \rhead{Planificación y administración de redes}
+
+
+#+title: Práctica de enrutamiento IP con máquinas virtuales
 
 
 
-
-\renewcommand{\hmwkTitle}{Práctica enrutamiento IP}
-\renewcommand{\hmwkClass}{Planificación y Administración de Redes}
-
-\usepackage{blindtext}
-
-\begin{document}
-
-% \maketitle
-
-% ----------------------------------------------------------------------------------------
-%	TABLE OF CONTENTS
-% ----------------------------------------------------------------------------------------
-
-% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
-
-\primerapagina
-
-\setlength{\parindent}{1em}
-\setlength{\parskip}{1em}
-
-\section{Objetivo de la práctica}
+* Objetivo de la práctica
 Tras la práctica, se espera que el alumno haya conseguido:
-\begin{itemize}
-\item Comprender el modo \textit{puente} (\textit{bridged}) de los sistemas de virtualización
-\item Familiarizarse con los  mecanismos de configuración de redes IP en varios sistemas operativos
-\item Configurar el enrutamiento entre varios ordenadores
-\end{itemize}
+- Comprender el modo /puente/ (/bridged/) de los sistemas de virtualización
+- Familiarizarse con los  mecanismos de configuración de redes IP en varios sistemas operativos
+- Configurar el enrutamiento entre varios ordenadores
 
-Está dispobile la \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-ip.pdf}{última versión de la práctica en este enlace}.
+Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-ip.pdf][última versión de la práctica en este enlace]].
 
 
 
-\section{Descripción del problema}
-Se reutilizará el sistema de máquinas virtuales descrito en la figura~\ref{fig:redesip}, utilizado en prácticas anteriores. Debe haber conectividad IP entre
-\begin{itemize}
-\item Los ordenadores de clase y el servidor Debian
-\item Entre todos los servidores Debian de otros compañeros
-\item El cliente Windows y el cliente Debian
-\item Entre los clientes y el servidor Debian
-\end{itemize}
+#+latex: \newpage
+* Descripción del problema
+Se utilizará el sistema de máquinas virtuales descrito en la figura [[fig:conexiones-de-red-alumno]]. Debe haber conectividad IP entre:
+- Los ordenadores de clase y el /router/ Debian.
+- Entre todos los /routers/ Debian de otros compañeros
+- El /host/ Windows y el /host/ Debian
+- Entre los /hosts/ y el /router/ Debian
 
-\begin{figure}[h]
-  \center\includegraphics{media/practica-red-ip.pdf}
-  \caption{Diagrama de conexiones de red}
-  \label{fig:redesip}
-\end{figure}
+#+CAPTION: Diagrama de conexiones de red
+#+NAME: fig:conexiones-de-red-alumno
+#+attr_latex: :width 0.5\textwidth
+[[file:media/practica-red-ip.pdf]]
 
-La conectividad IP puede comprobarse con comandos como \texttt{ping}, \texttt{pathping}, \texttt{mtr} o \texttt{tracert}
+La conectividad IP puede comprobarse con comandos como =ping=, =pathping=, =mtr= o =tracert=
 
 
-\section{Características de las máquinas virtuales}
-\begin{itemize}
-\item El servidor Debian deberá ser configurado sin utilizar el modo gráfico ni \textit{network-manager}
-\item Se recomienda utilizar distribuciones Debian frente a Ubuntu, por el ahorro de memoria RAM. Sin entorno gráfico, Debian funciona correctamente con 512MB.
-\item Por la misma razón, Windows 7 es preferible a Windows 10.
-  
-\item El número \textit{n} corresponde con el número de identificación del PC real en clase, que se apuntará en esta hoja de cálculo: \url{http://bit.ly/2sji9gQ}
-\end{itemize}
+* Características de las máquinas virtuales
+- El /router/ Debian deberá ser configurado sin utilizar el modo gráfico ni /network manager/
+- Se recomienda utilizar distribuciones Debian frente a Ubuntu, por el ahorro de memoria RAM. Sin entorno gráfico, Debian funciona correctamente con 512MB.
+- Por la misma razón, Windows 7 es preferible a Windows 10 o Windows 11.
+- El número /n/ corresponde con el número de identificación del PC real en clase, que se apuntará en esta hoja de cálculo: [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
 
 
-\section{Enrutamiento}
-\begin{figure}[h]
-  \center\includegraphics[width=\textwidth]{media/practica-enrutamiento-ip.pdf}
-  \caption{Diagrama de conexiones de red}
-  \label{fig:redesip}
-\end{figure}
+* Enrutamiento
+Conecta tus máquinas virtuales a las del resto del aula como se indica en la figura [[fig:conexiones-de-red-aula]].
+- Activa el enrutamiento en el /router/ Debian
+- Configura las tablas del /router/ Debian para que enrute hacia el resto de redes de tus compañeros
+- Comprueba que:
+  1. Tu /router/ Debian contacta con el resto de /routers/ Debian
+  2. Tu /router/ Debian contacta con el resto de máquinas reales
+  3. Tus ordenadores /hosts/ (Windows y Debian) pueden contactar con otros /routers/ Debian
+  4. Tus ordenadores /hosts/ pueden contactar con otros ordenadores /hosts/
+- *Nota*: la comunicación entre las máquinas reales y los ordenadores /hosts/ queda fuera de esta práctica
 
-\begin{itemize}
-\item Activa el enrutamiento en el servidor Debian
-\item Configura las tablas del servidor Debian para que enrute hacia el resto de redes de tus compañeros
-\item Comprueba que:
-  \begin{enumerate}
-  \item Tu servidor Debian contacta con el resto de servidores Debian
-  \item Tu servidor Debian contacta con el resto de máquinas reales
-  \item Tus ordenadores clientes (Windows y Debian) pueden contactar con otros servidores Debian
-  \item Tus ordenadores clientes pueden contactar con otros ordenadores clientes
-  \end{enumerate}
-\item \textbf{Nota:} No se ha configurado la comunicación entre las máquinas reales y los ordenadores clientes
-\end{itemize}
+#+CAPTION: Diagrama de conexiones de red en el aula
+#+NAME: fig:conexiones-de-red-aula
+[[file:media/practica-enrutamiento-ip.pdf]]
 
-La conectividad IP puede comprobarse con comandos como \texttt{pathping}, \texttt{mtr} o \texttt{tracert}. \texttt{ping} no es válido, pues no muestra los saltos del enrutamiento.
+La conectividad IP puede comprobarse con comandos como =pathping=, =mtr= o =tracert=. =ping= no es válido, pues no muestra los saltos del enrutamiento.
 
-\section{Reinicio}
-La configuración realizada en el \textit{router} puede que no sea persistente, y no se mantiene tras un reinicio. Investiga cómo puede conseguirse que al reiniciar siga funcionando el enrutamiento.
+* Reinicio
+La configuración realizada en el /router/ puede que no sea persistente, y no se mantiene tras un reinicio. Investiga cómo puede conseguirse que al reiniciar siga funcionando el enrutamiento.
 
-\section{Qué se valorará}
-Se entregará un documento (entrada de blog, \texttt{DOCX}, \texttt{PDF} \ldots) con los pasos que se han seguido para la creación de la red y su configuración, así como la salida de los comandos que muestran la conectividad de los ordenadores.
+* Qué se valorará
+Se entregará un documento (entrada de blog, =DOCX=, =PDF= \ldots) con los pasos que se han seguido para la creación de la red y su configuración, así como la salida de los comandos que muestran la conectividad de los ordenadores.
 
 Se tendrá en cuenta:
-\begin{itemize}
-\item La corrección técnica
-\item Que siga funcionando tras un reinicio  
-\item La claridad
-  \begin{itemize}
-  \item Diagramas, pruebas de funcionamiento, instrucciones completas \ldots
-  \end{itemize}
-\item La apariencia profesional
-  \begin{itemize}
-  \item Presentación, gramática, ortografía, homogeneidad \ldots
-  \end{itemize}
-
-\end{itemize}
+- La corrección técnica
+- Que siga funcionando tras un reinicio  
+- La claridad
+  - Diagramas, pruebas de funcionamiento, instrucciones completas \ldots
+- La apariencia profesional
+  - Presentación, gramática, ortografía, homogeneidad \ldots
+  
 
 
-\section{Instrucciones de entrega}
-\begin{itemize}
-\item El ejercicio se realizará y entregará de manera
+* Instrucciones de entrega
+- El ejercicio se realizará y entregará de manera
   individual.
-  \begin{itemize}
-  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
-  \end{itemize}
-\item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
-\item Presta atención al plazo de entrega (con fecha y hora).
-\end{itemize}
+  - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+- Sube el documento a [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189][la tarea correspondiente en el aula virtual]]
+- Presta atención al plazo de entrega (con fecha y hora).
 
-
-
-\end{document}
 
 
 
