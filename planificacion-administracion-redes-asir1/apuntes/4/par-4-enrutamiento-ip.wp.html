@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:18 -->
+<!-- 2024-01-20 sáb 12:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Enrutamiento IP</title>
@@ -210,8 +210,8 @@
 <li><a href="#org0000008">1. Introducción</a></li>
 <li><a href="#org0000012">2. Cómo enruta IP</a></li>
 <li><a href="#org0000019">3. Ejemplo de enrutamiento</a></li>
-<li><a href="#org0000038">4. Tablas de enrutamiento</a></li>
-<li><a href="#org000003b">5. Referencias</a></li>
+<li><a href="#org000003b">4. Tablas de enrutamiento</a></li>
+<li><a href="#org000003e">5. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -404,8 +404,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org0000038" class="outline-2">
-<h2 id="org0000038"><span class="section-number-2">4.</span> Tablas de enrutamiento</h2>
+<div id="outline-container-org000003b" class="outline-2">
+<h2 id="org000003b"><span class="section-number-2">4.</span> Tablas de enrutamiento</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Cada host con IP debe tener configuradas sus tablas de enrutamiento</li>
@@ -414,7 +414,7 @@ window.addEventListener("load",()=>{
 <li>Windows</li>
 <li>Linux/Unix</li>
 </ul></li>
-<li>Se manejan con el comando <code>route</code></li>
+<li>Se manejan con el comando <code>route</code> o <code>ip route</code></li>
 </ul>
 </div>
 
@@ -495,8 +495,8 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org0000035" class="outline-3">
-<h3 id="org0000035"><span class="section-number-3">4.4.</span> Linux</h3>
+<div id="outline-container-org000002c" class="outline-3">
+<h3 id="org000002c"><span class="section-number-3">4.4.</span> Linux</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>Comando <code>route</code></li>
@@ -512,10 +512,27 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000002c" class="outline-4">
-<h4 id="org000002c"><span class="section-number-4">4.4.1.</span> Modificar las tablas en Linux (<code>route</code>)</h4>
-<div class="outline-text-4" id="text-4-4-1">
+<div id="outline-container-org0000038" class="outline-3">
+<h3 id="org0000038"><span class="section-number-3">4.5.</span> Linux</h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>Comando <code>ip route</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">alvaro@alvaro-vaio~ ip route
+default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600 
+169.254.0.0/16 dev docker0 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 
+192.168.1.0/24 dev wlp0s20f3 proto kernel scope link src 192.168.1.13 metric 600 
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org000002f" class="outline-4">
+<h4 id="org000002f"><span class="section-number-4">4.5.1.</span> Modificar las tablas en Linux (<code>route</code>)</h4>
+<div class="outline-text-4" id="text-4-5-1">
 <ul class="org-ul">
 <li>Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz <code>eth0</code>, con métrica 3. Se envía al router 157.55.80.1</li>
 </ul>
@@ -532,9 +549,9 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 
 
 
-<div id="outline-container-org000002f" class="outline-4">
-<h4 id="org000002f"><span class="section-number-4">4.4.2.</span> Modificar las tablas en Linux (<code>ip</code>)</h4>
-<div class="outline-text-4" id="text-4-4-2">
+<div id="outline-container-org0000032" class="outline-4">
+<h4 id="org0000032"><span class="section-number-4">4.5.2.</span> Modificar las tablas en Linux (<code>ip</code>)</h4>
+<div class="outline-text-4" id="text-4-5-2">
 <ul class="org-ul">
 <li>Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz <code>eth0</code>, con métrica 3. Se envía al router 157.55.80.1</li>
 </ul>
@@ -550,14 +567,20 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 </div>
 
 
-<div id="outline-container-org0000032" class="outline-4">
-<h4 id="org0000032"><span class="section-number-4">4.4.3.</span> <a href="http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/">Activar el enrutamiento</a></h4>
-<div class="outline-text-4" id="text-4-4-3">
+<div id="outline-container-org0000035" class="outline-4">
+<h4 id="org0000035"><span class="section-number-4">4.5.3.</span> <a href="http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/">Activar el enrutamiento</a></h4>
+<div class="outline-text-4" id="text-4-5-3">
 <ul class="org-ul">
 <li>El <i>ip forwarding</i> es un parámetro de kernel.</li>
-<li>Se puede comprobar si se está enrutando con <code>sysctl net.ipv4.ip_forward</code></li>
-<li>Se puede activar con <code>sysctl -w net.ipv4.ip_forward=1</code></li>
-<li>Para que se active <b>en el siguiente inicio</b> se debe cambiar el fichero /etc/sysctl.conf:
+<li>Se puede comprobar si se está enrutando con
+<ul class="org-ul">
+<li><code>sysctl net.ipv4.ip_forward</code></li>
+</ul></li>
+<li>Se puede activar con
+<ul class="org-ul">
+<li><code>sysctl -w net.ipv4.ip_forward=1</code></li>
+</ul></li>
+<li>Para que se active <b>en el siguiente inicio</b> se debe cambiar el fichero <code>/etc/sysctl.conf</code>:
 <ul class="org-ul">
 <li><code>net.ipv4.ip_forward = 1</code></li>
 </ul></li>
@@ -569,8 +592,8 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 
 
 
-<div id="outline-container-org000003b" class="outline-2">
-<h2 id="org000003b"><span class="section-number-2">5.</span> Referencias</h2>
+<div id="outline-container-org000003e" class="outline-2">
+<h2 id="org000003e"><span class="section-number-2">5.</span> Referencias</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Formatos:
@@ -592,7 +615,7 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:18</p>
+<p class="date">Created: 2024-01-20 sáb 12:56</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
