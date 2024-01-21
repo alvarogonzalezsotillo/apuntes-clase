@@ -146,8 +146,6 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
   #+end_src
     
 
-
-
 * Instrucciones de entrega
 - El ejercicio se realizará y entregará de manera individual.
     - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
@@ -157,3 +155,8 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
 - Presta atención al plazo de entrega (con fecha y hora).
   
 
+#+latex: \begin{Aviso}
+El servidor está compartido con todos los compañeros, con otros grupos y otros profesores. Es posible que las bases de datos allí guardadas se pierdan.
+
+Se recomienda guardar todas las órdenes (=create table=, =insert=, =create view=, \ldots) en ficheros de texto.
+#+latex: \end{Aviso}
