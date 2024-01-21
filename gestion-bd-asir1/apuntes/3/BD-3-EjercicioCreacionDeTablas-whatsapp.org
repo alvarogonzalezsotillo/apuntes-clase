@@ -29,10 +29,6 @@ Una compañía decide lanzar un sistema de mensajería al estilo de Whatsapp.
   - No se pueden crear dos grupos con el mismo nombre.
   - Un mensaje enviado a un grupo de /chat/ es recibido por todos sus integrantes (menos el que lo envía)
   - Las confirmaciones de los mensajes de un /chat/ son por cada usuario del /chat/
-  
-  
-
-
 
 
 * Realizar el diagrama *ER* con Oracle *SQLDeveloper* (2 puntos)
@@ -155,18 +151,9 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
 * Instrucciones de entrega
 - El ejercicio se realizará y entregará de manera individual.
     - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
-  
-- Entrega tu trabajo en un fichero =ZIP=:
-  - La imagen de tu modelo ER  con SQLDeveloper: =1.modelo-er.pdf=
-  - El script de creación de tablas: =2.creacion.sql=
-  - El script de inserción de datos en las tablas: =3.insercion.sql=
-  - El script de creación de vistas: =4.vistas.sql=
-  - Si los ficheros de texto no están codificados en UTF8, se restará 1 punto.
-  - Si los textos no están bien transcritos (vocales acentuadas, =ñ=, =¿=, \ldots) se restará 1 punto.
-  
-- Los nombres de los ficheros incluyen un número (para que estén ordenados). No incluyas mayúsculas. No incluyas acentos. No pongas espacios. No añadas palabras, letras ni números a los nombres.
+- Entrega el modelo ER en formato PDF en la tarea del aula virtual
+- En tu [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=29534][usuario del servidor de Oracle del instituto]], crea las tablas, inserta los datos y define las vistas.  
 - La corrección se realizará de forma semiautomática. Es *importante* que los nombres de ficheros, vistas y atributos de vistas sean los especificados.
-- Sube el documento a [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=12774][la tarea correspondiente en el aula virtual]]
 - Presta atención al plazo de entrega (con fecha y hora).
   
 
