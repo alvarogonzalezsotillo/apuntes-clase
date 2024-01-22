@@ -1,0 +1,41 @@
+# #+include: ../../common/header.org
+
+#+REVEAL_ROOT: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0
+#+REVEAL_ADD_PLUGIN: menu RevealMenu ../../common/reveal.js-menu/menu.js
+#+REVEAL_VERSION: 3.6.0
+#+REVEAL_THEME: simple
+#+LANGUAGE: es
+#+OPTIONS:   toc:nil author:nil
+#+title: Departamento de Orientación
+
+
+#+begin_export html
+<style>
+  .reveal section  {
+      font-size: 0.8em !important;
+  }
+</style>
+#+end_export
+
+* Datos
+| ACNEE                  | 27 | Subida a raices las ACI de los alumnos con NEE                        |
+| DEA                    | 44 | Recogida de las medidas en la evaluación en los anexos                |
+| COMPENSATORIA          | 33 | Incorporación alumnos nuevos/llegada tardía                           |
+| AACC                   | 10 | Pendiente elaboración PIEC                                            |
+| CASTELLANIZACIÓN (SAI) |  3 | Solicitud del recurso. Pendiente de incorporación de una alumna nueva |
+
+
+* Intervenciones generales 
+- *Actualización de Raíces*. Cambios de los 113 alumnos uno a uno. 
+- *Elaboración del PLAN INCLUYO* por parte de la CCP con los cambios de la normativa.
+  - Desaparición de la categoría de NEE de TDAH y restricción de las posibilidades de incorporar a los alumnos con TEL como alumnos con NEE, ya que solo se va a considerar NEE a los alumnos con un TEL comprensivo y expresivo. 
+- *4º+empresa*: 66 alumnos han pedido participar en el programa
+- *Reunión con el concejal de educación* para solicitar la apertura en el municipio de un aula de convivencia:
+  - Fruto de esta reunión hemos conseguido que se ponga en marcha el programa AULA TEMPORAL DE VALORES Y HABILIDADES PARA LA CONVIVENCIA ESCOLAR
+  - Acogerá a los alumnos expulsados de los centros educativos de secundaria
+
+* Agradecimiento y solicitud al claustro
+- *Gracias* por facilitar todos los procesos de intervención conjunta
+- Los alumnos con NEE es muy conveniente que se sitúen en las primeras filas, ya que es una medida básica de atención a las diferencias.
+
+
