@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Enrutamiento IP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:18</p>
+<h1 class="title">Enrutamiento IP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-20 sáb 12:56</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -4367,7 +4367,7 @@ window.addEventListener("load",()=>{
 <li>Linux/Unix</li>
 
 </ul></li>
-<li>Se manejan con el comando <code>route</code></li>
+<li>Se manejan con el comando <code>route</code> o <code>ip route</code></li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -4476,8 +4476,26 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-4-4-1">
-<h4 id="4-4-1"><span class="section-number-4">4.4.1.</span> Modificar las tablas en Linux (<code>route</code>)</h4>
+<section id="slide-4-5">
+<h3 id="4-5"><span class="section-number-3">4.5.</span> Linux</h3>
+<ul>
+<li>Comando <code>ip route</code></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre><code class="sh" >alvaro@alvaro-vaio~ ip route
+default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600 
+169.254.0.0/16 dev docker0 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 
+192.168.1.0/24 dev wlp0s20f3 proto kernel scope link src 192.168.1.13 metric 600 
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-4-5-1">
+<h4 id="4-5-1"><span class="section-number-4">4.5.1.</span> Modificar las tablas en Linux (<code>route</code>)</h4>
 <ul>
 <li>Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz <code>eth0</code>, con métrica 3. Se envía al router 157.55.80.1</li>
 
@@ -4497,8 +4515,8 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 
 
 </section>
-<section id="slide-4-4-2">
-<h4 id="4-4-2"><span class="section-number-4">4.4.2.</span> Modificar las tablas en Linux (<code>ip</code>)</h4>
+<section id="slide-4-5-2">
+<h4 id="4-5-2"><span class="section-number-4">4.5.2.</span> Modificar las tablas en Linux (<code>ip</code>)</h4>
 <ul>
 <li>Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz <code>eth0</code>, con métrica 3. Se envía al router 157.55.80.1</li>
 
@@ -4517,13 +4535,21 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 
 
 </section>
-<section id="slide-4-4-3">
-<h4 id="4-4-3"><span class="section-number-4">4.4.3.</span> <a href="http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/">Activar el enrutamiento</a></h4>
+<section id="slide-4-5-3">
+<h4 id="4-5-3"><span class="section-number-4">4.5.3.</span> <a href="http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/">Activar el enrutamiento</a></h4>
 <ul>
 <li>El <i>ip forwarding</i> es un parámetro de kernel.</li>
-<li>Se puede comprobar si se está enrutando con <code>sysctl net.ipv4.ip_forward</code></li>
-<li>Se puede activar con <code>sysctl -w net.ipv4.ip_forward=1</code></li>
-<li>Para que se active <b>en el siguiente inicio</b> se debe cambiar el fichero /etc/sysctl.conf:
+<li>Se puede comprobar si se está enrutando con
+<ul>
+<li><code>sysctl net.ipv4.ip_forward</code></li>
+
+</ul></li>
+<li>Se puede activar con
+<ul>
+<li><code>sysctl -w net.ipv4.ip_forward=1</code></li>
+
+</ul></li>
+<li>Para que se active <b>en el siguiente inicio</b> se debe cambiar el fichero <code>/etc/sysctl.conf</code>:
 <ul>
 <li><code>net.ipv4.ip_forward = 1</code></li>
 

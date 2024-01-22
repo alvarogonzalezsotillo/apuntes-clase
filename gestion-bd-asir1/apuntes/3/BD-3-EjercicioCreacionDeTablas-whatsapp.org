@@ -1,0 +1,162 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+LATEX_HEADER: \lhead{Práctica creación de base de datos}
+#+LATEX_HEADER: \rhead{Gestión de bases de datos}
+
+
+#+title: Diseño E/R, paso a SQL e inserción de datos
+
+
+* Objetivo de la práctica
+Se pretende que el alumno sea capaz de pasar desde las necesidades de datos de una empresa hasta las órdenes SQL necesarias para implementar dicha necesidad en Oracle
+
+Se puede descargar [[https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/3/BD-3-EjercicioCreacionDeTablas-whatsapp.pdf][la última versión de la práctica en este enlace]]
+
+* Modelo de datos
+Una compañía decide lanzar un sistema de mensajería al estilo de Whatsapp.
+- De cada usuario se conoce su número de teléfono y un /nick/, que podría repetirse.
+- Cada usuario mantiene una lista de contactos, que son otros usuarios.
+- Los usuarios pueden enviar mensajes de texto a cualquiera de sus contactos. Un mensaje es un texto de hasta 1000 caracteres.
+- Los mensajes tienen dos confirmaciones:
+  - Confirmación de recibido: el mensaje ha llegado al terminal del destinatario
+  - Confirmación de leido: el usuario ha abierto el mensaje
+  
+  
+  
+- Los usuarios pueden crear grupos de /chat/:
+  - Un grupo tiene un nombre.
+  - El usuario creador es el administrador, y agrega a los usuarios que desea.
+  - No se pueden crear dos grupos con el mismo nombre.
+  - Un mensaje enviado a un grupo de /chat/ es recibido por todos sus integrantes (menos el que lo envía)
+  - Las confirmaciones de los mensajes de un /chat/ son por cada usuario del /chat/
+
+
+* Realizar el diagrama *ER* con Oracle *SQLDeveloper* (2 puntos)
+En el diagrama deben ser visibles (al menos):
+  - Los nombres de las entidades
+  - Los atributos de las entidades
+  - Las relaciones entre las entidades
+  
+
+
+
+* Crear las tablas de Oracle utilizando *SQL* (1 punto)
+  Se entregará un fichero de texto de extensión =.SQL= con las órdenes *SQL* de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
+
+
+
+
+* Insertar datos en las tablas 
+
+  El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional (2 puntos):
+
+#+latex: \begin{Aviso}
+Estos datos no están todos normalizados. Si alguna tabla de la base de datos coincide con esta estructura, podría ser incorrecta.
+Este apartado solo puede valorarse si las tablas están en *tercera forma normal*.
+#+latex: \end{Aviso}
+  
+#+latex: \begin{center}
+#+ATTR_LaTeX: :center nil
+|---+------------+--------|
+|   | *Usuarios* |        |
+|---+------------+--------|
+|   |   Teléfono | Nick   |
+|---+------------+--------|
+| / |         <> | <>     |
+|   |   11111111 | Pepe   |
+|   |   22222222 | María  |
+|   |   33333333 | Juan   |
+|   |   44444444 | Susana |
+|---+------------+--------|
+#+ATTR_LaTeX: :center nil
+|---+-------------+---------------------|
+|   | *Contactos* |                     |
+|---+-------------+---------------------|
+|   | Nick        | Sus contactos       |
+|---+-------------+---------------------|
+| / | <>          | <>                  |
+|   | María       | Pepe                |
+|   | Pepe        | María, Juan, Susana |
+|   | Juan        | Pepe, Susana        |
+|   | Susama      | Juan                |
+|---+-------------+---------------------|
+#+latex: \end{center}
+
+|---+------------+--------------+----------+-------+--------------------------------|
+|   | *Mensajes* |              |          |       |                                |
+|---+------------+--------------+----------+-------+--------------------------------|
+|   | Remitente  | Destinatario | Recibido | Leído | Mensaje                        |
+|---+------------+--------------+----------+-------+--------------------------------|
+| / | <>         | <>           | <>       | <>    | <>                             |
+|   | Pepe       | María        | Sí       | Sí    | Vamos a hacer un grupo de ASIR |
+|   | María      | Pepe         | Sí       | Sí    | Vale                           |
+|   | Susana     | Juan         | Sí       | No    | ¿Te apuntas a la nieve?        |
+|   | Juan       | Susana       | No       | No    | Me apunto                      |
+|---+------------+--------------+----------+-------+--------------------------------|
+
+|---+------------------+---------------+-------------------------|
+|   | */Chats/*        |               |                         |
+|---+------------------+---------------+-------------------------|
+| / | <>               | <>            | <>                      |
+|   | Nombre de /chat/ | Administrador | Integrantes adicionales |
+|   | Cosas de ASIR    | Pepe          | María, Juan, Susana     |
+|   | Viaje a la nieve | Juan          | Pepe, Susana            |
+|---+------------------+---------------+-------------------------|
+
+|---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
+|   | *Mensajes en /chats/* |           |                                |                        |                     |
+|---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
+| / | <>                    | <>        | <>                             | <>                     | <>                  |
+|   | Nombre de /chat/      | Remitente | Mensaje                        | Recibido               | Leido               |
+|   | Cosas de Asir         | Pepe      | Hoy el profesor Iñaki no viene | Recibido por todos     | Leído por todos     |
+|   | Cosas de Asir         | María     | Pues ya estoy en el insti :(   | Recibido por todos     | Nadie lo ha leído   |
+|   | Viaje a la nieve      | Juan      | El sábado no puedo             | Recibido solo por Pepe | Leido solo por Pepe |
+|---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
+
+  Es importante que los datos coincidan con los especificados. Los valores /cierto/ y /falso/ se pondrán como un número con =1= y =0= (esto puede facilitar la vista =V_MENSAJESPORGRUPO=).
+  
+
+  Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
+  
+  - =V_CONTACTOS= (1 punto)
+    - =(nombreusuario, nombrecontacto)= 
+  - =V_MENSAJESENVIADOSA= (1.5 puntos)
+    - =(nombredestinatario, nombreemisor, textomensaje, recibido, leido)= 
+    - Todos los mensajes enviados a un destinatario, sean directos o dentro de un grupo de /chat/
+  - =V_MENSAJESPORGRUPO= (1.5 puntos)
+    - =(nombrechat, nombreemisor, textomensaje, cuantosrecibido, cuantosleido)= 
+    - Mensajes enviados a un grupo de /chat/
+  - =V_GRUPOSDECHAT= (1 punto)
+    - =(nombrechat,cuantosintegrantes)= 
+    - Número de integrantes de un chat, incluido el creador
+
+  #+caption: Código de creación de vistas    
+  #+begin_src sql +n
+  create view V_CONTACTOS(nombreusuario, nombrecontacto) as
+  select ...
+  
+  create view V_MENSAJESENVIADOSA(nombredestinatario,nombreemisor,textomensaje,recibido,leido) as
+  select ...
+  
+  create view V_MENSAJESPORGRUPO(nombrechat,nombreemisor,textomensaje,cuantosrecibido,cuantosleido) as
+  select ...
+    
+  create view V_GRUPOSDECHAT(nombrechat,cuantosintegrantes) as
+  select ...
+  #+end_src
+    
+
+* Instrucciones de entrega
+- El ejercicio se realizará y entregará de manera individual.
+    - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+- Entrega el modelo ER en formato PDF en la tarea del aula virtual
+- En tu [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=29534][usuario del servidor de Oracle del instituto]], crea las tablas, inserta los datos y define las vistas.  
+- La corrección se realizará de forma semiautomática. Es *importante* que los nombres de ficheros, vistas y atributos de vistas sean los especificados.
+- Presta atención al plazo de entrega (con fecha y hora).
+  
+
+#+latex: \begin{Aviso}
+El servidor está compartido con todos los compañeros, con otros grupos y otros profesores. Es posible que las bases de datos allí guardadas se pierdan.
+
+Se recomienda guardar todas las órdenes (=create table=, =insert=, =create view=, \ldots) en ficheros de texto.
+#+latex: \end{Aviso}

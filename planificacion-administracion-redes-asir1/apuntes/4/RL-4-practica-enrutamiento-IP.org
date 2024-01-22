@@ -1,0 +1,86 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+LATEX_HEADER: \lhead{Red IP simple \textit{Packet Tracer}}
+#+LATEX_HEADER: \rhead{Planificación y administración de redes}
+
+
+#+title: Práctica de enrutamiento IP con máquinas virtuales
+
+
+
+* Objetivo de la práctica
+Tras la práctica, se espera que el alumno haya conseguido:
+- Comprender el modo /puente/ (/bridged/) de los sistemas de virtualización
+- Familiarizarse con los  mecanismos de configuración de redes IP en varios sistemas operativos
+- Configurar el enrutamiento entre varios ordenadores
+
+Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-ip.pdf][última versión de la práctica en este enlace]].
+
+
+
+#+latex: \newpage
+* Descripción del problema
+Se utilizará el sistema de máquinas virtuales descrito en la figura [[fig:conexiones-de-red-alumno]]. Debe haber conectividad IP entre:
+- Los ordenadores de clase y el /router/ Debian.
+- Entre todos los /routers/ Debian de otros compañeros
+- El /host/ Windows y el /host/ Debian
+- Entre los /hosts/ y el /router/ Debian
+
+#+CAPTION: Diagrama de conexiones de red
+#+NAME: fig:conexiones-de-red-alumno
+#+attr_latex: :width 0.5\textwidth
+[[file:media/practica-red-ip.pdf]]
+
+La conectividad IP puede comprobarse con comandos como =ping=, =pathping=, =mtr= o =tracert=
+
+
+* Características de las máquinas virtuales
+- El /router/ Debian deberá ser configurado sin utilizar el modo gráfico ni /network manager/
+- Se recomienda utilizar distribuciones Debian frente a Ubuntu, por el ahorro de memoria RAM. Sin entorno gráfico, Debian funciona correctamente con 512MB.
+- Por la misma razón, Windows 7 es preferible a Windows 10 o Windows 11.
+- El número /n/ corresponde con el número de identificación del PC real en clase, que se apuntará en esta hoja de cálculo: [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
+
+
+* Enrutamiento
+Conecta tus máquinas virtuales a las del resto del aula como se indica en la figura [[fig:conexiones-de-red-aula]].
+- Activa el enrutamiento en el /router/ Debian
+- Configura las tablas del /router/ Debian para que enrute hacia el resto de redes de tus compañeros
+- Comprueba que:
+  1. Tu /router/ Debian contacta con el resto de /routers/ Debian
+  2. Tu /router/ Debian contacta con el resto de máquinas reales
+  3. Tus ordenadores /hosts/ (Windows y Debian) pueden contactar con otros /routers/ Debian
+  4. Tus ordenadores /hosts/ pueden contactar con otros ordenadores /hosts/
+- *Nota*: la comunicación entre las máquinas reales y los ordenadores /hosts/ queda fuera de esta práctica
+
+#+CAPTION: Diagrama de conexiones de red en el aula
+#+NAME: fig:conexiones-de-red-aula
+[[file:media/practica-enrutamiento-ip.pdf]]
+
+La conectividad IP puede comprobarse con comandos como =pathping=, =mtr= o =tracert=. =ping= no es válido, pues no muestra los saltos del enrutamiento.
+
+* Reinicio
+La configuración realizada en el /router/ puede que no sea persistente, y no se mantiene tras un reinicio. Investiga cómo puede conseguirse que al reiniciar siga funcionando el enrutamiento.
+
+* Qué se valorará
+Se entregará un documento (entrada de blog, =DOCX=, =PDF= \ldots) con los pasos que se han seguido para la creación de la red y su configuración, así como la salida de los comandos que muestran la conectividad de los ordenadores.
+
+Se tendrá en cuenta:
+- La corrección técnica
+- Que siga funcionando tras un reinicio  
+- La claridad
+  - Diagramas, pruebas de funcionamiento, instrucciones completas \ldots
+- La apariencia profesional
+  - Presentación, gramática, ortografía, homogeneidad \ldots
+  
+
+
+* Instrucciones de entrega
+- El ejercicio se realizará y entregará de manera
+  individual.
+  - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+- Sube el documento a [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189][la tarea correspondiente en el aula virtual]]
+- Presta atención al plazo de entrega (con fecha y hora).
+
+
+
+

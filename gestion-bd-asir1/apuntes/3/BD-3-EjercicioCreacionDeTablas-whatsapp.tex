@@ -1,159 +1,265 @@
-\input{../../../common/plantilla-ejercicio.tex}
-\usepackage{eurosym}
-
-\newcommand{\anio}{2019}
-
-
-
-
-\renewcommand{\hmwkTitle}{Diseño E/R, paso a SQL e inserción de datos}
-\renewcommand{\hmwkClass}{Gestión de Bases de Datos}
-
-\usepackage{enumitem}% http://ctan.org/pkg/enumitem
-%\setlist[itemize]{parsep=0em}
-
+% Created 2024-01-21 dom 18:52
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Práctica creación de base de datos}
+\rhead{Gestión de bases de datos}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\author{Álvaro González Sotillo}
+\date{\today}
+\title{Diseño E/R, paso a SQL e inserción de datos}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={Diseño E/R, paso a SQL e inserción de datos},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.1.90 (Org mode 9.6.10)}, 
+ pdflang={Spanish}}
 \begin{document}
 
-% \maketitle
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
 
-% ----------------------------------------------------------------------------------------
-%	TABLE OF CONTENTS
-% ----------------------------------------------------------------------------------------
+\captionsetup{font=scriptsize}
 
-% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
 
-\primerapagina%
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
 
 
 \section{Objetivo de la práctica}
+\label{sec:org0000000}
 Se pretende que el alumno sea capaz de pasar desde las necesidades de datos de una empresa hasta las órdenes SQL necesarias para implementar dicha necesidad en Oracle
 
-Se puede descargar \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/3/BD-3-EjercicioCreacionDeTablas-whatsapp.pdf}{la última versión de la práctica en este enlace}
+Se puede descargar \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/3/BD-3-EjercicioCreacionDeTablas-whatsapp.pdf}{la última versión de la práctica en este enlace}
 
 \section{Modelo de datos}
+\label{sec:org0000003}
 Una compañía decide lanzar un sistema de mensajería al estilo de Whatsapp.
 \begin{itemize}
-\item De cada usuario se conoce su número de teléfono y un \textit{nick}, que podría repetirse.
+\item De cada usuario se conoce su número de teléfono y un \emph{nick}, que podría repetirse.
 \item Cada usuario mantiene una lista de contactos, que son otros usuarios.
 \item Los usuarios pueden enviar mensajes de texto a cualquiera de sus contactos. Un mensaje es un texto de hasta 1000 caracteres.
 \item Los mensajes tienen dos confirmaciones:
-  \begin{itemize}
-  \item Confirmación de recibido: el mensaje ha llegado al terminal del destinatario
-  \item Confirmación de leido: el usuario ha abierto el mensaje
-  \end{itemize}
-  
-  
-\item Los usuarios pueden crear grupos de \textit{chat}:
-  \begin{itemize}
-  \item Un grupo tiene un nombre.
-  \item El usuario creador es el administrador, y agrega a los usuarios que desea.
-  \item No se pueden crear dos grupos con el mismo nombre.
-  \item Un mensaje enviado a un grupo de \textit{chat} es recibido por todos sus integrantes (menos el que lo envía)
-  \item Las confirmaciones de los mensajes de un \textit{chat} son para cada usuario del \textit{chat}
-  \end{itemize}
-  
+\begin{itemize}
+\item Confirmación de recibido: el mensaje ha llegado al terminal del destinatario
+\item Confirmación de leido: el usuario ha abierto el mensaje
+\end{itemize}
 \end{itemize}
 
 
 
-\begin{homeworkProblem}[: Realizar el diagrama \textbf{ER} con Oracle \textbf{SQLDeveloper} (2 puntos)]
-  En el diagrama deben ser visibles (al menos):
-  \begin{itemize}
-  \item Los nombres de las entidades
-  \item Los atributos de las entidades
-  \item Las relaciones entre las entidades
-  \end{itemize}
-
-\end{homeworkProblem}
-
-
-\begin{homeworkProblem}[: Crear las tablas de Oracle utilizando \textbf{SQL} (1 punto)]
-  Se entregará un fichero de texto de extensión \texttt{.SQL} con las órdenes \textbf{SQL} de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
-
-\end{homeworkProblem}
+\begin{itemize}
+\item Los usuarios pueden crear grupos de \emph{chat}:
+\begin{itemize}
+\item Un grupo tiene un nombre.
+\item El usuario creador es el administrador, y agrega a los usuarios que desea.
+\item No se pueden crear dos grupos con el mismo nombre.
+\item Un mensaje enviado a un grupo de \emph{chat} es recibido por todos sus integrantes (menos el que lo envía)
+\item Las confirmaciones de los mensajes de un \emph{chat} son por cada usuario del \emph{chat}
+\end{itemize}
+\end{itemize}
 
 
+\section{Realizar el diagrama \textbf{ER} con Oracle \textbf{SQLDeveloper} (2 puntos)}
+\label{sec:org0000006}
+En el diagrama deben ser visibles (al menos):
+\begin{itemize}
+\item Los nombres de las entidades
+\item Los atributos de las entidades
+\item Las relaciones entre las entidades
+\end{itemize}
 
-\begin{homeworkProblem}[: Insertar datos en las tablas ]
 
-  El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional (2 puntos):
-  \begin{center}
-  \begin{tabular}{|l|l|}
-    \hline
-    \multicolumn{2}{|c|}{Usuarios} \\
-    \hline
-    Teléfono & Nick \\
-    \hline
-    11111111 & Pepe \\
-    22222222 & María \\
-    33333333 & Juan \\
-    44444444 & Susana \\
-    \hline
-  \end{tabular}
-  \begin{tabular}{|l|l|}
-    \hline
-    \multicolumn{2}{|c|}{Contactos} \\
-    \hline
-    Nick & Sus contactos\\
-    \hline
-    María & Pepe \\
-    Pepe & María, Juan, Susana \\
-    Juan & Pepe, Susana \\
-    Susana & Juan \\
-    \hline
-  \end{tabular}
-  
-  \begin{tabular}{|l|l|l|l|l|}
-    \hline
-    \multicolumn{5}{|c|}{Mensajes} \\
-    \hline
-    Remitente & Destinatario & Recibido & Leído & Mensaje \\
-    \hline
-    Pepe & María & Sí & Sí & Vamos a hacer un grupo de ASIR \\
-    María & Pepe & Sí & Sí & Vale \\
-    Susana & Juan & Sí & No & ¿Te apuntas a la nieve? \\
-    Juan & Susana & No & No & Me apunto \\
-    \hline
-  \end{tabular}
-  
-  \begin{tabular}{|l|l|l|}
-    \hline
-    \multicolumn{3}{|c|}{\textit{Chats}} \\
-    \hline
-    Nombre de \textit{chat} & Administrador & Integrantes adicionales \\
-    \hline
-    Cosas de ASIR & Pepe & María, Juan, Susana \\
-    Viaje a la nieve & Juan & Pepe, Susana \\
-    \hline
-  \end{tabular}
 
-  
-  \begin{tabular}{|l|l|l|l|l|}
-    \hline
-    \multicolumn{5}{|c|}{Mensajes en \textit{chats}} \\
-    \hline
-    Nombre de \textit{chat} & Remitente & Mensaje & Recibido & Leido \\
-    \hline
-    Cosas de Asir & Pepe & Hoy el profesor Iñaki no viene & Recibido por todos & Leído por todos \\
-    Cosas de Asir & María & Pues ya estoy en el insti :( & Recibido por todos & Nadie lo ha leído \\
-    Viaje a la nieve & Juan & El sábado no puedo & Recibido solo por Pepe & Leido solo por Pepe \\
-    \hline
-  \end{tabular}
+
+\section{Crear las tablas de Oracle utilizando \textbf{SQL} (1 punto)}
+\label{sec:org0000009}
+Se entregará un fichero de texto de extensión \texttt{.SQL} con las órdenes \textbf{SQL} de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
+
+
+
+
+\section{Insertar datos en las tablas}
+\label{sec:org000000c}
+
+El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional (2 puntos):
+
+\begin{Aviso}
+Estos datos no están todos normalizados. Si alguna tabla de la base de datos coincide con esta estructura, podría ser incorrecta.
+Este apartado solo puede valorarse si las tablas están en \textbf{tercera forma normal}.
+\end{Aviso}
+
+\begin{center}
+\begin{tabular}{|r|l|}
+\hline
+\textbf{Usuarios} & \\[0pt]
+\hline
+Teléfono & Nick\\[0pt]
+\hline
+11111111 & Pepe\\[0pt]
+22222222 & María\\[0pt]
+33333333 & Juan\\[0pt]
+44444444 & Susana\\[0pt]
+\hline
+\end{tabular}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Contactos} & \\[0pt]
+\hline
+Nick & Sus contactos\\[0pt]
+\hline
+María & Pepe\\[0pt]
+Pepe & María, Juan, Susana\\[0pt]
+Juan & Pepe, Susana\\[0pt]
+Susama & Juan\\[0pt]
+\hline
+\end{tabular}
 \end{center}
-  Es importante que los datos coincidan con los especificados. Los valores \textit{cierto} y \textit{falso} se pondrán como un número con \texttt{1} y \texttt{0} (esto puede facilitar la vista \texttt{V\_MENSAJESPORGRUPO}).
-  
 
-  Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
-  
-  \begin{itemize}
-  \item \texttt{V\_CONTACTOS(nombreusuario, nombrecontacto)} (1 punto)
-  
-  \item \texttt{V\_MENSAJESENVIADOSA(nombredestinatario, nombreemisor, textomensaje, recibido, leido)} (1.5 puntos): Todos los mensajes enviados a un destinatario, sean directos o dentro de un grupo de \texttt{chat}
-  \item \texttt{V\_MENSAJESPORGRUPO(nombrechat, nombreemisor, textomensaje, cuantosrecibido, cuantosleido)} (1.5 puntos): Mensajes enviados a un grupo de \textit{chat}
-    
-  \item \texttt{V\_GRUPOSDECHAT(nombrechat,cuantosintegrantes)} (1 punto): Número de integrantes de un chat, incluido el creador
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Mensajes} &  &  &  & \\[0pt]
+\hline
+Remitente & Destinatario & Recibido & Leído & Mensaje\\[0pt]
+\hline
+Pepe & María & Sí & Sí & Vamos a hacer un grupo de ASIR\\[0pt]
+María & Pepe & Sí & Sí & Vale\\[0pt]
+Susana & Juan & Sí & No & ¿Te apuntas a la nieve?\\[0pt]
+Juan & Susana & No & No & Me apunto\\[0pt]
+\hline
+\end{tabular}
+\end{center}
 
-  \begin{listadosql}{Vistas a crear}{lst:vistas}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{\emph{Chats}} &  & \\[0pt]
+\hline
+Nombre de \emph{chat} & Administrador & Integrantes adicionales\\[0pt]
+Cosas de ASIR & Pepe & María, Juan, Susana\\[0pt]
+Viaje a la nieve & Juan & Pepe, Susana\\[0pt]
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Mensajes en \emph{chats}} &  &  &  & \\[0pt]
+\hline
+Nombre de \emph{chat} & Remitente & Mensaje & Recibido & Leido\\[0pt]
+Cosas de Asir & Pepe & Hoy el profesor Iñaki no viene & Recibido por todos & Leído por todos\\[0pt]
+Cosas de Asir & María & Pues ya estoy en el insti :( & Recibido por todos & Nadie lo ha leído\\[0pt]
+Viaje a la nieve & Juan & El sábado no puedo & Recibido solo por Pepe & Leido solo por Pepe\\[0pt]
+\hline
+\end{tabular}
+\end{center}
+
+Es importante que los datos coincidan con los especificados. Los valores \emph{cierto} y \emph{falso} se pondrán como un número con \texttt{1} y \texttt{0} (esto puede facilitar la vista \texttt{V\_MENSAJESPORGRUPO}).
+
+
+Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
+
+\begin{itemize}
+\item \texttt{V\_CONTACTOS} (1 punto)
+\begin{itemize}
+\item \texttt{(nombreusuario, nombrecontacto)}
+\end{itemize}
+\item \texttt{V\_MENSAJESENVIADOSA} (1.5 puntos)
+\begin{itemize}
+\item \texttt{(nombredestinatario, nombreemisor, textomensaje, recibido, leido)}
+\item Todos los mensajes enviados a un destinatario, sean directos o dentro de un grupo de \emph{chat}
+\end{itemize}
+\item \texttt{V\_MENSAJESPORGRUPO} (1.5 puntos)
+\begin{itemize}
+\item \texttt{(nombrechat, nombreemisor, textomensaje, cuantosrecibido, cuantosleido)}
+\item Mensajes enviados a un grupo de \emph{chat}
+\end{itemize}
+\item \texttt{V\_GRUPOSDECHAT} (1 punto)
+\begin{itemize}
+\item \texttt{(nombrechat,cuantosintegrantes)}
+\item Número de integrantes de un chat, incluido el creador
+\end{itemize}
+\end{itemize}
+
+\begin{lstlisting}[language=SQL,label= ,caption={Código de creación de vistas},captionpos=b,firstnumber=1,numbers=left]
   create view V_CONTACTOS(nombreusuario, nombrecontacto) as
   select ...
   
@@ -165,35 +271,26 @@ Una compañía decide lanzar un sistema de mensajería al estilo de Whatsapp.
     
   create view V_GRUPOSDECHAT(nombrechat,cuantosintegrantes) as
   select ...
-\end{listadosql}
-    
-\end{itemize}
+\end{lstlisting}
 
-\end{homeworkProblem}
 
 \section{Instrucciones de entrega}
+\label{sec:org000000f}
 \begin{itemize}
 \item El ejercicio se realizará y entregará de manera individual.
-  \begin{itemize}
-  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
-  \end{itemize}
-\item Entrega tu trabajo en un fichero \texttt{ZIP}:
-  \begin{itemize}
-  \item La imagen de tu modelo ER  con SQLDeveloper: \texttt{\textbf{1.modelo-er.pdf}}
-  \item El script de creación de tablas: \texttt{\textbf{2.creacion.sql}}
-  \item El script de inserción de datos en las tablas: \texttt{\textbf{3.insercion.sql}}
-  \item El script de creación de vistas: \texttt{\textbf{4.vistas.sql}}
-  \item Si los ficheros de texto no están codificados en UTF8, se restará 1 punto.
-  \item Si los textos no están bien transcritos (vocales acentuadas, \texttt{ñ}, \texttt{¿} \ldots), se restará 1 punto.
-  \end{itemize}
-\item Los nombres de los ficheros incluyen un número (para que estén ordenados). No incluyas mayúsculas. No incluyas acentos. No pongas espacios. No añadas palabras, letras ni números a los nombres.
-  \item La corrección se realizará de forma semiautomática. Es \textbf{importante} que los nombres de ficheros, vistas y atributos de vistas sean los especificados.
-\item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=12774}{la tarea correspondiente en el aula virtual}
-\item Presta atención al plazo de entrega (con fecha y hora).
-  
+\begin{itemize}
+\item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
 \end{itemize}
+\item Entrega el modelo ER en formato PDF en la tarea del aula virtual
+\item En tu \href{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=29534}{usuario del servidor de Oracle del instituto}, crea las tablas, inserta los datos y define las vistas.
+\item La corrección se realizará de forma semiautomática. Es \textbf{importante} que los nombres de ficheros, vistas y atributos de vistas sean los especificados.
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
+
+
+\begin{Aviso}
+El servidor está compartido con todos los compañeros, con otros grupos y otros profesores. Es posible que las bases de datos allí guardadas se pierdan.
+
+Se recomienda guardar todas las órdenes (\texttt{create table}, \texttt{insert}, \texttt{create view}, \ldots) en ficheros de texto.
+\end{Aviso}
 \end{document}
-
-
-
-
