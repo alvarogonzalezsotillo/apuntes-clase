@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-16 mar 19:39</p>
+<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-22 lun 12:00</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -461,7 +461,7 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-9">9. "Entrar" en un <i>container</i></a></li>
 <li><a href="#/slide-10">10. Usuarios</a></li>
 <li><a href="#/slide-11">11. <i>Docker registry</i></a></li>
-<li><a href="#/slide-12">12. Práctica: instalar Oracle</a></li>
+<li><a href="#/slide-12">12. Práctica: Instalar webmin</a></li>
 <li><a href="#/slide-13">13. Referencias</a></li>
 </ul>
 </div>
@@ -674,12 +674,13 @@ window.addEventListener("load",()=>{
 <ul>
 <li>¿Hay Docker para Windows?
 <ul>
-<li>Respuesta corta (y correcta): No</li>
+<li>Respuesta corta: No</li>
 <li>Respuesta larga:
 <ul>
 <li>Hay un <i>cliente</i> Docker para Windows</li>
 <li>Se instala una máquina virtual con Linux</li>
 <li>El cliente Docker se conecta al servidor Docker de la máquina virtual</li>
+<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows</li>
 
 </ul></li>
 
@@ -970,94 +971,21 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 <div class="slide-footer"></div>
 
 
-
 </section>
 </section>
 <section>
 <section id="slide-12">
-<h2 id="12"><span class="section-number-2">12.</span> Práctica: instalar Oracle</h2>
+<h2 id="12"><span class="section-number-2">12.</span> Práctica: Instalar webmin</h2>
 <ul>
-<li>Usaremos la imagen <code>container-registry.oracle.com/database/enterprise:21.3.0.0</code></li>
-<li>Se recomienda usar el <i>registry</i> del instituto, que no necesita contraseña
-<ul>
-<li><code>sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0</code></li>
-
-</ul></li>
+<li>Es un sistema para manejar servidores Linux mediante con una interfaz web</li>
+<li>Comprueba qué se ha instalado en el <i>container</i> y lanza una <i>shell</i> desde la web</li>
 
 </ul>
-<div class="slide-footer"></div>
+<div class="org-src-container">
 
-
-</section>
-<section id="slide-12-1">
-<h3 id="12-1"><span class="section-number-3">12.1.</span> Instrucciones</h3>
-<ul>
-<li>Instrucciones: <a href="https://container-registry.oracle.com/ords/ocr/ba/database/enterprise">https://container-registry.oracle.com/ords/ocr/ba/database/enterprise</a></li>
-
-</ul>
-
-<pre class="example" id="org0000000">
-docker run -d --name &lt;container_name&gt; \
- -p &lt;host_port&gt;:1521 -p &lt;host_port&gt;:5500 \
- -e ORACLE_SID=&lt;your_SID&gt; \
- -e ORACLE_PDB=&lt;your_PDBname&gt; \
- -e ORACLE_PWD=&lt;your_database_password&gt; \
- -e INIT_SGA_SIZE=&lt;your_database_SGA_memory_MB&gt; \
- -e INIT_PGA_SIZE=&lt;your_database_PGA_memory_MB&gt; \
- -e ORACLE_EDITION=&lt;your_database_edition&gt; \
- -e ORACLE_CHARACTERSET=&lt;your_character_set&gt; \
- -e ENABLE_ARCHIVELOG=true \
- -v [&lt;host_mount_point&gt;:]/opt/oracle/oradata \
-container-registry.oracle.com/database/enterprise:21.3.0.0
-
-Parameters:
- --name:                 The name of the container (default: auto generated
- -p:                     The port mapping of the host port to the container port.
-                         Two ports are exposed: 1521 (Oracle Listener), 5500 (OEM Express)
- -e ORACLE_SID:          The Oracle Database SID that should be used (default:ORCLCDB)
- -e ORACLE_PDB:          The Oracle Database PDB name that should be used (default: ORCLPDB1)
- -e ORACLE_PWD:          The Oracle Database SYS, SYSTEM and PDBADMIN password (default: auto generated)
- -e INIT_SGA_SIZE:       The total memory in MB that should be used for all SGA components (optional)
- -e INIT_PGA_SIZE:       The target aggregate PGA memory in MB that should be used for all server processes attached to the instance (optional)
- -e ORACLE_EDITION:      The Oracle Database Edition (enterprise/standard, default: enterprise)
- -e ORACLE_CHARACTERSET: The character set to use when creating the database (default: AL32UTF8)
- -e ENABLE_ARCHIVELOG:   To enable archive log mode when creating the database (default: false). Supported 19.3 onwards.
- -v /opt/oracle/oradata
-                         The data volume to use for the database. Has to be writable by the Unix "oracle" (uid: 54321) user inside the container
-                         If omitted the database will not be persisted over container recreation.
- -v /opt/oracle/scripts/startup | /docker-entrypoint-initdb.d/startup
-                         Optional: A volume with custom scripts to be run after database startup.
-                         For further details see the "Running scripts after setup and on
-                         startup" section below.
- -v /opt/oracle/scripts/setup | /docker-entrypoint-initdb.d/setup
-                         Optional: A volume with custom scripts to be run after database setup.
-                         For further details see the "Running scripts after setup and on startup" section below.
-</pre>
-<div class="slide-footer"></div>
-
-</section>
-<section id="slide-12-2">
-<h3 id="12-2"><span class="section-number-3">12.2.</span> En nuestro caso</h3>
-<ul>
-<li>Puerto <code>1521</code> del container al <code>1521</code> de la máquina <i>host</i></li>
-<li>Ficheros de datos en <code>/opt/oracle/oradata</code> del la máquina <i>host</i></li>
-<li>Nombre del container <code>oracle-enterprise-21.3.0.0</code></li>
-<li>SID: <code>ORADOCKER</code></li>
-<li>PDB: <code>PDBORADOCKER</code></li>
-<li>Haz un <i>script</i> en el <i>host</i> para ejecutar <code>sqlplus</code> como <code>SYSDBA</code>
-<ul>
-<li><code>/opt/oracle/sqplus-as-sysdba.sh</code></li>
-<li>con <code>docker exec</code></li>
-<li>puede ayudarte <code>bash -c</code></li>
-
-</ul></li>
-<li>Haz un <i>script</i> en el <i>host</i> para ejecutar <code>sqlplus</code> como <code>SYSDBA</code> en la PDB
-<ul>
-<li><code>/opt/oracle/sqplus-as-sysdba-pdb.sh</code></li>
-
-</ul></li>
-
-</ul>
+<pre><code class="bash" >sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+</code></pre>
+</div>
 <div class="slide-footer"></div>
 
 

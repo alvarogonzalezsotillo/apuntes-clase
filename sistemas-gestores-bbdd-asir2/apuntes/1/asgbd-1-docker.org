@@ -54,11 +54,12 @@
 
 * Portabilidad de Docker
 - ¿Hay Docker para Windows?
-  - Respuesta corta (y correcta): No
+  - Respuesta corta: No
   - Respuesta larga:
     - Hay un /cliente/ Docker para Windows
     - Se instala una máquina virtual con Linux
     - El cliente Docker se conecta al servidor Docker de la máquina virtual
+    - También hay [[https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/][/containers/ para Windows]], solo instalables en Windows  
 
 * Instalación de Docker
 - [[https://docs.docker.com/engine/install/][Página oficial]]
@@ -176,9 +177,17 @@
 }
 #+end_src
 
-      
 
-* Práctica: instalar Oracle
+* Práctica: Instalar webmin
+- Es un sistema para manejar servidores Linux mediante con una interfaz web
+- Comprueba qué se ha instalado en el /container/ y lanza una /shell/ desde la web
+#+begin_src bash
+sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+#+end_src
+
+
+
+* Práctica: instalar Oracle :noexport:
 - Usaremos la imagen =container-registry.oracle.com/database/enterprise:21.3.0.0=
 - Se recomienda usar el /registry/ del instituto, que no necesita contraseña
   - =sudo docker pull 10.1.33.201:8090/database/enterprise:21.3.0.0=
@@ -238,7 +247,6 @@ Parameters:
 - Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA= en la PDB
   - =/opt/oracle/sqplus-as-sysdba-pdb.sh=
     
-
 
 * Referencias
 #+include: "../../../common/footer.org"
