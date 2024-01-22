@@ -356,7 +356,23 @@ where
 group by 
   s.instructor_id, 
   first_name, 
-  last_name  
+  last_name
+
+
+
+select
+  first_name,
+  last_name,
+  count(distinct e.student_id)
+from
+  instructor i
+  join section s on i.instructor_id=s.instructor_id
+  join enrollment e on e.section_id=s.section_id
+group by
+  s.instructor_id,
+  first_name,
+  last_name
+
 #+end_src
 
 ** Lista de profesores y número de alumnos a los que imparten algún curso, por sección (nombre, apellidos, descripción del curso, identificador de sección, número de alumnos)
@@ -385,6 +401,16 @@ Estos promedios se ponderan con el peso especificado.
 Nota: ignoramos el criterio de no contar la más baja
 
 ** ¿En qué cursos está matriculada Ángela Torres?
+#+begin_src sql
+select description, s.student_id, c.course_no, se.section_id
+from
+  student s 
+  join enrollment e on s.student_id=e.student_id
+  join section se on e.section_id=se.section_id
+  join course c on se.course_no=c.course_no
+where
+  first_name='Angela' and last_name='Torres';
+#+end_src
 
 ** ¿En qué cursos no está matriculada Ángela Torres?
 
