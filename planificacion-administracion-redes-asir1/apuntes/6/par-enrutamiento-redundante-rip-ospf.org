@@ -61,7 +61,15 @@
 
 [[file:media/ejercicio-redundancia-routers.png]]
 
-#+latex: \attachfile{./pkt/redundancia-routers-rip.pkt}
+#+begin_export latex
+\attachfile[mimetype=octet/stream,
+author={./pkt/redundancia-routers-rip.pkt},
+subject={La plantilla},
+appearance=false,
+icon=Paperclip,
+description={La plantilla}]
+{./pkt/redundancia-routers-rip.pkt}
+#+end_export
 
 [[file:pkt/redundancia-routers-rip.pkt][Enlace a fichero PKT]]
 
