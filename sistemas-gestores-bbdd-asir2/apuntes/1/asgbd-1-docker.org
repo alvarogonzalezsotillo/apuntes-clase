@@ -54,11 +54,12 @@
 
 * Portabilidad de Docker
 - ¿Hay Docker para Windows?
-  - Respuesta corta (y correcta): No
+  - Respuesta corta: No
   - Respuesta larga:
     - Hay un /cliente/ Docker para Windows
     - Se instala una máquina virtual con Linux
     - El cliente Docker se conecta al servidor Docker de la máquina virtual
+    - También hay [[https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/][/containers/ para Windows]], solo instalables en Windows  
 
 * Instalación de Docker
 - [[https://docs.docker.com/engine/install/][Página oficial]]
@@ -121,7 +122,10 @@
 
 ** Volúmenes
 - Puntos de montaje definidos al crear la imagen
-- Suelen ser directorios importantes para la aplicación /containerizada/
+  - Suelen ser directorios importantes para la aplicación /containerizada/
+- Pueden ser
+  - directorios creados y manejados internamente por Docker
+  - directorios del /file system/
   #+begin_src bash
   docker run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
   #+end_src
@@ -176,7 +180,27 @@
 }
 #+end_src
 
-      
+
+* Práctica: Instalar Webmin
+- Es un sistema para manejar servidores Linux mediante con una interfaz web
+- Comprueba qué se ha instalado en el /container/ y lanza una /shell/ desde la web
+#+begin_src bash
+sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+#+end_src
+
+* Práctica: Instalar Portainer
+- Es un sistema para manejar los contenedores Docker, instalado dentro de Docker (¿?)
+  - Lo consigue dejando que el container acceda a =/var/run/docker.sock=
+- [[https://docs.portainer.io/start/install-ce/server/docker/linux][https://docs.portainer.io/start/install-ce/server/docker/linux]]
+
+#+begin_src bash
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 \\
+  --name portainer \\
+  --restart=always \\
+  -v /var/run/docker.sock:/var/run/docker.sock \\
+  -v portainer_data:/data portainer/portainer-ce:latest
+#+end_src  
 
 * Práctica: instalar Oracle
 - Usaremos la imagen =container-registry.oracle.com/database/enterprise:21.3.0.0=
@@ -238,7 +262,6 @@ Parameters:
 - Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA= en la PDB
   - =/opt/oracle/sqplus-as-sysdba-pdb.sh=
     
-
 
 * Referencias
 #+include: "../../../common/footer.org"

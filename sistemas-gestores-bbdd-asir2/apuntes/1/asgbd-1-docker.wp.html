@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-01-16 mar 19:39 -->
+<!-- 2024-01-22 lun 12:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -215,8 +215,10 @@
 <li><a href="#org000002d">9. "Entrar" en un <i>container</i></a></li>
 <li><a href="#org0000030">10. Usuarios</a></li>
 <li><a href="#org0000036">11. <i>Docker registry</i></a></li>
-<li><a href="#org0000040">12. Práctica: instalar Oracle</a></li>
-<li><a href="#org0000043">13. Referencias</a></li>
+<li><a href="#org0000039">12. Práctica: Instalar Webmin</a></li>
+<li><a href="#org000003c">13. Práctica: Instalar Portainer</a></li>
+<li><a href="#org0000046">14. Práctica: instalar Oracle</a></li>
+<li><a href="#org0000049">15. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -415,12 +417,13 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>¿Hay Docker para Windows?
 <ul class="org-ul">
-<li>Respuesta corta (y correcta): No</li>
+<li>Respuesta corta: No</li>
 <li>Respuesta larga:
 <ul class="org-ul">
 <li>Hay un <i>cliente</i> Docker para Windows</li>
 <li>Se instala una máquina virtual con Linux</li>
 <li>El cliente Docker se conecta al servidor Docker de la máquina virtual</li>
+<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -555,10 +558,17 @@ Equivalente a un <code>mount --bind</code>
 <h3 id="org0000027"><span class="section-number-3">8.2.</span> Volúmenes</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
-<li>Puntos de montaje definidos al crear la imagen</li>
+<li>Puntos de montaje definidos al crear la imagen
+<ul class="org-ul">
+<li>Suelen ser directorios importantes para la aplicación <i>containerizada</i></li>
+</ul></li>
 <li><p>
-Suelen ser directorios importantes para la aplicación <i>containerizada</i>
+Pueden ser
 </p>
+<ul class="org-ul">
+<li>directorios creados y manejados internamente por Docker</li>
+<li>directorios del <i>file system</i></li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #ff6347;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
 </pre>
@@ -675,10 +685,46 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </div>
 
 
-
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">12.</span> Práctica: instalar Oracle</h2>
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">12.</span> Práctica: Instalar Webmin</h2>
 <div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>Es un sistema para manejar servidores Linux mediante con una interfaz web</li>
+<li>Comprueba qué se ha instalado en el <i>container</i> y lanza una <i>shell</i> desde la web</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash">sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">13.</span> Práctica: Instalar Portainer</h2>
+<div class="outline-text-2" id="text-13">
+<ul class="org-ul">
+<li>Es un sistema para manejar los contenedores Docker, instalado dentro de Docker (¿?)
+<ul class="org-ul">
+<li>Lo consigue dejando que el container acceda a <code>/var/run/docker.sock</code></li>
+</ul></li>
+<li><a href="https://docs.portainer.io/start/install-ce/server/docker/linux">https://docs.portainer.io/start/install-ce/server/docker/linux</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-bash">docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #ad7fa8; font-style: italic;">\\</span>
+  --name portainer <span style="color: #ad7fa8; font-style: italic;">\\</span>
+  --restart=always <span style="color: #ad7fa8; font-style: italic;">\\</span>
+  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #ad7fa8; font-style: italic;">\\</span>
+  -v portainer_data:/data portainer/portainer-ce:latest
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000046" class="outline-2">
+<h2 id="org0000046"><span class="section-number-2">14.</span> Práctica: instalar Oracle</h2>
+<div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Usaremos la imagen <code>container-registry.oracle.com/database/enterprise:21.3.0.0</code></li>
 <li>Se recomienda usar el <i>registry</i> del instituto, que no necesita contraseña
@@ -689,14 +735,14 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </div>
 
 
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">12.1.</span> Instrucciones</h3>
-<div class="outline-text-3" id="text-12-1">
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">14.1.</span> Instrucciones</h3>
+<div class="outline-text-3" id="text-14-1">
 <ul class="org-ul">
 <li>Instrucciones: <a href="https://container-registry.oracle.com/ords/ocr/ba/database/enterprise">https://container-registry.oracle.com/ords/ocr/ba/database/enterprise</a></li>
 </ul>
 
-<pre class="example" id="org0000039">
+<pre class="example" id="org000003f">
 docker run -d --name &lt;container_name&gt; \
  -p &lt;host_port&gt;:1521 -p &lt;host_port&gt;:5500 \
  -e ORACLE_SID=&lt;your_SID&gt; \
@@ -736,9 +782,9 @@ Parameters:
 </div>
 </div>
 
-<div id="outline-container-org000003d" class="outline-3">
-<h3 id="org000003d"><span class="section-number-3">12.2.</span> En nuestro caso</h3>
-<div class="outline-text-3" id="text-12-2">
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">14.2.</span> En nuestro caso</h3>
+<div class="outline-text-3" id="text-14-2">
 <ul class="org-ul">
 <li>Puerto <code>1521</code> del container al <code>1521</code> de la máquina <i>host</i></li>
 <li>Ficheros de datos en <code>/opt/oracle/oradata</code> del la máquina <i>host</i></li>
@@ -761,10 +807,9 @@ Parameters:
 </div>
 
 
-
-<div id="outline-container-org0000043" class="outline-2">
-<h2 id="org0000043"><span class="section-number-2">13.</span> Referencias</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">15.</span> Referencias</h2>
+<div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -785,7 +830,7 @@ Parameters:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-01-16 mar 19:39</p>
+<p class="date">Created: 2024-01-22 lun 12:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

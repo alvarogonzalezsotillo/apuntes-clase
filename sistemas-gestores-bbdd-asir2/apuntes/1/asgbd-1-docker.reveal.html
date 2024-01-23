@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-16 mar 19:39</p>
+<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-22 lun 12:07</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -461,8 +461,10 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-9">9. "Entrar" en un <i>container</i></a></li>
 <li><a href="#/slide-10">10. Usuarios</a></li>
 <li><a href="#/slide-11">11. <i>Docker registry</i></a></li>
-<li><a href="#/slide-12">12. Práctica: instalar Oracle</a></li>
-<li><a href="#/slide-13">13. Referencias</a></li>
+<li><a href="#/slide-12">12. Práctica: Instalar Webmin</a></li>
+<li><a href="#/slide-13">13. Práctica: Instalar Portainer</a></li>
+<li><a href="#/slide-14">14. Práctica: instalar Oracle</a></li>
+<li><a href="#/slide-15">15. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -674,12 +676,13 @@ window.addEventListener("load",()=>{
 <ul>
 <li>¿Hay Docker para Windows?
 <ul>
-<li>Respuesta corta (y correcta): No</li>
+<li>Respuesta corta: No</li>
 <li>Respuesta larga:
 <ul>
 <li>Hay un <i>cliente</i> Docker para Windows</li>
 <li>Se instala una máquina virtual con Linux</li>
 <li>El cliente Docker se conecta al servidor Docker de la máquina virtual</li>
+<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows</li>
 
 </ul></li>
 
@@ -834,10 +837,19 @@ Equivalente a un <code>mount --bind</code>
 <section id="slide-8-2">
 <h3 id="8-2"><span class="section-number-3">8.2.</span> Volúmenes</h3>
 <ul>
-<li>Puntos de montaje definidos al crear la imagen</li>
+<li>Puntos de montaje definidos al crear la imagen
+<ul>
+<li>Suelen ser directorios importantes para la aplicación <i>containerizada</i></li>
+
+</ul></li>
 <li><p>
-Suelen ser directorios importantes para la aplicación <i>containerizada</i>
+Pueden ser
 </p>
+<ul>
+<li>directorios creados y manejados internamente por Docker</li>
+<li>directorios del <i>file system</i></li>
+
+</ul>
 <div class="org-src-container">
 
 <pre><code class="bash" >  docker run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
@@ -970,12 +982,55 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 <div class="slide-footer"></div>
 
 
-
 </section>
 </section>
 <section>
 <section id="slide-12">
-<h2 id="12"><span class="section-number-2">12.</span> Práctica: instalar Oracle</h2>
+<h2 id="12"><span class="section-number-2">12.</span> Práctica: Instalar Webmin</h2>
+<ul>
+<li>Es un sistema para manejar servidores Linux mediante con una interfaz web</li>
+<li>Comprueba qué se ha instalado en el <i>container</i> y lanza una <i>shell</i> desde la web</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre><code class="bash" >sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+</section>
+<section>
+<section id="slide-13">
+<h2 id="13"><span class="section-number-2">13.</span> Práctica: Instalar Portainer</h2>
+<ul>
+<li>Es un sistema para manejar los contenedores Docker, instalado dentro de Docker (¿?)
+<ul>
+<li>Lo consigue dejando que el container acceda a <code>/var/run/docker.sock</code></li>
+
+</ul></li>
+<li><a href="https://docs.portainer.io/start/install-ce/server/docker/linux">https://docs.portainer.io/start/install-ce/server/docker/linux</a></li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="bash" >docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 \\
+  --name portainer \\
+  --restart=always \\
+  -v /var/run/docker.sock:/var/run/docker.sock \\
+  -v portainer_data:/data portainer/portainer-ce:latest
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+</section>
+<section>
+<section id="slide-14">
+<h2 id="14"><span class="section-number-2">14.</span> Práctica: instalar Oracle</h2>
 <ul>
 <li>Usaremos la imagen <code>container-registry.oracle.com/database/enterprise:21.3.0.0</code></li>
 <li>Se recomienda usar el <i>registry</i> del instituto, que no necesita contraseña
@@ -989,8 +1044,8 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 
 </section>
-<section id="slide-12-1">
-<h3 id="12-1"><span class="section-number-3">12.1.</span> Instrucciones</h3>
+<section id="slide-14-1">
+<h3 id="14-1"><span class="section-number-3">14.1.</span> Instrucciones</h3>
 <ul>
 <li>Instrucciones: <a href="https://container-registry.oracle.com/ords/ocr/ba/database/enterprise">https://container-registry.oracle.com/ords/ocr/ba/database/enterprise</a></li>
 
@@ -1036,8 +1091,8 @@ Parameters:
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-12-2">
-<h3 id="12-2"><span class="section-number-3">12.2.</span> En nuestro caso</h3>
+<section id="slide-14-2">
+<h3 id="14-2"><span class="section-number-3">14.2.</span> En nuestro caso</h3>
 <ul>
 <li>Puerto <code>1521</code> del container al <code>1521</code> de la máquina <i>host</i></li>
 <li>Ficheros de datos en <code>/opt/oracle/oradata</code> del la máquina <i>host</i></li>
@@ -1061,12 +1116,11 @@ Parameters:
 <div class="slide-footer"></div>
 
 
-
 </section>
 </section>
 <section>
-<section id="slide-13">
-<h2 id="13"><span class="section-number-2">13.</span> Referencias</h2>
+<section id="slide-15">
+<h2 id="15"><span class="section-number-2">15.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>
