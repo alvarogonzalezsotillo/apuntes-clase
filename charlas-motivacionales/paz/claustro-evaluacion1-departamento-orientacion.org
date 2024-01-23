@@ -5,8 +5,10 @@
 #+REVEAL_VERSION: 3.6.0
 #+REVEAL_THEME: simple
 #+LANGUAGE: es
-#+OPTIONS:   toc:nil author:nil
+#+OPTIONS: toc:nil author:nil date:nil
 #+EXPORT_EXCLUDE_TAGS: noexport
+#+REVEAL_HLEVEL: 3
+
 
 #+title: Departamento de Orientación
 
@@ -14,7 +16,7 @@
 #+begin_export html
 <style>
   .reveal section  {
-      font-size: 0.8em !important;
+      font-size: 0.7em !important;
   }
 </style>
 #+end_export
@@ -31,7 +33,8 @@
 * Intervenciones generales 
 - *Actualización de Raíces*. Cambios de los 113 alumnos uno a uno. 
 - *Elaboración del PLAN INCLUYO* por parte de la CCP con los cambios de la normativa.
-  - Desaparición de la categoría de NEE de TDAH y restricción de las posibilidades de incorporar a los alumnos con TEL como alumnos con NEE, ya que solo se va a considerar NEE a los alumnos con un TEL comprensivo y expresivo. 
+  - Desaparición de la categoría de NEE de TDAH y restricción de las posibilidades de incorporar a los alumnos con TEL como alumnos con NEE, ya que solo se va a considerar NEE a los alumnos con un TEL comprensivo y expresivo.
+- Nuevos anexos para *atención a las diferencias*    
 - *4º+empresa*: 66 alumnos han pedido participar en el programa
 - *Reunión con el concejal de educación* para solicitar la apertura en el municipio de un aula de convivencia:
   - Fruto de esta reunión hemos conseguido que se ponga en marcha el programa AULA TEMPORAL DE VALORES Y HABILIDADES PARA LA CONVIVENCIA ESCOLAR
@@ -44,7 +47,77 @@
 
 * Proa+
 - Datos numéricos
-  | Lengua      | 12 alumnos |
+  | Lengua      | 11 alumnos |
   | Matemáticas | 12 alumnos |
-  | Fútbol      | 11 alumnos |
-  | VolleyBall  | 11 alumnos |
+  | Fútbol      | 14 alumnos |
+  | VolleyBall  | 12 alumnos |
+
+** Lengua
+| Admitidos                              | Lista de espera             |
+|----------------------------------------+-----------------------------|
+| Iris Madrid Ortiz 1º D                 | Aaron David Guerrero Acosta |
+| Marta Andrés Vázquez 1º E              | Samantha Paola Mujica       |
+| María Fernanda Nascimiento Álvarez 1ºE | Veronia Dunaionuk           |
+| Carlota Alejandra Guerrera Banache 1ºF | Carmen Abril Poyato Ruiz    |
+| Víctor Gonzalo González 2ºE            | Boris Kirilov               |
+| Leonardo Bogadi 2ºF                    | Salma Essetitou             |
+| Aaron Jean Suni Pantoja,1ºB            | Sofia Isabela Chiquito      |
+| Rubén Del Toro Zazo1ºC                 |                             |
+| Sofía Millan Bolivar                   |                             |
+| Julia Rivero                           |                             |
+| Arantza Lujano                         |                             |
+
+
+** Matemáticas
+
+
+| Admitidos                              | Lista de espera             |
+|----------------------------------------+-----------------------------|
+| Iris Madrid Ortiz 1º D                 | Aaron David Guerrero Acosta |
+| Carlota Alejandra Guerrera Banache 1ºF | Samantha Paola Mujica       |
+| Marta Andrés Vázquez 1º E              | Angela Gregorio Acosta      |
+| María Fernanda Nascimiento Álvarez 1ºE |                             |
+| Victor Gonzalo González 2ºE            |                             |
+| Leonardo Bogadi 2ºF                    |                             |
+| Aaron Jean Suni Pantoja 1ºB            |                             |
+| Samuel Velez 2ºB                       |                             |
+| Rubén Del Toro Zazo 1ºC                |                             |
+| Sofía Millan Bolivar                   |                             |
+| Julia Rivero                           |                             |
+| Arantza Lujano                         |                             |
+
+** Fútbol y voleibol
+| Fútbol                               | Voleibol                                           |
+|--------------------------------------+----------------------------------------------------|
+| José Ángel León Gonzalo 1ºD          | Ariadna Sierra Saavedra 1ºD                        |
+| Franco Franyel Ramírez 1ºA           | Carla Sierra Saavedra 1ºD                          |
+| Diana Lázaro Gómez 2ºA               | Noa Gómez Benítez 1º E                             |
+| Naiara Rodríguez Lago 2ºB            | Jaime Pintos Navarro 1ºF                           |
+| Emmanuel Iglesias Tognoli 2ºD        | David Torrente Blanco 2º A                         |
+| Sohaib Lkachri 2ºC                   | Andrea Valentina Fajardo Herrera 2ºF               |
+| Nikodem Bukpasz 2ºE                  | María de los Ángeles Moya Lamas 2º diversificación |
+| Gabriel Mauricio Martínez Broes 4º C | Valentina Cardona Venegas 2º diversificación       |
+| Ricardo David Falcón Araque          | Xiomara Ayme Gómez Ureta 1º B Bach                 |
+| Samuel Alejandro Moreno Zapata       | Lucía Laguna Ceballos 1º B bach                    |
+| Miguel Angel Arroleda Bedoya         | Unai Ávila                                         |
+| Alejandro Moratalla                  | Rosmi Linimmy Ramirez 4ºC                          |
+| Alvaro Marquez                       |                                                    |
+| Juan Pablo Gaviria                   |                                                    |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
