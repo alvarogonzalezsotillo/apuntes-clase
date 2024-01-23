@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-01-22 lun 12:07 -->
+<!-- 2024-01-23 mar 11:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -213,12 +213,13 @@
 <li><a href="#org0000021">7. Imágenes y <i>containers</i></a></li>
 <li><a href="#org000002a">8. Volúmenes</a></li>
 <li><a href="#org000002d">9. "Entrar" en un <i>container</i></a></li>
-<li><a href="#org0000030">10. Usuarios</a></li>
-<li><a href="#org0000036">11. <i>Docker registry</i></a></li>
-<li><a href="#org0000039">12. Práctica: Instalar Webmin</a></li>
-<li><a href="#org000003c">13. Práctica: Instalar Portainer</a></li>
-<li><a href="#org0000046">14. Práctica: instalar Oracle</a></li>
-<li><a href="#org0000049">15. Referencias</a></li>
+<li><a href="#org0000030">10. <i>Logs</i> de un <i>container</i></a></li>
+<li><a href="#org0000033">11. Usuarios</a></li>
+<li><a href="#org0000039">12. <i>Docker registry</i></a></li>
+<li><a href="#org000003c">13. Práctica: Instalar Webmin</a></li>
+<li><a href="#org000003f">14. Práctica: Instalar Portainer</a></li>
+<li><a href="#org0000049">15. Práctica: instalar Oracle</a></li>
+<li><a href="#org000004c">16. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -604,8 +605,23 @@ Se pueden ejecutar comandos en un <i>container</i> en ejecución
 </div>
 
 <div id="outline-container-org0000030" class="outline-2">
-<h2 id="org0000030"><span class="section-number-2">10.</span> Usuarios</h2>
+<h2 id="org0000030"><span class="section-number-2">10.</span> <i>Logs</i> de un <i>container</i></h2>
 <div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li><p>
+La salida del punto de entrada se considera el <i>log</i> del container
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">  docker logs --follow nombre-container
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0000033" class="outline-2">
+<h2 id="org0000033"><span class="section-number-2">11.</span> Usuarios</h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Los usuarios en Linux se identifican por un número
 <ul class="org-ul">
@@ -622,9 +638,9 @@ Se pueden ejecutar comandos en un <i>container</i> en ejecución
 </div>
 </div>
 
-<div id="outline-container-org0000036" class="outline-2">
-<h2 id="org0000036"><span class="section-number-2">11.</span> <i>Docker registry</i></h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">12.</span> <i>Docker registry</i></h2>
+<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Las imágenes se almacenan en registros
 <ul class="org-ul">
@@ -653,9 +669,9 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </ul>
 </div>
 
-<div id="outline-container-org0000033" class="outline-3">
-<h3 id="org0000033"><span class="section-number-3">11.1.</span> <i>Cache</i> en el instituto</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">12.1.</span> <i>Cache</i> en el instituto</h3>
+<div class="outline-text-3" id="text-12-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -685,9 +701,9 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </div>
 
 
-<div id="outline-container-org0000039" class="outline-2">
-<h2 id="org0000039"><span class="section-number-2">12.</span> Práctica: Instalar Webmin</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">13.</span> Práctica: Instalar Webmin</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>Es un sistema para manejar servidores Linux mediante con una interfaz web</li>
 <li>Comprueba qué se ha instalado en el <i>container</i> y lanza una <i>shell</i> desde la web</li>
@@ -699,9 +715,9 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </div>
 </div>
 
-<div id="outline-container-org000003c" class="outline-2">
-<h2 id="org000003c"><span class="section-number-2">13.</span> Práctica: Instalar Portainer</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-org000003f" class="outline-2">
+<h2 id="org000003f"><span class="section-number-2">14.</span> Práctica: Instalar Portainer</h2>
+<div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Es un sistema para manejar los contenedores Docker, instalado dentro de Docker (¿?)
 <ul class="org-ul">
@@ -722,9 +738,9 @@ docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #ad7fa8; font-style:
 </div>
 </div>
 
-<div id="outline-container-org0000046" class="outline-2">
-<h2 id="org0000046"><span class="section-number-2">14.</span> Práctica: instalar Oracle</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">15.</span> Práctica: instalar Oracle</h2>
+<div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li>Usaremos la imagen <code>container-registry.oracle.com/database/enterprise:21.3.0.0</code></li>
 <li>Se recomienda usar el <i>registry</i> del instituto, que no necesita contraseña
@@ -735,14 +751,14 @@ docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #ad7fa8; font-style:
 </div>
 
 
-<div id="outline-container-org0000040" class="outline-3">
-<h3 id="org0000040"><span class="section-number-3">14.1.</span> Instrucciones</h3>
-<div class="outline-text-3" id="text-14-1">
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">15.1.</span> Instrucciones</h3>
+<div class="outline-text-3" id="text-15-1">
 <ul class="org-ul">
 <li>Instrucciones: <a href="https://container-registry.oracle.com/ords/ocr/ba/database/enterprise">https://container-registry.oracle.com/ords/ocr/ba/database/enterprise</a></li>
 </ul>
 
-<pre class="example" id="org000003f">
+<pre class="example" id="org0000042">
 docker run -d --name &lt;container_name&gt; \
  -p &lt;host_port&gt;:1521 -p &lt;host_port&gt;:5500 \
  -e ORACLE_SID=&lt;your_SID&gt; \
@@ -782,9 +798,9 @@ Parameters:
 </div>
 </div>
 
-<div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">14.2.</span> En nuestro caso</h3>
-<div class="outline-text-3" id="text-14-2">
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">15.2.</span> En nuestro caso</h3>
+<div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li>Puerto <code>1521</code> del container al <code>1521</code> de la máquina <i>host</i></li>
 <li>Ficheros de datos en <code>/opt/oracle/oradata</code> del la máquina <i>host</i></li>
@@ -807,9 +823,9 @@ Parameters:
 </div>
 
 
-<div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">15.</span> Referencias</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-org000004c" class="outline-2">
+<h2 id="org000004c"><span class="section-number-2">16.</span> Referencias</h2>
+<div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -830,7 +846,7 @@ Parameters:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-01-22 lun 12:07</p>
+<p class="date">Created: 2024-01-23 mar 11:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
