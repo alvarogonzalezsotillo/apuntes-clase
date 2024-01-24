@@ -11,10 +11,33 @@
 
 
 #+title: Departamento de Orientación
+#+html_head_extra: <link rel="icon" type="image/png" href="./logo-monegro.jpeg">
+#+REVEAL_PREAMBLE: <div class="creditos"><img src="./logo-monegro.jpeg"><a href="mailto:paz.fabregas@educa.madrid.org">paz.fabregas@educa.madrid.org</a></div>
 
 
 #+begin_export html
 <style>
+   .creditos{
+       position:fixed;
+       bottom:20px;
+       left:20px;
+   }
+
+   .creditos a{
+       font-size: 10px;
+       font-family: sans-serif;
+       text-decoration: none;
+       color: gray;
+   }
+
+   .creditos img{
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       margin-bottom: 10px;
+   }
+
+
   .reveal section  {
       font-size: 0.7em !important;
   }
