@@ -533,6 +533,20 @@ where
 group by first_name, last_name  ;
 #+end_src
 ** Lista de ingresos por alumno (nombre, apellidos, ingresos)
+#+begin_src sql
+with cursos as(
+    select course_no, nvl(cost,200) as cost
+    from course
+)
+select
+    s.student_id, first_name, last_name, nvl(sum(cost),0)
+from
+    student s
+    left join enrollment e on s.student_id=e.student_id
+    left join section se on se.section_id=e.section_id
+    left join cursos c on c.course_no=se.course_no
+group by
+    s.student_id, first_name, last_name;#+end_src
 ** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito 'SIN PRERREQUISITO'.
 #+begin_src sql
 select 
