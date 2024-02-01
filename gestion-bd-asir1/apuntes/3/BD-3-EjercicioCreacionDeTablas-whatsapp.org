@@ -41,14 +41,14 @@ En el diagrama deben ser visibles (al menos):
 
 
 * Crear las tablas de Oracle utilizando *SQL* (1 punto)
-  Se entregará un fichero de texto de extensión =.SQL= con las órdenes *SQL* de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
+Las tablas se crearán en el servidor *Oracle* del instituto.
+
+Se recomienda mantener un fichero de texto de extensión =.SQL= con las órdenes *SQL* de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones, por si dicho servidor fallase.
 
 
+* Insertar datos en las tablas (1 punto)
 
-
-* Insertar datos en las tablas 
-
-  El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional (2 puntos):
+  El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional:
 
 #+latex: \begin{Aviso}
 Estos datos no están todos normalizados. Si alguna tabla de la base de datos coincide con esta estructura, podría ser incorrecta.
@@ -99,6 +99,7 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
 |---+------------------+---------------+-------------------------|
 | / | <>               | <>            | <>                      |
 |   | Nombre de /chat/ | Administrador | Integrantes adicionales |
+|---+------------------+---------------+-------------------------|
 |   | Cosas de ASIR    | Pepe          | María, Juan, Susana     |
 |   | Viaje a la nieve | Juan          | Pepe, Susana            |
 |---+------------------+---------------+-------------------------|
@@ -108,25 +109,27 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
 |---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
 | / | <>                    | <>        | <>                             | <>                     | <>                  |
 |   | Nombre de /chat/      | Remitente | Mensaje                        | Recibido               | Leido               |
+|---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
 |   | Cosas de Asir         | Pepe      | Hoy el profesor Iñaki no viene | Recibido por todos     | Leído por todos     |
 |   | Cosas de Asir         | María     | Pues ya estoy en el insti :(   | Recibido por todos     | Nadie lo ha leído   |
 |   | Viaje a la nieve      | Juan      | El sábado no puedo             | Recibido solo por Pepe | Leido solo por Pepe |
 |---+-----------------------+-----------+--------------------------------+------------------------+---------------------|
 
   Es importante que los datos coincidan con los especificados. Los valores /cierto/ y /falso/ se pondrán como un número con =1= y =0= (esto puede facilitar la vista =V_MENSAJESPORGRUPO=).
-  
 
-  Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
+* Consultas (8 puntos)
+
+Para comprobar los nuevos datos introducidos, se crearán varias vistas. Una vista basada sobre una tabla que no esté en 3FN no será valorada.
   
-  - =V_CONTACTOS= (1 punto)
+  - =V_CONTACTOS= (1.5 punto)
     - =(nombreusuario, nombrecontacto)= 
-  - =V_MENSAJESENVIADOSA= (1.5 puntos)
+  - =V_MENSAJESENVIADOSA= (2.5 puntos)
     - =(nombredestinatario, nombreemisor, textomensaje, recibido, leido)= 
     - Todos los mensajes enviados a un destinatario, sean directos o dentro de un grupo de /chat/
-  - =V_MENSAJESPORGRUPO= (1.5 puntos)
+  - =V_MENSAJESPORGRUPO= (2.5 puntos)
     - =(nombrechat, nombreemisor, textomensaje, cuantosrecibido, cuantosleido)= 
     - Mensajes enviados a un grupo de /chat/
-  - =V_GRUPOSDECHAT= (1 punto)
+  - =V_GRUPOSDECHAT= (1.5 punto)
     - =(nombrechat,cuantosintegrantes)= 
     - Número de integrantes de un chat, incluido el creador
 
