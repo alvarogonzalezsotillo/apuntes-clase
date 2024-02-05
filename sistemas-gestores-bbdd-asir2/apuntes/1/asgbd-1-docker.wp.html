@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-01-22 lun 12:07 -->
+<!-- 2024-01-22 lun 12:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -423,7 +423,7 @@ window.addEventListener("load",()=>{
 <li>Hay un <i>cliente</i> Docker para Windows</li>
 <li>Se instala una máquina virtual con Linux</li>
 <li>El cliente Docker se conecta al servidor Docker de la máquina virtual</li>
-<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows</li>
+<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows, que el cliente Docker sabe manejar</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -441,17 +441,17 @@ window.addEventListener("load",()=>{
 Desinstalar las versiones instaladas con <code>apt-get</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #729fcf; font-weight: bold;">for</span> pkg<span style="color: #729fcf; font-weight: bold;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
-    <span style="color: #729fcf; font-weight: bold;">do</span>
-    <span style="color: #7ae074741f52;"> </span>   sudo apt-get remove $<span style="color: #ff6347;">pkg</span>
-    <span style="color: #729fcf; font-weight: bold;">done</span>
+<pre class="src src-bash"><span style="color: #729fcf; font-weight: bold;">for</span> pkg<span style="color: #729fcf; font-weight: bold;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
+<span style="color: #729fcf; font-weight: bold;">do</span>
+    sudo apt-get remove $<span style="color: #ff6347;">pkg</span>
+<span style="color: #729fcf; font-weight: bold;">done</span>
 </pre>
 </div></li>
 <li><p>
 Usar el <i>script</i> (no recomendado en producción)
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    curl https://get.docker.com/ | sh
+<pre class="src src-bash">curl https://get.docker.com/ | sh
 </pre>
 </div></li>
 </ul></li>
@@ -465,6 +465,9 @@ Usar el <i>script</i> (no recomendado en producción)
 <li><p>
 Solo <code>root</code> y el grupo <code>docker</code> pueden usar el servidor Docker
 </p>
+<ul class="org-ul">
+<li>Tienen acceso a <code>/var/run/docker.sock</code></li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-bash">  docker run hello-world
 </pre>
@@ -830,7 +833,7 @@ Parameters:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-01-22 lun 12:07</p>
+<p class="date">Created: 2024-01-22 lun 12:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

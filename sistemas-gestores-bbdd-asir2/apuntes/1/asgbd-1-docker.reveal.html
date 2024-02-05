@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-22 lun 12:07</p>
+<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-01-22 lun 12:12</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -682,7 +682,7 @@ window.addEventListener("load",()=>{
 <li>Hay un <i>cliente</i> Docker para Windows</li>
 <li>Se instala una máquina virtual con Linux</li>
 <li>El cliente Docker se conecta al servidor Docker de la máquina virtual</li>
-<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows</li>
+<li>También hay <a href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/"><i>containers</i> para Windows</a>, solo instalables en Windows, que el cliente Docker sabe manejar</li>
 
 </ul></li>
 
@@ -705,10 +705,10 @@ Desinstalar las versiones instaladas con <code>apt-get</code>
 </p>
 <div class="org-src-container">
 
-<pre><code class="bash" >    for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
-    do
-        sudo apt-get remove $pkg
-    done
+<pre><code class="bash" >for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
+do
+    sudo apt-get remove $pkg
+done
 </code></pre>
 </div></li>
 <li><p>
@@ -716,7 +716,7 @@ Usar el <i>script</i> (no recomendado en producción)
 </p>
 <div class="org-src-container">
 
-<pre><code class="bash" >    curl https://get.docker.com/ | sh
+<pre><code class="bash" >curl https://get.docker.com/ | sh
 </code></pre>
 </div></li>
 
@@ -732,6 +732,10 @@ Usar el <i>script</i> (no recomendado en producción)
 <li><p>
 Solo <code>root</code> y el grupo <code>docker</code> pueden usar el servidor Docker
 </p>
+<ul>
+<li>Tienen acceso a <code>/var/run/docker.sock</code></li>
+
+</ul>
 <div class="org-src-container">
 
 <pre><code class="bash" >  docker run hello-world
