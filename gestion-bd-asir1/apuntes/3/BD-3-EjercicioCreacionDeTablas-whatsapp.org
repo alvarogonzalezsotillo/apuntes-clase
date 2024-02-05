@@ -78,7 +78,7 @@ Este apartado solo puede valorarse si las tablas están en *tercera forma normal
 |   | María       | Pepe                |
 |   | Pepe        | María, Juan, Susana |
 |   | Juan        | Pepe, Susana        |
-|   | Susama      | Juan                |
+|   | Susana      | Juan                |
 |---+-------------+---------------------|
 #+latex: \end{center}
 
