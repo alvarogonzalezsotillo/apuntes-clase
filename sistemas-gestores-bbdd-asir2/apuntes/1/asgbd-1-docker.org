@@ -142,6 +142,12 @@ curl https://get.docker.com/ | sh
   #+end_src
   - *-i*: Ejecutar de forma interactiva (redirigir entrada y salida estándar)
   - *-t*: Ejecutar en un TTY (una consola)
+
+* /Logs/ de un /container/
+- La salida del punto de entrada se considera el /log/ del container
+  #+begin_src bash
+  docker logs --follow nombre-container
+  #+end_src
   
 * Usuarios
 - Los usuarios en Linux se identifican por un número

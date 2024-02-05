@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+numeros(){
+    seq 1 16
+}
+
 ruta(){
   local ALUMNO=$1
 
@@ -12,7 +17,7 @@ enruta(){
 
 
 rutas(){
-  for A in $(seq 100 130)
+  for A in $(numeros)
   do
     ruta $A
   done
@@ -42,7 +47,8 @@ ping_alumno(){
 monitoriza(){
     while true
     do
-        for A in $(seq 100 130)
+        echo  "$(date) NUEVA VUELTA DE ENCONTRADO" 
+        for A in $(numeros)
         do
             ping_alumno $A &
         done | sort
@@ -51,6 +57,6 @@ monitoriza(){
 }
 
 enruta
-
+rutas
 monitoriza
 

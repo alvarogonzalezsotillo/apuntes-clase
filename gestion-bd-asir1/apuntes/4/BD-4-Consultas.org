@@ -81,7 +81,16 @@ fila > (select count(*) from student)-20
 #+end_src
 
 ** Lista de las secciones con el número máximo de alumnos que podrían estar en esa sección
+#+begin_src sql
+select section_id, capacity from section
+#+end_src
 ** Lista de las secciones y el número de alumnos matriculados en la sección
+#+begin_src sql
+select s.section_id, s.capacity, count(student_id)
+from section s join enrollment e on s.section_id = e.section_id
+group by s.section_id, s.capacity
+having s.capacity=count(student_id);
+#+end_src
 ** Lista de las secciones que tienen matriculados su número máximo de alumnos
 #+begin_src sql
 select section_id 
@@ -413,6 +422,25 @@ where
 #+end_src
 
 ** ¿En qué cursos no está matriculada Ángela Torres?
+#+begin_src sql
+with datos_de_matricula as(
+    select distinct description, c.course_no, s.student_id, first_name, last_name
+    from
+      student s 
+      join enrollment e on s.student_id=e.student_id
+      join section se on e.section_id=se.section_id
+      join course c on se.course_no=c.course_no
+)
+select distinct description
+from
+  datos_de_matricula
+where
+  course_no not in(
+    select course_no
+    from datos_de_matricula
+    where first_name='Anil' and last_name='Kulina'
+);  
+#+end_src
 
 ** Notas numéricas de la alumna Angela Torres en todos sus cursos (nota numérica, descripción del curso)
 
@@ -505,6 +533,20 @@ where
 group by first_name, last_name  ;
 #+end_src
 ** Lista de ingresos por alumno (nombre, apellidos, ingresos)
+#+begin_src sql
+with cursos as(
+    select course_no, nvl(cost,200) as cost
+    from course
+)
+select
+    s.student_id, first_name, last_name, nvl(sum(cost),0)
+from
+    student s
+    left join enrollment e on s.student_id=e.student_id
+    left join section se on se.section_id=e.section_id
+    left join cursos c on c.course_no=se.course_no
+group by
+    s.student_id, first_name, last_name;#+end_src
 ** Lista de cursos y sus cursos prerrequisito (descripción de curso, descripción de curso prerrequisito). Si un curso no tiene prerrequisito, aparecerá en su prerrequisito 'SIN PRERREQUISITO'.
 #+begin_src sql
 select 

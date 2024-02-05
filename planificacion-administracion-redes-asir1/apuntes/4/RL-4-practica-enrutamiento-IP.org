@@ -14,7 +14,7 @@ Tras la práctica, se espera que el alumno haya conseguido:
 - Familiarizarse con los  mecanismos de configuración de redes IP en varios sistemas operativos
 - Configurar el enrutamiento entre varios ordenadores
 
-Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-ip.pdf][última versión de la práctica en este enlace]].
+Está disponible la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/RL-4-practica-enrutamiento-ip.pdf][última versión de la práctica en este enlace]].
 
 
 
@@ -39,6 +39,7 @@ La conectividad IP puede comprobarse con comandos como =ping=, =pathping=, =mtr=
 - Se recomienda utilizar distribuciones Debian frente a Ubuntu, por el ahorro de memoria RAM. Sin entorno gráfico, Debian funciona correctamente con 512MB.
 - Por la misma razón, Windows 7 es preferible a Windows 10 o Windows 11.
 - El número /n/ corresponde con el número de identificación del PC real en clase, que se apuntará en esta hoja de cálculo: [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
+  - Si se hace por parejas, los dos alumnos apuntarán el mismo número en la hoja de cálculo
 
 
 * Enrutamiento
@@ -75,9 +76,9 @@ Se tendrá en cuenta:
 
 
 * Instrucciones de entrega
-- El ejercicio se realizará y entregará de manera
-  individual.
+- El ejercicio se realizará y entregará de manera individual.
   - Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+- El profesor comprobará el último día de prácticas el funcionamiento de cada router.    
 - Sube el documento a [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189][la tarea correspondiente en el aula virtual]]
 - Presta atención al plazo de entrega (con fecha y hora).
 
