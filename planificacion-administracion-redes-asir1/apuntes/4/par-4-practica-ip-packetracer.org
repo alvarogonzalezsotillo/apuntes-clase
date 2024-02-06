@@ -41,6 +41,22 @@ El número =n= de la red se corresponde con el asignado al alumno en  [[http://b
 - No se considera un error que no se pueda hacer =ping= entre plantas  
 
 
+* Solución posible :noexport:
+
+| planta   | Puestos | Máscara | Tamaño |
+|----------+---------+---------+--------|
+| planta 4 |     200 | /24     |    256 |
+|----------+---------+---------+--------|
+| planta 2 |     150 | /24     |    256 |
+|----------+---------+---------+--------|
+| planta 1 |     100 | /25     |    128 |
+| planta 3 |      30 | /26     |     64 |
+| routers  |      25 | /27     |     32 |
+| Libre1   |         | /27     |     32 |
+|----------+---------+---------+--------|
+| Libre2   |         | /24     |    256 |
+|----------+---------+---------+--------|
+
 
 * Qué se valorará
 Se entregará un fichero PKT con el contenido de la práctica, y un fichero de texto (PDF, DOCX, ODT) con el resultado del subnetting, incluyendo las redes que quedan libres. Todo ello, dentro de un fichero ZIP.
