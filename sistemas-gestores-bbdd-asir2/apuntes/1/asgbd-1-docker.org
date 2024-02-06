@@ -59,25 +59,26 @@
     - Hay un /cliente/ Docker para Windows
     - Se instala una máquina virtual con Linux
     - El cliente Docker se conecta al servidor Docker de la máquina virtual
-    - También hay [[https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/][/containers/ para Windows]], solo instalables en Windows  
+    - También hay [[https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/][/containers/ para Windows]], solo instalables en Windows, que el cliente Docker sabe manejar
 
 * Instalación de Docker
 - [[https://docs.docker.com/engine/install/][Página oficial]]
 - Para Debian/Ubuntu:
   - Desinstalar las versiones instaladas con =apt-get=
     #+begin_src bash
-    for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
-    do
-        sudo apt-get remove $pkg
-    done
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
+do
+    sudo apt-get remove $pkg
+done
     #+end_src
   - Usar el /script/ (no recomendado en producción)
     #+begin_src bash
-    curl https://get.docker.com/ | sh
+curl https://get.docker.com/ | sh
     #+end_src
 
 ** Prueba de instalación
 - Solo =root= y el grupo =docker= pueden usar el servidor Docker
+  - Tienen acceso a =/var/run/docker.sock=
   #+begin_src bash
   docker run hello-world
   #+end_src

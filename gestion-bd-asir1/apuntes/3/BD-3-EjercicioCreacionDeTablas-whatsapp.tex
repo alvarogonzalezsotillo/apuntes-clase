@@ -1,4 +1,4 @@
-% Created 2024-01-21 dom 18:52
+% Created 2024-02-05 lun 10:00
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -60,7 +60,7 @@
  pdftitle={Diseño E/R, paso a SQL e inserción de datos},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 29.1.90 (Org mode 9.6.10)}, 
+ pdfcreator={Emacs 28.2 (Org mode 9.6.12)}, 
  pdflang={Spanish}}
 \begin{document}
 
@@ -150,15 +150,15 @@ En el diagrama deben ser visibles (al menos):
 
 \section{Crear las tablas de Oracle utilizando \textbf{SQL} (1 punto)}
 \label{sec:org0000009}
-Se entregará un fichero de texto de extensión \texttt{.SQL} con las órdenes \textbf{SQL} de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones.
+Las tablas se crearán en el servidor \textbf{Oracle} del instituto.
+
+Se recomienda mantener un fichero de texto de extensión \texttt{.SQL} con las órdenes \textbf{SQL} de creación de tablas, sus claves primarias, extranjeras, valores por defecto y restricciones, por si dicho servidor fallase.
 
 
-
-
-\section{Insertar datos en las tablas}
+\section{Insertar datos en las tablas (1 punto)}
 \label{sec:org000000c}
 
-El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional (2 puntos):
+El cliente quiere insertar los siguientes datos para comprobar la idoneidad del modelo relacional:
 
 \begin{Aviso}
 Estos datos no están todos normalizados. Si alguna tabla de la base de datos coincide con esta estructura, podría ser incorrecta.
@@ -187,7 +187,7 @@ Nick & Sus contactos\\[0pt]
 María & Pepe\\[0pt]
 Pepe & María, Juan, Susana\\[0pt]
 Juan & Pepe, Susana\\[0pt]
-Susama & Juan\\[0pt]
+Susana & Juan\\[0pt]
 \hline
 \end{tabular}
 \end{center}
@@ -213,6 +213,7 @@ Juan & Susana & No & No & Me apunto\\[0pt]
 \textbf{\emph{Chats}} &  & \\[0pt]
 \hline
 Nombre de \emph{chat} & Administrador & Integrantes adicionales\\[0pt]
+\hline
 Cosas de ASIR & Pepe & María, Juan, Susana\\[0pt]
 Viaje a la nieve & Juan & Pepe, Susana\\[0pt]
 \hline
@@ -225,6 +226,7 @@ Viaje a la nieve & Juan & Pepe, Susana\\[0pt]
 \textbf{Mensajes en \emph{chats}} &  &  &  & \\[0pt]
 \hline
 Nombre de \emph{chat} & Remitente & Mensaje & Recibido & Leido\\[0pt]
+\hline
 Cosas de Asir & Pepe & Hoy el profesor Iñaki no viene & Recibido por todos & Leído por todos\\[0pt]
 Cosas de Asir & María & Pues ya estoy en el insti :( & Recibido por todos & Nadie lo ha leído\\[0pt]
 Viaje a la nieve & Juan & El sábado no puedo & Recibido solo por Pepe & Leido solo por Pepe\\[0pt]
@@ -234,25 +236,27 @@ Viaje a la nieve & Juan & El sábado no puedo & Recibido solo por Pepe & Leido s
 
 Es importante que los datos coincidan con los especificados. Los valores \emph{cierto} y \emph{falso} se pondrán como un número con \texttt{1} y \texttt{0} (esto puede facilitar la vista \texttt{V\_MENSAJESPORGRUPO}).
 
+\section{Consultas (8 puntos)}
+\label{sec:org000000f}
 
-Para comprobar los nuevos datos introducidos, se consultarán las siguientes vistas:
+Para comprobar los nuevos datos introducidos, se crearán varias vistas. Una vista basada sobre una tabla que no esté en 3FN no será valorada.
 
 \begin{itemize}
-\item \texttt{V\_CONTACTOS} (1 punto)
+\item \texttt{V\_CONTACTOS} (1.5 punto)
 \begin{itemize}
 \item \texttt{(nombreusuario, nombrecontacto)}
 \end{itemize}
-\item \texttt{V\_MENSAJESENVIADOSA} (1.5 puntos)
+\item \texttt{V\_MENSAJESENVIADOSA} (2.5 puntos)
 \begin{itemize}
 \item \texttt{(nombredestinatario, nombreemisor, textomensaje, recibido, leido)}
 \item Todos los mensajes enviados a un destinatario, sean directos o dentro de un grupo de \emph{chat}
 \end{itemize}
-\item \texttt{V\_MENSAJESPORGRUPO} (1.5 puntos)
+\item \texttt{V\_MENSAJESPORGRUPO} (2.5 puntos)
 \begin{itemize}
 \item \texttt{(nombrechat, nombreemisor, textomensaje, cuantosrecibido, cuantosleido)}
 \item Mensajes enviados a un grupo de \emph{chat}
 \end{itemize}
-\item \texttt{V\_GRUPOSDECHAT} (1 punto)
+\item \texttt{V\_GRUPOSDECHAT} (1.5 punto)
 \begin{itemize}
 \item \texttt{(nombrechat,cuantosintegrantes)}
 \item Número de integrantes de un chat, incluido el creador
@@ -275,7 +279,7 @@ Para comprobar los nuevos datos introducidos, se consultarán las siguientes vis
 
 
 \section{Instrucciones de entrega}
-\label{sec:org000000f}
+\label{sec:org0000012}
 \begin{itemize}
 \item El ejercicio se realizará y entregará de manera individual.
 \begin{itemize}
@@ -283,7 +287,7 @@ Para comprobar los nuevos datos introducidos, se consultarán las siguientes vis
 \end{itemize}
 \item Entrega el modelo ER en formato PDF en la tarea del aula virtual
 \item En tu \href{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/mod/assign/view.php?id=29534}{usuario del servidor de Oracle del instituto}, crea las tablas, inserta los datos y define las vistas.
-\item La corrección se realizará de forma semiautomática. Es \textbf{importante} que los nombres de ficheros, vistas y atributos de vistas sean los especificados.
+\item La corrección se realizará de forma semiautomática. Es \textbf{importante} que los nombres de vistas y atributos de vistas sean los especificados.
 \item Presta atención al plazo de entrega (con fecha y hora).
 \end{itemize}
 
