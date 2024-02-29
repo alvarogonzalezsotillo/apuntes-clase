@@ -14,9 +14,11 @@
 \setlength{\columnseprule}{0.4pt}
 \newcommand{\Simultaneo}[2]{
   \begin{multicols}{2}
+    \vfill \null
     #1
     \vfill \null
     \columnbreak
+    \vfill \null
     #2
     \vfill \null
   \end{multicols}
@@ -95,7 +97,7 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
 
   
   \begin{Aviso}[¿Qué se entrega?]
-    Se entregará un fichero de nombre \textbf{\texttt{1.permisos.sql}} con las órdenes necesarias para asignar los privilegios. No hay que incluir la carga de la base de datos.
+    Se entregará un fichero de nombre \textbf{\texttt{1.permisos.sql}} con las órdenes que el usuario \texttt{INFORMATICA} necesita para asignar los privilegios. No hay que incluir la carga de la base de datos.
   \end{Aviso}
 
 
@@ -199,7 +201,7 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
     
     \begin{enumerate}
     \item \textit{PepeGardens} desea comprar 50 ajedreas.
-    \item \texttt{COMERCIAL} realiza una consulta para ver cuántas hay disponibles. Si no hay suficientes cancela la transacción
+    \item \texttt{COMERCIAL} realiza una consulta para ver cuántas hay disponibles.
     \item Tras ello, crea un pedido para \textit{PepeGardens} con esas 50 ajedreas, eliminando 50 ajedreas del stock.
     \end{enumerate}
   }
@@ -215,22 +217,11 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
   \begin{Aviso}[¿Qué se entrega?]
 
     \begin{itemize}
+    \item Un fichero \textbf{\texttt{3.informatica.sql}} con la modificación de la tabla \texttt{Productos}.
     \item Un fichero de nombre \textbf{\texttt{3.comercial50.sql}} con las sentencias del usuario \texttt{COMERCIAL} que vende a \textit{PepeGardens}.
     \item Un fichero \textbf{\texttt{3.comercial140.sql}} con las sentencias del usuario \texttt{COMERCIAL} que vende a \textit{Agrojardín}. Incluye un comentario con el error de \textbf{Oracle} al intentar vender más ajedreas de las disponibles.
-    \item Un fichero \textbf{\texttt{3.informatica.sql}} con la modificación de la tabla \texttt{Productos}.
     \end{itemize}
-
-\begin{comment}
-  Para indicar que la transacción se interrumpe por el valor que devuelva una consulta, incluye un comentario como el siguiente:
-  \\
-  \\
-\begin{listadosql}{Cómo indicar fin de la transacción por una condición}{lst:rollback}
--- Si el campo XXXX de la consulta anterior es
--- mayor/menor/igual/distinto que XXXX, hago un ROLLBACK.
--- En otro caso, continúa la transacción.
-\end{listadosql}
-\end{comment}
-  
+ 
 \end{Aviso}
 
 \end{homeworkProblem}
@@ -238,14 +229,14 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
 \newpage
 
 \begin{homeworkProblem}[: \imenu{\texttt{CONTABILIDAD} y \texttt{CONTABILIDAD} (2 puntos)}]
-  PepeGardens realiza finalmente el pedido de 50 ajedreas, y otro de 10 palas. Además, realiza el pago para el pedido de las ajedreas. Posteriormente:
+  PepeGardens realiza un pedido de 10 palas. Además, realiza el pago para el pedido de las ajedreas. Posteriormente:
 
   \Simultaneo{
 
     
     \begin{enumerate}
     \item Un empleado de \textit{PepeGardens} se conecta por Internet para pagar el resto de la deuda con PayPal. 
-    \item Para recibir un pago, la web consulta primero el saldo del cliente (suma de    todos sus pedidos menos suma de todos sus pagos).
+    \item Para recibir un pago, la web consulta primero el saldo del cliente (suma de todos sus pedidos menos suma de todos sus pagos).
     \item Solo acepta pagos inferiores al  saldo deudor del cliente.
     \end{enumerate}
   }
@@ -264,7 +255,6 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
     \item Un fichero de nombre \texttt{\textbf{4.efectivo.sql}}  con las sentencias del usuario \texttt{CONTABILIDAD} que cobra en efectivo.
     \end{itemize}
 
-    \begin{comment}
     Para indicar que la transacción se interrumpe por el valor que devuelva una consulta, incluye un comentario como el siguiente:
     \\
     \\
@@ -273,7 +263,6 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
 -- mayor/menor/igual/distinto que XXXX, hago un ROLLBACK.
 -- En otro caso, continúa la transacción.
 \end{listadosql}
-    \end{comment}
 
   \end{Aviso}
 
@@ -286,7 +275,6 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
   \begin{itemize}
   \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
   \end{itemize}
-\item El ejercicio 1 debe estar realizado sobre la instancia de base de datos del profesor
 \item Entrega tu trabajo en un fichero \texttt{ZIP}, con todos los ficheros indicados en los enunciados
 \item Los nombres de los ficheros incluyen un número (para que estén ordenados). No incluyas mayúsculas. No incluyas acentos. No pongas espacios. No añadas palabras, letras ni números a los nombres.
 \item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
@@ -297,7 +285,7 @@ Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/g
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=.9\textwidth]{./jardineria.pdf}
+    \includegraphics[width=1\textwidth]{./jardineria.pdf}
   \end{center}
   \caption{Diagrama de la base de datos}\label{fig:esquema}
 \end{figure}
