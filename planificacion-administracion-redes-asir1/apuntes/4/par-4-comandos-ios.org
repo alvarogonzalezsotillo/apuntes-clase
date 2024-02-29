@@ -9,7 +9,6 @@
 - ~TAB~ para autocompletar
 - Un comando con =no= deshace el comando
 
-
 ** Introducción de comandos 
 #+ATTR_LATEX: :align |l|p{12cm}|
 | Tabulación                | Completa una entrada de nombre de comando parcial.                                                                           |
@@ -54,6 +53,7 @@
 - =Router(config)#=
   - Raíz de la configuración
 
+Nota: Se puede usar =do= para ejecutar un comando de /enabled/ en el modo de configuración.    
 ** Para activar la configuración
 #+begin_src java
 Router> enable

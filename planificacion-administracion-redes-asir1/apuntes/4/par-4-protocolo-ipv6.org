@@ -201,6 +201,15 @@ Fuente: [[http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm][tcpip
   ping6 -I <interfaz> fe80::xx
   #+end_src
 
+*** :noexport:
+#+begin_src bash
+for ip in 1 2 3 4 5 6 7 8 9 a b c d e f 10 11
+do
+    ping6 -i 10 fe80::$ip%enp0s31f6 | grep -v -i "unreachable"&
+    ping6 -i 10 fe80::${ip}00%enp0s31f6 | grep -v -i "unreachable"&
+done 
+#+end_src
+
 ** Windows
 - Configura una máquina virtual Windows 7 en modo bridged con ipv6
   - Dirección =fe80::xx00/112= 
@@ -231,7 +240,9 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 - ARP es un protocolo para IPv4
 - IPv6 utiliza [[https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol][Network Discovery Protocol]]
 - Linux: =ip -6 neigh show=
-- Windows: =netsh interface ipv6 show neighbors=  
+- Windows: =netsh interface ipv6 show neighbors=
+
+[[https://superuser.com/questions/809679/what-is-the-mac-address-of-multicast-ipv6][¿Cómo se distribuye un NDP?]]
 
 * Referencias
 #+include: "../../../common/footer.org"

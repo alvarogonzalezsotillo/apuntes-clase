@@ -1,0 +1,309 @@
+\input{../../../common/plantilla-ejercicio.tex}
+\usepackage{eurosym}
+
+
+
+
+\renewcommand{\hmwkTitle}{Modificación concurente de datos}
+\renewcommand{\hmwkClass}{Gestión de Bases de Datos}
+
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+% \setlist[itemize]{parsep=0em}
+
+
+\setlength{\columnseprule}{0.4pt}
+\newcommand{\Simultaneo}[2]{
+  \begin{multicols}{2}
+    #1
+    \vfill \null
+    \columnbreak
+    #2
+    \vfill \null
+  \end{multicols}
+}
+
+\begin{document}
+
+% \maketitle
+
+% ----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+% ----------------------------------------------------------------------------------------
+
+% \setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\primerapagina
+
+
+\section{Objetivo de la práctica}
+Tras la práctica se espera que el alumno se familiarice con:
+\begin{itemize}
+\item La creación de distintos usuarios de base de datos
+\item La asignación de diferentes privilegios a los usuarios, de acuerdo a sus necesidades
+\item Las posibilidades de las bases de datos SQL para implementar el nivel 3 del estándar ANSI/SPARC
+\end{itemize}
+
+Se puede descargar \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/5/gbd-5-practica-modificacion-datos.pdf}{la última versión de la práctica en este enlace}
+
+\section{Modelo de datos}
+
+Se dispone de un \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestion-bd-asir1/apuntes/5/jardineria_oracle.sql}{esquema de base de datos descargable en este link}, que también se incluye como \adjuntardoc{jardineria_oracle.sql}{adjunto} a este PDF. El diagrama del esquema se puede consultar en la figura \ref{fig:esquema}.
+
+\newenvironment{homeworkProblem2}[1][]{
+  \subsection {#1}
+}{
+}
+
+\begin{homeworkProblem}[: \imenu{Carga del modelo y creación de usuarios} (2 puntos)]
+  En el usuario \texttt{INFORMATICA}, crea la base de datos de jardinería.
+
+  Posteriormente, asigna los permisos necesarios a los usuarios \texttt{RRHH}, \texttt{COMERCIAL}, \texttt{CONTABILIDAD} y \texttt{ALMACEN} con la orden \texttt{GRANT}.   Se recomienda otorgar el privilegio \texttt{CREATE VIEW} a todos los usuarios, para facilitar el resto de ejercicios.
+
+  \begin{homeworkProblem2}[\imenutwo{Usuario \texttt{RRHH} (25\%)}]
+    El usuario \texttt{RRHH} tendrá:
+    \begin{itemize}
+    \item Privilegios completos (\texttt{select}, \texttt{insert}, \texttt{update}, \texttt{delete}) sobre las tablas \texttt{Oficinas} y \texttt{Empleados}
+    \item Podrá ver (\texttt{select}) los datos de \texttt{Clientes}
+    \item Podrá modificar (\texttt{update}) el campo \texttt{Clientes.CodigoEmpleadoRepVentas}
+    \end{itemize}
+  \end{homeworkProblem2}
+
+  \begin{homeworkProblem2}[\imenutwo{Usuario \texttt{COMERCIAL} (25\%)}]
+    El usuario \texttt{COMERCIAL} tendrá:
+    \begin{itemize}
+    \item Privilegios completos sobre las tablas \texttt{Clientes}, \texttt{Pedidos} y \texttt{DetallePedidos}
+    \item Podrá ver  los datos de \texttt{Productos}, \texttt{Empleados} y \texttt{Oficinas} 
+    \item Podrá modificar el campo \texttt{Productos.CantidadEnStock}
+    \end{itemize}
+  \end{homeworkProblem2}
+
+  \begin{homeworkProblem2}[\imenutwo{Usuario \texttt{CONTABILIDAD} (25\%)}]
+    El usuario \texttt{CONTABILIDAD} tendrá:
+    \begin{itemize}
+    \item Privilegios completos sobre la tabla \texttt{Pagos}
+    \item Podrá ver  los datos de \texttt{Clientes}, \texttt{Pedidos} y \texttt{DetallePedidos}.
+    \end{itemize}
+  \end{homeworkProblem2}
+
+  \begin{homeworkProblem2}[\imenutwo{Usuario \texttt{ALMACEN} (25\%)}]
+    El usuario \texttt{ALMACEN} tendrá:
+    \begin{itemize}
+    \item Privilegios completos sobre las tablas \texttt{Productos} y \texttt{GamasProductos}
+    \item Podrá leer los campos \texttt{DetallePedidos.CodigoPedido}, \texttt{DetallePedidos.CodigoProducto} y \texttt{DetallePedidos.Cantidad}. Lo hará a través de la vista \texttt{DetallePedidosAlmacen} \\ (\enlace{https://dba.stackexchange.com/a/17079}{https://dba.stackexchange.com/a/17079})
+    \end{itemize}
+  \end{homeworkProblem2}
+
+  
+  \begin{Aviso}[¿Qué se entrega?]
+    Se entregará un fichero de nombre \textbf{\texttt{1.permisos.sql}} con las órdenes necesarias para asignar los privilegios. No hay que incluir la carga de la base de datos.
+  \end{Aviso}
+
+
+\begin{comment}
+  create or replace view jefes_de_madrid as
+  select empleados.*
+  from empleados, empleados jefes
+  where
+  empleados.codigojefe = jefes.codigoempleado and
+  empleados.CODIGOOFICINA='MAD-ES' and
+  jefes.CODIGOOFICINA <> 'MAD-ES';
+
+
+  select * from jefes_de_madrid;
+
+  declare
+  nuevoempleado integer;
+  begin
+  nuevoempleado := 1000;
+
+  insert into empleados(codigoempleado,nombre,apellido1,codigooficina,codigojefe,puesto,extension,email)
+  values(nuevoempleado,'manolo','bombo','MAD-ES', (SELECT CODIGOJEFE from jefes_de_madrid),'Nuevo jefe de madrid','15','a@a.com');
+  
+  update empleados set
+  codigojefe=nuevoempleado 
+  where
+  codigojefe=(
+  select codigoempleado from jefes_De_madrid where codigoempleado<>nuevoempleado
+  );
+  
+  update clientes set
+  CODIGOEMPLEADOREPVENTAS=nuevoempleado
+  where
+  CODIGOEMPLEADOREPVENTAS=(
+  select codigoempleado from jefes_De_madrid where codigoempleado<>nuevoempleado
+  );
+  
+  update empleados set
+  codigooficina='BCN-ES'
+  where
+  CODIGOEMPLEADO=(
+  select codigoempleado from jefes_De_madrid where codigoempleado<>nuevoempleado
+  );
+
+  end;
+  /
+\end{comment}
+  
+\end{homeworkProblem}
+
+
+
+
+\newpage
+
+\begin{homeworkProblem}[: \imenu{\texttt{COMERCIAL} y \texttt{RRHH} (2 puntos)}]
+
+  \Simultaneo{
+    
+    \begin{enumerate}
+
+      
+    \item \texttt{COMERCIAL} da de alta al nuevo cliente \textit{Pepegardens}, en Madrid (inventa el resto de datos), sin representante.
+    \item Hace una consulta encontrar a los empleados de mayor rango en Madrid (que no tienen un jefe en Madrid). Asigna el de mayor rango como representante de \textit{PepeGardens}.
+    \end{enumerate}
+  }
+  {
+
+    \begin{enumerate}
+    \item Mientras tanto, \texttt{RRHH} ha creado a un nuevo empleado (\textit{Manolo Bombo}), que será el nuevo jefe en Madrid.
+    \item RRHH desplaza al empleado de mayor rango de Madrid a Barcelona, dejando a \textit{Manolo Bombo} en su lugar:
+      \begin{itemize}
+      \item Asigna todos sus representados a \textit{Manolo Bombo}
+      \item \textit{Manolo Bombo} que dependerá del jefe que dependía antes el jefe de Madrid
+      \item Los empleados que dependían del jefe de Madrid dependerán de Manolo Bombo.
+      \end{itemize}
+    \end{enumerate}
+  }
+  Asegúrate de que no se asigna \textit{PepeGardens} a un empleado de Barcelona, sino que será asignado a \textit{Manolo Bombo}.
+
+  \begin{Aviso}[¿Qué se entrega?]
+    \begin{itemize}
+    \item Un fichero de nombre \textbf{\texttt{2.comercial.sql}} con las órdenes de \texttt{COMERCIAL}.
+    \item Un fichero \textbf{\texttt{2.rrhh.sql}} con las órdenes de \texttt{RRHH}.
+    \end{itemize}
+
+    
+    No se permite utilizar resultados de \texttt{SELECT} anteriores. Si se necesita un dato para una orden, debe extraerse de una \textbf{subconsulta}. Para facilitar las subconsultas, pueden crearse vistas libremente.
+  \end{Aviso}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[: \imenu{\texttt{COMERCIAL} y \texttt{COMERCIAL} (2 puntos)}]
+
+
+  El usuario \texttt{INFORMATICA} modifica la tabla de \texttt{PRODUCTOS} para que el stock nunca baje de cero, añadiendo una restricción \texttt{CHECK}.
+  
+  \Simultaneo{
+    
+    \begin{enumerate}
+    \item \textit{PepeGardens} desea comprar 50 ajedreas.
+    \item \texttt{COMERCIAL} realiza una consulta para ver cuántas hay disponibles. Si no hay suficientes cancela la transacción
+    \item Tras ello, crea un pedido para \textit{PepeGardens} con esas 50 ajedreas, eliminando 50 ajedreas del stock.
+    \end{enumerate}
+  }
+  {
+
+    \begin{enumerate}
+    \item Mientras, otro \texttt{COMERCIAL} va a realizar las mismas operaciones con 140 ajedreas para \textit{Agrojardín}.
+    \end{enumerate}
+  }
+  En el almacén no hay suficientes ajedreas para los dos pedidos. Asegúrate de que sólo uno de los dos \texttt{COMERCIAL} consigue realizar la venta, y que ninguno le ofrece al cliente algo que después no tiene.
+  
+
+  \begin{Aviso}[¿Qué se entrega?]
+
+    \begin{itemize}
+    \item Un fichero de nombre \textbf{\texttt{3.comercial50.sql}} con las sentencias del usuario \texttt{COMERCIAL} que vende a \textit{PepeGardens}.
+    \item Un fichero \textbf{\texttt{3.comercial140.sql}} con las sentencias del usuario \texttt{COMERCIAL} que vende a \textit{Agrojardín}. Incluye un comentario con el error de \textbf{Oracle} al intentar vender más ajedreas de las disponibles.
+    \item Un fichero \textbf{\texttt{3.informatica.sql}} con la modificación de la tabla \texttt{Productos}.
+    \end{itemize}
+
+\begin{comment}
+  Para indicar que la transacción se interrumpe por el valor que devuelva una consulta, incluye un comentario como el siguiente:
+  \\
+  \\
+\begin{listadosql}{Cómo indicar fin de la transacción por una condición}{lst:rollback}
+-- Si el campo XXXX de la consulta anterior es
+-- mayor/menor/igual/distinto que XXXX, hago un ROLLBACK.
+-- En otro caso, continúa la transacción.
+\end{listadosql}
+\end{comment}
+  
+\end{Aviso}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[: \imenu{\texttt{CONTABILIDAD} y \texttt{CONTABILIDAD} (2 puntos)}]
+  PepeGardens realiza finalmente el pedido de 50 ajedreas, y otro de 10 palas. Además, realiza el pago para el pedido de las ajedreas. Posteriormente:
+
+  \Simultaneo{
+
+    
+    \begin{enumerate}
+    \item Un empleado de \textit{PepeGardens} se conecta por Internet para pagar el resto de la deuda con PayPal. 
+    \item Para recibir un pago, la web consulta primero el saldo del cliente (suma de    todos sus pedidos menos suma de todos sus pagos).
+    \item Solo acepta pagos inferiores al  saldo deudor del cliente.
+    \end{enumerate}
+  }
+  {
+
+    \begin{enumerate}
+    \item Otro empleado se acerca para pagar el resto de la deuda en efectivo.
+    \item Un empleado de \texttt{CONTABILIDAD} realiza las mismas operaciones que la página web.
+    \end{enumerate}
+  }
+  Asegúrate de que sólo un empleado de PepeGardens consigue pagar.
+  \begin{Aviso}[¿Qué se entrega?]
+    \begin{itemize}
+    \item Un fichero de nombre \texttt{\textbf{4.comercial.sql}} con las sentencias del usuario \texttt{COMERCIAL} que creó el pedido de las 10 palas.
+    \item Un fichero de nombre \texttt{\textbf{4.paypal.sql}}  con las sentencias del usuario \texttt{CONTABILIDAD} que lanza la web para cobrar por PayPal.
+    \item Un fichero de nombre \texttt{\textbf{4.efectivo.sql}}  con las sentencias del usuario \texttt{CONTABILIDAD} que cobra en efectivo.
+    \end{itemize}
+
+    \begin{comment}
+    Para indicar que la transacción se interrumpe por el valor que devuelva una consulta, incluye un comentario como el siguiente:
+    \\
+    \\
+\begin{listadosql}{Cómo indicar fin de la transacción por una condición}{lst:rollback}
+-- Si el campo XXXX de la consulta anterior es
+-- mayor/menor/igual/distinto que XXXX, hago un ROLLBACK.
+-- En otro caso, continúa la transacción.
+\end{listadosql}
+    \end{comment}
+
+  \end{Aviso}
+
+\end{homeworkProblem}
+
+\newpage
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item El ejercicio 1 debe estar realizado sobre la instancia de base de datos del profesor
+\item Entrega tu trabajo en un fichero \texttt{ZIP}, con todos los ficheros indicados en los enunciados
+\item Los nombres de los ficheros incluyen un número (para que estén ordenados). No incluyas mayúsculas. No incluyas acentos. No pongas espacios. No añadas palabras, letras ni números a los nombres.
+\item Sube el documento a \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=189}{la tarea correspondiente en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).  
+\end{itemize}
+
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{./jardineria.pdf}
+  \end{center}
+  \caption{Diagrama de la base de datos}\label{fig:esquema}
+\end{figure}
+
+\end{document}
+
+
+
+
