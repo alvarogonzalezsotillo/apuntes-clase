@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ES" xml:lang="ES">
 <head>
-<!-- 2024-02-29 jue 10:07 -->
+<!-- 2024-02-29 jue 11:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ethernet. Bucles LAN</title>
@@ -211,9 +211,10 @@
 <li><a href="#org0000003">2. Bucles LAN</a></li>
 <li><a href="#org0000027">3. 802.1D: Spanning Tree</a></li>
 <li><a href="#org0000033">4. IEEE 802.3ad: Link Aggregation</a></li>
-<li><a href="#org000003b">5. Redundancia a nivel de red</a></li>
-<li><a href="#org000003e">6. Netacad</a></li>
-<li><a href="#org0000041">7. Referencias</a></li>
+<li><a href="#org0000036">5. Netacad: más sobre STP</a></li>
+<li><a href="#org000003e">6. Redundancia a nivel de red</a></li>
+<li><a href="#org0000046">7. Alta disponibilidad</a></li>
+<li><a href="#org0000049">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -570,11 +571,23 @@ Switch# show etherchannel summary
 </div>
 
 
-<div id="outline-container-org000003b" class="outline-2">
-<h2 id="org000003b"><span class="section-number-2">5.</span> Redundancia a nivel de red</h2>
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">5.</span> Netacad: más sobre STP</h2>
 <div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://contenthub.netacad.com/srwe-dl/5.1.10">https://contenthub.netacad.com/srwe-dl/5.1.10</a></li>
+<li><a href="https://contenthub.netacad.com/srwe-dl/5.2.12">https://contenthub.netacad.com/srwe-dl/5.2.12</a></li>
+<li><a href="https://contenthub.netacad.com/srwe-dl/5.4.2">https://contenthub.netacad.com/srwe-dl/5.4.2</a></li>
+</ul>
+</div>
+</div>
 
-<div id="org0000036" class="figure">
+
+<div id="outline-container-org000003e" class="outline-2">
+<h2 id="org000003e"><span class="section-number-2">6.</span> Redundancia a nivel de red</h2>
+<div class="outline-text-2" id="text-6">
+
+<div id="org0000039" class="figure">
 <p><img src="./media/ejercicio-redundancia-routers.png" alt="ejercicio-redundancia-routers.png" />
 </p>
 </div>
@@ -584,9 +597,9 @@ Switch# show etherchannel summary
 </p>
 </div>
 
-<div id="outline-container-org0000038" class="outline-3">
-<h3 id="org0000038"><span class="section-number-3">5.1.</span> Problema con enrutamiento estático</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org000003b" class="outline-3">
+<h3 id="org000003b"><span class="section-number-3">6.1.</span> Problema con enrutamiento estático</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>si se romple un enlace, puede haber Bucles</li>
 <li>solución: algoritmos dinámicos</li>
@@ -594,7 +607,7 @@ Switch# show etherchannel summary
 
 
 
-<div id="org0000037" class="figure">
+<div id="org000003a" class="figure">
 <p><img src="./media/ejercicio-redundancia-routers-rutas-estaticas-puestas.png" alt="ejercicio-redundancia-routers-rutas-estaticas-puestas.png" />
 </p>
 </div>
@@ -606,20 +619,44 @@ Switch# show etherchannel summary
 </div>
 </div>
 
-<div id="outline-container-org000003e" class="outline-2">
-<h2 id="org000003e"><span class="section-number-2">6.</span> Netacad</h2>
-<div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><a href="https://contenthub.netacad.com/srwe-dl/5.1.10">https://contenthub.netacad.com/srwe-dl/5.1.10</a></li>
-<li><a href="https://contenthub.netacad.com/srwe-dl/5.2.12">https://contenthub.netacad.com/srwe-dl/5.2.12</a></li>
-<li><a href="https://contenthub.netacad.com/srwe-dl/5.4.2">https://contenthub.netacad.com/srwe-dl/5.4.2</a></li>
-</ul>
+<div id="outline-container-org0000046" class="outline-2">
+<h2 id="org0000046"><span class="section-number-2">7.</span> Alta disponibilidad</h2>
+<div class="outline-text-2" id="text-7">
+
+<div id="org0000041" class="figure">
+<p><img src="media/alta-disponibilidad-1.png" alt="alta-disponibilidad-1.png" />
+</p>
+</div>
+
+<div id="org0000042" class="figure">
+<p><img src="media/alta-disponibilidad-2.png" alt="alta-disponibilidad-2.png" />
+</p>
+</div>
+
+<div id="org0000043" class="figure">
+<p><img src="media/alta-disponibilidad-3.png" alt="alta-disponibilidad-3.png" />
+</p>
+</div>
+
+<div id="org0000044" class="figure">
+<p><img src="media/alta-disponibilidad-4.png" alt="alta-disponibilidad-4.png" />
+</p>
+</div>
+
+<div id="org0000045" class="figure">
+<p><img src="media/alta-disponibilidad-5.png" alt="alta-disponibilidad-5.png" />
+</p>
+</div>
+
+<p>
+Más en <a href="https://www.cisco.com/c/en/us/td/docs/solutions/Verticals/EttF/EttFDIG/ch6_EttF.html">https://www.cisco.com/c/en/us/td/docs/solutions/Verticals/EttF/EttFDIG/ch6_EttF.html</a>
+</p>
 </div>
 </div>
 
-<div id="outline-container-org0000041" class="outline-2">
-<h2 id="org0000041"><span class="section-number-2">7.</span> Referencias</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">8.</span> Referencias</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -640,7 +677,7 @@ Switch# show etherchannel summary
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-02-29 jue 10:07</p>
+<p class="date">Created: 2024-02-29 jue 11:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
