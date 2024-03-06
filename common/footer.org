@@ -6,6 +6,7 @@
 "- Formatos:\n"
 "  - [[file:./" (file-name-base (buffer-file-name))  ".reveal.html" "][Transparencias]]\n"
 "  - [[file:./" (file-name-base (buffer-file-name))  ".pdf" "][PDF]]\n"
+"  - [[file:./" (file-name-base (buffer-file-name))  ".wp.html" "][Página web]]\n"
 "  - [[file:./" (file-name-base (buffer-file-name))  ".epub" "][EPUB]]\n"
 "- Creado con:\n"
 "  - [[https://www.gnu.org/s/emacs/][Emacs]]\n"
