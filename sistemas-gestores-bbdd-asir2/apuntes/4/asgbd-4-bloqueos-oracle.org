@@ -160,6 +160,7 @@ insert into ALUMNOS values ('3','María');
 - Pero también pueden bloquearse manualmente
 - Bloqueo de una [[https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_9015.htm][tabla completa]]
   - =lock table TABLA in exclusive mode=
+  - Bloquea la tabla in también puede bloquear otras a partir de las /foreign keys/  
 - Bloqueo de algunas filas:
 #+begin_src sql
 select <una consulta que devuelva algunas filas de una tabla>
