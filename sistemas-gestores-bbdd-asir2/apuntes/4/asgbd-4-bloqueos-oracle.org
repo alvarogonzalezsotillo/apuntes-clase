@@ -272,6 +272,11 @@ select s1.username  as blocking_user , s1.machine as blocking_machine
   and l2.id2 = l2.id2 ;
 #+end_comment
 
+#+begin_comment
+SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF
+SELECT sid, serial#, blocking_session FROM v$session WHERE blocking_session IS NOT NULL;;
+#+end_comment
+
 ** Sentencia =SQL= bloqueada (de un =SID=)
 #+begin_src sql
 select s.sid, q.sql_text from v_$sqltext q, v_$session s
