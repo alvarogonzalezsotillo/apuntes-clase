@@ -136,6 +136,14 @@ Switch(config-if)#switchport trunk native vlan 99
 Switch(config-if)#switchport trunk allowed vlan 1,2,5
 #+END_EXAMPLE
 
+El puerto del otro switch cambiará automáticamente, a no ser que esté configurado como =switchport nonegotiate=
+#+begin_example
+%SPANTREE-2-RECV_PVID_ERR: Received 802.1Q BPDU on non trunk FastEthernet0/1 VLAN1.
+
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking FastEthernet0/1 on VLAN0001. Inconsistent port type
+#+end_example
+
+
 ** Permitir/denegar una VLAN en un puerto trunk
 #+BEGIN_EXAMPLE
 Switch(config)#interface FastEthernet0/1
