@@ -620,6 +620,26 @@ end;
 /
 #+END_SRC
 
+#+reveal: split
+
+#+begin_src sql
+create or replace function empleado_con_id(
+  p_empno empleados.empno%TYPE
+)
+return empleados%rowtype
+as
+    empleado empleados%rowtype;
+begin
+   
+    select * 
+    into empleado
+    from empleados 
+    where empno=p_empno;
+    
+    return empleado;
+end;
+/
+#+end_src
 
 ** Variables en =insert=, =update=, =delete=
 - Se utilizan como un valor inmediato
