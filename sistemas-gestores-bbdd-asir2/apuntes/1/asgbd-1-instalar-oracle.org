@@ -136,7 +136,7 @@ yum whatprovides <fichero>
 *** Directorios de Oracle
  Dejamos los directorios por defecto:
  - Oracle Base: =/opt/app/alumno=
- - /Software/ en =/opt/oracle-install-18c=
+ - /Software/ en =/opt/oracle-install=
  - /Inventory/ en =/opt/app/oraInventory=
    - Dejamos el grupo a =alumno=
 

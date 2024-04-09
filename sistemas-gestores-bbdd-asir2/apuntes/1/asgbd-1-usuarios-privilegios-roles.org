@@ -111,6 +111,20 @@ end;
 ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
 #+end_notes
 
+** Ejercicio: más /tablespaces/
+1. Crea un /tablespace/ =PRUEBA1=
+   - inicialmente 10M, máximo 20M
+2. Crea un usuario
+   - no le digas /tablespace/ por defecto
+   - pero que al crearlo su /tablespace/ por defecto sea =PRUEBA1=
+3. Crea una tabla
+   - =MISDATOS(DATOS VARCHAR(255))=
+4. Llena la tabla hasta que no quede espacio en =PRUEBA1=
+5. Crea un /tablespace/ =PRUEBA2=
+   - tamaño inicial igual al máximo, 30M
+6. mueve =MISDATOS= a =PRUEBA2=
+7. Vuelve a llenar la tabla hasta que se llene =PRUEBA2=
+
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
 graph{

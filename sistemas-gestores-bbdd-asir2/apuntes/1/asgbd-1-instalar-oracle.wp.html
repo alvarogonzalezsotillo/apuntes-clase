@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-26 mar 11:38 -->
+<!-- 2024-04-09 mar 11:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -396,7 +396,7 @@ Dejamos los directorios por defecto:
 </p>
 <ul class="org-ul">
 <li>Oracle Base: <code>/opt/app/alumno</code></li>
-<li><i>Software</i> en <code>/opt/oracle-install-18c</code></li>
+<li><i>Software</i> en <code>/opt/oracle-install</code></li>
 <li><i>Inventory</i> en <code>/opt/app/oraInventory</code>
 <ul class="org-ul">
 <li>Dejamos el grupo a <code>alumno</code></li>
@@ -706,8 +706,8 @@ SQL&gt; show pdbs;
 
     CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                            
 ---------- ------------------------------ ---------- ----------                                            
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>3 PDASIR                         READ WRITE NO                                                    
+    <span style="color: #7ae074741f52;"> </span>    2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
+    <span style="color: #7ae074741f52;"> </span>    3 PDASIR                         READ WRITE NO                                                    
 SQL&gt; alter session set <span style="color: #ff6347;">container</span>=PDASIR
   2  ;
 
@@ -1280,6 +1280,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 <ul class="org-ul">
 <li><a href="./asgbd-1-instalar-oracle.reveal.html">Transparencias</a></li>
 <li><a href="./asgbd-1-instalar-oracle.pdf">PDF</a></li>
+<li><a href="./asgbd-1-instalar-oracle.wp.html">Página web</a></li>
 <li><a href="./asgbd-1-instalar-oracle.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -1295,7 +1296,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-26 mar 11:38</p>
+<p class="date">Created: 2024-04-09 mar 11:59</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
