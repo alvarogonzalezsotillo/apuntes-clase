@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Concurrencia y bloqueos en Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:16</p>
+<h1 class="title">Concurrencia y bloqueos en Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-03-08 vie 12:41</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1039,7 +1039,8 @@ insert into ALUMNOS values ('3','María');
 <li>Pero también pueden bloquearse manualmente</li>
 <li>Bloqueo de una <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_9015.htm">tabla completa</a>
 <ul>
-<li><code>lock table TABLA</code></li>
+<li><code>lock table TABLA in exclusive mode</code></li>
+<li>Bloquea la tabla in también puede bloquear otras a partir de las <i>foreign keys</i></li>
 
 </ul></li>
 <li>Bloqueo de algunas filas:</li>
@@ -1064,6 +1065,7 @@ for update
 <ul>
 <li><a href="./gbd-5-bloqueos-oracle.reveal.html">Transparencias</a></li>
 <li><a href="./gbd-5-bloqueos-oracle.pdf">PDF</a></li>
+<li><a href="./gbd-5-bloqueos-oracle.wp.html">Página web</a></li>
 <li><a href="./gbd-5-bloqueos-oracle.epub">EPUB</a></li>
 
 </ul></li>

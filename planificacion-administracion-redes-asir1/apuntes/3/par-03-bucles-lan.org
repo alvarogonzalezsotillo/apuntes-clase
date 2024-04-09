@@ -155,6 +155,13 @@ Switch# show etherchannel summary
 [[file:pkt/stp-y-port-aggregation.pkt][Enlace a fichero PKT]]
 
 
+* Netacad: más sobre STP
+
+- https://contenthub.netacad.com/srwe-dl/5.1.10
+- https://contenthub.netacad.com/srwe-dl/5.2.12
+- https://contenthub.netacad.com/srwe-dl/5.4.2  
+
+
 * Redundancia a nivel de red
 
 [[file:./media/ejercicio-redundancia-routers.png]]
@@ -174,7 +181,23 @@ Switch# show etherchannel summary
 
 [[file:pkt/redundancia-routers-rutas-estaticas-puestas.pkt][Enlace a fichero PKT]]
 
+* Alta disponibilidad
 
+[[file:media/alta-disponibilidad-1.png]]
+#+reveal: split
+
+[[file:media/alta-disponibilidad-2.png]]
+#+reveal: split
+
+[[file:media/alta-disponibilidad-3.png]]
+#+reveal: split
+
+[[file:media/alta-disponibilidad-4.png]]
+#+reveal: split
+
+[[file:media/alta-disponibilidad-5.png]]
+
+Más en https://www.cisco.com/c/en/us/td/docs/solutions/Verticals/EttF/EttFDIG/ch6_EttF.html
 
 * Referencias
 

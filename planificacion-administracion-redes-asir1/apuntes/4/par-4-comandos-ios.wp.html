@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:18 -->
+<!-- 2024-04-03 mié 13:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Comandos IOS</title>
@@ -208,16 +208,16 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000013">1. General</a></li>
-<li><a href="#org000001e">2. Direcciones IP</a></li>
-<li><a href="#org000002e">3. Enrutamiento</a></li>
-<li><a href="#org000004a">4. VLAN</a></li>
-<li><a href="#org000004f">5. STP</a></li>
-<li><a href="#org0000053">6. Link agregation</a></li>
-<li><a href="#org000005a">7. RIP</a></li>
-<li><a href="#org0000073">8. ACL</a></li>
-<li><a href="#org0000086">9. NAT</a></li>
-<li><a href="#org0000089">10. Referencias</a></li>
+<li><a href="#org0000012">1. General</a></li>
+<li><a href="#org000001b">2. Direcciones IP</a></li>
+<li><a href="#org0000027">3. Enrutamiento</a></li>
+<li><a href="#org000003c">4. VLAN</a></li>
+<li><a href="#org000003f">5. STP</a></li>
+<li><a href="#org0000042">6. Link agregation</a></li>
+<li><a href="#org0000045">7. RIP</a></li>
+<li><a href="#org000005a">8. ACL</a></li>
+<li><a href="#org0000069">9. NAT</a></li>
+<li><a href="#org000006c">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -254,8 +254,8 @@ window.addEventListener("load",()=>{
 
 </script>
 
-<div id="outline-container-org0000013" class="outline-2">
-<h2 id="org0000013"><span class="section-number-2">1.</span> General</h2>
+<div id="outline-container-org0000012" class="outline-2">
+<h2 id="org0000012"><span class="section-number-2">1.</span> General</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><code>CTRL-ALT-6</code> para parar un comando incorrecto</li>
@@ -264,7 +264,6 @@ window.addEventListener("load",()=>{
 <li>Un comando con <code>no</code> deshace el comando</li>
 </ul>
 </div>
-
 
 <div id="outline-container-org0000000" class="outline-3">
 <h3 id="org0000000"><span class="section-number-3">1.1.</span> Introducción de comandos</h3>
@@ -448,9 +447,12 @@ window.addEventListener("load",()=>{
 <li>Raíz de la configuración</li>
 </ul></li>
 </ul>
-</div>
-</div>
 
+<p>
+Nota: Se puede usar <code>do</code> para ejecutar un comando de <i>enabled</i> en el modo de configuración.    
+</p>
+</div>
+</div>
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">1.5.</span> Para activar la configuración</h3>
 <div class="outline-text-3" id="text-1-5">
@@ -463,26 +465,27 @@ Router(config)#
 </div>
 </div>
 
-<div id="outline-container-org0000010" class="outline-3">
-<h3 id="org0000010"><span class="section-number-3">1.6.</span> Salvar la configuración</h3>
+<div id="outline-container-org000000f" class="outline-3">
+<h3 id="org000000f"><span class="section-number-3">1.6.</span> Salvar la configuración</h3>
 <div class="outline-text-3" id="text-1-6">
-<pre class="example" id="org000000f">
-Router# write memory
+<div class="org-src-container">
+<pre class="src src-lisp">Router# write memory
 Router# copy running-config startup-config
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">2.</span> Direcciones IP</h2>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">2.</span> Direcciones IP</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0000017" class="outline-3">
-<h3 id="org0000017"><span class="section-number-3">2.1.</span> Asignar IP</h3>
+<div id="outline-container-org0000015" class="outline-3">
+<h3 id="org0000015"><span class="section-number-3">2.1.</span> Asignar IP</h3>
 <div class="outline-text-3" id="text-2-1">
-<pre class="example" id="org0000016">
-Router(config)# interface fa0/0
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# interface fa0/0
 Router(config-if)# ip address 192.168.6.1 255.255.255.0
 Router(config-if)# no shutdown
 Router(config-if)# exit
@@ -490,127 +493,149 @@ Router(config)#
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">2.2.</span> Consultar IP</h3>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">2.2.</span> Consultar IP</h3>
 <div class="outline-text-3" id="text-2-2">
-<pre class="example" id="org000001a">
-Router&gt; show ip interface
+<div class="org-src-container">
+<pre class="src src-lisp">Router&gt; show ip interface
 Router&gt; show ip interface brief
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000002e" class="outline-2">
-<h2 id="org000002e"><span class="section-number-2">3.</span> Enrutamiento</h2>
+<div id="outline-container-org0000027" class="outline-2">
+<h2 id="org0000027"><span class="section-number-2">3.</span> Enrutamiento</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org0000023" class="outline-3">
-<h3 id="org0000023"><span class="section-number-3">3.1.</span> Añadir ruta</h3>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.1.</span> Añadir ruta</h3>
 <div class="outline-text-3" id="text-3-1">
-<pre class="example" id="org0000021">
-Router(config)# ip route 172.16.0.0 255.255.255.0 192.168.6.254
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# ip route 172.16.0.0 255.255.255.0 192.168.6.254
 </pre>
+</div>
 
 <p>
 También se puede usar una interfaz de red en vez de un gateway. Esto es útil en interfaces serie (donde solo hay un destino posible)
 </p>
-<pre class="example" id="org0000022">
-Router(config)# ip route 172.16.0.0 255.255.255.0 s0/0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# ip route 172.16.0.0 255.255.255.0 s0/0/1
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000027" class="outline-3">
-<h3 id="org0000027"><span class="section-number-3">3.2.</span> Borrar ruta</h3>
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">3.2.</span> Borrar ruta</h3>
 <div class="outline-text-3" id="text-3-2">
-<pre class="example" id="org0000026">
-Router(config)# no ip route 172.16.0.0 255.255.255.0 192.168.6.254
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# no ip route 172.16.0.0 255.255.255.0 192.168.6.254
 </pre>
 </div>
 </div>
+</div>
 
 
-<div id="outline-container-org000002b" class="outline-3">
-<h3 id="org000002b"><span class="section-number-3">3.3.</span> Consultar rutas</h3>
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">3.3.</span> Consultar rutas</h3>
 <div class="outline-text-3" id="text-3-3">
-<pre class="example" id="org000002a">
-Router&gt; show ip route
+<div class="org-src-container">
+<pre class="src src-lisp">Router&gt; show ip route
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000004a" class="outline-2">
-<h2 id="org000004a"><span class="section-number-2">4.</span> VLAN</h2>
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">4.</span> VLAN</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0000032" class="outline-3">
-<h3 id="org0000032"><span class="section-number-3">4.1.</span> Consultar VLANs</h3>
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">4.1.</span> Consultar VLANs</h3>
 <div class="outline-text-3" id="text-4-1">
-<pre class="example" id="org0000031">
-Switch&gt; show vlan brief
+<div class="org-src-container">
+<pre class="src src-lisp">Switch&gt; show vlan brief
 Switch&gt; show interfaces trunk
 Switch&gt; show interfaces f0/1 switchport
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000036" class="outline-3">
-<h3 id="org0000036"><span class="section-number-3">4.2.</span> Crear una VLAN</h3>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">4.2.</span> Crear una VLAN</h3>
 <div class="outline-text-3" id="text-4-2">
-<pre class="example" id="org0000035">
-Switch(config)#vlan 2
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)#vlan 2
 Switch(config-vlan)#name nombredevlan
 Switch(config-vlan)#exit
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">4.3.</span> Asignar un puerto a una VLAN (access)</h3>
+<div id="outline-container-org0000030" class="outline-3">
+<h3 id="org0000030"><span class="section-number-3">4.3.</span> Asignar un puerto a una VLAN (access)</h3>
 <div class="outline-text-3" id="text-4-3">
-<pre class="example" id="org0000039">
-Switch(config)#interface FastEthernet0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport access vlan 2
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org000003e" class="outline-3">
-<h3 id="org000003e"><span class="section-number-3">4.4.</span> Asignar un puerto como trunk</h3>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">4.4.</span> Asignar un puerto como trunk</h3>
 <div class="outline-text-3" id="text-4-4">
-<pre class="example" id="org000003d">
-Switch(config)#interface FastEthernet0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport mode trunk
 Switch(config-if)#switchport trunk native vlan 99
 Switch(config-if)#switchport trunk allowed vlan 1,2,5
 </pre>
 </div>
+
+<p>
+El puerto del otro switch cambiará automáticamente, a no ser que esté configurado como <code>switchport nonegotiate</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">%SPANTREE-2-RECV_PVID_ERR: Received 802.1Q BPDU on non trunk FastEthernet0/1 VLAN1.
+
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking FastEthernet0/1 on VLAN0001. Inconsistent port type
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org0000042" class="outline-3">
-<h3 id="org0000042"><span class="section-number-3">4.5.</span> Permitir/denegar una VLAN en un puerto trunk</h3>
+
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">4.5.</span> Permitir/denegar una VLAN en un puerto trunk</h3>
 <div class="outline-text-3" id="text-4-5">
-<pre class="example" id="org0000041">
-Switch(config)#interface FastEthernet0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport trunk allowed vlan remove 2
 Switch(config-if)#switchport trunk allowed vlan add 2
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000047" class="outline-3">
-<h3 id="org0000047"><span class="section-number-3">4.6.</span> Routers</h3>
+<div id="outline-container-org0000039" class="outline-3">
+<h3 id="org0000039"><span class="section-number-3">4.6.</span> Routers</h3>
 <div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>Los routers pueden tener interfaces virtuales, a las que llegan las tramas 802.1q de cierta VLAN.</li>
 <li>Estas interfaces se configuran como las demás, y se añaden a la tabla de rutas de la misma forma</li>
 </ul>
 
-<pre class="example" id="org0000045">
-Router(config)# interface fa0/0.1
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Crea la interfaz virtual <code>fa0/0.1</code> sobre la interfaz real <code>fa0/0</code>, que recibirá las tramas 802.1q de la VLAN 2.</label><pre class="src src-lisp">Router(config)# interface fa0/0.1
 Router(config-subif)# encap dot1q 2
 Router(config-subif)# ip address 192.168.6.1 255.255.255.0
 Router(config-subif)# exit
@@ -618,142 +643,154 @@ Router(config)# interface fa0/0
 Router(config-if)# no shutdown
 Router(config-if)# exit
 </pre>
+</div>
 
-<pre class="example" id="org0000046">
-Router# show interfaces
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span>Mostrar información de las interfaces (incluido VLAN) en un router</label><pre class="src src-lisp">Router# show interfaces
 </pre>
 </div>
 </div>
 </div>
+</div>
 
 
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">5.</span> STP</h2>
+<div id="outline-container-org000003f" class="outline-2">
+<h2 id="org000003f"><span class="section-number-2">5.</span> STP</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Consultar y poner la prioridad de un switch
 </p>
-<pre class="example" id="org000004d">
-Switch# show spanning-tree 
+<div class="org-src-container">
+<pre class="src src-lisp">Switch# show spanning-tree 
 </pre>
+</div>
 
-<pre class="example" id="org000004e">
-Switch(config)# spanning-tree vlan 1 priority 1
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)# spanning-tree vlan 1 priority 1
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000053" class="outline-2">
-<h2 id="org0000053"><span class="section-number-2">6.</span> Link agregation</h2>
+<div id="outline-container-org0000042" class="outline-2">
+<h2 id="org0000042"><span class="section-number-2">6.</span> Link agregation</h2>
 <div class="outline-text-2" id="text-6">
 <p>
-Se añader a un mismo <code>channel-group</code> todos los enlaces conectados al mismo switch.
+Se añaden a un mismo <code>channel-group</code> todos los enlaces conectados al mismo switch.
 </p>
 
-<pre class="example" id="org0000052">
-Switch(config)# interface fa0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Switch(config)# interface fa0/1
 Switch(config-if)# channel-group 1 mode active
 
 Switch# show etherchannel summary
 </pre>
 </div>
 </div>
+</div>
 
 
 
-<div id="outline-container-org000005a" class="outline-2">
-<h2 id="org000005a"><span class="section-number-2">7.</span> RIP</h2>
+<div id="outline-container-org0000045" class="outline-2">
+<h2 id="org0000045"><span class="section-number-2">7.</span> RIP</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Habilitar RIP para dos redes conectadas directamente
 </p>
-<pre class="example" id="org0000056">
-Router(config)#router rip
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)#router rip
 Router(config-router)#network 192.168.1.0 
 Router(config-router)#network 200.200.1.0
 </pre>
+</div>
 
 <p>
 Comprobar la configuración RIP
 </p>
-<pre class="example" id="org0000057">
-Router# show ip protocols
+<div class="org-src-container">
+<pre class="src src-lisp">Router# show ip protocols
 Router# show ip rip database
 </pre>
+</div>
 
 
 <p>
 Habilitar versión 2
 </p>
-<pre class="example" id="org0000058">
-Router(config)#router rip
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)#router rip
 Router(config-router)# version 2
 </pre>
+</div>
 
 <p>
 Interfaz pasiva, en la que no hay otros routers y por tanto no se envia información de routing
 </p>
-<pre class="example" id="org0000059">
-Router(config)#router rip
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)#router rip
 Router(config-router)# passive-interface g0/0
 </pre>
 </div>
 </div>
+</div>
 
 
-<div id="outline-container-org0000073" class="outline-2">
-<h2 id="org0000073"><span class="section-number-2">8.</span> ACL</h2>
+<div id="outline-container-org000005a" class="outline-2">
+<h2 id="org000005a"><span class="section-number-2">8.</span> ACL</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Consultar ACLs definidas
 </p>
-<pre class="example" id="org000005d">
-Router# show ip access-list
+<div class="org-src-container">
+<pre class="src src-lisp">Router# show ip access-list
 </pre>
+</div>
 
 <p>
 Asociar una ACL a una interfaz
 </p>
-<pre class="example" id="org000005e">
-Router(config)# interface fa0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# interface fa0/1
 Router(config-if)# ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </pre>
+</div>
 
 <p>
 Desasociar una ACL de una interfaz
 </p>
-<pre class="example" id="org000005f">
-Router(config)# interface fa0/1
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# interface fa0/1
 Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </pre>
 </div>
+</div>
 
-<div id="outline-container-org0000062" class="outline-3">
-<h3 id="org0000062"><span class="section-number-3">8.1.</span> ACL estándar</h3>
+<div id="outline-container-org000004a" class="outline-3">
+<h3 id="org000004a"><span class="section-number-3">8.1.</span> ACL estándar</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 Crear una ACL o añadir una regla
 </p>
-<pre class="example" id="org0000060">
+<pre class="example" id="org0000048">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
 </pre>
 
 <p>
 Borrar una ACLs
 </p>
-<pre class="example" id="org0000061">
+<pre class="example" id="org0000049">
 Router(config)# no access-list &lt;numero&gt; 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org0000067" class="outline-3">
-<h3 id="org0000067"><span class="section-number-3">8.2.</span> ACL extendidas</h3>
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">8.2.</span> ACL extendidas</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 Protocolo IP (hay más opciones, no explicadas aquí)
 </p>
-<pre class="example" id="org0000065">
+<pre class="example" id="org000004d">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
    &lt;host|source source-wildcard|any&gt;
    &lt;host|destination destination-wildcard|any&gt;
@@ -762,7 +799,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
 <p>
 Protocolo ICMP
 </p>
-<pre class="example" id="org0000066">
+<pre class="example" id="org000004e">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
    &lt;host|source source-wildcard|any&gt;
    &lt;host|destination destination-wildcard|any&gt;
@@ -772,13 +809,13 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
 
 
 
-<div id="outline-container-org000006c" class="outline-3">
-<h3 id="org000006c"><span class="section-number-3">8.3.</span> ACL extendidas TCP y UDP</h3>
+<div id="outline-container-org0000054" class="outline-3">
+<h3 id="org0000054"><span class="section-number-3">8.3.</span> ACL extendidas TCP y UDP</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 Protocolo TCP
 </p>
-<pre class="example" id="org000006a">
+<pre class="example" id="org0000052">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
    &lt;host|source source-wildcard|any&gt; [puerto]
    &lt;host|destination destination-wildcard|any&gt; [puerto]
@@ -788,7 +825,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
 <p>
 Protocolo UDP
 </p>
-<pre class="example" id="org000006b">
+<pre class="example" id="org0000053">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
    &lt;host|source source-wildcard|any&gt; [puerto]
    &lt;host|destination destination-wildcard|any&gt; [puerto]
@@ -837,45 +874,49 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
 
 
 
-<div id="outline-container-org0000070" class="outline-3">
-<h3 id="org0000070"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
+<div id="outline-container-org0000057" class="outline-3">
+<h3 id="org0000057"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
 <div class="outline-text-3" id="text-8-4">
-<pre class="example" id="org000006f">
-Router(config)# ip access-list standard NOMBRE
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# ip access-list standard NOMBRE
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000086" class="outline-2">
-<h2 id="org0000086"><span class="section-number-2">9.</span> NAT</h2>
+</div>
+<div id="outline-container-org0000069" class="outline-2">
+<h2 id="org0000069"><span class="section-number-2">9.</span> NAT</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Información del estado de NAT
 </p>
-<pre class="example" id="org0000076">
-Router# show running-config
+<div class="org-src-container">
+<pre class="src src-lisp">Router# show running-config
 Router# show ip nat translations
 Router# show ip nat statistics 
 </pre>
+</div>
 
 <p>
 Borrar todas las entradas de NAT dinámico
 </p>
-<pre class="example" id="org0000077">
-no ip nat source static
+<div class="org-src-container">
+<pre class="src src-lisp">no ip nat source static
 </pre>
+</div>
 
 <p>
 Borrar todas las entradas de NAT estático
 </p>
-<pre class="example" id="org0000078">
-no ip nat source static
+<div class="org-src-container">
+<pre class="src src-lisp">no ip nat source static
 </pre>
+</div>
 </div>
 
 
-<div id="outline-container-org0000079" class="outline-3">
-<h3 id="org0000079"><span class="section-number-3">9.1.</span> PAT</h3>
+<div id="outline-container-org000005d" class="outline-3">
+<h3 id="org000005d"><span class="section-number-3">9.1.</span> PAT</h3>
 <div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>Defina el grupo de direcciones globales que se debe usar para la traducción de sobrecarga.
@@ -904,8 +945,8 @@ no ip nat source static
 </div>
 </div>
 
-<div id="outline-container-org000007c" class="outline-3">
-<h3 id="org000007c"><span class="section-number-3">9.2.</span> NAT dinámica</h3>
+<div id="outline-container-org0000060" class="outline-3">
+<h3 id="org0000060"><span class="section-number-3">9.2.</span> NAT dinámica</h3>
 <div class="outline-text-3" id="text-9-2">
 <ul class="org-ul">
 <li>Defina el conjunto de direcciones globales que se debe usar para la traducción.
@@ -935,8 +976,8 @@ no ip nat source static
 </div>
 
 
-<div id="outline-container-org000007f" class="outline-3">
-<h3 id="org000007f"><span class="section-number-3">9.3.</span> NAT estática</h3>
+<div id="outline-container-org0000063" class="outline-3">
+<h3 id="org0000063"><span class="section-number-3">9.3.</span> NAT estática</h3>
 <div class="outline-text-3" id="text-9-3">
 <ul class="org-ul">
 <li>Se establece la traducción estática entre una dirección local interna y una dirección global interna.
@@ -971,25 +1012,27 @@ no ip nat source static
 
 
 
-<div id="outline-container-org0000083" class="outline-3">
-<h3 id="org0000083"><span class="section-number-3">9.4.</span> Generales</h3>
+<div id="outline-container-org0000066" class="outline-3">
+<h3 id="org0000066"><span class="section-number-3">9.4.</span> Generales</h3>
 <div class="outline-text-3" id="text-9-4">
-<pre class="example" id="org0000082">
-show ip nat translations
+<div class="org-src-container">
+<pre class="src src-lisp">show ip nat translations
 debug ip nat
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000089" class="outline-2">
-<h2 id="org0000089"><span class="section-number-2">10.</span> Referencias</h2>
+<div id="outline-container-org000006c" class="outline-2">
+<h2 id="org000006c"><span class="section-number-2">10.</span> Referencias</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
 <li><a href="./par-4-comandos-ios.reveal.html">Transparencias</a></li>
 <li><a href="./par-4-comandos-ios.pdf">PDF</a></li>
+<li><a href="./par-4-comandos-ios.wp.html">Página web</a></li>
 <li><a href="./par-4-comandos-ios.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -1005,7 +1048,7 @@ debug ip nat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:18</p>
+<p class="date">Created: 2024-04-03 mié 13:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

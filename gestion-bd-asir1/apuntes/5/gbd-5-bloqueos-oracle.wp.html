@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:16 -->
+<!-- 2024-03-08 vie 12:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
@@ -781,7 +781,8 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <li>Pero también pueden bloquearse manualmente</li>
 <li>Bloqueo de una <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_9015.htm">tabla completa</a>
 <ul class="org-ul">
-<li><code>lock table TABLA</code></li>
+<li><code>lock table TABLA in exclusive mode</code></li>
+<li>Bloquea la tabla in también puede bloquear otras a partir de las <i>foreign keys</i></li>
 </ul></li>
 <li>Bloqueo de algunas filas:</li>
 </ul>
@@ -803,6 +804,7 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <ul class="org-ul">
 <li><a href="./gbd-5-bloqueos-oracle.reveal.html">Transparencias</a></li>
 <li><a href="./gbd-5-bloqueos-oracle.pdf">PDF</a></li>
+<li><a href="./gbd-5-bloqueos-oracle.wp.html">Página web</a></li>
 <li><a href="./gbd-5-bloqueos-oracle.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -818,7 +820,7 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:16</p>
+<p class="date">Created: 2024-03-08 vie 12:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

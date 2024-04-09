@@ -113,7 +113,7 @@ create view DATOSPARAUSUARIO as select texto from datos;
 grant select on datosparausuario to usuario;
 #+end_src
 
-_
+
 * Roles
 - Asignar todos los privilegios a un usuario es trabajoso, pero factible
 - ¿Qué ocurre si tenemos que manejar a muchos usuario?
