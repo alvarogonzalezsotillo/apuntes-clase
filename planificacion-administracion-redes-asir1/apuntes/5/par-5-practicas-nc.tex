@@ -66,19 +66,19 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
 
 
 \begin{homeworkProblem}[: \imenu{Envía información de tus ficheros (2 puntos)}]
-   Envía información de los ficheros y directorios de tu directorio \texttt{\$HOME} a otro ordenador del aula, usando tuberías (pipes). Después, cambia los roles de cliente y servidor enviando la ayuda del comando nc (\texttt{man nc}).
+  Envía información de los ficheros y directorios de tu directorio \texttt{\$HOME} a otro ordenador del aula, usando tuberías (pipes). Después, cambia los roles de cliente y servidor enviando la ayuda del comando nc (\texttt{man nc}).
 
 
 
-  \begin{listadoshell}{Enviar la salida de un comando a \texttt{nc}}{lst:tuberias}
-    ls -la | nc ipdelservidor puertolibre
-  \end{listadoshell}
+\begin{listadoshell}{Enviar la salida de un comando a \texttt{nc}}{lst:tuberias}
+ls -la | nc ipdelservidor puertolibre
+\end{listadoshell}
 
   Después, envía una imagen (JPG, PNG...) a un compañero. El compañero debe grabar dicha imagen y visualizarla. Usa el flag \texttt{-N} en cliente y servidor, para que \texttt{netcat} finalice automáticamente al acabarse el fichero, sin tener que pulsar \texttt{CTRL-C}.
 
-  \begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
-    nc -N ipdelservidor puertolibre < imagen
-  \end{listadoshell}
+\begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
+nc -N ipdelservidor puertolibre < imagen
+\end{listadoshell}
 \end{homeworkProblem}
 
 
@@ -87,15 +87,15 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Empaqueta una máquina virtual (fichero \texttt{OVA}, \texttt{ISO}, \texttt{ZIP}, \texttt{VMDK} o \texttt{DVI}).
   \item Envía el fichero a un compañero usando \texttt{netcat}. Mide el tiempo total de transmisión con el comando \texttt{time}
 
-    \begin{listadoshell}{Medir el tiempo de ejecución con  \texttt{time}}{lst:time}
-      time nc ....
-    \end{listadoshell}
+\begin{listadoshell}{Medir el tiempo de ejecución con  \texttt{time}}{lst:time}
+time nc ....
+\end{listadoshell}
     
   \item Monitoriza el progreso en el ordenador que recibe el fichero, vigilando el directorio de destino con
 
-    \begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
-      watch -d ls -l
-    \end{listadoshell}
+\begin{listadoshell}{Enviar un fichero con \texttt{nc}}{lst:tuberias}
+watch -d ls -l
+\end{listadoshell}
 
     
   \end{itemize}
@@ -115,24 +115,24 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
 
 
 \begin{comment}
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-cabecera: inventada
+  HTTP/1.1 200 OK
+  Content-Type: text/html; charset=utf-8
+  cabecera: inventada
 
 
-<html>
+  <html>
 
-    <head><title>Ejercicio 5</title></head>
+  <head><title>Ejercicio 5</title></head>
 
-    <body>
-        <h1>Un título de nivel 1</h1>
-        Un ejemplo de página que tiene <b>negrita</b> y <i>cursiva</i>.
+  <body>
+  <h1>Un título de nivel 1</h1>
+  Un ejemplo de página que tiene <b>negrita</b> y <i>cursiva</i>.
 
-        Ahora con utf-8
+  Ahora con utf-8
 
-    </body>
+  </body>
 
-</html>
+  </html>
 \end{comment}
   
 \end{homeworkProblem}
@@ -157,29 +157,41 @@ cabecera: inventada
   \end{itemize}
 
 
-https://apipheny.io/free-api/
+  https://apipheny.io/free-api/
 
 
   
 \end{comment}
 
+  \begin{itemize}
 \item Ejecuta NetCat conectándote al puerto 80 de \url{www.boredapi.com}
-  \item Tras la conexión, introducir
-    \begin{cuadrito}
-      \texttt{GET /api/activity HTTP/1.1} \\
-      \texttt{Host:www.boredapi.com} \\
-      \\
-      \\
-      (Aquí hay dos líneas nuevas)
-    \end{cuadrito}
-  \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.  
-  \item Es una respuesta \enlace{https://es.wikipedia.org/wiki/JSON}{JSON}. Decide si la actividad que te sugiere te sacará del aburrimiento.
-  \end{itemize}
+\item Tras la conexión, introducir
+  \begin{cuadrito}
+    \texttt{GET /api/activity HTTP/1.1} \\
+    \texttt{Host:www.boredapi.com} \\
+    \\
+    \\
+    (Aquí hay dos líneas nuevas)
+  \end{cuadrito}
+\item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.  
+\item Es una respuesta \enlace{https://es.wikipedia.org/wiki/JSON}{JSON}. Decide si la actividad que te sugiere te sacará del aburrimiento.
+\end{itemize}
 
-  
+
 \end{homeworkProblem}
 
 
-
+\section{Instrucciones de entrega}
+\begin{itemize}
+\item Se corregirá un solo documento. En él estarán embebidos todos los recursos que se quieran mostrar (imágenes, diagramas, tablas...)
+\item El ejercicio se realizará y entregará de manera individual.
+  \begin{itemize}
+  \item Solo se admiten trabajos en pareja, si en clase es necesario compartir ordenador.
+  \end{itemize}
+\item Entrega tu trabajo en formato \textbf{doc}, \textbf{docx}, \textbf{odt} o \textbf{pdf}.
+\item También puede entregarse como una entrada de blog. Para ello, sube un archivo con la URL de la entrada.
+\item Sube el documento a la tarea correspondiente \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala}{en el aula virtual}
+\item Presta atención al plazo de entrega (con fecha y hora).
+\end{itemize}
 
 \end{document}

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:17 -->
+<!-- 2024-04-04 jue 11:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PLSQL</title>
@@ -467,7 +467,7 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
     if to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
     <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
     <span style="color: #729fcf; font-weight: bold;">else</span>    
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>  
+    <span style="color: #7ae074741f52;"> </span>      
     <span style="color: #7ae074741f52;"> </span>   <span style="color: #729fcf; font-weight: bold;">case</span> v
     <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
     <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
@@ -1137,9 +1137,28 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 /
 </pre>
 </div>
-</div>
-</div>
 
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">empleado_con_id</span>(
+  p_empno empleados.empno%<span style="color: #729fcf; font-weight: bold;">TYPE</span>
+)
+<span style="color: #729fcf; font-weight: bold;">return</span> empleados%rowtype
+<span style="color: #729fcf; font-weight: bold;">as</span>
+    empleado empleados%rowtype;
+<span style="color: #729fcf; font-weight: bold;">begin</span>
+   
+    <span style="color: #729fcf; font-weight: bold;">select</span> * 
+    <span style="color: #729fcf; font-weight: bold;">into</span> empleado
+    <span style="color: #729fcf; font-weight: bold;">from</span> empleados 
+    <span style="color: #729fcf; font-weight: bold;">where</span> empno=p_empno;
+    
+    <span style="color: #729fcf; font-weight: bold;">return</span> empleado;
+<span style="color: #729fcf; font-weight: bold;">end</span>;
+/
+</pre>
+</div>
+</div>
+</div>
 
 <div id="outline-container-org0000078" class="outline-3">
 <h3 id="org0000078"><span class="section-number-3">6.4.</span> Variables en <code>insert</code>, <code>update</code>, <code>delete</code></h3>
@@ -1153,10 +1172,10 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <span style="color: #729fcf; font-weight: bold;">begin</span>
   vempno := 100;
   <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno, salario, nombre)
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #ad7fa8; font-style: italic;">'Manolo'</span>);
+    <span style="color: #7ae074741f52;"> </span>    <span style="color: #729fcf; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #ad7fa8; font-style: italic;">'Manolo'</span>);
   <span style="color: #729fcf; font-weight: bold;">update</span> empleados 
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">set</span> salario = salario + 100
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span><span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
+    <span style="color: #7ae074741f52;"> </span>    <span style="color: #729fcf; font-weight: bold;">set</span> salario = salario + 100
+    <span style="color: #7ae074741f52;"> </span>    <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
   <span style="color: #729fcf; font-weight: bold;">delete</span> <span style="color: #729fcf; font-weight: bold;">from</span> empleados <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
@@ -2019,6 +2038,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <ul class="org-ul">
 <li><a href="./gbd-6-plsql.reveal.html">Transparencias</a></li>
 <li><a href="./gbd-6-plsql.pdf">PDF</a></li>
+<li><a href="./gbd-6-plsql.wp.html">Página web</a></li>
 <li><a href="./gbd-6-plsql.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -2034,7 +2054,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:17</p>
+<p class="date">Created: 2024-04-04 jue 11:02</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

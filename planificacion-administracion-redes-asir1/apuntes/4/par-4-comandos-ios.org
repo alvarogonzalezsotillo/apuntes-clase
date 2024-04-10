@@ -62,49 +62,49 @@ Router(config)#
 #+end_src
 
 ** Salvar la configuración
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router# write memory
 Router# copy running-config startup-config
-#+END_EXAMPLE
+#+END_src
 
 * Direcciones IP
 
 ** Asignar IP
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router(config)# interface fa0/0
 Router(config-if)# ip address 192.168.6.1 255.255.255.0
 Router(config-if)# no shutdown
 Router(config-if)# exit
 Router(config)#
-#+END_EXAMPLE
+#+END_src
 
 ** Consultar IP
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router> show ip interface
 Router> show ip interface brief
-#+END_EXAMPLE
+#+END_src
 
 * Enrutamiento
 ** Añadir ruta
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router(config)# ip route 172.16.0.0 255.255.255.0 192.168.6.254
-#+END_EXAMPLE
+#+END_src
 
 También se puede usar una interfaz de red en vez de un gateway. Esto es útil en interfaces serie (donde solo hay un destino posible)
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router(config)# ip route 172.16.0.0 255.255.255.0 s0/0/1
-#+END_EXAMPLE
+#+END_src
 
 ** Borrar ruta
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router(config)# no ip route 172.16.0.0 255.255.255.0 192.168.6.254
-#+END_EXAMPLE
+#+END_src
 
 
 ** Consultar rutas
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router> show ip route
-#+END_EXAMPLE
+#+END_src
 
 ** Desactivar /ARP proxy/
 #+begin_example
@@ -114,46 +114,54 @@ Router(config-if)#no ip proxy-arp
 * VLAN
 
 ** Consultar VLANs
-#+BEGIN_EXAMPLE 
+#+begin_src lisp 
 Switch> show vlan brief
 Switch> show interfaces trunk
 Switch> show interfaces f0/1 switchport
-#+END_EXAMPLE
+#+END_src
 
 ** Crear una VLAN
-#+BEGIN_EXAMPLE 
+#+begin_src lisp 
 Switch(config)#vlan 2
 Switch(config-vlan)#name nombredevlan
 Switch(config-vlan)#exit
-#+END_EXAMPLE
+#+END_src
 
 ** Asignar un puerto a una VLAN (access)
-#+BEGIN_EXAMPLE 
+#+begin_src lisp 
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport access vlan 2
-#+END_EXAMPLE
+#+END_src
 
 ** Asignar un puerto como trunk
-#+BEGIN_EXAMPLE 
+#+begin_src lisp 
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport mode trunk
 Switch(config-if)#switchport trunk native vlan 99
 Switch(config-if)#switchport trunk allowed vlan 1,2,5
-#+END_EXAMPLE
+#+END_src
+
+El puerto del otro switch cambiará automáticamente, a no ser que esté configurado como =switchport nonegotiate=
+#+begin_src lisp
+%SPANTREE-2-RECV_PVID_ERR: Received 802.1Q BPDU on non trunk FastEthernet0/1 VLAN1.
+
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking FastEthernet0/1 on VLAN0001. Inconsistent port type
+#+end_src
+
 
 ** Permitir/denegar una VLAN en un puerto trunk
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport trunk allowed vlan remove 2
 Switch(config-if)#switchport trunk allowed vlan add 2
-#+END_EXAMPLE
+#+END_src
 
 ** Routers
 - Los routers pueden tener interfaces virtuales, a las que llegan las tramas 802.1q de cierta VLAN.
 - Estas interfaces se configuran como las demás, y se añaden a la tabla de rutas de la misma forma
 
 #+caption: Crea la interfaz virtual =fa0/0.1= sobre la interfaz real =fa0/0=, que recibirá las tramas 802.1q de la VLAN 2.
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router(config)# interface fa0/0.1
 Router(config-subif)# encap dot1q 2
 Router(config-subif)# ip address 192.168.6.1 255.255.255.0
@@ -161,84 +169,84 @@ Router(config-subif)# exit
 Router(config)# interface fa0/0
 Router(config-if)# no shutdown
 Router(config-if)# exit
-#+END_EXAMPLE
+#+END_src
 
 #+reveal: split
 #+caption: Mostrar información de las interfaces (incluido VLAN) en un router
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Router# show interfaces
-#+END_EXAMPLE
+#+END_src
 
 
 * STP
 Consultar y poner la prioridad de un switch
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Switch# show spanning-tree 
-#+END_EXAMPLE
+#+END_src
 
-#+BEGIN_EXAMPLE
+#+begin_src lisp
 Switch(config)# spanning-tree vlan 1 priority 1
-#+END_EXAMPLE
+#+END_src
 
 * Link agregation
 
-Se añader a un mismo =channel-group= todos los enlaces conectados al mismo switch.
+Se añaden a un mismo =channel-group= todos los enlaces conectados al mismo switch.
 
-#+begin_example
+#+begin_src lisp
 Switch(config)# interface fa0/1
 Switch(config-if)# channel-group 1 mode active
 
 Switch# show etherchannel summary
-#+end_example
+#+end_src
 
 
 
 * RIP
 Habilitar RIP para dos redes conectadas directamente
-#+begin_example
+#+begin_src lisp
 Router(config)#router rip
 Router(config-router)#network 192.168.1.0 
 Router(config-router)#network 200.200.1.0
-#+end_example
+#+end_src
 
 Comprobar la configuración RIP
-#+begin_example
+#+begin_src lisp
 Router# show ip protocols
 Router# show ip rip database
-#+end_example
+#+end_src
 
 
 Habilitar versión 2
-#+begin_example
+#+begin_src lisp
 Router(config)#router rip
 Router(config-router)# version 2
-#+end_example
+#+end_src
 
 Interfaz pasiva, en la que no hay otros routers y por tanto no se envia información de routing
-#+begin_example
+#+begin_src lisp
 Router(config)#router rip
 Router(config-router)# passive-interface g0/0
-#+end_example
+#+end_src
 
 
 * ACL
 
 Consultar ACLs definidas
-#+begin_example
+#+begin_src lisp
 Router# show ip access-list
-#+end_example
+#+end_src
 
 Asociar una ACL a una interfaz
-#+begin_example
+#+begin_src lisp
 Router(config)# interface fa0/1
 Router(config-if)# ip access-group <numero ACL> <out o in>
-#+end_example
+#+end_src
 
 Desasociar una ACL de una interfaz
-#+begin_example
+#+begin_src lisp
 Router(config)# interface fa0/1
 Router(config-if)# no ip access-group <numero ACL> <out o in>
-#+end_example
+#+end_src
 
 ** ACL estándar
 Crear una ACL o añadir una regla
@@ -297,27 +305,27 @@ Router(config)# access-list <numero> <permit o deny> UDP
 
 
 ** ACL con nombre
-#+begin_example
+#+begin_src lisp
 Router(config)# ip access-list standard NOMBRE
-#+end_example
+#+end_src
 * NAT
 
 Información del estado de NAT
-#+begin_example
+#+begin_src lisp
 Router# show running-config
 Router# show ip nat translations
 Router# show ip nat statistics 
-#+end_example
+#+end_src
 
 Borrar todas las entradas de NAT dinámico
-#+begin_example
+#+begin_src lisp
 no ip nat source static
-#+end_example
+#+end_src
 
 Borrar todas las entradas de NAT estático
-#+begin_example
+#+begin_src lisp
 no ip nat source static
-#+end_example
+#+end_src
 
 
 ** PAT
@@ -368,10 +376,10 @@ no ip nat source static
 
 
 ** Generales
-#+begin_example
+#+begin_src lisp
 show ip nat translations
 debug ip nat
-#+end_example
+#+end_src
 
 * Referencias
 #+include: "../../../common/footer.org"
