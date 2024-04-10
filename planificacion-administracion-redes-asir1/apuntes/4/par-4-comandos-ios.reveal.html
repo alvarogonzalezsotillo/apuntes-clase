@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-02-21 mié 14:08</p>
+<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-10 mié 17:21</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -788,6 +788,14 @@ Router&gt; show ip route
 <div class="slide-footer"></div>
 
 </section>
+<section id="slide-3-4">
+<h3 id="3-4"><span class="section-number-3">3.4.</span> Desactivar <i>ARP proxy</i></h3>
+<pre class="example" id="org0000007">
+Router(config)#interface FastEthernet0/1
+Router(config-if)#no ip proxy-arp
+</pre>
+<div class="slide-footer"></div>
+</section>
 </section>
 <section>
 <section id="slide-4">
@@ -797,7 +805,7 @@ Router&gt; show ip route
 </section>
 <section id="slide-4-1">
 <h3 id="4-1"><span class="section-number-3">4.1.</span> Consultar VLANs</h3>
-<pre class="example" id="org0000007">
+<pre class="example" id="org0000008">
 Switch&gt; show vlan brief
 Switch&gt; show interfaces trunk
 Switch&gt; show interfaces f0/1 switchport
@@ -807,7 +815,7 @@ Switch&gt; show interfaces f0/1 switchport
 </section>
 <section id="slide-4-2">
 <h3 id="4-2"><span class="section-number-3">4.2.</span> Crear una VLAN</h3>
-<pre class="example" id="org0000008">
+<pre class="example" id="org0000009">
 Switch(config)#vlan 2
 Switch(config-vlan)#name nombredevlan
 Switch(config-vlan)#exit
@@ -817,7 +825,7 @@ Switch(config-vlan)#exit
 </section>
 <section id="slide-4-3">
 <h3 id="4-3"><span class="section-number-3">4.3.</span> Asignar un puerto a una VLAN (access)</h3>
-<pre class="example" id="org0000009">
+<pre class="example" id="org000000a">
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport access vlan 2
 </pre>
@@ -826,7 +834,7 @@ Switch(config-if)#switchport access vlan 2
 </section>
 <section id="slide-4-4">
 <h3 id="4-4"><span class="section-number-3">4.4.</span> Asignar un puerto como trunk</h3>
-<pre class="example" id="org000000a">
+<pre class="example" id="org000000b">
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport mode trunk
 Switch(config-if)#switchport trunk native vlan 99
@@ -837,7 +845,7 @@ Switch(config-if)#switchport trunk allowed vlan 1,2,5
 </section>
 <section id="slide-4-5">
 <h3 id="4-5"><span class="section-number-3">4.5.</span> Permitir/denegar una VLAN en un puerto trunk</h3>
-<pre class="example" id="org000000b">
+<pre class="example" id="org000000c">
 Switch(config)#interface FastEthernet0/1
 Switch(config-if)#switchport trunk allowed vlan remove 2
 Switch(config-if)#switchport trunk allowed vlan add 2
@@ -853,7 +861,7 @@ Switch(config-if)#switchport trunk allowed vlan add 2
 
 </ul>
 
-<pre class="example" id="org000000c">
+<pre class="example" id="org000000d">
 Router(config)# interface fa0/0.1
 Router(config-subif)# encap dot1q 2
 Router(config-subif)# ip address 192.168.6.1 255.255.255.0
@@ -866,7 +874,7 @@ Router(config-if)# exit
 <div class="slide-footer"></div>
 </section>
 <section>
-<pre class="example" id="org000000d">
+<pre class="example" id="org000000e">
 Router# show interfaces
 </pre>
 <div class="slide-footer"></div>
@@ -880,11 +888,11 @@ Router# show interfaces
 <p>
 Consultar y poner la prioridad de un switch
 </p>
-<pre class="example" id="org000000e">
+<pre class="example" id="org000000f">
 Switch# show spanning-tree 
 </pre>
 
-<pre class="example" id="org000000f">
+<pre class="example" id="org0000010">
 Switch(config)# spanning-tree vlan 1 priority 1
 </pre>
 <div class="slide-footer"></div>
@@ -898,7 +906,7 @@ Switch(config)# spanning-tree vlan 1 priority 1
 Se añader a un mismo <code>channel-group</code> todos los enlaces conectados al mismo switch.
 </p>
 
-<pre class="example" id="org0000010">
+<pre class="example" id="org0000011">
 Switch(config)# interface fa0/1
 Switch(config-if)# channel-group 1 mode active
 
@@ -916,7 +924,7 @@ Switch# show etherchannel summary
 <p>
 Habilitar RIP para dos redes conectadas directamente
 </p>
-<pre class="example" id="org0000011">
+<pre class="example" id="org0000012">
 Router(config)#router rip
 Router(config-router)#network 192.168.1.0 
 Router(config-router)#network 200.200.1.0
@@ -925,7 +933,7 @@ Router(config-router)#network 200.200.1.0
 <p>
 Comprobar la configuración RIP
 </p>
-<pre class="example" id="org0000012">
+<pre class="example" id="org0000013">
 Router# show ip protocols
 Router# show ip rip database
 </pre>
@@ -934,7 +942,7 @@ Router# show ip rip database
 <p>
 Habilitar versión 2
 </p>
-<pre class="example" id="org0000013">
+<pre class="example" id="org0000014">
 Router(config)#router rip
 Router(config-router)# version 2
 </pre>
@@ -942,7 +950,7 @@ Router(config-router)# version 2
 <p>
 Interfaz pasiva, en la que no hay otros routers y por tanto no se envia información de routing
 </p>
-<pre class="example" id="org0000014">
+<pre class="example" id="org0000015">
 Router(config)#router rip
 Router(config-router)# passive-interface g0/0
 </pre>
@@ -957,14 +965,14 @@ Router(config-router)# passive-interface g0/0
 <p>
 Consultar ACLs definidas
 </p>
-<pre class="example" id="org0000015">
+<pre class="example" id="org0000016">
 Router# show ip access-list
 </pre>
 
 <p>
 Asociar una ACL a una interfaz
 </p>
-<pre class="example" id="org0000016">
+<pre class="example" id="org0000017">
 Router(config)# interface fa0/1
 Router(config-if)# ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </pre>
@@ -972,7 +980,7 @@ Router(config-if)# ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 <p>
 Desasociar una ACL de una interfaz
 </p>
-<pre class="example" id="org0000017">
+<pre class="example" id="org0000018">
 Router(config)# interface fa0/1
 Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </pre>
@@ -984,14 +992,14 @@ Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 <p>
 Crear una ACL o añadir una regla
 </p>
-<pre class="example" id="org0000018">
+<pre class="example" id="org0000019">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
 </pre>
 
 <p>
 Borrar una ACLs
 </p>
-<pre class="example" id="org0000019">
+<pre class="example" id="org000001a">
 Router(config)# no access-list &lt;numero&gt; 
 </pre>
 <div class="slide-footer"></div>
@@ -1002,7 +1010,7 @@ Router(config)# no access-list &lt;numero&gt;
 <p>
 Protocolo IP (hay más opciones, no explicadas aquí)
 </p>
-<pre class="example" id="org000001a">
+<pre class="example" id="org000001b">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
    &lt;host|source source-wildcard|any&gt;
    &lt;host|destination destination-wildcard|any&gt;
@@ -1011,7 +1019,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
 <p>
 Protocolo ICMP
 </p>
-<pre class="example" id="org000001b">
+<pre class="example" id="org000001c">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
    &lt;host|source source-wildcard|any&gt;
    &lt;host|destination destination-wildcard|any&gt;
@@ -1026,7 +1034,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
 <p>
 Protocolo TCP
 </p>
-<pre class="example" id="org000001c">
+<pre class="example" id="org000001d">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
    &lt;host|source source-wildcard|any&gt; [puerto]
    &lt;host|destination destination-wildcard|any&gt; [puerto]
@@ -1036,7 +1044,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
 <p>
 Protocolo UDP
 </p>
-<pre class="example" id="org000001d">
+<pre class="example" id="org000001e">
 Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
    &lt;host|source source-wildcard|any&gt; [puerto]
    &lt;host|destination destination-wildcard|any&gt; [puerto]
@@ -1087,7 +1095,7 @@ Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
 </section>
 <section id="slide-8-4">
 <h3 id="8-4"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
-<pre class="example" id="org000001e">
+<pre class="example" id="org000001f">
 Router(config)# ip access-list standard NOMBRE
 </pre>
 <div class="slide-footer"></div>
@@ -1099,7 +1107,7 @@ Router(config)# ip access-list standard NOMBRE
 <p>
 Información del estado de NAT
 </p>
-<pre class="example" id="org000001f">
+<pre class="example" id="org0000020">
 Router# show running-config
 Router# show ip nat translations
 Router# show ip nat statistics 
@@ -1108,14 +1116,14 @@ Router# show ip nat statistics
 <p>
 Borrar todas las entradas de NAT dinámico
 </p>
-<pre class="example" id="org0000020">
+<pre class="example" id="org0000021">
 no ip nat source static
 </pre>
 
 <p>
 Borrar todas las entradas de NAT estático
 </p>
-<pre class="example" id="org0000021">
+<pre class="example" id="org0000022">
 no ip nat source static
 </pre>
 <div class="slide-footer"></div>
@@ -1237,7 +1245,7 @@ no ip nat source static
 </section>
 <section id="slide-9-4">
 <h3 id="9-4"><span class="section-number-3">9.4.</span> Generales</h3>
-<pre class="example" id="org0000022">
+<pre class="example" id="org0000023">
 show ip nat translations
 debug ip nat
 </pre>
@@ -1253,6 +1261,7 @@ debug ip nat
 <ul>
 <li><a href="./par-4-comandos-ios.reveal.html">Transparencias</a></li>
 <li><a href="./par-4-comandos-ios.pdf">PDF</a></li>
+<li><a href="./par-4-comandos-ios.wp.html">Página web</a></li>
 <li><a href="./par-4-comandos-ios.epub">EPUB</a></li>
 
 </ul></li>
