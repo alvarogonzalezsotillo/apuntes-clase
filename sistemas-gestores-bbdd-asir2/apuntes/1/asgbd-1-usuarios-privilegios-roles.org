@@ -105,6 +105,7 @@ end;
 - Cambia el /tablespace/ por defecto de un usuario (=alter user=)
 - Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
 - Cambia el /tablespace/ por defecto por defecto (=alter database=)
+  - Nota: esto cambia el /tablespace/ por defecto de todos los usuarios existentes
 - Cambiar una tabla de tablespace: =ALTER TABLE ... MOVE TABLESPACE=  
 
 #+begin_notes  
