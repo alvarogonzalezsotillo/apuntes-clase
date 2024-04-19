@@ -44,9 +44,12 @@ Se parte de \enlace{https://alvarogonzalezsotillo.github.io/apuntes-clase/gestio
 \item Será necesario saber a qué precio se realizó la última compra y la última venta de cada producto  
 \end{itemize}
 
-En esta práctica, se siguen utilizando las vistas \texttt{V\_PRODUCTOS} y \texttt{V\_EXISTENCIAS}. Los procedimientos y funciones \texttt{EXISTENCIAS\_PRODUCTO}, \texttt{ENTRADA\_PRODUCTO}, \texttt{SALIDA\_PRODUCTO} y \texttt{SALIDA\_PRODUCTO\_CON\_STOCK} son inicialmente los mismos. Puede comenzarse con \enlace{https://www.youtube.com/playlist?list=PLPYjb2UQXp7TLfDwwm09A7BR0KLW05MiX}{la solución propuesta por el profesor}.
+En esta práctica, se siguen utilizando las vistas \texttt{V\_PRODUCTOS} y \texttt{V\_EXISTENCIAS}. Los procedimientos y funciones \texttt{EXISTENCIAS\_PRODUCTO}, \texttt{ENTRADA\_PRODUCTO}, \texttt{SALIDA\_PRODUCTO} y \texttt{SALIDA\_PRODUCTO\_CON\_STOCK} son inicialmente los mismos.
 
-La práctica anterior tiene un valor de \textbf{2 puntos}.
+
+%Puede comenzarse con \enlace{https://www.youtube.com/playlist?list=PLPYjb2UQXp7TLfDwwm09A7BR0KLW05MiX}{la solución propuesta por el profesor}.
+
+Las pruebas de la práctica anterior tienen un valor de \textbf{2 puntos}.
 
 \newpage
 
@@ -134,7 +137,7 @@ create or replace procedure CREAR_PRODUCTO(nombreproducto IN varchar, idproducto
 as 
   -- VARIABLES QUE HAGAN FALTA
 begin
-  -- SI idproducto ES NULL, USA LA SECUENCIA_PRODUCTO
+  -- SI idproducto ES NULL, USA LA SECUENCIA_PRODUCTO (saltando ids ya existentes)
   -- INSERTA EL PRODUCTO CON ESE ID
   -- DEVUELVO EL NUEVO ID EN idproducto
 end;
@@ -151,8 +154,8 @@ end;
 
   Crea un \textit{trigger} de tipo \enlace{https://www.oracletutorial.com/plsql-tutorial/oracle-instead-of-triggers/}{instead of} que permita crear un producto directamente con una orden \texttt{insert} en la vista \texttt{V\_PRODUCTOS}.
   \begin{itemize}
-  \item Si se da valor a la columna \texttt{IDPRODUCTO} se usará ese identificador, dando un error de \texttt{PRODUCTOYAEXISTE} si el identificador ya EXISTE
-  \item si no se da valor a \texttt{IDPRODUCTO}, se sacará de la secuencia \texttt{SECUENCIA\_PRODUCTO} hasta encontrar un identificador que no esté en uso.
+  \item Si se da valor a la columna \texttt{IDPRODUCTO} se usará ese identificador, dando un error de \texttt{PRODUCTOYAEXISTE} si el identificador ya existe
+  \item Si no se da valor a \texttt{IDPRODUCTO}, se sacará de la secuencia \texttt{SECUENCIA\_PRODUCTO} hasta encontrar un identificador que no esté en uso.
   \item Si no se da valor a la columna \texttt{NOMBRE\_PRODUCTO} se lanzará el error \texttt{FALTANDATOS}.
   \end{itemize}
 
@@ -238,9 +241,6 @@ La entrega se realizará en el servidor del profesor. Si no estuviera operativo,
 \item Si tiene \textbf{errores} de compilación podría no corregirse. Si no se siguen los \textbf{nombres de objetos} pedidos podría no corregirse.
 \end{itemize}
 
-
-El documento se subiría a la tarea correspondiente en el \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/}{aula virtual}.
-Presta atención al plazo de entrega (con fecha y hora).
 
 
 \end{document}
