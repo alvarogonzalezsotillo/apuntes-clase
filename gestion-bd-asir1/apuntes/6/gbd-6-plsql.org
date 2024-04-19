@@ -965,7 +965,7 @@ end;
 
 
 ** Ejemplo típico: auditoría
-- Se necesitan los datos del usuario que creo y modificó un empleado por última vez
+- Se necesitan los datos del usuario que creó y modificó un empleado por última vez
 
 #+BEGIN_SRC sql
 create table empleados( empno number(20), salario number(8,2), nombre varchar(255));
@@ -1042,7 +1042,7 @@ begin
   elsif deleting then
     update cantidadesprecalculadas set valor=valor - :old.salario where nombre = 'masasalarial';
   elsif updating then
-    update cantidadesprecalculadas set valor=valor - v:old.salario + :new.salario where nombre = 'masasalarial';
+    update cantidadesprecalculadas set valor=valor - :old.salario + :new.salario where nombre = 'masasalarial';
   end if;
 end;
 /

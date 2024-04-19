@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PLSQL</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-04 jue 11:02</p>
+<h1 class="title">PLSQL</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-19 vie 13:11</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -2157,7 +2157,7 @@ end;
 <section id="slide-8-9">
 <h3 id="8-9"><span class="section-number-3">8.9.</span> Ejemplo típico: auditoría</h3>
 <ul>
-<li>Se necesitan los datos del usuario que creo y modificó un empleado por última vez</li>
+<li>Se necesitan los datos del usuario que creó y modificó un empleado por última vez</li>
 
 </ul>
 
@@ -2261,7 +2261,7 @@ begin
   elsif deleting then
     update cantidadesprecalculadas set valor=valor - :old.salario where nombre = 'masasalarial';
   elsif updating then
-    update cantidadesprecalculadas set valor=valor - v:old.salario + :new.salario where nombre = 'masasalarial';
+    update cantidadesprecalculadas set valor=valor - :old.salario + :new.salario where nombre = 'masasalarial';
   end if;
 end;
 /
