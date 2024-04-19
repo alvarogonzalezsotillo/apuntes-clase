@@ -105,11 +105,79 @@ end;
 - Cambia el /tablespace/ por defecto de un usuario (=alter user=)
 - Consulta el /tablespace/ por defecto por (=DATABASE_PROPERTIES=)  
 - Cambia el /tablespace/ por defecto por defecto (=alter database=)
+  - Nota: esto cambia el /tablespace/ por defecto de todos los usuarios existentes
 - Cambiar una tabla de tablespace: =ALTER TABLE ... MOVE TABLESPACE=  
 
 #+begin_notes  
 ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
 #+end_notes
+
+** Ejercicio: más /tablespaces/
+1. Crea un /tablespace/ =PRUEBA1=
+   - inicialmente 10M, máximo 20M
+2. Crea un usuario
+   - no le digas /tablespace/ por defecto
+   - pero que al crearlo su /tablespace/ por defecto sea =PRUEBA1=
+3. Crea una tabla
+   - =MISDATOS(DATOS VARCHAR(255))=
+4. Llena la tabla hasta que no quede espacio en =PRUEBA1=
+5. Crea un /tablespace/ =PRUEBA2=
+   - tamaño inicial igual al máximo, 30M
+6. mueve =MISDATOS= a =PRUEBA2=
+7. Vuelve a llenar la tabla hasta que se llene =PRUEBA2=
+
+#+begin_notes
+create tablespace PRUEBA1
+  DATAFILE
+  '/tablespaces/prueba1.dbf'  SIZE 10M
+  AUTOEXTEND ON  NEXT 1M  MAXSIZE 20M;
+
+ALTER DATABASE DEFAULT TABLESPACE prueba1;
+
+alter session set "_oracle_script"=true;
+
+create user usuarioprueba1 identified by a;
+grant connect,resource to usuarioprueba1;
+alter user usuarioprueba1 quota unlimited on prueba1;
+
+connect usuarioprueba1/a
+create table misdatos(datos varchar(255));
+
+select * from dba_tables where tABLE_NAME='MISDATOS';
+
+alter session set current_schema=prueba1;
+
+BEGIN
+  LOOP
+     insert into misdatos values('hola);
+     commit;
+  end loop;
+
+END;
+/
+
+create tablespace PRUEBA2
+  DATAFILE
+  '/tablespaces/prueba2.dbf'  SIZE 30M;
+
+  
+alter user usuarioprueba1 quota unlimited on prueba2;
+
+connect usuarioprueba1/a
+alter table misdatos move tablespace prueba2;
+
+begin
+  LOOP
+     for i in 1 .. 10 loop
+       insert into misdatos values('hola');
+     end loop;
+     commit;
+  end loop;
+
+END;
+/
+
+#+end_notes   
 
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg

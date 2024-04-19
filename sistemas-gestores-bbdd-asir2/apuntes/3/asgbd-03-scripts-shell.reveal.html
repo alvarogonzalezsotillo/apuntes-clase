@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Scripts de shell para Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:19</p>
+<h1 class="title">Scripts de shell para Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-02 mar 11:47</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1555,12 +1555,13 @@ less prueba.txt
 <div class="org-src-container">
 
 <pre><code class="sh" >sqlplus -S sys/alumno as sysdba &lt;&lt;HEREDOC
-set colsep ','    -- separate columns with a comma
-set pagesize 0    -- No header rows
-set trimspool on  -- remove trailing blanks
-set headsep off   -- this may or may not be useful...depends on your headings.
-set linesize 1000 -- X should be the sum of the column widths
-
+set colsep ','   
+set pagesize 0   
+set trimspool on 
+set headsep off  
+set linesize 1000
+set feedback off
+set underline off
 
 spool tablas.csv
 

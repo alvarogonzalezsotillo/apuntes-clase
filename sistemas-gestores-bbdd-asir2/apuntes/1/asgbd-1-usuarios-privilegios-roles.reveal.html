@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-10-18 mié 11:30</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-16 mar 11:43</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -694,7 +694,11 @@ end;
 <li>Consulta el <i>tablespace</i> por defecto de los usuarios (<code>dba_users</code>)</li>
 <li>Cambia el <i>tablespace</i> por defecto de un usuario (<code>alter user</code>)</li>
 <li>Consulta el <i>tablespace</i> por defecto por (<code>DATABASE_PROPERTIES</code>)</li>
-<li>Cambia el <i>tablespace</i> por defecto por defecto (<code>alter database</code>)</li>
+<li>Cambia el <i>tablespace</i> por defecto por defecto (<code>alter database</code>)
+<ul>
+<li>Nota: esto cambia el <i>tablespace</i> por defecto de todos los usuarios existentes</li>
+
+</ul></li>
 <li>Cambiar una tabla de tablespace: <code>ALTER TABLE ... MOVE TABLESPACE</code></li>
 
 </ul>
@@ -709,7 +713,120 @@ ALTER TABLE &lt;TABLE NAME to be moved&gt; MOVE TABLESPACE &lt;destination TABLE
 
 </section>
 <section id="slide-2-8">
-<h3 id="2-8"><span class="section-number-3">2.8.</span> Conceptos de almacenamiento</h3>
+<h3 id="2-8"><span class="section-number-3">2.8.</span> Ejercicio: más <i>tablespaces</i></h3>
+<ol>
+<li>Crea un <i>tablespace</i> <code>PRUEBA1</code>
+<ul>
+<li>inicialmente 10M, máximo 20M</li>
+
+</ul></li>
+<li>Crea un usuario
+<ul>
+<li>no le digas <i>tablespace</i> por defecto</li>
+<li>pero que al crearlo su <i>tablespace</i> por defecto sea <code>PRUEBA1</code></li>
+
+</ul></li>
+<li>Crea una tabla
+<ul>
+<li><code>MISDATOS(DATOS VARCHAR(255))</code></li>
+
+</ul></li>
+<li>Llena la tabla hasta que no quede espacio en <code>PRUEBA1</code></li>
+<li>Crea un <i>tablespace</i> <code>PRUEBA2</code>
+<ul>
+<li>tamaño inicial igual al máximo, 30M</li>
+
+</ul></li>
+<li>mueve <code>MISDATOS</code> a <code>PRUEBA2</code></li>
+<li>Vuelve a llenar la tabla hasta que se llene <code>PRUEBA2</code></li>
+
+</ol>
+
+<aside class="notes">
+<p>
+create tablespace PRUEBA1
+  DATAFILE
+  '/tablespaces/prueba1.dbf'  SIZE 10M
+  AUTOEXTEND ON  NEXT 1M  MAXSIZE 20M;
+</p>
+
+<p>
+ALTER DATABASE DEFAULT TABLESPACE prueba1;
+</p>
+
+<p>
+alter session set "<sub>oracle</sub><sub>script</sub>"=true;
+</p>
+
+<p>
+create user usuarioprueba1 identified by a;
+grant connect,resource to usuarioprueba1;
+alter user usuarioprueba1 quota unlimited on prueba1;
+</p>
+
+<p>
+connect usuarioprueba1/a
+create table misdatos(datos varchar(255));
+</p>
+
+<p>
+select * from dba<sub>tables</sub> where tABLE<sub>NAME</sub>='MISDATOS';
+</p>
+
+<p>
+alter session set current<sub>schema</sub>=prueba1;
+</p>
+
+<p>
+BEGIN
+  LOOP
+     insert into misdatos values('hola);
+     commit;
+  end loop;
+</p>
+
+<p>
+END;
+/
+</p>
+
+<p>
+create tablespace PRUEBA2
+  DATAFILE
+  '/tablespaces/prueba2.dbf'  SIZE 30M;
+</p>
+
+
+<p>
+alter user usuarioprueba1 quota unlimited on prueba2;
+</p>
+
+<p>
+connect usuarioprueba1/a
+alter table misdatos move tablespace prueba2;
+</p>
+
+<p>
+begin
+  LOOP
+     for i in 1 .. 10 loop
+       insert into misdatos values('hola');
+     end loop;
+     commit;
+  end loop;
+</p>
+
+<p>
+END;
+/
+</p>
+
+</aside>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-2-9">
+<h3 id="2-9"><span class="section-number-3">2.9.</span> Conceptos de almacenamiento</h3>
 
 <div id="org0000000" class="figure">
 <p><svg width="855pt" height="75pt"
@@ -1422,6 +1539,7 @@ CREATE PROFILE EJEMPLO LIMIT
 <ul>
 <li><a href="./asgbd-1-usuarios-privilegios-roles.reveal.html">Transparencias</a></li>
 <li><a href="./asgbd-1-usuarios-privilegios-roles.pdf">PDF</a></li>
+<li><a href="./asgbd-1-usuarios-privilegios-roles.wp.html">Página web</a></li>
 <li><a href="./asgbd-1-usuarios-privilegios-roles.epub">EPUB</a></li>
 
 </ul></li>

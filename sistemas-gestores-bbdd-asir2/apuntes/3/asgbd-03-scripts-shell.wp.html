@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:19 -->
+<!-- 2024-04-02 mar 11:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scripts de shell para Oracle</title>
@@ -561,135 +561,135 @@ importante <span style="color: #ad7fa8; font-style: italic;">"Asi se define una 
 
 NAME
     <span style="color: #7ae074741f52;"> </span>  test - check file types and compare values
-
+     
 SYNOPSIS
     <span style="color: #7ae074741f52;"> </span>  test EXPRESSION
     <span style="color: #7ae074741f52;"> </span>  test
-
+     
     <span style="color: #7ae074741f52;"> </span>  [ EXPRESSION ]
     <span style="color: #7ae074741f52;"> </span>  [ ]
     <span style="color: #7ae074741f52;"> </span>  [ OPTION
-
+     
 DESCRIPTION
     <span style="color: #7ae074741f52;"> </span>  Exit with the status determined by EXPRESSION.
-
+     
     <span style="color: #7ae074741f52;"> </span>  --help display this help and exit
-
+     
     <span style="color: #7ae074741f52;"> </span>  --version
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> output version information and exit
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     output version information and exit
          
     <span style="color: #7ae074741f52;"> </span>  An omitted EXPRESSION defaults to false.  Otherwise, EXPRESSION
     <span style="color: #7ae074741f52;"> </span>  is true or false and sets exit status.  It is one of:
-
+     
     <span style="color: #7ae074741f52;"> </span>  ( EXPRESSION )
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> EXPRESSION is true
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     EXPRESSION is true
          
     <span style="color: #7ae074741f52;"> </span>  <span style="color: #6ac214;">!</span> EXPRESSION
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> EXPRESSION is false
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     EXPRESSION is false
          
     <span style="color: #7ae074741f52;"> </span>  EXPRESSION1 -a EXPRESSION2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> both EXPRESSION1 and EXPRESSION2 are true
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     both EXPRESSION1 and EXPRESSION2 are true
          
     <span style="color: #7ae074741f52;"> </span>  EXPRESSION1 -o EXPRESSION2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> either EXPRESSION1 or EXPRESSION2 is true
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     either EXPRESSION1 or EXPRESSION2 is true
          
     <span style="color: #7ae074741f52;"> </span>  -n STRING
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> the length of STRING is nonzero
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     the length of STRING is nonzero
          
     <span style="color: #7ae074741f52;"> </span>  STRING equivalent to -n STRING
-
+     
     <span style="color: #7ae074741f52;"> </span>  -z STRING
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> the length of STRING is zero
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     the length of STRING is zero
          
     <span style="color: #7ae074741f52;"> </span>  <span style="color: #ff6347;">STRING1</span> = STRING2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> the strings are equal
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     the strings are equal
          
     <span style="color: #7ae074741f52;"> </span>  STRING1 != STRING2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> the strings are not equal
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     the strings are not equal
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -eq INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is equal to INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is equal to INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -ge INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is greater than or equal to INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is greater than or equal to INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -gt INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is greater than INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is greater than INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -le INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is less than or equal to INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is less than or equal to INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -lt INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is less than INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is less than INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  INTEGER1 -ne INTEGER2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> INTEGER1 is not equal to INTEGER2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     INTEGER1 is not equal to INTEGER2
          
     <span style="color: #7ae074741f52;"> </span>  FILE1 -ef FILE2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE1 and FILE2 have the same device and inode numbers
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE1 and FILE2 have the same device and inode numbers
          
     <span style="color: #7ae074741f52;"> </span>  FILE1 -nt FILE2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE1 is newer (modification date) than FILE2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE1 is newer (modification date) than FILE2
          
     <span style="color: #7ae074741f52;"> </span>  FILE1 -ot FILE2
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE1 is older than FILE2
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE1 is older than FILE2
          
     <span style="color: #7ae074741f52;"> </span>  -b FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is block special
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is block special
          
     <span style="color: #7ae074741f52;"> </span>  -c FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is character special
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is character special
          
     <span style="color: #7ae074741f52;"> </span>  -d FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a directory
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a directory
          
     <span style="color: #7ae074741f52;"> </span>  -e FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists
          
     <span style="color: #7ae074741f52;"> </span>  -f FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a regular file
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a regular file
          
     <span style="color: #7ae074741f52;"> </span>  -g FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is set-group-ID
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is set-group-ID
          
     <span style="color: #7ae074741f52;"> </span>  -G FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is owned by the effective group ID
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is owned by the effective group ID
          
     <span style="color: #7ae074741f52;"> </span>  -h FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a symbolic link (same as -L)
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a symbolic link (same as -L)
          
     <span style="color: #7ae074741f52;"> </span>  -k FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and has its sticky bit set
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and has its sticky bit set
          
     <span style="color: #7ae074741f52;"> </span>  -L FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a symbolic link (same as -h)
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a symbolic link (same as -h)
          
     <span style="color: #7ae074741f52;"> </span>  -O FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is owned by the effective user ID
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is owned by the effective user ID
          
     <span style="color: #7ae074741f52;"> </span>  -p FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a named pipe
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a named pipe
          
     <span style="color: #7ae074741f52;"> </span>  -r FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and read permission is granted
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and read permission is granted
          
     <span style="color: #7ae074741f52;"> </span>  -s FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and has a size greater than zero
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and has a size greater than zero
          
     <span style="color: #7ae074741f52;"> </span>  -S FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and is a socket
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and is a socket
          
     <span style="color: #7ae074741f52;"> </span>  -t FD  file descriptor FD is opened on a terminal
-
+     
     <span style="color: #7ae074741f52;"> </span>  -u FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and its set-user-ID bit is set
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and its set-user-ID bit is set
          
     <span style="color: #7ae074741f52;"> </span>  -w FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE exists and write permission is granted
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE exists and write permission is granted
          
     <span style="color: #7ae074741f52;"> </span>  -x FILE
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> FILE  exists  and  execute  (or  search)  permission  is
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span> granted
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     FILE  exists  and  execute  (or  search)  permission  is
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>     granted
 </pre>
 </div>
 </div>
@@ -861,11 +861,11 @@ Operaciones matemáticas, si no se dispone de <i>bash</i>
 
 <span style="color: #edd400; font-weight: bold;">dialogo</span>(){
     whiptail --menu <span style="color: #ad7fa8; font-style: italic;">"Elige una opci&#243;n"</span> 20 50 12 <span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>1 <span style="color: #ad7fa8; font-style: italic;">"Mostrar el nombre del ordenador"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>2 <span style="color: #ad7fa8; font-style: italic;">"Mostrar las direcciones IP asignadas"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>3 <span style="color: #ad7fa8; font-style: italic;">"Mostrar espacio libre en los discos"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>4 <span style="color: #ad7fa8; font-style: italic;">"Mostrar usuarios con sesi&#243;n abierta"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>5 <span style="color: #ad7fa8; font-style: italic;">"Salir"</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>    1 <span style="color: #ad7fa8; font-style: italic;">"Mostrar el nombre del ordenador"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>    2 <span style="color: #ad7fa8; font-style: italic;">"Mostrar las direcciones IP asignadas"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>    3 <span style="color: #ad7fa8; font-style: italic;">"Mostrar espacio libre en los discos"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>    4 <span style="color: #ad7fa8; font-style: italic;">"Mostrar usuarios con sesi&#243;n abierta"</span><span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>    5 <span style="color: #ad7fa8; font-style: italic;">"Salir"</span>
 }
 
 <span style="color: #edd400; font-weight: bold;">resultado_de_dialogo</span>(){
@@ -1035,12 +1035,12 @@ sqlplus /
 <div class="org-src-container">
 <pre class="src src-lisp">MYSID=
   (DESCRIPTION =
-    (ADDRESS_LIST =
-    <span style="color: #7ae074741f52;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = mydnshostname)(PORT = 1521))
-    )
-    (CONNECT_DATA =
-    <span style="color: #7ae074741f52;"> </span> (SERVICE_NAME = MYSID)
-    )
+  <span style="color: #7ae074741f52;"> </span> (ADDRESS_LIST =
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = mydnshostname)(PORT = 1521))
+  <span style="color: #7ae074741f52;"> </span> )
+  <span style="color: #7ae074741f52;"> </span> (CONNECT_DATA =
+  <span style="color: #7ae074741f52;"> </span> <span style="color: #821b47133bd5;"> </span> (SERVICE_NAME = MYSID)
+  <span style="color: #7ae074741f52;"> </span> )
   )
 </pre>
 </div>
@@ -1138,12 +1138,13 @@ less prueba.txt
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">sqlplus -S sys/alumno as sysdba &lt;&lt;HEREDOC
-<span style="color: #ffff00; font-weight: bold;">set colsep ','    -- separate columns with a comma</span>
-<span style="color: #ffff00; font-weight: bold;">set pagesize 0    -- No header rows</span>
-<span style="color: #ffff00; font-weight: bold;">set trimspool on  -- remove trailing blanks</span>
-<span style="color: #ffff00; font-weight: bold;">set headsep off   -- this may or may not be useful...depends on your headings.</span>
-<span style="color: #ffff00; font-weight: bold;">set linesize 1000 -- X should be the sum of the column widths</span>
-
+<span style="color: #ffff00; font-weight: bold;">set colsep ','   </span>
+<span style="color: #ffff00; font-weight: bold;">set pagesize 0   </span>
+<span style="color: #ffff00; font-weight: bold;">set trimspool on </span>
+<span style="color: #ffff00; font-weight: bold;">set headsep off  </span>
+<span style="color: #ffff00; font-weight: bold;">set linesize 1000</span>
+<span style="color: #ffff00; font-weight: bold;">set feedback off</span>
+<span style="color: #ffff00; font-weight: bold;">set underline off</span>
 
 <span style="color: #ffff00; font-weight: bold;">spool tablas.csv</span>
 
@@ -1650,10 +1651,10 @@ sleep $<span style="color: #ff6347;">SEGUNDOS</span>
 
    <span style="color: #888a85;">-- </span><span style="color: #888a85;">CREAR TRABAJO Y PONER ARGUMENTOS</span>
    dbms_scheduler.create_job (job_name    =&gt; <span style="color: #ad7fa8; font-style: italic;">'myjob'</span>,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span> job_type    =&gt; <span style="color: #ad7fa8; font-style: italic;">'executable'</span>,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span> job_action  =&gt; <span style="color: #ad7fa8; font-style: italic;">'/bin/touch'</span>,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span> number_of_arguments =&gt; 1,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span> auto_drop   =&gt; <span style="color: #729fcf; font-weight: bold;">true</span>);
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>     job_type    =&gt; <span style="color: #ad7fa8; font-style: italic;">'executable'</span>,
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>     job_action  =&gt; <span style="color: #ad7fa8; font-style: italic;">'/bin/touch'</span>,
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>     number_of_arguments =&gt; 1,
+    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>     auto_drop   =&gt; <span style="color: #729fcf; font-weight: bold;">true</span>);
    dbms_scheduler.set_job_argument_value (<span style="color: #ad7fa8; font-style: italic;">'myjob'</span>, 1, <span style="color: #ad7fa8; font-style: italic;">'/opt/oracle/product/18c/dbhomeXE/fichero.nuevo'</span>);
 
    <span style="color: #888a85;">-- </span><span style="color: #888a85;">EJECUTAR TRABAJO</span>
@@ -1690,7 +1691,7 @@ sleep $<span style="color: #ff6347;">SEGUNDOS</span>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:19</p>
+<p class="date">Created: 2024-04-02 mar 11:47</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

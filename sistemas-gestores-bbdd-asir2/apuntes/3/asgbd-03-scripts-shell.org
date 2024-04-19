@@ -637,12 +637,13 @@ less prueba.txt
 - Tiene algunas facilidades para formatear la salida (por ejemplo, para generar ficheros *CSV*)
 #+begin_src sh
 sqlplus -S sys/alumno as sysdba <<HEREDOC
-set colsep ','    -- separate columns with a comma
-set pagesize 0    -- No header rows
-set trimspool on  -- remove trailing blanks
-set headsep off   -- this may or may not be useful...depends on your headings.
-set linesize 1000 -- X should be the sum of the column widths
-
+set colsep ','   
+set pagesize 0   
+set trimspool on 
+set headsep off  
+set linesize 1000
+set feedback off
+set underline off
 
 spool tablas.csv
 
