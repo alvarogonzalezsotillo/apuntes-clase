@@ -1,6 +1,6 @@
 #+INCLUDE: "../../../common/header-examen-practica.org"
 
-#+LATEX_HEADER: \lhead{Registro civil}
+#+LATEX_HEADER: \lhead{Base de datos distribuida}
 #+LATEX_HEADER: \rhead{Gestión de bases de datos}
 
 
@@ -16,162 +16,125 @@ En esta práctica el alumno utilizará la funcionalidad /dblink/ de Oracle para 
 * Descripción del problema
 Cada alumno representará la sucursal de una empresa. La central de la empresa se representa por la base de datos del profesor.
 
-Se desea 
+Se desea que las dos bases de datos funcionen de forma distribuida sin replicación. Los datos se guardarán en la base de datos de la sede central o de la sucursal, pero podrán consultarse desde cualquiera de ellas.
 
+Habrá una lista de clientes, de los que se conocerá un identificador y su nombre.
 
-** Vistas necesarias
-  No son importantes las tablas utlizadas para almacenar los datos, pero deben crearse las vistas del listado de vistas, con los tipos de datos definidos en la tabla de tipos.
+#+latex: \newpage
+* Vistas/tablas necesarias
+** Tablas en la sucursal
+Estas vistas se definirán en la base de datos del ordenador del alumno (que representa la sucursal)
+- =SUC_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
 
-
+** Tablas en la central
+Estas vistas se definirán en la base de datos del ordenador del profesor (que representa la central)
+- =CEN_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
   
+** Vistas en la sucursal y en la central
+Estas vistas se definen en las dos bases de datos, y agrupan datos de la central y la sucursal
+- =TODOS_CLIENTES(localizacion,idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
 
+
+| Campo           | tipo           |                                            |
+|-----------------+----------------+--------------------------------------------|
+| ~idcliente~     | ~NUMBER(10)~   | El identificador de cliente                |
+| ~nombrecliente~ | ~VARCHAR(255)~ | El nombre del cliente, que puede repetirse |
+| ~localizacion~  | ~CHAR(1)~      | ~C~ o ~S~, para central o sucursal         |
+
+
+#+latex: \newpage
+* Creación de clientes
+Los clientes se crearán realizando inserciones en las vistas =SUC_CLIENTES= y =CEN_CLIENTES=
+- Las inserciones que especifiquen el =idcliente= provocarán el error ='SOBRANDATOS'=
+- El =idcliente= se extraerá de una secuencia. La secuencia será común para =SUC_CLIENTES= y =CEN_CLIENTES=.
+También se pueden crear clientes en insertando =TODOS_CLIENTES=
+- El campo =localización= indicará si el cliente se almacena realmente en =SUC_CLIENTES= o en =CEN_CLIENTES=
+- Por lo demás, igual que el caso anterior  
+ 
+
+ 
+#+caption: Sentencias de ejemplo en la sucursal
 #+begin_src sql
-create or replace view v_clientes(idcliente,nombre,sede) as
-select ...;
+-- PROVOCA UN ERROR 'SOBRANDATOS'
+insert into SUC_CLIENTES(idcliente,nombrecliente) values (1,'Un cliente');
 
-create or replace view v_pedidos(idpedido,idcliente,importe,fechaeentrega) as
-select ...;
+-- INSERTA UN CLIENTE EN LA SUCURSAL
+insert into SUC_CLIENTES(nombrecliente) values ('Un cliente');
+
+-- INSERTA OTRO CLIENTE EN LA SUCURSAL
+insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Otro cliente','S');
+
+-- INSERTA OTRO CLIENTE EN LA CENTRAL
+insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Otro cliente más','C');
+
+select * from SUC_CLIENTES;
+IDCLIENTE  NOMBRECLIENTE
+---------  -------------
+10         Un cliente
+11         Otro cliente
+
+select * from TODOS_CLIENTES;
+IDCLIENTE  NOMBRECLIENTE     LOCALIZACION
+---------  ----------------  ------------
+10         Un cliente        S
+11         Otro cliente      S
+12         Otro cliente más  C
+
+-- ERROR, ESTA TABLA NO EXISTE EN LA SUCURSAL
+select * from CEN_CLIENTES;
 #+end_src
 
-
-| Campo          | tipo            |                             |
-|----------------+-----------------+-----------------------------|
-| ~idcliente~    | ~NUMBER(10)~    | El identificador de cliente |
-| ~idpedido~     | ~NUMBER(10)~    | El identificador de pedido  |
-| ~fechaentrega~ | ~DATE~          | Fecha de entrega del pedido |
-| ~importe~      | ~NUMBER(10,2)~  | Importe del pedido          |
-
-  
-  
-
-* Funciones internas del banco
-
-  
-  - ~saldo_cuenta(idcuenta)~
-    - El saldo de una cuenta es la suma de los importes de sus movimientos. Una cuenta sin movimientos tiene saldo ~0~.
-  - ~saldo_cliente(idcliente)~
-    - El saldo de un cliente es la suma del saldo de todas las cuentas. Un cliente sin cuentas tiene saldo ~0~.
-
-
-  
-
+#+caption: Sentencias de ejemplo en la central, tras las anteriores
 #+begin_src sql
-create or replace function SALDO_CUENTA( idcuenta IN varchar )
-return number as begin
-  ...
-end; 
+-- PROVOCA UN ERROR 'SOBRANDATOS'
+insert into CEN_CLIENTES(idcliente,nombrecliente) values (1,'A client');
 
-create or replace function SALDO_CLIENTE( idcliente IN number )
-return number as begin
-  ...
+-- INSERTA UN CLIENTE EN LA CENTRAL
+insert into CEN_CLIENTES(nombrecliente) values ('A client');
 
-end; 
+-- INSERTA OTRO CLIENTE EN LA SUCURSAL
+insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Another client','S');
 
+-- INSERTA OTRO CLIENTE EN LA CENTRAL
+insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Yet another client','C');
+
+select * from SUC_CLIENTES;
+IDCLIENTE  NOMBRECLIENTE
+---------  -------------
+10         Un cliente
+11         Otro cliente
+13         A client
+15         Yet another client
+
+select * from TODOS_CLIENTES;
+IDCLIENTE  NOMBRECLIENTE       LOCALIZACION
+---------  ----------------    ------------
+10         Un cliente          S
+11         Otro cliente        S
+12         Otro cliente más    C
+13         A client            C
+14         Another client      S
+15         Yet another client  C
+
+-- ERROR, ESTA TABLA NO EXISTE EN LA CENTRAL
+select * from SUC_CLIENTES;
 #+end_src
 
-
-
-* Procedimientos internos del banco
-
-
-  
-  - ~nuevo_movimiento(idcuenta,euros,descripcion)~
-    - Añade un movimiento a una cuenta, con la hora actual del sistema.
-  - ~crear_cuenta(idcliente,out idcuenta)~
-    - Crea una cuenta cuyo titular es el cliente especificado.  El identificador de cuenta será un ~VARCHAR(20)~. Los 4 primeros indicarán el banco. Seguirá la cadena ~0001DC~. Los últimos 10 seguirán una secuencia.
-  - ~crear_cliente(nombre,out idcliente)~
-    - Crea un nuevo cliente, devolviendo su identificador. 
-  
-  #+begin_src sql
-create or replace procedure NUEVO_MOVIMIENTO(
-  idcuenta IN varchar, 
-  euros IN number,
-  descripcion IN varchar)
-as begin
-  ...
-end; 
-
-create or replace procedure CREAR_CUENTA(
-  idcliente IN number
-  idcuenta OUT varchar)
-as begin
-  ...
-end; 
-
-create or replace procedure CREAR_CLIENTE(
-  nombre IN varchar, 
-  idcliente OUT  number)
-as begin
-  ...
-end; 
-
-
-#+end_src
-
-
-
-
-* Usuario para el profesor
-  - El profesor utilizará el usuario ~profesor~ con contraseña ~profesor~ para utilizar vuestro banco y realizar pruebas.
-  - Este usuario no tiene que ser el dueño de los procedimientos/vistas. Debería tener solo privilegios para ~SELECT~, ~EXECUTE~,...
-  - El servidor del alumno tendrá la IP y nombre de servicio descritos en https://goo.gl/jR8iNj
-  
-
-* Usuario del alumno en el banco central
-Serán los mismos que los usados para el servidor ~10.1.33.201~
-  
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXx esto así no puede ser XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-* Interacción entre bancos
-Cada banco podrá hacer transferencias entre sus cuentas. También podrá transferir dinero desde una de sus cuentas a una cuenta de otro banco. El procedimiento ~TRANSFERENCIA( idcuentaorigen, euros, descripcion, idcuentadestino)~ realizará las siguientes acciones
-
-- En la cuenta de origen se hará un movimiento negativo (que reste dinero de la cuenta), usando el método ~NUEVO_MOVIMIENTO~.
-- En la cuenta de destino se hará un movimiento positivo (que añada dinero a la cuenta), usando el método ~NUEVO_MOVIMIENTO~ del banco de destino via /dblink/, si es necesario.
-- Si la cuenta de destino no es del propio banco, se hará un cargo de una comisión en la cuenta de origen. Este cargo será de un 2\% de la transferencia, con un mínimo de 3€.
-- El movimiento de la comisión tendrá como descripción ~comision por transferencia~  
-
-
+* Modificación de clientes
+Se podrán ejecutar sentencias =UPDATE= sobre la vista =TODOS_CLIENTES=
+- Si se intenta modificar el campo =idcliente= se producirá el error ='IDINMUTABLE'=.
+- El campo =nombrecliente= podrá cambiarse libremente
+- Si se modifica el campo =localizacion=
+  - Si se cambia a ='C'= , el cliente se moverá de =SUC_CLIENTES= a =CEN_CLIENTES=
+  - Si se cambia a ='S'= , el cliente se moverá de =CEN_CLIENTES= a =SUC_CLIENTES=
+        
 #+latex: \begin{Aviso}
-  El procedimiento ~TRANSFERENCIA~ *no* llama a otros procedimientos ~TRANSFERENCIA~ de otros bancos.
-  El procedimiento ~TRANSFERENCIA~ usa solo los procedimientos ~NUEVO_MOVIMIENTO~ de otros bancos.
+=TODOS_CLIENTES= existe tanto en el servidor del profesor como en el del alumno. Debe implementarse la funcionalidad en los dos servidores.
 #+latex: \end{Aviso}
 
-
-Se tendrán en cuenta los siguientes casos de error:
-
-- El banco de destino no existe: ~BANCONOEXISTE~
-- La cuenta de origen no es del propio banco: ~CUENTAAJENA~
-- La cuenta origen no existe: ~CUENTANOEXISTE~
-- La cuenta origen no tiene suficiente saldo: ~SALDOINSUFICIENTE~
-- La transferencia es de un importe de 0€ o menor: ~IMPORTEINCORRECTO~
-
-
-  #+begin_src sql
-create or replace procedure TRANSFERENCIA(
-  idcuentaorigen IN varchar, 
-  euros IN number,
-  descripcion IN varchar,
-  idcuentadestino IN varchar )
-as begin
-  ...
-end; 
-
-#+end_src
-
-
-#+latex: \begin{Aviso}[ORA-02020]
-  Es posible que aparezca el error ~ORA-02020~: too many database links in use}, ya que por defecto solo puede haber 4 conexiones abiertas con otras bases de datos. En ese caso hay dos opciones:
-  - Cerrar todas las sesiones están cerradas en SQLDeveloper
-  - Ejecutar ~alter system set open_links=30 scope=spfile~ (como usuario ~SYS~) y reiniciar el servidor. Esto aumenta el número máximo de conexiones abiertas.
-  
-
-#+latex: \end{Aviso}
-
-
-
+* Borrado de clientes
+Se podrán ejecutar sentencias =DELETE= sobre la vista =TODOS_CLIENTES=
+- Se borrará la entrada correspondiente teniendo en cuenta el campo =localizacion=, para saber si se borra de la sucursal o de la central.
 
 * Instrucciones de entrega
 La autoría del trabajo es individual. Se corregirá /on-line/, ejecutando pruebas mediante conexiones de red. Los servidores Oracle deberán estar funcionando y conectados en el día que el profesor pase dichas pruebas.
