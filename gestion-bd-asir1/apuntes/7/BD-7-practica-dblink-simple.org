@@ -18,21 +18,23 @@ Cada alumno representará la sucursal de una empresa. La central de la empresa s
 
 Se desea que las dos bases de datos funcionen de forma distribuida sin replicación. Los datos se guardarán en la base de datos de la sede central o de la sucursal, pero podrán consultarse desde cualquiera de ellas.
 
+Se utilizará como central el usuario del alumno en el servidor de clase (10.1.33.201). Cada alumno configurará una base de datos en su ordenador con los datos en la hoja de cálculo en https://bit.ly/4bDtWdE
+
 Habrá una lista de clientes, de los que se conocerá un identificador y su nombre.
 
 #+latex: \newpage
 * Vistas/tablas necesarias
-** Tablas en la sucursal
-Estas vistas se definirán en la base de datos del ordenador del alumno (que representa la sucursal)
-- =SUC_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
+** Vistas/tablas/sinónimos en la sucursal
+- =T_SUC_CLIENTES(idcliente,nombrecliente)=: Debe ser una *tabla* almacenada en la sucursal, con la lista de clientes de la sucursal
+- =SUC_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
 
-** Tablas en la central
-Estas vistas se definirán en la base de datos del ordenador del profesor (que representa la central)
-- =CEN_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
+** Vistas/tablas/sinónimos en la central
+- =T_CEN_CLIENTES(idcliente,nombrecliente)=: Debe ser una *tabla* almacenada en la central, con la lista de clientes de la central
+- =CEN_CLIENTES(idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
   
-** Vistas en la sucursal y en la central
+** Vistas/sinónimos en la sucursal y en la central
 Estas vistas se definen en las dos bases de datos, y agrupan datos de la central y la sucursal
-- =TODOS_CLIENTES(localizacion,idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal.
+- =TODOS_CLIENTES(localizacion,idcliente,nombrecliente)=: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
 
 
 | Campo           | tipo           |                                            |
@@ -44,10 +46,10 @@ Estas vistas se definen en las dos bases de datos, y agrupan datos de la central
 
 #+latex: \newpage
 * Creación de clientes
-Los clientes se crearán realizando inserciones en las vistas =SUC_CLIENTES= y =CEN_CLIENTES=
+Los clientes se crearán realizando inserciones en =SUC_CLIENTES= y =CEN_CLIENTES=
 - Las inserciones que especifiquen el =idcliente= provocarán el error ='SOBRANDATOS'=
-- El =idcliente= se extraerá de una secuencia. La secuencia será común para =SUC_CLIENTES= y =CEN_CLIENTES=.
-También se pueden crear clientes en insertando =TODOS_CLIENTES=
+- El =idcliente= se extraerá de una secuencia. La secuencia será común para =SUC_CLIENTES= y =CEN_CLIENTES=. Esto quiere decir que el =idcliente= es único en toda la empresa. 
+También se pueden crear clientes insertando en =TODOS_CLIENTES=
 - El campo =localización= indicará si el cliente se almacena realmente en =SUC_CLIENTES= o en =CEN_CLIENTES=
 - Por lo demás, igual que el caso anterior  
  
@@ -79,9 +81,6 @@ IDCLIENTE  NOMBRECLIENTE     LOCALIZACION
 10         Un cliente        S
 11         Otro cliente      S
 12         Otro cliente más  C
-
--- ERROR, ESTA TABLA NO EXISTE EN LA SUCURSAL
-select * from CEN_CLIENTES;
 #+end_src
 
 #+caption: Sentencias de ejemplo en la central, tras las anteriores
@@ -115,21 +114,18 @@ IDCLIENTE  NOMBRECLIENTE       LOCALIZACION
 13         A client            C
 14         Another client      S
 15         Yet another client  C
-
--- ERROR, ESTA TABLA NO EXISTE EN LA CENTRAL
-select * from SUC_CLIENTES;
 #+end_src
 
 * Modificación de clientes
 Se podrán ejecutar sentencias =UPDATE= sobre la vista =TODOS_CLIENTES=
-- Si se intenta modificar el campo =idcliente= se producirá el error ='IDINMUTABLE'=.
+- Si se intenta modificar el campo =idcliente= o =nombrecliente= se producirá el error ='INMUTABLE'=.
 - El campo =nombrecliente= podrá cambiarse libremente
 - Si se modifica el campo =localizacion=
-  - Si se cambia a ='C'= , el cliente se moverá de =SUC_CLIENTES= a =CEN_CLIENTES=
-  - Si se cambia a ='S'= , el cliente se moverá de =CEN_CLIENTES= a =SUC_CLIENTES=
+  - Si se cambia a ='C'= , el cliente se moverá de =T_SUC_CLIENTES= a =T_CEN_CLIENTES=
+  - Si se cambia a ='S'= , el cliente se moverá de =T_CEN_CLIENTES= a =T_SUC_CLIENTES=
         
 #+latex: \begin{Aviso}
-=TODOS_CLIENTES= existe tanto en el servidor del profesor como en el del alumno. Debe implementarse la funcionalidad en los dos servidores.
+=TODOS_CLIENTES= existe tanto en el servidor del profesor (central)  como en el del alumno (sucursal). Debe implementarse la funcionalidad en los dos servidores.
 #+latex: \end{Aviso}
 
 * Borrado de clientes
@@ -142,3 +138,126 @@ La autoría del trabajo es individual. Se corregirá /on-line/, ejecutando prueb
 
 
 
+* Solución :noexport:
+** Sucursal
+#+begin_src sql
+
+create database link CENTRAL
+connect to alvarogonzalezs
+identified by alvarogonzalez
+using '192.168.56.1:11521/asir';
+
+create table T_SUC_CLIENTES(idcliente numeric(10) primary key,nombrecliente varchar(255));
+create view SUC_CLIENTES as select * from T_SUC_CLIENTES;
+
+
+create synonym SECUENCIA_CLIENTES for SECUENCIA_CLIENTES@CENTRAL;
+create synonym CEN_CLIENTES for CEN_CLIENTES@CENTRAL;
+create synonym TODOS_CLIENTES for TODOS_CLIENTES@CENTRAL;
+
+create or replace trigger CREACION_CLIENTES_EN_SUCURSAL
+instead of insert on SUC_CLIENTES
+for each row
+declare
+begin
+  if :new.idcliente is not null then
+     raise_application_error(-20001,'SOBRANDATOS');
+  end if;
+  insert into T_SUC_CLIENTES(idcliente,nombrecliente) values (SECUENCIA_CLIENTES.nextval,:new.nombrecliente);
+end;
+/
+
+#+end_src
+
+** Central
+#+begin_src sql
+create database link SUCURSAL
+connect to usuario30
+identified by p674b0ad
+using '192.168.56.107/pdasir';
+
+
+
+create table T_CEN_CLIENTES(idcliente numeric(10) primary key,nombrecliente varchar(255));
+create view CEN_CLIENTES as select * from T_CEN_CLIENTES;
+
+create sequence SECUENCIA_CLIENTES;
+
+create view SUC_CLIENTES(idcliente, nombrecliente) as
+select idcliente,nombrecliente from SUC_CLIENTES@SUCURSAL;
+
+create synonym T_SUC_CLIENTES for T_SUC_CLIENTES@SUCURSAL;
+
+create view TODOS_CLIENTES(localizacion,idcliente,nombrecliente) as
+select 'C',idcliente,nombrecliente from T_CEN_CLIENTES
+union
+select 'S',idcliente,nombrecliente from SUC_CLIENTES;
+
+create or replace trigger CREACION_CLIENTES_EN_CENTRAL
+instead of insert on CEN_CLIENTES
+for each row
+declare
+begin
+  if :new.idcliente is not null then
+     raise_application_error(-20001,'SOBRANDATOS');
+  end if;
+  insert into T_CEN_CLIENTES(idcliente,nombrecliente) values (SECUENCIA_CLIENTES.nextval,:new.nombrecliente);
+end;
+/
+
+create or replace trigger CREACION_CLIENTES_EN_TODOS
+instead of insert on TODOS_CLIENTES
+for each row
+declare
+begin
+  case :new.localizacion
+     when 'C' then
+       insert into CEN_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
+     when 'S' then
+       insert into SUC_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
+  end case; 
+end;
+/
+
+create or replace trigger MODIFICACION_CLIENTES_EN_TODOS
+instead of update on TODOS_CLIENTES
+for each row
+declare
+begin
+  if updating('IDCLIENTE') or updating('NOMBRECLIENTE') then
+     RAISE_APPLICATION_ERROR(-20002, 'INMUTABLE');
+  end if;
+
+  if :new.localizacion = :old.localizacion then
+     return;
+  end if;
+
+
+  case :new.localizacion
+     when 'C' then
+       delete from T_CEN_CLIENTES where idcliente = :old.idcliente;
+       insert into T_SUC_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
+     when 'S' then
+       delete from T_SUC_CLIENTES where idcliente = :old.idcliente;
+       insert into T_CEN_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
+  end case; 
+end;
+/
+
+
+create or replace trigger BORRADO_CLIENTES_EN_TODOS
+instead of delete on TODOS_CLIENTES
+for each row
+declare
+begin
+  case :old.localizacion
+     when 'C' then
+       delete from T_CEN_CLIENTES where idcliente = :old.idcliente;
+     when 'S' then
+       delete from T_SUC_CLIENTES where idcliente = :old.idcliente;
+  end case; 
+end;
+/
+
+
+#+end_src

@@ -1,4 +1,4 @@
-% Created 2024-05-15 mié 17:44
+% Created 2024-05-18 sáb 13:53
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -101,6 +101,20 @@
   \end{cuadrito}
 }
 
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
 
 
 \section{Objetivo de la práctica}
@@ -115,30 +129,32 @@ Cada alumno representará la sucursal de una empresa. La central de la empresa s
 
 Se desea que las dos bases de datos funcionen de forma distribuida sin replicación. Los datos se guardarán en la base de datos de la sede central o de la sucursal, pero podrán consultarse desde cualquiera de ellas.
 
+Se utilizará como central el usuario del alumno en el servidor de clase (10.1.33.201). Cada alumno configurará una base de datos en su ordenador con los datos en la hoja de cálculo en \url{https://bit.ly/4bDtWdE}
+
 Habrá una lista de clientes, de los que se conocerá un identificador y su nombre.
 
 \newpage
 \section{Vistas/tablas necesarias}
 \label{sec:org000000f}
-\subsection{Vistas/tablas en la sucursal}
+\subsection{Vistas/tablas/sinónimos en la sucursal}
 \label{sec:org0000006}
-Estas vistas se definirán en la base de datos del ordenador del alumno (que representa la sucursal)
 \begin{itemize}
-\item \texttt{SUC\_CLIENTES(idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal.
+\item \texttt{T\_SUC\_CLIENTES(idcliente,nombrecliente)}: Debe ser una \textbf{tabla} almacenada en la sucursal, con la lista de clientes de la sucursal
+\item \texttt{SUC\_CLIENTES(idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
 \end{itemize}
 
-\subsection{Vistas/tablas en la central}
+\subsection{Vistas/tablas/sinónimos en la central}
 \label{sec:org0000009}
-Estas vistas se definirán en la base de datos del ordenador del profesor (que representa la central)
 \begin{itemize}
-\item \texttt{CEN\_CLIENTES(idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal.
+\item \texttt{T\_CEN\_CLIENTES(idcliente,nombrecliente)}: Debe ser una \textbf{tabla} almacenada en la central, con la lista de clientes de la central
+\item \texttt{CEN\_CLIENTES(idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
 \end{itemize}
 
-\subsection{Vistas/tablas en la sucursal y en la central}
+\subsection{Vistas/sinónimos en la sucursal y en la central}
 \label{sec:org000000c}
 Estas vistas se definen en las dos bases de datos, y agrupan datos de la central y la sucursal
 \begin{itemize}
-\item \texttt{TODOS\_CLIENTES(localizacion,idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal.
+\item \texttt{TODOS\_CLIENTES(localizacion,idcliente,nombrecliente)}: Lista de clientes dados de alta en la sucursal. Puede ser una tabla, una vista o un sinónimo.
 \end{itemize}
 
 
@@ -152,28 +168,16 @@ Campo & tipo & \\[0pt]
 \end{tabular}
 \end{center}
 
-\begin{Aviso}[¿Dónde hago las vistas/tablas? ¿Son tablas o vistas]
-No es importante para la práctica si se implementa con tablas, vistas o una mezcla de ellas.
-\begin{itemize}
-\item Como en otros casos, si las tablas no cumplen la 3ª forma normal sin redundancias será más difícil manejarlas
-\item Hay más de una forma de hacer la práctica:
-\begin{itemize}
-\item Tablas en la central y la sucursal, con vistas sobre esas tablas
-\item Tablas en la central y la sucursal, con triggers que sincronicen las tablas
-\item Uso de \emph{synonyms} para simular tablas o vistas, incluso en otro servidor
-\end{itemize}
-\end{itemize}
-\end{Aviso}
 
 \newpage
 \section{Creación de clientes}
 \label{sec:org0000012}
-Los clientes se crearán realizando inserciones en las vistas \texttt{SUC\_CLIENTES} y \texttt{CEN\_CLIENTES}
+Los clientes se crearán realizando inserciones en \texttt{SUC\_CLIENTES} y \texttt{CEN\_CLIENTES}
 \begin{itemize}
 \item Las inserciones que especifiquen el \texttt{idcliente} provocarán el error \texttt{'SOBRANDATOS'}
-\item El \texttt{idcliente} se extraerá de una secuencia. La secuencia será común para \texttt{SUC\_CLIENTES} y \texttt{CEN\_CLIENTES}.
+\item El \texttt{idcliente} se extraerá de una secuencia. La secuencia será común para \texttt{SUC\_CLIENTES} y \texttt{CEN\_CLIENTES}. Esto quiere decir que el \texttt{idcliente} es único en toda la empresa.
 \end{itemize}
-También se pueden crear clientes en insertando \texttt{TODOS\_CLIENTES}
+También se pueden crear clientes insertando en \texttt{TODOS\_CLIENTES}
 \begin{itemize}
 \item El campo \texttt{localización} indicará si el cliente se almacena realmente en \texttt{SUC\_CLIENTES} o en \texttt{CEN\_CLIENTES}
 \item Por lo demás, igual que el caso anterior
@@ -206,9 +210,6 @@ IDCLIENTE  NOMBRECLIENTE     LOCALIZACION
 10         Un cliente        S
 11         Otro cliente      S
 12         Otro cliente más  C
-
--- ERROR, ESTA TABLA NO EXISTE EN LA SUCURSAL
-select * from CEN_CLIENTES;
 \end{lstlisting}
 
 \begin{lstlisting}[language=SQL,label= ,caption={Sentencias de ejemplo en la central, tras las anteriores},captionpos=b,numbers=none]
@@ -241,33 +242,30 @@ IDCLIENTE  NOMBRECLIENTE       LOCALIZACION
 13         A client            C
 14         Another client      S
 15         Yet another client  C
-
--- ERROR, ESTA TABLA NO EXISTE EN LA CENTRAL
-select * from SUC_CLIENTES;
 \end{lstlisting}
 
 \section{Modificación de clientes}
 \label{sec:org0000015}
-Se podrán ejecutar sentencias \texttt{UPDATE} sobre la vista \texttt{TODOS\_CLIENTES}, pero no sobre \texttt{SUC\_CLIENTES} ni sobre \texttt{CEN\_CLIENTES}.
+Se podrán ejecutar sentencias \texttt{UPDATE} sobre la vista \texttt{TODOS\_CLIENTES}
 \begin{itemize}
-\item Si se intenta modificar el campo \texttt{idcliente} se producirá el error \texttt{'IDINMUTABLE'}.
+\item Si se intenta modificar el campo \texttt{idcliente} o \texttt{nombrecliente} se producirá el error \texttt{'INMUTABLE'}.
 \item El campo \texttt{nombrecliente} podrá cambiarse libremente
 \item Si se modifica el campo \texttt{localizacion}
 \begin{itemize}
-\item Si se cambia a \texttt{'C'} , el cliente se moverá de \texttt{SUC\_CLIENTES} a \texttt{CEN\_CLIENTES}
-\item Si se cambia a \texttt{'S'} , el cliente se moverá de \texttt{CEN\_CLIENTES} a \texttt{SUC\_CLIENTES}
+\item Si se cambia a \texttt{'C'} , el cliente se moverá de \texttt{T\_SUC\_CLIENTES} a \texttt{T\_CEN\_CLIENTES}
+\item Si se cambia a \texttt{'S'} , el cliente se moverá de \texttt{T\_CEN\_CLIENTES} a \texttt{T\_SUC\_CLIENTES}
 \end{itemize}
 \end{itemize}
 
 \begin{Aviso}
-\texttt{TODOS\_CLIENTES} existe tanto en el servidor del profesor como en el del alumno. Debe implementarse la funcionalidad en los dos servidores.
+\texttt{TODOS\_CLIENTES} existe tanto en el servidor del profesor (central)  como en el del alumno (sucursal). Debe implementarse la funcionalidad en los dos servidores.
 \end{Aviso}
 
 \section{Borrado de clientes}
 \label{sec:org0000018}
-Se podrán ejecutar sentencias \texttt{DELETE} sobre la vista \texttt{TODOS\_CLIENTES}, pero no sobre \texttt{SUC\_CLIENTES} ni sobre \texttt{CEN\_CLIENTES}.
+Se podrán ejecutar sentencias \texttt{DELETE} sobre la vista \texttt{TODOS\_CLIENTES}
 \begin{itemize}
-\item Se borrará la entrada correspondiente teniendo en cuenta el campo \texttt{localizacion}, para saber si se borra del la sucursal o de la central.
+\item Se borrará la entrada correspondiente teniendo en cuenta el campo \texttt{localizacion}, para saber si se borra de la sucursal o de la central.
 \end{itemize}
 
 \section{Instrucciones de entrega}
