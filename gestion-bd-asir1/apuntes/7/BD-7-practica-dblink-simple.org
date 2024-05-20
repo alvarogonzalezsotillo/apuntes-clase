@@ -133,7 +133,51 @@ Se podrán ejecutar sentencias =DELETE= sobre la vista =TODOS_CLIENTES=
 * Instrucciones de entrega
 La autoría del trabajo es individual. Se corregirá /on-line/, ejecutando pruebas mediante conexiones de red. Los servidores Oracle deberán estar funcionando y conectados en el día que el profesor pase dichas pruebas.
 
+* Estrategia de implementación
+Hay varias opciones para implementar los requisitos de la práctica. Los siguientes diagramas indican dos posibilidades:
 
+
+#+BEGIN_SRC d2 :file ./dblinks-opcion-recomendada.png  :flags --layout=elk
+Central: {
+  CEN_CLIENTES -> T_CEN_CLIENTES
+  TODOS_CLIENTES -> CEN_CLIENTES
+  SECUENCIA
+}
+
+Sucursal: {
+  SUC_CLIENTES -> T_SUC_CLIENTES
+  TODOS_CLIENTES (Alias)
+  SECUENCIA (Alias)
+}
+
+Central.TODOS_CLIENTES -> Sucursal.SUC_CLIENTES
+Sucursal.TODOS_CLIENTES (Alias) -> Central.TODOS_CLIENTES
+Sucursal.SECUENCIA (Alias) -> Central.SECUENCIA
+#+end_src
+#+RESULTS:
+[[file:./dblinks-opcion-recomendada.png]]
+
+
+#+BEGIN_SRC d2 :file ./dblinks-opcion-alternativa.png  :flags --layout=elk
+Central: {
+  CEN_CLIENTES -> T_CEN_CLIENTES
+  TODOS_CLIENTES -> CEN_CLIENTES
+  SECUENCIA
+}
+
+Sucursal: {
+  SUC_CLIENTES -> T_SUC_CLIENTES
+  TODOS_CLIENTES -> SUC_CLIENTES
+  SECUENCIA (Alias)
+}
+
+Central.TODOS_CLIENTES -> Sucursal.SUC_CLIENTES
+Sucursal.TODOS_CLIENTES -> Central.SUC_CLIENTES
+Sucursal.SECUENCIA (Alias) -> Central.SECUENCIA
+#+end_src
+
+#+RESULTS:
+[[file:./dblinks-opcion-alternativa.png]]
 
 
 * Solución :noexport:
