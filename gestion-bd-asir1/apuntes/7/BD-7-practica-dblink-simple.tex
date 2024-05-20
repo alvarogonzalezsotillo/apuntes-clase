@@ -1,4 +1,4 @@
-% Created 2024-05-18 sáb 13:53
+% Created 2024-05-20 lun 11:21
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -54,10 +54,10 @@
 \excludecomment{NOTES}
 \author{Álvaro González Sotillo}
 \date{\today}
-\title{Práctica con bancos remotos \textbf{NO ESTÁ ACABADA}}
+\title{Práctica con empresas y sucursales}
 \hypersetup{
  pdfauthor={Álvaro González Sotillo},
- pdftitle={Práctica con bancos remotos \textbf{NO ESTÁ ACABADA}},
+ pdftitle={Práctica con empresas y sucursales},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={Emacs 29.1.90 (Org mode 9.6.10)}, 
@@ -96,20 +96,6 @@
       \textbf{Apellidos:} \hrulefill \\
       \textbf{Nombre:} \hrulefill \\
       \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
-    }
-    \vspace{-0.2cm}
-  \end{cuadrito}
-}
-
-\newcommand{\StudentDataDniFirma}{
-  \begin{cuadrito}[1\textwidth]
-    \vspace{0.3cm}
-    \large{
-      \textbf{Apellidos:} \hrulefill \\
-      \textbf{Nombre:} \hrulefill  \\
-      \textbf{Dni:} \hrulefill \hspace{8cm} \\
-      \\
-      \textbf{Firma:} \hrulefill \hspace{8cm} \\
     }
     \vspace{-0.2cm}
   \end{cuadrito}
@@ -225,11 +211,10 @@ insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Another client',
 -- INSERTA OTRO CLIENTE EN LA CENTRAL
 insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Yet another client','C');
 
-select * from SUC_CLIENTES;
+select * from CEN_CLIENTES;
 IDCLIENTE  NOMBRECLIENTE
 ---------  -------------
-10         Un cliente
-11         Otro cliente
+12         Oro cliente más
 13         A client
 15         Yet another client
 
@@ -249,7 +234,6 @@ IDCLIENTE  NOMBRECLIENTE       LOCALIZACION
 Se podrán ejecutar sentencias \texttt{UPDATE} sobre la vista \texttt{TODOS\_CLIENTES}
 \begin{itemize}
 \item Si se intenta modificar el campo \texttt{idcliente} o \texttt{nombrecliente} se producirá el error \texttt{'INMUTABLE'}.
-\item El campo \texttt{nombrecliente} podrá cambiarse libremente
 \item Si se modifica el campo \texttt{localizacion}
 \begin{itemize}
 \item Si se cambia a \texttt{'C'} , el cliente se moverá de \texttt{T\_SUC\_CLIENTES} a \texttt{T\_CEN\_CLIENTES}

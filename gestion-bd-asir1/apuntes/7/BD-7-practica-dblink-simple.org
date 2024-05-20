@@ -4,7 +4,7 @@
 #+LATEX_HEADER: \rhead{Gestión de bases de datos}
 
 
-#+title: Práctica con bancos remotos *NO ESTÁ ACABADA*
+#+title: Práctica con empresas y sucursales
 
 
 
@@ -97,11 +97,10 @@ insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Another client',
 -- INSERTA OTRO CLIENTE EN LA CENTRAL
 insert into TODOS_CLIENTES(nombrecliente,localizacion) values ('Yet another client','C');
 
-select * from SUC_CLIENTES;
+select * from CEN_CLIENTES;
 IDCLIENTE  NOMBRECLIENTE
 ---------  -------------
-10         Un cliente
-11         Otro cliente
+12         Oro cliente más
 13         A client
 15         Yet another client
 
@@ -119,7 +118,6 @@ IDCLIENTE  NOMBRECLIENTE       LOCALIZACION
 * Modificación de clientes
 Se podrán ejecutar sentencias =UPDATE= sobre la vista =TODOS_CLIENTES=
 - Si se intenta modificar el campo =idcliente= o =nombrecliente= se producirá el error ='INMUTABLE'=.
-- El campo =nombrecliente= podrá cambiarse libremente
 - Si se modifica el campo =localizacion=
   - Si se cambia a ='C'= , el cliente se moverá de =T_SUC_CLIENTES= a =T_CEN_CLIENTES=
   - Si se cambia a ='S'= , el cliente se moverá de =T_CEN_CLIENTES= a =T_SUC_CLIENTES=
@@ -233,17 +231,18 @@ begin
   end if;
 
 
-  case :new.localizacion
+  case :old.localizacion
      when 'C' then
        delete from T_CEN_CLIENTES where idcliente = :old.idcliente;
        insert into T_SUC_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
      when 'S' then
        delete from T_SUC_CLIENTES where idcliente = :old.idcliente;
        insert into T_CEN_CLIENTES(idcliente,nombrecliente) values(:new.idcliente,:new.nombrecliente);
+     else
+       raise_application_error(-20003,'Localización incorrecta:' || :new.localizacion );
   end case; 
 end;
 /
-
 
 create or replace trigger BORRADO_CLIENTES_EN_TODOS
 instead of delete on TODOS_CLIENTES
