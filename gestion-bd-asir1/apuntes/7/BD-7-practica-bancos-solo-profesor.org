@@ -1,0 +1,184 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+LATEX_HEADER: \lhead{Bancos remotos}
+#+LATEX_HEADER: \rhead{Gestión de bases de datos}
+
+
+#+title: Práctica con bancos remotos *NO ESTÁ ACABADA*
+
+
+
+* Objetivo de la práctica
+En esta práctica el alumno utilizará la funcionalidad /dblink/ de Oracle para implementar una base de datos distribuida.
+
+
+
+* Descripción del problema
+Cada alumno representará una entidad bancaria. Cada entidad tendrá clientes, que pueden tener más de una cuenta.
+Cada cuenta almacena movimientos. Un movimiento incluye el importe, una descripción y una marca de tiempo.
+
+Hay un banco central, representado por una base de datos que aporta el profesor, al que todos los bancos de los alumnos se conectarán con un /dblink/.
+
+
+** Vistas necesarias
+  No son importantes las tablas utlizadas para almacenar los datos, pero deben crearse las vistas del listado de vistas, con los tipos de datos definidos en la tabla de tipos.
+
+
+
+#+begin_src sql
+create or replace view v_cuentas(idcuenta) as
+select ...;
+create or replace view v_movimientos(idcuenta,marcadetiempo,euros,descripcion) as
+select ...;
+create or replace view v_clientes(idcliente,nombre) as
+select ...;
+#+end_src
+
+
+| Campo           | tipo            |                                                                                                                                     |
+|-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------|
+| ~idcuenta~      | ~VARCHAR(20)~   | El identificador de cuenta. Los 4 primeros  indicarán el banco. Seguirá la cadena ~0001DC~. Los últimos 10 seguirán una secuencia.  |
+| ~idcliente~     | ~NUMBER(10)~    | El identificador de cliente                                                                                                         |
+| ~euros~         | ~NUMBER(15,2)~  | Las cantidades en euros                                                                                                             |
+| ~marcadetiempo~ | ~TIMESTAMP~     | Las marcas de tiempo                                                                                                                |
+| ~nombre~        | ~VARCHAR(255)~  | Nombre del cliente                                                                                                                  |
+| ~descripcion~   | ~VARCHAR(1024)~ | Descripción del movimiento                                                                                                          |
+
+  
+  
+
+* Funciones internas del banco
+
+  
+  - ~saldo_cuenta(idcuenta)~
+    - El saldo de una cuenta es la suma de los importes de sus movimientos. Una cuenta sin movimientos tiene saldo ~0~.
+  - ~saldo_cliente(idcliente)~
+    - El saldo de un cliente es la suma del saldo de todas las cuentas. Un cliente sin cuentas tiene saldo ~0~.
+
+
+  
+
+#+begin_src sql
+create or replace function SALDO_CUENTA( idcuenta IN varchar )
+return number as begin
+  ...
+end; 
+
+create or replace function SALDO_CLIENTE( idcliente IN number )
+return number as begin
+  ...
+
+end; 
+
+#+end_src
+
+
+
+* Procedimientos internos del banco
+
+
+  
+  - ~nuevo_movimiento(idcuenta,euros,descripcion)~
+    - Añade un movimiento a una cuenta, con la hora actual del sistema.
+  - ~crear_cuenta(idcliente,out idcuenta)~
+    - Crea una cuenta cuyo titular es el cliente especificado.  El identificador de cuenta será un ~VARCHAR(20)~. Los 4 primeros indicarán el banco. Seguirá la cadena ~0001DC~. Los últimos 10 seguirán una secuencia.
+  - ~crear_cliente(nombre,out idcliente)~
+    - Crea un nuevo cliente, devolviendo su identificador. 
+  
+  #+begin_src sql
+create or replace procedure NUEVO_MOVIMIENTO(
+  idcuenta IN varchar, 
+  euros IN number,
+  descripcion IN varchar)
+as begin
+  ...
+end; 
+
+create or replace procedure CREAR_CUENTA(
+  idcliente IN number
+  idcuenta OUT varchar)
+as begin
+  ...
+end; 
+
+create or replace procedure CREAR_CLIENTE(
+  nombre IN varchar, 
+  idcliente OUT  number)
+as begin
+  ...
+end; 
+
+
+#+end_src
+
+
+
+
+* Usuario para el profesor
+  - El profesor utilizará el usuario ~profesor~ con contraseña ~profesor~ para utilizar vuestro banco y realizar pruebas.
+  - Este usuario no tiene que ser el dueño de los procedimientos/vistas. Debería tener solo privilegios para ~SELECT~, ~EXECUTE~,...
+  - El servidor del alumno tendrá la IP y nombre de servicio descritos en https://goo.gl/jR8iNj
+  
+
+* Usuario del alumno en el banco central
+Serán los mismos que los usados para el servidor ~10.1.33.201~
+  
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXx esto así no puede ser XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+* Interacción entre bancos
+Cada banco podrá hacer transferencias entre sus cuentas. También podrá transferir dinero desde una de sus cuentas a una cuenta de otro banco. El procedimiento ~TRANSFERENCIA( idcuentaorigen, euros, descripcion, idcuentadestino)~ realizará las siguientes acciones
+
+- En la cuenta de origen se hará un movimiento negativo (que reste dinero de la cuenta), usando el método ~NUEVO_MOVIMIENTO~.
+- En la cuenta de destino se hará un movimiento positivo (que añada dinero a la cuenta), usando el método ~NUEVO_MOVIMIENTO~ del banco de destino via /dblink/, si es necesario.
+- Si la cuenta de destino no es del propio banco, se hará un cargo de una comisión en la cuenta de origen. Este cargo será de un 2\% de la transferencia, con un mínimo de 3€.
+- El movimiento de la comisión tendrá como descripción ~comision por transferencia~  
+
+
+#+latex: \begin{Aviso}
+  El procedimiento ~TRANSFERENCIA~ *no* llama a otros procedimientos ~TRANSFERENCIA~ de otros bancos.
+  El procedimiento ~TRANSFERENCIA~ usa solo los procedimientos ~NUEVO_MOVIMIENTO~ de otros bancos.
+#+latex: \end{Aviso}
+
+
+Se tendrán en cuenta los siguientes casos de error:
+
+- El banco de destino no existe: ~BANCONOEXISTE~
+- La cuenta de origen no es del propio banco: ~CUENTAAJENA~
+- La cuenta origen no existe: ~CUENTANOEXISTE~
+- La cuenta origen no tiene suficiente saldo: ~SALDOINSUFICIENTE~
+- La transferencia es de un importe de 0€ o menor: ~IMPORTEINCORRECTO~
+
+
+  #+begin_src sql
+create or replace procedure TRANSFERENCIA(
+  idcuentaorigen IN varchar, 
+  euros IN number,
+  descripcion IN varchar,
+  idcuentadestino IN varchar )
+as begin
+  ...
+end; 
+
+#+end_src
+
+
+#+latex: \begin{Aviso}[ORA-02020]
+  Es posible que aparezca el error ~ORA-02020~: too many database links in use}, ya que por defecto solo puede haber 4 conexiones abiertas con otras bases de datos. En ese caso hay dos opciones:
+  - Cerrar todas las sesiones están cerradas en SQLDeveloper
+  - Ejecutar ~alter system set open_links=30 scope=spfile~ (como usuario ~SYS~) y reiniciar el servidor. Esto aumenta el número máximo de conexiones abiertas.
+  
+
+#+latex: \end{Aviso}
+
+
+
+
+* Instrucciones de entrega
+La autoría del trabajo es individual. Se corregirá /on-line/, ejecutando pruebas mediante conexiones de red. Los servidores Oracle deberán estar funcionando y conectados en el día que el profesor pase dichas pruebas.
+
+
+
+

@@ -60,18 +60,21 @@ Desplaza con el dedo o usa estas teclas para moverte por la presentación:
 ** Inserción laboral Grado Superior (2018)
 [[file:insercion-laboral-2018-grado-superior.png]]
 ** Datos actualizados de inserción laboral
+- Datos 2021
+  - [[./respuestas-posibles-preguntas/insercion-laboral-madrid-2020.pdf#page=42][Grado medio]]
+  - [[./respuestas-posibles-preguntas/insercion-laboral-madrid-2020.pdf#page=44][Grado superior]]   
 - Datos generales 
   - https://www.educacionyfp.gob.es/servicios-al-ciudadano/estadisticas/laborales/insercion.html
 - Datos de Formación Profesional
   - http://estadisticas.mecd.gob.es/EducaDynPx/educabase/index.htm?type=pcaxis&path=/laborales/insercion/famprof&file=pcaxis&l=s0
 
 ** FP presencial y dual
-| Presencial               | Dual                            |
-|--------------------------+---------------------------------|
-| 2 años en el centro      | 1 año                           |
-| Prácticas de 1 trimestre | 3 trimestres                    |
-| Prácticas no remuneradas | Prácticas remuneradas           |
-| Módulos en el centro     | Módulos entre centro  y empresa |  
+| Presencial, a extinguir  | Dual (antes, presencial)        | Dual intensiva (antes, dual)    |
+|--------------------------+---------------------------------+---------------------------------|
+| 2 años en el centro      | 2 años en el centro             | 1 año                           |
+| Prácticas de 1 trimestre | Prácticas los dos años          | 3 trimestres                    |
+| Prácticas no remuneradas | Práctica no remuneradas         | Prácticas remuneradas           |
+| Módulos en el centro     | Módulos entre centro  y empresa | Módulos entre centro  y empresa |
 
 * La informática, estereotipada
 :PROPERTIES:
@@ -222,7 +225,6 @@ O al menos, es una parte muy pequeña
   
 - [[file:respuestas-posibles-preguntas/madfpb-informatica-y-comunicaciones.pdf][Básica]], [[file:respuestas-posibles-preguntas/Ficha_IFCM01-smr.pdf][SMR]], [[file:respuestas-posibles-preguntas/Ficha_IFCS02-dam.pdf][DAM]], [[file:respuestas-posibles-preguntas/Ficha_IFCS03-daw.pdf][DAW]]
 - [[https://www.todofp.es/][todofp.es]], [[https://www.descubrelafp.org/][descubrelafp.org]]
-- [[https://play.google.com/store/apps/details?id=org.madrid.fpmad&hl=es_ES][Aplicación FPMad]]  
    
 # https://alvarogonzalezsotillo.github.io/apuntes-clase/charlas-motivacionales/informatica/1/charla-informatica-a-eso-bachillerato.html
 # #+html: <div style="width:100%;text-align:center;font-size:0.5em;position:fixed;top:0em"> <img width="10%" src="./qr.png"> </div>

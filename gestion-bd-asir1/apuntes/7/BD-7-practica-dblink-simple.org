@@ -45,7 +45,11 @@ Estas vistas se definen en las dos bases de datos, y agrupan datos de la central
 
 
 #+latex: \newpage
+<<<<<<< HEAD
 * Creación de clientes (4 puntos)
+=======
+* Creación de clientes
+>>>>>>> 0b7bad232eed818a0f3793b3bdd8ba981a929fe8
 Los clientes se crearán realizando inserciones en =SUC_CLIENTES= y =CEN_CLIENTES=
 - Las inserciones que especifiquen el =idcliente= provocarán el error ='SOBRANDATOS'=
 - El =idcliente= se extraerá de una secuencia. La secuencia será común para =SUC_CLIENTES= y =CEN_CLIENTES=. Esto quiere decir que el =idcliente= es único en toda la empresa. 

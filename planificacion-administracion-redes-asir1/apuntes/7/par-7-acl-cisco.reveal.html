@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Listas de control de acceso en routers CISCO</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2023-09-09 sáb 17:18</p>
+<h1 class="title">Listas de control de acceso en routers CISCO</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-05-29 mié 13:36</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1246,7 +1246,7 @@ Ejemplo: Prohíbe el tráfico hacia la red <code>172.16.0.0/12</code>
 </p>
 <div class="org-src-container">
 
-<pre><code class="sh" >access-list 101 deny ip any 172.16.0.0 0.0.15.255
+<pre><code class="sh" >access-list 101 deny ip any 172.16.0.0 0.15.255.255
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -1292,7 +1292,7 @@ Ejemplo: Permite la comunicación <b>TCP</b> hacia la red <code>10.0.0.0/8</code
 </p>
 <div class="org-src-container">
 
-<pre><code class="sh" >access-list 102 permit tcp any 10.0.0.0 0.0.0.255 established
+<pre><code class="sh" >access-list 102 permit tcp any 10.0.0.0 0.255.255.255 established
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -1680,6 +1680,7 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 <ul>
 <li><a href="./par-7-acl-cisco.reveal.html">Transparencias</a></li>
 <li><a href="./par-7-acl-cisco.pdf">PDF</a></li>
+<li><a href="./par-7-acl-cisco.wp.html">Página web</a></li>
 <li><a href="./par-7-acl-cisco.epub">EPUB</a></li>
 
 </ul></li>
