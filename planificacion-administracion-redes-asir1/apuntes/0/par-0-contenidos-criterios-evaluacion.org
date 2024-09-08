@@ -64,18 +64,25 @@
 *Si se pierde porque no hay copia, es que no era importante*
 
 * Cómo será la evaluación
+- Las notas de las evaluaciones (1ª,2ª,3ª) no son realmente importantes
+- Solo interesa la nota de la evaluación final  
+- Basado en /Resultados de aprendizaje/ (RA)
+  - Cada RA supone un porcentaje de la nota final
+  - Cada prueba (examen, trabajo) indicará que RA evalúa, en qué porcentaje
+  - Se necesita aprobar cada RA para aprobar el módulo    
+
+* Actividades    
 - Trabajos
 - Actitud
   - Puntualidad, interés, preguntas al profesor, puesta en común de resultados, comportamiento...
 - Exámenes
-  - Dos parciales y un final por evaluación
-  - Se necesita un mínimo de /3,5/ en cada parcial para hacer media
+- Examen final evaluación ordinaria
+  - Con los RA no superados
+- Examen evaluación extraordinaria
+  - Incluirá todos los RA. La nota del examen será la nota del módulo.    
 - Entrega de trabajos
   - Individuales, o por parejas si se comparte ordenador
   - Un trabajo entregado fuera de plazo tiene una nota máxima de /6/
-
-#+include: "../../../common/calculo-notas.org"
-
   
 
 * Cuenta NETACAD
@@ -477,62 +484,77 @@ f) Se han descrito las características de las tecnologías UMTS y HSDPA.
 - No son aplicables en la Comunidad de Madrid
 
 ** Caracterización de redes:
-	Terminología: redes LAN, MAN y WAN, topologías, arquitecturas, protocolos.
-	Sistemas de numeración decimal, binario y hexadecimal. Conversión entre sistemas.
-	Arquitectura de redes.
-	Encapsulamiento de la información.
-	El modelo OSI.
-	El modelo TCP/IP.
-	Las tecnologías «Ethernet».
-	El modelo OSI y «Ethernet».
-	Tipos de cableado «Ethernet».
+- Terminología: redes LAN, MAN y WAN, topologías, arquitecturas, protocolos.
+- Sistemas de numeración decimal, binario y hexadecimal. Conversión entre sistemas.
+- Arquitectura de redes.
+- Encapsulamiento de la información.
+- El modelo OSI.
+- El modelo TCP/IP.
+- Las tecnologías «Ethernet».
+- El modelo OSI y «Ethernet».
+- Tipos de cableado «Ethernet».
 ** Integración de elementos en una red:
-	Los medios físicos.
-	Ancho de banda y tasa de transferencia.
-	Los cables metálicos (coaxial, STP y UTP).
-	Factores físicos que afectan a la transmisión.
-	La conexión inalámbrica. Los espectros de onda de microondas y radio. Topologías. Asociación y autenticación en la WLAN.
-	Direccionamiento.
-	Dominios de colisión y de «broadcast».
-	Direcciones IPv4 y máscaras de red.
-	Direccionamiento dinámico (DHCP).
-	Adaptadores.
-	Adaptadores alámbricos: instalación y configuración.
-	Adaptadores inalámbricos: instalación y configuración.
+- Los medios físicos.
+- Ancho de banda y tasa de transferencia.
+- Los cables metálicos (coaxial, STP y UTP).
+- Factores físicos que afectan a la transmisión.
+- La conexión inalámbrica. Los espectros de onda de microondas y radio. Topologías. Asociación y autenticación en la WLAN.
+- Direccionamiento.
+- Dominios de colisión y de «broadcast».
+- Direcciones IPv4 y máscaras de red.
+- Direccionamiento dinámico (DHCP).
+- Adaptadores.
+- Adaptadores alámbricos: instalación y configuración.
+- Adaptadores inalámbricos: instalación y configuración.
 ** Configuración y administración de conmutadores:
-	Segmentación de la red. Ventajas que presenta.
-	Conmutadores y dominios de colisión y «broadcast».
-	Segmentación de redes.
-	Formas de conexión al conmutador para su configuración.
-	Configuración del conmutador.
-	Configuración estática y dinámica de la tabla de direcciones MAC.
+- Segmentación de la red. Ventajas que presenta.
+- Conmutadores y dominios de colisión y «broadcast».
+- Segmentación de redes.
+- Formas de conexión al conmutador para su configuración.
+- Configuración del conmutador.
+- Configuración estática y dinámica de la tabla de direcciones MAC.
 ** Configuración y administración básica de «routers»:
-	Los «routers» en las LAN y en las WAN.
-	Componentes del «router».
-	Formas de conexión al «router» para su configuración inicial.
-	Comandos para configuración del «router».
-	Comandos para administración del «router».
-	Configuración del enrutamiento estático.
-	Definición y ubicación de listas de control de acceso (ACLs).
+- Los «routers» en las LAN y en las WAN.
+- Componentes del «router».
+- Formas de conexión al «router» para su configuración inicial.
+- Comandos para configuración del «router».
+- Comandos para administración del «router».
+- Configuración del enrutamiento estático.
+- Definición y ubicación de listas de control de acceso (ACLs).
 ** Configuración de redes virtuales:
-	El diseño de redes locales a tres capas (núcleo, distribución y acceso).
-	Implantación y configuración de redes virtuales.
-	Definición de enlaces troncales en los conmutadores y «routers». El protocolo IEEE802.1Q.
+- El diseño de redes locales a tres capas (núcleo, distribución y acceso).
+- Implantación y configuración de redes virtuales.
+- Definición de enlaces troncales en los conmutadores y «routers». El protocolo IEEE802.1Q.
 ** Configuración y administración de protocolos dinámicos:
-	Protocolos enrutables y protocolos de enrutamiento.
-	Protocolos de enrutamiento interior y exterior.
-	El enrutamiento sin clase.
-	La subdivisión de redes y el uso de máscaras de longitud variable (VLMs).
-	El protocolo RIPv2; comparación con RIPv1.
-	Configuración y administración de RIPv1.
-	Configuración y administración de RIPv2.
+- Protocolos enrutables y protocolos de enrutamiento.
+- Protocolos de enrutamiento interior y exterior.
+- El enrutamiento sin clase.
+- La subdivisión de redes y el uso de máscaras de longitud variable (VLMs).
+- El protocolo RIPv2; comparación con RIPv1.
+- Configuración y administración de RIPv1.
+- Configuración y administración de RIPv2.
 ** Configuración del acceso a Internet desde una LAN:
-	Direccionamiento interno y direccionamiento externo.
-	NAT origen y NAT destino.
-	NAT estático, dinámico, de sobrecarga (PAT) e inverso.
-	Configuración de NAT.
-	Diagnóstico de incidencias de NAT.
-	Configuración de PAT.
+- Direccionamiento interno y direccionamiento externo.
+- NAT origen y NAT destino.
+- NAT estático, dinámico, de sobrecarga (PAT) e inverso.
+- Configuración de NAT.
+- Diagnóstico de incidencias de NAT.
+- Configuración de PAT.
+
+
+* Distribución de RA en unidades de trabajo
+
+| Peso en la calificación final de cada RA |   5.00% | 10.00% |  5.00% |  5.00% |  30.00% |  40.00% |   5.00% |
+|------------------------------------------+---------+--------+--------+--------+---------+---------+---------|
+|                                          |     RA1 |    RA2 |    RA3 |    RA4 |     RA5 |     RA6 |     RA7 |
+|------------------------------------------+---------+--------+--------+--------+---------+---------+---------|
+| UT1 Estructura de redes de datos         | 100.00% |        |        |        |         |         |         |
+| UT2 Conexión básica de ordenadores       |         | 10.00% |        |        |         |         |         |
+| UT3 Switches                             |         |        | 40.00% |        |         |         |         |
+| UT4 Enrutamiento                         |         |        |        | 50.00% |         |         |         |
+| UT5 VLAN                                 |         |        | 60.00% |        | 100.00% |         |         |
+| UT6 Administración de routers            |         | 40.00% |        | 50.00% |         | 100.00% |         |
+| UT7 Interconexión con redes públicas     |         | 40.00% |        |        |         |         | 100.00% |
 
 
 * Orientaciones pedagógicas.                   :noexport:
