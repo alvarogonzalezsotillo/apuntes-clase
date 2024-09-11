@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-09-09 sáb 17:17 -->
+<!-- 2024-09-08 dom 17:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Depuración de PLSQL con SQLDeveloper</title>
@@ -275,17 +275,17 @@ window.addEventListener("load",()=>{
    res <span style="color: #729fcf; font-weight: bold;">number</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span> 
     if (n1&gt;n2) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #7ae074741f52;"> </span>   a := n1;
-    <span style="color: #7ae074741f52;"> </span>   b := n2;
+    <span style="color: #8e0d84841a1a;"> </span>   a := n1;
+    <span style="color: #8e0d84841a1a;"> </span>   b := n2;
     <span style="color: #729fcf; font-weight: bold;">else</span>  
-    <span style="color: #7ae074741f52;"> </span>   a := n2;
-    <span style="color: #7ae074741f52;"> </span>   b := n1;
+    <span style="color: #8e0d84841a1a;"> </span>   a := n2;
+    <span style="color: #8e0d84841a1a;"> </span>   b := n1;
     <span style="color: #729fcf; font-weight: bold;">end</span> if;
     
     while( b!=0 ) loop
-    <span style="color: #7ae074741f52;"> </span>   res := b;
-    <span style="color: #7ae074741f52;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
-    <span style="color: #7ae074741f52;"> </span>   a := res;
+    <span style="color: #8e0d84841a1a;"> </span>   res := b;
+    <span style="color: #8e0d84841a1a;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
+    <span style="color: #8e0d84841a1a;"> </span>   a := res;
     <span style="color: #729fcf; font-weight: bold;">end</span> loop; 
     
     <span style="color: #729fcf; font-weight: bold;">return</span> res;
@@ -435,10 +435,10 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">begin</span>
     dbms_network_acl_admin.append_host_ace
-    <span style="color: #7ae074741f52;"> </span>   (<span style="color: #729fcf; font-weight: bold;">host</span>=&gt;<span style="color: #ad7fa8; font-style: italic;">'IP DEL CLIENTE QUE DEBUGUEA'</span>,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>ace=&gt; sys.xs$ace_type( privilege_list=&gt;sys.XS$NAME_LIST(<span style="color: #ad7fa8; font-style: italic;">'JDWP'</span>) ,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span>   principal_name=&gt;<span style="color: #ad7fa8; font-style: italic;">'USUARIO QUE DEBUGUEA'</span>,
-    <span style="color: #7ae074741f52;"> </span>   <span style="color: #821b47133bd5;"> </span>   <span style="color: #497c5f2b7271;"> </span>   <span style="color: #525256bc54ba;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #531f7a133434;"> </span>   <span style="color: #497c5f2b7271;"> </span>   principal_type=&gt;sys.XS_ACL.PTYPE_DB) );
+    <span style="color: #8e0d84841a1a;"> </span>   (<span style="color: #729fcf; font-weight: bold;">host</span>=&gt;<span style="color: #ad7fa8; font-style: italic;">'IP DEL CLIENTE QUE DEBUGUEA'</span>,
+    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>ace=&gt; sys.xs$ace_type( privilege_list=&gt;sys.XS$NAME_LIST(<span style="color: #ad7fa8; font-style: italic;">'JDWP'</span>) ,
+    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #505069e98201;"> </span>                   principal_name=&gt;<span style="color: #ad7fa8; font-style: italic;">'USUARIO QUE DEBUGUEA'</span>,
+    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #505069e98201;"> </span>                   principal_type=&gt;sys.XS_ACL.PTYPE_DB) );
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
 
@@ -471,21 +471,21 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
    res <span style="color: #729fcf; font-weight: bold;">number</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span> 
     if (n1&gt;n2) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n1 es mayor'</span> );
-    <span style="color: #7ae074741f52;"> </span>   a := n1;
-    <span style="color: #7ae074741f52;"> </span>   b := n2;
+    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n1 es mayor'</span> );
+    <span style="color: #8e0d84841a1a;"> </span>   a := n1;
+    <span style="color: #8e0d84841a1a;"> </span>   b := n2;
     <span style="color: #729fcf; font-weight: bold;">else</span> 
-    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n2 es mayor'</span> );
-    <span style="color: #7ae074741f52;"> </span>   a := n2;
-    <span style="color: #7ae074741f52;"> </span>   b := n1;
+    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n2 es mayor'</span> );
+    <span style="color: #8e0d84841a1a;"> </span>   a := n2;
+    <span style="color: #8e0d84841a1a;"> </span>   b := n1;
     <span style="color: #729fcf; font-weight: bold;">end</span> if;
     
     while( b!=0 ) loop
-    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al principio: a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">' b: '</span> || b );
-    <span style="color: #7ae074741f52;"> </span>   res := b;
-    <span style="color: #7ae074741f52;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
-    <span style="color: #7ae074741f52;"> </span>   a := res;
-    <span style="color: #7ae074741f52;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al final:     a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">'  b: '</span> || b );
+    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al principio: a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">' b: '</span> || b );
+    <span style="color: #8e0d84841a1a;"> </span>   res := b;
+    <span style="color: #8e0d84841a1a;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
+    <span style="color: #8e0d84841a1a;"> </span>   a := res;
+    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al final:     a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">'  b: '</span> || b );
     <span style="color: #729fcf; font-weight: bold;">end</span> loop; 
     
     dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'retorno:'</span> || res );
@@ -518,6 +518,7 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
 <ul class="org-ul">
 <li><a href="./gbd-6-depurar-plsql-con-sqldeveloper.reveal.html">Transparencias</a></li>
 <li><a href="./gbd-6-depurar-plsql-con-sqldeveloper.pdf">PDF</a></li>
+<li><a href="./gbd-6-depurar-plsql-con-sqldeveloper.wp.html">Página web</a></li>
 <li><a href="./gbd-6-depurar-plsql-con-sqldeveloper.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -533,7 +534,7 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2023-09-09 sáb 17:17</p>
+<p class="date">Created: 2024-09-08 dom 17:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
