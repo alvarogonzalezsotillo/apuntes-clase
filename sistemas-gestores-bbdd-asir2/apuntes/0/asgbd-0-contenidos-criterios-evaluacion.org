@@ -402,7 +402,7 @@
 * Distribución de RA en unidades de trabajo
 
 
-| Peso en la calificación final   |   5.00% |  5.00% | 15.00% |  65.00% |   5.00% |   5.00% |
+| Peso en la calificación final   |   5.00% | 10.00% | 20.00% |  45.00% |  15.00% |   5.00% |
 |---------------------------------+---------+--------+--------+---------+---------+---------|
 |                                 |     RA1 |    RA2 |    RA3 |     RA4 |     RA5 |     RA6 |
 |---------------------------------+---------+--------+--------+---------+---------+---------|
@@ -412,6 +412,7 @@
 | UT4 Automatización de tareas    |         | 60.00% | 60.00% | 100.00% |         |         |
 | UT5 Optimización de SGBD        |         |        |        |         | 100.00% |         |
 | UT6 Bases de datos distribuidas |         |        |        |         |         | 100.00% |
+
 
 
 * Orientaciones pedagógicas.                   :noexport:
