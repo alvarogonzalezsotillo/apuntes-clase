@@ -123,10 +123,13 @@ sudo systemctl status apache2
 - =envvars=: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo= apache2.conf=.
 - =magic=: Este archivo contiene instrucciones para determinar el tipo de contenido o tipo MIME (MUltipurpose Internet Mail Extensions) de un archivo en función de los primeros bytes de un archivo. Los navegadores a menudo usan el tipo MIME (y no la extensión de archivo) para determinar cómo procesará un documento; por lo tanto, es importante que los servidores estén configurados correctamente para adjuntar el tipo MIME correcto al encabezado del objeto de respuesta. Puede encontrar más información sobre los tipo MIME aquí.
 - =ports.conf=: En este archivo se definen los puertos TCP donde el servidor Apache estará escuchando peticiones.
+#+reveal: split
 - =conf-available=: Este directorio contiene archivos de configuración que se aplican a todos los hosts virtuales de forma global.
 - =conf-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =conf-available= que están activos.
+#+reveal: split
 - =mods-available=: Este directorio contiene los archivos de configuración de los módulos que se pueden utilizar para añadir nuevas funcionalidades al servidor.
 - =mods-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =mod-available= que están activos.
+#+reveal: split
 - =sites-available=: Este directorio contiene los archivos de configuración de los hosts virtuales.
 - =sites-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =sites-available= que están activos.
 
