@@ -1,0 +1,178 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Servidores web y servidores de aplicaciones
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+* Introducción
+
+- Una aplicación es una solución /software/ para un problema
+- Este /software/ se ejecuta en un entorno que incluye
+  - Otro /software/ del que depende
+  - /Hardware/
+  - Conexiones de red
+  - Otros servicios en ejecución
+
+* Aplicaciones web VS. escritorio
+- Una aplicación de escritorio
+  - Se lanza por el sistema operativo
+  - Interactúa directamente con el resto del /software/ y /hardware/ del ordenador
+  - Por tanto, suele ejecutarse en /workstations/
+- Una aplicación web
+  - Se ejecuta dentro de un navegador web
+  - Interacción limitada con el resto del /software/ y /hardware/ del ordenador
+  - Se ejecuta en un servidor web. Se ejecuta parcialmente en el navegador.  
+
+
+Pregunta: ¿es Firefox una aplicación web o de escritorio?
+
+* Arquitectura cliente-servidor
+- La parte cliente permite al usuario interaccionar con la aplicación
+- Parte de la lógica puede estar en el cliente, y parte en el servidor
+- Los datos se almacenan en el servidor    
+  
+
+[[file:media/cliente-servidor.png]]
+Fuente: [[https://es.wikipedia.org/wiki/Cliente-servidor][Wikipedia]]
+
+* Arquitectura de tres niveles
+- El servidor se convierte en un servidor de negocio
+  - Lógica de validación, usuarios, accesos, diferentes /pantallas/
+- La base de datos es un servidor aparte    
+
+[[file:media/tres-capas.png]]
+Fuente: [[https://es.wikipedia.org/wiki/Arquitectura_multicapa][Wikipedia]]
+
+** Arquitectura multicapa
+- El negocio y la base de datos pueden a su vez dividirse en capas
+- Las capas pueden estar en
+  - Diferentes servidores físicos
+  - Diferentes procesos en un servidor     
+  - Diferentes partes del código de la misma aplicación
+
+    
+* Requisitos de la aplicación web
+
+** Del equipo servidor:
+- procesador
+- memoria
+- almacenamiento
+- tolerancia a fallos
+- conexiones de red   
+  
+** Del sistema operativo anfitrión
+- sistema de ficheros
+- versiones
+- componentes opcionales  
+    
+** De la propia aplicación
+- tiempos de respuesta
+- conexiones concurrentes
+- niveles de acceso
+- funcionalidad
+
+* Servidores web
+- Servidores web "puros"
+  - [[https://httpd.apache.org/][Apache]], [[https://nginx.org/en/][nginx]]...
+  - Sirven documentos con el protocolo HTTP/HTTPS
+  - Los documentos son ficheros en disco  
+- Servidores de aplicaciones
+  - [[https://www.iis.net/][IIS]], [[https://tomcat.apache.org/][Tomcat]], [[https://www.oracle.com/es/java/weblogic/][Weblogic]]
+  - Incluyen facilidades para generar el documento a devolver: [[https://learn.microsoft.com/en-us/iis/application-frameworks/scenario-build-an-aspnet-website-on-iis/configure-an-asp-net-website-on-iis][ASP]], [[https://www.codejava.net/servers/tomcat/how-to-deploy-a-java-web-application-on-tomcat][JSP]]...
+
+- Los servidores web "puros" pueden incluir /plugins/ para poder generar documentos con lenguajes de /script/
+
+** Servidor de aplicaciones
+- Los componentes de un servidor de aplicaciones son
+  - Servidor web 
+  - Módulo de ejecución de /scripts/
+  - Servidor de base de datos
+  - Opcionales: /caché/, balanceador de carga, /firewall/      
+
+* LAMP
+- [[https://es.wikipedia.org/wiki/LAMP][Linux, Apache, MySQL (o MariaDB), PHP]]
+- Es un estándar /de facto/ para aplicaciones web
+  - Libre
+  - Gratis
+  - Muy probado
+  - Rendimiento aceptable para proyectos pequeños y medianos      
+[[file:media/lamp.png]]
+Fuente: [[https://es.wikipedia.org/wiki/LAMP][Wikipedia]]
+  
+* Instalación LAMP
+** Linux
+- Impartido en otros módulos
+- Usaremos Debian  
+** Apache
+#+begin_src sh
+sudo apt install apache2 -y
+#+end_src
+
+Tras instalar
+#+begin_src sh
+sudo systemctl start apache2
+sudo systemctl stop apache2
+sudo systemctl restart apache2
+sudo systemctl reload apache2
+sudo systemctl status apache2
+#+end_src
+
+*** Configuración de Apache
+- Directorio =/etc/apache2/=
+- =apache2.conf=: Es el archivo de configuración principal. En este archivo se incluyen todos los archivos de configuración adicionales.
+- =envvars=: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo= apache2.conf=.
+- =magic=: Este archivo contiene instrucciones para determinar el tipo de contenido o tipo MIME (MUltipurpose Internet Mail Extensions) de un archivo en función de los primeros bytes de un archivo. Los navegadores a menudo usan el tipo MIME (y no la extensión de archivo) para determinar cómo procesará un documento; por lo tanto, es importante que los servidores estén configurados correctamente para adjuntar el tipo MIME correcto al encabezado del objeto de respuesta. Puede encontrar más información sobre los tipo MIME aquí.
+- =ports.conf=: En este archivo se definen los puertos TCP donde el servidor Apache estará escuchando peticiones.
+- =conf-available=: Este directorio contiene archivos de configuración que se aplican a todos los hosts virtuales de forma global.
+- =conf-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =conf-available= que están activos.
+- =mods-available=: Este directorio contiene los archivos de configuración de los módulos que se pueden utilizar para añadir nuevas funcionalidades al servidor.
+- =mods-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =mod-available= que están activos.
+- =sites-available=: Este directorio contiene los archivos de configuración de los hosts virtuales.
+- =sites-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =sites-available= que están activos.
+
+*** /VirtualHost/
+- Apache puede comportarse como diferentes servidores, según el nombre de servidor que ve el cliente
+  - Cabecera HTTP [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host][Host]]
+
+#+begin_src conf
+<VirtualHost *:80>
+    DocumentRoot /var/www/html
+</VirtualHost>
+
+<VirtualHost miservidor:80>
+    DocumentRoot /var/www/miservidor
+</VirtualHost>
+#+end_src
+
+*** /Directory/
+- Configura un directorio del disco (no del servidor web)
+- Ejemplo que
+  - Permite usar /links/ a ficheros
+  - Permite configurar cada directorio con un fichero [[https://httpd.apache.org/docs/current/howto/htaccess.html][.htaccess]]
+  - Permite cualquier usuario de Apache
+- Nota: El proceso de Apache debe poder acceder a ese directorio    
+
+#+begin_src conf
+<Directory /var/www/miservidor>
+   Options Indexes FollowSymLinks
+   AllowOverride All
+   Require all granted
+</Directory>
+#+end_src
+
+
+** MariaDB
+** PHP
+** Interconexión entre componentes
+
+* Lo que falta :noexport:
+
+- Sistema operativo anfitrión: instalación y configuración.
+- Servidor web: instalación y configuración.
+- Sistema gestor de bases de datos: instalación y configuración.
+- Procesamiento de código: lenguajes de script en cliente y servidor.
+- Módulos y componentes necesarios.
+- Utilidades de prueba e instalación integrada (paquetes que incluyan el servidor web, el
+lenguaje de script del servidor y el sistema gestor).
+- Verificación del funcionamiento integrado.
+- Documentación de la instala
