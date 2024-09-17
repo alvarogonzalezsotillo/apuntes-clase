@@ -25,6 +25,7 @@
 
 
 Pregunta: ¿es Firefox una aplicación web o de escritorio?
+Pregunta: ¿[[https://www.rollapp.com/][rollup]] es web o escritorio?
 
 * Arquitectura cliente-servidor
 - La parte cliente permite al usuario interaccionar con la aplicación
@@ -100,6 +101,8 @@ Fuente: [[https://es.wikipedia.org/wiki/Arquitectura_multicapa][Wikipedia]]
 Fuente: [[https://es.wikipedia.org/wiki/LAMP][Wikipedia]]
   
 * Instalación LAMP
+# https://josejuansanchez.org/iaw/practica-01-01-teoria/index.html#instalaci%C3%B3n-de-m%C3%B3dulos-php
+
 ** Linux
 - Impartido en otros módulos
 - Usaremos Debian  
@@ -133,6 +136,8 @@ sudo systemctl status apache2
 - =sites-available=: Este directorio contiene los archivos de configuración de los hosts virtuales.
 - =sites-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =sites-available= que están activos.
 
+
+
 *** /VirtualHost/
 - Apache puede comportarse como diferentes servidores, según el nombre de servidor que ve el cliente
   - Cabecera HTTP [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host][Host]]
@@ -163,10 +168,54 @@ sudo systemctl status apache2
 </Directory>
 #+end_src
 
-
 ** MariaDB
+
+
+#+begin_src sh
+apt install mariadb-server
+#+end_src
+
 ** PHP
+#+begin_src bash
+sudo apt install php
+#+end_src
+
+# https://httpd.apache.org/docs/trunk/es/howto/cgi.html
+
+- La configuración de php está dividida según desde donde se use:
+    - =/etc/php/7.4/cli=: Configuración de php para =php7.4-cli=, cuando se utiliza php desde la línea de comandos.
+    - =/etc/php/7.4/apache2=: Configuración de php para apache2 cuando utiliza el módulo.
+    - =/etc/php/7.4/mods-available=: Módulos disponibles de php que puedes estar configurados en cualquiera de los escenarios anteriores.
+    - =/etc/php/7.4/apache2/conf.d=: Módulos instalados en esta configuración de php (enlaces simbólicos a =/etc/php/7.4/mods-available=).
+    - =/etc/php/7.4/apache2/php.ini=: Configuración de php para este escenario.
+
+
 ** Interconexión entre componentes
+
+#+begin_src sh
+sudo apt install libapache2-mod-php php-mysql 
+#+end_src
+
+#+BEGIN_SRC dot :file ./media/tareas-en-la-practica.png :exports results :cmd dot :cmdline -T png
+digraph {
+  compound=true
+  label=""
+  node [shape="ellipse",margin=0];
+  edge [dir="both"];
+  rankdir=TD;
+
+
+  "Navegador" -> "Apache" [label="HTTP/HTTPS"]
+  "Apache" -> "Disco" [label="<Directory>\nPermisos linux"]
+  "Apache" -> "PHP" [label="libapache2-mod-php"]
+  "PHP" -> "MariaDB" [label="php-mysql"]
+                
+}
+
+#+end_src
+
+#+RESULTS:
+[[file:./media/tareas-en-la-practica.png]]
 
 * Lo que falta :noexport:
 
