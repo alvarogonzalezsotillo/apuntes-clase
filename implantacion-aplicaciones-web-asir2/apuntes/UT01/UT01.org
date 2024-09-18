@@ -123,7 +123,7 @@ sudo systemctl status apache2
 *** Configuración de Apache
 - Directorio =/etc/apache2/=
 - =apache2.conf=: Es el archivo de configuración principal. En este archivo se incluyen todos los archivos de configuración adicionales.
-- =envvars=: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo= apache2.conf=.
+- =envvars=: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo =apache2.conf=.
 - =magic=: Este archivo contiene instrucciones para determinar el tipo de contenido o tipo MIME (MUltipurpose Internet Mail Extensions) de un archivo en función de los primeros bytes de un archivo. Los navegadores a menudo usan el tipo MIME (y no la extensión de archivo) para determinar cómo procesará un documento; por lo tanto, es importante que los servidores estén configurados correctamente para adjuntar el tipo MIME correcto al encabezado del objeto de respuesta. Puede encontrar más información sobre los tipo MIME aquí.
 - =ports.conf=: En este archivo se definen los puertos TCP donde el servidor Apache estará escuchando peticiones.
 #+reveal: split
@@ -140,14 +140,17 @@ sudo systemctl status apache2
 
 *** /VirtualHost/
 - Apache puede comportarse como diferentes servidores, según el nombre de servidor que ve el cliente
-  - Cabecera HTTP [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host][Host]]
+  - Cabecera HTTP [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host][Host]] ⇔ [[https://httpd.apache.org/docs/2.4/vhosts/name-based.html][=ServerName=]]
+  - Hay [[https://httpd.apache.org/docs/2.4/vhosts/examples.html][otras formas]] de hacer /VirtualHosts/  
+    
 
 #+begin_src conf
 <VirtualHost *:80>
     DocumentRoot /var/www/html
 </VirtualHost>
 
-<VirtualHost miservidor:80>
+<VirtualHost *:80>
+    ServerName miservidor.local
     DocumentRoot /var/www/miservidor
 </VirtualHost>
 #+end_src
@@ -242,10 +245,19 @@ digraph {
 #+RESULTS:
 [[file:./media/tareas-en-la-practica.png]]
 
+
+* Cosas
+- =tail -F=
+- =PATH=
+- =locate=
+- =ssh=
+- =tmux=, o más de una ventana
+- =/etc/hosts=
+
+  
+
 * Lo que falta :noexport:
 
-- Sistema operativo anfitrión: instalación y configuración.
-- Servidor web: instalación y configuración.
 - Sistema gestor de bases de datos: instalación y configuración.
 - Procesamiento de código: lenguajes de script en cliente y servidor.
 - Módulos y componentes necesarios.

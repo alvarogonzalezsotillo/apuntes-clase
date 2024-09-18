@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-18 mié 11:23 -->
+<!-- 2024-09-18 mié 12:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Servidores web y servidores de aplicaciones</title>
@@ -377,7 +377,7 @@ Fuente: <a href="https://es.wikipedia.org/wiki/Arquitectura_multicapa">Wikipedia
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>tiempos de respuesta</li>
-<li>conexiones concurrentes</li>
+<li><a href="https://en.wikipedia.org/wiki/C10k_problem">conexiones concurrentes</a></li>
 <li>niveles de acceso</li>
 <li>funcionalidad</li>
 </ul>
@@ -482,7 +482,7 @@ sudo systemctl status apache2
 <ul class="org-ul">
 <li>Directorio <code>/etc/apache2/</code></li>
 <li><code>apache2.conf</code>: Es el archivo de configuración principal. En este archivo se incluyen todos los archivos de configuración adicionales.</li>
-<li><code>envvars</code>: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo= apache2.conf=.</li>
+<li><code>envvars</code>: Este archivo se definen las variables de entorno que hacen referencia al servidor web Apache y se utilizan en el archivo <code>apache2.conf</code>.</li>
 <li><code>magic</code>: Este archivo contiene instrucciones para determinar el tipo de contenido o tipo MIME (MUltipurpose Internet Mail Extensions) de un archivo en función de los primeros bytes de un archivo. Los navegadores a menudo usan el tipo MIME (y no la extensión de archivo) para determinar cómo procesará un documento; por lo tanto, es importante que los servidores estén configurados correctamente para adjuntar el tipo MIME correcto al encabezado del objeto de respuesta. Puede encontrar más información sobre los tipo MIME aquí.</li>
 <li><code>ports.conf</code>: En este archivo se definen los puertos TCP donde el servidor Apache estará escuchando peticiones.</li>
 </ul>
@@ -509,16 +509,19 @@ sudo systemctl status apache2
 <ul class="org-ul">
 <li>Apache puede comportarse como diferentes servidores, según el nombre de servidor que ve el cliente
 <ul class="org-ul">
-<li>Cabecera HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host">Host</a></li>
+<li>Cabecera HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host">Host</a> ⇔ <a href="https://httpd.apache.org/docs/2.4/vhosts/name-based.html"><code>ServerName</code></a></li>
+<li>Hay <a href="https://httpd.apache.org/docs/2.4/vhosts/examples.html">otras formas</a> de hacer <i>VirtualHosts</i></li>
 </ul></li>
 </ul>
+
 
 <div class="org-src-container">
 <pre class="src src-conf">&lt;VirtualHost *:80&gt;
     DocumentRoot /var/www/html
 &lt;/VirtualHost&gt;
 
-&lt;VirtualHost miservidor:80&gt;
+&lt;VirtualHost *:80&gt;
+    ServerName miservidor.local
     DocumentRoot /var/www/miservidor
 &lt;/VirtualHost&gt;
 </pre>
@@ -566,13 +569,13 @@ sudo systemctl status apache2
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #888a85;">#</span><span style="color: #888a85;">!/usr/bin/</span><span style="color: #729fcf; font-weight: bold;">bash</span>
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">bash</span>
 
-<span style="color: #729fcf;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Content-type: text/plain"</span>
-<span style="color: #729fcf;">echo</span>
-<span style="color: #729fcf;">echo</span>
+<span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"Content-type: text/plain"</span>
+<span style="color: #483d8b;">echo</span>
+<span style="color: #483d8b;">echo</span>
 
-<span style="color: #729fcf;">echo</span> $<span style="color: #ff6347;">*</span>
+<span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">*</span>
 env
 </pre>
 </div>
@@ -642,7 +645,7 @@ env
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-18 mié 11:23</p>
+<p class="date">Created: 2024-09-18 mié 12:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
