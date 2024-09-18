@@ -168,6 +168,30 @@ sudo systemctl status apache2
 </Directory>
 #+end_src
 
+*** CGI
+- /Common Gateway Interface/
+- Configuración: =serve-cgi-bin.conf=  
+- Al recibir una petición:
+  - Apache no devuelve el fichero, sino que lo ejecuta
+  - El programa recibe como *entorno* información de la petición
+  - El programa se encarga de generar la respuesta, incluidas las cabeceras
+
+#+begin_src sh
+#!/usr/bin/bash
+
+echo "Content-type: text/plain"
+echo
+echo
+
+echo $*
+env
+#+end_src
+
+*** Ejercicio CGI
+- Consigue que el programa anterior funcione en Apache
+- Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/  
+
+
 ** MariaDB
 
 
@@ -209,6 +233,7 @@ digraph {
   "Apache" -> "Disco" [label="<Directory>\nPermisos linux"]
   "Apache" -> "PHP" [label="libapache2-mod-php"]
   "PHP" -> "MariaDB" [label="php-mysql"]
+  "Apache" -> "Cualquier\nprograma" [label="mod_cgi"]
                 
 }
 

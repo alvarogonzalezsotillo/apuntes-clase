@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-16 lun 18:47 -->
+<!-- 2024-09-18 mié 11:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Servidores web y servidores de aplicaciones</title>
@@ -214,7 +214,7 @@
 <li><a href="#org0000018">5. Requisitos de la aplicación web</a></li>
 <li><a href="#org000001e">6. Servidores web</a></li>
 <li><a href="#org0000021">7. LAMP</a></li>
-<li><a href="#org000003c">8. Instalación LAMP</a></li>
+<li><a href="#org0000044">8. Instalación LAMP</a></li>
 </ul>
 </div>
 </div>
@@ -288,6 +288,7 @@ window.addEventListener("load",()=>{
 
 <p>
 Pregunta: ¿es Firefox una aplicación web o de escritorio?
+Pregunta: ¿<a href="https://www.rollapp.com/">rollup</a> es web o escritorio?
 </p>
 </div>
 </div>
@@ -440,10 +441,11 @@ Fuente: <a href="https://es.wikipedia.org/wiki/LAMP">Wikipedia</a>
 </div>
 </div>
 
-<div id="outline-container-org000003c" class="outline-2">
-<h2 id="org000003c"><span class="section-number-2">8.</span> Instalación LAMP</h2>
+<div id="outline-container-org0000044" class="outline-2">
+<h2 id="org0000044"><span class="section-number-2">8.</span> Instalación LAMP</h2>
 <div class="outline-text-2" id="text-8">
 </div>
+
 <div id="outline-container-org0000024" class="outline-3">
 <h3 id="org0000024"><span class="section-number-3">8.1.</span> Linux</h3>
 <div class="outline-text-3" id="text-8-1">
@@ -453,8 +455,8 @@ Fuente: <a href="https://es.wikipedia.org/wiki/LAMP">Wikipedia</a>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000030" class="outline-3">
-<h3 id="org0000030"><span class="section-number-3">8.2.</span> Apache</h3>
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">8.2.</span> Apache</h3>
 <div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt install apache2 -y
@@ -498,6 +500,8 @@ sudo systemctl status apache2
 </ul>
 </div>
 </div>
+
+
 
 <div id="outline-container-org000002a" class="outline-4">
 <h4 id="org000002a"><span class="section-number-4">8.2.2.</span> <i>VirtualHost</i></h4>
@@ -546,23 +550,99 @@ sudo systemctl status apache2
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0000030" class="outline-4">
+<h4 id="org0000030"><span class="section-number-4">8.2.4.</span> CGI</h4>
+<div class="outline-text-4" id="text-8-2-4">
+<ul class="org-ul">
+<li><i>Common Gateway Interface</i></li>
+<li>Configuración: <code>serve-cgi-bin.conf</code></li>
+<li>Al recibir una petición:
+<ul class="org-ul">
+<li>Apache no devuelve el fichero, sino que lo ejecuta</li>
+<li>El programa recibe como <b>entorno</b> información de la petición</li>
+<li>El programa se encarga de generar la respuesta, incluidas las cabeceras</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #888a85;">#</span><span style="color: #888a85;">!/usr/bin/</span><span style="color: #729fcf; font-weight: bold;">bash</span>
+
+<span style="color: #729fcf;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Content-type: text/plain"</span>
+<span style="color: #729fcf;">echo</span>
+<span style="color: #729fcf;">echo</span>
+
+<span style="color: #729fcf;">echo</span> $<span style="color: #ff6347;">*</span>
+env
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000033" class="outline-4">
+<h4 id="org0000033"><span class="section-number-4">8.2.5.</span> Ejercicio CGI</h4>
+<div class="outline-text-4" id="text-8-2-5">
+<ul class="org-ul">
+<li>Consigue que el programa anterior funcione en Apache</li>
+<li>Examina las variables recibidas y su relación con las <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">cabeceras HTTP</a> de <i>request</i></li>
+</ul>
+</div>
+</div>
 </div>
 
 
-<div id="outline-container-org0000033" class="outline-3">
-<h3 id="org0000033"><span class="section-number-3">8.3.</span> MariaDB</h3>
-</div>
-<div id="outline-container-org0000036" class="outline-3">
-<h3 id="org0000036"><span class="section-number-3">8.4.</span> PHP</h3>
-</div>
 <div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">8.5.</span> Interconexión entre componentes</h3>
+<h3 id="org0000039"><span class="section-number-3">8.3.</span> MariaDB</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-sh">apt install mariadb-server
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">8.4.</span> PHP</h3>
+<div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-bash">sudo apt install php
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La configuración de php está dividida según desde donde se use:
+<ul class="org-ul">
+<li><code>/etc/php/7.4/cli</code>: Configuración de php para <code>php7.4-cli</code>, cuando se utiliza php desde la línea de comandos.</li>
+<li><code>/etc/php/7.4/apache2</code>: Configuración de php para apache2 cuando utiliza el módulo.</li>
+<li><code>/etc/php/7.4/mods-available</code>: Módulos disponibles de php que puedes estar configurados en cualquiera de los escenarios anteriores.</li>
+<li><code>/etc/php/7.4/apache2/conf.d</code>: Módulos instalados en esta configuración de php (enlaces simbólicos a <code>/etc/php/7.4/mods-available</code>).</li>
+<li><code>/etc/php/7.4/apache2/php.ini</code>: Configuración de php para este escenario.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org0000041" class="outline-3">
+<h3 id="org0000041"><span class="section-number-3">8.5.</span> Interconexión entre componentes</h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install libapache2-mod-php php-mysql 
+</pre>
+</div>
+
+
+<div id="org000003f" class="figure">
+<p><img src="./media/tareas-en-la-practica.png" alt="tareas-en-la-practica.png" />
+</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-16 lun 18:47</p>
+<p class="date">Created: 2024-09-18 mié 11:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
