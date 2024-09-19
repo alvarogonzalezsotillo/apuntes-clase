@@ -255,14 +255,18 @@ digraph {
 - [[https://docs.phpmyadmin.net/en/latest/setup.html#quick-install-1][Instala phpmyadmin]] desde un paquete de la [[https://www.phpmyadmin.net/downloads/][página de descargas https://www.phpmyadmin.net/downloads/]]
 - Crea una base de datos de nombre =pruebamyadmin=, donde un usuario =myadmin= tenga todos los privilegios.
 
-* Cosas
+* Qué había que saber antes de instalar LAMP
 - =tail -F=
 - =PATH=
 - =locate=
 - =ssh=
 - =tmux=, o más de una ventana
 - =/etc/hosts=
-  
+
+* Alternativas a la instalación local
+- https://profreehost.com
+- infinityfree
+- tiny.host    
 
   
 
