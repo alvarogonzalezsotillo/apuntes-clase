@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:54 -->
+<!-- 2024-09-19 jue 12:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -706,8 +706,8 @@ SQL&gt; show pdbs;
 
     CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                            
 ---------- ------------------------------ ---------- ----------                                            
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>3 PDASIR                         READ WRITE NO                                                    
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>3 PDASIR                         READ WRITE NO                                                    
 SQL&gt; alter session set <span style="color: #ff6347;">container</span>=PDASIR
   2  ;
 
@@ -942,24 +942,24 @@ See the Instant Client Home Page for more information.
 Unzip the packages into a single directory such as /opt/oracle/instantclient<sub>12</sub><sub>2</sub> that is accessible to your application. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #8e0d84841a1a;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle                     
-    <span style="color: #8e0d84841a1a;"> </span>unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle                     
+    <span style="color: #6c7f6868233c;"> </span>unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
 </pre>
 </div></li>
 <li><p>
 Create the appropriate libclntsh.so and libocci.so links for the version of Instant Client. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #8e0d84841a1a;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle/instantclient_12_2
-    <span style="color: #8e0d84841a1a;"> </span>ln -s libclntsh.so.12.1 libclntsh.so
-    <span style="color: #8e0d84841a1a;"> </span>ln -s libocci.so.12.1 libocci.so
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle/instantclient_12_2
+    <span style="color: #6c7f6868233c;"> </span>ln -s libclntsh.so.12.1 libclntsh.so
+    <span style="color: #6c7f6868233c;"> </span>ln -s libocci.so.12.1 libocci.so
 </pre>
 </div></li>
 <li><p>
 Install the libaio package, for example on Oracle Linux, run this as the root user:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #8e0d84841a1a;"> </span>yum install libaio
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span>yum install libaio
 </pre>
 </div>
 <p>
@@ -969,7 +969,7 @@ On some Linux distributions the package is called libaio1.
 Set the environment variable LD<sub>LIBRARY</sub><sub>PATH</sub> to the directory created in Step 2, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #8e0d84841a1a;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">LD_LIBRARY_PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">LD_LIBRARY_PATH</span>
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">LD_LIBRARY_PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">LD_LIBRARY_PATH</span>
 </pre>
 </div>
 <p>
@@ -979,7 +979,7 @@ Alternatively, add this path to an ldconfig configuration file if there is no ot
 To use supplied binaries such as SQL*Plus, update your PATH environment variable, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #8e0d84841a1a;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">PATH</span>
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">PATH</span>
 </pre>
 </div></li>
 <li>Start your application.</li>
@@ -1296,7 +1296,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:54</p>
+<p class="date">Created: 2024-09-19 jue 12:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

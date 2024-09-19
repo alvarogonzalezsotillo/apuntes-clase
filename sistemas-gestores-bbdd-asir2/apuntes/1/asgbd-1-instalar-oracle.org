@@ -280,6 +280,7 @@ digraph {
         "SH INTERACTIVO" -> "~/.profile" [label="2º"]
 
         "~/.bash_profile" -> "~/.bashrc" [style=dotted]
+        "~/.bashrc" -> "/etc/bashrc" [style=dotted]
 }
 #+END_SRC
 
