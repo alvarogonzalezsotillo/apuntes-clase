@@ -195,11 +195,13 @@ env
 - Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/  
 
 
-** MariaDB
+** MariaDB/MySQL
 
 
 #+begin_src sh
 apt install mariadb-server
+o
+apt install mysql-server 
 #+end_src
 
 ** PHP
@@ -215,6 +217,10 @@ sudo apt install php
     - =/etc/php/7.4/mods-available=: Módulos disponibles de php que puedes estar configurados en cualquiera de los escenarios anteriores.
     - =/etc/php/7.4/apache2/conf.d=: Módulos instalados en esta configuración de php (enlaces simbólicos a =/etc/php/7.4/mods-available=).
     - =/etc/php/7.4/apache2/php.ini=: Configuración de php para este escenario.
+
+
+*** Ejercicio CGI
+- Consigue un programa en php que funcione como CGI
 
 
 ** Interconexión entre componentes
@@ -235,7 +241,7 @@ digraph {
   "Navegador" -> "Apache" [label="HTTP/HTTPS"]
   "Apache" -> "Disco" [label="<Directory>\nPermisos linux"]
   "Apache" -> "PHP" [label="libapache2-mod-php"]
-  "PHP" -> "MariaDB" [label="php-mysql"]
+  "PHP" -> "MySQL\nMariaDB" [label="php-mysql"]
   "Apache" -> "Cualquier\nprograma" [label="mod_cgi"]
                 
 }
@@ -245,6 +251,9 @@ digraph {
 #+RESULTS:
 [[file:./media/tareas-en-la-practica.png]]
 
+** Ejercicio: phpmyadmin
+- [[https://docs.phpmyadmin.net/en/latest/setup.html#quick-install-1][Instala phpmyadmin]] desde un paquete de la [[https://www.phpmyadmin.net/downloads/][página de descargas https://www.phpmyadmin.net/downloads/]]
+- Crea una base de datos de nombre =pruebamyadmin=, donde un usuario =myadmin= tenga todos los privilegios.
 
 * Cosas
 - =tail -F=
@@ -253,6 +262,7 @@ digraph {
 - =ssh=
 - =tmux=, o más de una ventana
 - =/etc/hosts=
+  
 
   
 

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-18 mié 12:41 -->
+<!-- 2024-09-18 mié 18:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Servidores web y servidores de aplicaciones</title>
@@ -214,7 +214,8 @@
 <li><a href="#org0000018">5. Requisitos de la aplicación web</a></li>
 <li><a href="#org000001e">6. Servidores web</a></li>
 <li><a href="#org0000021">7. LAMP</a></li>
-<li><a href="#org0000044">8. Instalación LAMP</a></li>
+<li><a href="#org000004a">8. Instalación LAMP</a></li>
+<li><a href="#org000004d">9. Cosas</a></li>
 </ul>
 </div>
 </div>
@@ -441,8 +442,8 @@ Fuente: <a href="https://es.wikipedia.org/wiki/LAMP">Wikipedia</a>
 </div>
 </div>
 
-<div id="outline-container-org0000044" class="outline-2">
-<h2 id="org0000044"><span class="section-number-2">8.</span> Instalación LAMP</h2>
+<div id="outline-container-org000004a" class="outline-2">
+<h2 id="org000004a"><span class="section-number-2">8.</span> Instalación LAMP</h2>
 <div class="outline-text-2" id="text-8">
 </div>
 
@@ -569,13 +570,13 @@ sudo systemctl status apache2
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">bash</span>
+<pre class="src src-sh"><span style="color: #888a85;">#</span><span style="color: #888a85;">!/usr/bin/</span><span style="color: #729fcf; font-weight: bold;">bash</span>
 
-<span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"Content-type: text/plain"</span>
-<span style="color: #483d8b;">echo</span>
-<span style="color: #483d8b;">echo</span>
+<span style="color: #729fcf;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Content-type: text/plain"</span>
+<span style="color: #729fcf;">echo</span>
+<span style="color: #729fcf;">echo</span>
 
-<span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">*</span>
+<span style="color: #729fcf;">echo</span> $<span style="color: #ff6347;">*</span>
 env
 </pre>
 </div>
@@ -595,17 +596,19 @@ env
 
 
 <div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">8.3.</span> MariaDB</h3>
+<h3 id="org0000039"><span class="section-number-3">8.3.</span> MariaDB/MySQL</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-sh">apt install mariadb-server
+o
+apt install mysql-server 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org000003c" class="outline-3">
-<h3 id="org000003c"><span class="section-number-3">8.4.</span> PHP</h3>
+<div id="outline-container-org000003f" class="outline-3">
+<h3 id="org000003f"><span class="section-number-3">8.4.</span> PHP</h3>
 <div class="outline-text-3" id="text-8-4">
 <div class="org-src-container">
 <pre class="src src-bash">sudo apt install php
@@ -623,11 +626,21 @@ env
 </ul></li>
 </ul>
 </div>
+
+
+<div id="outline-container-org000003c" class="outline-4">
+<h4 id="org000003c"><span class="section-number-4">8.4.1.</span> Ejercicio CGI</h4>
+<div class="outline-text-4" id="text-8-4-1">
+<ul class="org-ul">
+<li>Consigue un programa en php que funcione como CGI</li>
+</ul>
+</div>
+</div>
 </div>
 
 
-<div id="outline-container-org0000041" class="outline-3">
-<h3 id="org0000041"><span class="section-number-3">8.5.</span> Interconexión entre componentes</h3>
+<div id="outline-container-org0000044" class="outline-3">
+<h3 id="org0000044"><span class="section-number-3">8.5.</span> Interconexión entre componentes</h3>
 <div class="outline-text-3" id="text-8-5">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt install libapache2-mod-php php-mysql 
@@ -635,17 +648,41 @@ env
 </div>
 
 
-<div id="org000003f" class="figure">
+<div id="org0000042" class="figure">
 <p><img src="./media/tareas-en-la-practica.png" alt="tareas-en-la-practica.png" />
 </p>
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0000047" class="outline-3">
+<h3 id="org0000047"><span class="section-number-3">8.6.</span> Ejercicio: phpmyadmin</h3>
+<div class="outline-text-3" id="text-8-6">
+<ul class="org-ul">
+<li><a href="https://docs.phpmyadmin.net/en/latest/setup.html#quick-install-1">Instala phpmyadmin</a> desde un paquete de la <a href="https://www.phpmyadmin.net/downloads/">página de descargas https://www.phpmyadmin.net/downloads/</a></li>
+<li>Crea una base de datos de nombre <code>pruebamyadmin</code>, donde un usuario <code>myadmin</code> tenga todos los privilegios.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000004d" class="outline-2">
+<h2 id="org000004d"><span class="section-number-2">9.</span> Cosas</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li><code>tail -F</code></li>
+<li><code>PATH</code></li>
+<li><code>locate</code></li>
+<li><code>ssh</code></li>
+<li><code>tmux</code>, o más de una ventana</li>
+<li><code>/etc/hosts</code></li>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-18 mié 12:41</p>
+<p class="date">Created: 2024-09-18 mié 18:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
