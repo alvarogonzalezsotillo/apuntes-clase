@@ -313,7 +313,8 @@ digraph {
 - No estará en el =PATH= si no se ha incluido (por ejemplo, con =oraenv=)
 - Utilizad la configuración típica
   - Nombre: =asir=
-  - Que no sea una /container database/
+  - Es obligatorio que sea una /container database/
+  - Pluggable database: =pdasir=  
   - Recordad la contraseña 
 - Guardad la información de la página de resumen (por si acaso)
 
