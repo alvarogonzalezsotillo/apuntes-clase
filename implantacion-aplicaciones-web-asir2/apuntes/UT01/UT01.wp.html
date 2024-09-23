@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-19 jue 18:23 -->
+<!-- 2024-09-23 lun 17:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Servidores web y servidores de aplicaciones</title>
@@ -214,9 +214,17 @@
 <li><a href="#org0000018">5. Requisitos de la aplicación web</a></li>
 <li><a href="#org000001e">6. Servidores web</a></li>
 <li><a href="#org0000021">7. LAMP</a></li>
-<li><a href="#org000004a">8. Instalación LAMP</a></li>
-<li><a href="#org000004d">9. Qué había que saber antes de instalar LAMP</a></li>
-<li><a href="#org0000050">10. Alternativas a la instalación local</a></li>
+<li><a href="#org0000026">8. Instalación LAMP</a></li>
+<li><a href="#org0000029">9. Linux</a></li>
+<li><a href="#org000003b">10. Apache</a></li>
+<li><a href="#org000004a">11. MariaDB/MySQL</a></li>
+<li><a href="#org0000050">12. PHP</a></li>
+<li><a href="#org0000053">13. Interconexión entre componentes</a></li>
+<li><a href="#org0000056">14. Ejercicio: phpmyadmin</a></li>
+<li><a href="#org0000059">15. Qué había que saber antes de instalar LAMP</a></li>
+<li><a href="#org000005c">16. Alternativas a la instalación local</a></li>
+<li><a href="#org000005f">17. aws :noexport</a></li>
+<li><a href="#org0000062">18. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -443,23 +451,29 @@ Fuente: <a href="https://es.wikipedia.org/wiki/LAMP">Wikipedia</a>
 </div>
 </div>
 
-<div id="outline-container-org000004a" class="outline-2">
-<h2 id="org000004a"><span class="section-number-2">8.</span> Instalación LAMP</h2>
+<div id="outline-container-org0000026" class="outline-2">
+<h2 id="org0000026"><span class="section-number-2">8.</span> Instalación LAMP</h2>
 <div class="outline-text-2" id="text-8">
+
+<div id="org0000024" class="figure">
+<p><img src="./media/tareas-en-la-practica.png" alt="tareas-en-la-practica.png" />
+</p>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org0000024" class="outline-3">
-<h3 id="org0000024"><span class="section-number-3">8.1.</span> Linux</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org0000029" class="outline-2">
+<h2 id="org0000029"><span class="section-number-2">9.</span> Linux</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Impartido en otros módulos</li>
 <li>Usaremos Debian</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000036" class="outline-3">
-<h3 id="org0000036"><span class="section-number-3">8.2.</span> Apache</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-org000003b" class="outline-2">
+<h2 id="org000003b"><span class="section-number-2">10.</span> Apache</h2>
+<div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt install apache2 -y
 </pre>
@@ -478,9 +492,9 @@ sudo systemctl status apache2
 </div>
 </div>
 
-<div id="outline-container-org0000027" class="outline-4">
-<h4 id="org0000027"><span class="section-number-4">8.2.1.</span> Configuración de Apache</h4>
-<div class="outline-text-4" id="text-8-2-1">
+<div id="outline-container-org000002c" class="outline-3">
+<h3 id="org000002c"><span class="section-number-3">10.1.</span> Configuración de Apache</h3>
+<div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li>Directorio <code>/etc/apache2/</code></li>
 <li><code>apache2.conf</code>: Es el archivo de configuración principal. En este archivo se incluyen todos los archivos de configuración adicionales.</li>
@@ -505,9 +519,9 @@ sudo systemctl status apache2
 
 
 
-<div id="outline-container-org000002a" class="outline-4">
-<h4 id="org000002a"><span class="section-number-4">8.2.2.</span> <i>VirtualHost</i></h4>
-<div class="outline-text-4" id="text-8-2-2">
+<div id="outline-container-org000002f" class="outline-3">
+<h3 id="org000002f"><span class="section-number-3">10.2.</span> <i>VirtualHost</i></h3>
+<div class="outline-text-3" id="text-10-2">
 <ul class="org-ul">
 <li>Apache puede comportarse como diferentes servidores, según el nombre de servidor que ve el cliente
 <ul class="org-ul">
@@ -531,9 +545,9 @@ sudo systemctl status apache2
 </div>
 </div>
 
-<div id="outline-container-org000002d" class="outline-4">
-<h4 id="org000002d"><span class="section-number-4">8.2.3.</span> <i>Directory</i></h4>
-<div class="outline-text-4" id="text-8-2-3">
+<div id="outline-container-org0000032" class="outline-3">
+<h3 id="org0000032"><span class="section-number-3">10.3.</span> <i>Directory</i></h3>
+<div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li>Configura un directorio del disco (no del servidor web)</li>
 <li>Ejemplo que
@@ -556,9 +570,9 @@ sudo systemctl status apache2
 </div>
 </div>
 
-<div id="outline-container-org0000030" class="outline-4">
-<h4 id="org0000030"><span class="section-number-4">8.2.4.</span> CGI</h4>
-<div class="outline-text-4" id="text-8-2-4">
+<div id="outline-container-org0000035" class="outline-3">
+<h3 id="org0000035"><span class="section-number-3">10.4.</span> CGI</h3>
+<div class="outline-text-3" id="text-10-4">
 <ul class="org-ul">
 <li><i>Common Gateway Interface</i></li>
 <li>Configuración: <code>serve-cgi-bin.conf</code></li>
@@ -584,9 +598,9 @@ env
 </div>
 </div>
 
-<div id="outline-container-org0000033" class="outline-4">
-<h4 id="org0000033"><span class="section-number-4">8.2.5.</span> Ejercicio CGI</h4>
-<div class="outline-text-4" id="text-8-2-5">
+<div id="outline-container-org0000038" class="outline-3">
+<h3 id="org0000038"><span class="section-number-3">10.5.</span> Ejercicio CGI</h3>
+<div class="outline-text-3" id="text-10-5">
 <ul class="org-ul">
 <li>Consigue que el programa anterior funcione en Apache</li>
 <li>Examina las variables recibidas y su relación con las <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">cabeceras HTTP</a> de <i>request</i></li>
@@ -596,21 +610,99 @@ env
 </div>
 
 
-<div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">8.3.</span> MariaDB/MySQL</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-org000004a" class="outline-2">
+<h2 id="org000004a"><span class="section-number-2">11.</span> MariaDB/MySQL</h2>
+<div class="outline-text-2" id="text-11">
 <div class="org-src-container">
-<pre class="src src-sh">apt install mariadb-server
-o
-apt install mysql-server 
+<pre class="src src-sh">apt install mariadb-server <span style="color: #888a85;"># </span><span style="color: #888a85;">o mysql-server</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org000003e" class="outline-3">
+<h3 id="org000003e"><span class="section-number-3">11.1.</span> Hacer segura la instalación</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>Comando <code>mysql_secure_installation</code></li>
+<li>Elegir las opciones más seguras:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">Enter current password for root (enter for none): 
+Switch to unix_socket authentication [Y/n] n
+Change the root password? [Y/n] Y
+Remove anonymous users? [Y/n] Y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] Y
+Reload privilege tables now? [Y/n] Y
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org000003f" class="outline-3">
-<h3 id="org000003f"><span class="section-number-3">8.4.</span> PHP</h3>
-<div class="outline-text-3" id="text-8-4">
+<div id="outline-container-org0000041" class="outline-3">
+<h3 id="org0000041"><span class="section-number-3">11.2.</span> Usuarios</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>El usuario de linux <code>root</code> puede acceder, con el usuario <code>root</code> de MariaDB</li>
+<li>Otros usuarios necesitan contraseña</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf;">user</span> alumno identified <span style="color: #729fcf; font-weight: bold;">by</span> <span style="color: #ad7fa8; font-style: italic;">'XXXXXXXX'</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">mysql -u alumno -p
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000044" class="outline-3">
+<h3 id="org0000044"><span class="section-number-3">11.3.</span> Comandos útiles MariaDB</h3>
+<div class="outline-text-3" id="text-11-3">
+<div class="org-src-container">
+<pre class="src src-sql">SHOW DATABASES;
+<span style="color: #729fcf; font-weight: bold;">CREATE</span> DATABASE &lt;database&gt;;
+<span style="color: #729fcf; font-weight: bold;">DROP</span> DATABASE &lt;database&gt;;
+USE &lt;database&gt;;
+SHOW TABLES;
+<span style="color: #729fcf; font-weight: bold;">DESCRIBE</span> &lt;<span style="color: #729fcf; font-weight: bold;">table</span>&gt;;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000047" class="outline-3">
+<h3 id="org0000047"><span class="section-number-3">11.4.</span> Privilegios MariaDB</h3>
+<div class="outline-text-3" id="text-11-4">
+<ul class="org-ul">
+<li>Sentencia estándar <code>grant</code> o <code>revoke</code></li>
+<li><p>
+Se puede dar permisos sobre todas las tablas de una base de datos
+</p>
+<div class="org-src-container">
+<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">all</span> <span style="color: #729fcf; font-weight: bold;">privileges</span> <span style="color: #729fcf; font-weight: bold;">on</span> unabasededatos.*;
+</pre>
+</div></li>
+<li>Se pueden dar permisos sobre todas las bases de datos</li>
+<li><p>
+Se pueden dar permisos a usuarios dependiendo del origen de la conexión  
+</p>
+<div class="org-src-container">
+<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">GRANT</span> <span style="color: #729fcf; font-weight: bold;">ALL</span> <span style="color: #729fcf; font-weight: bold;">PRIVILEGES</span> <span style="color: #729fcf; font-weight: bold;">ON</span> *.* <span style="color: #729fcf; font-weight: bold;">TO</span> <span style="color: #ad7fa8; font-style: italic;">'nombre_usuario'</span>@<span style="color: #ad7fa8; font-style: italic;">'localhost'</span>;
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0000050" class="outline-2">
+<h2 id="org0000050"><span class="section-number-2">12.</span> PHP</h2>
+<div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-bash">sudo apt install php
 </pre>
@@ -629,47 +721,47 @@ apt install mysql-server
 </div>
 
 
-<div id="outline-container-org000003c" class="outline-4">
-<h4 id="org000003c"><span class="section-number-4">8.4.1.</span> Ejercicio CGI</h4>
-<div class="outline-text-4" id="text-8-4-1">
+<div id="outline-container-org000004d" class="outline-3">
+<h3 id="org000004d"><span class="section-number-3">12.1.</span> Ejercicio CGI</h3>
+<div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
 <li>Consigue un programa en php que funcione como CGI</li>
+<li>El probrama debe usar la función <code>phpinfo()</code></li>
 </ul>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org0000044" class="outline-3">
-<h3 id="org0000044"><span class="section-number-3">8.5.</span> Interconexión entre componentes</h3>
-<div class="outline-text-3" id="text-8-5">
+
+
+<div id="outline-container-org0000053" class="outline-2">
+<h2 id="org0000053"><span class="section-number-2">13.</span> Interconexión entre componentes</h2>
+<div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt install libapache2-mod-php php-mysql 
 </pre>
 </div>
-
-
-<div id="org0000042" class="figure">
-<p><img src="./media/tareas-en-la-practica.png" alt="tareas-en-la-practica.png" />
-</p>
-</div>
 </div>
 </div>
 
-<div id="outline-container-org0000047" class="outline-3">
-<h3 id="org0000047"><span class="section-number-3">8.6.</span> Ejercicio: phpmyadmin</h3>
-<div class="outline-text-3" id="text-8-6">
+
+<div id="outline-container-org0000056" class="outline-2">
+<h2 id="org0000056"><span class="section-number-2">14.</span> Ejercicio: phpmyadmin</h2>
+<div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li><a href="https://docs.phpmyadmin.net/en/latest/setup.html#quick-install-1">Instala phpmyadmin</a> desde un paquete de la <a href="https://www.phpmyadmin.net/downloads/">página de descargas https://www.phpmyadmin.net/downloads/</a></li>
-<li>Crea una base de datos de nombre <code>pruebamyadmin</code>, donde un usuario <code>myadmin</code> tenga todos los privilegios.</li>
+<li>Crea una base de datos de nombre <code>pruebamyadmin</code>, donde un usuario <code>myadmin</code> tenga todos los privilegios.
+<ul class="org-ul">
+<li>¿qué es <code>php-mbstring</code>?</li>
+</ul></li>
 </ul>
 </div>
 </div>
-</div>
 
-<div id="outline-container-org000004d" class="outline-2">
-<h2 id="org000004d"><span class="section-number-2">9.</span> Qué había que saber antes de instalar LAMP</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org0000059" class="outline-2">
+<h2 id="org0000059"><span class="section-number-2">15.</span> Qué había que saber antes de instalar LAMP</h2>
+<div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li><code>tail -F</code></li>
 <li><code>PATH</code></li>
@@ -681,20 +773,56 @@ apt install mysql-server
 </div>
 </div>
 
-<div id="outline-container-org0000050" class="outline-2">
-<h2 id="org0000050"><span class="section-number-2">10.</span> Alternativas a la instalación local</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-org000005c" class="outline-2">
+<h2 id="org000005c"><span class="section-number-2">16.</span> Alternativas a la instalación local</h2>
+<div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li><a href="https://profreehost.com">https://profreehost.com</a></li>
 <li>infinityfree</li>
-<li>tiny.host</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org000005f" class="outline-2">
+<h2 id="org000005f"><span class="section-number-2">17.</span> aws :noexport</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+aws cli <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install">https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ curl <span style="color: #ad7fa8; font-style: italic;">"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"</span> -o <span style="color: #ad7fa8; font-style: italic;">"awscliv2.zip"</span>
+unzip awscliv2.zip
+sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000062" class="outline-2">
+<h2 id="org0000062"><span class="section-number-2">18.</span> Referencias</h2>
+<div class="outline-text-2" id="text-18">
+<ul class="org-ul">
+<li>Formatos:
+<ul class="org-ul">
+<li><a href="./UT01.reveal.html">Transparencias</a></li>
+<li><a href="./UT01.pdf">PDF</a></li>
+<li><a href="./UT01.wp.html">Página web</a></li>
+<li><a href="./UT01.epub">EPUB</a></li>
+</ul></li>
+<li>Creado con:
+<ul class="org-ul">
+<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
+<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
+<li><a href="https://www.latex-project.org/">Latex</a></li>
+</ul></li>
+<li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-19 jue 18:23</p>
+<p class="date">Created: 2024-09-23 lun 17:31</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
