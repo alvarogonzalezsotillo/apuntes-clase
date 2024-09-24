@@ -262,7 +262,7 @@ DESCRIBE <table>;
 - Sentencia estándar =grant= o =revoke=
 - Se puede dar permisos sobre todas las tablas de una base de datos
   #+begin_src sql
-  grant all privileges on unabasededatos.*;
+  grant all privileges on unabasededatos.* to 'usuario';
   #+end_src
 - Se pueden dar permisos sobre todas las bases de datos
 - Se pueden dar permisos a usuarios dependiendo del origen de la conexión  
