@@ -1,0 +1,119 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Instalación de Wordpress 
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+
+* Wordpress
+- CMS más popular
+- Fácil instalación y manejo
+- Suficiente para muchos tipos de webs corporativas  
+- Multitud de /plugins/ y temas    
+
+|             | % All Websites | % CMS Market |
+|-------------+----------------+--------------|
+| WordPress   |           43.5 |         62.7 |
+| Shopify     |            4.5 |          6.4 |
+| Wix         |            2.8 |          4.0 |
+| Squarespace |            2.1 |          3.1 |
+| Joomla      |            1.6 |          2.4 |
+
+[[https://kinsta.com/wordpress-market-share/][Fuente]]
+
+
+* Instalación
+** /Download/ y descompresión
+- Se necesita un servidor LAMP
+- Descomprimir el [[https://es.wordpress.org/download/releases/][fichero comprimido]] en un directorio accesible por Apache
+- Visitar la página desde un navegador
+
+** Fichero =wp-config.php=
+- Un asistente preguntará por los datos necesarios para conectar a la base de datos
+  - usuario
+  - contraseña
+  - nombre de la base de datos
+  - dirección del servidor MySQL/MariaDB
+  - prefijo para las tablas
+
+Nota: El prefijo permite utilizar la misma base de datos para más de una instancia de Wordpress
+
+** ¿Sin permisos de escritura?
+- Es posible que Wordpress no pueda escribir el fichero =wp-config.php=
+  - Permisos linux y usuario de Apache
+- En ese caso, pedirá que lo cree el usuario
+
+** Siguientes pasos
+- Usuario administrador de Wordpress, y contraseña
+- Título del sitio
+- etc...
+- Puede configurarse más adelante
+
+* /Frontend/ / /backend/
+- /Frontend/
+  - Es la página visible por los usuarios de Internet
+- /Backend/
+  - Se accede añadiendo =wp-admin= a la URL del sitio
+  - Permite controlar el aspecto del /frontend/
+  - Acceso restringido a usuarios registrados        
+* Conceptos Wordpress
+- Entrada (post): un artículo que se publicará con el resto de artículos, ordenado por fecha
+- Categoría: una forma de clasificar las entradas. Jerárquicas.
+- Tag: similar a categorías
+- Página: contenido HTML pensado para ser enlazado y visualizado de forma independiente
+- Página de inicio: la página por defecto al llegar al sitio web
+- Bloque (/widget/): elementos de construcción de una página o entrada de blog. Pueden equivaler a:
+  - etiquetas simples HTML
+  - contenedores para organizar el contenido (tablas, columnas, filas...)
+  - elementos incrustados (visor de PDF, imágenes...)  
+  - integración con otros sitios (vídeos de YouTube...)
+  - lista de entradas del blog  
+- Menú:
+  - /widget/ que muestra varias opciones de navegación
+  - Cada opción puede ser otra página, una noticia, una URL externa...
+
+** Temas
+Un tema puede incluir:
+- Plantillas iniciales para páginas y entradas
+- Páginas de inicio propias
+- Editores propios para la página de inicio
+- Esquemas de colores
+
+[[https://wordpress.org/themes/][Temas gratuitos de Wordpress.com]]
+  
+
+** /Plugins/
+Un plugin puede incluir:
+- Nuevos bloques (widgets)
+- Editores de contenido
+- Funcionalidades del /backend/
+
+[[https://wordpress.org/plugins/][/Plugins/ gratuitos de Wordpress.com]]  
+
+* Roles Wordpress
+- Sin rol (anónimo):
+  - visitar el sitio
+- Suscriptor:
+  - Dejar comentarios en el blog
+- Colaborador:
+  - Creación de entradas de blog, sin publicar
+- Autor:
+  - Subir archivos
+  - Crear y modificar entradas propias
+  - Crear y modificar páginas propias
+- Editor
+  - Gestionar comentarios, categorías, etiquetas
+  - Modificar cualquier entrada o página
+  - Publicar entradas
+- Administrador
+  - Gestionar usuarios
+  - Gestionar plantillas y plugins
+
+#+reveal: split
+
+[[file:media/roles-de-usuario-wordpress.png]]
+
+[[https://www.lucushost.com/blog/roles-wordpress-que-son-como-gestionarlos/][Fuente]]
+                    
+* Referencias
+#+include: "../../../common/footer.org"
