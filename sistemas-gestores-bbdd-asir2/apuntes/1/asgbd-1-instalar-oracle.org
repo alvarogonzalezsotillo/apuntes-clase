@@ -404,8 +404,27 @@ SQL>
 
 [[file:./media/cliente-listener-instancia-complejo.png]]
 
+** /Pluggable databases/ de Oracle
+- Desde la versión ¿21?, la base de datos de Oracle es obligatoriamente /Container database/
+  - Es el =ORACLE_SID=
+  - Se pueden definir usuarios globales
+  - Pero los datos deben estar en /pluggable databases/
+- Una /pluggable database/
+  - Depende de una /Container database/
+  - Tiene sus propios usuarios y tablas
+  - No es un SID, es un *servicio*
+- Nombre oficial: [[https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/index.html#GUID-5700B989-188E-4AD0-A0E4-B59D55F3AD47][Oracle multitenant]]    
 
+#+reveal: split
+[[file:media/With-PDB.png]]
 
+[[https://www.databasestar.com/oracle-pdb/][Fuente]]
+
+** Cambiar de /pluggable database/
+#+begin_src sql
+ALTER SESSION SET container=CDB$ROOT;
+ALTER SESSION SET container=NOMBREDEPLUGGABLEDATABASE;
+#+end_src
 
 
 

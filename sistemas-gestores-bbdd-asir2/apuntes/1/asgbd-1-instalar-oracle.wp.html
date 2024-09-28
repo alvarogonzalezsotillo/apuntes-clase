@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-20 vie 13:26 -->
+<!-- 2024-09-28 sáb 18:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -206,14 +206,14 @@
 <ul>
 <li><a href="#org0000039">1. Instalación del software de base de datos</a></li>
 <li><a href="#org0000046">2. Creación de una instancia de base de datos</a></li>
-<li><a href="#org0000055">3. Instancia / <i>listener</i> / base de datos</a></li>
-<li><a href="#org000005b">4. Creación de un <i>listener</i></a></li>
-<li><a href="#org000006b">5. Conexión remota</a></li>
-<li><a href="#org000006e">6. Dirección IP</a></li>
-<li><a href="#org0000074">7. Arrancar y parar la base de datos</a></li>
-<li><a href="#org000007d">8. Cosas que hemos aprendido <i>de pasada</i></a></li>
-<li><a href="#org0000082">9. Diagrama resumen</a></li>
-<li><a href="#org0000085">10. Referencias</a></li>
+<li><a href="#org000005c">3. Instancia / <i>listener</i> / base de datos</a></li>
+<li><a href="#org0000062">4. Creación de un <i>listener</i></a></li>
+<li><a href="#org0000072">5. Conexión remota</a></li>
+<li><a href="#org0000075">6. Dirección IP</a></li>
+<li><a href="#org000007b">7. Arrancar y parar la base de datos</a></li>
+<li><a href="#org0000084">8. Cosas que hemos aprendido <i>de pasada</i></a></li>
+<li><a href="#org0000089">9. Diagrama resumen</a></li>
+<li><a href="#org000008c">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -729,8 +729,8 @@ SQL&gt;
 
 
 
-<div id="outline-container-org0000055" class="outline-2">
-<h2 id="org0000055"><span class="section-number-2">3.</span> Instancia / <i>listener</i> / base de datos</h2>
+<div id="outline-container-org000005c" class="outline-2">
+<h2 id="org000005c"><span class="section-number-2">3.</span> Instancia / <i>listener</i> / base de datos</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Instancia: 
@@ -787,15 +787,54 @@ SQL&gt;
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0000056" class="outline-3">
+<h3 id="org0000056"><span class="section-number-3">3.4.</span> <i>Pluggable databases</i> de Oracle</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Desde la versión ¿21?, la base de datos de Oracle es obligatoriamente <i>Container database</i>
+<ul class="org-ul">
+<li>Es el <code>ORACLE_SID</code></li>
+<li>Se pueden definir usuarios globales</li>
+<li>Pero los datos deben estar en <i>pluggable databases</i></li>
+</ul></li>
+<li>Una <i>pluggable database</i>
+<ul class="org-ul">
+<li>Depende de una <i>Container database</i></li>
+<li>Tiene sus propios usuarios y tablas</li>
+<li>No es un SID, es un <b>servicio</b></li>
+</ul></li>
+<li>Nombre oficial: <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/index.html#GUID-5700B989-188E-4AD0-A0E4-B59D55F3AD47">Oracle multitenant</a></li>
+</ul>
+
+
+<div id="org0000055" class="figure">
+<p><img src="media/With-PDB.png" alt="With-PDB.png" />
+</p>
+</div>
+
+<p>
+<a href="https://www.databasestar.com/oracle-pdb/">Fuente</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0000059" class="outline-3">
+<h3 id="org0000059"><span class="section-number-3">3.5.</span> Cambiar de <i>pluggable database</i></h3>
+<div class="outline-text-3" id="text-3-5">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=CDB$ROOT;
+<span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=NOMBREDEPLUGGABLEDATABASE;
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 
 
-
-
-
-<div id="outline-container-org000005b" class="outline-2">
-<h2 id="org000005b"><span class="section-number-2">4.</span> Creación de un <i>listener</i></h2>
+<div id="outline-container-org0000062" class="outline-2">
+<h2 id="org0000062"><span class="section-number-2">4.</span> Creación de un <i>listener</i></h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Permiten las conexiones de clientes remotos</li>
@@ -813,8 +852,8 @@ SQL&gt;
 </ul>
 </div>
 
-<div id="outline-container-org0000058" class="outline-3">
-<h3 id="org0000058"><span class="section-number-3">4.1.</span> Arrancar y parar el listener</h3>
+<div id="outline-container-org000005f" class="outline-3">
+<h3 id="org000005f"><span class="section-number-3">4.1.</span> Arrancar y parar el listener</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><p>
@@ -843,12 +882,12 @@ Comprobar si la instancia se ha conectado
 </div>
 </div>
 
-<div id="outline-container-org000006b" class="outline-2">
-<h2 id="org000006b"><span class="section-number-2">5.</span> Conexión remota</h2>
+<div id="outline-container-org0000072" class="outline-2">
+<h2 id="org0000072"><span class="section-number-2">5.</span> Conexión remota</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">5.1.</span> Acceso por redes</h3>
+<div id="outline-container-org0000068" class="outline-3">
+<h3 id="org0000068"><span class="section-number-3">5.1.</span> Acceso por redes</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Es necesario conocer la IP de nuestro servidor
@@ -870,8 +909,8 @@ Comprobar si la instancia se ha conectado
 </div>
 
 
-<div id="outline-container-org000005e" class="outline-4">
-<h4 id="org000005e"><span class="section-number-4">5.1.1.</span> Conexión remota</h4>
+<div id="outline-container-org0000065" class="outline-4">
+<h4 id="org0000065"><span class="section-number-4">5.1.1.</span> Conexión remota</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Es necesario conocer la IP o el nombre del ordenador remoto</li>
@@ -888,8 +927,8 @@ Comprobar si la instancia se ha conectado
 </div>
 
 
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">5.2.</span> Configuración de las conexiones (<b>sqlplus</b>)</h3>
+<div id="outline-container-org000006b" class="outline-3">
+<h3 id="org000006b"><span class="section-number-3">5.2.</span> Configuración de las conexiones (<b>sqlplus</b>)</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>El cliente <code>sqlplus</code> utiliza las conexiones definidas en el fichero <code>tnsnames.ora</code></li>
@@ -913,8 +952,8 @@ Se puede usar también una cadena de conexión
 </div>
 
 
-<div id="outline-container-org0000068" class="outline-3">
-<h3 id="org0000068"><span class="section-number-3">5.3.</span> Instalación de <b>sqlplus</b></h3>
+<div id="outline-container-org000006f" class="outline-3">
+<h3 id="org000006f"><span class="section-number-3">5.3.</span> Instalación de <b>sqlplus</b></h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>El cliente <b>sqlplus</b> viene en la instalación de <b>oracle</b></li>
@@ -930,7 +969,7 @@ Se puede usar también una cadena de conexión
 
 
 
-<div class="NOTES" id="org0000067">
+<div class="NOTES" id="org000006e">
 <p>
 See the Instant Client Home Page for more information.
 </p>
@@ -993,8 +1032,8 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </div>
 
 
-<div id="outline-container-org000006e" class="outline-2">
-<h2 id="org000006e"><span class="section-number-2">6.</span> Dirección IP</h2>
+<div id="outline-container-org0000075" class="outline-2">
+<h2 id="org0000075"><span class="section-number-2">6.</span> Dirección IP</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Pondremos IP estática
@@ -1015,8 +1054,8 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </div>
 </div>
 
-<div id="outline-container-org0000074" class="outline-2">
-<h2 id="org0000074"><span class="section-number-2">7.</span> Arrancar y parar la base de datos</h2>
+<div id="outline-container-org000007b" class="outline-2">
+<h2 id="org000007b"><span class="section-number-2">7.</span> Arrancar y parar la base de datos</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><p>
@@ -1049,8 +1088,8 @@ Arrancar y parar el <i>listener</i>. Comprobar que se admiten conexiones
 </ul>
 </div>
 
-<div id="outline-container-org0000071" class="outline-3">
-<h3 id="org0000071"><span class="section-number-3">7.1.</span> A mí <b>dbstart</b> y <b>dbshut</b> no me funcionan</h3>
+<div id="outline-container-org0000078" class="outline-3">
+<h3 id="org0000078"><span class="section-number-3">7.1.</span> A mí <b>dbstart</b> y <b>dbshut</b> no me funcionan</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 Se puede hacer <i>a mano</i>. Lo veremos en el próximo tema.
@@ -1088,8 +1127,8 @@ SQL&gt;
 
 
 
-<div id="outline-container-org000007d" class="outline-2">
-<h2 id="org000007d"><span class="section-number-2">8.</span> Cosas que hemos aprendido <i>de pasada</i></h2>
+<div id="outline-container-org0000084" class="outline-2">
+<h2 id="org0000084"><span class="section-number-2">8.</span> Cosas que hemos aprendido <i>de pasada</i></h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Variables de entorno
@@ -1118,8 +1157,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </p>
 </div>
 
-<div id="outline-container-org0000077" class="outline-3">
-<h3 id="org0000077"><span class="section-number-3">8.1.</span> Comandos</h3>
+<div id="outline-container-org000007e" class="outline-3">
+<h3 id="org000007e"><span class="section-number-3">8.1.</span> Comandos</h3>
 <div class="outline-text-3" id="text-8-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1199,8 +1238,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 </div>
 
-<div id="outline-container-org000007a" class="outline-3">
-<h3 id="org000007a"><span class="section-number-3">8.2.</span> Comandos, <i>shell</i> y variables</h3>
+<div id="outline-container-org0000081" class="outline-3">
+<h3 id="org0000081"><span class="section-number-3">8.2.</span> Comandos, <i>shell</i> y variables</h3>
 <div class="outline-text-3" id="text-8-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1258,11 +1297,11 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 
 
 
-<div id="outline-container-org0000082" class="outline-2">
-<h2 id="org0000082"><span class="section-number-2">9.</span> Diagrama resumen</h2>
+<div id="outline-container-org0000089" class="outline-2">
+<h2 id="org0000089"><span class="section-number-2">9.</span> Diagrama resumen</h2>
 <div class="outline-text-2" id="text-9">
 
-<div id="org0000080" class="figure">
+<div id="org0000087" class="figure">
 <p><img src="./media/diagrama-instalacion-oracle.svg" alt="diagrama-instalacion-oracle.svg" class="org-svg" />
 </p>
 </div>
@@ -1273,8 +1312,8 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 
 
 
-<div id="outline-container-org0000085" class="outline-2">
-<h2 id="org0000085"><span class="section-number-2">10.</span> Referencias</h2>
+<div id="outline-container-org000008c" class="outline-2">
+<h2 id="org000008c"><span class="section-number-2">10.</span> Referencias</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Formatos:
@@ -1297,7 +1336,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-20 vie 13:26</p>
+<p class="date">Created: 2024-09-28 sáb 18:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
