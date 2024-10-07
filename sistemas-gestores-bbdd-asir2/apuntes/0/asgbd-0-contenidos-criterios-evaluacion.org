@@ -336,79 +336,79 @@
 * Criterios de evaluación
 
 ** Implanta sistemas gestores de bases de datos analizando sus características y ajustándose a los requerimientos del sistema.
-- Se ha reconocido la utilidad y función de cada uno de los elementos de un sistema gestor de bases de datos.
-- Se han analizado las características de los principales sistemas gestores de bases de datos.
-- Se ha seleccionado el sistema gestor de bases de datos.
-- Se ha identificado el software necesario para llevar a cabo la instalación.
-- Se ha verificado el cumplimiento de los requisitos hardware.
-- Se han instalado sistemas gestores de bases de datos.
-- Se ha documentado el proceso de instalación.
-- Se ha interpretado la información suministrada por los mensajes de error y ficheros de registro.
-- Se han resuelto las incidencias de la instalación.
-- Se ha verificado el funcionamiento del sistema gestor de bases de datos.
+a. Se ha reconocido la utilidad y función de cada uno de los elementos de un sistema gestor de bases de datos.
+b. Se han analizado las características de los principales sistemas gestores de bases de datos.
+c. Se ha seleccionado el sistema gestor de bases de datos.
+d. Se ha identificado el software necesario para llevar a cabo la instalación.
+e. Se ha verificado el cumplimiento de los requisitos hardware.
+f. Se han instalado sistemas gestores de bases de datos.
+g. Se ha documentado el proceso de instalación.
+h. Se ha interpretado la información suministrada por los mensajes de error y ficheros de registro.
+i. Se han resuelto las incidencias de la instalación.
+j. Se ha verificado el funcionamiento del sistema gestor de bases de datos.
 
 
 ** Configura el sistema gestor de bases de datos interpretando las especificaciones técnicas y los requisitos de explotación.
 
-- Se han descrito las condiciones de inicio y parada del sistema gestor.
-- Se ha seleccionado el motor de base de datos.
-- Se han asegurado las cuentas de administración.
-- Se han configurado las herramientas y software cliente del sistema gestor.
-- Se ha configurado la conectividad en red del sistema gestor.
-- Se han definido las características por defecto de las bases de datos.
-- Se han definido los parámetros relativos a las conexiones (tiempos de espera,número máximo de conexiones, entre otros).
-- Se ha documentado el proceso de configuración.
+a. Se han descrito las condiciones de inicio y parada del sistema gestor.
+b. Se ha seleccionado el motor de base de datos.
+c. Se han asegurado las cuentas de administración.
+d. Se han configurado las herramientas y software cliente del sistema gestor.
+e. Se ha configurado la conectividad en red del sistema gestor.
+f. Se han definido las características por defecto de las bases de datos.
+g. Se han definido los parámetros relativos a las conexiones (tiempos de espera,número máximo de conexiones, entre otros).
+h. Se ha documentado el proceso de configuración.
  
 ** Implanta métodos de control de acceso utilizando asistentes, herramientas gráficas y comandos del lenguaje del sistema gestor.
 
-- Se han creado vistas personalizadas para cada tipo de usuario.
-- Se han creado sinónimos de tablas y vistas.
-- Se han definido y eliminado cuentas de usuario.
-- Se han identificado los privilegios sobre las bases de datos y sus elementos.
-- Se han agrupado y desagrupado privilegios.
-- Se han asignado y eliminado privilegios a usuarios.
-- Se han asignado y eliminado grupos de privilegios a usuarios.
-- Se ha garantizando el cumplimiento de los requisitos de seguridad.
+a. Se han creado vistas personalizadas para cada tipo de usuario.
+b. Se han creado sinónimos de tablas y vistas.
+c. Se han definido y eliminado cuentas de usuario.
+d. Se han identificado los privilegios sobre las bases de datos y sus elementos.
+e. Se han agrupado y desagrupado privilegios.
+f. Se han asignado y eliminado privilegios a usuarios.
+g. Se han asignado y eliminado grupos de privilegios a usuarios.
+h. Se ha garantizado el cumplimiento de los requisitos de seguridad.
 ** Automatiza tareas de administración del gestor describiéndolas y utilizando guiones de sentencias.
 
-- Se ha reconocido la importancia de automatizar tareas administrativas.
-- Se han descrito los distintos métodos de ejecución de guiones.
-- Se han identificado las herramientas disponibles para redactar guiones.
-- Se han definido y utilizado guiones para automatizar tareas.
-- Se han identificado los eventos susceptibles de activar disparadores.
-- Se han definido disparadores.
-- Se han utilizado estructuras de control de flujo.
-- Se han adoptado medidas para mantener la integridad y consistencia de la información.
+a. Se ha reconocido la importancia de automatizar tareas administrativas.
+b. Se han descrito los distintos métodos de ejecución de guiones.
+c. Se han identificado las herramientas disponibles para redactar guiones.
+d. Se han definido y utilizado guiones para automatizar tareas.
+e. Se han identificado los eventos susceptibles de activar disparadores.
+f. Se han definido disparadores.
+g. Se han utilizado estructuras de control de flujo.
+h. Se han adoptado medidas para mantener la integridad y consistencia de la información.
 ** Optimiza el rendimiento del sistema aplicando técnicas de monitorización y realizando adaptaciones.
-- Se han identificado las herramientas de monitorización disponibles para el sistema gestor.
-- Se han descrito las ventajas e inconvenientes de la creación de índices.
-- Se han creado índices en tablas y vistas.
-- Se ha optimizado la estructura de la base de datos.
-- Se han optimizado los recursos del sistema gestor.
-- Se ha obtenido información sobre el rendimiento de las consultas para su optimización.
-- Se han programado alertas de rendimiento.
-- Se han realizado modificaciones en la configuración del sistema operativo para mejorar el rendimiento del gestor.
+a. Se han identificado las herramientas de monitorización disponibles para el sistema gestor.
+b. Se han descrito las ventajas e inconvenientes de la creación de índices.
+c. Se han creado índices en tablas y vistas.
+d. Se ha optimizado la estructura de la base de datos.
+e. Se han optimizado los recursos del sistema gestor.
+f. Se ha obtenido información sobre el rendimiento de las consultas para su optimización.
+g. Se han programado alertas de rendimiento.
+h. Se han realizado modificaciones en la configuración del sistema operativo para mejorar el rendimiento del gestor.
 ** Aplica criterios de disponibilidad analizándolos y ajustando la configuración del sistema gestor.
-- Se ha reconocido la utilidad de las bases de datos distribuidas.
-- Se han descrito las distintas políticas de fragmentación de la información.
-- Se ha implantado una base de datos distribuida homogénea.
-- Se ha creado una base de datos distribuida mediante la integración de un conjunto de bases de datos preexistentes.
-- Se ha configurado un «nodo» maestro y varios «esclavos» para llevar a cabo la replicación del primero.
-- Se ha configurado un sistema de replicación en cadena.
-- Se ha comprobado el efecto de la parada de determinados nodos sobre los sistemas distribuidos y replicados.
+a. Se ha reconocido la utilidad de las bases de datos distribuidas.
+b. Se han descrito las distintas políticas de fragmentación de la información.
+c. Se ha implantado una base de datos distribuida homogénea.
+d. Se ha creado una base de datos distribuida mediante la integración de un conjunto de bases de datos preexistentes.
+e. Se ha configurado un «nodo» maestro y varios «esclavos» para llevar a cabo la replicación del primero.
+f. Se ha configurado un sistema de replicación en cadena.
+g. Se ha comprobado el efecto de la parada de determinados nodos sobre los sistemas distribuidos y replicados.
 
 
 
-* Distribución de RA en unidades de trabajo
+* Distribución de RA en unidades de trabajo 
 
 
-| Peso en la calificación final   |   5.00% | 10.00% | 20.00% |  45.00% |  15.00% |   5.00% |
+| Peso en la calificación final   |   5.00% | 10.00% | 20.00% |  50.00% |  10.00% |   5.00% |
 |---------------------------------+---------+--------+--------+---------+---------+---------|
 |                                 |     RA1 |    RA2 |    RA3 |     RA4 |     RA5 |     RA6 |
 |---------------------------------+---------+--------+--------+---------+---------+---------|
 | UT1 Instalación de SGBD         | 100.00% |        |        |         |         |         |
 | UT2 Configuración de SGBD       |         | 40.00% |        |         |         |         |
-| UT3 seguridad de SGBD           |         |        | 40.00% |         |         |         |
+| UT3 Seguridad de SGBD           |         |        | 40.00% |         |         |         |
 | UT4 Automatización de tareas    |         | 60.00% | 60.00% | 100.00% |         |         |
 | UT5 Optimización de SGBD        |         |        |        |         | 100.00% |         |
 | UT6 Bases de datos distribuidas |         |        |        |         |         | 100.00% |
