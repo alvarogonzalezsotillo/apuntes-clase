@@ -117,3 +117,33 @@ Un plugin puede incluir:
                     
 * Referencias
 #+include: "../../../common/footer.org"
+
+
+
+* Moodle :noexport:
+
+https://docs.moodle.org/405/en/Installation_quick_guide
+
+#+begin_src sql
+CREATE DATABASE moodle DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'yourpassword';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO 'moodleuser'@'localhost';
+FLUSH PRIVILEGES;
+#+end_src
+
+#+begin_src bash
+mkdir ~/moodle-data
+sudo chown www-data:www-data ~/moodle-data
+#+end_src
+
+#+begin_src bash
+php ~/public-html/moodle/admin/cli/install.php
+#+end_src
+
+
+
+https://coder.iesavellaneda.es/@admin/p1.main/apps/code-server/proxy/80/public-html/moodle    
+
+
+
+

@@ -30,22 +30,25 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 
   Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el profesor. La contraseña inicial será la misma que el nombre (mayúsculas), excepto en tu usuario que debería ser una contraseña secreta:
 #+latex:  \begin{multicols}{3}
-    - RUBENAVILA3   
-    - JORGEBAS      
-    - DOMINIKCISLO  
-    - JESUSCUEVAS4  
-    - DAVIDCZARNECKI
-    - EMMANUELFERNAN
-    - NOELIAFERNANDE
-    - JOSELOPEZ16   
-    - JESUSMUNOZ7   
-    - MIGUELMUYO    
-    - HUGOPABLO     
-    - CREINA        
-    - ALEJANDRORIVIL
-    - IRUBIOMARTIN  
-    - ALVAROVICENTE1
-    - ALVAROGONZALEZ
+- ADRIANALVAREZ10    
+- EDUARDOANTON1      
+- AGARCIA190         
+- ALEJANDROJIMENEZ34 
+- ISMAELMACARENO     
+- IVANMARIN1         
+- PABLONUNEZ16       
+- AROAPEREZ2         
+- PABLORAMO          
+- JORGERAMOS6        
+- MIGUELREYES1       
+- JOSEROJAS12        
+- OSKARSAJEK         
+- ALVAROSANCHEZ308   
+- ANDREASANTOSESTEBAN
+- FERNANDOVAQUERIZO  
+- ALVAROVICENTE1     
+- VERONICAVILLASECA  
+- ALVAROGONZALEZ
 #+latex:  \end{multicols}
   *Nota*: Son muchos usuarios, así que es aconsejable utilizar un /script/ en vez de crearlos manualmente.
 
