@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-09-08 dom 17:54</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-10 jue 11:48</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -829,82 +829,81 @@ END;
 <h3 id="2-9"><span class="section-number-3">2.9.</span> Conceptos de almacenamiento</h3>
 
 <div id="org0000000" class="figure">
-<p><svg width="855pt" height="75pt"
- viewBox="0.00 0.00 855.00 75.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 71)">
-<title>%3</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-71 851,-71 851,4 -4,4"/>
+<p><svg width="767pt" height="77pt"
+ viewBox="0.00 0.00 767.25 77.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 73)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-73 763.25,-73 763.25,4 -4,4"/>
 <!-- Database -->
 <g id="node1" class="node">
 <title>Database</title>
-<polygon fill="none" stroke="black" points="83,-36 0,-36 0,0 83,0 83,-36"/>
-<text text-anchor="middle" x="41.5" y="-14.3" font-family="Times,serif" font-size="14.00">Database</text>
+<polygon fill="none" stroke="black" points="65.5,-36 0,-36 0,0 65.5,0 65.5,-36"/>
+<text text-anchor="middle" x="32.75" y="-12.95" font-family="Times,serif" font-size="14.00">Database</text>
 </g>
 <!-- Tablespace -->
 <g id="node2" class="node">
 <title>Tablespace</title>
-<polygon fill="none" stroke="black" points="251,-36 156,-36 156,0 251,0 251,-36"/>
-<text text-anchor="middle" x="203.5" y="-14.3" font-family="Times,serif" font-size="14.00">Tablespace</text>
+<polygon fill="none" stroke="black" points="213.5,-36 137.5,-36 137.5,0 213.5,0 213.5,-36"/>
+<text text-anchor="middle" x="175.5" y="-12.95" font-family="Times,serif" font-size="14.00">Tablespace</text>
 </g>
 <!-- Database&#45;&#45;Tablespace -->
 <g id="edge1" class="edge">
 <title>Database&#45;&#45;Tablespace</title>
-<path fill="none" stroke="black" d="M83.29,-18C105.42,-18 132.86,-18 155.84,-18"/>
-<text text-anchor="middle" x="119.5" y="-21" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
+<path fill="none" stroke="black" d="M65.69,-18C86.94,-18 114.93,-18 137.21,-18"/>
+<text text-anchor="middle" x="101.5" y="-21.25" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 <!-- File -->
 <g id="node3" class="node">
 <title>File</title>
-<polygon fill="none" stroke="black" points="378,-67 324,-67 324,-31 378,-31 378,-67"/>
-<text text-anchor="middle" x="351" y="-45.3" font-family="Times,serif" font-size="14.00">File</text>
+<polygon fill="none" stroke="black" points="339.5,-69 285.5,-69 285.5,-33 339.5,-33 339.5,-69"/>
+<text text-anchor="middle" x="312.5" y="-45.95" font-family="Times,serif" font-size="14.00">File</text>
 </g>
 <!-- Tablespace&#45;&#45;File -->
 <g id="edge2" class="edge">
 <title>Tablespace&#45;&#45;File</title>
-<path fill="none" stroke="black" d="M251.34,-27.98C275.26,-33.08 303.49,-39.09 323.61,-43.38"/>
-<text text-anchor="middle" x="287.5" y="-41" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
+<path fill="none" stroke="black" d="M213.75,-27.1C236.38,-32.64 264.73,-39.57 285.07,-44.54"/>
+<text text-anchor="middle" x="249.5" y="-42.25" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 <!-- Segment -->
 <g id="node4" class="node">
 <title>Segment</title>
-<polygon fill="none" stroke="black" points="531,-36 451,-36 451,0 531,0 531,-36"/>
-<text text-anchor="middle" x="491" y="-14.3" font-family="Times,serif" font-size="14.00">Segment</text>
+<polygon fill="none" stroke="black" points="475.5,-36 411.5,-36 411.5,0 475.5,0 475.5,-36"/>
+<text text-anchor="middle" x="443.5" y="-12.95" font-family="Times,serif" font-size="14.00">Segment</text>
 </g>
 <!-- File&#45;&#45;Segment -->
 <g id="edge3" class="edge">
 <title>File&#45;&#45;Segment</title>
-<path fill="none" stroke="black" d="M378.28,-43.1C398.77,-38.49 427.54,-32.03 450.76,-26.81"/>
-<text text-anchor="middle" x="414.5" y="-41" font-family="Courier,monospace" font-size="10.00">N &#160;&#160;&#160;N</text>
+<path fill="none" stroke="black" d="M339.92,-44.24C360.56,-38.96 389.3,-31.61 411.11,-26.03"/>
+<text text-anchor="middle" x="375.5" y="-42.25" font-family="Courier,monospace" font-size="10.00">N &#160;&#160;&#160;N</text>
 </g>
 <!-- Segment&#45;&#45;Tablespace -->
 <g id="edge6" class="edge">
 <title>Segment&#45;&#45;Tablespace</title>
-<path fill="none" stroke="black" d="M450.89,-14.96C429.4,-13.43 402.24,-11.76 378,-11 335.06,-9.66 286.17,-11.98 251.25,-14.3"/>
-<text text-anchor="middle" x="351" y="-14" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;n</text>
+<path fill="none" stroke="black" d="M411.43,-15.43C391,-13.88 363.68,-12.04 339.5,-11.25 296.33,-9.84 246.75,-12.5 213.72,-14.89"/>
+<text text-anchor="middle" x="312.5" y="-15.25" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 <!-- Extent -->
 <g id="node5" class="node">
 <title>Extent</title>
-<polygon fill="none" stroke="black" points="669,-36 604,-36 604,0 669,0 669,-36"/>
-<text text-anchor="middle" x="636.5" y="-14.3" font-family="Times,serif" font-size="14.00">Extent</text>
+<polygon fill="none" stroke="black" points="601.5,-36 547.5,-36 547.5,0 601.5,0 601.5,-36"/>
+<text text-anchor="middle" x="574.5" y="-12.95" font-family="Times,serif" font-size="14.00">Extent</text>
 </g>
 <!-- Segment&#45;&#45;Extent -->
 <g id="edge4" class="edge">
 <title>Segment&#45;&#45;Extent</title>
-<path fill="none" stroke="black" d="M531.21,-18C553.95,-18 582.22,-18 603.59,-18"/>
-<text text-anchor="middle" x="567.5" y="-21" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
+<path fill="none" stroke="black" d="M475.73,-18C497.65,-18 526.63,-18 547.34,-18"/>
+<text text-anchor="middle" x="511.5" y="-21.25" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 <!-- Oracle block -->
 <g id="node6" class="node">
 <title>Oracle block</title>
-<polygon fill="none" stroke="black" points="847,-36 742,-36 742,0 847,0 847,-36"/>
-<text text-anchor="middle" x="794.5" y="-14.3" font-family="Times,serif" font-size="14.00">Oracle block</text>
+<polygon fill="none" stroke="black" points="759.25,-36 673.5,-36 673.5,0 759.25,0 759.25,-36"/>
+<text text-anchor="middle" x="716.38" y="-12.95" font-family="Times,serif" font-size="14.00">Oracle block</text>
 </g>
 <!-- Extent&#45;&#45;Oracle block -->
 <g id="edge5" class="edge">
 <title>Extent&#45;&#45;Oracle block</title>
-<path fill="none" stroke="black" d="M669.07,-18C689.9,-18 717.68,-18 741.71,-18"/>
-<text text-anchor="middle" x="705.5" y="-21" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
+<path fill="none" stroke="black" d="M601.81,-18C621.91,-18 650.02,-18 673.24,-18"/>
+<text text-anchor="middle" x="637.5" y="-21.25" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 </g>
 </svg>

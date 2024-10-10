@@ -194,7 +194,7 @@ graph{
   Segment -- Extent [label="1    N"]
   Extent -- "Oracle block" [label="1    N"]
 
-  Segment -- Tablespace[label="1    n"]
+  Segment -- Tablespace[label="1    N"]
 
 }
 #+end_src
