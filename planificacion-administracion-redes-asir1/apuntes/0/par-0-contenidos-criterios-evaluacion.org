@@ -478,21 +478,22 @@ c) Se ha utilizado NAT para realizar la traducción dinámica de direcciones de 
 d) Se han descrito las características de las tecnologías «Frame Relay», RDSI y ADSL.
 e) Se han descrito las analogías y diferencias entre las tecnologías «Wifi» y «Wimax».
 f) Se han descrito las características de las tecnologías UMTS y HSDPA.
+g) /Se han utilizado diferentes tecnologías de túnel para interconectar redes a través de Internet/
 
 
 * Distribución de RA en unidades de trabajo
 
-| Peso en la calificación final de cada RA |   5.00% |  5.00% | 10.00% | 20.00% |  15.00% |  40.00% |   5.00% |
-|------------------------------------------+---------+--------+--------+--------+---------+---------+---------|
-|                                          |     RA1 |    RA2 |    RA3 |    RA4 |     RA5 |     RA6 |     RA7 |
-|------------------------------------------+---------+--------+--------+--------+---------+---------+---------|
-| UT1 Estructura de redes de datos         | 100.00% |        |        |        |         |         |         |
-| UT2 Conexión básica de ordenadores       |         | 10.00% |        |        |         |         |         |
-| UT3 Switches                             |         |        | 40.00% |        |         |         |         |
-| UT4 Enrutamiento                         |         |        |        | 50.00% |         |         |         |
-| UT5 VLAN                                 |         |        | 60.00% |        | 100.00% |         |         |
-| UT6 Administración de routers            |         | 45.00% |        | 50.00% |         | 100.00% |         |
-| UT7 Interconexión con redes públicas     |         | 45.00% |        |        |         |         | 100.00% |
+| Peso en la calificación final de cada RA |   5.00% |   5.00% | 10.00% | 20.00% |  15.00% |  40.00% |   5.00% |
+|------------------------------------------+---------+---------+--------+--------+---------+---------+---------|
+|                                          |     RA1 |     RA2 |    RA3 |    RA4 |     RA5 |     RA6 |     RA7 |
+|------------------------------------------+---------+---------+--------+--------+---------+---------+---------|
+| UT1 Estructura de redes de datos         | 100.00% |         |        |        |         |         |         |
+| UT2 Conexión básica de ordenadores       |         | 100.00% |        |        |         |         |         |
+| UT3 Switches                             |         |         | 40.00% |        |         |         |         |
+| UT4 Enrutamiento                         |         |         |        | 50.00% |         |         |         |
+| UT5 VLAN                                 |         |         | 60.00% |        | 100.00% |         |         |
+| UT6 Administración de routers            |         |         |        | 50.00% |         | 100.00% |         |
+| UT7 Interconexión con redes públicas     |         |         |        |        |         |         | 100.00% |
 
 
 * Orientaciones pedagógicas.                   :noexport:
