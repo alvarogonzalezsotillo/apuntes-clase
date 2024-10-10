@@ -374,10 +374,10 @@ revoke select on unatabla from unusuario;
 
 ** Privilegios de sistema
 - No se aplican sobre tablas/objetos concretos
-  - =CREATE ANY TABLE=, =CREATE_ANY_VIEW=,...
+  - =CREATE ANY TABLE=, =CREATE ANY VIEW=,...
   - =CREATE SESSION=, =CREATE SYNONYM=,..
   - =UNLIMITED TABLESPACE=, =SYSDBA=,...
-  -     
+
 * Roles
 - Asignar todos los privilegios a un usuario es trabajoso, pero factible
 - ¿Qué ocurre si tenemos que manejar a muchos usuario?
