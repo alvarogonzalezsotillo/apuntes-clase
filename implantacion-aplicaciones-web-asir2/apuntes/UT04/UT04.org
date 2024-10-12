@@ -1,0 +1,83 @@
+
+
+
+
+https://www.php.net/manual/es/tutorial.forms.php
+
+
+* Variables
+https://www.php.net/manual/es/language.variables.basics.php
+
+** Tipos de variables
+https://www.php.net/manual/es/language.types.php
+
+
+    null type
+    Scalar types:
+        bool type
+        int type
+        float type
+        string type https://www.php.net/manual/es/language.operators.string.php
+    array type
+    object type
+    never type
+    void type
+
+
+** Constantes
+https://www.php.net/manual/es/language.constants.php
+https://www.php.net/manual/es/reserved.constants.php
+* /Arrays/
+https://www.php.net/manual/es/language.types.array.php
+
+* Variables predefinidas
+https://www.php.net/manual/es/language.variables.predefined.php
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+
+* Estructuras de control
+https://www.php.net/manual/es/language.control-structures.php
+** If
+** While
+** foreach
+** Include, require
+** try
+* Funciones
+
+** Definición y uso
+https://www.php.net/manual/es/language.functions.php
+
+** Ámbito de variables
+https://www.php.net/manual/es/language.variables.scope.php
+
+* Funciones predefinidas
+phpinfo
+htmlspecialchars
+
+https://www.php.net/manual/es/ref.strings.php
+
+** Debug
+var_dump
+error_reporting
+
+* Formularios
+** En HTML
+
+** En PHP
+https://www.php.net/manual/es/language.variables.external.php
+
+
+
+* Acceso a mysql :noexport:
+https://www.php.net/manual/es/book.mysqli.php
+https://www.php.net/manual/es/mysqli.summary.php
+
+** Conectar
+https://www.php.net/manual/es/mysqli.quickstart.connections.php
