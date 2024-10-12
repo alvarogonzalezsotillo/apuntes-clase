@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<title>Instalación de Wordpress</title>
+<title>Instalación de CMS en LAMP</title>
 <meta name="author" content="Álvaro González Sotillo"/>
 <meta name="keywords" content=" "/>
 <style type="text/css">
@@ -444,19 +444,21 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Instalación de Wordpress</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-09-26 jue 19:47</p>
+<h1 class="title">Instalación de CMS en LAMP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-12 sáb 19:05</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-1">1. Wordpress</a></li>
-<li><a href="#/slide-2">2. Instalación</a></li>
-<li><a href="#/slide-3">3. <i>Frontend</i> / <i>backend</i></a></li>
-<li><a href="#/slide-4">4. Conceptos Wordpress</a></li>
-<li><a href="#/slide-5">5. Roles Wordpress</a></li>
-<li><a href="#/slide-6">6. Referencias</a></li>
+<li><a href="#/slide-1">1. CMS</a></li>
+<li><a href="#/slide-2">2. Wordpress</a></li>
+<li><a href="#/slide-3">3. Instalación</a></li>
+<li><a href="#/slide-4">4. <i>Frontend</i> / <i>backend</i></a></li>
+<li><a href="#/slide-5">5. Conceptos Wordpress</a></li>
+<li><a href="#/slide-6">6. Roles Wordpress</a></li>
+<li><a href="#/slide-7">7. Instalación de otros CMS LAMP</a></li>
+<li><a href="#/slide-8">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -494,10 +496,54 @@ window.addEventListener("load",()=>{
 
 </script>
 
-
 <section>
 <section id="slide-1">
-<h2 id="1"><span class="section-number-2">1.</span> Wordpress</h2>
+<h2 id="1"><span class="section-number-2">1.</span> CMS</h2>
+<ul>
+<li><i>Content Management System</i></li>
+<li><p>
+Más simple para un usuario que HTML/CSS
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Tabla 1</span> Tipos de CMS</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Blogs</td>
+<td class="org-left">Páginas corporativas</td>
+<td class="org-left">Foros de soporte</td>
+</tr>
+
+<tr>
+<td class="org-left">Wikis</td>
+<td class="org-left">Trabajo colaborativo (documentos)</td>
+<td class="org-left">Cursos</td>
+</tr>
+
+<tr>
+<td class="org-left">eShop</td>
+<td class="org-left"><i>Personal Information Manager</i></td>
+<td class="org-left">Intercambio de ficheros</td>
+</tr>
+</tbody>
+</table></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2.</span> Wordpress</h2>
 <ul>
 <li>CMS más popular</li>
 <li>Fácil instalación y manejo</li>
@@ -565,13 +611,13 @@ window.addEventListener("load",()=>{
 </section>
 </section>
 <section>
-<section id="slide-2">
-<h2 id="2"><span class="section-number-2">2.</span> Instalación</h2>
-<div class="outline-text-2" id="text-2">
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3.</span> Instalación</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 </section>
-<section id="slide-2-1">
-<h3 id="2-1"><span class="section-number-3">2.1.</span> <i>Download</i> y descompresión</h3>
+<section id="slide-3-1">
+<h3 id="3-1"><span class="section-number-3">3.1.</span> <i>Download</i> y descompresión</h3>
 <ul>
 <li>Se necesita un servidor LAMP</li>
 <li>Descomprimir el <a href="https://es.wordpress.org/download/releases/">fichero comprimido</a> en un directorio accesible por Apache</li>
@@ -581,8 +627,8 @@ window.addEventListener("load",()=>{
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-2-2">
-<h3 id="2-2"><span class="section-number-3">2.2.</span> Fichero <code>wp-config.php</code></h3>
+<section id="slide-3-2">
+<h3 id="3-2"><span class="section-number-3">3.2.</span> Fichero <code>wp-config.php</code></h3>
 <ul>
 <li>Un asistente preguntará por los datos necesarios para conectar a la base de datos
 <ul>
@@ -602,8 +648,8 @@ Nota: El prefijo permite utilizar la misma base de datos para más de una instan
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-2-3">
-<h3 id="2-3"><span class="section-number-3">2.3.</span> ¿Sin permisos de escritura?</h3>
+<section id="slide-3-3">
+<h3 id="3-3"><span class="section-number-3">3.3.</span> ¿Sin permisos de escritura?</h3>
 <ul>
 <li>Es posible que Wordpress no pueda escribir el fichero <code>wp-config.php</code>
 <ul>
@@ -616,8 +662,8 @@ Nota: El prefijo permite utilizar la misma base de datos para más de una instan
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-2-4">
-<h3 id="2-4"><span class="section-number-3">2.4.</span> Siguientes pasos</h3>
+<section id="slide-3-4">
+<h3 id="3-4"><span class="section-number-3">3.4.</span> Siguientes pasos</h3>
 <ul>
 <li>Usuario administrador de Wordpress, y contraseña</li>
 <li>Título del sitio</li>
@@ -630,8 +676,8 @@ Nota: El prefijo permite utilizar la misma base de datos para más de una instan
 </section>
 </section>
 <section>
-<section id="slide-3">
-<h2 id="3"><span class="section-number-2">3.</span> <i>Frontend</i> / <i>backend</i></h2>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4.</span> <i>Frontend</i> / <i>backend</i></h2>
 <ul>
 <li><i>Frontend</i>
 <ul>
@@ -651,8 +697,8 @@ Nota: El prefijo permite utilizar la misma base de datos para más de una instan
 </section>
 </section>
 <section>
-<section id="slide-4">
-<h2 id="4"><span class="section-number-2">4.</span> Conceptos Wordpress</h2>
+<section id="slide-5">
+<h2 id="5"><span class="section-number-2">5.</span> Conceptos Wordpress</h2>
 <ul>
 <li>Entrada (post): un artículo que se publicará con el resto de artículos, ordenado por fecha</li>
 <li>Categoría: una forma de clasificar las entradas. Jerárquicas.</li>
@@ -679,8 +725,8 @@ Nota: El prefijo permite utilizar la misma base de datos para más de una instan
 <div class="slide-footer"></div>
 
 </section>
-<section id="slide-4-1">
-<h3 id="4-1"><span class="section-number-3">4.1.</span> Temas</h3>
+<section id="slide-5-1">
+<h3 id="5-1"><span class="section-number-3">5.1.</span> Temas</h3>
 <p>
 Un tema puede incluir:
 </p>
@@ -699,8 +745,8 @@ Un tema puede incluir:
 
 
 </section>
-<section id="slide-4-2">
-<h3 id="4-2"><span class="section-number-3">4.2.</span> <i>Plugins</i></h3>
+<section id="slide-5-2">
+<h3 id="5-2"><span class="section-number-3">5.2.</span> <i>Plugins</i></h3>
 <p>
 Un plugin puede incluir:
 </p>
@@ -719,8 +765,8 @@ Un plugin puede incluir:
 </section>
 </section>
 <section>
-<section id="slide-5">
-<h2 id="5"><span class="section-number-2">5.</span> Roles Wordpress</h2>
+<section id="slide-6">
+<h2 id="6"><span class="section-number-2">6.</span> Roles Wordpress</h2>
 <ul>
 <li>Sin rol (anónimo):
 <ul>
@@ -778,8 +824,158 @@ Un plugin puede incluir:
 </section>
 </section>
 <section>
-<section id="slide-6">
-<h2 id="6"><span class="section-number-2">6.</span> Referencias</h2>
+<section id="slide-7">
+<h2 id="7"><span class="section-number-2">7.</span> Instalación de otros CMS LAMP</h2>
+<p>
+Todos las aplicaciones LAMP comparten un patrón común:
+</p>
+<ul>
+<li>El código PHP debe estar accessible por Apache</li>
+<li>En algún fichero, información sobre como conectar a MySQL
+<ul>
+<li>Usuario, contraseña, <i>dabatase</i>, dirección IP, puerto</li>
+
+</ul></li>
+<li>Dependiendo de la aplicación:
+<ul>
+<li>Directorios de adicionales</li>
+<li><a href="https://www.php.net/manual/en/extensions.alphabetical.php">Módulos PHP</a> adicionales</li>
+<li><a href="https://httpd.apache.org/docs/current/mod/">Módulos de Apache</a> adicionales</li>
+<li><a href="https://www.php.net/manual/es/ini.php">Opciones de PHP</a> adicionales</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-7-1">
+<h3 id="7-1"><span class="section-number-3">7.1.</span> Ejercicio: Moodle en Debian</h3>
+<ul>
+<li>Instala Moodle en tu máquina Debian
+<ul>
+<li>Usa el nombre AVAHI: <b>xxxxxIAW.local</b></li>
+<li>Apunta las modificaciones necesarias: módulos de PHP, módulos Apache, opciones PHP, directorios&#x2026;</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-7-2">
+<h3 id="7-2"><span class="section-number-3">7.2.</span> Ejercicio: Moodle en Coder</h3>
+<ul>
+<li>Instala Moodle en tu <i>workspace de Coder</i>
+<ul>
+<li>Aplicación en <code>~/public-html/moodle</code></li>
+<li>Usa HTTPS</li>
+<li>Comparte el puerto 443 como <b>Public</b>, no como <b>Authenticated</b></li>
+<li><code>https://443s--main--IAW--usuario.coder.iesavellaneda.es/public-html/moodle</code></li>
+<li>Ejemplo:
+<ul>
+<li><a href="https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle">https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle</a></li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+
+
+<div class="slide-footer"></div>
+</section>
+<section>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle</a></td>
+</tr>
+</tbody>
+</table>
+<div class="slide-footer"></div>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="8"><span class="section-number-2">8.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>

@@ -1,9 +1,17 @@
 #+INCLUDE: "../../../common/header.org"
-#+TITLE: Instalación de Wordpress 
+#+TITLE: Instalación de CMS en LAMP
 #+SUBTITLE: 
 #+KEYWORDS: 
 #+OPTIONS: reveal_single_file:nil
 
+* CMS
+- /Content Management System/
+- Más simple para un usuario que HTML/CSS
+
+  #+caption: Tipos de CMS
+  | Blogs | Páginas corporativas              | Foros de soporte        |
+  | Wikis | Trabajo colaborativo (documentos) | Cursos                  |
+  | eShop | /Personal Information Manager/    | Intercambio de ficheros |
 
 * Wordpress
 - CMS más popular
@@ -114,7 +122,56 @@ Un plugin puede incluir:
 [[file:media/roles-de-usuario-wordpress.png]]
 
 [[https://www.lucushost.com/blog/roles-wordpress-que-son-como-gestionarlos/][Fuente]]
-                    
+
+* Instalación de otros CMS LAMP
+Todos las aplicaciones LAMP comparten un patrón común:
+- El código PHP debe estar accessible por Apache
+- En algún fichero, información sobre como conectar a MySQL
+  - Usuario, contraseña, /dabatase/, dirección IP, puerto
+- Dependiendo de la aplicación:
+  - Directorios de adicionales
+  - [[https://www.php.net/manual/en/extensions.alphabetical.php][Módulos PHP]] adicionales
+  - [[https://httpd.apache.org/docs/current/mod/][Módulos de Apache]] adicionales  
+  - [[https://www.php.net/manual/es/ini.php][Opciones de PHP]] adicionales
+
+** Ejercicio: Moodle en Debian
+- Instala Moodle en tu máquina Debian
+  - Usa el nombre AVAHI: *xxxxxIAW.local*
+  - Apunta las modificaciones necesarias: módulos de PHP, módulos Apache, opciones PHP, directorios...
+    
+** Ejercicio: Moodle en Coder
+- Instala Moodle en tu /workspace de Coder/
+  - Aplicación en =~/public-html/moodle=
+  - Usa HTTPS
+  - Comparte el puerto 443 como *Public*, no como *Authenticated*  
+  - =https://443s--main--IAW--usuario.coder.iesavellaneda.es/public-html/moodle=
+  - Ejemplo:
+    - https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle
+
+  
+    
+#+reveal: split    
+    | https://443s--main--IAW--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle     |
+    | https://443s--main--IAW--eduardoanton1.coder.iesavellaneda.es/public-html/moodle       |
+    | https://443s--main--IAW--agarcia190.coder.iesavellaneda.es/public-html/moodle          |
+    | https://443s--main--IAW--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle  |
+    | https://443s--main--IAW--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle      |
+    | https://443s--main--IAW--ivanmarin1.coder.iesavellaneda.es/public-html/moodle          |
+    | https://443s--main--IAW--pablonunez16.coder.iesavellaneda.es/public-html/moodle        |
+    | https://443s--main--IAW--aroaperez2.coder.iesavellaneda.es/public-html/moodle          |
+    | https://443s--main--IAW--pabloramo.coder.iesavellaneda.es/public-html/moodle           |
+    | https://443s--main--IAW--jorgeramos6.coder.iesavellaneda.es/public-html/moodle         |
+    | https://443s--main--IAW--miguelreyes1.coder.iesavellaneda.es/public-html/moodle        |
+    | https://443s--main--IAW--joserojas12.coder.iesavellaneda.es/public-html/moodle         |
+    | https://443s--main--IAW--oskarsajek.coder.iesavellaneda.es/public-html/moodle          |
+    | https://443s--main--IAW--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle    |
+    | https://443s--main--IAW--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle |
+    | https://443s--main--IAW--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle   |
+    | https://443s--main--IAW--alvarovicente1.coder.iesavellaneda.es/public-html/moodle      |
+    | https://443s--main--IAW--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle   |
+
+    
+
 * Referencias
 #+include: "../../../common/footer.org"
 
