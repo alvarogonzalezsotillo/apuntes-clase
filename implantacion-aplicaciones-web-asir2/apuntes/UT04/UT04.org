@@ -60,12 +60,39 @@ https://www.php.net/manual/es/language.variables.scope.php
 * Funciones predefinidas
 phpinfo
 htmlspecialchars
+parse_url
 
 https://www.php.net/manual/es/ref.strings.php
 
 ** Debug
 var_dump
 error_reporting
+isset
+is_numeric, is_array, is_nan
+
+
+
+* HTTP
+https://developer.mozilla.org/es/docs/Web/HTTP
+
+** URL
+
+#+begin_src php
+
+<?php
+$url = 'http://username:password@hostname:9090/path?arg=value#anchor';
+
+var_dump(parse_url($url));
+var_dump(parse_url($url, PHP_URL_SCHEME));
+var_dump(parse_url($url, PHP_URL_USER));
+var_dump(parse_url($url, PHP_URL_PASS));
+var_dump(parse_url($url, PHP_URL_HOST));
+var_dump(parse_url($url, PHP_URL_PORT));
+var_dump(parse_url($url, PHP_URL_PATH));
+var_dump(parse_url($url, PHP_URL_QUERY));
+var_dump(parse_url($url, PHP_URL_FRAGMENT));
+?>
+#+end_src
 
 * Formularios
 ** En HTML
@@ -73,7 +100,10 @@ error_reporting
 ** En PHP
 https://www.php.net/manual/es/language.variables.external.php
 
+* Sesiones
 
+https://www.php.net/manual/es/book.session.php
+https://www.php.net/manual/es/session.examples.basic.php
 
 * Acceso a mysql :noexport:
 https://www.php.net/manual/es/book.mysqli.php
@@ -81,3 +111,39 @@ https://www.php.net/manual/es/mysqli.summary.php
 
 ** Conectar
 https://www.php.net/manual/es/mysqli.quickstart.connections.php
+
+** Query
+Todo en memoria
+#+begin_src php
+$resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
+
+echo "Orden del conjunto de resultados...\n";
+$resultado->data_seek(0);
+while ($fila = $resultado->fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
+}
+#+end_src
+
+Como /stream/
+#+begin_src php
+echo "Orden inverso...\n";
+for ($num_fila = $resultado->num_rows - 1; $num_fila >= 0; $num_fila--) {
+    $resultado->data_seek($num_fila);
+    $fila = $resultado->fetch_assoc();
+    echo " id = " . $fila['id'] . "\n";
+}
+
+$mysqli->close();
+#+end_src
+
+** Transacciones
+#+begin_src php
+$mysqli = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$mysqli->autocommit(false);
+
+$mysqli->query("INSERT INTO test(id) VALUES (1)");
+$mysqli->rollback();
+
+$mysqli->query("INSERT INTO test(id) VALUES (2)");
+$mysqli->commit();
+#+end_src

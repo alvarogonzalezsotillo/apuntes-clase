@@ -1,0 +1,16 @@
+
+* Backups de la aplicación
+
+
+* Backups: conceptos generales
+** Qué copiar
+- Aplicación
+- Plugins
+- Ficheros extra
+- Base de datos
+
+** Cómo restaurar
+- Cambio de ruta de ficheros
+- Cambio de dominio y ruta en la URL de acceso
+
+  

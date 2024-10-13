@@ -142,6 +142,7 @@ Todos las aplicaciones LAMP comparten un patrón común:
 ** Ejercicio: Moodle en Coder
 - Instala Moodle en tu /workspace de Coder/
   - Aplicación en =~/public-html/moodle=
+  - Datos adicionales en un subdirectorio de =/var/lib/mysql/moodle-data/= (no se borra)  
   - Usa HTTPS
   - Comparte el puerto 443 como *Public*, no como *Authenticated*  
   - =https://443s--main--IAW--usuario.coder.iesavellaneda.es/public-html/moodle=
