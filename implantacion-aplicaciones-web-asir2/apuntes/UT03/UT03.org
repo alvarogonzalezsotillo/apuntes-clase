@@ -1,6 +1,22 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Backups y restauración de CMS
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
 
 * Backups de la aplicación
+- La aplicación puede tener una forma de backup
+- Wordpress: crea un fihero XML con:
+  - Páginas
+  - Entradas
+  - Plugins
+  - Temas      
 
+** Ejercicio: copia de seguridad de Wordpres en /hosting/ gratis
+- consigue la copia de seguridad del hosting gratis
+- restaura ese fichero en un wordpress local (Coder, Debian...)
+  
 
 * Backups: conceptos generales
 ** Qué copiar
@@ -12,5 +28,35 @@
 ** Cómo restaurar
 - Cambio de ruta de ficheros
 - Cambio de dominio y ruta en la URL de acceso
+- Ajuste de otros parámetros
+  - parámetros =php.ini=
+  - nombres de base de datos, usuarios...
+  - módulos de PHP y Apache    
+
+* Backup MySQL/MariaDB
+- Comando =mysqldump=
+- Crea un fichero =sql= con
+  - =create database=
+  - =create table=
+  - =insert into=
+- Este fichero se ejecuta en la base de datos destino
+- También se puede hacer desde PHPMyAdmin
+  
+** Ejercicio: base de datos del /hosting/ gratis
+- Mediante línea de comandos o PHPMyAdmin
+- Carga ese fichero en una instancia de MySQL local
+
+
+* Backup de ficheros
+- Incluye
+  - Ficheros de aplicación (=.php=, accesibles por Apache)
+  - Otros ficheros (a definir por la aplicación)
+
+** Ejercicio: ficheros del /hosting/ gratis
+- Mediante línea de comandos, Filezilla...
 
   
+* Referencias
+#+include: "../../../common/footer.org"
+  
+    
