@@ -88,7 +88,7 @@ Son muchos usuarios. Agrúpalos de algún modo. (40%)
   - Pide al profesor que compruebe que funciona.
 
     
-* (0.5 puntos) =PROFESOR= con permisos especiales 
+* =PROFESOR= con permisos especiales 
   Haz un usuario =PROFESOR= con contraseña =PROFESOR= que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema
     - =DBA_COL_PRIVS=
     - =DBA_DATA_FILES=
