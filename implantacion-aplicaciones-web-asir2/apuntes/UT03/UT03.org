@@ -14,8 +14,9 @@
   - Temas      
 
 ** Ejercicio: copia de seguridad de Wordpres en /hosting/ gratis
-- consigue la copia de seguridad del hosting gratis
-- restaura ese fichero en un wordpress local (Coder, Debian...)
+- Consigue la copia de seguridad del hosting gratis
+- Restaura ese fichero en un wordpress local (Coder, Debian...)
+  
   
 
 * Backups: conceptos generales
@@ -55,7 +56,10 @@
 ** Ejercicio: ficheros del /hosting/ gratis
 - Mediante línea de comandos, Filezilla...
 
-  
+
+* Ejercicio
+- Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
+
 * Referencias
 #+include: "../../../common/footer.org"
   
