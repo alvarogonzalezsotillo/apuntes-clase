@@ -87,7 +87,7 @@ Más en [[https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7003
 - Crea una tabla sobre el /tablespace/
 - Inserta datos en la tabla hasta conseguir el error =ORA-01653=
 
-#+begin_notes
+#+begin_comment
 create table datos(valor varchar(2048)) tablespace ejemplo_tablespace;  
 begin
     for j in 1..1 loop
@@ -98,7 +98,7 @@ begin
     end loop;
 end;
 /
-#+end_notes
+#+end_comment
 
 ** Ejercicio: /tablespace/ por defecto
 - Consulta el /tablespace/ por defecto de los usuarios (=dba_users=)
@@ -108,9 +108,9 @@ end;
   - Nota: esto cambia el /tablespace/ por defecto de todos los usuarios existentes
 - Cambiar una tabla de tablespace: =ALTER TABLE ... MOVE TABLESPACE=  
 
-#+begin_notes  
+#+begin_comment  
 ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAME>
-#+end_notes
+#+end_comment
 
 ** Ejercicio: más /tablespaces/
 1. Crea un /tablespace/ =PRUEBA1=
@@ -126,7 +126,7 @@ ALTER TABLE <TABLE NAME to be moved> MOVE TABLESPACE <destination TABLESPACE NAM
 6. mueve =MISDATOS= a =PRUEBA2=
 7. Vuelve a llenar la tabla hasta que se llene =PRUEBA2=
 
-#+begin_notes
+#+begin_comment
 create tablespace PRUEBA1
   DATAFILE
   '/tablespaces/prueba1.dbf'  SIZE 10M
@@ -177,7 +177,7 @@ begin
 END;
 /
 
-#+end_notes   
+#+end_comment   
 
 ** Conceptos de almacenamiento
 #+begin_src dot :file ./media/conceptos-almacenamiento.svg :exports results :cmdline -Tsvg
@@ -240,7 +240,7 @@ A database's data is collectively stored in the datafiles that constitute each t
   - Autentificación con seguridad nativa de *oracle*
 - Al instalarlo, elegimos que el grupo =wheel= era administrador
 
-#+begin_notes
+#+begin_comment
 SQL> SHOW PARAMETER os_authent_prefix
 
 NAME                                 TYPE        VALUE
@@ -251,7 +251,7 @@ SQL>
 -- UNIX
 CREATE USER ops$tim_hall IDENTIFIED EXTERNALLY;
 GRANT CREATE SESSION TO ops$tim_hall;
-#+end_notes
+#+end_comment
 
 ** Creación de usuarios
 #+begin_src sql
