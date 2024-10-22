@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-10-16 mié 14:01 -->
+<!-- 2024-10-22 mar 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Backups y restauración de CMS</title>
@@ -366,7 +366,16 @@ window.addEventListener("load",()=>{
 <h2 id="org000001b"><span class="section-number-2">5.</span> Ejercicio</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
-<li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian</li>
+<li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
+<ol class="org-ol">
+<li>Bajar ficheros</li>
+<li>Bajar base de datos</li>
+<li>Subir ficheros a debian</li>
+<li>Modificar en la base de datos la URL antigua por la nueva</li>
+<li>Modificar fichero <code>.htaccess</code></li>
+<li>Activar <code>mod_rewrite</code> y <code>Allow override All</code> en Apache</li>
+<li>🙏🤞</li>
+</ol></li>
 </ul>
 </div>
 </div>
@@ -395,7 +404,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-10-16 mié 14:01</p>
+<p class="date">Created: 2024-10-22 mar 13:55</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

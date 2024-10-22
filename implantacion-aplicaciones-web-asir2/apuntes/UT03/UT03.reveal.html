@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Backups y restauración de CMS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-16 mié 14:01</p>
+<h1 class="title">Backups y restauración de CMS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-22 mar 13:55</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -623,7 +623,17 @@ window.addEventListener("load",()=>{
 <section id="slide-5">
 <h2 id="5"><span class="section-number-2">5.</span> Ejercicio</h2>
 <ul>
-<li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian</li>
+<li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
+<ol>
+<li>Bajar ficheros</li>
+<li>Bajar base de datos</li>
+<li>Subir ficheros a debian</li>
+<li>Modificar en la base de datos la URL antigua por la nueva</li>
+<li>Modificar fichero <code>.htaccess</code></li>
+<li>Activar <code>mod_rewrite</code> y <code>Allow override All</code> en Apache</li>
+<li>🙏🤞</li>
+
+</ol></li>
 
 </ul>
 <div class="slide-footer"></div>

@@ -59,6 +59,13 @@
 
 * Ejercicio
 - Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
+  1. Bajar ficheros
+  2. Bajar base de datos
+  3. Subir ficheros a debian
+  4. Modificar en la base de datos la URL antigua por la nueva
+  5. Modificar fichero =.htaccess=
+  6. Activar =mod_rewrite= y =Allow override All= en Apache
+  7. 🙏🤞
 
 * Referencias
 #+include: "../../../common/footer.org"
