@@ -66,7 +66,8 @@
   4. Modificar en la base de datos la URL antigua por la nueva
   5. Modificar fichero =.htaccess=
   6. Activar =mod_rewrite= y =Allow override All= en Apache
-  7. 🙏🤞
+  7. Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.   
+  8. 🙏🤞
 
 [[https://developer.wordpress.org/advanced-administration/upgrade/migrating/][Instrucciones alternativas]]     
 
