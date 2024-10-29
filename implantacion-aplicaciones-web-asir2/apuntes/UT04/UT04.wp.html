@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-10-29 mar 11:18 -->
+<!-- 2024-10-29 mar 20:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -208,14 +208,16 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org0000006">1. Variables</a></li>
-<li><a href="#org0000009">2. <i>Arrays</i></a></li>
-<li><a href="#org000000d">3. Variables predefinidas</a></li>
-<li><a href="#org000001f">4. Estructuras de control</a></li>
-<li><a href="#org0000028">5. Funciones</a></li>
-<li><a href="#org000002e">6. Funciones predefinidas</a></li>
-<li><a href="#org0000034">7. HTTP</a></li>
-<li><a href="#org000003d">8. Formularios</a></li>
-<li><a href="#org0000040">9. Sesiones</a></li>
+<li><a href="#org000001b">2. Estructuras de control</a></li>
+<li><a href="#org0000024">3. Funciones</a></li>
+<li><a href="#org0000027">4. Funciones predefinidas</a></li>
+<li><a href="#org000002e">5. Entorno de desarrollo</a></li>
+<li><a href="#org0000034">6. HTTP</a></li>
+<li><a href="#org0000037">7. <i>Arrays</i></a></li>
+<li><a href="#org000003b">8. Variables predefinidas</a></li>
+<li><a href="#org0000044">9. Formularios</a></li>
+<li><a href="#org0000047">10. Sesiones</a></li>
+<li><a href="#org000004a">11. Ejercicios</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +254,8 @@ window.addEventListener("load",()=>{
 
 </script>
 
-<p>
-<a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
-</p>
+
+
 
 <div id="outline-container-org0000006" class="outline-2">
 <h2 id="org0000006"><span class="section-number-2">1.</span> Variables</h2>
@@ -262,6 +263,12 @@ window.addEventListener("load",()=>{
 <p>
 <a href="https://www.php.net/manual/es/language.variables.basics.php">https://www.php.net/manual/es/language.variables.basics.php</a>
 </p>
+
+<ul class="org-ul">
+<li>Precedidas de <code>$</code></li>
+<li>Comienzan por una letra, o <code>_</code></li>
+<li>Después, números, letras y <code>_</code></li>
+</ul>
 </div>
 
 <div id="outline-container-org0000000" class="outline-3">
@@ -273,18 +280,22 @@ window.addEventListener("load",()=>{
 
 
 <ul class="org-ul">
-<li>null type</li>
-<li>Scalar types:
+<li>Tipos simples (escalares):
 <ul class="org-ul">
 <li>bool type</li>
 <li>int type</li>
 <li>float type</li>
-<li>string type <a href="https://www.php.net/manual/es/language.operators.string.php">https://www.php.net/manual/es/language.operators.string.php</a></li>
+<li>string type:  <a href="https://www.php.net/manual/es/language.operators.string.php">https://www.php.net/manual/es/language.operators.string.php</a></li>
 </ul></li>
+
+<li>Otros tipos (ya los veremos):     
+<ul class="org-ul">
+<li>null type</li>
 <li>array type</li>
 <li>object type</li>
 <li>never type</li>
 <li>void type</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -295,80 +306,261 @@ window.addEventListener("load",()=>{
 <div class="outline-text-3" id="text-1-2">
 <p>
 <a href="https://www.php.net/manual/es/language.constants.php">https://www.php.net/manual/es/language.constants.php</a>
+</p>
+
+<p>
 <a href="https://www.php.net/manual/es/reserved.constants.php">https://www.php.net/manual/es/reserved.constants.php</a>
 </p>
+
+<ul class="org-ul">
+<li>Definición: <code>define(NOMBRE, valor)</code></li>
+<li>No se puede cambiar posteriormente su valor</li>
+<li>Se utilizan como variables, sin <code>$</code></li>
+<li>También con la función <code>constant(NOMBRE)</code></li>
+</ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000009" class="outline-2">
-<h2 id="org0000009"><span class="section-number-2">2.</span> <i>Arrays</i></h2>
+
+
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">2.</span> Estructuras de control</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-<a href="https://www.php.net/manual/es/language.types.array.php">https://www.php.net/manual/es/language.types.array.php</a>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org000000d" class="outline-2">
-<h2 id="org000000d"><span class="section-number-2">3.</span> Variables predefinidas</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
-</p>
-
-<pre class="example" id="org000000c">
-$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
-$_SERVER — Información del entorno del servidor y de ejecución
-$_GET — Variables HTTP GET
-$_POST — Variables POST de HTTP
-$_FILES — Variables de subida de ficheros HTTP
-$_REQUEST — Variables HTTP Request
-$_SESSION — Variables de sesión
-$_ENV — Variables de entorno
-$_COOKIE — Cookies HTTP
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org000001f" class="outline-2">
-<h2 id="org000001f"><span class="section-number-2">4.</span> Estructuras de control</h2>
-<div class="outline-text-2" id="text-4">
 <p>
 <a href="https://www.php.net/manual/es/language.control-structures.php">https://www.php.net/manual/es/language.control-structures.php</a>
 </p>
 </div>
-<div id="outline-container-org0000010" class="outline-3">
-<h3 id="org0000010"><span class="section-number-3">4.1.</span> If</h3>
+<div id="outline-container-org0000009" class="outline-3">
+<h3 id="org0000009"><span class="section-number-3">2.1.</span> If</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">if</span>( <span style="color: #8ae234;">CONDICION</span> ){
+    <span style="color: #8ae234;">SI</span> <span style="color: #8ae234;">ES</span> <span style="color: #8ae234;">CIERTO</span>
+}
+<span style="color: #729fcf; font-weight: bold;">else</span>{
+    <span style="color: #8ae234;">SI</span> <span style="color: #8ae234;">ES</span> <span style="color: #8ae234;">FALSO</span>
+}
+</pre>
 </div>
-<div id="outline-container-org0000013" class="outline-3">
-<h3 id="org0000013"><span class="section-number-3">4.2.</span> While</h3>
-</div>
-<div id="outline-container-org0000016" class="outline-3">
-<h3 id="org0000016"><span class="section-number-3">4.3.</span> foreach</h3>
-</div>
-<div id="outline-container-org0000019" class="outline-3">
-<h3 id="org0000019"><span class="section-number-3">4.4.</span> Include, require</h3>
-</div>
-<div id="outline-container-org000001c" class="outline-3">
-<h3 id="org000001c"><span class="section-number-3">4.5.</span> try</h3>
+
+<p>
+Ejercicio: si la multiplicación de dos variables es mayor de 50, muestra el resultado con fondo rojo. Si no, el fondo será transparente
+</p>
 </div>
 </div>
-<div id="outline-container-org0000028" class="outline-2">
-<h2 id="org0000028"><span class="section-number-2">5.</span> Funciones</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org000000c" class="outline-3">
+<h3 id="org000000c"><span class="section-number-3">2.2.</span> While</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">while</span>(<span style="color: #8ae234;">CONDICION</span>){
+    <span style="color: #8ae234;">SENTENCIAS</span> <span style="color: #8ae234;">QUE</span> <span style="color: #8ae234;">SE</span> <span style="color: #8ae234;">REPITEN</span>
+    <span style="color: #8ae234;">DEBERIA</span> <span style="color: #8ae234;">CAMBIARSE</span> <span style="color: #8ae234;">LA</span> <span style="color: #8ae234;">CONDICION</span>    
+}
+</pre>
 </div>
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">5.1.</span> Definición y uso</h3>
-<div class="outline-text-3" id="text-5-1">
+<p>
+Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se diga en dos variables
+</p>
+</div>
+</div>
+
+<div id="outline-container-org000000f" class="outline-3">
+<h3 id="org000000f"><span class="section-number-3">2.3.</span> for</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">for</span> (<span style="color: #8ae234;">EXPR1</span>; <span style="color: #8ae234;">EXPR2</span>; <span style="color: #8ae234;">EXPR3</span>){
+    <span style="color: #8ae234;">SENTENCIA</span>
+}
+</pre>
+</div>
+
+<p>
+Es equivalente a un bucle <code>while</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #8ae234;">EXPR1</span>;
+<span style="color: #729fcf; font-weight: bold;">while</span> (<span style="color: #8ae234;">EXPR2</span>){
+    <span style="color: #8ae234;">SENTENCIA</span>
+    <span style="color: #8ae234;">EXPR3</span>
+}
+</pre>
+</div>
+
+
+<p>
+Ejercicio: Muestra todas las imágenes de <a href="https://www.glerl.noaa.gov/data/ice/max_anim/png">https://www.glerl.noaa.gov/data/ice/max_anim/png</a>, desde 1973 a 2024.
+</p>
+
+<p>
+Ejercicio: Muestra todas las imágenes de <a href="https://jareksastro.org/astro/">https://jareksastro.org/astro/</a>, desde m0 a m23.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0000012" class="outline-3">
+<h3 id="org0000012"><span class="section-number-3">2.4.</span> foreach</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li><i>Arrays</i>
+<ul class="org-ul">
+<li>Colección de valores con un nombre (clave o índice)</li>
+<li>Cada posición del <i>array</i> tiene un valor</li>
+<li>La posición puede ser numérica, o un <i>string</i></li>
+<li>Son parecidos a los objetos de Javascript</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-php">$<span style="color: #ff6347;">array</span> = [
+    <span style="color: #ad7fa8; font-style: italic;">"foo"</span> =&gt; <span style="color: #ad7fa8; font-style: italic;">"bar"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"bar"</span> =&gt; <span style="color: #ad7fa8; font-style: italic;">"foo"</span>,
+];
+$<span style="color: #ff6347;">alumnos</span> = [
+    <span style="color: #ad7fa8; font-style: italic;">"Pepe"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Juan"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Susana"</span>
+];
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Se pueden recorrer los valores de un <i>array</i>
+<ul class="org-ul">
+<li>visitando solo los valores</li>
+<li>con los índices (claves) y los valores</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-php">$<span style="color: #ff6347;">alumnos</span> = [
+    <span style="color: #ad7fa8; font-style: italic;">"Pepe"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Juan"</span>,
+    <span style="color: #ad7fa8; font-style: italic;">"Susana"</span>
+];
+<span style="color: #729fcf; font-weight: bold;">foreach</span>($<span style="color: #ff6347;">alumnos</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">alumno</span>){
+    <span style="color: #729fcf; font-weight: bold;">print</span>( <span style="color: #ad7fa8; font-style: italic;">"Alumno: </span><span style="color: #ff6347;">$alumno</span><span style="color: #ad7fa8; font-style: italic;">"</span> )
+}
+<span style="color: #729fcf; font-weight: bold;">foreach</span>($<span style="color: #ff6347;">alumnos</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">posicion</span> =&gt; $<span style="color: #ff6347;">alumno</span>){
+    <span style="color: #729fcf; font-weight: bold;">print</span>( <span style="color: #ad7fa8; font-style: italic;">"Alumno </span><span style="color: #ff6347;">$posicion</span><span style="color: #ad7fa8; font-style: italic;">: </span><span style="color: #ff6347;">$alumno</span><span style="color: #ad7fa8; font-style: italic;">"</span> )
+}
+</pre>
+</div>
+
+<p>
+Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.de/~ithies/images/Planet_Formation_Illustrated/PNG/">https://astro.uni-bonn.de/~ithies/images/Planet_Formation_Illustrated/PNG/</a> en una página web:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><code>annulus1.png</code></td>
+<td class="org-left"><code>annulus2.png</code></td>
+<td class="org-left"><code>ejection1.png</code></td>
+<td class="org-left"><code>ejection2.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>ejection3.png</code></td>
+<td class="org-left"><code>encounter1.png</code></td>
+<td class="org-left"><code>encounter2.png</code></td>
+<td class="org-left"><code>formation1.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>formation2.png</code></td>
+<td class="org-left"><code>formation3.png</code></td>
+<td class="org-left"><code>formation4.png</code></td>
+<td class="org-left"><code>formation5.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>formation6.png</code></td>
+<td class="org-left"><code>formation7.png</code></td>
+<td class="org-left"><code>formation8.png</code></td>
+<td class="org-left"><code>formation9.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>inclined1.png</code></td>
+<td class="org-left"><code>inclined2.png</code></td>
+<td class="org-left"><code>inclined3.png</code></td>
+<td class="org-left"><code>inclined4.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>kozai1.png</code></td>
+<td class="org-left"><code>kozai2.png</code></td>
+<td class="org-left"><code>kozai3.png</code></td>
+<td class="org-left"><code>rmleffect1.png</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>rmleffect2.png</code></td>
+<td class="org-left"><code>system1.png</code></td>
+<td class="org-left"><code>system2.png</code></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org0000015" class="outline-3">
+<h3 id="org0000015"><span class="section-number-3">2.5.</span> Include, require</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Añaden a un fichero PHP el contenido de otro fichero PHP, antes de ejecutarlo</li>
+<li>Útil para
+<ul class="org-ul">
+<li>Funciones y variables comunes a varias páginas</li>
+<li>Partes comunes entre páginas: Cabecera, pie, menús&#x2026;</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-php">
+
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">2.6.</span> try</h3>
+</div>
+</div>
+<div id="outline-container-org0000024" class="outline-2">
+<h2 id="org0000024"><span class="section-number-2">3.</span> Funciones</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.1.</span> Definición y uso</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 <a href="https://www.php.net/manual/es/language.functions.php">https://www.php.net/manual/es/language.functions.php</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0000025" class="outline-3">
-<h3 id="org0000025"><span class="section-number-3">5.2.</span> Ámbito de variables</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">3.2.</span> Ámbito de variables</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 <a href="https://www.php.net/manual/es/language.variables.scope.php">https://www.php.net/manual/es/language.variables.scope.php</a>
 </p>
@@ -376,9 +568,9 @@ $_COOKIE — Cookies HTTP
 </div>
 </div>
 
-<div id="outline-container-org000002e" class="outline-2">
-<h2 id="org000002e"><span class="section-number-2">6.</span> Funciones predefinidas</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org0000027" class="outline-2">
+<h2 id="org0000027"><span class="section-number-2">4.</span> Funciones predefinidas</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 phpinfo
 htmlspecialchars
@@ -389,16 +581,41 @@ parse<sub>url</sub>
 <a href="https://www.php.net/manual/es/ref.strings.php">https://www.php.net/manual/es/ref.strings.php</a>
 </p>
 </div>
+</div>
 
-<div id="outline-container-org000002b" class="outline-3">
-<h3 id="org000002b"><span class="section-number-3">6.1.</span> Debug</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-org000002e" class="outline-2">
+<h2 id="org000002e"><span class="section-number-2">5.</span> Entorno de desarrollo</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Depuración en VSCode:
+<ul class="org-ul">
+<li>Instalar <code>php-xdebug</code></li>
+<li>Instalar alguna extensión en VSCode (F5)</li>
+</ul></li>
+<li>Trazas:  
 <ul class="org-ul">
 <li><code>var_dump</code></li>
 <li><code>error_reporting</code></li>
 <li><code>isset</code></li>
 <li><code>is_numeric, is_array, is_nan</code></li>
+<li>Opciones <code>php.ini</code>:
+<ul class="org-ul">
+<li><code>display_errors</code></li>
+<li><code>display_startup_errors</code></li>
+<li><code>log_errors</code></li>
+</ul></li>
+</ul></li>
 </ul>
+</div>
+
+<div id="outline-container-org000002b" class="outline-3">
+<h3 id="org000002b"><span class="section-number-3">5.1.</span> Extensiones VSCode</h3>
+<div class="outline-text-3" id="text-5-1">
+
+<div id="org000002a" class="figure">
+<p><img src="media/extensiones-vscode-para-php.png" alt="extensiones-vscode-para-php.png" />      
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -406,16 +623,16 @@ parse<sub>url</sub>
 
 
 <div id="outline-container-org0000034" class="outline-2">
-<h2 id="org0000034"><span class="section-number-2">7.</span> HTTP</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org0000034"><span class="section-number-2">6.</span> HTTP</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
 </p>
 </div>
 
 <div id="outline-container-org0000031" class="outline-3">
-<h3 id="org0000031"><span class="section-number-3">7.1.</span> URL</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org0000031"><span class="section-number-3">6.1.</span> URL</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-php">
 <span style="color: #729fcf;">&lt;?php</span>
@@ -437,17 +654,49 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </div>
 </div>
 
-<div id="outline-container-org000003d" class="outline-2">
-<h2 id="org000003d"><span class="section-number-2">8.</span> Formularios</h2>
-<div class="outline-text-2" id="text-8">
+
+<div id="outline-container-org0000037" class="outline-2">
+<h2 id="org0000037"><span class="section-number-2">7.</span> <i>Arrays</i></h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<a href="https://www.php.net/manual/es/language.types.array.php">https://www.php.net/manual/es/language.types.array.php</a>
+</p>
 </div>
-<div id="outline-container-org0000037" class="outline-3">
-<h3 id="org0000037"><span class="section-number-3">8.1.</span> En HTML</h3>
 </div>
 
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">8.2.</span> En PHP</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-org000003b" class="outline-2">
+<h2 id="org000003b"><span class="section-number-2">8.</span> Variables predefinidas</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
+</p>
+
+<pre class="example" id="org000003a">
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org0000044" class="outline-2">
+<h2 id="org0000044"><span class="section-number-2">9.</span> Formularios</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org000003e" class="outline-3">
+<h3 id="org000003e"><span class="section-number-3">9.1.</span> En HTML</h3>
+</div>
+
+<div id="outline-container-org0000041" class="outline-3">
+<h3 id="org0000041"><span class="section-number-3">9.2.</span> En PHP</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
 <a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
 <a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
@@ -456,19 +705,28 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </div>
 </div>
 
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">9.</span> Sesiones</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org0000047" class="outline-2">
+<h2 id="org0000047"><span class="section-number-2">10.</span> Sesiones</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 <a href="https://www.php.net/manual/es/book.session.php">https://www.php.net/manual/es/book.session.php</a>
 <a href="https://www.php.net/manual/es/session.examples.basic.php">https://www.php.net/manual/es/session.examples.basic.php</a>
 </p>
 </div>
 </div>
+
+<div id="outline-container-org000004a" class="outline-2">
+<h2 id="org000004a"><span class="section-number-2">11.</span> Ejercicios</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+<a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-10-29 mar 11:18</p>
+<p class="date">Created: 2024-10-29 mar 20:19</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -34,6 +34,7 @@ https://www.php.net/manual/es/language.types.php
 
 ** Constantes
 https://www.php.net/manual/es/language.constants.php
+
 https://www.php.net/manual/es/reserved.constants.php
 
 - Definición: =define(NOMBRE, valor)=
@@ -45,10 +46,115 @@ https://www.php.net/manual/es/reserved.constants.php
 * Estructuras de control
 https://www.php.net/manual/es/language.control-structures.php
 ** If
+#+begin_src php
+if( CONDICION ){
+    SI ES CIERTO
+}
+else{
+    SI ES FALSO
+}
+#+end_src
 
+Ejercicio: si la multiplicación de dos variables es mayor de 50, muestra el resultado con fondo rojo. Si no, el fondo será transparente
 ** While
+
+#+begin_src php
+while(CONDICION){
+    SENTENCIAS QUE SE REPITEN
+    DEBERIA CAMBIARSE LA CONDICION    
+}
+#+end_src
+Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se diga en dos variables
+
+** for
+
+#+begin_src php
+for (EXPR1; EXPR2; EXPR3){
+    SENTENCIA
+}
+#+end_src
+
+Es equivalente a un bucle =while=
+
+#+begin_src php
+EXPR1;
+while (EXPR2){
+    SENTENCIA
+    EXPR3
+}
+#+end_src
+
+
+Ejercicio: Muestra todas las imágenes de https://www.glerl.noaa.gov/data/ice/max_anim/png, desde 1973 a 2024.
+
+Ejercicio: Muestra todas las imágenes de https://jareksastro.org/astro/, desde m0 a m23.
+
 ** foreach
+- /Arrays/
+  - Colección de valores con un nombre (clave o índice)
+  - Cada posición del /array/ tiene un valor
+  - La posición puede ser numérica, o un /string/
+  - Son parecidos a los objetos de Javascript  
+
+#+begin_src php
+$array = [
+    "foo" => "bar",
+    "bar" => "foo",
+];
+$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
+];
+#+end_src
+    
+#+reveal: split
+
+- Se pueden recorrer los valores de un /array/
+  - visitando solo los valores
+  - con los índices (claves) y los valores  
+
+#+begin_src php
+$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
+];
+foreach($alumnos as $alumno){
+    print( "Alumno: $alumno" )
+}
+foreach($alumnos as $posicion => $alumno){
+    print( "Alumno $posicion: $alumno" )
+}
+#+end_src
+
+#+reveal:split
+
+Ejercicio: muestra las siguientes imágenes de https://astro.uni-bonn.de/~ithies/images/Planet_Formation_Illustrated/PNG/ en una página web:
+| =annulus1.png=   | =annulus2.png=   | =ejection1.png=  | =ejection2.png=  |
+| =ejection3.png=  | =encounter1.png= | =encounter2.png= | =formation1.png= |
+| =formation2.png= | =formation3.png= | =formation4.png= | =formation5.png= |
+| =formation6.png= | =formation7.png= | =formation8.png= | =formation9.png= |
+| =inclined1.png=  | =inclined2.png=  | =inclined3.png=  | =inclined4.png=  |
+| =kozai1.png=     | =kozai2.png=     | =kozai3.png=     | =rmleffect1.png= |
+| =rmleffect2.png= | =system1.png=    | =system2.png=    |                  |
+
+
+
 ** Include, require
+- Añaden a un fichero PHP el contenido de otro fichero PHP, antes de ejecutarlo
+- Útil para
+  - Funciones y variables comunes a varias páginas
+  - Partes comunes entre páginas: Cabecera, pie, menús...  
+
+#+begin_src php
+
+
+#+end_src
+
+
 ** try
 * Funciones
 
@@ -65,11 +171,22 @@ parse_url
 
 https://www.php.net/manual/es/ref.strings.php
 
-** Debug
-- =var_dump=
-- =error_reporting=
-- =isset=
-- =is_numeric, is_array, is_nan=
+* Entorno de desarrollo
+- Depuración en VSCode:
+  - Instalar =php-xdebug=
+  - Instalar alguna extensión en VSCode (F5)
+- Trazas:  
+  - =var_dump=
+  - =error_reporting=
+  - =isset=
+  - =is_numeric, is_array, is_nan=
+  - Opciones =php.ini=:
+    - =display_errors=
+    - =display_startup_errors=
+    - =log_errors=
+
+** Extensiones VSCode      
+[[file:media/extensiones-vscode-para-php.png]]      
 
 
 
