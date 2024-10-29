@@ -10,46 +10,42 @@
 * Variables
 https://www.php.net/manual/es/language.variables.basics.php
 
+- Precedidas de =$=
+- Comienzan por una letra, o =_=
+- Después, números, letras y =_=    
+
 ** Tipos de variables
 https://www.php.net/manual/es/language.types.php
 
 
-    - null type
-    - Scalar types:
+    - Tipos simples (escalares):
        - bool type
        - int type
        - float type
-       - string type https://www.php.net/manual/es/language.operators.string.php
-    - array type
-    - object type
-    - never type
-    - void type
+       - string type:  https://www.php.net/manual/es/language.operators.string.php
+
+    - Otros tipos (ya los veremos):     
+       - null type
+       - array type
+       - object type
+       - never type
+       - void type
 
 
 ** Constantes
 https://www.php.net/manual/es/language.constants.php
 https://www.php.net/manual/es/reserved.constants.php
-* /Arrays/
-https://www.php.net/manual/es/language.types.array.php
 
-* Variables predefinidas
-https://www.php.net/manual/es/language.variables.predefined.php
-
-#+begin_example
-$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
-$_SERVER — Información del entorno del servidor y de ejecución
-$_GET — Variables HTTP GET
-$_POST — Variables POST de HTTP
-$_FILES — Variables de subida de ficheros HTTP
-$_REQUEST — Variables HTTP Request
-$_SESSION — Variables de sesión
-$_ENV — Variables de entorno
-$_COOKIE — Cookies HTTP
-#+end_example
+- Definición: =define(NOMBRE, valor)=
+- No se puede cambiar posteriormente su valor  
+- Se utilizan como variables, sin =$=
+- También con la función =constant(NOMBRE)=
+  
 
 * Estructuras de control
 https://www.php.net/manual/es/language.control-structures.php
 ** If
+
 ** While
 ** foreach
 ** Include, require
@@ -98,6 +94,26 @@ var_dump(parse_url($url, PHP_URL_QUERY));
 var_dump(parse_url($url, PHP_URL_FRAGMENT));
 ?>
 #+end_src
+
+
+* /Arrays/
+https://www.php.net/manual/es/language.types.array.php
+
+* Variables predefinidas
+https://www.php.net/manual/es/language.variables.predefined.php
+
+#+begin_example
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+#+end_example
+
 
 * Formularios
 ** En HTML
