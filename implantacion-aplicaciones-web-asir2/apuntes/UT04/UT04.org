@@ -1,8 +1,10 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: PHP y HTTP
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
 
 
-
-
-https://www.php.net/manual/es/tutorial.forms.php
 
 
 * Variables
@@ -12,16 +14,16 @@ https://www.php.net/manual/es/language.variables.basics.php
 https://www.php.net/manual/es/language.types.php
 
 
-    null type
-    Scalar types:
-        bool type
-        int type
-        float type
-        string type https://www.php.net/manual/es/language.operators.string.php
-    array type
-    object type
-    never type
-    void type
+    - null type
+    - Scalar types:
+       - bool type
+       - int type
+       - float type
+       - string type https://www.php.net/manual/es/language.operators.string.php
+    - array type
+    - object type
+    - never type
+    - void type
 
 
 ** Constantes
@@ -32,6 +34,8 @@ https://www.php.net/manual/es/language.types.array.php
 
 * Variables predefinidas
 https://www.php.net/manual/es/language.variables.predefined.php
+
+#+begin_example
 $GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
 $_SERVER — Información del entorno del servidor y de ejecución
 $_GET — Variables HTTP GET
@@ -41,6 +45,7 @@ $_REQUEST — Variables HTTP Request
 $_SESSION — Variables de sesión
 $_ENV — Variables de entorno
 $_COOKIE — Cookies HTTP
+#+end_example
 
 * Estructuras de control
 https://www.php.net/manual/es/language.control-structures.php
@@ -65,10 +70,10 @@ parse_url
 https://www.php.net/manual/es/ref.strings.php
 
 ** Debug
-var_dump
-error_reporting
-isset
-is_numeric, is_array, is_nan
+- =var_dump=
+- =error_reporting=
+- =isset=
+- =is_numeric, is_array, is_nan=
 
 
 
@@ -98,12 +103,16 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 ** En HTML
 
 ** En PHP
+https://www.php.net/manual/es/tutorial.forms.php
 https://www.php.net/manual/es/language.variables.external.php
 
 * Sesiones
 
 https://www.php.net/manual/es/book.session.php
 https://www.php.net/manual/es/session.examples.basic.php
+
+* Ejercicios
+https://www.w3schools.com/PHP/php_exercises.asp
 
 * Acceso a mysql :noexport:
 https://www.php.net/manual/es/book.mysqli.php
