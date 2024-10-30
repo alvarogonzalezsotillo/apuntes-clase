@@ -1,4 +1,4 @@
-#+INCLUDE: "../../../common/header.org"
+Pp#+INCLUDE: "../../../common/header.org"
 #+TITLE: PHP y HTTP
 #+SUBTITLE: 
 #+KEYWORDS: 
@@ -203,6 +203,10 @@ Ejercicio: muestra las siguientes imágenes de https://astro.uni-bonn.de/~ithies
 
 
 ** try
+https://www.php.net/manual/en/language.exceptions.php
+- Solo funciona con =throw=, no con errores generales.
+- No es interesante
+  
 * Funciones
 
 ** Definición y uso
@@ -210,6 +214,12 @@ https://www.php.net/manual/es/language.functions.php
 
 ** Ámbito de variables
 https://www.php.net/manual/es/language.variables.scope.php
+
+
+** Ejercicio
+- =es_capicua=
+- =es_primo=
+- Encuentra un primo mayor de 1000000 utilizando las funciones anteriores
 
 * Funciones predefinidas
 phpinfo
