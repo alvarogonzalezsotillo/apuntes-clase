@@ -1,4 +1,4 @@
-Pp#+INCLUDE: "../../../common/header.org"
+#+INCLUDE: "../../../common/header.org"
 #+TITLE: PHP y HTTP
 #+SUBTITLE: 
 #+KEYWORDS: 
@@ -17,22 +17,76 @@ https://www.php.net/manual/es/language.variables.basics.php
 - Comienzan por una letra, o =_=
 - Después, números, letras y =_=    
 
-** Tipos de variables
+** <<tiposdevariables>>Tipos de variables
+  :PROPERTIES:
+  :CUSTOM_ID: tiposdevariables
+  :END:
+
 https://www.php.net/manual/es/language.types.php
 
 
     - Tipos simples (escalares):
-       - bool type
-       - int type
-       - float type
-       - string type:  https://www.php.net/manual/es/language.operators.string.php
+      - bool type
+      - int type
+      - float type
+      - string type:  https://www.php.net/manual/es/language.operators.string.php
 
     - Otros tipos (ya los veremos):     
-       - null type
-       - array type
-       - object type
-       - never type
-       - void type
+      - null type
+      - array type
+      - object type
+      - never type
+      - void type
+
+*** Strings
+https://www.php.net/manual/es/language.types.string.php
+- Comillas dobles:
+  - Los caracteres se escapan con =\=
+  - Sustituyen las apariciones de variables por su valor  
+- Comillas simples:
+  - Los caracteres =\= y ='= se escapan con =\=. Todos los demás no se escapan.
+- /Heredoc/ y /nowdoc/:
+  - Cadenas delimitadas por una cadena arbitraria
+  - /nowdoc/ es como /heredoc/ sin interpretar variables
+
+#+reveal: split
+|          | *Secuencias de escape de cadenas*                              |
+|----------+----------------------------------------------------------------|
+| \n       | avance de línea (LF o 0x0A (10) en ASCII)                      |
+| \r       | retorno de carro (CR o 0x0D (13) en ASCII)                     |
+| \t       | tabulador horizontal (HT o 0x09 (9) en ASCII)                  |
+| \v       | tabulador vertical (VT o 0x0B (11) en ASCII) (desde PHP 5.2.5) |
+| \e       | escape (ESC o 0x1B (27) en ASCII) (desde PHP 5.4.4)            |
+| \f       | avance de página (FF o 0x0C (12) en ASCII) (desde PHP 5.2.5)   |
+| \\       | barra invertida                                                |
+| \$       | signo de dólar                                                 |
+| \"       | comillas dobles                                                |
+| \999     | Caracter en octal                                              |
+| \xFF     | caracter hexadecimal                                           |
+| \u{FFFF} | Caracter unicode                                               |
+
+
+#+reveal: split
+
+#+caption: /heredoc/
+#+begin_src php
+$nombre = "María";
+echo <<<EOT
+Mi nombre es "$nombre".
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
+#+end_src
+
+#+caption: /nowdoc/
+#+begin_src php
+$nombre = "María";
+echo <<<'EOT'
+Mi nombre es "$nombre".
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
+#+end_src
+
+
 
 
 ** Constantes
@@ -136,8 +190,12 @@ Ejercicio: Muestra todas las imágenes de https://www.glerl.noaa.gov/data/ice/ma
 
 Ejercicio: Muestra todas las imágenes de https://jareksastro.org/astro/, desde m0 a m23.
 
-** foreach
-- /Arrays/
+** <<arrays>>foreach
+  :PROPERTIES:
+  :CUSTOM_ID: arrays
+  :END:
+
+- [[https://www.php.net/manual/es/language.types.array.php][/Arrays/]] 
   - Colección de valores con un nombre (clave o índice)
   - Cada posición del /array/ tiene un valor
   - La posición puede ser numérica, o un /string/
@@ -190,43 +248,126 @@ Ejercicio: muestra las siguientes imágenes de https://astro.uni-bonn.de/~ithies
 
 
 
-** Include, require
+** =include=, =require=
 - Añaden a un fichero PHP el contenido de otro fichero PHP, antes de ejecutarlo
 - Útil para
   - Funciones y variables comunes a varias páginas
   - Partes comunes entre páginas: Cabecera, pie, menús...  
-
-#+begin_src php
-
-
-#+end_src
+- =include=: Si el fichero no existe, provoca un /warning/
+- =require=: Si el fichero no existe, provoca un error
+- =include_once=, =require_once=: Si ya ha sido incluido, no se vuelve a incluir   
 
 
 ** try
 https://www.php.net/manual/en/language.exceptions.php
 - Solo funciona con =throw=, no con errores generales.
-- No es interesante
-  
+- Intentaremos no usarlo  
 * Funciones
 
 ** Definición y uso
 https://www.php.net/manual/es/language.functions.php
 
+#+begin_src php
+
+<?php
+function foo($arg_1, $arg_2, /* ..., */ $arg_n)
+{
+    echo "Función de ejemplo.\n";
+    return $valor_devuelto;
+}
+?>
+#+end_src
+
 ** Ámbito de variables
 https://www.php.net/manual/es/language.variables.scope.php
 
+- Global: variables definidas fuera de las funciones
+- Local: variables definidas en funciones
+
+#+begin_src php
+$a = 3; // GLOBAL
+
+function fun1(){
+    echo $a; // ERROR, VARIABLE NO DEFINIDA
+}
+
+function fun2(){
+    global $a;
+    echo $a; // IMPRIME 3
+}
+
+function fun3(){
+    $a = 4
+    echo $a; // IMPRIME 4
+    echo $GLOBALS["a""]; // IMPRIME 3
+}
+#+end_src
+
+Nota: para =$GLOBALS= ver [[#variablespredefinidas][Variables predefinidas]]
 
 ** Ejercicio
 - =es_capicua=
 - =es_primo=
 - Encuentra un primo mayor de 1000000 utilizando las funciones anteriores
 
-* Funciones predefinidas
-phpinfo
-htmlspecialchars
-parse_url
+** Parámetros por referencia/valor
+- Un parámetro por valor *copia* su valor para la función, tanto para [[#tiposdevariables][escalares]] como para [[#arrays][/arrays/]]
+- Un parámetro por referencia usa la misma variable dentro de la función
 
-https://www.php.net/manual/es/ref.strings.php
+
+#+begin_src php
+function incrementa($variable, $valor){
+    $variable += $valor;
+}
+
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 3
+#+end_src
+
+#+begin_src php
+function incrementa(&$variable, $valor){
+    $variable += $valor;
+}
+
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 7
+#+end_src
+
+*** Objetos
+- Los objetos se pasan siempre por referencia
+#+begin_src php
+class Persona {
+    public $nombre;
+
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+}
+
+function cambiarNombre($persona) {
+    $persona->nombre = "Carlos";
+}
+
+$persona1 = new Persona("Ana");
+cambiarNombre($persona1);
+
+echo $persona1->nombre; // Imprime "Carlos", no "Ana"
+#+end_src
+
+#+RESULTS:
+: Carlos
+
+* Funciones predefinidas
+| phpinfo                |
+| htmlspecialchars       |
+| parse_url              |
+| [[https://www.php.net/manual/es/ref.strings.php][explode, explode]]       |
+| [[https://www.php.net/manual/es/ref.strings.php][strpos, substr, trim]]   |
+| [[https://www.php.net/manual/es/ref.strings.php][strtolower, strtoupper]] |
+
+
 
 * Entorno de desarrollo
 - Depuración en VSCode:
@@ -270,10 +411,14 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 #+end_src
 
 
-* /Arrays/
-https://www.php.net/manual/es/language.types.array.php
 
-* Variables predefinidas
+
+
+* <<variablespredefinidas>>Variables predefinidas
+  :PROPERTIES:
+  :CUSTOM_ID: variablespredefinidas
+  :END:
+
 https://www.php.net/manual/es/language.variables.predefined.php
 
 #+begin_example
