@@ -5,6 +5,9 @@
 #+OPTIONS: reveal_single_file:nil
 
 
+* Repositorio de ejemplos
+
+https://alvarogonzalezsotillo@gitlab.com/alvarogonzalezsotillo/apuntes-clase-ejemplos-php.git
 
 
 * Variables
@@ -65,6 +68,50 @@ while(CONDICION){
 }
 #+end_src
 Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se diga en dos variables
+
+** solución :noexport:
+#+begin_src php
+<style>
+    td > * {
+        max-width: 50px;
+        min-width: 50px;
+        max-height: 50px;
+        min-height: 50px;
+    }
+    .par{
+        background: green;
+    }
+    .impar{
+        background: lightgoldenrodyellow;
+    }
+</style>
+<table>
+<?php
+$columnas = 8;
+$filas = 8;
+
+$fila = 1;
+while ($fila <= $filas) {
+    echo "<tr>\n";
+    $columna = 1;
+    while ($columna <= $columnas) {
+        if( ($columna+$fila) % 2 == 0 ){
+            $clase = "par";
+        }
+        else{
+            $clase = "impar";
+        }
+
+        echo "<td class=$clase><div>&nbsp;</div></td>";
+        $columna += 1;
+    }
+    echo "</tr>\n";
+    $fila += 1;
+}
+?>
+</table>
+#+end_src
+
 
 ** for
 
