@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-18 vie 13:45</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-31 jue 08:51</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1241,7 +1241,18 @@ select * from session_privs;
 
 </section>
 <section id="slide-5-5">
-<h3 id="5-5"><span class="section-number-3">5.5.</span> Consulta recursivas</h3>
+<h3 id="5-5"><span class="section-number-3">5.5.</span> Consultas recursivas</h3>
+<ul>
+<li><code>start with</code>: Primeras filas seleccionadas de la tabla</li>
+<li><code>connect by</code>:
+<ul>
+<li><code>prior</code>: Hace referencia a la columna de la fila <i>previamente ya seleccionada</i></li>
+<li>Columna sin <code>prior</code>: Hace referencia a la columna de la fila actual</li>
+
+</ul></li>
+
+</ul>
+
 <div class="org-src-container">
 
 <pre><code class="sql" >select * from dba_role_privs connect by prior granted_role = grantee start with grantee = '&amp;USER' order by 1,2,3;
@@ -1257,8 +1268,11 @@ select * from dba_tab_privs  where grantee = '&amp;USER' or grantee in (
 order by 1,2,3,4;
 </code></pre>
 </div>
-<div class="slide-footer"></div>
 
+<p>
+Ver <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html"><code>connect by prior</code></a>
+</p>
+<div class="slide-footer"></div>
 </section>
 </section>
 <section>

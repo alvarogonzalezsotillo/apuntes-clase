@@ -435,7 +435,11 @@ select * from session_roles;
 select * from session_privs;
 #+end_src
    
-** Consulta recursivas
+** Consultas recursivas
+- =start with=: Primeras filas seleccionadas de la tabla
+- =connect by=:
+  - =prior=: Hace referencia a la columna de la fila /previamente ya seleccionada/
+  - Columna sin =prior=: Hace referencia a la columna de la fila actual  
 
 #+begin_src sql
 select * from dba_role_privs connect by prior granted_role = grantee start with grantee = '&USER' order by 1,2,3;
@@ -451,6 +455,7 @@ select * from dba_tab_privs  where grantee = '&USER' or grantee in (
 order by 1,2,3,4;
 #+end_src
 
+Ver [[https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html][=connect by prior=]]
 * Perfiles
 
 - Un /profile/ es un conjunto de limitaciones sobre el sistema *Oracle*

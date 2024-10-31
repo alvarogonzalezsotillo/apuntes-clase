@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-10-18 vie 13:45 -->
+<!-- 2024-10-31 jue 08:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Usuarios, privilegios y roles de *Oracle*</title>
@@ -869,8 +869,17 @@ grant ELROL to usuariodespues;
 </div>
 
 <div id="outline-container-org0000051" class="outline-3">
-<h3 id="org0000051"><span class="section-number-3">5.5.</span> Consulta recursivas</h3>
+<h3 id="org0000051"><span class="section-number-3">5.5.</span> Consultas recursivas</h3>
 <div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li><code>start with</code>: Primeras filas seleccionadas de la tabla</li>
+<li><code>connect by</code>:
+<ul class="org-ul">
+<li><code>prior</code>: Hace referencia a la columna de la fila <i>previamente ya seleccionada</i></li>
+<li>Columna sin <code>prior</code>: Hace referencia a la columna de la fila actual</li>
+</ul></li>
+</ul>
+
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span> dba_role_privs <span style="color: #729fcf; font-weight: bold;">connect</span> <span style="color: #729fcf; font-weight: bold;">by</span> <span style="color: #729fcf; font-weight: bold;">prior</span> granted_role = grantee <span style="color: #729fcf; font-weight: bold;">start</span> <span style="color: #729fcf; font-weight: bold;">with</span> grantee = <span style="color: #ad7fa8; font-style: italic;">'&amp;USER'</span> <span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span> 1,2,3;
 
@@ -885,10 +894,13 @@ grant ELROL to usuariodespues;
 <span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span> 1,2,3,4;
 </pre>
 </div>
-</div>
-</div>
-</div>
 
+<p>
+Ver <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html"><code>connect by prior</code></a>
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-org0000068" class="outline-2">
 <h2 id="org0000068"><span class="section-number-2">6.</span> Perfiles</h2>
 <div class="outline-text-2" id="text-6">
@@ -1053,7 +1065,7 @@ CREATE PROFILE EJEMPLO LIMIT
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-10-18 vie 13:45</p>
+<p class="date">Created: 2024-10-31 jue 08:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
