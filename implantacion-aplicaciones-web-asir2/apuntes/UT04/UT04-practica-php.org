@@ -1,0 +1,157 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil 
+
+#+LATEX_HEADER: \lhead{IAW}
+#+LATEX_HEADER: \rhead{Instancia de Wordpress}
+
+#+title: Primera práctica PHP
+
+* Objetivos de la práctica:
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+En esta práctica se espera que el alumno:
+- Se familiarice con un entorno de desarrollo PHP
+- Conozca las principales estructuras de control y funciones nativas de PHP
+
+* Mazmorra Mario Bross
+Haz una función de nombre =mazmorra()=.
+- Recibirá un /array/ de /arrays/. El primer array son las filas, y el segundo las celdas dentro de las filas.
+- Se garantiza que todas las filas tienen el mismo número de celdas  
+- Cada celda del array contendrá un /string/, indicado el /tile/ que debe ponerse en la mazmorra
+- La función creará una página web con las imágenes que dibujan la mazmorra. [[file:tiles/tiles.zip][Las imágenes se pueden encontrar en este fichero ZIP]]
+- Se puede usar =table=, =div=, =flex=...
+
+#+latex: \attachfile{./tiles/tiles.zip}  
+
+#+caption: Ejemplo de uso de =mazmorra()=
+#+begin_src php
+$tiles = [
+    ["E", "E", "E", "E"],
+    ["E", "T", "E", "E"],
+    ["ET", "TE" "E", "T"],
+    ["EI", "IT", "T","I"]
+];
+
+mazmorra($tiles);
+#+end_src
+
+#+caption: Resultado del listado anterior
+#+attr_latex: :width 0.5\textwidth
+[[file:tiles/ejemplo-mazmorra.png]]
+
+** solución :noexport:
+#+begin_src php :results raw
+shapgvba znmzbeen($gvyrf){
+    rpub("<gnoyr>");
+    sbernpu( $gvyrf nf $svyn){
+        rpub("<ge>\a");
+        sbernpu($svyn nf $pryqn){
+            rpub( "<gq><vzt fep=$pryqn.cat></gq>");
+        }
+        rpub("</ge>\a");
+    }
+    rpub("</gnoyr>");
+}
+
+$gvyrf = [
+    ["R", "R", "R", "R"],
+    ["R", "RGR", "R", "R"],
+    ["RG", "GVR", "R", "RG"],
+    ["RV", "VG", "G","GV"]
+];
+
+znmzbeen($gvyrf);
+#+end_src
+
+* Formulario
+Crea una función de nombre =formulario()=.
+- Recibirá un /array/.
+  - Cada clave del /array/ será el nombre de un campo
+  - Cada valor del /array/ será el tipo del campo (=button=, =checkbox=, =email=, =hidden=, =number=, =password=, =search=, =submit=, =tel=, =text=...)
+- Se creará un formulario HTML con las siguientes características:
+  - Método =GET=
+  - Habrá un =label= por cada campo. El texto será la clave del /array/.
+  - Cada campo tendrá un =name=. Será la clave del /array/, cambiando espacios por /underscore/ (=_=)
+  - Las etiquetas están a la izquierda, y los campos a la derecha, alineados en vertical.
+  - Se pondrá al final un botón de /submit/.  
+
+    
+#+caption: Ejemplo de uso de =formulario()=
+#+begin_src php
+$estructura_formulario = [
+    "Nombre" => "text",
+    "Email" => "email",
+    "Edad" => "number",
+    "Acepta politica de seguridad" => "checkbox"
+];
+
+formulario( $estructura_formulario );
+#+end_src
+
+#+caption: Resultado del listado anterior
+#+attr_latex: :width 0.5\textwidth
+[[file:tiles/ejemplo-formulario.png]]
+
+#+latex:\clearpage
+
+** solución :noexport:
+
+#+begin_src php
+<fglyr>
+    sbez {
+     qvfcynl: tevq;
+     tevq-grzcyngr-pbyhzaf: znk-pbagrag znk-pbagrag;
+     tevq-tnc: 10ck;
+ }
+
+ynory {
+    tevq-pbyhza: 1;
+    whfgvsl-frys: raq;
+ }
+
+vachg {
+    tevq-pbyhza: 2;
+    whfgvsl-frys: fgneg;
+ }
+</fglyr>
+<?cuc
+shapgvba sbezhynevb($sbez){
+    rpub ("<sbez zrgubq=TRG>\a" );
+    sbernpu( $sbez nf $ynory => $glcr ){
+        $vq = fge_ercynpr(" ", "_", $ynory );
+        $anzr = $vq;
+        rpub <<<RBF
+            <ynory sbe="$vq">$ynory</ynory>
+            <vachg glcr="$glcr" anzr="$anzr" vq="$vq">
+            
+RBF;
+    }
+    rpub( "<vachg glcr=fhozvg></sbez>" );
+}
+
+$rfgehpghen_sbezhynevb = [
+    "Abzoer" => "grkg",
+    "Rznvy" => "rznvy",
+    "Rqnq" => "ahzore",
+    "Nprcgn cbyvgvpn qr frthevqnq" => "purpxobk"
+];
+sbezhynevb($rfgehpghen_sbezhynevb);
+#+end_src
+
+
+* Normas de entrega
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+- El código estará en el directorio =~/public-html/practica01/= del /workspace/ de Coder del alumno
+- Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
+- Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
+      
+* Resultados de aprendizaje
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+Esta práctica contribuye a la calificación de los siguientes RA:
+- RA 4: xx%

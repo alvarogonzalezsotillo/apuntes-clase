@@ -1,4 +1,4 @@
-% Created 2024-10-16 mié 19:34
+% Created 2024-11-01 vie 18:36
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -185,18 +185,18 @@ Tras la importación, haz que las tablas puedan ser leídas por el resto de usua
 \item Haz que el resto de usuarios pueda realizar \texttt{SELECT} sobre tus tablas. (20\%)
 \item Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas (20\%)
 \begin{itemize}
-\item Por ejemplo, el usuario \texttt{profesor} debería poder ejecutar \texttt{SELECT * FROM CIRCUITOS}, puesto que habrás creado un sinónimo del tipo \texttt{CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS}.
+\item Por ejemplo, el usuario \texttt{alvarogonzalez} debería poder ejecutar \texttt{SELECT * FROM CIRCUITOS}, puesto que habrás creado un sinónimo del tipo \texttt{CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS}.
 \end{itemize}
 \end{itemize}
 
 \begin{Aviso}
-Son muchos usuarios. Agrúpalos de algún modo. (40\%)
+Son muchos alumnos. Agrúpalos de algún modo. (40\%)
 \end{Aviso}
 
 Después, haz que puedan escribir en un campo de la tabla \texttt{RESULTADOS}:
 \begin{itemize}
 \item Crea un nuevo campo en la tabla \texttt{RESULTADOS}: \texttt{VALORACION}, de tipo \texttt{VARCHAR(20)}.
-\item Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden \texttt{GRANT} (20\%)
+\item Da permisos al resto de alumnos para poder leer y actualizar este campo, con una orden \texttt{GRANT} (20\%)
 \item Pide a algún otro compañero que compruebe que funciona
 \item Pide al profesor que compruebe que funciona.
 \end{itemize}
@@ -211,6 +211,7 @@ Haz un usuario \texttt{PROFESOR} con contraseña \texttt{PROFESOR} que pueda ini
 \item \texttt{DBA\_ROLES}
 \item \texttt{DBA\_ROLE\_PRIVS}
 \item \texttt{DBA\_SYNONYMS}
+\item \texttt{DBA\_SYS\_PRIVS}
 \item \texttt{DBA\_TAB\_COLS}
 \item \texttt{DBA\_TAB\_PRIVS}
 \item \texttt{DBA\_TABLES}
