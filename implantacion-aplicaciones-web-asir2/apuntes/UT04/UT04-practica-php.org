@@ -3,7 +3,7 @@
 #+OPTIONS: author:nil date:nil 
 
 #+LATEX_HEADER: \lhead{IAW}
-#+LATEX_HEADER: \rhead{Instancia de Wordpress}
+#+LATEX_HEADER: \rhead{Práctica PHP (I)}
 
 #+title: Primera práctica PHP
 
@@ -16,7 +16,7 @@ En esta práctica se espera que el alumno:
 - Conozca las principales estructuras de control y funciones nativas de PHP
 
 * Mazmorra Mario Bross
-Haz una función de nombre =mazmorra()=.
+Haz una función de nombre =mazmorra()= en el fichero =mazmorra.php=.
 - Recibirá un /array/ de /arrays/. El primer array son las filas, y el segundo las celdas dentro de las filas.
 - Se garantiza que todas las filas tienen el mismo número de celdas  
 - Cada celda del array contendrá un /string/, indicado el /tile/ que debe ponerse en la mazmorra
@@ -66,7 +66,7 @@ znmzbeen($gvyrf);
 #+end_src
 
 * Formulario
-Crea una función de nombre =formulario()=.
+Crea una función de nombre =formulario()=, en el fichero =formulario.php=.
 - Recibirá un /array/.
   - Cada clave del /array/ será el nombre de un campo
   - Cada valor del /array/ será el tipo del campo (=button=, =checkbox=, =email=, =hidden=, =number=, =password=, =search=, =submit=, =tel=, =text=...)
@@ -148,6 +148,43 @@ sbezhynevb($rfgehpghen_sbezhynevb);
 - El código estará en el directorio =~/public-html/practica01/= del /workspace/ de Coder del alumno
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
+- Para probarlo, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
+
+
+#+caption: Ejemplo de fichero de prueba
+#+begin_src php
+<?php
+include("mazmorra.php");
+include("formulario.php");
+?>
+
+<div>
+    <?php
+    formulario(
+        [
+            "Nombre" => "text",
+            "Email" => "email",
+            "Edad" => "number",
+            "Acepta politica de seguridad" => "checkbox"
+        ]
+    );
+    ?>
+ </div>
+
+ <div>
+    <?php
+    mazmorra(
+        [
+            ["E", "E", "E", "E"],
+            ["E", "T", "E", "E"],
+            ["ET", "TE" "E", "T"],
+            ["EI", "IT", "T","I"]
+        ];
+    );
+    ?>
+ </div>        
+
+#+end_src
       
 * Resultados de aprendizaje
 :PROPERTIES:

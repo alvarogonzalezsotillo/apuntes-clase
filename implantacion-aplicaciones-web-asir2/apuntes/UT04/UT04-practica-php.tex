@@ -1,4 +1,4 @@
-% Created 2024-11-05 mar 21:10
+% Created 2024-11-05 mar 21:23
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -43,7 +43,7 @@
 \lhead{Extraordinaria 2021 (es el \\lhead)}
 \rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
 \lhead{IAW}
-\rhead{Instancia de Wordpress}
+\rhead{Práctica PHP (I)}
 \usepackage{svg}
 \usepackage{letltxmacro}
 \LetLtxMacro{\originalincludegraphics}{\includegraphics}
@@ -110,7 +110,7 @@ En esta práctica se espera que el alumno:
 
 \section{Mazmorra Mario Bross}
 \label{sec:org0000003}
-Haz una función de nombre \texttt{mazmorra()}.
+Haz una función de nombre \texttt{mazmorra()} en el fichero \texttt{mazmorra.php}.
 \begin{itemize}
 \item Recibirá un \emph{array} de \emph{arrays}. El primer array son las filas, y el segundo las celdas dentro de las filas.
 \item Se garantiza que todas las filas tienen el mismo número de celdas
@@ -140,7 +140,7 @@ mazmorra($tiles);
 
 \section{Formulario}
 \label{sec:org0000006}
-Crea una función de nombre \texttt{formulario()}.
+Crea una función de nombre \texttt{formulario()}, en el fichero \texttt{formulario.php}.
 \begin{itemize}
 \item Recibirá un \emph{array}.
 \begin{itemize}
@@ -184,7 +184,43 @@ formulario( $estructura_formulario );
 \item El código estará en el directorio \texttt{\textasciitilde{}/public-html/practica01/} del \emph{workspace} de Coder del alumno
 \item Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 \item Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
+\item Para probarlo, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
 \end{itemize}
+
+
+\begin{lstlisting}[language=php,label= ,caption={Ejemplo de fichero de prueba},captionpos=b,numbers=none]
+<?php
+include("mazmorra.php");
+include("formulario.php");
+?>
+
+<div>
+    <?php
+    formulario(
+        [
+            "Nombre" => "text",
+            "Email" => "email",
+            "Edad" => "number",
+            "Acepta politica de seguridad" => "checkbox"
+        ]
+    );
+    ?>
+ </div>
+
+ <div>
+    <?php
+    mazmorra(
+        [
+            ["E", "E", "E", "E"],
+            ["E", "T", "E", "E"],
+            ["ET", "TE" "E", "T"],
+            ["EI", "IT", "T","I"]
+        ];
+    );
+    ?>
+ </div>        
+
+\end{lstlisting}
 
 \section*{Resultados de aprendizaje}
 \label{sec:org000000c}
