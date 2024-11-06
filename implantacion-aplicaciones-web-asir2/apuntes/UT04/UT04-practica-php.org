@@ -140,6 +140,32 @@ $rfgehpghen_sbezhynevb = [
 sbezhynevb($rfgehpghen_sbezhynevb);
 #+end_src
 
+* Calculadora simple
+Se creará un fichero =Calculadora.php=.
+- Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
+  - =+=, =-=, =%=, =/=, =*=
+- Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
+- Si la operación no es posible, en vez del resultado se mostrará =Error=
+
+#+caption: Ejemplo de caluladora
+#+attr_latex: :width 0.5\textwidth
+[[file:tiles/ejemplo-calculadora.png]]
+
+** Solución :noexport:
+#+begin_src html
+<form>
+  <input type="number" step="0.01">
+  <select>
+     <option>+</option>
+     <option>-</option>
+     <option>/</option>
+     <option>*</option>
+     <option>%</option>
+  </select>
+  <input type="number" step="0.01">
+  <input type="submit" value="Calcula">
+</form>
+#+end_src
 
 * Normas de entrega
 :PROPERTIES:
@@ -148,7 +174,7 @@ sbezhynevb($rfgehpghen_sbezhynevb);
 - El código estará en el directorio =~/public-html/practica01/= del /workspace/ de Coder del alumno
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
-- Para probarlo, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
+- Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
 
 
 #+caption: Ejemplo de fichero de prueba

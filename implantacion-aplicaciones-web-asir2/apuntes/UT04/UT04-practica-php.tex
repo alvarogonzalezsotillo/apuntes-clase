@@ -1,4 +1,4 @@
-% Created 2024-11-05 mar 21:23
+% Created 2024-11-06 mié 16:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -177,14 +177,31 @@ formulario( $estructura_formulario );
 
 \clearpage
 
+\section{Calculadora simple}
+\label{sec:org0000009}
+Se creará un fichero \texttt{Calculadora.php}.
+\begin{itemize}
+\item Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
+\begin{itemize}
+\item \texttt{+}, \texttt{-}, \texttt{\%}, \texttt{/}, \texttt{*}
+\end{itemize}
+\item Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
+\item Si la operación no es posible, en vez del resultado se mostrará \texttt{Error}
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{tiles/ejemplo-calculadora.png}
+\caption{Ejemplo de caluladora}
+\end{figure}
 
 \section*{Normas de entrega}
-\label{sec:org0000009}
+\label{sec:org000000c}
 \begin{itemize}
 \item El código estará en el directorio \texttt{\textasciitilde{}/public-html/practica01/} del \emph{workspace} de Coder del alumno
 \item Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 \item Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
-\item Para probarlo, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
+\item Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
 \end{itemize}
 
 
@@ -223,7 +240,7 @@ include("formulario.php");
 \end{lstlisting}
 
 \section*{Resultados de aprendizaje}
-\label{sec:org000000c}
+\label{sec:org000000f}
 Esta práctica contribuye a la calificación de los siguientes RA:
 \begin{itemize}
 \item RA 4: xx\%
