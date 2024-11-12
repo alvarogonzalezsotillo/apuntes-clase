@@ -1,4 +1,4 @@
-% Created 2024-11-07 jue 19:42
+% Created 2024-11-12 mar 13:20
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -154,6 +154,7 @@ Crea una función de nombre \texttt{formulario()}, en el fichero \texttt{formula
 \item Cada campo tendrá un \texttt{name}. Será la clave del \emph{array}, cambiando espacios por \emph{underscore} (\texttt{\_})
 \item Las etiquetas están a la izquierda, y los campos a la derecha, alineados en vertical.
 \item Se pondrá al final un botón de \emph{submit}.
+\item Para alinearlo, se puede utilizar \texttt{table}, CSS con \texttt{grid},\ldots{}
 \end{itemize}
 \end{itemize}
 
@@ -187,6 +188,7 @@ Se creará un fichero \texttt{Calculadora.php}.
 \end{itemize}
 \item Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
 \item Si la operación no es posible, en vez del resultado se mostrará \texttt{Error}
+\item Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y \texttt{+} seleccionado.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -201,7 +203,10 @@ Se creará un fichero \texttt{Calculadora.php}.
 \item El código estará en el directorio \texttt{\textasciitilde{}/public-html/practica01/} del \emph{workspace} de Coder del alumno
 \item Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 \item Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
-\item No deben aparcer errores ni avisos de PHP. Hay que tener en cuenta que se ejecutarán con opciones de \emph{debug}, como \texttt{display\_errors} a \texttt{true}
+\item \textbf{No deben aparcer errores ni avisos de PHP}. Hay que tener en cuenta que se ejecutarán con opciones de \emph{debug}, como \texttt{display\_errors} a \texttt{true}
+\begin{itemize}
+\item Puede ser útil: \texttt{isset()}, \texttt{is\_numeric()}
+\end{itemize}
 \item Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
 \end{itemize}
 
