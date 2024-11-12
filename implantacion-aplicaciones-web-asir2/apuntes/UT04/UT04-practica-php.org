@@ -20,7 +20,7 @@ Haz una función de nombre =mazmorra()= en el fichero =mazmorra.php=.
 - Recibirá un /array/ de /arrays/. El primer array son las filas, y el segundo las celdas dentro de las filas.
 - Se garantiza que todas las filas tienen el mismo número de celdas  
 - Cada celda del array contendrá un /string/, indicado el /tile/ que debe ponerse en la mazmorra
-- La función creará una página web con las imágenes que dibujan la mazmorra. [[file:tiles/tiles.zip][Las imágenes se pueden encontrar en este fichero ZIP]]
+- La función creará una página web con las imágenes que dibujan la mazmorra. [[https://alvarogonzalezsotillo.github.io/apuntes-clase/implantacion-aplicaciones-web-asir2/apuntes/UT04/tiles/tiles.zip][Las imágenes se pueden encontrar en este fichero ZIP]]
 - Se puede usar =table=, =div=, =flex=...
 
 #+latex: \attachfile{./tiles/tiles.zip}  
