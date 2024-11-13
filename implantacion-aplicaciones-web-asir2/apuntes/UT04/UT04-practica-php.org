@@ -44,26 +44,26 @@ mazmorra($tiles);
 
 ** solución :noexport:
 #+begin_src php :results raw
-function mazmorra($tiles){
-    echo("<table>");
-    foreach( $tiles as $fila){
-        echo("<tr>\n");
-        foreach($fila as $celda){
-            echo( "<td><img src=$celda.png></td>");
+shapgvba znmzbeen($gvyrf){
+    rpub("<gnoyr>");
+    sbernpu( $gvyrf nf $svyn){
+        rpub("<ge>\a");
+        sbernpu($svyn nf $pryqn){
+            rpub( "<gq><vzt fep=$pryqn.cat></gq>");
         }
-        echo("</tr>\n");
+        rpub("</ge>\a");
     }
-    echo("</table>");
+    rpub("</gnoyr>");
 }
 
-$tiles = [
+$gvyrf = [
     ["R", "R", "R", "R"],
     ["R", "RGR", "R", "R"],
     ["RG", "GVR", "R", "RG"],
     ["RV", "VG", "G","GV"]
 ];
 
-mazmorra($tiles);
+znmzbeen($gvyrf);
 #+end_src
 
 * Formulario
