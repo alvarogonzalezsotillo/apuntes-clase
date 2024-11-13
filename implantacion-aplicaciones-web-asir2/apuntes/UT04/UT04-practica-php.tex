@@ -1,4 +1,4 @@
-% Created 2024-11-12 mar 13:33
+% Created 2024-11-13 mié 11:58
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -108,12 +108,13 @@ En esta práctica se espera que el alumno:
 \item Conozca las principales estructuras de control y funciones nativas de PHP
 \end{itemize}
 
-\section{Mazmorra Mario Bross}
+\section{Mazmorra tipo \emph{Mario Bros}}
 \label{sec:org0000003}
 Haz una función de nombre \texttt{mazmorra()} en el fichero \texttt{mazmorra.php}.
 \begin{itemize}
 \item Recibirá un \emph{array} de \emph{arrays}. El primer array son las filas, y el segundo las celdas dentro de las filas.
 \item Se garantiza que todas las filas tienen el mismo número de celdas
+\item Se garantiza que las imágenes del \emph{array} son correctas
 \item Cada celda del array contendrá un \emph{string}, indicado el \emph{tile} que debe ponerse en la mazmorra
 \item La función creará una página web con las imágenes que dibujan la mazmorra. \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/implantacion-aplicaciones-web-asir2/apuntes/UT04/tiles/tiles.zip}{Las imágenes se pueden encontrar en este fichero ZIP}
 \item Se puede usar \texttt{table}, \texttt{div}, \texttt{flex}\ldots{}
@@ -123,10 +124,10 @@ Haz una función de nombre \texttt{mazmorra()} en el fichero \texttt{mazmorra.ph
 
 \begin{lstlisting}[language=php,label= ,caption={Ejemplo de uso de \texttt{mazmorra()}},captionpos=b,numbers=none]
 $tiles = [
-    ["E", "E", "E", "E"],
-    ["E", "T", "E", "E"],
-    ["ET", "TE" "E", "T"],
-    ["EI", "IT", "T","I"]
+    ["E",  "E",   "E", "E"],
+    ["E",  "ETE", "E", "E"],
+    ["ET", "TIE", "E", "ET"],
+    ["EI", "IT",  "T", "TI"]
 ];
 
 mazmorra($tiles);
@@ -180,7 +181,7 @@ formulario( $estructura_formulario );
 
 \section{Calculadora simple}
 \label{sec:org0000009}
-Se creará un fichero \texttt{Calculadora.php}.
+Se creará un fichero \texttt{calculadora.php}.
 \begin{itemize}
 \item Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
 \begin{itemize}
@@ -205,9 +206,9 @@ Se creará un fichero \texttt{Calculadora.php}.
 \item Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
 \item \textbf{No deben aparcer errores ni avisos de PHP}. Hay que tener en cuenta que se ejecutarán con opciones de \emph{debug}, como \texttt{display\_errors} a \texttt{true}
 \begin{itemize}
-\item Puede ser útil: \texttt{isset()}, \texttt{is\_numeric()}
+\item Puede ser útil: \texttt{isset()}, \texttt{is\_numeric()}, \texttt{floatval()}
 \end{itemize}
-\item Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
+\item Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en Apache del alumno
 \end{itemize}
 
 
@@ -236,23 +237,24 @@ include("formulario.php");
 
  <div>
     <?php
-    mazmorra(
-        [
-            ["E", "E", "E", "E"],
-            ["E", "T", "E", "E"],
-            ["ET", "TE" "E", "T"],
-            ["EI", "IT", "T","I"]
-        ];
-    );
+    mazmorra([
+      ["E",  "E",   "E", "E"],
+      ["E",  "ETE", "E", "E"],
+      ["ET", "TIE", "E", "ET"],
+      ["EI", "IT",  "T", "TI"]
+    ]);
     ?>
  </div>        
 
+ <div>
+     <?php include("calculadora.php"); ?>
+ </div>    
 \end{lstlisting}
 
 \section*{Resultados de aprendizaje}
 \label{sec:org000000f}
 Esta práctica contribuye a la calificación de los siguientes RA:
 \begin{itemize}
-\item RA 4: xx\%
+\item RA 5: 4.5\%
 \end{itemize}
 \end{document}
