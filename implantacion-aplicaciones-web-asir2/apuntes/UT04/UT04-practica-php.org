@@ -148,8 +148,11 @@ Se creará un fichero =calculadora.php=.
   - =+=, =-=, =%=, =/=, =*=
 - Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
 - Si la operación no es posible, en vez del resultado se mostrará =Error=
-- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado.  
-
+- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado.
+- Para la operación módulo:
+  - Los operandos se aproximarán a enteros
+  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero.  
+([[https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01/calculadora.php][ver ejemplo]])
 #+caption: Ejemplo de caluladora
 #+attr_latex: :width 0.5\textwidth
 [[file:tiles/ejemplo-calculadora.png]]
