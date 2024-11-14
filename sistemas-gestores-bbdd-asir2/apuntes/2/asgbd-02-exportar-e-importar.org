@@ -277,14 +277,18 @@ expdp \'sys/alumno@localhost:1521/orclpdb1 as sysdba\' DIRECTORY=datos DUMPFILE=
 #+end_src
 
 ** Conectar sin contraseña como =SYS= a PDB en local
+- Se usa la variable =ORACLE_PDB_SID=
+- Por lo que sea, no funciona con =sqlplus=  
 #+begin_src bash
 ORACLE_PDB_SID=pdasir expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 #+end_src
 
 
 ** Conectar sin contraseña en /connection string/
-- Hay que crear una entrada en =$ORACLE_HOME/network/admin/tnsnames.ora=
-- Este fichero es equivalente a =/etc/hosts= para comandos de Oracle  
+- Si se usa un /connection string/ con servidor, SID y/o puerto es *obligatorio* poner la contraseña
+- Para evitarlo, se puede usar un nombre de servicio de Oracle  
+  - Hay que crear una entrada en =$ORACLE_HOME/network/admin/tnsnames.ora=
+  - Este fichero es equivalente a =/etc/hosts= para comandos de Oracle  
 
 #+begin_src lisp
 PDB_PDASIR =

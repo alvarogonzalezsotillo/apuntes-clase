@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-11-14 jue 11:15 -->
+<!-- 2024-11-14 jue 11:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -556,6 +556,10 @@ Valid keyword values are: IMMEDIATE.
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">1.4.</span> Conectar sin contraseña como <code>SYS</code> a PDB en local</h3>
 <div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Se usa la variable <code>ORACLE_PDB_SID</code></li>
+<li>Por lo que sea, no funciona con <code>sqlplus</code></li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #ff6347;">ORACLE_PDB_SID</span>=pdasir expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
 </pre>
@@ -568,8 +572,12 @@ Valid keyword values are: IMMEDIATE.
 <h3 id="org000000c"><span class="section-number-3">1.5.</span> Conectar sin contraseña en <i>connection string</i></h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
+<li>Si se usa un <i>connection string</i> con servidor, SID y/o puerto es <b>obligatorio</b> poner la contraseña</li>
+<li>Para evitarlo, se puede usar un nombre de servicio de Oracle  
+<ul class="org-ul">
 <li>Hay que crear una entrada en <code>$ORACLE_HOME/network/admin/tnsnames.ora</code></li>
 <li>Este fichero es equivalente a <code>/etc/hosts</code> para comandos de Oracle</li>
+</ul></li>
 </ul>
 
 <div class="org-src-container">
@@ -1182,7 +1190,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-11-14 jue 11:15</p>
+<p class="date">Created: 2024-11-14 jue 11:20</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
