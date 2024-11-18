@@ -15,10 +15,11 @@ En esta práctica se espera que el alumno:
 - Se familiarice con un entorno de desarrollo PHP
 - Conozca las principales estructuras de control y funciones nativas de PHP
 
-* Mazmorra Mario Bross
+* Mazmorra tipo /Mario Bros/
 Haz una función de nombre =mazmorra()= en el fichero =mazmorra.php=.
 - Recibirá un /array/ de /arrays/. El primer array son las filas, y el segundo las celdas dentro de las filas.
-- Se garantiza que todas las filas tienen el mismo número de celdas  
+- Se garantiza que todas las filas tienen el mismo número de celdas
+- Se garantiza que las imágenes del /array/ son correctas  
 - Cada celda del array contendrá un /string/, indicado el /tile/ que debe ponerse en la mazmorra
 - La función creará una página web con las imágenes que dibujan la mazmorra. [[https://alvarogonzalezsotillo.github.io/apuntes-clase/implantacion-aplicaciones-web-asir2/apuntes/UT04/tiles/tiles.zip][Las imágenes se pueden encontrar en este fichero ZIP]]
 - Se puede usar =table=, =div=, =flex=...
@@ -28,10 +29,10 @@ Haz una función de nombre =mazmorra()= en el fichero =mazmorra.php=.
 #+caption: Ejemplo de uso de =mazmorra()=
 #+begin_src php
 $tiles = [
-    ["E", "E", "E", "E"],
-    ["E", "T", "E", "E"],
-    ["ET", "TE" "E", "T"],
-    ["EI", "IT", "T","I"]
+    ["E",  "E",   "E", "E"],
+    ["E",  "ETE", "E", "E"],
+    ["ET", "TIE", "E", "ET"],
+    ["EI", "IT",  "T", "TI"]
 ];
 
 mazmorra($tiles);
@@ -142,13 +143,16 @@ sbezhynevb($rfgehpghen_sbezhynevb);
 #+end_src
 
 * Calculadora simple
-Se creará un fichero =Calculadora.php=.
+Se creará un fichero =calculadora.php=.
 - Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
   - =+=, =-=, =%=, =/=, =*=
 - Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
 - Si la operación no es posible, en vez del resultado se mostrará =Error=
-- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado.  
-
+- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado.
+- Para la operación módulo:
+  - Los operandos se aproximarán a enteros
+  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero.  
+([[https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01/calculadora.php][ver ejemplo]])
 #+caption: Ejemplo de caluladora
 #+attr_latex: :width 0.5\textwidth
 [[file:tiles/ejemplo-calculadora.png]]
@@ -177,8 +181,8 @@ Se creará un fichero =Calculadora.php=.
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
 - *No deben aparcer errores ni avisos de PHP*. Hay que tener en cuenta que se ejecutarán con opciones de /debug/, como =display_errors= a =true=
-  - Puede ser útil: =isset()=, =is_numeric()=
-- Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en en Apache del alumno
+  - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
+- Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en Apache del alumno
 
 
 #+caption: Ejemplo de fichero de prueba
@@ -207,17 +211,18 @@ include("formulario.php");
 
  <div>
     <?php
-    mazmorra(
-        [
-            ["E", "E", "E", "E"],
-            ["E", "T", "E", "E"],
-            ["ET", "TE" "E", "T"],
-            ["EI", "IT", "T","I"]
-        ];
-    );
+    mazmorra([
+      ["E",  "E",   "E", "E"],
+      ["E",  "ETE", "E", "E"],
+      ["ET", "TIE", "E", "ET"],
+      ["EI", "IT",  "T", "TI"]
+    ]);
     ?>
  </div>        
 
+ <div>
+     <?php include("calculadora.php"); ?>
+ </div>    
 #+end_src
       
 * Resultados de aprendizaje
@@ -225,4 +230,4 @@ include("formulario.php");
 :UNNUMBERED: t
 :END:
 Esta práctica contribuye a la calificación de los siguientes RA:
-- RA 4: xx%
+- RA 5: 4.5%

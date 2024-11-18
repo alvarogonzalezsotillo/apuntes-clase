@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:54 -->
+<!-- 2024-11-14 jue 11:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -204,12 +204,12 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org000000c">1. Exportar datos</a></li>
-<li><a href="#org0000015">2. Importar datos</a></li>
-<li><a href="#org0000022">3. Ejercicio (1)</a></li>
-<li><a href="#org000002a">4. Ejercicio (2)</a></li>
-<li><a href="#org000003c">5. Otras soluciones</a></li>
-<li><a href="#org000003f">6. Referencias</a></li>
+<li><a href="#org0000012">1. Exportar datos</a></li>
+<li><a href="#org000001b">2. Importar datos</a></li>
+<li><a href="#org0000028">3. Ejercicio (1)</a></li>
+<li><a href="#org0000030">4. Ejercicio (2)</a></li>
+<li><a href="#org0000042">5. Otras soluciones</a></li>
+<li><a href="#org0000045">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -246,8 +246,8 @@ window.addEventListener("load",()=>{
 
 </script>
 
-<div id="outline-container-org000000c" class="outline-2">
-<h2 id="org000000c"><span class="section-number-2">1.</span> Exportar datos</h2>
+<div id="outline-container-org0000012" class="outline-2">
+<h2 id="org0000012"><span class="section-number-2">1.</span> Exportar datos</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Se utiliza el comando <code>expdp</code>
@@ -266,14 +266,14 @@ Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 The Data Pump export utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
    
-  <span style="color: #8e0d84841a1a;"> </span>Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
    
 You can control how Export runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>expdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
 by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
    
-  <span style="color: #8e0d84841a1a;"> </span>Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-  <span style="color: #8e0d84841a1a;"> </span>Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
-  <span style="color: #8e0d84841a1a;"> </span> <span style="color: #97164bcb3dbd;"> </span> <span style="color: #505069e98201;"> </span> <span style="color: #5b5b5f5f5cdc;"> </span> <span style="color: #5c5c8b8b3434;"> </span> <span style="color: #5c5c8b8b3434;"> </span> <span style="color: #505069e98201;"> </span>or TABLES=(T1:P1,T1:P2), <span style="color: #729fcf; font-weight: bold;">if</span> T1 is partitioned table
+  <span style="color: #6c7f6868233c;"> </span>Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> <span style="color: #445d571d66c6;"> </span> <span style="color: #4b8b50434ea1;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #445d571d66c6;"> </span>or TABLES=(T1:P1,T1:P2), <span style="color: #729fcf; font-weight: bold;">if</span> T1 is partitioned table
                
 USERID must be the first parameter on the command line.
 
@@ -554,8 +554,53 @@ Valid keyword values are: IMMEDIATE.
 </div>
 
 <div id="outline-container-org0000009" class="outline-3">
-<h3 id="org0000009"><span class="section-number-3">1.4.</span> Ejemplo de exportación</h3>
+<h3 id="org0000009"><span class="section-number-3">1.4.</span> Conectar sin contraseña como <code>SYS</code> a PDB en local</h3>
 <div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Se usa la variable <code>ORACLE_PDB_SID</code></li>
+<li>Por lo que sea, no funciona con <code>sqlplus</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #ff6347;">ORACLE_PDB_SID</span>=pdasir expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org000000c" class="outline-3">
+<h3 id="org000000c"><span class="section-number-3">1.5.</span> Conectar sin contraseña en <i>connection string</i></h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Si se usa un <i>connection string</i> con servidor, SID y/o puerto es <b>obligatorio</b> poner la contraseña</li>
+<li>Para evitarlo, se puede usar un nombre de servicio de Oracle  
+<ul class="org-ul">
+<li>Hay que crear una entrada en <code>$ORACLE_HOME/network/admin/tnsnames.ora</code></li>
+<li>Este fichero es equivalente a <code>/etc/hosts</code> para comandos de Oracle</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-lisp">PDB_PDASIR =
+  (DESCRIPTION =
+  <span style="color: #6c7f6868233c;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+  <span style="color: #6c7f6868233c;"> </span> (CONNECT_DATA =
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVICE_NAME = pdasir)
+  <span style="color: #6c7f6868233c;"> </span> )
+  )
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>sys@pdasir as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000000f" class="outline-3">
+<h3 id="org000000f"><span class="section-number-3">1.6.</span> Ejemplo de exportación</h3>
+<div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-shell">
 [alumno@centos-asgbd ~]$ expdp alumno/alumno <span style="color: #ff6347;">directory</span>=mi_directorio_de_backup <span style="color: #ff6347;">schemas</span>=alumno <span style="color: #ff6347;">dumpfile</span>=alumno.dmp <span style="color: #ff6347;">logfile</span>=alumno.log
@@ -593,8 +638,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000015" class="outline-2">
-<h2 id="org0000015"><span class="section-number-2">2.</span> Importar datos</h2>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">2.</span> Importar datos</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Se utiliza el comando <code>impdp</code>
@@ -613,13 +658,13 @@ Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 The Data Pump Import utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
      
-  <span style="color: #8e0d84841a1a;"> </span> <span style="color: #97164bcb3dbd;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
 You can control how Import runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>impdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
 by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
      
-  <span style="color: #8e0d84841a1a;"> </span> <span style="color: #97164bcb3dbd;"> </span>Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-  <span style="color: #8e0d84841a1a;"> </span> <span style="color: #97164bcb3dbd;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
 USERID must be the first parameter on the command line.
 
@@ -854,8 +899,8 @@ Valid keywords are: IMMEDIATE.
 </div>
 </div>
 
-<div id="outline-container-org000000f" class="outline-3">
-<h3 id="org000000f"><span class="section-number-3">2.1.</span> <code>INCLUDE/EXCLUDE</code> una tabla</h3>
+<div id="outline-container-org0000015" class="outline-3">
+<h3 id="org0000015"><span class="section-number-3">2.1.</span> <code>INCLUDE/EXCLUDE</code> una tabla</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><code>INCLUDE</code> y <code>EXCLUDE</code> son filtros, como condiciones de <code>where</code>
@@ -873,8 +918,8 @@ Valid keywords are: IMMEDIATE.
 </div>
 
 
-<div id="outline-container-org0000012" class="outline-3">
-<h3 id="org0000012"><span class="section-number-3">2.2.</span> Importar un <code>schema</code> en otro <code>schema</code></h3>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">2.2.</span> Importar un <code>schema</code> en otro <code>schema</code></h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Importar un fichero del usuario <code>profesor</code> en el usuario <code>alumno</code></li>
@@ -882,8 +927,8 @@ Valid keywords are: IMMEDIATE.
 
 <div class="org-src-container">
 <pre class="src src-shell">impdp system/alumno <span style="color: #ff6347;">SCHEMAS</span>=alumno <span style="color: #ff6347;">remap_schema</span>=alumno:profesor <span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #ff6347;">directory</span>=EXPORTDIR <span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #ff6347;">dumpfile</span>=profesor.dmp
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ff6347;">directory</span>=EXPORTDIR <span style="color: #ad7fa8; font-style: italic;">\</span>
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ff6347;">dumpfile</span>=profesor.dmp
 </pre>
 </div>
 
@@ -923,8 +968,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000022" class="outline-2">
-<h2 id="org0000022"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
+<div id="outline-container-org0000028" class="outline-2">
+<h2 id="org0000028"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Crea la base de datos de multas en el usuario <code>multas</code> (<a href="../1/sql/multas.sql">../1/sql/multas.sql</a>)</li>
@@ -939,22 +984,22 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ul>
 </div>
 
-<div id="outline-container-org000001a" class="outline-3">
-<h3 id="org000001a"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
+<div id="outline-container-org0000020" class="outline-3">
+<h3 id="org0000020"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
 <div class="outline-text-3" id="text-3-1">
 
-<div id="org0000018" class="figure">
+<div id="org000001e" class="figure">
 <p><img src="./media/dependencias-expdp.svg" alt="dependencias-expdp.svg" class="org-svg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org000001f" class="outline-3">
-<h3 id="org000001f"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
 <div class="outline-text-3" id="text-3-2">
 
-<div id="org000001d" class="figure">
+<div id="org0000023" class="figure">
 <p><img src="./media/dependencias-impdp.svg" alt="dependencias-impdp.svg" class="org-svg" />
 </p>
 </div>
@@ -963,8 +1008,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org000002a" class="outline-2">
-<h2 id="org000002a"><span class="section-number-2">4.</span> Ejercicio (2)</h2>
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">4.</span> Ejercicio (2)</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li>Crear la base de datos
@@ -984,11 +1029,11 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ol>
 </div>
 
-<div id="outline-container-org0000027" class="outline-3">
-<h3 id="org0000027"><span class="section-number-3">4.1.</span> Tareas</h3>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">4.1.</span> Tareas</h3>
 <div class="outline-text-3" id="text-4-1">
 
-<div id="org0000025" class="figure">
+<div id="org000002b" class="figure">
 <p><img src="./media/tareas-carreras.svg" alt="tareas-carreras.svg" class="org-svg" />
 </p>
 </div>
@@ -997,8 +1042,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org000003c" class="outline-2">
-<h2 id="org000003c"><span class="section-number-2">5.</span> Otras soluciones</h2>
+<div id="outline-container-org0000042" class="outline-2">
+<h2 id="org0000042"><span class="section-number-2">5.</span> Otras soluciones</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>RMAN</li>
@@ -1006,8 +1051,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </ul>
 </div>
 
-<div id="outline-container-org000002d" class="outline-3">
-<h3 id="org000002d"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Solución de <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/rcmquick.htm#BRADV89346">Oracle para backups</a></li>
@@ -1025,8 +1070,8 @@ Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span styl
 </div>
 
 
-<div id="outline-container-org0000036" class="outline-3">
-<h3 id="org0000036"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>Los datos están en ficheros <code>dbf</code></li>
@@ -1046,8 +1091,8 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </p>
 </div>
 
-<div id="outline-container-org0000030" class="outline-4">
-<h4 id="org0000030"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
+<div id="outline-container-org0000036" class="outline-4">
+<h4 id="org0000036"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li>El fichero <code>pfile</code> o <code>spfile</code> indica dónde está el fichero de control
@@ -1074,8 +1119,8 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </div>
 </div>
 
-<div id="outline-container-org0000033" class="outline-4">
-<h4 id="org0000033"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
+<div id="outline-container-org0000039" class="outline-4">
+<h4 id="org0000039"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 Si solo se restauran los ficheros de datos (y se tienen suficientes ficheros de <code>log</code>)
@@ -1105,8 +1150,8 @@ Database altered.
 </div>
 
 
-<div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">5.3.</span> Ejercicio</h3>
+<div id="outline-container-org000003f" class="outline-3">
+<h3 id="org000003f"><span class="section-number-3">5.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-5-3">
 <ol class="org-ol">
 <li>Localiza los ficheros de datos de tu instancia</li>
@@ -1121,8 +1166,8 @@ Database altered.
 
 
 
-<div id="outline-container-org000003f" class="outline-2">
-<h2 id="org000003f"><span class="section-number-2">6.</span> Referencias</h2>
+<div id="outline-container-org0000045" class="outline-2">
+<h2 id="org0000045"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
@@ -1145,7 +1190,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:54</p>
+<p class="date">Created: 2024-11-14 jue 11:20</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
