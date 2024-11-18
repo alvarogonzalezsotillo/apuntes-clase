@@ -247,6 +247,19 @@ Ejercicio: muestra las siguientes imágenes de https://astro.uni-bonn.de/~ithies
 | =rmleffect2.png= | =system1.png=    | =system2.png=    |                  |
 
 
+** =continue=
+- Dentro de un bucle, ignora el resto de órdenes y vuelve al principio
+
+#+begin_src php
+for( $i = 0 ; $i < 10 ; $i += 1 ){
+    if( $i % 3 != 0 ){
+        continue;
+    }
+    echo( "$i es múltiplo de 3\n");
+}
+#+end_src
+
+
 
 ** =include=, =require=
 - Añaden a un fichero PHP el contenido de otro fichero PHP, antes de ejecutarlo
@@ -492,3 +505,7 @@ $mysqli->rollback();
 $mysqli->query("INSERT INTO test(id) VALUES (2)");
 $mysqli->commit();
 #+end_src
+
+
+
+
