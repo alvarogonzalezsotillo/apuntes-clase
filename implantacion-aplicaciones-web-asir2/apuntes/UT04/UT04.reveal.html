@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-11-18 lun 10:19</p>
+<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-11-20 mié 11:27</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1243,8 +1243,54 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 <div class="slide-footer"></div>
 
 
+</section>
+<section id="slide-7-2">
+<h3 id="7-2"><span class="section-number-3">7.2.</span> <i>Cookies</i></h3>
+<ul>
+<li>Las <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Cookies">/cookies</a>/ son cadenas que el servidor envía al navegador
+<ul>
+<li>Cabecera <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Set-Cookie">Set-Cookie</a></li>
 
+</ul></li>
+<li>El navegador guarda, y envía en las siguientes peticiones al servidor
+<ul>
+<li>Cabecera <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Cookie">Cookie</a></li>
 
+</ul></li>
+<li>El valor de la <i>cookie</i> no suelen ser datos
+<ul>
+<li>Es un identificador con el que el servidor accede a una base de datos</li>
+<li>En esa base de datos están los datos reales asociados a la <i>cookie</i></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-7-3">
+<h3 id="7-3"><span class="section-number-3">7.3.</span> Uso de <i>cookies</i> en php</h3>
+<ul>
+<li>Funcion <a href="https://www.php.net/manual/es/function.setcookie.php"><code>setcookie()</code></a></li>
+<li>Variable <code>$_COOKIE</code></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-7-3-1">
+<h4 id="7-3-1"><span class="section-number-4">7.3.1.</span> Ejercicio</h4>
+<ul>
+<li>Crea una página PHP que almacene una <i>cookie</i> en el navegador
+<ul>
+<li>Nombre: <code>ejercicio-cookies</code></li>
+<li>Valor: La hora de la petición de la página (ver <a href="https://www.php.net/manual/en/function.getdate.php"><code>getdate()</code></a>)</li>
+
+</ul></li>
+<li>La página, si recibe la <i>cookie</i>, mostrará la hora del acceso anterior, y la hora actual</li>
+
+</ul>
+<div class="slide-footer"></div>
 
 </section>
 </section>
@@ -1299,6 +1345,61 @@ $_COOKIE — Cookies HTTP
 <a href="https://www.php.net/manual/es/session.examples.basic.php">https://www.php.net/manual/es/session.examples.basic.php</a>
 </p>
 <div class="slide-footer"></div>
+
+</section>
+<section id="slide-10-1">
+<h3 id="10-1"><span class="section-number-3">10.1.</span> Uso básico</h3>
+<ul>
+<li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
+<li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
+<ul>
+<li>Se puede usar también <a href="https://www.php.net/manual/es/session.idpassing.php">el parámetro <code>SID</code></a> en vez de <i>cookies</i></li>
+<li>Se puede <a href="https://www.php.net/manual/es/session.customhandler.php">cambiar el almacenamiento de sessiones</a>, por defecto en <a href="https://www.php.net/manual/es/session.configuration.php#ini.session.save-path">session.save<sub>path</sub></a></li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="org-src-container">
+
+<pre><code class="php" >session_start();
+if (!isset($_SESSION['count'])) {
+  $_SESSION['count'] = 0;
+} else {
+  $_SESSION['count']++;
+}
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="php" >session_start();
+unset($_SESSION['count']);
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="php" >session_start();
+session_destroy(); // esto no destruye $_SESSION
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-10-2">
+<h3 id="10-2"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
+<ul>
+<li>Haz una página que cada vez que sea visitada, incremente el número de visitas</li>
+<li>Cada visitante tiene su propio número de visitas</li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-10-3">
+<h3 id="10-3"><span class="section-number-3">10.3.</span> </h3>
 
 </section>
 </section>

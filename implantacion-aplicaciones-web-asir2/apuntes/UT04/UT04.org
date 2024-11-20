@@ -425,8 +425,24 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 #+end_src
 
 
+** /Cookies/
+- Las [[https://developer.mozilla.org/es/docs/Web/HTTP/Cookies][/cookies]]/ son cadenas que el servidor envía al navegador
+  - Cabecera [[https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Set-Cookie][Set-Cookie]]
+- El navegador guarda, y envía en las siguientes peticiones al servidor
+  - Cabecera [[https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Cookie][Cookie]]
+- El valor de la /cookie/ no suelen ser datos
+  - Es un identificador con el que el servidor accede a una base de datos
+  - En esa base de datos están los datos reales asociados a la /cookie/  
 
+** Uso de /cookies/ en php
+- Funcion [[https://www.php.net/manual/es/function.setcookie.php][=setcookie()=]]
+- Variable =$_COOKIE=
 
+*** Ejercicio
+- Crea una página PHP que almacene una /cookie/ en el navegador
+  - Nombre: =ejercicio-cookies=
+  - Valor: La hora de la petición de la página (ver [[https://www.php.net/manual/en/function.getdate.php][=getdate()=]])
+- La página, si recibe la /cookie/, mostrará la hora del acceso anterior, y la hora actual      
 
 * <<variablespredefinidas>>Variables predefinidas
   :PROPERTIES:
@@ -459,6 +475,38 @@ https://www.php.net/manual/es/language.variables.external.php
 
 https://www.php.net/manual/es/book.session.php
 https://www.php.net/manual/es/session.examples.basic.php
+
+** Uso básico
+- La variable =$_SESSION= es un /array/ con valores, que pueden pasarse de una página a otra
+- =session_start()= se basa en /cookies/ y ficheros en el servidor
+  - Se puede usar también [[https://www.php.net/manual/es/session.idpassing.php][el parámetro =SID=]] en vez de /cookies/
+  - Se puede [[https://www.php.net/manual/es/session.customhandler.php][cambiar el almacenamiento de sessiones]], por defecto en [[https://www.php.net/manual/es/session.configuration.php#ini.session.save-path][session.save_path]]
+
+
+#+begin_src php
+session_start();
+if (!isset($_SESSION['count'])) {
+  $_SESSION['count'] = 0;
+} else {
+  $_SESSION['count']++;
+}
+#+end_src
+
+#+begin_src php
+session_start();
+unset($_SESSION['count']);
+#+end_src
+
+#+begin_src php
+session_start();
+session_destroy(); // esto no destruye $_SESSION
+#+end_src
+
+** Ejercicio: Contador de visitas
+- Haz una página que cada vez que sea visitada, incremente el número de visitas
+- Cada visitante tiene su propio número de visitas
+
+**   
 
 * Ejercicios
 https://www.w3schools.com/PHP/php_exercises.asp
