@@ -504,7 +504,7 @@ https://www.php.net/manual/es/session.examples.basic.php
 - La variable =$_SESSION= es un /array/ con valores, que pueden pasarse de una página a otra
 - =session_start()= se basa en /cookies/ y ficheros en el servidor
   - Se puede usar también [[https://www.php.net/manual/es/session.idpassing.php][el parámetro =SID=]] en vez de /cookies/
-  - Se puede [[https://www.php.net/manual/es/session.customhandler.php][cambiar el almacenamiento de sessiones]], por defecto en [[https://www.php.net/manual/es/session.configuration.php#ini.session.save-path][session.save_path]]
+  - Se puede [[https://www.php.net/manual/es/session.customhandler.php][cambiar el almacenamiento de sessiones]], por defecto en [[https://www.php.net/manual/es/session.configuration.php#ini.session.save-path][=session.save_path=]]
 
 
 #+begin_src php
@@ -530,7 +530,10 @@ session_destroy(); // esto no destruye $_SESSION
 - Haz una página que cada vez que sea visitada, incremente el número de visitas
 - Cada visitante tiene su propio número de visitas
 
-**   
+** Ejercicio: ventana de /login/
+- Crea un formulario de /login/
+- Si la contraseña es un número impar, es correcta
+- Si el usuario ya ha entrado, no se muestra el formulario de /login/, sino su nombre y la contraseña que introdujo. También habrá un botón de /logout/, para salir de la sesión
 
 * Ejercicios
 https://www.w3schools.com/PHP/php_exercises.asp

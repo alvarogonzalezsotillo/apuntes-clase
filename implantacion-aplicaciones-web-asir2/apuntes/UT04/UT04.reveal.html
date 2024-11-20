@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-11-20 mié 12:58</p>
+<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-11-20 mié 13:30</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1364,7 +1364,7 @@ $_COOKIE — Cookies HTTP
 <li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
 <ul>
 <li>Se puede usar también <a href="https://www.php.net/manual/es/session.idpassing.php">el parámetro <code>SID</code></a> en vez de <i>cookies</i></li>
-<li>Se puede <a href="https://www.php.net/manual/es/session.customhandler.php">cambiar el almacenamiento de sessiones</a>, por defecto en <a href="https://www.php.net/manual/es/session.configuration.php#ini.session.save-path">session.save<sub>path</sub></a></li>
+<li>Se puede <a href="https://www.php.net/manual/es/session.customhandler.php">cambiar el almacenamiento de sessiones</a>, por defecto en <a href="https://www.php.net/manual/es/session.configuration.php#ini.session.save-path"><code>session.save_path</code></a></li>
 
 </ul></li>
 
@@ -1409,7 +1409,14 @@ session_destroy(); // esto no destruye $_SESSION
 
 </section>
 <section id="slide-10-3">
-<h3 id="10-3"><span class="section-number-3">10.3.</span> </h3>
+<h3 id="10-3"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
+<ul>
+<li>Crea un formulario de <i>login</i></li>
+<li>Si la contraseña es un número impar, es correcta</li>
+<li>Si el usuario ya ha entrado, no se muestra el formulario de <i>login</i>, sino su nombre y la contraseña que introdujo. También habrá un botón de <i>logout</i>, para salir de la sesión</li>
+
+</ul>
+<div class="slide-footer"></div>
 
 </section>
 </section>
