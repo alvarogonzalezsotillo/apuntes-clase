@@ -434,7 +434,7 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
   - Es un identificador con el que el servidor accede a una base de datos
   - En esa base de datos están los datos reales asociados a la /cookie/  
 
-** Diagrama :noexport:
+** Diagrama
 
 #+BEGIN_SRC plantuml :file ./media/diagrama-cookies.png
 @startuml
