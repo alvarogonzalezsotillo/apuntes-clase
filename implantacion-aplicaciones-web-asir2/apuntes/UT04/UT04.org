@@ -441,8 +441,8 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 *** Ejercicio
 - Crea una página PHP que almacene una /cookie/ en el navegador
   - Nombre: =ejercicio-cookies=
-  - Valor: La hora de la petición de la página (ver [[https://www.php.net/manual/en/function.getdate.php][=getdate()=]])
-- La página, si recibe la /cookie/, mostrará la hora del acceso anterior, y la hora actual      
+  - Valor: La marca de tiempo de la petición de la página (ver [[https://www.php.net/manual/en/function.getdate.php][=getdate()=]] o [[https://www.php.net/manual/en/function.date.php][=date()=]])
+- La página, si recibe la /cookie/, mostrará la marca de tiempo del acceso anterior, y la marca de tiempo actual      
 
 * <<variablespredefinidas>>Variables predefinidas
   :PROPERTIES:
