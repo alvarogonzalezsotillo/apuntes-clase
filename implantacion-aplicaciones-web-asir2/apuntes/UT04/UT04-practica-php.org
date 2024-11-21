@@ -15,7 +15,7 @@ En esta práctica se espera que el alumno:
 - Se familiarice con un entorno de desarrollo PHP
 - Conozca las principales estructuras de control y funciones nativas de PHP
 
-* Mazmorra tipo /Mario Bros/
+* Mazmorra tipo /Mario Bros/ (2 puntos)
 Haz una función de nombre =mazmorra()= en el fichero =mazmorra.php=.
 - Recibirá un /array/ de /arrays/. El primer array son las filas, y el segundo las celdas dentro de las filas.
 - Se garantiza que todas las filas tienen el mismo número de celdas
@@ -66,7 +66,7 @@ $gvyrf = [
 znmzbeen($gvyrf);
 #+end_src
 
-* Formulario
+* Formulario (3 puntos)
 Crea una función de nombre =formulario()=, en el fichero =formulario.php=.
 - Recibirá un /array/.
   - Cada clave del /array/ será el nombre de un campo
@@ -142,7 +142,7 @@ $rfgehpghen_sbezhynevb = [
 sbezhynevb($rfgehpghen_sbezhynevb);
 #+end_src
 
-* Calculadora simple
+* Calculadora simple (5 puntos)
 Se creará un fichero =calculadora.php=.
 - Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
   - =+=, =-=, =%=, =/=, =*=
@@ -182,6 +182,7 @@ Se creará un fichero =calculadora.php=.
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
 - *No deben aparcer errores ni avisos de PHP*. Hay que tener en cuenta que se ejecutarán con opciones de /debug/, como =display_errors= a =true=
   - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
+  - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota  
 - Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en Apache del alumno
 
 
@@ -231,3 +232,29 @@ include("formulario.php");
 :END:
 Esta práctica contribuye a la calificación de los siguientes RA:
 - RA 5: 4.5%
+
+* URLS a probar :noexport:
+
+
+https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/practica01
+
+
+
