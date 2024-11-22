@@ -277,10 +277,12 @@ expdp \'sys/alumno@localhost:1521/orclpdb1 as sysdba\' DIRECTORY=datos DUMPFILE=
 #+end_src
 
 ** Conectar sin contraseña como =SYS= a PDB en local
-- Se usa la variable =ORACLE_PDB_SID=
+- Se usa la variable =ORACLE_PDB_SID=, junto con =ORACLE_SID_=
 - Por lo que sea, no funciona con =sqlplus=  
 #+begin_src bash
-ORACLE_PDB_SID=pdasir expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
+export ORACLE_SID=ORCL
+export ORACLE_PDB_SID=pdasir
+expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 #+end_src
 
 
