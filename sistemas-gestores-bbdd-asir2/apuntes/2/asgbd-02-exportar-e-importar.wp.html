@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-11-14 jue 11:20 -->
+<!-- 2024-11-22 vie 14:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -557,11 +557,13 @@ Valid keyword values are: IMMEDIATE.
 <h3 id="org0000009"><span class="section-number-3">1.4.</span> Conectar sin contraseña como <code>SYS</code> a PDB en local</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li>Se usa la variable <code>ORACLE_PDB_SID</code></li>
+<li>Se usa la variable <code>ORACLE_PDB_SID</code>, junto con <code>ORACLE_SID_</code></li>
 <li>Por lo que sea, no funciona con <code>sqlplus</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #ff6347;">ORACLE_PDB_SID</span>=pdasir expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+<pre class="src src-bash"><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">ORACLE_SID</span>=ORCL
+<span style="color: #729fcf;">export</span> <span style="color: #ff6347;">ORACLE_PDB_SID</span>=pdasir
+expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
 </pre>
 </div>
 </div>
@@ -1190,7 +1192,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-11-14 jue 11:20</p>
+<p class="date">Created: 2024-11-22 vie 14:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
