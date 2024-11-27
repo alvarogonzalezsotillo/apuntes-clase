@@ -12,7 +12,7 @@
 
 
 #+begin_src emacs-lisp :exports results :results raw
-(concat "#+latex: \\attachfile{" (buffer-file-name) "}" )
+(concat "#+latex: \\textattachfile{" (buffer-file-name) "}{} \\vspace{-1em}" )
 #+end_src
 
 
