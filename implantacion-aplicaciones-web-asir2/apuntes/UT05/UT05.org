@@ -1,0 +1,156 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: PHP y SQL
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+
+
+* API, /driver/ y PDO
+- /API/: conjunto de funciones/objetos que permiten conectar a una base de datos SQL
+- PDO: conjunto de funciones que pueden acceder a cualquier base de datos, siempre que haya un /driver/ para ello
+  - El /driver/ adapta una API al PDO
+- Por ser más simple, utilizaremos el [[https://www.php.net/manual/es/book.mysqli.php][API mysqli]]
+
+#+reveal: split
+
+#+begin_src plantuml :file ./media/driver-pdo.png
+@startuml
+
+component [API \npara MySQL] as APIMySQL
+
+component [API \npara Oracle] as APIORACLE
+
+package "PDO Framework" {
+        component [PDO] as PDO
+        component [Driver MySQL para PDO] as DriverPDOMySQL
+        component [Driver Oracle para PDO] as DriverPDOORACLE
+}
+
+
+cloud "Código PHP\npara PDO" as CodigoPDO {
+}
+
+
+cloud "Código PHP\npara MySql" as CodigoMySQL {
+}
+ 
+cloud "Código PHP\npara Oracle" as CodigoORACLE {
+}
+
+database "MySQL" {
+    [Tablas] as TablasMySQL
+}
+
+database "Oracle" {
+    [Tablas] as TablasORACLE
+}
+
+
+CodigoMySQL --> APIMySQL
+APIMySQL --> TablasMySQL
+
+CodigoORACLE --> APIORACLE
+APIORACLE --> TablasORACLE
+
+
+CodigoPDO --> PDO
+
+PDO --> DriverPDOMySQL
+DriverPDOMySQL --> APIMySQL
+
+PDO --> DriverPDOORACLE
+DriverPDOORACLE --> APIORACLE
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:./media/driver-pdo.png]]
+
+
+* =mysqli=: API orientada a objetos o procedimental
+- [[https://www.php.net/manual/es/book.mysqli.php][=mysqli=]] puede usarse de dos formas
+  - Como métodos de un objeto conexión
+  - Como funciones que reciben una conexión  
+- No se recomiena mezlarlas
+
+  #+begin_src php
+// ORIENTADO A OBJETOS
+$conexion = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$conexion->query("DROP TABLE IF EXISTS test");
+
+// PROCEDIMENTAL
+$conexion = mysqli_connect("ejemplo.com", "usuario", "contraseña", "basedatos");
+mysqli_query($conexion,"DROP TABLE IF EXISTS test");
+  #+end_src
+
+* [[https://www.php.net/manual/es/mysqli.quickstart.connections.php][Conexión]]
+- [[https://www.php.net/manual/es/mysqli.construct.php][=mysqli_connect=]]
+  - Utiliza opciones por defecto
+  - Recibe servidor, usuario, contraseña, base de datos y puerto.  
+- [[https://www.php.net/manual/es/mysqli.init.php][=mysqli_init -> mysqli_options -> mysqli_real_connect=]]
+  - Permite la configuración de varios parámetros, como el /timeout/ de la conexión.
+
+* Sentencias
+
+- Cuando se hace una consulta, el servidor lee los ficheros necesarios hasta tener las primeras filas
+  1. El cliente puede requerir todos los datos de una vez, y libera al servidor. Esto puede sobrecargar la memoria del cliente.
+  2. El cliente puede ir pidiendo datos según necesita. El servidor debe mantener datos en memoria.
+
+** Todo en memoria del cliente
+#+begin_src php
+$resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
+
+echo "Orden del conjunto de resultados...\n";
+$resultado->data_seek(0);
+while ($fila = $resultado->fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
+}
+#+end_src
+
+** Como /stream/, sin liberar al servidor
+#+begin_src php
+$mysqli->real_query("SELECT id FROM test ORDER BY id ASC");
+$resultado = $mysqli->use_result();
+
+echo "Orden del conjunto de resultados...\n";
+while ($fila = $resultado->fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
+}
+#+end_src
+
+https://www.php.net/manual/es/mysqli.summary.php
+
+** Sentencias preparadas
+- Las sentencias suelen ser cadenas dinámicas
+  - Los datos a seleccionar/borrar/actualizar dependen de parámetros
+- Existen la tentación de constuir /strings/ con las sentencias
+#+begin_src php
+$id = $_GET["id"];
+$mysqli->query("delete from USUARIOS where id='$id'");
+#+end_src
+
+¿Qué ocurre si =id= es
+#+html: <div style="background-color: yellow;">
+~' or '1'='1' --~
+#+html: </div>
+?
+
+* Transacciones
+#+begin_src php
+$mysqli = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$mysqli->autocommit(false);
+
+$mysqli->query("INSERT INTO test(id) VALUES (1)");
+$mysqli->rollback();
+
+$mysqli->query("INSERT INTO test(id) VALUES (2)");
+$mysqli->commit();
+#+end_src
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+

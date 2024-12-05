@@ -538,6 +538,11 @@ session_destroy(); // esto no destruye $_SESSION
 * Ejercicios
 https://www.w3schools.com/PHP/php_exercises.asp
 
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+
 * Acceso a mysql :noexport:
 https://www.php.net/manual/es/book.mysqli.php
 https://www.php.net/manual/es/mysqli.summary.php
