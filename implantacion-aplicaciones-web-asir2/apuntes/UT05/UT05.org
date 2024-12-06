@@ -233,8 +233,7 @@ https://www.w3schools.com/php/php_mysql_prepared_statements.asp
   - [[https://www.php.net/manual/es/function.date.php][=date=]]: Formatea a texto [[https://en.wikipedia.org/wiki/Unix_time][un tiempo UNIX]]
   - [[https://www.php.net/manual/es/function.time.php][=time=]]: Consigue el tiempo UNIX actual
   - [[https://www.php.net/manual/es/function.strtotime.php][=strtotime=]]: Pasa de texto a tiempo UNIX
-- Precaución: El [[https://www.php.net/manual/en/datetimeimmutable.createfromformat.php
-][timezone]]
+- Precaución: El [[https://www.php.net/manual/en/datetimeimmutable.createfromformat.php][timezone]]
 
 #+begin_src php
 $fecha = date('Y-m-d H:i:s');
