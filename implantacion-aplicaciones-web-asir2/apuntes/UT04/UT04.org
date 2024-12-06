@@ -274,7 +274,28 @@ for( $i = 0 ; $i < 10 ; $i += 1 ){
 ** try
 https://www.php.net/manual/en/language.exceptions.php
 - Solo funciona con =throw=, no con errores generales.
-- Intentaremos no usarlo  
+- Intentaremos no usarlo, excepto con =mysqli=
+#+begin_src php
+<?php
+function inverso($x) {
+    if (!$x) {
+        throw new Exception('División por cero.');
+    }
+    return 1/$x;
+}
+
+try {
+    echo inverso(5) . "\n";
+    echo inverso(0) . "\n";
+}
+catch (Exception $e) {
+    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+}
+finally{
+    echo 'Esto ocurre haya o no haya pasado por catch\n';
+}
+
+#+end_src
 * Funciones
 
 ** Definición y uso

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-11-20 mié 13:30 -->
+<!-- 2024-12-06 vie 18:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -218,6 +218,7 @@
 <li><a href="#org000005e">9. Formularios</a></li>
 <li><a href="#org000006a">10. Sesiones</a></li>
 <li><a href="#org000006d">11. Ejercicios</a></li>
+<li><a href="#org0000070">12. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -697,8 +698,30 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 </p>
 <ul class="org-ul">
 <li>Solo funciona con <code>throw</code>, no con errores generales.</li>
-<li>Intentaremos no usarlo</li>
+<li>Intentaremos no usarlo, excepto con <code>mysqli</code></li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf;">&lt;?php</span>
+<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">inverso</span>($<span style="color: #ff6347;">x</span>) {
+    <span style="color: #729fcf; font-weight: bold;">if</span> (!$<span style="color: #ff6347;">x</span>) {
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">throw</span> <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Exception</span>(<span style="color: #ad7fa8; font-style: italic;">'Divisi&#243;n por cero.'</span>);
+    }
+    <span style="color: #729fcf; font-weight: bold;">return</span> 1/$<span style="color: #ff6347;">x</span>;
+}
+
+<span style="color: #729fcf; font-weight: bold;">try</span> {
+    <span style="color: #729fcf; font-weight: bold;">echo</span> inverso(5) . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+    <span style="color: #729fcf; font-weight: bold;">echo</span> inverso(0) . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+}
+<span style="color: #729fcf; font-weight: bold;">catch</span> (<span style="color: #8ae234; font-weight: bold;">Exception</span> $<span style="color: #ff6347;">e</span>) {
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'Excepci&#243;n capturada: '</span>,  $<span style="color: #ff6347;">e</span>-&gt;getMessage(), <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+}
+<span style="color: #729fcf; font-weight: bold;">finally</span>{
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'Esto ocurre haya o no haya pasado por catch\n'</span>;
+}
+
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1127,10 +1150,32 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </p>
 </div>
 </div>
+
+<div id="outline-container-org0000070" class="outline-2">
+<h2 id="org0000070"><span class="section-number-2">12.</span> Referencias</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>Formatos:
+<ul class="org-ul">
+<li><a href="./UT04.reveal.html">Transparencias</a></li>
+<li><a href="./UT04.pdf">PDF</a></li>
+<li><a href="./UT04.wp.html">Página web</a></li>
+<li><a href="./UT04.epub">EPUB</a></li>
+</ul></li>
+<li>Creado con:
+<ul class="org-ul">
+<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
+<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
+<li><a href="https://www.latex-project.org/">Latex</a></li>
+</ul></li>
+<li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-11-20 mié 13:30</p>
+<p class="date">Created: 2024-12-06 vie 18:24</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

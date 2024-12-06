@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-05 jue 15:09 -->
+<!-- 2024-12-06 vie 19:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y SQL</title>
@@ -209,10 +209,12 @@
 <ul>
 <li><a href="#org0000002">1. API, <i>driver</i> y PDO</a></li>
 <li><a href="#org0000005">2. <code>mysqli</code>: API orientada a objetos o procedimental</a></li>
-<li><a href="#org0000008">3. Conexión</a></li>
-<li><a href="#org0000014">4. Sentencias</a></li>
-<li><a href="#org0000017">5. Transacciones</a></li>
-<li><a href="#org000001a">6. Referencias</a></li>
+<li><a href="#org000000b">3. Conexión</a></li>
+<li><a href="#org0000011">4. Sentencias DDL</a></li>
+<li><a href="#org0000020">5. Sentencias DML</a></li>
+<li><a href="#org0000030">6. Sentencias preparadas</a></li>
+<li><a href="#org0000033">7. Transacciones</a></li>
+<li><a href="#org0000036">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -265,7 +267,7 @@ window.addEventListener("load",()=>{
 
 
 <div id="org0000000" class="figure">
-<p><img src="./media/driver-pdo.png" alt="driver-pdo.png" />
+<p><img src="./media/driver-pdo.svg" alt="driver-pdo.svg" class="org-svg" />
 </p>
 </div>
 </div>
@@ -299,8 +301,8 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 </div>
 </div>
 
-<div id="outline-container-org0000008" class="outline-2">
-<h2 id="org0000008"><span class="section-number-2">3.</span> <a href="https://www.php.net/manual/es/mysqli.quickstart.connections.php">Conexión</a></h2>
+<div id="outline-container-org000000b" class="outline-2">
+<h2 id="org000000b"><span class="section-number-2">3.</span> <a href="https://www.php.net/manual/es/mysqli.quickstart.connections.php">Conexión</a></h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://www.php.net/manual/es/mysqli.construct.php"><code>mysqli_connect</code></a>
@@ -312,25 +314,80 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 <ul class="org-ul">
 <li>Permite la configuración de varios parámetros, como el <i>timeout</i> de la conexión.</li>
 </ul></li>
+<li>Al finalizar, <code>mysqli_close</code></li>
+</ul>
+</div>
+
+<div id="outline-container-org0000008" class="outline-3">
+<h3 id="org0000008"><span class="section-number-3">3.1.</span> Conexiones persistentes</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Cuando el <i>script</i> PHP termina, se cierran todas las conexiones</li>
+<li>Esto puede ser poco eficiente, ya que se debe abrir otra conexión la vez siguiente</li>
+<li>Una <a href="https://www.php.net/manual/es/features.persistent-connections.php">conexión persistente</a> puede ser más eficiente. Cada API tiene su forma de conseguirla
+<ul class="org-ul">
+<li>En <code>mysqli</code>, <a href="https://www.php.net/manual/en/mysqli.persistconns.php">con <code>p:</code> delante del nombre de <i>host</i></a></li>
+</ul></li>
 </ul>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org0000014" class="outline-2">
-<h2 id="org0000014"><span class="section-number-2">4.</span> Sentencias</h2>
+
+<div id="outline-container-org0000011" class="outline-2">
+<h2 id="org0000011"><span class="section-number-2">4.</span> Sentencias DDL</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
-<li>Cuando se hace una consulta, el servidor lee los ficheros necesarios hasta tener las primeras filas
+<li>Con el método <code>query</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-php">$<span style="color: #ff6347;">conn</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">'</span>
+<span style="color: #ad7fa8; font-style: italic;">    create table clientes(</span>
+<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> id int auto_increment primary key,</span>
+<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> nombre varchar(255),</span>
+<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> apellidos varchar(255)</span>
+<span style="color: #ad7fa8; font-style: italic;">    );</span>
+<span style="color: #ad7fa8; font-style: italic;">'</span>);
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org000000e" class="outline-3">
+<h3 id="org000000e"><span class="section-number-3">4.1.</span> Ejercicios</h3>
+<div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
+<li>Crea una tabla como la del ejemplo. Comprueba que se ha creado desde phpMyAdmin o línea de comandos</li>
+<li>Crea un formulario que pregunte por el nombre de tabla, el nombre y el tipo de tres campos. El botón de submit creará esa tabla.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000020" class="outline-2">
+<h2 id="org0000020"><span class="section-number-2">5.</span> Sentencias DML</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://www.php.net/manual/es/mysqli.quickstart.statements.php">Pasos generales</a>
+<ol class="org-ol">
+<li>Lanzar la sentencia
+<ul class="org-ul">
+<li>Sentencia directa</li>
+<li>O bien, sentencia preparada</li>
+</ul></li>
+<li>Recoger los resultados
+<ul class="org-ul">
 <li>El cliente puede requerir todos los datos de una vez, y libera al servidor. Esto puede sobrecargar la memoria del cliente.</li>
 <li>El cliente puede ir pidiendo datos según necesita. El servidor debe mantener datos en memoria.</li>
+</ul></li>
+<li>O procesar el error</li>
 </ol></li>
 </ul>
 </div>
 
-<div id="outline-container-org000000b" class="outline-3">
-<h3 id="org000000b"><span class="section-number-3">4.1.</span> Todo en memoria del cliente</h3>
-<div class="outline-text-3" id="text-4-1">
+
+<div id="outline-container-org0000014" class="outline-3">
+<h3 id="org0000014"><span class="section-number-3">5.1.</span> Todo en memoria del cliente</h3>
+<div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-php">$<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"SELECT id FROM test ORDER BY id ASC"</span>);
 
@@ -344,9 +401,9 @@ $<span style="color: #ff6347;">resultado</span>-&gt;data_seek(0);
 </div>
 </div>
 
-<div id="outline-container-org000000e" class="outline-3">
-<h3 id="org000000e"><span class="section-number-3">4.2.</span> Como <i>stream</i>, sin liberar al servidor</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">5.2.</span> Como <i>stream</i>, sin liberar al servidor</h3>
+<div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-php">$<span style="color: #ff6347;">mysqli</span>-&gt;real_query(<span style="color: #ad7fa8; font-style: italic;">"SELECT id FROM test ORDER BY id ASC"</span>);
 $<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;use_result();
@@ -357,16 +414,62 @@ $<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;"
 }
 </pre>
 </div>
-
-<p>
-<a href="https://www.php.net/manual/es/mysqli.summary.php">https://www.php.net/manual/es/mysqli.summary.php</a>
-</p>
 </div>
 </div>
 
-<div id="outline-container-org0000011" class="outline-3">
-<h3 id="org0000011"><span class="section-number-3">4.3.</span> Sentencias preparadas</h3>
-<div class="outline-text-3" id="text-4-3">
+
+<div id="outline-container-org000001a" class="outline-3">
+<h3 id="org000001a"><span class="section-number-3">5.3.</span> Control de errores</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-php">$<span style="color: #ff6347;">result</span> = $<span style="color: #ff6347;">sql</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"select ..."</span>);
+<span style="color: #729fcf; font-weight: bold;">if</span>($<span style="color: #ff6347;">result</span>) {
+    <span style="color: #888a85;">// </span><span style="color: #888a85;">HA FUNCIONADO</span>
+}
+<span style="color: #729fcf; font-weight: bold;">else</span> {
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"C&#243;digo de error mysql: </span><span style="color: #ff6347;">$sql</span><span style="color: #ad7fa8; font-style: italic;">-&gt;errno"</span>;
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Mensaje de error mysql: </span><span style="color: #ff6347;">$sql</span><span style="color: #ad7fa8; font-style: italic;">-&gt;error"</span>;
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">try</span>{
+    $<span style="color: #ff6347;">sql</span>-&gt;query( <span style="color: #ad7fa8; font-style: italic;">"create ..."</span>);
+    <span style="color: #888a85;">// </span><span style="color: #888a85;">HA FUNCIONADO</span>
+}
+<span style="color: #729fcf; font-weight: bold;">catch</span>(<span style="color: #8ae234; font-weight: bold;">Exception</span> $<span style="color: #ff6347;">error</span>){
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Error SQL con try-catch:"</span> . htmlspecialchars( $<span style="color: #ff6347;">error</span>-&gt;getMessage() ) . <span style="color: #ad7fa8; font-style: italic;">"&lt;br&gt;\n"</span>;
+    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Error num&#233;rico SQL:"</span> . $<span style="color: #ff6347;">conexion</span>-&gt;<span style="color: #ff6347;">errno</span> . <span style="color: #ad7fa8; font-style: italic;">"&lt;br&gt;\n"</span>;
+    <span style="color: #729fcf; font-weight: bold;">foreach</span>( $<span style="color: #ff6347;">conexion</span>-&gt;<span style="color: #ff6347;">error_list</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">error_description</span> ){
+    <span style="color: #6c7f6868233c;"> </span>   var_dump($<span style="color: #ff6347;">error_description</span> );
+    }
+}
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li><a href="https://dev.mysql.com/doc/mysql-errors/8.4/en/">Lista de códigos de error</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org000001d" class="outline-3">
+<h3 id="org000001d"><span class="section-number-3">5.4.</span> Ejercicios</h3>
+<div class="outline-text-3" id="text-5-4">
+<ol class="org-ol">
+<li>Crea una página donde se listen todos los clientes existentes, en forma de tabla.</li>
+<li>Crea un formulario para insertar un nuevo cliente. Tras insertarse, se mostrarán todos los clientes ya insertados.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">6.</span> Sentencias preparadas</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Las sentencias suelen ser cadenas dinámicas
 <ul class="org-ul">
@@ -391,13 +494,120 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7f
 <p>
 ?
 </p>
+
+<p>
+<a href="https://bobby-tables.com/">https://bobby-tables.com/</a>
+</p>
+
+
+<div id="org0000023" class="figure">
+<p><a href="https://xkcd.com/327/"><img src="media/exploits_of_a_mom_2x.png" alt="exploits_of_a_mom_2x.png" /></a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">6.1.</span> <code>prepare</code>, <code>bind</code></h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+<a href="https://www.w3schools.com/php/php_mysql_prepared_statements.asp">https://www.w3schools.com/php/php_mysql_prepared_statements.asp</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-php"> <span style="color: #888a85;">// </span><span style="color: #888a85;">prepare sql and bind parameters</span>
+  $<span style="color: #ff6347;">stmt</span> = $<span style="color: #ff6347;">conn</span>-&gt;prepare(<span style="color: #ad7fa8; font-style: italic;">"</span>
+<span style="color: #ad7fa8; font-style: italic;">    INSERT INTO MyGuests (firstname, lastname, email)</span>
+<span style="color: #ad7fa8; font-style: italic;">    VALUES (?, ?, ?)"</span>
+  );
+  stmt-&gt;bind_param(<span style="color: #ad7fa8; font-style: italic;">"sss"</span>, $<span style="color: #ff6347;">firstname</span>, $<span style="color: #ff6347;">lastname</span>, $<span style="color: #ff6347;">email</span>);
+
+  $<span style="color: #ff6347;">firstname</span> = <span style="color: #ad7fa8; font-style: italic;">"John"</span>;
+  $<span style="color: #ff6347;">lastname</span> = <span style="color: #ad7fa8; font-style: italic;">"Doe"</span>;
+  $<span style="color: #ff6347;">email</span> = <span style="color: #ad7fa8; font-style: italic;">"john@example.com"</span>;
+  $<span style="color: #ff6347;">stmt</span>-&gt;execute();
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0000017" class="outline-2">
-<h2 id="org0000017"><span class="section-number-2">5.</span> Transacciones</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">6.2.</span> Tipos de datos</h3>
+<div class="outline-text-3" id="text-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><code>i</code></td>
+<td class="org-left">integer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">double</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left">string</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>b</code></td>
+<td class="org-left">BLOB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">6.3.</span> ¿Y las fechas?</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>Como cadenas
+<ul class="org-ul">
+<li><a href="https://www.php.net/manual/es/function.date.php"><code>date</code></a>: Formatea a texto <a href="https://en.wikipedia.org/wiki/Unix_time">un tiempo UNIX</a></li>
+<li><a href="https://www.php.net/manual/es/function.time.php"><code>time</code></a>: Consigue el tiempo UNIX actual</li>
+<li><a href="https://www.php.net/manual/es/function.strtotime.php"><code>strtotime</code></a>: Pasa de texto a tiempo UNIX</li>
+</ul></li>
+<li>Precaución: El [[<a href="https://www.php.net/manual/en/datetimeimmutable.createfromformat.php">https://www.php.net/manual/en/datetimeimmutable.createfromformat.php</a></li>
+</ul>
+<p>
+][timezone]]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-php">$<span style="color: #ff6347;">fecha</span> = date(<span style="color: #ad7fa8; font-style: italic;">'Y-m-d H:i:s'</span>);
+<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">fecha</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+$<span style="color: #ff6347;">unix_time</span> = time();
+<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">unix_time</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+$<span style="color: #ff6347;">str</span> = strtotime(<span style="color: #ad7fa8; font-style: italic;">'2024-12-06 19:14:40'</span>);
+<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">str</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">6.4.</span> Ejercicios</h3>
+<div class="outline-text-3" id="text-6-4">
+<ol class="org-ol">
+<li>Crea un formulario para insertar un nuevo cliente. Tras insertarse, se mostrará el <a href="https://www.php.net/manual/es/mysqli.insert-id.php">nuevo identificador creado</a></li>
+<li>Añade un campo <code>fecha_de_alta</code> al cliente. Inclúyelo en los listados y las inserciones.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000033" class="outline-2">
+<h2 id="org0000033"><span class="section-number-2">7.</span> Transacciones</h2>
+<div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-php">$<span style="color: #ff6347;">mysqli</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">mysqli</span>(<span style="color: #ad7fa8; font-style: italic;">"ejemplo.com"</span>, <span style="color: #ad7fa8; font-style: italic;">"usuario"</span>, <span style="color: #ad7fa8; font-style: italic;">"contrase&#241;a"</span>, <span style="color: #ad7fa8; font-style: italic;">"basedatos"</span>);
 $<span style="color: #ff6347;">mysqli</span>-&gt;autocommit(<span style="color: #8ae234;">false</span>);
@@ -413,9 +623,9 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;commit();
 </div>
 
 
-<div id="outline-container-org000001a" class="outline-2">
-<h2 id="org000001a"><span class="section-number-2">6.</span> Referencias</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">8.</span> Referencias</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -437,7 +647,7 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;commit();
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-05 jue 15:09</p>
+<p class="date">Created: 2024-12-06 vie 19:26</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
