@@ -260,6 +260,9 @@ $mysqli->query("INSERT INTO test(id) VALUES (2)");
 $mysqli->commit();
 #+end_src
 
+* Sobre todo...
+No hay que desesperar
+[[file:media/por-que-a-mi.png]]
 
 * Referencias
 #+include: "../../../common/footer.org"
