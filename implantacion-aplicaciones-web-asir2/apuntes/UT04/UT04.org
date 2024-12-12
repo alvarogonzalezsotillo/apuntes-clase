@@ -1,0 +1,612 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: PHP y HTTP
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+
+* Repositorio de ejemplos
+
+https://alvarogonzalezsotillo@gitlab.com/alvarogonzalezsotillo/apuntes-clase-ejemplos-php.git
+
+
+* Variables
+https://www.php.net/manual/es/language.variables.basics.php
+
+- Precedidas de =$=
+- Comienzan por una letra, o =_=
+- Después, números, letras y =_=    
+
+** <<tiposdevariables>>Tipos de variables
+  :PROPERTIES:
+  :CUSTOM_ID: tiposdevariables
+  :END:
+
+https://www.php.net/manual/es/language.types.php
+
+
+    - Tipos simples (escalares):
+      - bool type
+      - int type
+      - float type
+      - string type:  https://www.php.net/manual/es/language.operators.string.php
+
+    - Otros tipos (ya los veremos):     
+      - null type
+      - array type
+      - object type
+      - never type
+      - void type
+
+*** Strings
+https://www.php.net/manual/es/language.types.string.php
+- Comillas dobles:
+  - Los caracteres se escapan con =\=
+  - Sustituyen las apariciones de variables por su valor  
+- Comillas simples:
+  - Los caracteres =\= y ='= se escapan con =\=. Todos los demás no se escapan.
+- /Heredoc/ y /nowdoc/:
+  - Cadenas delimitadas por una cadena arbitraria
+  - /nowdoc/ es como /heredoc/ sin interpretar variables
+
+#+reveal: split
+|            | *Secuencias de escape de cadenas*                              |
+|------------+----------------------------------------------------------------|
+| ~\n~       | avance de línea (LF o 0x0A (10) en ASCII)                      |
+| ~\r~       | retorno de carro (CR o 0x0D (13) en ASCII)                     |
+| ~\t~       | tabulador horizontal (HT o 0x09 (9) en ASCII)                  |
+| ~\v~       | tabulador vertical (VT o 0x0B (11) en ASCII) (desde PHP 5.2.5) |
+| ~\e~       | escape (ESC o 0x1B (27) en ASCII) (desde PHP 5.4.4)            |
+| ~\f~       | avance de página (FF o 0x0C (12) en ASCII) (desde PHP 5.2.5)   |
+| ~\\~       | barra invertida                                                |
+| ~\$~       | signo de dólar                                                 |
+| ~\"~       | comillas dobles                                                |
+| ~\999~     | Caracter en octal                                              |
+| ~\xFF~     | caracter hexadecimal                                           |
+| ~\u{FFFF}~ | Caracter unicode                                               |
+
+
+#+reveal: split
+
+#+caption: /heredoc/
+#+begin_src php
+$nombre = "María";
+echo <<<EOT
+Mi nombre es "$nombre".
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
+#+end_src
+
+#+caption: /nowdoc/
+#+begin_src php
+$nombre = "María";
+echo <<<'EOT'
+Mi nombre es "$nombre".
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
+#+end_src
+
+
+
+
+** Constantes
+https://www.php.net/manual/es/language.constants.php
+
+https://www.php.net/manual/es/reserved.constants.php
+
+- Definición: =define(NOMBRE, valor)=
+- No se puede cambiar posteriormente su valor  
+- Se utilizan como variables, sin =$=
+- También con la función =constant(NOMBRE)=
+  
+
+* Estructuras de control
+https://www.php.net/manual/es/language.control-structures.php
+** If
+#+begin_src php
+if( CONDICION ){
+    SI ES CIERTO
+}
+else{
+    SI ES FALSO
+}
+#+end_src
+
+Ejercicio: si la multiplicación de dos variables es mayor de 50, muestra el resultado con fondo rojo. Si no, el fondo será transparente
+** While
+
+#+begin_src php
+while(CONDICION){
+    SENTENCIAS QUE SE REPITEN
+    DEBERIA CAMBIARSE LA CONDICION    
+}
+#+end_src
+Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se diga en dos variables
+
+** solución :noexport:
+#+begin_src php
+<style>
+    td > * {
+        max-width: 50px;
+        min-width: 50px;
+        max-height: 50px;
+        min-height: 50px;
+    }
+    .par{
+        background: green;
+    }
+    .impar{
+        background: lightgoldenrodyellow;
+    }
+</style>
+<table>
+<?php
+$columnas = 8;
+$filas = 8;
+
+$fila = 1;
+while ($fila <= $filas) {
+    echo "<tr>\n";
+    $columna = 1;
+    while ($columna <= $columnas) {
+        if( ($columna+$fila) % 2 == 0 ){
+            $clase = "par";
+        }
+        else{
+            $clase = "impar";
+        }
+
+        echo "<td class=$clase><div>&nbsp;</div></td>";
+        $columna += 1;
+    }
+    echo "</tr>\n";
+    $fila += 1;
+}
+?>
+</table>
+#+end_src
+
+
+** for
+
+#+begin_src php
+for (EXPR1; EXPR2; EXPR3){
+    SENTENCIA
+}
+#+end_src
+
+Es equivalente a un bucle =while=
+
+#+begin_src php
+EXPR1;
+while (EXPR2){
+    SENTENCIA
+    EXPR3
+}
+#+end_src
+
+
+Ejercicio: Muestra todas las imágenes de https://www.glerl.noaa.gov/data/ice/max_anim/png, desde 1973 a 2024.
+
+Ejercicio: Muestra todas las imágenes de https://jareksastro.org/astro/, desde m0 a m23.
+
+** <<arrays>>foreach
+  :PROPERTIES:
+  :CUSTOM_ID: arrays
+  :END:
+
+- [[https://www.php.net/manual/es/language.types.array.php][/Arrays/]] 
+  - Colección de valores con un nombre (clave o índice)
+  - Cada posición del /array/ tiene un valor
+  - La posición puede ser numérica, o un /string/
+  - Son parecidos a los objetos de Javascript  
+
+#+begin_src php
+$array = [
+    "foo" => "bar",
+    "bar" => "foo",
+];
+$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
+];
+#+end_src
+    
+#+reveal: split
+
+- Se pueden recorrer los valores de un /array/
+  - visitando solo los valores
+  - con los índices (claves) y los valores  
+
+#+begin_src php
+$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
+];
+foreach($alumnos as $alumno){
+    print( "Alumno: $alumno" )
+}
+foreach($alumnos as $posicion => $alumno){
+    print( "Alumno $posicion: $alumno" )
+}
+#+end_src
+
+#+reveal:split
+
+Ejercicio: muestra las siguientes imágenes de https://astro.uni-bonn.de/~ithies/images/Planet_Formation_Illustrated/PNG/ en una página web:
+| =annulus1.png=   | =annulus2.png=   | =ejection1.png=  | =ejection2.png=  |
+| =ejection3.png=  | =encounter1.png= | =encounter2.png= | =formation1.png= |
+| =formation2.png= | =formation3.png= | =formation4.png= | =formation5.png= |
+| =formation6.png= | =formation7.png= | =formation8.png= | =formation9.png= |
+| =inclined1.png=  | =inclined2.png=  | =inclined3.png=  | =inclined4.png=  |
+| =kozai1.png=     | =kozai2.png=     | =kozai3.png=     | =rmleffect1.png= |
+| =rmleffect2.png= | =system1.png=    | =system2.png=    |                  |
+
+
+** =continue=
+- Dentro de un bucle, ignora el resto de órdenes y vuelve al principio
+
+#+begin_src php
+for( $i = 0 ; $i < 10 ; $i += 1 ){
+    if( $i % 3 != 0 ){
+        continue;
+    }
+    echo( "$i es múltiplo de 3\n");
+}
+#+end_src
+
+
+
+** =include=, =require=
+- Añaden a un fichero PHP el contenido de otro fichero PHP, antes de ejecutarlo
+- Útil para
+  - Funciones y variables comunes a varias páginas
+  - Partes comunes entre páginas: Cabecera, pie, menús...  
+- =include=: Si el fichero no existe, provoca un /warning/
+- =require=: Si el fichero no existe, provoca un error
+- =include_once=, =require_once=: Si ya ha sido incluido, no se vuelve a incluir   
+
+
+** try
+https://www.php.net/manual/en/language.exceptions.php
+- Solo funciona con =throw=, no con errores generales.
+- Intentaremos no usarlo, excepto con =mysqli=
+#+begin_src php
+<?php
+function inverso($x) {
+    if (!$x) {
+        throw new Exception('División por cero.');
+    }
+    return 1/$x;
+}
+
+try {
+    echo inverso(5) . "\n";
+    echo inverso(0) . "\n";
+}
+catch (Exception $e) {
+    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+}
+finally{
+    echo 'Esto ocurre haya o no haya pasado por catch\n';
+}
+
+#+end_src
+* Funciones
+
+** Definición y uso
+https://www.php.net/manual/es/language.functions.php
+
+#+begin_src php
+
+<?php
+function foo($arg_1, $arg_2, /* ..., */ $arg_n)
+{
+    echo "Función de ejemplo.\n";
+    return $valor_devuelto;
+}
+?>
+#+end_src
+
+** Ámbito de variables
+https://www.php.net/manual/es/language.variables.scope.php
+
+- Global: variables definidas fuera de las funciones
+- Local: variables definidas en funciones
+
+#+begin_src php
+$a = 3; // GLOBAL
+
+function fun1(){
+    echo $a; // ERROR, VARIABLE NO DEFINIDA
+}
+
+function fun2(){
+    global $a;
+    echo $a; // IMPRIME 3
+}
+
+function fun3(){
+    $a = 4
+    echo $a; // IMPRIME 4
+    echo $GLOBALS["a""]; // IMPRIME 3
+}
+#+end_src
+
+Nota: para =$GLOBALS= ver [[#variablespredefinidas][Variables predefinidas]]
+
+** Ejercicio
+- =es_capicua=
+- =es_primo=
+- Encuentra un primo mayor de 1000000 utilizando las funciones anteriores
+
+** Parámetros por referencia/valor
+- Un parámetro por valor *copia* su valor para la función, tanto para [[#tiposdevariables][escalares]] como para [[#arrays][/arrays/]]
+- Un parámetro por referencia usa la misma variable dentro de la función
+
+
+#+begin_src php
+function incrementa($variable, $valor){
+    $variable += $valor;
+}
+
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 3
+#+end_src
+
+#+begin_src php
+function incrementa(&$variable, $valor){
+    $variable += $valor;
+}
+
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 7
+#+end_src
+
+*** Objetos
+- Los objetos se pasan siempre por referencia
+#+begin_src php
+class Persona {
+    public $nombre;
+
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+}
+
+function cambiarNombre($persona) {
+    $persona->nombre = "Carlos";
+}
+
+$persona1 = new Persona("Ana");
+cambiarNombre($persona1);
+
+echo $persona1->nombre; // Imprime "Carlos", no "Ana"
+#+end_src
+
+#+RESULTS:
+: Carlos
+
+* Funciones predefinidas
+| =phpinfo=                |
+| =htmlspecialchars=       |
+| =parse_url=              |
+| [[https://www.php.net/manual/es/ref.strings.php][=explode, explode=]]       |
+| [[https://www.php.net/manual/es/ref.strings.php][=strpos, substr, trim=]]   |
+| [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper]]= |
+| [[https://www.php.net/manual/es/function.filter-var.php][=filter_var]]=             |
+
+
+
+* Entorno de desarrollo
+- Depuración en VSCode:
+  - Instalar =php-xdebug=
+  - Instalar alguna extensión en VSCode (F5)
+- Trazas:  
+  - =var_dump=
+  - =error_reporting=
+  - =isset=
+  - =is_numeric, is_array, is_nan=
+  - Opciones =php.ini=:
+    - =display_errors=
+    - =display_startup_errors=
+    - =log_errors=
+
+** Extensiones VSCode      
+[[file:media/extensiones-vscode-para-php.png]]      
+
+
+
+* HTTP
+https://developer.mozilla.org/es/docs/Web/HTTP
+
+** URL
+
+#+begin_src php
+
+<?php
+$url = 'http://username:password@hostname:9090/path?arg=value#anchor';
+
+var_dump(parse_url($url));
+var_dump(parse_url($url, PHP_URL_SCHEME));
+var_dump(parse_url($url, PHP_URL_USER));
+var_dump(parse_url($url, PHP_URL_PASS));
+var_dump(parse_url($url, PHP_URL_HOST));
+var_dump(parse_url($url, PHP_URL_PORT));
+var_dump(parse_url($url, PHP_URL_PATH));
+var_dump(parse_url($url, PHP_URL_QUERY));
+var_dump(parse_url($url, PHP_URL_FRAGMENT));
+?>
+#+end_src
+
+
+** /Cookies/
+- Las [[https://developer.mozilla.org/es/docs/Web/HTTP/Cookies][/cookies]]/ son cadenas que el servidor envía al navegador
+  - Cabecera [[https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Set-Cookie][Set-Cookie]]
+- El navegador guarda, y envía en las siguientes peticiones al servidor
+  - Cabecera [[https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Cookie][Cookie]]
+- El valor de la /cookie/ no suelen ser datos
+  - Es un identificador con el que el servidor accede a una base de datos
+  - En esa base de datos están los datos reales asociados a la /cookie/  
+
+** Diagrama
+
+#+BEGIN_SRC plantuml :file ./media/diagrama-cookies.png
+@startuml
+
+group Petición inicial
+Browser -> Servidor: Petición inicial
+Servidor -> Servidor: Crea un nuevo valor de cookie
+Servidor -> Browser: Set-Cookie en la respuesta HTTP
+Browser -> Browser: Guarda el valor de la cookie
+end
+
+group Siguiente petición
+Browser -> Servidor: Petición con Cookie
+Servidor -> Servidor: Consulta información relativa a cookie
+Servidor -> Browser: Página adaptada al valor dela cookie
+end
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:./media/diagrama-cookies.png]]
+
+** Uso de /cookies/ en php
+- Funcion [[https://www.php.net/manual/es/function.setcookie.php][=setcookie()=]]
+- Variable =$_COOKIE=
+
+*** Ejercicio
+- Crea una página PHP que almacene una /cookie/ en el navegador
+  - Nombre: =ejercicio-cookies=
+  - Valor: La marca de tiempo de la petición de la página (ver [[https://www.php.net/manual/en/function.getdate.php][=getdate()=]] o [[https://www.php.net/manual/en/function.date.php][=date()=]])
+- La página, si recibe la /cookie/, mostrará la marca de tiempo del acceso anterior, y la marca de tiempo actual      
+
+* <<variablespredefinidas>>Variables predefinidas
+  :PROPERTIES:
+  :CUSTOM_ID: variablespredefinidas
+  :END:
+
+https://www.php.net/manual/es/language.variables.predefined.php
+
+#+begin_example
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+#+end_example
+
+
+* Formularios
+** En HTML
+
+** En PHP
+https://www.php.net/manual/es/tutorial.forms.php
+https://www.php.net/manual/es/language.variables.external.php
+
+* Sesiones
+
+https://www.php.net/manual/es/book.session.php
+https://www.php.net/manual/es/session.examples.basic.php
+
+** Uso básico
+- La variable =$_SESSION= es un /array/ con valores, que pueden pasarse de una página a otra
+- =session_start()= se basa en /cookies/ y ficheros en el servidor
+  - Se puede usar también [[https://www.php.net/manual/es/session.idpassing.php][el parámetro =SID=]] en vez de /cookies/
+  - Se puede [[https://www.php.net/manual/es/session.customhandler.php][cambiar el almacenamiento de sessiones]], por defecto en [[https://www.php.net/manual/es/session.configuration.php#ini.session.save-path][=session.save_path=]]
+
+
+#+begin_src php
+session_start();
+if (!isset($_SESSION['count'])) {
+  $_SESSION['count'] = 0;
+} else {
+  $_SESSION['count']++;
+}
+#+end_src
+
+#+begin_src php
+session_start();
+unset($_SESSION['count']);
+#+end_src
+
+#+begin_src php
+session_start();
+session_destroy(); // esto no destruye $_SESSION
+#+end_src
+
+** Ejercicio: Contador de visitas
+- Haz una página que cada vez que sea visitada, incremente el número de visitas
+- Cada visitante tiene su propio número de visitas
+
+** Ejercicio: ventana de /login/
+- Crea un formulario de /login/
+- Si la contraseña es un número impar, es correcta
+- Si el usuario ya ha entrado, no se muestra el formulario de /login/, sino su nombre y la contraseña que introdujo. También habrá un botón de /logout/, para salir de la sesión
+
+* Ejercicios
+https://www.w3schools.com/PHP/php_exercises.asp
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+
+* Acceso a mysql :noexport:
+https://www.php.net/manual/es/book.mysqli.php
+https://www.php.net/manual/es/mysqli.summary.php
+
+** Conectar
+https://www.php.net/manual/es/mysqli.quickstart.connections.php
+
+** Query
+Todo en memoria
+#+begin_src php
+$resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
+
+echo "Orden del conjunto de resultados...\n";
+$resultado->data_seek(0);
+while ($fila = $resultado->fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
+}
+#+end_src
+
+Como /stream/
+#+begin_src php
+echo "Orden inverso...\n";
+for ($num_fila = $resultado->num_rows - 1; $num_fila >= 0; $num_fila--) {
+    $resultado->data_seek($num_fila);
+    $fila = $resultado->fetch_assoc();
+    echo " id = " . $fila['id'] . "\n";
+}
+
+$mysqli->close();
+#+end_src
+
+** Transacciones
+#+begin_src php
+$mysqli = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$mysqli->autocommit(false);
+
+$mysqli->query("INSERT INTO test(id) VALUES (1)");
+$mysqli->rollback();
+
+$mysqli->query("INSERT INTO test(id) VALUES (2)");
+$mysqli->commit();
+#+end_src
+
+
+
+

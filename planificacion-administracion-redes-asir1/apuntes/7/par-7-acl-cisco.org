@@ -172,7 +172,7 @@ access-list 10 deny 192.168.1.0 0.0.0.255
 
 Ejemplo: Prohíbe el tráfico hacia la red =172.16.0.0/12=
 #+begin_src sh
-access-list 101 deny ip any 172.16.0.0 0.0.15.255
+access-list 101 deny ip any 172.16.0.0 0.15.255.255
 #+end_src
 
 
@@ -200,7 +200,7 @@ access-list 101 permit tcp 172.16.3.0 0.0.0.255 eq 21 172.16.1.0 0.0.0.255
 
 Ejemplo: Permite la comunicación *TCP* hacia la red =10.0.0.0/8= si ya se ha establecido conexión (la red =10.0.0.0/8= es la que tiene el cliente)
 #+begin_src sh
-access-list 102 permit tcp any 10.0.0.0 0.0.0.255 established
+access-list 102 permit tcp any 10.0.0.0 0.255.255.255 established
 #+end_src
 
 

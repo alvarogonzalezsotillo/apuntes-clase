@@ -33,7 +33,7 @@
 #+LATEX_HEADER_EXTRA: \renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
 
 # ADJUNTOS
-#+latex_header: \usepackage{attachfile}
+#+latex_header: \usepackage{attachfile2}
 
 # IGNORO LAS NOTES DE REVEAL EN PDF
 #+LATEX_HEADER_EXTRA: \usepackage{comment}

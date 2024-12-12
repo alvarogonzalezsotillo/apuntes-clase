@@ -276,7 +276,38 @@ GRANT READ, WRITE ON DIRECTORY mi_directorio_de_backup TO usuario;
 expdp \'sys/alumno@localhost:1521/orclpdb1 as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 #+end_src
 
-** Conectar sin contraseña :noexport:
+** Conectar sin contraseña como =SYS= a PDB en local
+- Se usa la variable =ORACLE_PDB_SID=, junto con =ORACLE_SID_=
+- Por lo que sea, no funciona con =sqlplus=  
+#+begin_src bash
+export ORACLE_SID=ORCL
+export ORACLE_PDB_SID=pdasir
+expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
+#+end_src
+
+
+** Conectar sin contraseña en /connection string/
+- Si se usa un /connection string/ con servidor, SID y/o puerto es *obligatorio* poner la contraseña
+- Para evitarlo, se puede usar un nombre de servicio de Oracle  
+  - Hay que crear una entrada en =$ORACLE_HOME/network/admin/tnsnames.ora=
+  - Este fichero es equivalente a =/etc/hosts= para comandos de Oracle  
+
+#+begin_src lisp
+PDB_PDASIR =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVICE_NAME = pdasir)
+    )
+  )
+#+end_src
+
+#+begin_src bash
+expdp \'sys@pdasir as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
+#+end_src
+
+
+*** bibliografía                                                  :noexport:
 https://logic.edchen.org/how-to-expdp-as-sysdba/
 https://logic.edchen.org/how-to-expdp-pdb-as-sysdba-without-password/
 

@@ -11,7 +11,9 @@
 #+LATEX_HEADER: \rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
 
 
-
+#+begin_src emacs-lisp :exports results :results raw
+(concat "#+latex: \\textattachfile{" (buffer-file-name) "}{} \\vspace{-1em}" )
+#+end_src
 
 
 #+begin_export latex
@@ -45,4 +47,19 @@
     \vspace{-0.2cm}
   \end{cuadrito}
 }
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
 #+end_export

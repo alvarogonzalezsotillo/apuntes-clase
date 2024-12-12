@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-03-08 vie 12:39 -->
+<!-- 2024-09-08 dom 17:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
@@ -982,13 +982,13 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 <div class="outline-text-3" id="text-5-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SELECT</span> s.inst_id,
-    <span style="color: #7ae074741f52;"> </span>  s.sid,
-    <span style="color: #7ae074741f52;"> </span>  s.serial#,
-    <span style="color: #7ae074741f52;"> </span>  p.spid,
-    <span style="color: #7ae074741f52;"> </span>  s.username,
-    <span style="color: #7ae074741f52;"> </span>  s.program
+    <span style="color: #8e0d84841a1a;"> </span>  s.sid,
+    <span style="color: #8e0d84841a1a;"> </span>  s.serial#,
+    <span style="color: #8e0d84841a1a;"> </span>  p.spid,
+    <span style="color: #8e0d84841a1a;"> </span>  s.username,
+    <span style="color: #8e0d84841a1a;"> </span>  s.program
 <span style="color: #729fcf; font-weight: bold;">FROM</span>   gv_$<span style="color: #729fcf; font-weight: bold;">session</span> s
-    <span style="color: #7ae074741f52;"> </span>  <span style="color: #729fcf; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #729fcf; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #729fcf; font-weight: bold;">AND</span> p.inst_id = s.inst_id
+    <span style="color: #8e0d84841a1a;"> </span>  <span style="color: #729fcf; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #729fcf; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #729fcf; font-weight: bold;">AND</span> p.inst_id = s.inst_id
 <span style="color: #729fcf; font-weight: bold;">WHERE</span>  s.<span style="color: #729fcf; font-weight: bold;">type</span> != <span style="color: #ad7fa8; font-style: italic;">'BACKGROUND'</span>;
 </pre>
 </div>
@@ -1047,7 +1047,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-03-08 vie 12:39</p>
+<p class="date">Created: 2024-09-08 dom 17:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

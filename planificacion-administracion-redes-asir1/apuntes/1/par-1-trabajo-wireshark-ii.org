@@ -27,7 +27,7 @@ La última versión de este documento está disponible en [[https://alvarogonzal
   
   - Monitoriza la red durante uno o dos minutos y determina qué tramas de las recibidas son de /broadcast/.
   - Haz una lista de las pilas de protocolos (desde nivel de enlace hasta nivel de aplicación) que viajan sobre tramas de /broadcast/, e incluye al menos 3 pantallazos de estas pilas como ejemplo.
-  - ¿Para qué se utilizan esos protocolos de nivel de aplicación?
+  - ¿Para qué se utilizan esos protocolos encontrados de nivel superior?
 
 #+latex: \begin{adjustwidth}{2cm}{2cm}
 #+latex: \begin{Aviso}[Pila de protocolos]
@@ -101,3 +101,6 @@ https://en.wikipedia.org/wiki/IEEE_802.3
   
 - La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
   
+* Resultados de aprendizaje
+Esta práctica contribuye a la calificación de los siguientes RA:
+- RA 1: 10%

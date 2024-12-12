@@ -435,6 +435,8 @@ Fuente: [[https://comunication2011jeff.wordpress.com/2011/01/27/multiplexacion/]
 #+attr_latex: :width 0.6\textwidth
 [[file:media/distorsion.png]]
 
+(comprobar en https://alvarogonzalezsotillo.github.io/fft/)
+
 ** Interferencia
 - Suma a la señal que se transmite de otra señal de origen conocido.
   - Otras señales transmitidas en canales cercanos

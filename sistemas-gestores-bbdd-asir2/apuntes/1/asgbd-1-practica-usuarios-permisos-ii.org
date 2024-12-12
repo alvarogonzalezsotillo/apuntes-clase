@@ -30,22 +30,25 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 
   Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el profesor. La contraseña inicial será la misma que el nombre (mayúsculas), excepto en tu usuario que debería ser una contraseña secreta:
 #+latex:  \begin{multicols}{3}
-    - RUBENAVILA3   
-    - JORGEBAS      
-    - DOMINIKCISLO  
-    - JESUSCUEVAS4  
-    - DAVIDCZARNECKI
-    - EMMANUELFERNAN
-    - NOELIAFERNANDE
-    - JOSELOPEZ16   
-    - JESUSMUNOZ7   
-    - MIGUELMUYO    
-    - HUGOPABLO     
-    - CREINA        
-    - ALEJANDRORIVIL
-    - IRUBIOMARTIN  
-    - ALVAROVICENTE1
-    - ALVAROGONZALEZ
+- ADRIANALVAREZ10    
+- EDUARDOANTON1      
+- AGARCIA190         
+- ALEJANDROJIMENEZ34 
+- ISMAELMACARENO     
+- IVANMARIN1         
+- PABLONUNEZ16       
+- AROAPEREZ2         
+- PABLORAMO          
+- JORGERAMOS6        
+- MIGUELREYES1       
+- JOSEROJAS12        
+- OSKARSAJEK         
+- ALVAROSANCHEZ308   
+- ANDREASANTOSESTEBAN
+- FERNANDOVAQUERIZO  
+- ALVAROVICENTE1     
+- VERONICAVILLASECA  
+- ALVAROGONZALEZ
 #+latex:  \end{multicols}
   *Nota*: Son muchos usuarios, así que es aconsejable utilizar un /script/ en vez de crearlos manualmente.
 
@@ -72,26 +75,27 @@ La última versión de este documento está accesible en [[https://alvarogonzale
   Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
   - Haz que el resto de usuarios pueda realizar =SELECT= sobre tus tablas. (20%)
   - Crea sinónimos en todos los usuarios para que puedan acceder a tus tablas sin problemas (20%)
-    - Por ejemplo, el usuario =profesor= debería poder ejecutar =SELECT * FROM CIRCUITOS=, puesto que habrás creado un sinónimo del tipo =CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS=.
+    - Por ejemplo, el usuario =alvarogonzalez= debería poder ejecutar =SELECT * FROM CIRCUITOS=, puesto que habrás creado un sinónimo del tipo =CREATE PUBLIC SYNONYM CIRCUITOS FOR MIUSUARIO.CIRCUITOS=.
 
  #+latex: \begin{Aviso}
-Son muchos usuarios. Agrúpalos de algún modo. (40%)
+Son muchos alumnos. Agrúpalos de algún modo. (40%)
  #+latex: \end{Aviso}
       
   Después, haz que puedan escribir en un campo de la tabla =RESULTADOS=:
   - Crea un nuevo campo en la tabla =RESULTADOS=: =VALORACION=, de tipo =VARCHAR(20)=.
-  - Da permisos al resto de usuarios para poder leer y actualizar este campo, con una orden =GRANT= (20%)
+  - Da permisos al resto de alumnos para poder leer y actualizar este campo, con una orden =GRANT= (20%)
   - Pide a algún otro compañero que compruebe que funciona
   - Pide al profesor que compruebe que funciona.
 
     
-* (0.5 puntos) =PROFESOR= con permisos especiales 
+* =PROFESOR= con permisos especiales 
   Haz un usuario =PROFESOR= con contraseña =PROFESOR= que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema
     - =DBA_COL_PRIVS=
     - =DBA_DATA_FILES=
     - =DBA_ROLES=
     - =DBA_ROLE_PRIVS=
     - =DBA_SYNONYMS=
+    - =DBA_SYS_PRIVS=
     - =DBA_TAB_COLS=
     - =DBA_TAB_PRIVS=
     - =DBA_TABLES= 

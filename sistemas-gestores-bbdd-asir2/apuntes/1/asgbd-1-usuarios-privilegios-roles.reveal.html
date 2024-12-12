@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-04-16 mar 11:43</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-10-31 jue 08:51</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -669,22 +669,6 @@ Más en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statemen
 <li>Inserta datos en la tabla hasta conseguir el error <code>ORA-01653</code></li>
 
 </ul>
-
-<aside class="notes">
-<p>
-create table datos(valor varchar(2048)) tablespace ejemplo<sub>tablespace</sub>;  
-begin
-    for j in 1..1 loop
-        for i in 1..1000 loop
-            insert into datos values( 'datos ' || i );
-        end loop;
-        commit;
-    end loop;
-end;
-/
-</p>
-
-</aside>
 <div class="slide-footer"></div>
 
 </section>
@@ -702,13 +686,6 @@ end;
 <li>Cambiar una tabla de tablespace: <code>ALTER TABLE ... MOVE TABLESPACE</code></li>
 
 </ul>
-
-<aside class="notes">
-<p>
-ALTER TABLE &lt;TABLE NAME to be moved&gt; MOVE TABLESPACE &lt;destination TABLESPACE NAME&gt;
-</p>
-
-</aside>
 <div class="slide-footer"></div>
 
 </section>
@@ -741,87 +718,6 @@ ALTER TABLE &lt;TABLE NAME to be moved&gt; MOVE TABLESPACE &lt;destination TABLE
 <li>Vuelve a llenar la tabla hasta que se llene <code>PRUEBA2</code></li>
 
 </ol>
-
-<aside class="notes">
-<p>
-create tablespace PRUEBA1
-  DATAFILE
-  '/tablespaces/prueba1.dbf'  SIZE 10M
-  AUTOEXTEND ON  NEXT 1M  MAXSIZE 20M;
-</p>
-
-<p>
-ALTER DATABASE DEFAULT TABLESPACE prueba1;
-</p>
-
-<p>
-alter session set "<sub>oracle</sub><sub>script</sub>"=true;
-</p>
-
-<p>
-create user usuarioprueba1 identified by a;
-grant connect,resource to usuarioprueba1;
-alter user usuarioprueba1 quota unlimited on prueba1;
-</p>
-
-<p>
-connect usuarioprueba1/a
-create table misdatos(datos varchar(255));
-</p>
-
-<p>
-select * from dba<sub>tables</sub> where tABLE<sub>NAME</sub>='MISDATOS';
-</p>
-
-<p>
-alter session set current<sub>schema</sub>=prueba1;
-</p>
-
-<p>
-BEGIN
-  LOOP
-     insert into misdatos values('hola);
-     commit;
-  end loop;
-</p>
-
-<p>
-END;
-/
-</p>
-
-<p>
-create tablespace PRUEBA2
-  DATAFILE
-  '/tablespaces/prueba2.dbf'  SIZE 30M;
-</p>
-
-
-<p>
-alter user usuarioprueba1 quota unlimited on prueba2;
-</p>
-
-<p>
-connect usuarioprueba1/a
-alter table misdatos move tablespace prueba2;
-</p>
-
-<p>
-begin
-  LOOP
-     for i in 1 .. 10 loop
-       insert into misdatos values('hola');
-     end loop;
-     commit;
-  end loop;
-</p>
-
-<p>
-END;
-/
-</p>
-
-</aside>
 <div class="slide-footer"></div>
 
 </section>
@@ -880,7 +776,7 @@ END;
 <g id="edge6" class="edge">
 <title>Segment&#45;&#45;Tablespace</title>
 <path fill="none" stroke="black" d="M450.89,-14.96C429.4,-13.43 402.24,-11.76 378,-11 335.06,-9.66 286.17,-11.98 251.25,-14.3"/>
-<text text-anchor="middle" x="351" y="-14" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;n</text>
+<text text-anchor="middle" x="351" y="-14" font-family="Courier,monospace" font-size="10.00">1 &#160;&#160;&#160;N</text>
 </g>
 <!-- Extent -->
 <g id="node5" class="node">
@@ -990,26 +886,6 @@ A database's data is collectively stored in the datafiles that constitute each t
 <li>Al instalarlo, elegimos que el grupo <code>wheel</code> era administrador</li>
 
 </ul>
-
-<aside class="notes">
-<p>
-SQL&gt; SHOW PARAMETER os<sub>authent</sub><sub>prefix</sub>
-</p>
-
-<p>
-NAME                                 TYPE        VALUE
--------------------------------&#x2013;&#x2014; ------&#x2013;&#x2014; -------------------------&#x2013;&#x2014;
-os<sub>authent</sub><sub>prefix</sub>                    string      ops$
-SQL&gt;
-</p>
-
-<p>
-&#x2013; UNIX
-CREATE USER ops$tim<sub>hall</sub> IDENTIFIED EXTERNALLY;
-GRANT CREATE SESSION TO ops$tim<sub>hall</sub>;
-</p>
-
-</aside>
 <div class="slide-footer"></div>
 
 </section>
@@ -1244,15 +1120,15 @@ revoke select on unatabla from unusuario;
 <ul>
 <li>No se aplican sobre tablas/objetos concretos
 <ul>
-<li><code>CREATE ANY TABLE</code>, <code>CREATE_ANY_VIEW</code>,&#x2026;</li>
+<li><code>CREATE ANY TABLE</code>, <code>CREATE ANY VIEW</code>,&#x2026;</li>
 <li><code>CREATE SESSION</code>, <code>CREATE SYNONYM</code>,..</li>
 <li><code>UNLIMITED TABLESPACE</code>, <code>SYSDBA</code>,&#x2026;</li>
-<li></li>
 
 </ul></li>
 
 </ul>
 <div class="slide-footer"></div>
+
 </section>
 </section>
 <section>
@@ -1365,7 +1241,18 @@ select * from session_privs;
 
 </section>
 <section id="slide-5-5">
-<h3 id="5-5"><span class="section-number-3">5.5.</span> Consulta recursivas</h3>
+<h3 id="5-5"><span class="section-number-3">5.5.</span> Consultas recursivas</h3>
+<ul>
+<li><code>start with</code>: Primeras filas seleccionadas de la tabla</li>
+<li><code>connect by</code>:
+<ul>
+<li><code>prior</code>: Hace referencia a la columna de la fila <i>previamente ya seleccionada</i></li>
+<li>Columna sin <code>prior</code>: Hace referencia a la columna de la fila actual</li>
+
+</ul></li>
+
+</ul>
+
 <div class="org-src-container">
 
 <pre><code class="sql" >select * from dba_role_privs connect by prior granted_role = grantee start with grantee = '&amp;USER' order by 1,2,3;
@@ -1381,8 +1268,11 @@ select * from dba_tab_privs  where grantee = '&amp;USER' or grantee in (
 order by 1,2,3,4;
 </code></pre>
 </div>
-<div class="slide-footer"></div>
 
+<p>
+Ver <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html"><code>connect by prior</code></a>
+</p>
+<div class="slide-footer"></div>
 </section>
 </section>
 <section>

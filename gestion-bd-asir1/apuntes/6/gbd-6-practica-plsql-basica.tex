@@ -52,7 +52,7 @@ Una compañía necesita automatizar su almacén
 \end{homeworkProblem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{homeworkProblem}[: \imenu{Procedimiento para crear un producto} (2 puntos)]
+\begin{homeworkProblem}[: \imenu{Procedimiento para crear un producto (2 puntos)} ]
   Crea un procedimiento de nombre \texttt{CREAR\_PRODUCTO} (listado \ref{lst:crear-producto}), que inserte un nuevo producto en la base de datos.  El identificador de los productos podrá basarse en la secuencia \texttt{SECUENCIA\_PRODUCTO\_ID}, o usar otro método.
 
   \begin{listadosql}{Creación del procedimiento \texttt{CREAR\_PRODUCTO}}{lst:crear-producto}
@@ -81,7 +81,7 @@ end;
 \end{homeworkProblem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{homeworkProblem}[: \imenu{Entrada y salida de productos} (3 puntos)]
+\begin{homeworkProblem}[: \imenu{Entrada y salida de productos (3 puntos)}]
 
   \begin{itemize}
   \item Crea un procedimiento \texttt{ENTRADA\_PRODUCTO} que actualice la base de datos cuando llegue un producto.
@@ -131,7 +131,7 @@ end;
 
 \end{homeworkProblem}
 
-\begin{homeworkProblem}[: \imenu{Vista de existencias} (3 puntos)]
+\begin{homeworkProblem}[: \imenu{Vista de existencias (3 puntos)} ]
 
   Crea la vista \texttt{V\_EXISTENCIAS}. En esta vista se listan todos los productos existentes y su stock. Un producto que nunca ha tenido entradas o salidas debe tener un \textit{stock} de cero. Un producto que no se ha comprado nunca a un proveedor tiene un \texttt{ultimopreciocompra} a \texttt{NULL}. Un producto que nunca se ha vendido a un cliente tiene \texttt{ultimoprecioventa} a \texttt{NULL}. Los precios son por unidad de producto.
 
@@ -143,7 +143,7 @@ create or replace view V_EXISTENCIAS(idproducto,existencias,ultimopreciocompra,u
 \end{homeworkProblem}
 
 
-\begin{homeworkProblem}[: \imenu{Función de precio medio de venta} (3 puntos)]
+\begin{homeworkProblem}[: \imenu{Función de precio medio de venta (3 puntos)} ]
 
   Crea la función \texttt{PRECIO\_MEDIO\_VENTA}. Esta función devolverá:
   \begin{itemize}
@@ -164,7 +164,7 @@ as
 \end{homeworkProblem}
 
 
-\begin{homeworkProblem}[: \imenu{Salida del almacén respetando existencias} (2 puntos)]
+\begin{homeworkProblem}[: \imenu{Salida del almacén respetando existencias (2 puntos)} ]
 
   Crea un procedimento \texttt{SALIDA\_PRODUCTO\_CON\_STOCK}. Realizará el mismo proceso que \texttt{SALIDA\_PRODUCTO}, pero en el caso de que no haya existencias suficientes lanzará un error con el mensaje \texttt{Rotura de stock} y número \texttt{-20101}. 
   Si el producto no existe, se lanzará el error \texttt{-20102}.
