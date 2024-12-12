@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-02-13 mar 13:36 -->
+<!-- 2024-12-12 Thu 11:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -282,7 +282,7 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Docker integra diversas capacidades de aislamiento entre procesos que tiene Linux
 <ul class="org-ul">
-<li><a href="https://en.wikipedia.org/wiki/Chroot">chroot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Chroot">chroot</a> (<a href="chroot.sh">ejemplo</a>)</li>
 <li><a href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Linux_namespaces">namespaces</a></li>
 </ul></li>
@@ -294,8 +294,8 @@ window.addEventListener("load",()=>{
 </ul></li>
 <li>Conclusión
 <ul class="org-ul">
-<li><a href="https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/">Se pueden crear containers sin usar Docker</a></li>
-<li>Docker también aisla procesos entre sí</li>
+<li><a href="https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/">Se pueden crear containers sin usar Docker</a> (<a href="https://github.com/p8952/bocker">Bocker</a>)</li>
+<li>Pero Docker es más cómodo</li>
 </ul></li>
 </ul>
 </div>
@@ -442,10 +442,10 @@ window.addEventListener("load",()=>{
 Desinstalar las versiones instaladas con <code>apt-get</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #729fcf; font-weight: bold;">for</span> pkg<span style="color: #729fcf; font-weight: bold;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
-<span style="color: #729fcf; font-weight: bold;">do</span>
-    sudo apt-get remove $<span style="color: #ff6347;">pkg</span>
-<span style="color: #729fcf; font-weight: bold;">done</span>
+<pre class="src src-bash"><span style="color: #a020f0;">for</span> pkg<span style="color: #a020f0;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
+<span style="color: #a020f0;">do</span>
+    sudo apt-get remove $<span style="color: #a0522d;">pkg</span>
+<span style="color: #a020f0;">done</span>
 </pre>
 </div></li>
 <li><p>
@@ -497,9 +497,9 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">  docker run debian <span style="color: #888a85;"># </span><span style="color: #888a85;">crea un container y termina inmediatamente, bash no tiene entrada</span>
-  docker run -it debian <span style="color: #888a85;"># </span><span style="color: #888a85;">crea un container y conecta la consola al programa por defecto </span>
-  docker run debian /bin/bash -c <span style="color: #ad7fa8; font-style: italic;">"echo Un mensaje y termino"</span> 
+<pre class="src src-bash">  docker run debian <span style="color: #b22222;"># </span><span style="color: #b22222;">crea un container y termina inmediatamente, bash no tiene entrada</span>
+  docker run -it debian <span style="color: #b22222;"># </span><span style="color: #b22222;">crea un container y conecta la consola al programa por defecto </span>
+  docker run debian /bin/bash -c <span style="color: #8b2252;">"echo Un mensaje y termino"</span> 
 </pre>
 </div></li>
 </ul>
@@ -511,8 +511,8 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-bash">  docker images
-  docker ps <span style="color: #888a85;"># </span><span style="color: #888a85;">containers en ejecucion</span>
-  docker ps -a <span style="color: #888a85;"># </span><span style="color: #888a85;">todos los containers</span>
+  docker ps <span style="color: #b22222;"># </span><span style="color: #b22222;">containers en ejecucion</span>
+  docker ps -a <span style="color: #b22222;"># </span><span style="color: #b22222;">todos los containers</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -551,7 +551,7 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 Equivalente a un <code>mount --bind</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -it --mount <span style="color: #ff6347;">type</span>=bind,<span style="color: #ff6347;">src</span>=<span style="color: #ad7fa8; font-style: italic;">"$(pwd)"</span>,<span style="color: #ff6347;">target</span>=/src debian bash
+<pre class="src src-bash">  docker run -it --mount <span style="color: #a0522d;">type</span>=bind,<span style="color: #a0522d;">src</span>=<span style="color: #8b2252;">"$(pwd)"</span>,<span style="color: #a0522d;">target</span>=/src debian bash
 </pre>
 </div></li>
 </ul>
@@ -574,7 +574,7 @@ Pueden ser
 <li>directorios del <i>file system</i></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #ff6347;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
+<pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #a0522d;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
 </pre>
 </div>
 <ul class="org-ul">
@@ -695,7 +695,7 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <div class="org-src-container">
 <pre class="src src-javascript">{
-    <span style="color: #ad7fa8; font-style: italic;">"insecure-registries"</span>:[<span style="color: #ad7fa8; font-style: italic;">"10.1.33.201:8090"</span>]
+    <span style="color: #8b2252;">"insecure-registries"</span>:[<span style="color: #8b2252;">"10.1.33.201:8090"</span>]
 }
 </pre>
 </div>
@@ -731,10 +731,10 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <div class="org-src-container">
 <pre class="src src-bash">docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #ad7fa8; font-style: italic;">\</span>
-  --name portainer <span style="color: #ad7fa8; font-style: italic;">\</span>
-  --restart=always <span style="color: #ad7fa8; font-style: italic;">\</span>
-  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #ad7fa8; font-style: italic;">\</span>
+docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #8b2252;">\</span>
+  --name portainer <span style="color: #8b2252;">\</span>
+  --restart=always <span style="color: #8b2252;">\</span>
+  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #8b2252;">\</span>
   -v portainer_data:/data portainer/portainer-ce:latest
 </pre>
 </div>
@@ -834,6 +834,7 @@ Parameters:
 <ul class="org-ul">
 <li><a href="./asgbd-1-docker.reveal.html">Transparencias</a></li>
 <li><a href="./asgbd-1-docker.pdf">PDF</a></li>
+<li><a href="./asgbd-1-docker.wp.html">Página web</a></li>
 <li><a href="./asgbd-1-docker.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
@@ -844,12 +845,16 @@ Parameters:
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
+
+<p>
+<a href="https://plataforma.josedomingo.org/pledin/cursos/docker2024/">https://plataforma.josedomingo.org/pledin/cursos/docker2024/</a>
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-02-13 mar 13:36</p>
+<p class="date">Created: 2024-12-12 Thu 11:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
