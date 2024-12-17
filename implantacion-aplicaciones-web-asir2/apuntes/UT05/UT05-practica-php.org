@@ -85,13 +85,22 @@ Crea una página PHP de nombre =editar-mazmorra.php=. Esta página:
   - Cuando se pinche en la mazmorra, se cambiará con /javascript/ el valor de la fila y columna (20%)
   - Cuando se pinche en la paleta, se cambiará con /javascript/ el valor de la tesela (20%)
 - Extra: realizar solo una consulta de base de datos (10%)
+#+latex: \begin{Aviso}[Esta UI no es muy buena]
+Esta forma de edición no es muy amigable, pero es simple. Si quieres hacer otra forma mejor de editar, ¡adelante!
+#+latex: \end{Aviso}
 #+BIND: org-latex-image-default-width "0.1\\linewidth"
 
+|---------+-----------------+---------+-----------------+---------+--------------------|
 | E.png   | [[./tiles/E.png]]   | IT.png  | [[./tiles/IT.png]]  | EIE.png | [[file:tiles/EIE.png]] |
+|---------+-----------------+---------+-----------------+---------+--------------------|
 | EI.png  | [[./tiles/EI.png]]  | T.png   | [[./tiles/T.png]]   | IE.png  | [[./tiles/IE.png]]     |
+|---------+-----------------+---------+-----------------+---------+--------------------|
 | EIT.png | [[./tiles/EIT.png]] | TE.png  | [[./tiles/TE.png]]  | TIT.png | [[./tiles/TIT.png]]    |
+|---------+-----------------+---------+-----------------+---------+--------------------|
 | ET.png  | [[./tiles/ET.png]]  | TI.png  | [[./tiles/TI.png]]  | I.png   | [[./tiles/I.png]]      |
+|---------+-----------------+---------+-----------------+---------+--------------------|
 | ETE.png | [[./tiles/ETE.png]] | TIE.png | [[./tiles/TIE.png]] |         |                    |
+|---------+-----------------+---------+-----------------+---------+--------------------|
 
 
 Leyenda: ~E~: /empty/ ~I~: /interior/ ~T~: /top/
@@ -115,7 +124,9 @@ Crea una página PHP de nombre =restaurar-sesion.php=
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
 - *No deben aparcer errores ni avisos de PHP*. Hay que tener en cuenta que se ejecutarán con opciones de /debug/, como =display_errors= a =true=
   - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
-  - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota  
+  - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota
+- No se tendrán en cuenta:
+  - Errores debidos al reenvío de formularios por duplicado (por recarga de página)    
       
 * Resultados de aprendizaje
 :PROPERTIES:
