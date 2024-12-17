@@ -13,7 +13,7 @@
 
 * Qué es Docker
 - Docker integra diversas capacidades de aislamiento entre procesos que tiene Linux
-  - [[https://en.wikipedia.org/wiki/Chroot][chroot]]
+  - [[https://en.wikipedia.org/wiki/Chroot][chroot]] ([[file:chroot.sh][ejemplo]])
   - [[https://en.wikipedia.org/wiki/Cgroups][cgroups]]
   - [[https://en.wikipedia.org/wiki/Linux_namespaces][namespaces]]
 - Usa además
@@ -21,8 +21,8 @@
   - [[https://linuxconfig.org/introduction-to-the-overlayfs][overlayfs]], para construir containers acumulando /capas/
   - [[https://stackoverflow.com/questions/50282792/how-does-docker-network-work][iptables/netfilter]], para simular tarjetas de red
 - Conclusión
-  - [[https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/][Se pueden crear containers sin usar Docker]]
-  - Docker también aisla procesos entre sí  
+  - [[https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/][Se pueden crear containers sin usar Docker]] ([[https://github.com/p8952/bocker][Bocker]])
+  - Pero Docker es más cómodo  
     
 * Máquina virtual /vs/ Docker
 
