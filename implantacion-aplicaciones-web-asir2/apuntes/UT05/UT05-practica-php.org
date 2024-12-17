@@ -126,7 +126,8 @@ Crea una página PHP de nombre =restaurar-sesion.php=
   - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
   - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota
 - No se tendrán en cuenta:
-  - Errores debidos al reenvío de formularios por duplicado (por recarga de página)    
+  - Errores debidos al reenvío de formularios por duplicado (por recarga de página)
+  - Errores debidos a parámetros cambiados a mano para teselas/mazmorras que no existen  
       
 * Resultados de aprendizaje
 :PROPERTIES:
