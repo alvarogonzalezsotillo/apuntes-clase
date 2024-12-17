@@ -131,11 +131,21 @@ $conn->query('
 #+begin_src php
 $resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
 
-echo "Orden del conjunto de resultados...\n";
 $resultado->data_seek(0);
 while ($fila = $resultado->fetch_assoc()) {
     echo " id = " . $fila['id'] . "\n";
 }
+#+end_src
+
+** Todo en memoria del cliente, en un array
+#+begin_src php
+$resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
+
+$filas = $mysqli->fetch_all(MYSQLI_ASSOC);
+foreach ($filas as $fila) {
+    echo " id = " . $fila['id'] . "\n";
+}
+
 #+end_src
 
 ** Como /stream/, sin liberar al servidor
@@ -143,7 +153,6 @@ while ($fila = $resultado->fetch_assoc()) {
 $mysqli->real_query("SELECT id FROM test ORDER BY id ASC");
 $resultado = $mysqli->use_result();
 
-echo "Orden del conjunto de resultados...\n";
 while ($fila = $resultado->fetch_assoc()) {
     echo " id = " . $fila['id'] . "\n";
 }
