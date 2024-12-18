@@ -425,6 +425,7 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 
 * HTTP
 https://developer.mozilla.org/es/docs/Web/HTTP
+https://datatracker.ietf.org/doc/html/rfc2616
 
 ** URL
 
@@ -488,6 +489,19 @@ end
   - Nombre: =ejercicio-cookies=
   - Valor: La marca de tiempo de la petición de la página (ver [[https://www.php.net/manual/en/function.getdate.php][=getdate()=]] o [[https://www.php.net/manual/en/function.date.php][=date()=]])
 - La página, si recibe la /cookie/, mostrará la marca de tiempo del acceso anterior, y la marca de tiempo actual      
+
+** [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers][/headers/]]
+- Tanto cliente como servidor pueden enviar cabeceras en la petición/respuesta
+  - Por ejemplo, las /cookies/ son una cabecera de la petición
+- [[https://www.php.net/manual/en/function.getallheaders.php][=getallheaders()=]]: consigue todas las cabeceras enviadas por el cliente
+  - [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields][Cabeceras comunes en las peticiones]]: =Accept=, =Cache-Control=, =Content-Enconding=...
+- [[https://www.php.net/manual/en/function.header.php][=header()=]]: Envía una cabecera en la respuesta HTTP
+  - [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields][Cabeceras comunes en las respuestas]]: =Content-Type=, =Location=, =Transfer-Encoding=...
+
+*** Ejercicio
+- Crea una página web PHP que reenvíe a [[https://www.google.com]] utilizando una cabecera =Location=
+- Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando =Content-Type=
+- Investiga qué cabeceras se utilizan para continuar un /download/ de un fichero grande, después de una interrupción.  
 
 * <<variablespredefinidas>>Variables predefinidas
   :PROPERTIES:

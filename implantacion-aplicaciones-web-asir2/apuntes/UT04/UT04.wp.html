@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-06 vie 18:24 -->
+<!-- 2024-12-18 mié 17:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -213,12 +213,12 @@
 <li><a href="#org0000034">4. Funciones</a></li>
 <li><a href="#org0000037">5. Funciones predefinidas</a></li>
 <li><a href="#org000003e">6. Entorno de desarrollo</a></li>
-<li><a href="#org0000052">7. HTTP</a></li>
+<li><a href="#org0000058">7. HTTP</a></li>
 <li><a href="#variablespredefinidas">8. Variables predefinidas</a></li>
-<li><a href="#org000005e">9. Formularios</a></li>
-<li><a href="#org000006a">10. Sesiones</a></li>
-<li><a href="#org000006d">11. Ejercicios</a></li>
-<li><a href="#org0000070">12. Referencias</a></li>
+<li><a href="#org0000064">9. Formularios</a></li>
+<li><a href="#org0000070">10. Sesiones</a></li>
+<li><a href="#org0000073">11. Ejercicios</a></li>
+<li><a href="#org0000076">12. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -944,11 +944,12 @@ cambiarNombre($<span style="color: #ff6347;">persona1</span>);
 
 
 
-<div id="outline-container-org0000052" class="outline-2">
-<h2 id="org0000052"><span class="section-number-2">7.</span> HTTP</h2>
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">7.</span> HTTP</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
+<a href="https://datatracker.ietf.org/doc/html/rfc2616">https://datatracker.ietf.org/doc/html/rfc2616</a>
 </p>
 </div>
 
@@ -1031,16 +1032,47 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">7.5.</span> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"><i>headers</i></a></h3>
+<div class="outline-text-3" id="text-7-5">
+<ul class="org-ul">
+<li>Tanto cliente como servidor pueden enviar cabeceras en la petición/respuesta
+<ul class="org-ul">
+<li>Por ejemplo, las <i>cookies</i> son una cabecera de la petición</li>
+</ul></li>
+<li><a href="https://www.php.net/manual/en/function.getallheaders.php"><code>getallheaders()</code></a>: consigue todas las cabeceras enviadas por el cliente
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">Cabeceras comunes en las peticiones</a>: <code>Accept</code>, <code>Cache-Control</code>, <code>Content-Enconding</code>&#x2026;</li>
+</ul></li>
+<li><a href="https://www.php.net/manual/en/function.header.php"><code>header()</code></a>: Envía una cabecera en la respuesta HTTP
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields">Cabeceras comunes en las respuestas</a>: <code>Content-Type</code>, <code>Location</code>, <code>Transfer-Encoding</code>&#x2026;</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org0000052" class="outline-4">
+<h4 id="org0000052"><span class="section-number-4">7.5.1.</span> Ejercicio</h4>
+<div class="outline-text-4" id="text-7-5-1">
+<ul class="org-ul">
+<li>Crea una página web PHP que reenvíe a <a href="https://www.google.com">https://www.google.com</a> utilizando una cabecera <code>Location</code></li>
+<li>Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando <code>Content-Type</code></li>
+<li>Investiga qué cabeceras se utilizan para continuar un <i>download</i> de un fichero grande, después de una interrupción.</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 
 <div id="outline-container-variablespredefinidas" class="outline-2">
-<h2 id="variablespredefinidas"><span class="section-number-2">8.</span> <a id="org0000056"></a>Variables predefinidas</h2>
+<h2 id="variablespredefinidas"><span class="section-number-2">8.</span> <a id="org000005c"></a>Variables predefinidas</h2>
 <div class="outline-text-2" id="text-variablespredefinidas">
 <p>
 <a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
 </p>
 
-<pre class="example" id="org0000055">
+<pre class="example" id="org000005b">
 $GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
 $_SERVER — Información del entorno del servidor y de ejecución
 $_GET — Variables HTTP GET
@@ -1055,16 +1087,16 @@ $_COOKIE — Cookies HTTP
 </div>
 
 
-<div id="outline-container-org000005e" class="outline-2">
-<h2 id="org000005e"><span class="section-number-2">9.</span> Formularios</h2>
+<div id="outline-container-org0000064" class="outline-2">
+<h2 id="org0000064"><span class="section-number-2">9.</span> Formularios</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org0000058" class="outline-3">
-<h3 id="org0000058"><span class="section-number-3">9.1.</span> En HTML</h3>
+<div id="outline-container-org000005e" class="outline-3">
+<h3 id="org000005e"><span class="section-number-3">9.1.</span> En HTML</h3>
 </div>
 
-<div id="outline-container-org000005b" class="outline-3">
-<h3 id="org000005b"><span class="section-number-3">9.2.</span> En PHP</h3>
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">9.2.</span> En PHP</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 <a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
@@ -1074,8 +1106,8 @@ $_COOKIE — Cookies HTTP
 </div>
 </div>
 
-<div id="outline-container-org000006a" class="outline-2">
-<h2 id="org000006a"><span class="section-number-2">10.</span> Sesiones</h2>
+<div id="outline-container-org0000070" class="outline-2">
+<h2 id="org0000070"><span class="section-number-2">10.</span> Sesiones</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 <a href="https://www.php.net/manual/es/book.session.php">https://www.php.net/manual/es/book.session.php</a>
@@ -1083,8 +1115,8 @@ $_COOKIE — Cookies HTTP
 </p>
 </div>
 
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">10.1.</span> Uso básico</h3>
+<div id="outline-container-org0000067" class="outline-3">
+<h3 id="org0000067"><span class="section-number-3">10.1.</span> Uso básico</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
@@ -1120,8 +1152,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
+<div id="outline-container-org000006a" class="outline-3">
+<h3 id="org000006a"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
 <div class="outline-text-3" id="text-10-2">
 <ul class="org-ul">
 <li>Haz una página que cada vez que sea visitada, incremente el número de visitas</li>
@@ -1130,8 +1162,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000067" class="outline-3">
-<h3 id="org0000067"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
+<div id="outline-container-org000006d" class="outline-3">
+<h3 id="org000006d"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
 <div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li>Crea un formulario de <i>login</i></li>
@@ -1142,8 +1174,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org000006d" class="outline-2">
-<h2 id="org000006d"><span class="section-number-2">11.</span> Ejercicios</h2>
+<div id="outline-container-org0000073" class="outline-2">
+<h2 id="org0000073"><span class="section-number-2">11.</span> Ejercicios</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
@@ -1151,8 +1183,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000070" class="outline-2">
-<h2 id="org0000070"><span class="section-number-2">12.</span> Referencias</h2>
+<div id="outline-container-org0000076" class="outline-2">
+<h2 id="org0000076"><span class="section-number-2">12.</span> Referencias</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Formatos:
@@ -1175,7 +1207,7 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-06 vie 18:24</p>
+<p class="date">Created: 2024-12-18 mié 17:32</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
