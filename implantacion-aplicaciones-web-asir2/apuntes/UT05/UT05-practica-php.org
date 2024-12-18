@@ -118,6 +118,8 @@ Crea una página PHP de nombre =restaurar-sesion.php=
 :UNNUMBERED: t
 :END:
 - El código estará en el directorio =~/public-html/practica02/= del /workspace/ de Coder del alumno
+  - El profesor copiará las páginas a su propio LAMP para corregir la práctica
+  - El profesor se encargará de cambiar los datos de acceso a MySQL. Las páginas deberán crear las tablas que necesiten, si no no se podrá corregir la práctica.
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Todos los formularios serán *GET*
   - Si no se pueden ver los parámetros en la URL, el ejercicio no tendrá más del 50% de la nota  
