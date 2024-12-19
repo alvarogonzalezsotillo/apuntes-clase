@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-18 mié 17:32 -->
+<!-- 2024-12-19 jue 17:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -215,10 +215,10 @@
 <li><a href="#org000003e">6. Entorno de desarrollo</a></li>
 <li><a href="#org0000058">7. HTTP</a></li>
 <li><a href="#variablespredefinidas">8. Variables predefinidas</a></li>
-<li><a href="#org0000064">9. Formularios</a></li>
-<li><a href="#org0000070">10. Sesiones</a></li>
-<li><a href="#org0000073">11. Ejercicios</a></li>
-<li><a href="#org0000076">12. Referencias</a></li>
+<li><a href="#org0000067">9. Formularios</a></li>
+<li><a href="#org0000073">10. Sesiones</a></li>
+<li><a href="#org0000076">11. Ejercicios</a></li>
+<li><a href="#org0000079">12. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -949,7 +949,6 @@ cambiarNombre($<span style="color: #ff6347;">persona1</span>);
 <div class="outline-text-2" id="text-7">
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
-<a href="https://datatracker.ietf.org/doc/html/rfc2616">https://datatracker.ietf.org/doc/html/rfc2616</a>
 </p>
 </div>
 
@@ -1087,27 +1086,60 @@ $_COOKIE — Cookies HTTP
 </div>
 
 
-<div id="outline-container-org0000064" class="outline-2">
-<h2 id="org0000064"><span class="section-number-2">9.</span> Formularios</h2>
+<div id="outline-container-org0000067" class="outline-2">
+<h2 id="org0000067"><span class="section-number-2">9.</span> Formularios</h2>
 <div class="outline-text-2" id="text-9">
 </div>
 <div id="outline-container-org000005e" class="outline-3">
 <h3 id="org000005e"><span class="section-number-3">9.1.</span> En HTML</h3>
+<div class="outline-text-3" id="text-9-1">
+<ul class="org-ul">
+<li>Vistos el año pasado en Lenguajes de marcas</li>
+<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">9.2.</span> En PHP</h3>
+<div id="outline-container-org0000064" class="outline-3">
+<h3 id="org0000064"><span class="section-number-3">9.2.</span> En PHP</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 <a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
 <a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
 </p>
+<ul class="org-ul">
+<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
+<ul class="org-ul">
+<li><code>$_POST</code></li>
+<li><code>$_GET</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org0000061" class="outline-4">
+<h4 id="org0000061"><span class="section-number-4">9.2.1.</span> Ficheros en formularios</h4>
+<div class="outline-text-4" id="text-9-2-1">
+<ul class="org-ul">
+<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
+<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
+<ul class="org-ul">
+<li><code>file_uploads</code></li>
+<li><code>upload_max_filesize</code></li>
+<li><code>upload_tmp_dir</code></li>
+<li><code>post_max_size</code></li>
+<li><code>max_input_time</code></li>
+</ul></li>
+<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0000070" class="outline-2">
-<h2 id="org0000070"><span class="section-number-2">10.</span> Sesiones</h2>
+<div id="outline-container-org0000073" class="outline-2">
+<h2 id="org0000073"><span class="section-number-2">10.</span> Sesiones</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 <a href="https://www.php.net/manual/es/book.session.php">https://www.php.net/manual/es/book.session.php</a>
@@ -1115,13 +1147,14 @@ $_COOKIE — Cookies HTTP
 </p>
 </div>
 
-<div id="outline-container-org0000067" class="outline-3">
-<h3 id="org0000067"><span class="section-number-3">10.1.</span> Uso básico</h3>
+<div id="outline-container-org000006a" class="outline-3">
+<h3 id="org000006a"><span class="section-number-3">10.1.</span> Uso básico</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
 <li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
 <ul class="org-ul">
+<li>La <i>cookie</i> es <code>PHPSESSID</code></li>
 <li>Se puede usar también <a href="https://www.php.net/manual/es/session.idpassing.php">el parámetro <code>SID</code></a> en vez de <i>cookies</i></li>
 <li>Se puede <a href="https://www.php.net/manual/es/session.customhandler.php">cambiar el almacenamiento de sessiones</a>, por defecto en <a href="https://www.php.net/manual/es/session.configuration.php#ini.session.save-path"><code>session.save_path</code></a></li>
 </ul></li>
@@ -1152,8 +1185,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org000006a" class="outline-3">
-<h3 id="org000006a"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
+<div id="outline-container-org000006d" class="outline-3">
+<h3 id="org000006d"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
 <div class="outline-text-3" id="text-10-2">
 <ul class="org-ul">
 <li>Haz una página que cada vez que sea visitada, incremente el número de visitas</li>
@@ -1162,8 +1195,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org000006d" class="outline-3">
-<h3 id="org000006d"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
+<div id="outline-container-org0000070" class="outline-3">
+<h3 id="org0000070"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
 <div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li>Crea un formulario de <i>login</i></li>
@@ -1174,8 +1207,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000073" class="outline-2">
-<h2 id="org0000073"><span class="section-number-2">11.</span> Ejercicios</h2>
+<div id="outline-container-org0000076" class="outline-2">
+<h2 id="org0000076"><span class="section-number-2">11.</span> Ejercicios</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
@@ -1183,8 +1216,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000076" class="outline-2">
-<h2 id="org0000076"><span class="section-number-2">12.</span> Referencias</h2>
+<div id="outline-container-org0000079" class="outline-2">
+<h2 id="org0000079"><span class="section-number-2">12.</span> Referencias</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Formatos:
@@ -1207,7 +1240,7 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-18 mié 17:32</p>
+<p class="date">Created: 2024-12-19 jue 17:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

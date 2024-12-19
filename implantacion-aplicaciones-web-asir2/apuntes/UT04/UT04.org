@@ -425,7 +425,6 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 
 * HTTP
 https://developer.mozilla.org/es/docs/Web/HTTP
-https://datatracker.ietf.org/doc/html/rfc2616
 
 ** URL
 
@@ -502,7 +501,7 @@ end
 - Crea una página web PHP que reenvíe a [[https://www.google.com]] utilizando una cabecera =Location=
 - Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando =Content-Type=
 - Investiga qué cabeceras se utilizan para continuar un /download/ de un fichero grande, después de una interrupción.  
-
+    
 * <<variablespredefinidas>>Variables predefinidas
   :PROPERTIES:
   :CUSTOM_ID: variablespredefinidas
@@ -525,10 +524,27 @@ $_COOKIE — Cookies HTTP
 
 * Formularios
 ** En HTML
+- Vistos el año pasado en Lenguajes de marcas
+- [[https://www.w3schools.com/html/html_forms.asp][Referencia de w3schools]]  
 
 ** En PHP
 https://www.php.net/manual/es/tutorial.forms.php
 https://www.php.net/manual/es/language.variables.external.php
+- Los campos de un formulario llegan como valores en los /arrays/
+  - =$_POST=
+  - =$_GET=
+  - [[https://www.php.net/manual/es/reserved.variables.request.php][=$_REQUEST=]]: reune =$_POST=, =$_GET= y =$_COOKIE=
+  - [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]]: Ficheros subidos por un formulario.
+
+*** Ficheros en formularios
+- El formulario debe tener ~enctype="multipart/form-data"~
+- Se pueden poner límites a los ficheros subidos con los parámetros de =php.ini=
+  - =file_uploads=
+  - =upload_max_filesize=
+  - =upload_tmp_dir=
+  - =post_max_size=
+  - =max_input_time=
+- La variable [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]] contiene los ficheros subidos
 
 * Sesiones
 
@@ -538,6 +554,7 @@ https://www.php.net/manual/es/session.examples.basic.php
 ** Uso básico
 - La variable =$_SESSION= es un /array/ con valores, que pueden pasarse de una página a otra
 - =session_start()= se basa en /cookies/ y ficheros en el servidor
+  - La /cookie/ es =PHPSESSID=
   - Se puede usar también [[https://www.php.net/manual/es/session.idpassing.php][el parámetro =SID=]] en vez de /cookies/
   - Se puede [[https://www.php.net/manual/es/session.customhandler.php][cambiar el almacenamiento de sessiones]], por defecto en [[https://www.php.net/manual/es/session.configuration.php#ini.session.save-path][=session.save_path=]]
 
@@ -575,52 +592,6 @@ https://www.w3schools.com/PHP/php_exercises.asp
 
 * Referencias
 #+include: "../../../common/footer.org"
-
-
-
-* Acceso a mysql :noexport:
-https://www.php.net/manual/es/book.mysqli.php
-https://www.php.net/manual/es/mysqli.summary.php
-
-** Conectar
-https://www.php.net/manual/es/mysqli.quickstart.connections.php
-
-** Query
-Todo en memoria
-#+begin_src php
-$resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
-
-echo "Orden del conjunto de resultados...\n";
-$resultado->data_seek(0);
-while ($fila = $resultado->fetch_assoc()) {
-    echo " id = " . $fila['id'] . "\n";
-}
-#+end_src
-
-Como /stream/
-#+begin_src php
-echo "Orden inverso...\n";
-for ($num_fila = $resultado->num_rows - 1; $num_fila >= 0; $num_fila--) {
-    $resultado->data_seek($num_fila);
-    $fila = $resultado->fetch_assoc();
-    echo " id = " . $fila['id'] . "\n";
-}
-
-$mysqli->close();
-#+end_src
-
-** Transacciones
-#+begin_src php
-$mysqli = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
-$mysqli->autocommit(false);
-
-$mysqli->query("INSERT INTO test(id) VALUES (1)");
-$mysqli->rollback();
-
-$mysqli->query("INSERT INTO test(id) VALUES (2)");
-$mysqli->commit();
-#+end_src
-
 
 
 

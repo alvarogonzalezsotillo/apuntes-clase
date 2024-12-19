@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-12-18 mié 17:32</p>
+<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-12-19 jue 17:04</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1240,7 +1240,6 @@ echo $persona1-&gt;nombre; // Imprime "Carlos", no "Ana"
 <h2 id="7"><span class="section-number-2">7.</span> HTTP</h2>
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
-<a href="https://datatracker.ietf.org/doc/html/rfc2616">https://datatracker.ietf.org/doc/html/rfc2616</a>
 </p>
 <div class="slide-footer"></div>
 
@@ -1394,6 +1393,12 @@ $_COOKIE — Cookies HTTP
 </section>
 <section id="slide-9-1">
 <h3 id="9-1"><span class="section-number-3">9.1.</span> En HTML</h3>
+<ul>
+<li>Vistos el año pasado en Lenguajes de marcas</li>
+<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
+
+</ul>
+<div class="slide-footer"></div>
 
 </section>
 <section id="slide-9-2">
@@ -1402,6 +1407,36 @@ $_COOKIE — Cookies HTTP
 <a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
 <a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
 </p>
+<ul>
+<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
+<ul>
+<li><code>$_POST</code></li>
+<li><code>$_GET</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-9-2-1">
+<h4 id="9-2-1"><span class="section-number-4">9.2.1.</span> Ficheros en formularios</h4>
+<ul>
+<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
+<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
+<ul>
+<li><code>file_uploads</code></li>
+<li><code>upload_max_filesize</code></li>
+<li><code>upload_tmp_dir</code></li>
+<li><code>post_max_size</code></li>
+<li><code>max_input_time</code></li>
+
+</ul></li>
+<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
+
+</ul>
 <div class="slide-footer"></div>
 
 </section>
@@ -1422,6 +1457,7 @@ $_COOKIE — Cookies HTTP
 <li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
 <li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
 <ul>
+<li>La <i>cookie</i> es <code>PHPSESSID</code></li>
 <li>Se puede usar también <a href="https://www.php.net/manual/es/session.idpassing.php">el parámetro <code>SID</code></a> en vez de <i>cookies</i></li>
 <li>Se puede <a href="https://www.php.net/manual/es/session.customhandler.php">cambiar el almacenamiento de sessiones</a>, por defecto en <a href="https://www.php.net/manual/es/session.configuration.php#ini.session.save-path"><code>session.save_path</code></a></li>
 
