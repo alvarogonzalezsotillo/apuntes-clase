@@ -587,6 +587,69 @@ session_destroy(); // esto no destruye $_SESSION
 - Si la contraseña es un número impar, es correcta
 - Si el usuario ya ha entrado, no se muestra el formulario de /login/, sino su nombre y la contraseña que introdujo. También habrá un botón de /logout/, para salir de la sesión
 
+* AJAX/=fetch=
+- El envío de un formulario implica la recarga de la página
+- A veces, es necesario actualizar solo /parte/ de la página
+  1. Se envía una petición al servidor desde /javascript/. La página no se recarga
+  2. /javascript/ recibe la respuesta
+  3. /javascript/ utiliza el DOM o cualquier ora API para reflejar dicha respuesta
+     
+** AJAX
+- Basado en [[https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest][=XMLHttpRequest=]]
+- Es la forma antigua
+  - Basado en /callbacks/
+  - En deshuso
+
+** =fetch=
+- Basado en [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise][Promise]]
+- Integrado con modernas API asíncronas
+
+#+begin_src javascript
+const response = await fetch("https://example.org/post", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },    
+  body: JSON.stringify({ username: "example" }),  
+});
+#+end_src
+
+*** Promesas
+#+begin_src javascript
+            fetch( "./api/endpoint", {
+                method: "POST",
+                body: JSON.stringify({ username:"example", action:"create"} )
+            }).
+            then( response =>{
+                const json = =response.json();
+                // PROCESAR EL JSON DE RESPUESTA
+            }).
+            catch( err => {
+                alert("Error:" + err );
+                console.err(err);
+            });
+
+#+end_src
+
+** JSON en PHP
+- [[https://www.php.net/manual/es/function.json-decode.php][=json_decode()=]]: Convierte una cadena de JSON a un /array/ de PHP.
+- [[https://www.php.net/manual/es/function.json-encode.php][=json_encode()=]]: Convierte un /array/ de PHP a una cadena JSON.
+
+#+begin_src php
+<?php
+$json = file_get_contents('php://input');
+$request = json_decode($json, true);
+
+// PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
+
+header('Content-Type: application/json');
+echo json_encode($response);
+?>
+
+// //
+#+end_src  
+     
+    
 * Ejercicios
 https://www.w3schools.com/PHP/php_exercises.asp
 

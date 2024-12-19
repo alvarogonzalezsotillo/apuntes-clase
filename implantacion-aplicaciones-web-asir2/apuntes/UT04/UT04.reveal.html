@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-12-19 jue 17:04</p>
+<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-12-19 jue 17:25</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -461,8 +461,9 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-variablespredefinidas">8. Variables predefinidas</a></li>
 <li><a href="#/slide-9">9. Formularios</a></li>
 <li><a href="#/slide-10">10. Sesiones</a></li>
-<li><a href="#/slide-11">11. Ejercicios</a></li>
-<li><a href="#/slide-12">12. Referencias</a></li>
+<li><a href="#/slide-11">11. AJAX/=fetch=</a></li>
+<li><a href="#/slide-12">12. Ejercicios</a></li>
+<li><a href="#/slide-13">13. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -1517,7 +1518,111 @@ session_destroy(); // esto no destruye $_SESSION
 </section>
 <section>
 <section id="slide-11">
-<h2 id="11"><span class="section-number-2">11.</span> Ejercicios</h2>
+<h2 id="11"><span class="section-number-2">11.</span> AJAX/=fetch=</h2>
+<ul>
+<li>El envío de un formulario implica la recarga de la página</li>
+<li>A veces, es necesario actualizar solo <i>parte</i> de la página
+<ol>
+<li>Se envía una petición al servidor desde <i>javascript</i>. La página no se recarga</li>
+<li><i>javascript</i> recibe la respuesta</li>
+<li><i>javascript</i> utiliza el DOM o cualquier ora API para reflejar dicha respuesta</li>
+
+</ol></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-11-1">
+<h3 id="11-1"><span class="section-number-3">11.1.</span> AJAX</h3>
+<ul>
+<li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a></li>
+<li>Es la forma antigua
+<ul>
+<li>Basado en <i>callbacks</i></li>
+<li>En deshuso</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-11-2">
+<h3 id="11-2"><span class="section-number-3">11.2.</span> <code>fetch</code></h3>
+<ul>
+<li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li>
+<li>Integrado con modernas API asíncronas</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="javascript" >const response = await fetch("https://example.org/post", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },    
+  body: JSON.stringify({ username: "example" }),  
+});
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-11-2-1">
+<h4 id="11-2-1"><span class="section-number-4">11.2.1.</span> Promesas</h4>
+<div class="org-src-container">
+
+<pre><code class="javascript" >            fetch( "./api/endpoint", {
+                method: "POST",
+                body: JSON.stringify({ username:"example", action:"create"} )
+            }).
+            then( response =&gt;{
+                const json = =response.json();
+                // PROCESAR EL JSON DE RESPUESTA
+            }).
+            catch( err =&gt; {
+                alert("Error:" + err );
+                console.err(err);
+            });
+
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+</section>
+<section id="slide-11-3">
+<h3 id="11-3"><span class="section-number-3">11.3.</span> JSON en PHP</h3>
+<ul>
+<li><a href="https://www.php.net/manual/es/function.json-decode.php"><code>json_decode()</code></a>: Convierte una cadena de JSON a un <i>array</i> de PHP.</li>
+<li><a href="https://www.php.net/manual/es/function.json-encode.php"><code>json_encode()</code></a>: Convierte un <i>array</i> de PHP a una cadena JSON.</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="php" >&lt;?php
+$json = file_get_contents('php://input');
+$request = json_decode($json, true);
+
+// PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
+
+header('Content-Type: application/json');
+echo json_encode($response);
+?&gt;
+
+// //
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-12">
+<h2 id="12"><span class="section-number-2">12.</span> Ejercicios</h2>
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
 </p>
@@ -1526,8 +1631,8 @@ session_destroy(); // esto no destruye $_SESSION
 </section>
 </section>
 <section>
-<section id="slide-12">
-<h2 id="12"><span class="section-number-2">12.</span> Referencias</h2>
+<section id="slide-13">
+<h2 id="13"><span class="section-number-2">13.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>
