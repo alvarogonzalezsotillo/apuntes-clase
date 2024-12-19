@@ -587,7 +587,7 @@ session_destroy(); // esto no destruye $_SESSION
 - Si la contraseña es un número impar, es correcta
 - Si el usuario ya ha entrado, no se muestra el formulario de /login/, sino su nombre y la contraseña que introdujo. También habrá un botón de /logout/, para salir de la sesión
 
-* AJAX/=fetch=
+* AJAX / =fetch=
 - El envío de un formulario implica la recarga de la página
 - A veces, es necesario actualizar solo /parte/ de la página
   1. Se envía una petición al servidor desde /javascript/. La página no se recarga
@@ -616,19 +616,18 @@ const response = await fetch("https://example.org/post", {
 
 *** Promesas
 #+begin_src javascript
-            fetch( "./api/endpoint", {
-                method: "POST",
-                body: JSON.stringify({ username:"example", action:"create"} )
-            }).
-            then( response =>{
-                const json = =response.json();
-                // PROCESAR EL JSON DE RESPUESTA
-            }).
-            catch( err => {
-                alert("Error:" + err );
-                console.err(err);
-            });
-
+fetch( "./api/endpoint", {
+    method: "POST",
+    body: JSON.stringify({ username:"example", action:"create"} )
+}).
+then( response =>{
+    const json = =response.json();
+    // PROCESAR EL JSON DE RESPUESTA
+}).
+catch( err => {
+    alert("Error:" + err );
+    console.err(err);
+});
 #+end_src
 
 ** JSON en PHP
@@ -646,7 +645,6 @@ header('Content-Type: application/json');
 echo json_encode($response);
 ?>
 
-// //
 #+end_src  
      
     

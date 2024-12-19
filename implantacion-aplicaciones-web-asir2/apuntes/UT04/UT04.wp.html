@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-19 jue 17:25 -->
+<!-- 2024-12-19 jue 17:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -217,7 +217,7 @@
 <li><a href="#variablespredefinidas">8. Variables predefinidas</a></li>
 <li><a href="#org0000067">9. Formularios</a></li>
 <li><a href="#org0000073">10. Sesiones</a></li>
-<li><a href="#org0000082">11. AJAX/=fetch=</a></li>
+<li><a href="#org0000082">11. AJAX / <code>fetch</code></a></li>
 <li><a href="#org0000085">12. Ejercicios</a></li>
 <li><a href="#org0000088">13. Referencias</a></li>
 </ul>
@@ -1209,7 +1209,7 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 
 <div id="outline-container-org0000082" class="outline-2">
-<h2 id="org0000082"><span class="section-number-2">11.</span> AJAX/=fetch=</h2>
+<h2 id="org0000082"><span class="section-number-2">11.</span> AJAX / <code>fetch</code></h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>El envío de un formulario implica la recarga de la página</li>
@@ -1260,19 +1260,18 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 <h4 id="org0000079"><span class="section-number-4">11.2.1.</span> Promesas</h4>
 <div class="outline-text-4" id="text-11-2-1">
 <div class="org-src-container">
-<pre class="src src-javascript">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   fetch( <span style="color: #ad7fa8; font-style: italic;">"./api/endpoint"</span>, {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   body: JSON.stringify({ username:<span style="color: #ad7fa8; font-style: italic;">"example"</span>, action:<span style="color: #ad7fa8; font-style: italic;">"create"</span>} )
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   }).
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   then( response =&gt;{
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = =response.json();
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #888a85;">// </span><span style="color: #888a85;">PROCESAR EL JSON DE RESPUESTA</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   }).
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">catch</span>( err =&gt; {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   alert(<span style="color: #ad7fa8; font-style: italic;">"Error:"</span> + err );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   console.err(err);
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   });
-
+<pre class="src src-javascript">fetch( <span style="color: #ad7fa8; font-style: italic;">"./api/endpoint"</span>, {
+    method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
+    body: JSON.stringify({ username:<span style="color: #ad7fa8; font-style: italic;">"example"</span>, action:<span style="color: #ad7fa8; font-style: italic;">"create"</span>} )
+}).
+then( response =&gt;{
+    <span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = =response.json();
+    <span style="color: #888a85;">// </span><span style="color: #888a85;">PROCESAR EL JSON DE RESPUESTA</span>
+}).
+<span style="color: #729fcf; font-weight: bold;">catch</span>( err =&gt; {
+    alert(<span style="color: #ad7fa8; font-style: italic;">"Error:"</span> + err );
+    console.err(err);
+});
 </pre>
 </div>
 </div>
@@ -1298,7 +1297,6 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 <span style="color: #729fcf; font-weight: bold;">echo</span> json_encode($<span style="color: #ff6347;">response</span>);
 <span style="color: #729fcf;">?&gt;</span>
 
-<span style="color: #888a85;">// </span><span style="color: #888a85;">//</span>
 </pre>
 </div>
 </div>
@@ -1339,7 +1337,7 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-19 jue 17:25</p>
+<p class="date">Created: 2024-12-19 jue 17:35</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
