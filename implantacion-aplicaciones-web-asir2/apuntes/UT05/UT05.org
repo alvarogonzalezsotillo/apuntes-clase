@@ -216,6 +216,14 @@ https://bobby-tables.com/
 ** =prepare=, =bind=
 
 https://www.w3schools.com/php/php_mysql_prepared_statements.asp
+- Es la única forma segura de pasar cadenas y números a una sentencia SQL
+  - [[https://www.php.net/manual/en/mysqli.real-escape-string.php][=mysqli_real_escape_string=]] puede tener [[https://stackoverflow.com/a/15786451][problemas]]
+- Pasos:
+  1. Se prepara la sentencia
+  2. Se enlazan los parámetros
+  3. Se ejecuta la query
+  4. En su caso, se recogen resultados
+            
 
 #+begin_src php
  // prepare sql and bind parameters
@@ -223,19 +231,34 @@ https://www.w3schools.com/php/php_mysql_prepared_statements.asp
     INSERT INTO MyGuests (firstname, lastname, email)
     VALUES (?, ?, ?)"
   );
-  stmt->bind_param("sss", $firstname, $lastname, $email);
 
   $firstname = "John";
   $lastname = "Doe";
   $email = "john@example.com";
+  stmt->bind_param("sss", $firstname, $lastname, $email);
   $stmt->execute();
 #+end_src
 
+#+reveal: split
+#+begin_src php
+    $stmt = $conexion->prepare("select firstname, lastname, email
+                                from MyGuests
+                                where email like ?");
+    $stmt->bind_param("s",$filtro_email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        // Igual que con conexion->query()
+        ...
+    }
+#+end_src
+
 ** Tipos de datos
-   | ~i~ | integer |
-   | ~d~ | double  |
-   | ~s~ | string  |
-   | ~b~ | BLOB    |
+   | ~i~ | integer       |
+   | ~d~ | double, float |
+   | ~s~ | string        |
+   | ~b~ | BLOB          |
 
 ** ¿Y las fechas?
 - Como cadenas
