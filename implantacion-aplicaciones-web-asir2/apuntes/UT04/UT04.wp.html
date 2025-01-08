@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-19 jue 17:35 -->
+<!-- 2025-01-08 Wed 13:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -217,9 +217,9 @@
 <li><a href="#variablespredefinidas">8. Variables predefinidas</a></li>
 <li><a href="#org0000067">9. Formularios</a></li>
 <li><a href="#org0000073">10. Sesiones</a></li>
-<li><a href="#org0000082">11. AJAX / <code>fetch</code></a></li>
-<li><a href="#org0000085">12. Ejercicios</a></li>
-<li><a href="#org0000088">13. Referencias</a></li>
+<li><a href="#org0000085">11. AJAX / <code>fetch</code></a></li>
+<li><a href="#org0000088">12. Ejercicios</a></li>
+<li><a href="#org000008b">13. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -1208,8 +1208,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org0000082" class="outline-2">
-<h2 id="org0000082"><span class="section-number-2">11.</span> AJAX / <code>fetch</code></h2>
+<div id="outline-container-org0000085" class="outline-2">
+<h2 id="org0000085"><span class="section-number-2">11.</span> AJAX / <code>fetch</code></h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>El envío de un formulario implica la recarga de la página</li>
@@ -1236,8 +1236,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org000007c" class="outline-3">
-<h3 id="org000007c"><span class="section-number-3">11.2.</span> <code>fetch</code></h3>
+<div id="outline-container-org000007f" class="outline-3">
+<h3 id="org000007f"><span class="section-number-3">11.2.</span> <code>fetch</code></h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li>
@@ -1257,8 +1257,23 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 
 <div id="outline-container-org0000079" class="outline-4">
-<h4 id="org0000079"><span class="section-number-4">11.2.1.</span> Promesas</h4>
+<h4 id="org0000079"><span class="section-number-4">11.2.1.</span> Enviar un formulario</h4>
 <div class="outline-text-4" id="text-11-2-1">
+<div class="org-src-container">
+<pre class="src src-javascript"><span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">form</span> = document.getElementById(<span style="color: #ad7fa8; font-style: italic;">"formulario"</span>);
+<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">formData</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">FormData</span>(form);
+<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">response</span> = fetch( <span style="color: #ad7fa8; font-style: italic;">"./api.php"</span>, {
+    method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
+    body: formData
+})
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000007c" class="outline-4">
+<h4 id="org000007c"><span class="section-number-4">11.2.2.</span> Promesas</h4>
+<div class="outline-text-4" id="text-11-2-2">
 <div class="org-src-container">
 <pre class="src src-javascript">fetch( <span style="color: #ad7fa8; font-style: italic;">"./api/endpoint"</span>, {
     method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
@@ -1278,8 +1293,8 @@ then( response =&gt;{
 </div>
 </div>
 
-<div id="outline-container-org000007f" class="outline-3">
-<h3 id="org000007f"><span class="section-number-3">11.3.</span> JSON en PHP</h3>
+<div id="outline-container-org0000082" class="outline-3">
+<h3 id="org0000082"><span class="section-number-3">11.3.</span> JSON en PHP</h3>
 <div class="outline-text-3" id="text-11-3">
 <ul class="org-ul">
 <li><a href="https://www.php.net/manual/es/function.json-decode.php"><code>json_decode()</code></a>: Convierte una cadena de JSON a un <i>array</i> de PHP.</li>
@@ -1304,8 +1319,8 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 
 
-<div id="outline-container-org0000085" class="outline-2">
-<h2 id="org0000085"><span class="section-number-2">12.</span> Ejercicios</h2>
+<div id="outline-container-org0000088" class="outline-2">
+<h2 id="org0000088"><span class="section-number-2">12.</span> Ejercicios</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
@@ -1313,8 +1328,8 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 </div>
 
-<div id="outline-container-org0000088" class="outline-2">
-<h2 id="org0000088"><span class="section-number-2">13.</span> Referencias</h2>
+<div id="outline-container-org000008b" class="outline-2">
+<h2 id="org000008b"><span class="section-number-2">13.</span> Referencias</h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>Formatos:
@@ -1337,7 +1352,7 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-19 jue 17:35</p>
+<p class="date">Created: 2025-01-08 Wed 13:42</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
