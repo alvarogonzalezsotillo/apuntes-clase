@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-12-12 Thu 11:33 -->
+<!-- 2025-01-09 Thu 11:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -219,7 +219,8 @@
 <li><a href="#org000003c">13. Práctica: Instalar Webmin</a></li>
 <li><a href="#org000003f">14. Práctica: Instalar Portainer</a></li>
 <li><a href="#org0000049">15. Práctica: instalar Oracle</a></li>
-<li><a href="#org000004c">16. Referencias</a></li>
+<li><a href="#org000004c">16. Práctica: instalar con <code>docker compose</code></a></li>
+<li><a href="#org000004f">17. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -442,10 +443,10 @@ window.addEventListener("load",()=>{
 Desinstalar las versiones instaladas con <code>apt-get</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #a020f0;">for</span> pkg<span style="color: #a020f0;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
-<span style="color: #a020f0;">do</span>
-    sudo apt-get remove $<span style="color: #a0522d;">pkg</span>
-<span style="color: #a020f0;">done</span>
+<pre class="src src-bash"><span style="color: #729fcf; font-weight: bold;">for</span> pkg<span style="color: #729fcf; font-weight: bold;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
+<span style="color: #729fcf; font-weight: bold;">do</span>
+    sudo apt-get remove $<span style="color: #ff6347;">pkg</span>
+<span style="color: #729fcf; font-weight: bold;">done</span>
 </pre>
 </div></li>
 <li><p>
@@ -497,9 +498,9 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">  docker run debian <span style="color: #b22222;"># </span><span style="color: #b22222;">crea un container y termina inmediatamente, bash no tiene entrada</span>
-  docker run -it debian <span style="color: #b22222;"># </span><span style="color: #b22222;">crea un container y conecta la consola al programa por defecto </span>
-  docker run debian /bin/bash -c <span style="color: #8b2252;">"echo Un mensaje y termino"</span> 
+<pre class="src src-bash">  docker run debian <span style="color: #888a85;"># </span><span style="color: #888a85;">crea un container y termina inmediatamente, bash no tiene entrada</span>
+  docker run -it debian <span style="color: #888a85;"># </span><span style="color: #888a85;">crea un container y conecta la consola al programa por defecto </span>
+  docker run debian /bin/bash -c <span style="color: #ad7fa8; font-style: italic;">"echo Un mensaje y termino"</span> 
 </pre>
 </div></li>
 </ul>
@@ -511,8 +512,8 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-bash">  docker images
-  docker ps <span style="color: #b22222;"># </span><span style="color: #b22222;">containers en ejecucion</span>
-  docker ps -a <span style="color: #b22222;"># </span><span style="color: #b22222;">todos los containers</span>
+  docker ps <span style="color: #888a85;"># </span><span style="color: #888a85;">containers en ejecucion</span>
+  docker ps -a <span style="color: #888a85;"># </span><span style="color: #888a85;">todos los containers</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -551,7 +552,7 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 Equivalente a un <code>mount --bind</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -it --mount <span style="color: #a0522d;">type</span>=bind,<span style="color: #a0522d;">src</span>=<span style="color: #8b2252;">"$(pwd)"</span>,<span style="color: #a0522d;">target</span>=/src debian bash
+<pre class="src src-bash">  docker run -it --mount <span style="color: #ff6347;">type</span>=bind,<span style="color: #ff6347;">src</span>=<span style="color: #ad7fa8; font-style: italic;">"$(pwd)"</span>,<span style="color: #ff6347;">target</span>=/src debian bash
 </pre>
 </div></li>
 </ul>
@@ -574,7 +575,7 @@ Pueden ser
 <li>directorios del <i>file system</i></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #a0522d;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
+<pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #ff6347;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
 </pre>
 </div>
 <ul class="org-ul">
@@ -695,7 +696,7 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <div class="org-src-container">
 <pre class="src src-javascript">{
-    <span style="color: #8b2252;">"insecure-registries"</span>:[<span style="color: #8b2252;">"10.1.33.201:8090"</span>]
+    <span style="color: #ad7fa8; font-style: italic;">"insecure-registries"</span>:[<span style="color: #ad7fa8; font-style: italic;">"10.1.33.201:8090"</span>]
 }
 </pre>
 </div>
@@ -731,10 +732,10 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <div class="org-src-container">
 <pre class="src src-bash">docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #8b2252;">\</span>
-  --name portainer <span style="color: #8b2252;">\</span>
-  --restart=always <span style="color: #8b2252;">\</span>
-  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #8b2252;">\</span>
+docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #ad7fa8; font-style: italic;">\</span>
+  --name portainer <span style="color: #ad7fa8; font-style: italic;">\</span>
+  --restart=always <span style="color: #ad7fa8; font-style: italic;">\</span>
+  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #ad7fa8; font-style: italic;">\</span>
   -v portainer_data:/data portainer/portainer-ce:latest
 </pre>
 </div>
@@ -825,10 +826,28 @@ Parameters:
 </div>
 </div>
 
-
 <div id="outline-container-org000004c" class="outline-2">
-<h2 id="org000004c"><span class="section-number-2">16.</span> Referencias</h2>
+<h2 id="org000004c"><span class="section-number-2">16.</span> Práctica: instalar con <code>docker compose</code></h2>
 <div class="outline-text-2" id="text-16">
+<ul class="org-ul">
+<li><a href="https://docs.docker.com/compose/"><code>docker compose</code></a> es una extensión para definir varios <i>containers</i> en un fichero <a href="https://en.wikipedia.org/wiki/YAML"><code>yaml</code></a>
+<ul class="org-ul">
+<li>Cada servicio es un container</li>
+<li>Puede cargar variables de entorno desde un fichero externo</li>
+<li>Puede interconectar servicios por red, especificando nombres en vez de IP's.</li>
+</ul></li>
+<li>Usa <a href="https://www.composerize.com/">https://www.composerize.com/</a> para describir el <i>container</i> de Oracle en un fichero <code>yaml</code></li>
+<li>Crea el <i>container</i> con <code>docker compose build</code></li>
+<li>Ejecuta el <i>container</i> con <code>docker compose up -d</code></li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">17.</span> Referencias</h2>
+<div class="outline-text-2" id="text-17">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -854,7 +873,7 @@ Parameters:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-12-12 Thu 11:33</p>
+<p class="date">Created: 2025-01-09 Thu 11:25</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

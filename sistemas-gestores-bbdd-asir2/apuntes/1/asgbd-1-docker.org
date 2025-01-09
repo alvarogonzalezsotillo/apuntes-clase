@@ -268,7 +268,17 @@ Parameters:
   - puede ayudarte =bash -c=
 - Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA= en la PDB
   - =/opt/oracle/sqplus-as-sysdba-pdb.sh=
-    
+
+* Práctica: instalar con =docker compose=
+- [[https://docs.docker.com/compose/][=docker compose=]] es una extensión para definir varios /containers/ en un fichero [[https://en.wikipedia.org/wiki/YAML][=yaml=]]
+  - Cada servicio es un container
+  - Puede cargar variables de entorno desde un fichero externo
+  - Puede interconectar servicios por red, especificando nombres en vez de IP's.
+- Usa https://www.composerize.com/ para describir el /container/ de Oracle en un fichero =yaml=
+- Crea el /container/ con =docker compose build=
+- Ejecuta el /container/ con =docker compose up -d=
+
+  
 
 * Referencias
 #+include: "../../../common/footer.org"
