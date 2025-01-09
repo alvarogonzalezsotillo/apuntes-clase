@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-08 Wed 13:42 -->
+<!-- 2025-01-09 jue 13:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -662,7 +662,7 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 <div class="org-src-container">
 <pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">for</span>( $<span style="color: #ff6347;">i</span> = 0 ; $<span style="color: #ff6347;">i</span> &lt; 10 ; $<span style="color: #ff6347;">i</span> += 1 ){
     <span style="color: #729fcf; font-weight: bold;">if</span>( $<span style="color: #ff6347;">i</span> % 3 != 0 ){
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">continue</span>;
+        <span style="color: #729fcf; font-weight: bold;">continue</span>;
     }
     <span style="color: #729fcf; font-weight: bold;">echo</span>( <span style="color: #ad7fa8; font-style: italic;">"</span><span style="color: #ff6347;">$i</span><span style="color: #ad7fa8; font-style: italic;"> es m&#250;ltiplo de 3\n"</span>);
 }
@@ -705,7 +705,7 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 <pre class="src src-php"><span style="color: #729fcf;">&lt;?php</span>
 <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">inverso</span>($<span style="color: #ff6347;">x</span>) {
     <span style="color: #729fcf; font-weight: bold;">if</span> (!$<span style="color: #ff6347;">x</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">throw</span> <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Exception</span>(<span style="color: #ad7fa8; font-style: italic;">'Divisi&#243;n por cero.'</span>);
+        <span style="color: #729fcf; font-weight: bold;">throw</span> <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Exception</span>(<span style="color: #ad7fa8; font-style: italic;">'Divisi&#243;n por cero.'</span>);
     }
     <span style="color: #729fcf; font-weight: bold;">return</span> 1/$<span style="color: #ff6347;">x</span>;
 }
@@ -843,7 +843,7 @@ incrementa($<span style="color: #ff6347;">unavariable</span>, 4);
     <span style="color: #729fcf; font-weight: bold;">public</span> $<span style="color: #ff6347;">nombre</span>;
 
     <span style="color: #729fcf; font-weight: bold;">public</span> <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">__construct</span>($<span style="color: #ff6347;">nombre</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #8ae234;">$</span><span style="color: #8ae234;">this</span>-&gt;<span style="color: #ff6347;">nombre</span> = $<span style="color: #ff6347;">nombre</span>;
+        <span style="color: #8ae234;">$</span><span style="color: #8ae234;">this</span>-&gt;<span style="color: #ff6347;">nombre</span> = $<span style="color: #ff6347;">nombre</span>;
     }
 }
 
@@ -893,11 +893,11 @@ cambiarNombre($<span style="color: #ff6347;">persona1</span>);
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://www.php.net/manual/es/ref.strings.php">=strtolower, strtoupper</a>=</td>
+<td class="org-left"><a href="https://www.php.net/manual/es/ref.strings.php"><code>strtolower, strtoupper</code></a></td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://www.php.net/manual/es/function.filter-var.php">=filter<sub>var</sub></a>=</td>
+<td class="org-left"><a href="https://www.php.net/manual/es/function.filter-var.php"><code>filter_var</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1352,7 +1352,7 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-08 Wed 13:42</p>
+<p class="date">Created: 2025-01-09 jue 13:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

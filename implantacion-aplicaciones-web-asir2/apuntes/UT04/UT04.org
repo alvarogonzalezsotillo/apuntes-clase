@@ -399,8 +399,8 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 | =parse_url=              |
 | [[https://www.php.net/manual/es/ref.strings.php][=explode, explode=]]       |
 | [[https://www.php.net/manual/es/ref.strings.php][=strpos, substr, trim=]]   |
-| [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper]]= |
-| [[https://www.php.net/manual/es/function.filter-var.php][=filter_var]]=             |
+| [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper=]] |
+| [[https://www.php.net/manual/es/function.filter-var.php][=filter_var=]]             |
 
 
 
