@@ -614,6 +614,16 @@ const response = await fetch("https://example.org/post", {
 });
 #+end_src
 
+*** Enviar un formulario
+#+begin_src javascript
+const form = document.getElementById("formulario");
+const formData = new FormData(form);
+const response = fetch( "./api.php", {
+    method: "POST",
+    body: formData
+})
+#+end_src
+
 *** Promesas
 #+begin_src javascript
 fetch( "./api/endpoint", {
