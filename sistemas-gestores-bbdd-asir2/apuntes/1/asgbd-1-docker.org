@@ -278,7 +278,38 @@ Parameters:
 - Crea el /container/ con =docker compose build=
 - Ejecuta el /container/ con =docker compose up -d=
 
-  
+** dockercompose :noexport:
+
+#+begin_src bash
+docker run -d --name oracle \
+ -p 1521:1521 -p 1521:5500 \
+ -e ORACLE_SID=SID_COMPOSE \
+ -e ORACLE_PDB=PDB_COMPOSE \
+ -e ORACLE_PWD=changemesecret \
+ -e ORACLE_EDITION=enterprise \
+ -v ./oradata:/opt/oracle/oradata \
+container-registry.oracle.com/database/enterprise:21.3.0.0
+#+end_src
+
+#+begin_src yaml
+name: "Oracle con docker compose"
+services:
+    enterprise:
+        container_name: oracle
+        ports:
+            - 1521:1521
+            - 1521:5500
+        environment:
+            - ORACLE_SID=SID_COMPOSE
+            - ORACLE_PDB=PDB_COMPOSE
+            - ORACLE_PWD=changemesecret
+            - ORACLE_EDITION=enterprise
+        volumes:
+            - ./oradata:/opt/oracle/oradata
+        image: container-registry.oracle.com/database/enterprise:21.3.0.0
+#+end_src
+
+
 
 * Referencias
 #+include: "../../../common/footer.org"
