@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-09 jue 13:01 -->
+<!-- 2025-01-15 Wed 14:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -1252,6 +1252,7 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
   },    
   body: JSON.stringify({ username: <span style="color: #ad7fa8; font-style: italic;">"example"</span> }),  
 });
+<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = <span style="color: #729fcf; font-weight: bold;">await</span> response.json();
 </pre>
 </div>
 </div>
@@ -1279,8 +1280,8 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
     method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
     body: JSON.stringify({ username:<span style="color: #ad7fa8; font-style: italic;">"example"</span>, action:<span style="color: #ad7fa8; font-style: italic;">"create"</span>} )
 }).
-then( response =&gt;{
-    <span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = =response.json();
+then( <span style="color: #729fcf; font-weight: bold;">async</span> (response) =&gt;{
+    <span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = <span style="color: #729fcf; font-weight: bold;">await</span> response.json();
     <span style="color: #888a85;">// </span><span style="color: #888a85;">PROCESAR EL JSON DE RESPUESTA</span>
 }).
 <span style="color: #729fcf; font-weight: bold;">catch</span>( err =&gt; {
@@ -1352,7 +1353,7 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-09 jue 13:01</p>
+<p class="date">Created: 2025-01-15 Wed 14:14</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
