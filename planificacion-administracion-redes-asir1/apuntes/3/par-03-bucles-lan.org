@@ -154,6 +154,44 @@ Switch# show etherchannel summary
 
 [[file:pkt/stp-y-port-aggregation.pkt][Enlace a fichero PKT]]
 
+** solución :noexport:
+
+*** Switch 0
+interface fa0/5
+channel-group 1 mode active
+interface fa0/6
+channel-group 1 mode active
+
+interface fa0/4
+channel-group 2 mode active
+interface fa0/3
+channel-group 2 mode active
+
+*** Switch 1
+interface fa0/2
+channel-group 1 mode active
+interface fa0/1
+channel-group 1 mode active
+
+interface fa0/3
+channel-group 3 mode active
+interface fa0/4
+channel-group 3 mode active
+
+*** Switch 2
+interface fa0/3
+channel-group 3 mode active
+interface fa0/4
+channel-group 3 mode active
+
+interface fa0/1
+channel-group 2 mode active
+interface fa0/2
+channel-group 2 mode active
+
+
+
+
 
 * Netacad: más sobre STP
 
