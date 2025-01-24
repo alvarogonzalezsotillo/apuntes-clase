@@ -1,0 +1,47 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Plugins para Wordpress
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+* Por dónde empezar
+
+tiene clases, no usar: https://pluginplate.com/
+
+https://www.wpbeginner.com/wp-tutorials/how-to-create-a-wordpress-plugin/
+
+https://www.hostinger.es/tutoriales/tutorial-wordpress-plugins-crear-plugin-wordpress
+
+https://developer.wordpress.org/apis/
+
+
+*    Hooks de acción: sirven para agregar o quitar funciones.
+
+https://developer.wordpress.org/apis/hooks/action-reference/
+
+
+*   Hooks de filtro: sirven para modificar datos arrojados por funciones.
+
+https://developer.wordpress.org/apis/hooks/filter-reference/
+
+
+* ejercicio: info del sistema
+
+https://developer.wordpress.org/apis/global-variables/
+
+    $is_iphone (boolean): iPhone Safari
+    $is_chrome (boolean): Google Chrome
+    $is_safari (boolean): Safari
+    $is_NS4 (boolean): Netscape 4
+    $is_opera (boolean): Opera
+    $is_macIE (boolean): Mac Internet Explorer
+    $is_winIE (boolean): Windows Internet Explorer
+    $is_gecko (boolean): FireFox
+    $is_lynx (boolean): Lynx
+    $is_IE (boolean): Internet Explorer
+    $is_edge (boolean): Microsoft Edge
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+
