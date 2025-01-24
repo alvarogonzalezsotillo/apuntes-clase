@@ -58,7 +58,7 @@ Mazmorra .up.{ Tesela::idmazmorra
 #+RESULTS:
 [[file:media/mazmorra-er.svg]]
 
-* /CRUD/ de mazmorras (2 puntos)
+* /CRUD/ de mazmorras (2.5 puntos)
 Página =listado-mazmorras.php=
 - En la parte superior, habrá un campo =text= y un botón de =crear=. Al pulsar el botón, se creará una mazmorra con el nombre indicado, inicialmente vacía. (20%)
 - En la parte inferior, mostrará una lista de mazmorras con su identificador, ordenadas por el identificador. (20%)
@@ -67,7 +67,7 @@ Página =listado-mazmorras.php=
 - El botón =editar= abrirá la mazmorra asociada en la página =editar-mazmorra.php=, pasando el identificador (10%)
 - El botón =duplicar= abrirá la mazmorra asociada en la página =duplicar-mazmorra.php=, pasando el identificador (10%)
 
-* Duplicar mazmorra (1 punto)
+* Duplicar mazmorra (2.5 puntos)
 Crea una página PHP de nombre =duplicar-mazmorra.php=. Está página
 - Recibirá mediante el parámetro =idmazmorra= la mazmorra ya existente a duplicar
 - Mostrará una tabla con 5 filas y 10 columnas. En cada celda mostrará la imagen correspondiente con la tesela especificada en la base de datos (20%)
@@ -76,15 +76,14 @@ Crea una página PHP de nombre =duplicar-mazmorra.php=. Está página
 - Si se pulsa el botón =duplicar=, duplicará la mazmorra con el nuevo nombre, y los contenidos de la mazmorra original. (50%) Después volverá a la página =listado-mazmorras.php= (10%)
 - Si se pulsa el botón =cancelar=, volverá a la página =listado-mazmorras.php= (10%)
   
-* Editar mazmorra  (5 puntos)
+* Editar mazmorra  (3 puntos)
 Crea una página PHP de nombre =editar-mazmorra.php=. Esta página:
 - Recibirá mediante el parámetro =idmazmorra= la mazmorra a editar
 - Mostrará una tabla con la mazmorra a editar, como =duplicar-mazmorra.php=
 - Mostrará una tabla a modo de paleta, con las opciones de tesela
-- Habrá un formulario con fila, columna y valor de tesela. Cuando se envíe, se cambiará en la base de datos y se recargará la página. (50%)
-  - Cuando se pinche en la mazmorra, se cambiará con /javascript/ el valor de la fila y columna (20%)
-  - Cuando se pinche en la paleta, se cambiará con /javascript/ el valor de la tesela (20%)
-- Extra: realizar solo una consulta de base de datos (10%)
+- Habrá un formulario con fila, columna y valor de tesela. Cuando se envíe, se cambiará en la base de datos y se recargará la página. (60%)
+  - Cuando se pinche en la mazmorra, se cambiará con /javascript/ el valor de la fila y columna (15%)
+  - Cuando se pinche en la paleta, se cambiará con /javascript/ el valor de la tesela (15%)
 #+latex: \begin{Aviso}[Esta UI no es muy buena]
 Esta forma de edición no es muy amigable, pero es simple. Si quieres hacer otra forma mejor de editar, ¡adelante!
 #+latex: \end{Aviso}
@@ -106,7 +105,7 @@ Esta forma de edición no es muy amigable, pero es simple. Si quieres hacer otra
 Leyenda: ~E~: /empty/ ~I~: /interior/ ~T~: /top/
 
 * Restaurar sesión (2 puntos)
-Crea una página PHP de nombre =restaurar-sesion.php=
+Crea una página PHP de nombre =index.php=
 - Se llega a ella sin parámetros
 - La página redirige a la última página lanzada por el usuario (=editar-mazmorra.php=, =duplicar-mazmorra.php=, =listado-mazmorras.php=), con el parámetro =idmazmorra= correspondiente, si es el caso.
 - Si no ha visitado ninguna página, enviará a =listado-mazmorras.php=    
