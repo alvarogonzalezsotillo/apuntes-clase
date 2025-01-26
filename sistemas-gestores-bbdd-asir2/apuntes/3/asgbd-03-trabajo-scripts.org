@@ -137,7 +137,7 @@ tmpfs             804488        88    804400   1% /run/user/1000
   #+latex: \end{minipage} 
    
 #+latex: \begin{Aviso}
- Pistas para realizar el /script/:
+ Pistas opcionales para realizar el /script/:
   - Los /heredocs/ pueden [[http://superuser.com/questions/456615/how-to-pass-variables-to-a-heredoc-in-bash][contener variables]]
   - [[https://www.cyberciti.biz/tips/processing-the-delimited-files-using-cut-and-awk.html][Cortar columnas]] con =awk=
   - Leer líneas [[http://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable][una por una]] y meterlas en una variable:
@@ -154,7 +154,6 @@ tmpfs             804488        88    804400   1% /run/user/1000
   
   - Programa un /script/ para que cada minuto envíe un correo con la información promedio del comando  =df -k=. Puedes usar como base para la consulta el listado [[lst:promedio.sql]]
   - El correo se enviará a =alvaro@alvarogonzalez.no-ip.biz=
-    - Con copia a =alvaro@debian12-alvaro.local=
   - Indica tu nombre en el asunto del correo  
   - El fichero tendrá [[https://stackoverflow.com/questions/643137/how-do-i-spool-to-a-csv-formatted-file-using-sqlplus#654723][formato CSV]]. Se debe poder abrir directamente con *excel* y visualizar su resultado en filas y columnas.
 
@@ -175,9 +174,7 @@ tmpfs             804488        88    804400   1% /run/user/1000
     
 Para ser un servidor de correo, se necesita [[https://docs.oracle.com/en/learn/oracle-linux-postfix/#configure-postfix][instalar Postfix]]
 #+begin_src bash -n
-sudo dnf install -y postfix
-sudo dnf remove -y sendmail #opcional
-sudo alternatives --set mta /usr/sbin/sendmail.postfix #opcional
+sudo dnf install -y postfix mailx
 sudo systemctl start postfix
 #+end_src
 

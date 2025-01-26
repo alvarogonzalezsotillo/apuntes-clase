@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:54 -->
+<!-- 2025-01-10 Fri 13:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
@@ -774,7 +774,7 @@ window.addEventListener("load",()=>{
 <li>Bloqueo de una <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_9015.htm">tabla completa</a>
 <ul class="org-ul">
 <li><code>lock table TABLA in exclusive mode</code></li>
-<li>Bloquea la tabla in también puede bloquear otras a partir de las <i>foreign keys</i></li>
+<li>también puede bloquear otras a partir de las <i>foreign keys</i></li>
 </ul></li>
 <li>Bloqueo de algunas filas:</li>
 </ul>
@@ -982,13 +982,13 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 <div class="outline-text-3" id="text-5-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SELECT</span> s.inst_id,
-    <span style="color: #8e0d84841a1a;"> </span>  s.sid,
-    <span style="color: #8e0d84841a1a;"> </span>  s.serial#,
-    <span style="color: #8e0d84841a1a;"> </span>  p.spid,
-    <span style="color: #8e0d84841a1a;"> </span>  s.username,
-    <span style="color: #8e0d84841a1a;"> </span>  s.program
+    <span style="color: #6c7f6868233c;"> </span>  s.sid,
+    <span style="color: #6c7f6868233c;"> </span>  s.serial#,
+    <span style="color: #6c7f6868233c;"> </span>  p.spid,
+    <span style="color: #6c7f6868233c;"> </span>  s.username,
+    <span style="color: #6c7f6868233c;"> </span>  s.program
 <span style="color: #729fcf; font-weight: bold;">FROM</span>   gv_$<span style="color: #729fcf; font-weight: bold;">session</span> s
-    <span style="color: #8e0d84841a1a;"> </span>  <span style="color: #729fcf; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #729fcf; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #729fcf; font-weight: bold;">AND</span> p.inst_id = s.inst_id
+    <span style="color: #6c7f6868233c;"> </span>  <span style="color: #729fcf; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #729fcf; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #729fcf; font-weight: bold;">AND</span> p.inst_id = s.inst_id
 <span style="color: #729fcf; font-weight: bold;">WHERE</span>  s.<span style="color: #729fcf; font-weight: bold;">type</span> != <span style="color: #ad7fa8; font-style: italic;">'BACKGROUND'</span>;
 </pre>
 </div>
@@ -1047,7 +1047,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:54</p>
+<p class="date">Created: 2025-01-10 Fri 13:59</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
