@@ -105,24 +105,62 @@ add_action( 'admin_menu', 'miplugin_agrega_una_pagina_al_menu_admin' );
 
 ** Normas básicas a seguir
 - Las funciones y constantes son globales: hay que ponerles un prefijo para que no /colisionen/
+- Sin efectos laterales en los filtros: son funciones  
 
 [[https://developer.wordpress.org/plugins/plugin-basics/best-practices/][Saber más...]]
 
-* ejercicio: info del sistema
+* Ejercicios
 
-https://developer.wordpress.org/apis/global-variables/
+** Crea un /plugin/ vacío
+- Crea un plugin vacío
+  - Elije un nombre (ejemplo: =iaw_test_plugin=)
+  - Elije un prefijo para tus funciones y opciones (ejemplo: =iaw_test_plugin=)  
+  - Incluye comentario con los datos del /plugin/
+- El /plugin/ debe aparecer al visitar http://SERVIDOR/wordpress/wp-admin/plugins.php
 
-    $is_iphone (boolean): iPhone Safari
-    $is_chrome (boolean): Google Chrome
-    $is_safari (boolean): Safari
-    $is_NS4 (boolean): Netscape 4
-    $is_opera (boolean): Opera
-    $is_macIE (boolean): Mac Internet Explorer
-    $is_winIE (boolean): Windows Internet Explorer
-    $is_gecko (boolean): FireFox
-    $is_lynx (boolean): Lynx
-    $is_IE (boolean): Internet Explorer
-    $is_edge (boolean): Microsoft Edge
+** /widget/ en el /dashboard/
+- Añade un /widget/ que simplemente diga "¡Hola, mundo!"
+  - Acción =wp_dashboard_setup=
+  - Función =wp_add_dashboard_widget=
+
+** Página nueva en el menú de administración
+- Acción =admin_menu=
+- Función =add_menu_page=
+- La página no tendrá funcionalidad: solo mostrará un texto [[https://loremipsum.io/generator][/lorem ipsum/]]  
+
+** Filtro de contenido
+- Filtro =the_content=
+- Quita todas las ocurrencias de la pseudopalabra =WTF=, las cambia por =###=
+
+** Página de /settings/
+- En vez de =###=, se podrá censurar la palabra prohibida con una cadena configurable
+- Acción =admin_init=
+  - Registrar una opción con la función [[https://developer.wordpress.org/reference/functions/register_setting/][=register_setting=]]
+  - El nombre de la opción:  
+- Acción =admin_menu=
+  - Función [[https://developer.wordpress.org/reference/functions/add_options_page/][=add_options_page=]]
+- En la función de opciones de página
+  - Usar [[https://developer.wordpress.org/reference/functions/settings_fields/][=settings_fields=]] dentro del formulario
+  - Los campos =input= tendrán los nombres definidos en =register_settings=
+  - El valor actual se puede conseguir con [[https://developer.wordpress.org/reference/functions/get_option/][=get_option=]]  
+    
+#+begin_src php
+echo '<form method="post" action="options.php">';
+settings_fields( 'wpdocs-plugin-settings-group' );
+$value = get_option("...");
+echo '<input type="..." name="..." value="$value">'
+...    
+#+end_src  
+
+** Más posibilidades
+
+- Haz que el filtro solo se active en chrome, pero no en firefox
+  - [[https://developer.wordpress.org/apis/global-variables/][=$is_chrome=, =$is_gecko=]]
+- Haz que el filtro se pueda activar o desactivar
+  - Con otro /setting/
+  - En el /dashboard/ se verá si está activado, y qué palabra se utiliza para censurar.
+- Empaqueta el plugin y [[https://wpengine.com/resources/how-to-publish-your-first-wordpress-plugin/][publícalo]]
+
 
 * Referencias
 #+include: "../../../common/footer.org"

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-25 sáb 19:35 -->
+<!-- 2025-01-26 dom 13:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Plugins para Wordpress</title>
@@ -209,9 +209,9 @@
 <ul>
 <li><a href="#org0000000">1. ¿Qué es un <i>plugin</i></a></li>
 <li><a href="#org000000f">2. <i>Hooks</i></a></li>
-<li><a href="#org0000018">3. <i>Plugins</i></a></li>
-<li><a href="#org000001b">4. ejercicio: info del sistema</a></li>
-<li><a href="#org000001e">5. Referencias</a></li>
+<li><a href="#org000001b">3. <i>Plugins</i></a></li>
+<li><a href="#org0000030">4. Ejercicios</a></li>
+<li><a href="#org0000033">5. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -330,7 +330,7 @@ add_action(<span style="color: #ad7fa8; font-style: italic;">'send_headers'</spa
 <div class="org-src-container">
 <pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">pon_prefijo_a_titulo</span>($<span style="color: #ff6347;">title</span>) {
     <span style="color: #729fcf; font-weight: bold;">if</span> (is_single() ) {
-    <span style="color: #6c7f6868233c;"> </span>   $<span style="color: #ff6347;">title</span> = <span style="color: #ad7fa8; font-style: italic;">'Este es mi blog: '</span> . $<span style="color: #ff6347;">title</span>;
+        $<span style="color: #ff6347;">title</span> = <span style="color: #ad7fa8; font-style: italic;">'Este es mi blog: '</span> . $<span style="color: #ff6347;">title</span>;
     }
     <span style="color: #729fcf; font-weight: bold;">return</span> $<span style="color: #ff6347;">title</span>;
 }
@@ -342,8 +342,8 @@ add_filter(<span style="color: #ad7fa8; font-style: italic;">'the_title'</span>,
 </div>
 </div>
 
-<div id="outline-container-org0000018" class="outline-2">
-<h2 id="org0000018"><span class="section-number-2">3.</span> <i>Plugins</i></h2>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">3.</span> <i>Plugins</i></h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Hay varias <a href="https://developer.wordpress.org/plugins/plugin-basics/best-practices/#boilerplate-starting-points">formas de hacerlos</a></li>
@@ -401,10 +401,10 @@ add_filter(<span style="color: #ad7fa8; font-style: italic;">'the_title'</span>,
 <pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">miplugin_agrega_una_pagina_al_menu_admin</span>(){
 
     add_menu_page(
-    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina del plugin'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Title of the page</span>
-    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina informativa del plugin de disclaimer'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Text to show on the menu link</span>
-    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'manage_options'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Capability requirement to see the link</span>
-    <span style="color: #6c7f6868233c;"> </span>    plugin_dir_path(<span style="color: #729fcf;">__FILE__</span>) . <span style="color: #ad7fa8; font-style: italic;">'pagina-admin.php'</span> <span style="color: #888a85;">// </span><span style="color: #888a85;">se a&#241;ade a /wp-admin</span>
+         <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina del plugin'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Title of the page</span>
+         <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina informativa del plugin de disclaimer'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Text to show on the menu link</span>
+         <span style="color: #ad7fa8; font-style: italic;">'manage_options'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Capability requirement to see the link</span>
+         plugin_dir_path(<span style="color: #729fcf;">__FILE__</span>) . <span style="color: #ad7fa8; font-style: italic;">'pagina-admin.php'</span> <span style="color: #888a85;">// </span><span style="color: #888a85;">se a&#241;ade a /wp-admin</span>
     );
 
 
@@ -413,34 +413,130 @@ add_action( <span style="color: #ad7fa8; font-style: italic;">'admin_menu'</span
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">3.3.</span> Normas básicas a seguir</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Las funciones y constantes son globales: hay que ponerles un prefijo para que no <i>colisionen</i></li>
+<li>Sin efectos laterales en los filtros: son funciones</li>
+</ul>
+
+<p>
+<a href="https://developer.wordpress.org/plugins/plugin-basics/best-practices/">Saber más&#x2026;</a>
+</p>
+</div>
+</div>
 </div>
 
-
-<div id="outline-container-org000001b" class="outline-2">
-<h2 id="org000001b"><span class="section-number-2">4.</span> ejercicio: info del sistema</h2>
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">4.</span> Ejercicios</h2>
 <div class="outline-text-2" id="text-4">
-<p>
-<a href="https://developer.wordpress.org/apis/global-variables/">https://developer.wordpress.org/apis/global-variables/</a>
-</p>
-
-<p>
-$is<sub>iphone</sub> (boolean): iPhone Safari
-$is<sub>chrome</sub> (boolean): Google Chrome
-$is<sub>safari</sub> (boolean): Safari
-$is<sub>NS4</sub> (boolean): Netscape 4
-$is<sub>opera</sub> (boolean): Opera
-$is<sub>macIE</sub> (boolean): Mac Internet Explorer
-$is<sub>winIE</sub> (boolean): Windows Internet Explorer
-$is<sub>gecko</sub> (boolean): FireFox
-$is<sub>lynx</sub> (boolean): Lynx
-$is<sub>IE</sub> (boolean): Internet Explorer
-$is<sub>edge</sub> (boolean): Microsoft Edge
-</p>
+</div>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">4.1.</span> Crea un <i>plugin</i> vacío</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Crea un plugin vacío
+<ul class="org-ul">
+<li>Elije un nombre (ejemplo: <code>iaw_test_plugin</code>)</li>
+<li>Elije un prefijo para tus funciones y opciones (ejemplo: <code>iaw_test_plugin</code>)</li>
+<li>Incluye comentario con los datos del <i>plugin</i></li>
+</ul></li>
+<li>El <i>plugin</i> debe aparecer al visitar <a href="http://servidor/wordpress/wp-admin/plugins.php">http://servidor/wordpress/wp-admin/plugins.php</a></li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">5.</span> Referencias</h2>
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">4.2.</span> <i>widget</i> en el <i>dashboard</i></h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Añade un <i>widget</i> que simplemente diga "¡Hola, mundo!"
+<ul class="org-ul">
+<li>Acción <code>wp_dashboard_setup</code></li>
+<li>Función <code>wp_add_dashboard_widget</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">4.3.</span> Página nueva en el menú de administración</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Acción <code>admin_menu</code></li>
+<li>Función <code>add_menu_page</code></li>
+<li>La página no tendrá funcionalidad: solo mostrará un texto <a href="https://loremipsum.io/generator"><i>lorem ipsum</i></a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">4.4.</span> Filtro de contenido</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li>Filtro <code>the_content</code></li>
+<li>Quita todas las ocurrencias de la pseudopalabra <code>WTF</code>, las cambia por <code>###</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">4.5.</span> Página de <i>settings</i></h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>En vez de <code>###</code>, se podrá censurar la palabra prohibida con una cadena configurable</li>
+<li>Acción <code>admin_init</code>
+<ul class="org-ul">
+<li>Registrar una opción con la función <a href="https://developer.wordpress.org/reference/functions/register_setting/"><code>register_setting</code></a></li>
+<li>El nombre de la opción:</li>
+</ul></li>
+<li>Acción <code>admin_menu</code>
+<ul class="org-ul">
+<li>Función <a href="https://developer.wordpress.org/reference/functions/add_options_page/"><code>add_options_page</code></a></li>
+</ul></li>
+<li>En la función de opciones de página
+<ul class="org-ul">
+<li>Usar <a href="https://developer.wordpress.org/reference/functions/settings_fields/"><code>settings_fields</code></a> dentro del formulario</li>
+<li>Los campos <code>input</code> tendrán los nombres definidos en <code>register_settings</code></li>
+<li>El valor actual se puede conseguir con <a href="https://developer.wordpress.org/reference/functions/get_option/"><code>get_option</code></a></li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'&lt;form method="post" action="options.php"&gt;'</span>;
+settings_fields( <span style="color: #ad7fa8; font-style: italic;">'wpdocs-plugin-settings-group'</span> );
+$<span style="color: #ff6347;">value</span> = get_option(<span style="color: #ad7fa8; font-style: italic;">"..."</span>);
+<span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'&lt;input type="..." name="..." value="$value"&gt;'</span>
+...    
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">4.6.</span> Más posibilidades</h3>
+<div class="outline-text-3" id="text-4-6">
+<ul class="org-ul">
+<li>Haz que el filtro solo se active en chrome, pero no en firefox
+<ul class="org-ul">
+<li><a href="https://developer.wordpress.org/apis/global-variables/"><code>$is_chrome</code>, <code>$is_gecko</code></a></li>
+</ul></li>
+<li>Haz que el filtro se pueda activar o desactivar
+<ul class="org-ul">
+<li>Con otro <i>setting</i></li>
+<li>En el <i>dashboard</i> se verá si está activado, y qué palabra se utiliza para censurar.</li>
+</ul></li>
+<li>Empaqueta el plugin y <a href="https://wpengine.com/resources/how-to-publish-your-first-wordpress-plugin/">publícalo</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0000033" class="outline-2">
+<h2 id="org0000033"><span class="section-number-2">5.</span> Referencias</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Formatos:
@@ -469,7 +565,7 @@ $is<sub>edge</sub> (boolean): Microsoft Edge
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-25 sáb 19:35</p>
+<p class="date">Created: 2025-01-26 dom 13:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
