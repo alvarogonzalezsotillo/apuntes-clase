@@ -1,0 +1,30 @@
+name: wordpress-stack
+
+services:
+  wordpress:
+    container_name: servidor_wp
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user_wp
+      WORDPRESS_DB_PASSWORD: asdasd
+      WORDPRESS_DB_NAME: bd_wp
+    ports:
+      - 9999:80
+    volumes:
+      - wordpress_data:/var/www/html
+  db:
+    container_name: servidor_mysql
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: bd_wp
+      MARIADB_USER: user_wp
+      MARIADB_PASSWORD: asdasd
+      MARIADB_ROOT_PASSWORD: asdasd
+    volumes:
+      - mariadb_data:/var/lib/mysql
+volumes:
+    wordpress_data:
+    mariadb_data:
