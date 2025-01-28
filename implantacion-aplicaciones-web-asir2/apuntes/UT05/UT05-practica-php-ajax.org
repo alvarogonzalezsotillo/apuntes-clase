@@ -21,12 +21,15 @@ En esta práctica se espera que el alumno:
 
 Se tomará como base el código desarrollado para la práctica anterior
 
-* /CRUD/ de mazmorras (2 puntos)
+* /CRUD/ de mazmorras (3 puntos)
 Modifica =listado-mazmorras.php=
 - El botón de crear una nueva mazmorra solo podrá pulsarse si el campo de texto no está vacío, y el nombre de mazmorra aún no existe.
 - hay que tener en cuenta que otros usuarios pueden estar creando mazmorras
   - Debe ser una petición AJAX, no puede descargarse una lista de nombres prohibidos al comienzo de la página  
-
+- El borrado de mazmorra no recargará la página
+  - La fila de la tabla aparecerá tachada, y los botones deshabilitados
+  - Si se recarga la página, entonces sí que ya no aparecerá la fila  
+    
 * Duplicar mazmorra (1 punto)
 Modifica =duplicar-mazmorra.php=. Está página
 - El botón de duplicar mazmorra solo se podrá pulsar si el nuevo nombre no está vacío, y el nombre e mazmorra aún no existe.
@@ -49,9 +52,10 @@ Modifica =editar-mazmorra.php=. Esta página:
 :PROPERTIES:
 :UNNUMBERED: t
 :END:
-- El código estará en el directorio =~/public-html/practica02/= del /workspace/ de Coder del alumno
+- El código estará en el directorio =~/public-html/practica03/= del /workspace/ de Coder del alumno
   - El profesor copiará las páginas a su propio LAMP para corregir la práctica
-  - El profesor se encargará de cambiar los datos de acceso a MySQL. Las páginas deberán crear las tablas que necesiten, si no no se podrá corregir la práctica.
+  - El profesor se encargará de cambiar los datos de acceso a MySQL.
+  - Las páginas deberán crear las tablas que necesiten, si no no se podrá corregir la práctica.
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Todos los formularios serán *GET*
   - Si no se pueden ver los parámetros en la URL, el ejercicio no tendrá más del 50% de la nota  
@@ -61,7 +65,8 @@ Modifica =editar-mazmorra.php=. Esta página:
   - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota
 - No se tendrán en cuenta:
   - Errores debidos al reenvío de formularios por duplicado (por recarga de página)
-  - Errores debidos a parámetros cambiados a mano para teselas/mazmorras que no existen  
+  - Errores debidos a parámetros cambiados a mano para teselas/mazmorras que no existen
+  - Errores debidos a excesiva latencia de la respuesta del servidor  
       
 * Resultados de aprendizaje
 :PROPERTIES:
