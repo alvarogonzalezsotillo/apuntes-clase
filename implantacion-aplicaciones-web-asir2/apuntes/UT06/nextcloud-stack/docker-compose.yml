@@ -1,38 +1,40 @@
 services:
   db:
+    container_name: nextcloud-db
     image: mariadb:10.11
     restart: always
     command: --transaction-isolation=READ-COMMITTED
     volumes:
       - db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-      - MYSQL_PASSWORD_FILE: /run/secrets/db_password
-      - MYSQL_DATABASE: nextcloud
-      - MYSQL_USER: nextcloud
-    secrets:
-      - db_root_password
-      - db_password
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-bydefault}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD:-pordefecto}
+      - MARIADB_DATABASE=nextcloud
+      - MARIADB_USER=nextcloud
 
   redis:
+    container_name: nextcloud-redis
     image: redis:alpine
     restart: always
 
   app:
+    container_name: nextcloud-app
     image: nextcloud
     restart: always
     ports:
-      - 88888:80
+      - 8888:80
     depends_on:
       - redis
       - db
     volumes:
-      - nextcloud:/var/www/html
+      - ./nextcloud-base:/var/www/html
     environment:
-      - MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      - MYSQL_PASSWORD=${MARIADB_PASSWORD:-pordefecto}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
+      - REDIS_HOST=redis      
+
 
 volumes:
   nextcloud:
