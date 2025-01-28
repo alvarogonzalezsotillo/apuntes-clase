@@ -24,9 +24,9 @@ Se tomará como base el código desarrollado para la práctica anterior
 * /CRUD/ de mazmorras (3 puntos)
 Modifica =listado-mazmorras.php=
 - El botón de crear una nueva mazmorra solo podrá pulsarse si el campo de texto no está vacío, y el nombre de mazmorra aún no existe.
-- hay que tener en cuenta que otros usuarios pueden estar creando mazmorras
-  - Debe ser una petición AJAX, no puede descargarse una lista de nombres prohibidos al comienzo de la página  
-- El borrado de mazmorra no recargará la página
+  - hay que tener en cuenta que otros usuarios pueden estar creando mazmorras
+  - Debe ser una petición AJAX, no puede descargarse una lista de nombres prohibidos al comienzo de la página (40%)
+- El borrado de mazmorra no recargará la página (60%)
   - La fila de la tabla aparecerá tachada, y los botones deshabilitados
   - Si se recarga la página, entonces sí que ya no aparecerá la fila  
     
@@ -44,8 +44,16 @@ Modifica =editar-mazmorra.php=. Esta página:
 :PROPERTIES:
 :UNNUMBERED: t
 :END:
-- Crea una página o varias páginas (por ejemplo =api-mazmorras.php=) donde se realizarán las peticiones AJAX
-- Decide si utilizarás JSON o POST para estas páginas de API  
+- Crea una o varias páginas (por ejemplo =api-mazmorras.php=) donde se dirigirán las peticiones AJAX
+- Si usas JSON  
+  - Estas páginas no generarán HTML, sino JSON como respuesta
+  - Tampoco recibirán parámetros de formulario, sino que leerán la entrada, que será un JSON
+- Como alternativa, se puede usar un formato propio
+  - Se envían formularios POST con valores
+  - Se generan páginas de texto, o XML, que se comprueban en el javascript cliente  
+      
+
+  
 
 
 * Normas de entrega
