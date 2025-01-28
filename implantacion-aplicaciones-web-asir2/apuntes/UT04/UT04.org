@@ -612,6 +612,7 @@ const response = await fetch("https://example.org/post", {
   },    
   body: JSON.stringify({ username: "example" }),  
 });
+const json = await response.json();
 #+end_src
 
 *** Enviar un formulario
@@ -630,8 +631,8 @@ fetch( "./api/endpoint", {
     method: "POST",
     body: JSON.stringify({ username:"example", action:"create"} )
 }).
-then( response =>{
-    const json = =response.json();
+then( async (response) =>{
+    const json = await response.json();
     // PROCESAR EL JSON DE RESPUESTA
 }).
 catch( err => {

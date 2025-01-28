@@ -1,0 +1,171 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Plugins para Wordpress
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+* ¿Qué es un /plugin/
+- Un /plugin/ permite añadir funcionalidad a un /software/
+- El /software/ debe tener soporte para ello
+- En el caso de Wordpress
+  - Se utiliza PHP
+  - Se extiende con /hooks/ de acción y de filtro
+  - Expone un conjunto de [[https://developer.wordpress.org/reference/functions/][funciones]] ([[https://developer.wordpress.org/apis/][API]])
+
+* /Hooks/
+- Similares a /listeners/ de Javascript, o /triggers/ de Oracle
+- Registran funciones que se llamarán en momentos adecuados
+
+[[https://developer.wordpress.org/plugins/hooks/][Saber más...]]
+
+** /Hooks/ de acción
+- Llamados antes de realizar una acción:
+  - =save_post=, =get_footer=, =setup_theme= ([[https://developer.wordpress.org/apis/hooks/action-reference/][lista completa]]) ([[https://adambrown.info/p/wp_hooks/version/6.2][otra lista]])
+  - Internamente, Wordpress los llama con [[https://developer.wordpress.org/reference/functions/do_action/][=do_action=]] o [[https://developer.wordpress.org/reference/functions/do_action_ref_array/][=do_action_ref_array=]]  
+- Una acción
+  - Recibe información sobre el objeto que actua
+  - Modifica ese objeto, u otra parte de Wordpress, y no devuelve nada
+  - Es como un /procedure/ de Oracle
+
+** Uso de /hooks/ de acción
+#+begin_src php
+function envia_cabecera_http_personalizada() {
+    header('X-Custom-Header: El_Valor_Personalizado');
+}
+
+add_action('send_headers', 'envia_cabecera_http_personalizada');
+#+end_src
+      
+
+** /Hooks/ de filtro
+- Sirven para modificar datos devueltos por algunas funciones.
+  - =get_pages=, =body_class=, =sanitize_title=, =get_comment_excerpt= ([[https://developer.wordpress.org/apis/hooks/filter-reference/][lista completa]])
+  - Internamente, Wordpress los llama con [[https://developer.wordpress.org/reference/functions/apply_filters/][=apply_filters=]]
+
+** Uso de /hooks/ de filtro
+#+begin_src php
+function pon_prefijo_a_titulo($title) {
+    if (is_single() ) {
+        $title = 'Este es mi blog: ' . $title;
+    }
+    return $title;
+}
+
+add_filter('the_title', 'pon_prefijo_a_titulo');
+#+end_src
+
+* /Plugins/
+- Hay varias [[https://developer.wordpress.org/plugins/plugin-basics/best-practices/#boilerplate-starting-points][formas de hacerlos]]
+- Usaremos
+  - Un directorio en =/wp-contents/plugins=
+  - Dentro de ese directorio, un fichero =.php= con el nombre del directorio
+
+** Cabecera del /plugin/
+- En un comentario de bloque =/* .. */=, se incluyen [[https://developer.wordpress.org/plugins/plugin-basics/header-requirements/][datos del plugin]]
+- Nombre del plugin, sitio de actualización, página web, autor, dependencias...
+#+begin_src php
+/**
+ * Plugin Name:       Plugin Name
+ * Plugin URI:        https://example.com/plugin-name
+ * Description:       Description of the plugin.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Your Name
+ * Author URI:        https://example.com
+ * Text Domain:       plugin-slug
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Update URI:        https://example.com/my-plugin/
+ * Requires Plugins:  my-plugin, yet-another-plugin
+ */
+#+end_src
+
+** Fichero principal del /plugin/
+- Fichero =.php= dentro del directorio del plugin, del mismo nombre
+- Registra las acciones y filtros necesarios  
+- Opcionalmente
+  - Define las funciones llamadas por los /hooks/
+  - Incluye otros ficheros php (con [[https://developer.wordpress.org/reference/functions/plugin_dir_path/][=plugin_dir_path=]])
+  - Registrar funciones para activar y desactivar el plugin (con [[https://developer.wordpress.org/reference/functions/register_activation_hook/][=register_activation_hook=]])  
+
+#+begin_src php
+function miplugin_agrega_una_pagina_al_menu_admin(){
+
+    add_menu_page(
+         'Página del plugin', // Title of the page
+         'Página informativa del plugin de disclaimer', // Text to show on the menu link
+         'manage_options', // Capability requirement to see the link
+         plugin_dir_path(__FILE__) . 'pagina-admin.php' // se añade a /wp-admin
+    );
+
+
+add_action( 'admin_menu', 'miplugin_agrega_una_pagina_al_menu_admin' );
+#+end_src
+
+** Normas básicas a seguir
+- Las funciones y constantes son globales: hay que ponerles un prefijo para que no /colisionen/
+- Sin efectos laterales en los filtros: son funciones  
+
+[[https://developer.wordpress.org/plugins/plugin-basics/best-practices/][Saber más...]]
+
+* Ejercicios
+
+** Crea un /plugin/ vacío
+- Crea un plugin vacío
+  - Elije un nombre (ejemplo: =iaw_test_plugin=)
+  - Elije un prefijo para tus funciones y opciones (ejemplo: =iaw_test_plugin=)  
+  - Incluye comentario con los datos del /plugin/
+- El /plugin/ debe aparecer al visitar http://SERVIDOR/wordpress/wp-admin/plugins.php
+
+** /widget/ en el /dashboard/
+- Añade un /widget/ que simplemente diga "¡Hola, mundo!"
+  - Acción =wp_dashboard_setup=
+  - Función =wp_add_dashboard_widget=
+
+** Página nueva en el menú de administración
+- Acción =admin_menu=
+- Función =add_menu_page=
+- La página no tendrá funcionalidad: solo mostrará un texto [[https://loremipsum.io/generator][/lorem ipsum/]]  
+
+** Filtro de contenido
+- Filtro =the_content=
+- Quita todas las ocurrencias de la pseudopalabra =WTF=, las cambia por =###=
+
+** Página de /settings/
+- En vez de =###=, se podrá censurar la palabra prohibida con una cadena configurable
+- Acción =admin_init=
+  - Registrar una opción con la función [[https://developer.wordpress.org/reference/functions/register_setting/][=register_setting=]]
+  - El nombre de la opción:  
+- Acción =admin_menu=
+  - Función [[https://developer.wordpress.org/reference/functions/add_options_page/][=add_options_page=]]
+- En la función de opciones de página
+  - Usar [[https://developer.wordpress.org/reference/functions/settings_fields/][=settings_fields=]] dentro del formulario
+  - Los campos =input= tendrán los nombres definidos en =register_settings=
+  - El valor actual se puede conseguir con [[https://developer.wordpress.org/reference/functions/get_option/][=get_option=]]  
+    
+#+begin_src php
+echo '<form method="post" action="options.php">';
+settings_fields( 'wpdocs-plugin-settings-group' );
+$value = get_option("...");
+echo '<input type="..." name="..." value="$value">'
+...    
+#+end_src  
+
+** Más posibilidades
+
+- Haz que el filtro solo se active en chrome, pero no en firefox
+  - [[https://developer.wordpress.org/apis/global-variables/][=$is_chrome=, =$is_gecko=]]
+- Haz que el filtro se pueda activar o desactivar
+  - Con otro /setting/
+  - En el /dashboard/ se verá si está activado, y qué palabra se utiliza para censurar.
+- Empaqueta el plugin y [[https://wpengine.com/resources/how-to-publish-your-first-wordpress-plugin/][publícalo]]
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+https://www.wpbeginner.com/wp-tutorials/how-to-create-a-wordpress-plugin/
+https://www.hostinger.es/tutoriales/tutorial-wordpress-plugins-crear-plugin-wordpress
+https://developer.wordpress.org/apis/
+
