@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-16 lun 08:58 -->
+<!-- 2025-01-30 jue 19:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PLANIFICACIÓN Y ADMINISTRACIÓN DE REDES</title>
@@ -223,12 +223,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -1060,6 +1062,7 @@ Criterios de evaluación:
 <li>Se han descrito las características de las tecnologías «Frame Relay», RDSI y ADSL.</li>
 <li>Se han descrito las analogías y diferencias entre las tecnologías «Wifi» y «Wimax».</li>
 <li>Se han descrito las características de las tecnologías UMTS y HSDPA.</li>
+<li><i>Se han utilizado diferentes tecnologías de túnel para interconectar redes a través de Internet</i></li>
 </ol>
 </div>
 </div>
@@ -1128,7 +1131,7 @@ Criterios de evaluación:
 <tr>
 <td class="org-left">UT2 Conexión básica de ordenadores</td>
 <td class="org-right">&#xa0;</td>
-<td class="org-right">10.00%</td>
+<td class="org-right">100.00%</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
@@ -1172,7 +1175,7 @@ Criterios de evaluación:
 <tr>
 <td class="org-left">UT6 Administración de routers</td>
 <td class="org-right">&#xa0;</td>
-<td class="org-right">45.00%</td>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-right">50.00%</td>
 <td class="org-left">&#xa0;</td>
@@ -1183,7 +1186,7 @@ Criterios de evaluación:
 <tr>
 <td class="org-left">UT7 Interconexión con redes públicas</td>
 <td class="org-right">&#xa0;</td>
-<td class="org-right">45.00%</td>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
@@ -1220,7 +1223,7 @@ Criterios de evaluación:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-16 lun 08:58</p>
+<p class="date">Created: 2025-01-30 jue 19:06</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

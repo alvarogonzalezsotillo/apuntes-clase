@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-26 dom 13:11 -->
+<!-- 2025-01-30 jue 19:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Plugins para Wordpress</title>
@@ -215,12 +215,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -330,7 +332,7 @@ add_action(<span style="color: #ad7fa8; font-style: italic;">'send_headers'</spa
 <div class="org-src-container">
 <pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">pon_prefijo_a_titulo</span>($<span style="color: #ff6347;">title</span>) {
     <span style="color: #729fcf; font-weight: bold;">if</span> (is_single() ) {
-        $<span style="color: #ff6347;">title</span> = <span style="color: #ad7fa8; font-style: italic;">'Este es mi blog: '</span> . $<span style="color: #ff6347;">title</span>;
+    <span style="color: #6c7f6868233c;"> </span>   $<span style="color: #ff6347;">title</span> = <span style="color: #ad7fa8; font-style: italic;">'Este es mi blog: '</span> . $<span style="color: #ff6347;">title</span>;
     }
     <span style="color: #729fcf; font-weight: bold;">return</span> $<span style="color: #ff6347;">title</span>;
 }
@@ -401,10 +403,10 @@ add_filter(<span style="color: #ad7fa8; font-style: italic;">'the_title'</span>,
 <pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">miplugin_agrega_una_pagina_al_menu_admin</span>(){
 
     add_menu_page(
-         <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina del plugin'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Title of the page</span>
-         <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina informativa del plugin de disclaimer'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Text to show on the menu link</span>
-         <span style="color: #ad7fa8; font-style: italic;">'manage_options'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Capability requirement to see the link</span>
-         plugin_dir_path(<span style="color: #729fcf;">__FILE__</span>) . <span style="color: #ad7fa8; font-style: italic;">'pagina-admin.php'</span> <span style="color: #888a85;">// </span><span style="color: #888a85;">se a&#241;ade a /wp-admin</span>
+    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina del plugin'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Title of the page</span>
+    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'P&#225;gina informativa del plugin de disclaimer'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Text to show on the menu link</span>
+    <span style="color: #6c7f6868233c;"> </span>    <span style="color: #ad7fa8; font-style: italic;">'manage_options'</span>, <span style="color: #888a85;">// </span><span style="color: #888a85;">Capability requirement to see the link</span>
+    <span style="color: #6c7f6868233c;"> </span>    plugin_dir_path(<span style="color: #729fcf;">__FILE__</span>) . <span style="color: #ad7fa8; font-style: italic;">'pagina-admin.php'</span> <span style="color: #888a85;">// </span><span style="color: #888a85;">se a&#241;ade a /wp-admin</span>
     );
 
 
@@ -565,7 +567,7 @@ $<span style="color: #ff6347;">value</span> = get_option(<span style="color: #ad
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-26 dom 13:11</p>
+<p class="date">Created: 2025-01-30 jue 19:06</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

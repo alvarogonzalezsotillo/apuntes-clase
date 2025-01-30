@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-11 mié 10:04 -->
+<!-- 2025-01-30 jue 19:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IMPLANTACIÓN DE APLICACIONES WEB</title>
@@ -221,12 +221,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -297,14 +299,14 @@ window.addEventListener("load",()=>{
 <h3 id="org0000004"><span class="section-number-3">2.1.</span> Libro de referencia</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
-<li>Implantación de aplicaciones web (Segunda edición)</li>
-<li><a href="https://www.sintesis.com/libro/implantacion-de-aplicaciones-web">Editorial Síntesis</a></li>
-<li>ISBN  9788413577371</li>
+<li>Implantación de aplicaciones web</li>
+<li><a href="https://www.garceta.es/catalogo/libro.php?ISBN=978-84-1622-830-0&amp;idd=12">Editorial Garceta</a></li>
+<li>ISBN  978-84-1622-830-0</li>
 </ul>
 
 
 <div id="org0000003" class="figure">
-<p><img src="iaw-libro-referencia.png" alt="iaw-libro-referencia.png" />  
+<p><img src="iaw-libro-referencia.gif" alt="iaw-libro-referencia.gif" />
 </p>
 </div>
 </div>
@@ -869,7 +871,7 @@ Criterios de evaluación:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-11 mié 10:04</p>
+<p class="date">Created: 2025-01-30 jue 19:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
