@@ -3,7 +3,7 @@
 #+OPTIONS: author:nil date:nil 
 
 #+LATEX_HEADER: \lhead{IAW}
-#+LATEX_HEADER: \rhead{Práctica PHP (II)}
+#+LATEX_HEADER: \rhead{Práctica PHP (III)}
 
 #+title: Tercera práctica PHP
 
@@ -14,9 +14,9 @@
 :UNNUMBERED: t
 :END:
 En esta práctica se espera que el alumno:
-- Se familiarice con el manejo de sesiones
 - Se familiarice con el uso de MySQL
-- Utilice técnicas AJAX para mejorar la usabilidad de sus aplicaciones web  
+- Utilice técnicas AJAX para mejorar la usabilidad de sus aplicaciones web
+- Proteja la aplicación de ataques /SQL injection/ y /HTML injection/ 
 
 
 Se tomará como base el código desarrollado para la práctica anterior
@@ -32,7 +32,15 @@ Modifica =listado-mazmorras.php=
     
 * Duplicar mazmorra (1 punto)
 Modifica =duplicar-mazmorra.php=. Está página
-- El botón de duplicar mazmorra solo se podrá pulsar si el nuevo nombre no está vacío, y el nombre e mazmorra aún no existe.
+- El botón de duplicar mazmorra solo se podrá pulsar si el nuevo nombre no está vacío, y el nombre de mazmorra aún no existe.
+
+* Ataques con el nombre de la mazmorra (-3 puntos)
+Si se puede [[https://kunststube.net/escapism/][atacar la aplicación con nombres de mazmorra maliciosos]], se restarán 3 puntos del total de la práctica
+
+#+latex: \begin{Aviso}[Cómo me defiendo]
+- [[https://www.php.net/manual/en/function.htmlspecialchars.php][=htmlspecialchars=]]
+- [[https://www.w3schools.com/php/php_mysql_prepared_statements.asp][Sentencias preparadas]]  
+#+latex: \end{Aviso}
   
 * Editar mazmorra  (5 puntos)
 Modifica =editar-mazmorra.php=. Esta página:

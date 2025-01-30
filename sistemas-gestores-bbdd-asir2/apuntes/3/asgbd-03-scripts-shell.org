@@ -455,9 +455,8 @@ contador=$(($contador + 1))
 #+begin_src bash
 #!/bin/bash
 
-
 dialogo(){
-    whiptail --menu "Elige una opción" 20 50 12 \
+    whiptail --title "Menu" --menu "Elige una opción" 12 50 5 \
              1 "Mostrar el nombre del ordenador"\
              2 "Mostrar las direcciones IP asignadas"\
              3 "Mostrar espacio libre en los discos"\
@@ -469,19 +468,27 @@ resultado_de_dialogo(){
     dialogo 3>&2 2>&1 1>&3
 }
 
+casi_pantalla_completa(){
+    stty size | awk '{$1-=4;$2-=4}1'
+}
+
+casi_ancho_completo(){
+    echo $(stty size | cut -d ' ' -f 2) - 4 | bc
+}
+
 ejecuta_opcion(){
     case $1 in
         1)
-            hostname
+            whiptail --title "Host name" --msgbox "$(hostname)" 9 $(casi_ancho_completo)
             ;;
         2)
-            hostname -I
+            whiptail --title "Direcciones IP" --msgbox "$(hostname -I)" 9 $(casi_ancho_completo)
             ;;
         3)
-            df | grep /dev | grep -v tmpfs
+            whiptail --title "Uso de disco" --msgbox "$(df | grep /dev | grep -v tmpfs)" $(casi_pantalla_completa)
             ;;
         4)
-            who
+            whiptail --title "Usuarios con sesión" --msgbox "$(who)" $(casi_pantalla_completa)
             ;;
         5)
             echo "Saliendo"
@@ -490,11 +497,10 @@ ejecuta_opcion(){
 }
 
 respuesta=$(resultado_de_dialogo)
-while [ $respuesta -ne 5 ]
+while [ "$respuesta" ] && [ "$respuesta" -ne 5 ]
 do
     ejecuta_opcion $respuesta
     respuesta=$(resultado_de_dialogo)
-    read -p "Pulsa intro para continuar"
 done
 #+end_src
   
