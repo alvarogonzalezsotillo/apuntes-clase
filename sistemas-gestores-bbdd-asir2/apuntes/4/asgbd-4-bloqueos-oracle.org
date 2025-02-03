@@ -311,7 +311,8 @@ order by piece;
 #+BEGIN_SRC dot :file ./media/tablas-bloqueos.png :exports results :cmd dot :cmdline -T png
 digraph {
   node[ shape="box"]
-  edge[fontname="courier", fontsize="8", color="gray"]
+  graph [pad="0.5", nodesep="1", ranksep="1"];
+  edge[fontname="courier", fontsize="8", color="darkgray"]
   
   splines=true
   rankdir=TD
@@ -322,12 +323,19 @@ digraph {
    SESSION [label="v_$session"]
    SQLTEXT [label="v_$sqltext"]
 
-   SESSION -> LOCKED_OBJECT[taillabel="sid" headlabel="session_id"]
+   LOCKED_OBJECT -> LOCK[label="object_id"]
+   LOCK -> LOCKED_OBJECT[label="id1"]
+
+
+   SESSION -> SESSION[taillabel="blocking_session" headlabel="sid"]
+   LOCKED_OBJECT -> SESSION [headlabel="sid" taillabel="session_id"]
    SESSION -> PROCESS [taillabel="paddr" headlabel="addr"]
    SESSION -> SQLTEXT [taillabel="sql_address" headlabel="address"]
-   SESSION -> LOCK [taillabel="sid" headlabel="sid"]
+   LOCK  -> SESSION [headlabel="sid" taillabel="sid"]
    LOCK -> DBA_OBJECTS  [taillabel="id1" headlabel="object_id"]
+   LOCK -> LOCK  [taillabel="id1 id2" headlabel="id1 id2"]
    LOCKED_OBJECT -> DBA_OBJECTS[taillabel="object_id" headlabel="object_id"]
+
 }
 
 #+end_src
