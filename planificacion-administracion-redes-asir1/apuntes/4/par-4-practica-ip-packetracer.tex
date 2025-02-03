@@ -156,7 +156,7 @@ Una empresa tiene disponible la red \texttt{10.n.80.0/22}. La utilizará para da
 \item 2ª planta: 150 puestos de trabajo
 \item 3ª planta: 30 puestos de trabajo
 \item 4ª planta: 200 puestos de trabajo
-\item Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
+\item Red de routers: Cada planta tendrá un \textit{router}. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
 \end{itemize}
 
 
@@ -172,14 +172,15 @@ El número \texttt{n} de la red se corresponde con el asignado al alumno en  \hr
 \subsection{Características del diseño \emph{Packet Tracer}}
 \label{sec:org0000006}
 \begin{itemize}
-\item Cada planta tendrá un \emph{router}, su \emph{switch} (sistema horizontal), el primer host y el último host.
-\item Los routers de las plantas se utirán por un switch (sistema vertical).
+\item Cada planta tendrá un \emph{router}, su \emph{switch} (sistema horizontal), el primer puesto de trabajo y el último puesto de trabajo
+\item Los \textit{routers} de las plantas se unirán por un switch (sistema vertical).
 \item Habrá comunicación a nivel IP (\texttt{ping})
 \begin{itemize}
-\item entre todos los hosts de una planta
-\item entre todos los routers, usando la red de routers
+\item entre todos los \textit{hosts} de una planta
+\item entre todos los \textit{routers}, usando la red de \textit{routers}
+\item entre todos los \textit{hosts} y todos los \textit{routers}
 \end{itemize}
-\item No se considera un error que no se pueda hacer \texttt{ping} entre plantas
+\item No se considera un error que no se pueda hacer \texttt{ping} entre \textit{hosts} de plantas distintas
 \end{itemize}
 
 
