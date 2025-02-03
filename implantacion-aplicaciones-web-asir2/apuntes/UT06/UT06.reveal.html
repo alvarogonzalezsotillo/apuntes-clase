@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Despliegue de Nexcloud con Docker Compose</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:06</p>
+<h1 class="title">Despliegue de Nexcloud con Docker Compose</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-02-03 lun 18:11</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -563,7 +563,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 
-
 <div class="org-src-container">
 
 <pre><code class="yaml" >name: mariadb-stack
@@ -584,7 +583,20 @@ volumes:
 </div>
 <div class="slide-footer"></div>
 
+</section>
+<section id="slide-2-4">
+<h3 id="2-4"><span class="section-number-3">2.4.</span> Redes</h3>
+<ul>
+<li>Todos los servicios de un <i>stack</i> comparten una red <i>bridge</i> propia
+<ul>
+<li>No hay comunicación entre redes distintas</li>
+<li>Cada red simula estar detrás de un NAT, siendo el <i>host</i> el router</li>
 
+</ul></li>
+<li>Pueden definirse redes <i>bridge</i> adicionales</li>
+
+</ul>
+<div class="slide-footer"></div>
 </section>
 </section>
 <section>
@@ -649,7 +661,6 @@ volumes:
 
 </ul>
 <div class="slide-footer"></div>
-
 
 
 </section>
@@ -813,6 +824,11 @@ You have not configured the allow-list for WOPI requests. Without this setting u
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 
 </ul>
+
+
+<p>
+<a href="https://plataforma.josedomingo.org/pledin/cursos/docker2024/">https://plataforma.josedomingo.org/pledin/cursos/docker2024/</a>
+</p>
 <div class="slide-footer"></div>
 </section>
 </section>
