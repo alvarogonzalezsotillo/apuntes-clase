@@ -1,0 +1,14 @@
+name: mariadb-stack
+services:
+  db:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: asdasd
+    ports:
+      - 1234:3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+volumes:
+    mariadb_data:

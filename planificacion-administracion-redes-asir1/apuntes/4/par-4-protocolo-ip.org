@@ -262,6 +262,18 @@ Intenta hacer =ping= a Google con un TTL de 10. ¿es suficiente? ¿y con 20?
    - ~192.168.255.253/24~
    - ~172.37.10.255/16~
 
+** Ejercicio
+- Indica el primer host y la dirección de /broadcast/ de las redes donde estén contenidos los siguientes /hosts/:
+   - ~172.46.25.1/12~
+   - ~198.30.18.18/15~
+   - ~198.30.18.18/30~
+   - ~192.168.255.253/24~
+   - ~172.37.10.255/16~
+
+** Ejercicio
+- Indica el nombre de red y dirección de /broadcast/ de la red *más pequeña* donde viven los /hosts/:
+  - ~172.25.4.3~ y ~172.29.2.4~
+  - ~192.168.2.4~ y ~192.128.3.25~  
 
 ** /Subnetting/ y /supernetting/
 - Utilizando máscaras de red pueden saltarse los límites de las clases IP

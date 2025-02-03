@@ -1,10 +1,13 @@
 
 (defun es-presentacion-p (filename)
-  (let* ((contents (org-file-contents filename)))
-    (string-match-p "/common/footer.org" contents)))
+  (message "Probando fichero org:%s" filename)
+  (unless (file-directory-p filename)
+    (let* ((contents (org-file-contents filename)))
+      (message "  Leido fichero org:%s" filename)
+      (string-match-p "/common/footer.org" contents))))
 
 (defun lista-de-orgs (directory)
-  (directory-files-recursively directory ".*\.org$" ))
+  (directory-files-recursively directory ".*\.org$" t t))
 
 
 (defun lista-de-presentaciones (directory)

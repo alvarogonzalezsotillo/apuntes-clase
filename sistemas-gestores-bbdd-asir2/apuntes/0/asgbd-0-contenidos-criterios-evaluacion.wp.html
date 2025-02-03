@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-10-01 mar 16:17 -->
+<!-- 2025-01-30 jue 19:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADMINISTRACIÓN DE SISTEMAS GESTORES DE BASES DE DATOS</title>
@@ -222,12 +222,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -857,7 +859,7 @@ window.addEventListener("load",()=>{
 <div id="outline-container-org0000052" class="outline-3">
 <h3 id="org0000052"><span class="section-number-3">9.1.</span> Implanta sistemas gestores de bases de datos analizando sus características y ajustándose a los requerimientos del sistema.</h3>
 <div class="outline-text-3" id="text-9-1">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se ha reconocido la utilidad y función de cada uno de los elementos de un sistema gestor de bases de datos.</li>
 <li>Se han analizado las características de los principales sistemas gestores de bases de datos.</li>
 <li>Se ha seleccionado el sistema gestor de bases de datos.</li>
@@ -868,7 +870,7 @@ window.addEventListener("load",()=>{
 <li>Se ha interpretado la información suministrada por los mensajes de error y ficheros de registro.</li>
 <li>Se han resuelto las incidencias de la instalación.</li>
 <li>Se ha verificado el funcionamiento del sistema gestor de bases de datos.</li>
-</ul>
+</ol>
 </div>
 </div>
 
@@ -876,7 +878,7 @@ window.addEventListener("load",()=>{
 <div id="outline-container-org0000055" class="outline-3">
 <h3 id="org0000055"><span class="section-number-3">9.2.</span> Configura el sistema gestor de bases de datos interpretando las especificaciones técnicas y los requisitos de explotación.</h3>
 <div class="outline-text-3" id="text-9-2">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se han descrito las condiciones de inicio y parada del sistema gestor.</li>
 <li>Se ha seleccionado el motor de base de datos.</li>
 <li>Se han asegurado las cuentas de administración.</li>
@@ -885,14 +887,14 @@ window.addEventListener("load",()=>{
 <li>Se han definido las características por defecto de las bases de datos.</li>
 <li>Se han definido los parámetros relativos a las conexiones (tiempos de espera,número máximo de conexiones, entre otros).</li>
 <li>Se ha documentado el proceso de configuración.</li>
-</ul>
+</ol>
 </div>
 </div>
 
 <div id="outline-container-org0000058" class="outline-3">
 <h3 id="org0000058"><span class="section-number-3">9.3.</span> Implanta métodos de control de acceso utilizando asistentes, herramientas gráficas y comandos del lenguaje del sistema gestor.</h3>
 <div class="outline-text-3" id="text-9-3">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se han creado vistas personalizadas para cada tipo de usuario.</li>
 <li>Se han creado sinónimos de tablas y vistas.</li>
 <li>Se han definido y eliminado cuentas de usuario.</li>
@@ -900,14 +902,14 @@ window.addEventListener("load",()=>{
 <li>Se han agrupado y desagrupado privilegios.</li>
 <li>Se han asignado y eliminado privilegios a usuarios.</li>
 <li>Se han asignado y eliminado grupos de privilegios a usuarios.</li>
-<li>Se ha garantizando el cumplimiento de los requisitos de seguridad.</li>
-</ul>
+<li>Se ha garantizado el cumplimiento de los requisitos de seguridad.</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-org000005b" class="outline-3">
 <h3 id="org000005b"><span class="section-number-3">9.4.</span> Automatiza tareas de administración del gestor describiéndolas y utilizando guiones de sentencias.</h3>
 <div class="outline-text-3" id="text-9-4">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se ha reconocido la importancia de automatizar tareas administrativas.</li>
 <li>Se han descrito los distintos métodos de ejecución de guiones.</li>
 <li>Se han identificado las herramientas disponibles para redactar guiones.</li>
@@ -916,13 +918,13 @@ window.addEventListener("load",()=>{
 <li>Se han definido disparadores.</li>
 <li>Se han utilizado estructuras de control de flujo.</li>
 <li>Se han adoptado medidas para mantener la integridad y consistencia de la información.</li>
-</ul>
+</ol>
 </div>
 </div>
 <div id="outline-container-org000005e" class="outline-3">
 <h3 id="org000005e"><span class="section-number-3">9.5.</span> Optimiza el rendimiento del sistema aplicando técnicas de monitorización y realizando adaptaciones.</h3>
 <div class="outline-text-3" id="text-9-5">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se han identificado las herramientas de monitorización disponibles para el sistema gestor.</li>
 <li>Se han descrito las ventajas e inconvenientes de la creación de índices.</li>
 <li>Se han creado índices en tablas y vistas.</li>
@@ -931,13 +933,13 @@ window.addEventListener("load",()=>{
 <li>Se ha obtenido información sobre el rendimiento de las consultas para su optimización.</li>
 <li>Se han programado alertas de rendimiento.</li>
 <li>Se han realizado modificaciones en la configuración del sistema operativo para mejorar el rendimiento del gestor.</li>
-</ul>
+</ol>
 </div>
 </div>
 <div id="outline-container-org0000061" class="outline-3">
 <h3 id="org0000061"><span class="section-number-3">9.6.</span> Aplica criterios de disponibilidad analizándolos y ajustando la configuración del sistema gestor.</h3>
 <div class="outline-text-3" id="text-9-6">
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Se ha reconocido la utilidad de las bases de datos distribuidas.</li>
 <li>Se han descrito las distintas políticas de fragmentación de la información.</li>
 <li>Se ha implantado una base de datos distribuida homogénea.</li>
@@ -945,7 +947,7 @@ window.addEventListener("load",()=>{
 <li>Se ha configurado un «nodo» maestro y varios «esclavos» para llevar a cabo la replicación del primero.</li>
 <li>Se ha configurado un sistema de replicación en cadena.</li>
 <li>Se ha comprobado el efecto de la parada de determinados nodos sobre los sistemas distribuidos y replicados.</li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
@@ -1017,7 +1019,7 @@ window.addEventListener("load",()=>{
 </tr>
 
 <tr>
-<td class="org-left">UT3 seguridad de SGBD</td>
+<td class="org-left">UT3 Seguridad de SGBD</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-right">&#xa0;</td>
 <td class="org-right">40.00%</td>
@@ -1086,7 +1088,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-10-01 mar 16:17</p>
+<p class="date">Created: 2025-01-30 jue 19:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -78,21 +78,29 @@
 #+REVEAL_ADD_PLUGIN: menu RevealMenu ../../common/reveal.js-menu/menu.js
 # #+REVEAL_ADD_PLUGIN: chart RevealChart https://cdn.jsdelivr.net/gh/rajgoel/reveal.js-plugins/chart/plugin.js
 
+# SI SINGLEFILE ES T, NO FUNCIONA EL INITSCRIPT
+#+OPTIONS: reveal_single_file:nil
+
+
 # #+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
 #+REVEAL_ROOT: ../../../common/reveal.js
-#+REVEAL_INIT_SCRIPT: width: '100%', menu: { openOnInit: false, side: "left", transitions: ['None','Cube','Page','Concave','Zoom','Linear','Fade'] }
+#+REVEAL_INIT_SCRIPT: width: '100%', menu: { markers: true, openOnInit: true, side: "left", transitions: ['None','Cube','Page','Concave','Zoom','Linear','Fade'], themes:true, themesPath: '../../../common/reveal.js/dist/theme/' }
+
+# PARA QUE FUNCIONE EL TEMA EN REVEALJSMENU
+#+html:  <link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 # Available transitions are: default|cube|page|concave|zoom|linear|fade|none
 #+REVEAL_TRANS: linear
 #+REVEAL_THEME: simple
 
-# CARGAR HIGHLIGHT.JS EN REVEAL AUNQUE SINGLE_FILE SEA TRUE_
+# CARGAR HIGHLIGHT.JS EN REVEAL AUNQUE SINGLE_FILE SEA TRUE
 #+begin_export html
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 

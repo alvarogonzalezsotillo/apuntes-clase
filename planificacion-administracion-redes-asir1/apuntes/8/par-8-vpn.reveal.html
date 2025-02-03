@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Redes privadas virtuales</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2024-09-08 dom 17:53</p>
+<h1 class="title">Redes privadas virtuales</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:08</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -462,12 +462,14 @@ div.figure, caption.t-bottom{
 </div>
 </div>
 </section>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -11534,7 +11536,7 @@ plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 dependencies: [
 ]
 
-,width: '100%', menu: { openOnInit: false, side: "left", transitions: ['None','Cube','Page','Concave','Zoom','Linear','Fade'] }});
+,width: '100%', menu: { markers: true, openOnInit: true, side: "left", transitions: ['None','Cube','Page','Concave','Zoom','Linear','Fade'], themes:true, themesPath: '../../../common/reveal.js/dist/theme/' }});
 </script>
 </body>
 </html>

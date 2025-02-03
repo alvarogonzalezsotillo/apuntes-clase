@@ -1,0 +1,106 @@
+
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Despliegue de Nexcloud con Docker Compose
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+* [[https://nextcloud.com/][Nextcloud]]
+- Es un /fork/ de /owncloud/
+- Paquete ofimático (a través de [[https://www.collaboraonline.com/][Collabora]])
+- Almacenamiento y compartición de ficheros
+- Cliente de correo, /chat/
+  
+
+
+* Docker compose
+- Facilita la creación de /containers/ interconectados (/stacks/)
+- Facilita la creación de redes  
+- Usa ficheros /yaml/
+
+** Nivel superior
+- =name=: Nombre del /stack/ a crear
+- [[https://docs.docker.com/reference/compose-file/services/][=services=]]: Lista de /containers/ a crear
+- [[https://docs.docker.com/reference/compose-file/networks/][=networks=]]: Lista de redes que usarán los /containers/
+- [[https://docs.docker.com/reference/compose-file/volumes/][=volumes=]]: Lista de volúmenes, generalmente compartidos entre los /containers/
+- Otros (=secrets=,=configs=)
+
+** [[https://docs.docker.com/reference/compose-file/services/][Servicios]]
+- Nombre del servcio
+  - =image=: Imagen Docker
+  - =volumes=: Volúmenes montados en este /container/
+  - =ports=: mapeo de puertos TCP/UDP
+
+** Ejemplo
+- Conectar desde el host con
+  - mysql --host localhost --port 1234 -u root -pcosmicsecret
+
+
+#+include: "./ejemplos-docker-compose/mariadb.yml" src yaml
+
+
+* Wordpress
+#+include: "./ejemplos-docker-compose/wordpress.yml" src yaml
+
+* Secretos
+- Variables de entorno
+- Ficheros de entorno (=.env=)
+- =secrets= (las imágenes de docker deben soportarlos)
+
+** Variables de entorno
+- Se utilizan como en bash: =${VARIABLE}=
+- Pueden tener un valor por defecto =${VARIABLE:-pordefecto}=
+- El fichero =.env= se carga antes de ejecutar el fichero YAML
+
+
+
+* Instalar Nextcloud
+
+- Containers:
+  - Nexcloud:
+  - Redis: cache en memoria para rendimiento
+  - Base de datos Mariadb
+  - Opcional: proxy inverso apache/nginx para mejorar la seguridad
+- [[https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/with-nginx-proxy/mariadb/apache/compose.yaml][Ejemplos]]    
+
+#+reveal: split 
+
+#+include: "./nextcloud-stack/docker-compose.yml" src yaml
+
+
+** Dirección de acceso
+- Para evitar problemas, usaremos una IP estática en el host
+- Usaremos esa IP para acceder al nextcloud
+  - =config/config.php= , cambiar "trusted_domains"
+#+begin_src php
+  'trusted_domains' => 
+  array (
+    0 => 'localhost:8888',
+    1 => '192.168.1.120:8888',
+    3 => 'localhost:80'
+  ),
+#+end_src    
+
+** Instalar Collabora
+- App: nextcloud office
+  - Puede conectarse a un servidor de documentos y edición
+- APP: Collabora Online - Built-in CODE Server
+  - Es un servidor de edición de documentos integrado
+  - Pueden instalarse otros por separado
+- Settings: Nextcloud Office
+  - Usar "Built in CODE"
+
+** WOPI
+#+begin_example
+Could not establish connection to the Collabora Online server.
+
+Failed to connect to the remote server: cURL error 7: Failed to connect to localhost port 8888 after 0 ms: Couldn't connect to server (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://localhost:8888/custom_apps/richdocumentscode/proxy.php?req=/hosting/discovery
+
+You have not configured the allow-list for WOPI requests. Without this setting users may download restricted files via WOPI requests to the Nextcloud server. Click here for more info
+#+end_example
+- Hay que poner, o la =IPdelhost:puerto_mapeado=  
+    
+* Referencias
+#+include: "../../../common/footer.org"
+
+
