@@ -263,7 +263,13 @@ Fuente: http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessions/
 select s1.username  as blocking_user , s1.machine as blocking_machine
   ,s1.sid as blocking_sid, s1.serial# as blocking_serial, p1.spid as blocking_pid, s2.username as blocked_user, s2.machine  as blocked_machine, 
   s2.sid  as blocked_sid, s2.serial# as blocked_serial, p2.spid as blocked_pid
-  from v_$lock l1, v_$session s1, v_$lock l2, v_$session s2, sys.v_$process p2, sys.v_$process p1
+  from
+    v_$lock l1,
+    v_$session s1,
+    v_$lock l2,
+    v_$session s2,
+    sys.v_$process p2,
+    sys.v_$process p1
   where s1.sid=l1.sid and s2.sid=l2.sid
   and s1.paddr = p1.addr
   and s2.paddr = p2.addr
@@ -274,7 +280,8 @@ select s1.username  as blocking_user , s1.machine as blocking_machine
 
 #+begin_comment
 SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF
-SELECT sid, serial#, blocking_session FROM v$session WHERE blocking_session IS NOT NULL;;
+SELECT sid, serial#, blocking_session
+FROM v$session WHERE blocking_session IS NOT NULL;;
 #+end_comment
 
 ** Sentencia =SQL= bloqueada (de un =SID=)
@@ -299,6 +306,35 @@ and s.sid in (
 )
 order by piece;
 #+end_src
+
+** Tablas involucradas
+#+BEGIN_SRC dot :file ./media/tablas-bloqueos.png :exports results :cmd dot :cmdline -T png
+digraph {
+  node[ shape="box"]
+  edge[fontname="courier", fontsize="8", color="gray"]
+  
+  splines=true
+  rankdir=TD
+
+   LOCK [label="v_$lock"]
+   LOCKED_OBJECT [label="v_$locked_object"]
+   PROCESS [label="v_$process"]
+   SESSION [label="v_$session"]
+   SQLTEXT [label="v_$sqltext"]
+
+   SESSION -> LOCKED_OBJECT[taillabel="sid" headlabel="session_id"]
+   SESSION -> PROCESS [taillabel="paddr" headlabel="addr"]
+   SESSION -> SQLTEXT [taillabel="sql_address" headlabel="address"]
+   SESSION -> LOCK [taillabel="sid" headlabel="sid"]
+   LOCK -> DBA_OBJECTS  [taillabel="id1" headlabel="object_id"]
+   LOCKED_OBJECT -> DBA_OBJECTS[taillabel="object_id" headlabel="object_id"]
+}
+
+#+end_src
+
+#+RESULTS:
+[[file:./media/tablas-bloqueos.png]]
+
 
 ** Terminar una sesión
 #+begin_src sql

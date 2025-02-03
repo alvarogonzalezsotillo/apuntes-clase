@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-10 Fri 13:59 -->
+<!-- 2025-02-03 lun 12:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
@@ -208,8 +208,8 @@
 <li><a href="#org000000f">2. Propiedades <b>ACID</b></a></li>
 <li><a href="#org000001e">3. Problemas del uso concurrente</a></li>
 <li><a href="#org000002d">4. Bloqueos y versiones</a></li>
-<li><a href="#org000004c">5. Detección y solución de sesiones bloqueadas</a></li>
-<li><a href="#org000004f">6. Referencias</a></li>
+<li><a href="#org0000051">5. Detección y solución de sesiones bloqueadas</a></li>
+<li><a href="#org0000054">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -803,8 +803,8 @@ window.addEventListener("load",()=>{
 
 
 
-<div id="outline-container-org000004c" class="outline-2">
-<h2 id="org000004c"><span class="section-number-2">5.</span> Detección y solución de sesiones bloqueadas</h2>
+<div id="outline-container-org0000051" class="outline-2">
+<h2 id="org0000051"><span class="section-number-2">5.</span> Detección y solución de sesiones bloqueadas</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Si un usuario/aplicación se comporta de manera inadecuada, puede bloquear la base de datos</li>
@@ -977,9 +977,21 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 </div>
 
-<div id="outline-container-org0000045" class="outline-3">
-<h3 id="org0000045"><span class="section-number-3">5.8.</span> Terminar una sesión</h3>
+<div id="outline-container-org0000047" class="outline-3">
+<h3 id="org0000047"><span class="section-number-3">5.8.</span> Tablas involucradas</h3>
 <div class="outline-text-3" id="text-5-8">
+
+<div id="org0000045" class="figure">
+<p><img src="./media/tablas-bloqueos.png" alt="tablas-bloqueos.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org000004a" class="outline-3">
+<h3 id="org000004a"><span class="section-number-3">5.9.</span> Terminar una sesión</h3>
+<div class="outline-text-3" id="text-5-9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SELECT</span> s.inst_id,
     <span style="color: #6c7f6868233c;"> </span>  s.sid,
@@ -1000,9 +1012,9 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 </div>
 
-<div id="outline-container-org0000049" class="outline-3">
-<h3 id="org0000049"><span class="section-number-3">5.9.</span> Terminar una sesión (sistema operativo)</h3>
-<div class="outline-text-3" id="text-5-9">
+<div id="outline-container-org000004e" class="outline-3">
+<h3 id="org000004e"><span class="section-number-3">5.10.</span> Terminar una sesión (sistema operativo)</h3>
+<div class="outline-text-3" id="text-5-10">
 <ul class="org-ul">
 <li>Solo como último recurso, mejor <code>KILL SESSION</code></li>
 <li>Se debe matar el proceso identificado en el <code>spid</code> (<i>system process identifier</i>)</li>
@@ -1014,7 +1026,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </ul>
 
 
-<div id="org0000048" class="figure">
+<div id="org000004d" class="figure">
 <p><img src="./media/procesos-usuario-sistema.png" alt="procesos-usuario-sistema.png" />
 </p>
 </div>
@@ -1023,8 +1035,8 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 
 
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">6.</span> Referencias</h2>
+<div id="outline-container-org0000054" class="outline-2">
+<h2 id="org0000054"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
@@ -1047,7 +1059,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-10 Fri 13:59</p>
+<p class="date">Created: 2025-02-03 lun 12:37</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
