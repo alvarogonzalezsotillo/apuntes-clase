@@ -365,7 +365,8 @@ ALTER SYSTEM KILL SESSION 'sid,serial#';
 - Solo como último recurso, mejor =KILL SESSION=
 - Se debe matar el proceso identificado en el =spid= (/system process identifier/)
 - Importante:
-  - el =spid= es del proceso intermedio entre el cliente (/application code/) y el servidor (/system global area/)
+  - La columna ~v$process.spid~ es del proceso intermedio entre el cliente (/application code/) y el servidor (/system global area/)
+  - La columna ~v$sessoin.process~ es del proceso cliente, que está en la máquina cliente, no el el servidor
   - Por tanto, el proceso a matar se encuentra en el mismo host que el servidor de base de datos
 
 [[file:./media/procesos-usuario-sistema.png]]
