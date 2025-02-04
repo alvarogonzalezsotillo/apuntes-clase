@@ -33,11 +33,11 @@ El número =n= de la red se corresponde con el asignado al alumno en  [[http://b
 - Las parte no asignada de la red original se compodrá de redes contiguas tan grandes como sea posible
 
 ** Características del diseño /Packet Tracer/  
-- Cada planta tendrá un /router/, su /switch/ (sistema horizontal), el primer host y el último host.
-- Los routers de las plantas se utirán por un switch (sistema vertical).
+- Cada planta tendrá un /router/, su /switch/ (sistema horizontal), el primer puesto de trabajo y el último puesto de trabajo.
+- Los routers de las plantas se unirán por un /switch/ (sistema vertical).
 - Habrá comunicación a nivel IP (=ping=)
-  - entre todos los hosts de una planta
-  - entre todos los routers, usando la red de routers  
+  - entre todos los /hosts/ de una planta
+  - entre todos los /routers/, usando la red de /routers/  
 - No se considera un error que no se pueda hacer =ping= entre plantas  
 
 
