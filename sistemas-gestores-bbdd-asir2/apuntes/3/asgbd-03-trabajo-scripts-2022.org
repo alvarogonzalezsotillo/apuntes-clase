@@ -77,6 +77,7 @@ La última versión de este documento se puede descargar de [[https://alvarogonz
   - Crea un script de nombre =/home/alumno/scripts/nuevos-usuarios-oracle.sh= que lea de su entrada estándar
   - Cada línea será un nombre de usuario a crear
   - Cada usuario se creará con permisos connect y resource
+    - La contraseña será el nombre de usuario
   - Si el usuario ya existe, no se hará nada con él    
  
   #+caption: Ejemplo de uso

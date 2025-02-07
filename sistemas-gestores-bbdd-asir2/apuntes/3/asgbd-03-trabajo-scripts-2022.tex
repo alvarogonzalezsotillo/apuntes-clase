@@ -1,6 +1,6 @@
-% Created 2022-01-21 vie 12:39
+% Created 2025-02-07 Fri 13:17
 % Intended LaTeX compiler: pdflatex
-\documentclass{article}
+\documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -24,8 +24,8 @@
 \lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
 \lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
 \usepackage{caption}
-\usepackage{attachfile}
-\usepackage[margin=2.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
 \hypersetup{colorlinks,linkcolor=black}
 \usepackage{fancyhdr}
 \pagestyle{fancyplain}
@@ -60,11 +60,14 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 29.0.50 (Org mode 9.4.6)}, 
+ pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
  pdflang={Spanish}}
 \begin{document}
 
 \captionsetup{font=scriptsize}
+
+\textattachfile{/home/alvaro/apuntes-clase-profesor/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts-2022.org}{} \vspace{-1em}
+
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
@@ -92,6 +95,20 @@
       \textbf{Apellidos:} \hrulefill \\
       \textbf{Nombre:} \hrulefill \\
       \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
     }
     \vspace{-0.2cm}
   \end{cuadrito}
@@ -127,21 +144,18 @@ Crea dos \emph{scripts} para iniciar y parar \textbf{Oracle}
 
 \item En el fichero \texttt{/home/alumno/logs/oracle.log} se dejará una traza de cuando se arrancó y se paró la máquina, y si fue necesario arrancar o parar \textbf{Oracle}. Por ejemplo:
 
-\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se arranca},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se arranca},captionpos=b,numbers=none]
       2022-02-10-12:40:00 - Solicitud de arrancar Oracle
       2022-02-10-12:40:01 - Oracle arrancando porque /etc/oratab indica Y
       2022-02-10-12:40:20 - Oracle arrancado
 \end{lstlisting}
 
-\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se para},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} se para},captionpos=b,numbers=none]
       2022-02-10-12:41:00 - Solicitud de parar Oracle
       2022-02-10-12:41:20 - Oracle parado
 \end{lstlisting}
 
-\lstset{language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} no se arranca},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,label= ,caption={Ejemplo de \texttt{/home/alumno/logs/oracle.log} cuando \textbf{Oracle} no se arranca},captionpos=b,numbers=none]
       2022-02-10-12:40:00 - Solicitud de arrancar Oracle
       2022-02-10-12:40:01 - Oracle no se arranca porque /etc/oratab indica N
 \end{lstlisting}
@@ -162,11 +176,13 @@ Crea dos \emph{scripts} para iniciar y parar \textbf{Oracle}
 \item Crea un script de nombre \texttt{/home/alumno/scripts/nuevos-usuarios-oracle.sh} que lea de su entrada estándar
 \item Cada línea será un nombre de usuario a crear
 \item Cada usuario se creará con permisos connect y resource
+\begin{itemize}
+\item La contraseña será el nombre de usuario
+\end{itemize}
 \item Si el usuario ya existe, no se hará nada con él
 \end{itemize}
 
-\lstset{language=bash,label=lst:nuevos-usuarios-ejemplo,caption={Ejemplo de uso},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,label=lst:nuevos-usuarios-ejemplo,caption={Ejemplo de uso},captionpos=b,numbers=none]
   echo pepe juan manolo | ./nuevos-usuarios-oracle.sh
   pepe: no existe, se crea con contraseña pepe y se le dan roles
   juan: ya existe, no se hace nada
@@ -179,13 +195,12 @@ Crea dos \emph{scripts} para iniciar y parar \textbf{Oracle}
 \item Crea un script de nombre \texttt{/home/alumno/scripts/quita-usuario-oracle.sh} que bloquee el usuario pasado como parámetro
 \begin{itemize}
 \item Si el usuario no existe, informará de ello y tendrá un errorlevel de \texttt{1}
-\item Si se invoca con primer parámetro \texttt{-{}-drop} y segundo el usuario, borrará el usuario.
+\item Si se invoca con primer parámetro \texttt{-{}-{}drop} y segundo el usuario, borrará el usuario.
 \item Si se invoca sin parámetros, o incorrectos, mostrará el texto de ayuda del listado \ref{lst:quita-usuario-ayuda}
 \end{itemize}
 \end{itemize}
 
-\lstset{language=bash,label=lst:quita-usuario-ayuda,caption={Ayuda del script \texttt{quita-usuario-oracle.sh}},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,label=lst:quita-usuario-ayuda,caption={Ayuda del script \texttt{quita-usuario-oracle.sh}},captionpos=b,numbers=none]
 
   Borra o bloquea un usuario de oracle.
   
@@ -211,8 +226,7 @@ Programa un \emph{script} para que cada minuto almacene en la tabla \texttt{ESTA
 \end{itemize}
 
 
-\lstset{language=SQL,label=lst:tabla.sql,caption={Creación de la tabla \texttt{ESTADO}},captionpos=b,numbers=none}
-\begin{lstlisting}
+\begin{lstlisting}[language=SQL,label=lst:tabla.sql,caption={Creación de la tabla \texttt{ESTADO}},captionpos=b,numbers=none]
   create table ESTADO(
     uptime varchar(40),
     procesos varchar(40),
