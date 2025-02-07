@@ -61,11 +61,11 @@ La última versión de este documento se puede descargar de https://alvarogonzal
 #+latex: \end{Aviso} 
  
 #+latex: \begin{Aviso}
- Es posible que [[https://es.wikipedia.org/wiki/SELinux][SELinux]] no deje arrancar los /scripts/. Para deshabilitarlo temporalmente, se puede usar =setenforce 0=
+ Es posible que [[https://es.wikipedia.org/wiki/SELinux][SELinux]] no deje arrancar los /scripts/. Para deshabilitarlo temporalmente, se puede usar =setenforce 0=. Para deshabilitarlo permanentemente, modificar =/etc/selinux/config=
 #+latex: \end{Aviso} 
 
 * Crea usuarios de base de datos (2 puntos)
-  Crea un script de nombre =/home/alumno/scripts/nuevo-usuario-oracle.sh= que cree un nuevo usuario de oracle. Si se invoca sin parámetros, o con más de dos, mostrará el texto de ayuda del listado [[lst:nuevo-usuario-ayuda]]
+  Crea un script de nombre =/home/alumno/scripts/nuevo-usuario-oracle.sh= que cree un nuevo usuario de oracle. Si se invoca con un número de parámetros distinto de 2, mostrará el texto de ayuda del listado [[lst:nuevo-usuario-ayuda]]
 
   #+caption: Ayuda del script =nuevo-usuario-oracle.sh=
   #+name: lst:nuevo-usuario-ayuda
