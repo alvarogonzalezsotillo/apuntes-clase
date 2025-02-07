@@ -35,10 +35,13 @@
 - Conectar desde el host con
   - mysql --host localhost --port 1234 -u root -pcosmicsecret
 
-
 #+include: "./ejemplos-docker-compose/mariadb.yml" src yaml
 
-
+** Redes
+- Todos los servicios de un /stack/ comparten una red /bridge/ propia
+  - No hay comunicación entre redes distintas
+  - Cada red simula estar detrás de un NAT, siendo el /host/ el router  
+- Pueden definirse redes /bridge/ adicionales
 * Wordpress
 #+include: "./ejemplos-docker-compose/wordpress.yml" src yaml
 
@@ -51,7 +54,6 @@
 - Se utilizan como en bash: =${VARIABLE}=
 - Pueden tener un valor por defecto =${VARIABLE:-pordefecto}=
 - El fichero =.env= se carga antes de ejecutar el fichero YAML
-
 
 
 * Instalar Nextcloud
@@ -103,4 +105,6 @@ You have not configured the allow-list for WOPI requests. Without this setting u
 * Referencias
 #+include: "../../../common/footer.org"
 
+
+https://plataforma.josedomingo.org/pledin/cursos/docker2024/
 

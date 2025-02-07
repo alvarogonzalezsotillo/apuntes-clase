@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:51 -->
+<!-- 2025-01-30 jue 19:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Depuración de PLSQL con SQLDeveloper</title>
@@ -211,12 +211,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -275,17 +277,17 @@ window.addEventListener("load",()=>{
    res <span style="color: #729fcf; font-weight: bold;">number</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span> 
     if (n1&gt;n2) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #8e0d84841a1a;"> </span>   a := n1;
-    <span style="color: #8e0d84841a1a;"> </span>   b := n2;
+    <span style="color: #6c7f6868233c;"> </span>   a := n1;
+    <span style="color: #6c7f6868233c;"> </span>   b := n2;
     <span style="color: #729fcf; font-weight: bold;">else</span>  
-    <span style="color: #8e0d84841a1a;"> </span>   a := n2;
-    <span style="color: #8e0d84841a1a;"> </span>   b := n1;
+    <span style="color: #6c7f6868233c;"> </span>   a := n2;
+    <span style="color: #6c7f6868233c;"> </span>   b := n1;
     <span style="color: #729fcf; font-weight: bold;">end</span> if;
     
     while( b!=0 ) loop
-    <span style="color: #8e0d84841a1a;"> </span>   res := b;
-    <span style="color: #8e0d84841a1a;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
-    <span style="color: #8e0d84841a1a;"> </span>   a := res;
+    <span style="color: #6c7f6868233c;"> </span>   res := b;
+    <span style="color: #6c7f6868233c;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
+    <span style="color: #6c7f6868233c;"> </span>   a := res;
     <span style="color: #729fcf; font-weight: bold;">end</span> loop; 
     
     <span style="color: #729fcf; font-weight: bold;">return</span> res;
@@ -435,10 +437,10 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">begin</span>
     dbms_network_acl_admin.append_host_ace
-    <span style="color: #8e0d84841a1a;"> </span>   (<span style="color: #729fcf; font-weight: bold;">host</span>=&gt;<span style="color: #ad7fa8; font-style: italic;">'IP DEL CLIENTE QUE DEBUGUEA'</span>,
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>ace=&gt; sys.xs$ace_type( privilege_list=&gt;sys.XS$NAME_LIST(<span style="color: #ad7fa8; font-style: italic;">'JDWP'</span>) ,
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #505069e98201;"> </span>                   principal_name=&gt;<span style="color: #ad7fa8; font-style: italic;">'USUARIO QUE DEBUGUEA'</span>,
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>   <span style="color: #505069e98201;"> </span>                   principal_type=&gt;sys.XS_ACL.PTYPE_DB) );
+    <span style="color: #6c7f6868233c;"> </span>   (<span style="color: #729fcf; font-weight: bold;">host</span>=&gt;<span style="color: #ad7fa8; font-style: italic;">'IP DEL CLIENTE QUE DEBUGUEA'</span>,
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>ace=&gt; sys.xs$ace_type( privilege_list=&gt;sys.XS$NAME_LIST(<span style="color: #ad7fa8; font-style: italic;">'JDWP'</span>) ,
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>                   principal_name=&gt;<span style="color: #ad7fa8; font-style: italic;">'USUARIO QUE DEBUGUEA'</span>,
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>                   principal_type=&gt;sys.XS_ACL.PTYPE_DB) );
 <span style="color: #729fcf; font-weight: bold;">end</span>;
 /
 
@@ -471,21 +473,21 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
    res <span style="color: #729fcf; font-weight: bold;">number</span>;
 <span style="color: #729fcf; font-weight: bold;">begin</span> 
     if (n1&gt;n2) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n1 es mayor'</span> );
-    <span style="color: #8e0d84841a1a;"> </span>   a := n1;
-    <span style="color: #8e0d84841a1a;"> </span>   b := n2;
+    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n1 es mayor'</span> );
+    <span style="color: #6c7f6868233c;"> </span>   a := n1;
+    <span style="color: #6c7f6868233c;"> </span>   b := n2;
     <span style="color: #729fcf; font-weight: bold;">else</span> 
-    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n2 es mayor'</span> );
-    <span style="color: #8e0d84841a1a;"> </span>   a := n2;
-    <span style="color: #8e0d84841a1a;"> </span>   b := n1;
+    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'n2 es mayor'</span> );
+    <span style="color: #6c7f6868233c;"> </span>   a := n2;
+    <span style="color: #6c7f6868233c;"> </span>   b := n1;
     <span style="color: #729fcf; font-weight: bold;">end</span> if;
     
     while( b!=0 ) loop
-    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al principio: a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">' b: '</span> || b );
-    <span style="color: #8e0d84841a1a;"> </span>   res := b;
-    <span style="color: #8e0d84841a1a;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
-    <span style="color: #8e0d84841a1a;"> </span>   a := res;
-    <span style="color: #8e0d84841a1a;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al final:     a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">'  b: '</span> || b );
+    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al principio: a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">' b: '</span> || b );
+    <span style="color: #6c7f6868233c;"> </span>   res := b;
+    <span style="color: #6c7f6868233c;"> </span>   b := <span style="color: #729fcf;">mod</span>(a,b);
+    <span style="color: #6c7f6868233c;"> </span>   a := res;
+    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Al final:     a:'</span> || a || <span style="color: #ad7fa8; font-style: italic;">'  b: '</span> || b );
     <span style="color: #729fcf; font-weight: bold;">end</span> loop; 
     
     dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'retorno:'</span> || res );
@@ -534,7 +536,7 @@ This session requires DEBUG CONNECT SESSION and DEBUG ANY PROCEDURE user privile
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:51</p>
+<p class="date">Created: 2025-01-30 jue 19:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

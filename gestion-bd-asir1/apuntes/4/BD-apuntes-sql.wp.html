@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:51 -->
+<!-- 2025-01-30 jue 19:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Resumen de SQL</title>
@@ -254,12 +254,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -1036,11 +1038,11 @@ window.addEventListener("load",()=>{
 <pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span>
 (
     <span style="color: #729fcf; font-weight: bold;">select</span>  
-    <span style="color: #8e0d84841a1a;"> </span> location, <span style="color: #729fcf;">count</span>(*) <span style="color: #729fcf; font-weight: bold;">as</span> ocupacion
+    <span style="color: #6c7f6868233c;"> </span> location, <span style="color: #729fcf;">count</span>(*) <span style="color: #729fcf; font-weight: bold;">as</span> ocupacion
     <span style="color: #729fcf; font-weight: bold;">from</span> 
-    <span style="color: #8e0d84841a1a;"> </span> <span style="color: #729fcf; font-weight: bold;">section</span>
+    <span style="color: #6c7f6868233c;"> </span> <span style="color: #729fcf; font-weight: bold;">section</span>
     <span style="color: #729fcf; font-weight: bold;">group</span> <span style="color: #729fcf; font-weight: bold;">by</span> 
-    <span style="color: #8e0d84841a1a;"> </span> location
+    <span style="color: #6c7f6868233c;"> </span> location
 )
 
 <span style="color: #729fcf; font-weight: bold;">where</span> ocupacion &lt; 10;
@@ -1135,7 +1137,7 @@ offset 0 <span style="color: #729fcf; font-weight: bold;">rows</span>           
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:51</p>
+<p class="date">Created: 2025-01-30 jue 19:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2024-09-08 dom 17:53 -->
+<!-- 2025-01-30 jue 19:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Listas de control de acceso en routers CISCO</title>
@@ -217,12 +217,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -470,36 +472,36 @@ Se desea que la red <code>10.0.0.0/15</code> no sea enrutada, excepto el equipo 
 Permitir el host <code>10.0.1.1</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>access-list 1 permit host 10.0.1.1
+<pre class="src src-sh">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>access-list 1 permit host 10.0.1.1
 </pre>
 </div></li>
 <li><p>
 Prohibir la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>access-list 1 deny 10.0.0.0 0.1.255.255
+<pre class="src src-sh">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>access-list 1 deny 10.0.0.0 0.1.255.255
 </pre>
 </div></li>
 <li><p>
 Permitir el resto de redes
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>access-list 1 permit any
+<pre class="src src-sh">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>access-list 1 permit any
 </pre>
 </div></li>
 <li><p>
 Explicitar la regla final de denegación (va a estar de todas formas, pero ayuda a no olvidarse de ella)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>access-list 1 deny any
+<pre class="src src-sh">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>access-list 1 deny any
 </pre>
 </div></li>
 <li><p>
 Asociar esta ACL a la interfaz de entrada de la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>interface Fa0/0
-    <span style="color: #8e0d84841a1a;"> </span>   <span style="color: #97164bcb3dbd;"> </span>ip access-group 1<span style="color: #729fcf; font-weight: bold;"> in</span>
+<pre class="src src-sh">    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>interface Fa0/0
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>ip access-group 1<span style="color: #729fcf; font-weight: bold;"> in</span>
 </pre>
 </div></li>
 </ul>
@@ -693,8 +695,8 @@ Modificación en el firewall:
 <div class="org-src-container">
 <pre class="src src-sh">  R1# show access-lists 1
   Standard IP access list 1
-    <span style="color: #8e0d84841a1a;"> </span>10 deny   192.168.10.99
-    <span style="color: #8e0d84841a1a;"> </span>20 permit 192.168.0.0, wildcard bits 0.0.255.255
+    <span style="color: #6c7f6868233c;"> </span>10 deny   192.168.10.99
+    <span style="color: #6c7f6868233c;"> </span>20 permit 192.168.0.0, wildcard bits 0.0.255.255
   R1#
 
   R1# configure terminal      
@@ -996,7 +998,7 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:53</p>
+<p class="date">Created: 2025-01-30 jue 19:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

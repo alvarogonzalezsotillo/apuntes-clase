@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ES" xml:lang="ES">
 <head>
-<!-- 2024-09-08 dom 17:52 -->
+<!-- 2025-01-30 jue 19:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ethernet. Bucles LAN</title>
@@ -218,12 +218,14 @@
 </ul>
 </div>
 </div>
+<link rel="stylesheet"  href="../../../common/reveal.js/reveal.js/dist/theme/black.css" id="theme" />
+
 <script>
 function cargarHighlight(){
   var script = document.createElement('script');
   script.onload = function () {
-      console.log("onload para highlight.js");
-      hljs.initHighlightingOnLoad();
+      const h = (typeof hljs !== "undefined" ? hljs : RevealHighlight().hljs);
+      h.highlightAll();
   };
   script.src = "../../../common/reveal.js/plugin/highlight/highlight.js";
 
@@ -571,6 +573,9 @@ Switch# show etherchannel summary
 </div>
 
 
+
+
+
 <div id="outline-container-org0000036" class="outline-2">
 <h2 id="org0000036"><span class="section-number-2">5.</span> Netacad: más sobre STP</h2>
 <div class="outline-text-2" id="text-5">
@@ -678,7 +683,7 @@ Más en <a href="https://www.cisco.com/c/en/us/td/docs/solutions/Verticals/EttF/
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Álvaro González Sotillo</p>
-<p class="date">Created: 2024-09-08 dom 17:52</p>
+<p class="date">Created: 2025-01-30 jue 19:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
