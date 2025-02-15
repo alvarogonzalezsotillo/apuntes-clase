@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-02-03 lun 18:11 -->
+<!-- 2025-02-15 sáb 20:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Despliegue de Nexcloud con Docker Compose</title>
+<title>Despliegue de Nextcloud con Docker Compose</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -199,7 +199,7 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Despliegue de Nexcloud con Docker Compose
+<h1 class="title">Despliegue de Nextcloud con Docker Compose
 <br />
 <span class="subtitle"> </span>
 </h1>
@@ -210,9 +210,10 @@
 <li><a href="#org0000000">1. Nextcloud</a></li>
 <li><a href="#org000000f">2. Docker compose</a></li>
 <li><a href="#org0000012">3. Wordpress</a></li>
-<li><a href="#org0000018">4. Secretos</a></li>
-<li><a href="#org0000025">5. Instalar Nextcloud</a></li>
-<li><a href="#org0000028">6. Referencias</a></li>
+<li><a href="#org0000015">4. Ejecutar <i>scripts</i></a></li>
+<li><a href="#org000001b">5. Secretos</a></li>
+<li><a href="#org0000028">6. Instalar Nextcloud</a></li>
+<li><a href="#org000002b">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -283,7 +284,7 @@ window.addEventListener("load",()=>{
 <li><a href="https://docs.docker.com/reference/compose-file/services/"><code>services</code></a>: Lista de <i>containers</i> a crear</li>
 <li><a href="https://docs.docker.com/reference/compose-file/networks/"><code>networks</code></a>: Lista de redes que usarán los <i>containers</i></li>
 <li><a href="https://docs.docker.com/reference/compose-file/volumes/"><code>volumes</code></a>: Lista de volúmenes, generalmente compartidos entre los <i>containers</i></li>
-<li>Otros (<code>secrets</code>,=configs=)</li>
+<li>Otros (<code>secrets</code>, <code>configs</code>)</li>
 </ul>
 </div>
 </div>
@@ -308,7 +309,7 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Conectar desde el host con
 <ul class="org-ul">
-<li>mysql &#x2013;host localhost &#x2013;port 1234 -u root -pcosmicsecret</li>
+<li><code>mysql --host localhost --port 1234 -u root -pcosmicsecret</code></li>
 </ul></li>
 </ul>
 
@@ -385,9 +386,32 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000018" class="outline-2">
-<h2 id="org0000018"><span class="section-number-2">4.</span> Secretos</h2>
+<div id="outline-container-org0000015" class="outline-2">
+<h2 id="org0000015"><span class="section-number-2">4.</span> Ejecutar <i>scripts</i></h2>
 <div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Se pueden ejecutar <i>scripts</i> dentro un <i>container</i>
+<ul class="org-ul">
+<li><a href="https://docs.docker.com/reference/compose-file/services/#post_start"><code>post_start</code></a></li>
+<li><a href="https://docs.docker.com/reference/compose-file/services/#pre_stop"><code>pre_stop</code></a></li>
+</ul></li>
+<li>Opciones:
+<ul class="org-ul">
+<li><code>command</code> : El comando del <i>container</i> a ejecutar</li>
+<li><code>user</code>: Usuario con el que ejecutar el comando</li>
+<li><code>working_dir</code>: Directorio actual del comando</li>
+</ul></li>
+<li>Se pueden "copiar" comandos dentro del container con un volumen. Por ejemplo:
+<ul class="org-ul">
+<li><code>volume: ./init.sh:/init.sh</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">5.</span> Secretos</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Variables de entorno</li>
 <li>Ficheros de entorno (<code>.env</code>)</li>
@@ -395,9 +419,9 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 
-<div id="outline-container-org0000015" class="outline-3">
-<h3 id="org0000015"><span class="section-number-3">4.1.</span> Variables de entorno</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">5.1.</span> Variables de entorno</h3>
+<div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Se utilizan como en bash: <code>${VARIABLE}</code></li>
 <li>Pueden tener un valor por defecto <code>${VARIABLE:-pordefecto}</code></li>
@@ -408,9 +432,9 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org0000025" class="outline-2">
-<h2 id="org0000025"><span class="section-number-2">5.</span> Instalar Nextcloud</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org0000028" class="outline-2">
+<h2 id="org0000028"><span class="section-number-2">6.</span> Instalar Nextcloud</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Containers:
 <ul class="org-ul">
@@ -472,14 +496,14 @@ window.addEventListener("load",()=>{
 </div>
 
 
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">5.1.</span> Dirección de acceso</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">6.1.</span> Dirección de acceso</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Para evitar problemas, usaremos una IP estática en el host</li>
 <li>Usaremos esa IP para acceder al nextcloud
 <ul class="org-ul">
-<li><code>config/config.php</code> , cambiar "trusted<sub>domains</sub>"</li>
+<li><code>config/config.php</code> , cambiar <code>trusted_domains</code></li>
 </ul></li>
 </ul>
 <div class="org-src-container">
@@ -494,9 +518,9 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org000001e" class="outline-3">
-<h3 id="org000001e"><span class="section-number-3">5.2.</span> Instalar Collabora</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">6.2.</span> Instalar Collabora</h3>
+<div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>App: nextcloud office
 <ul class="org-ul">
@@ -515,10 +539,10 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">5.3.</span> WOPI</h3>
-<div class="outline-text-3" id="text-5-3">
-<pre class="example" id="org0000021">
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">6.3.</span> WOPI</h3>
+<div class="outline-text-3" id="text-6-3">
+<pre class="example" id="org0000024">
 Could not establish connection to the Collabora Online server.
 
 Failed to connect to the remote server: cURL error 7: Failed to connect to localhost port 8888 after 0 ms: Couldn't connect to server (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://localhost:8888/custom_apps/richdocumentscode/proxy.php?req=/hosting/discovery
@@ -532,9 +556,9 @@ You have not configured the allow-list for WOPI requests. Without this setting u
 </div>
 </div>
 
-<div id="outline-container-org0000028" class="outline-2">
-<h2 id="org0000028"><span class="section-number-2">6.</span> Referencias</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org000002b" class="outline-2">
+<h2 id="org000002b"><span class="section-number-2">7.</span> Referencias</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -561,7 +585,7 @@ You have not configured the allow-list for WOPI requests. Without this setting u
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-02-03 lun 18:11</p>
+<p class="date">Created: 2025-02-15 sáb 20:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

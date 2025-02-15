@@ -1,0 +1,48 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil 
+
+#+LATEX_HEADER: \lhead{IAW}
+#+LATEX_HEADER: \rhead{Práctica Nextcloud con Docker Compose}
+
+#+title: Tercera práctica PHP
+
+* Objetivos de la práctica:
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+En esta práctica se espera que el alumno:
+- Se familiarice con el uso de docker compose para instalar aplicaciones web
+- Instale y configure Nextcloud
+
+
+* Instalación de Nextcloud (5 puntos)
+Modifica del fichero de /docker compose/ de la teoría para que:
+- El nombre del /stack/ sea =nextcloud-/tunombre/=
+- Las contraseñas de /mysql/ y /nextcloud/ se indicarán en un fichero aparte: =.env=
+- No se usará una caché /redis/
+
+* Backups de la base de datos (5 puntos)
+- Habrá un container /debian/ que tendrá un /cron/ de usuario que cada minuto hará un backup de la base de datos:
+  - Modifica el container /debian/ con la opción =post_start=
+  - Instala herramientas necesarias con =apt=
+  - Usa /crontab -/ para insertar una nueva tarea programada
+  - Los backups se grabarán en el directorio =./backups= relativo al fichero =yml= (móntalo como volumen)
+  - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql.zip=  
+
+* Normas de entrega
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+- Se entrega un ZIP con
+  - fichero =docker-compose.yml=
+  - resto de ficheros que se necesiten
+- El profesor descomprimirá el fichero y ejecutará =docker compose up= en el directorio donde esté =docker-compose.yml=.      
+        
+* Resultados de aprendizaje
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+Esta práctica contribuye a la calificación de los siguientes RA:
+- RA XX: parte de "prácticas"
+

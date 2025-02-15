@@ -45,6 +45,17 @@
 * Wordpress
 #+include: "./ejemplos-docker-compose/wordpress.yml" src yaml
 
+* Ejecutar /scripts/
+- Se pueden ejecutar /scripts/ dentro un /container/
+  - [[https://docs.docker.com/reference/compose-file/services/#post_start][=post_start=]]
+  - [[https://docs.docker.com/reference/compose-file/services/#pre_stop][=pre_stop=]]
+- Opciones:
+  - =command= : El comando del /container/ a ejecutar
+  - =user=: Usuario con el que ejecutar el comando
+  - =working_dir=: Directorio actual del comando
+- Se pueden "copiar" comandos dentro del container con un volumen. Por ejemplo:
+  - =volume: ./init.sh:/init.sh=
+  
 * Secretos
 - Variables de entorno
 - Ficheros de entorno (=.env=)
