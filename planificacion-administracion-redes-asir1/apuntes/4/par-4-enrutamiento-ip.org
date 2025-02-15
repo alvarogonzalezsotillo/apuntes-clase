@@ -54,7 +54,7 @@
 
 #+reveal: split
 
-file:media/enrutamiento-ip-2.svg
+[[file:media/enrutamiento-ip-2.svg]]
 
 - La puerta de enlace de 192.168.1.1 debe estar configurada a 192.168.1.254
 - Se envía una trama por el bus con la MAC del router, pero con dirección IP origen 192.168.1.1 y dirección destino 192.168.2.3
@@ -63,7 +63,7 @@ file:media/enrutamiento-ip-2.svg
 
 #+reveal: split
 
-file:media/enrutamiento-ip-3.svg
+[[file:media/enrutamiento-ip-3.svg]]
 
 - El router consulta sus tablas, y sabe que para llegar a la red 192.168.2.0/24 tiene que utilizar el router 10.0.0.2 
 - Envía el paquete a 10.0.0.2
@@ -72,11 +72,19 @@ file:media/enrutamiento-ip-3.svg
 
 #+reveal: split
 
-file:media/enrutamiento-ip-4.svg
+[[file:media/enrutamiento-ip-4.svg]]
 
 - El segundo router repite los pasos que realizó el primero, reenviando la trama por su enlace 192.168.2.254 
 - El equipo 192.168.2.3 recibe la trama
 - IP detecta que va dirigida a este mismo equipo, por lo que no la enruta y la pasa al protocolo superior
+
+
+* /Router on a stick/
+- Un /router/ puede tener dos direcciones en una interfaz
+- En ese caso, puede enrutar los paquetes que le llegan por una interfaz por esa misma interfaz
+  - Ejemplo: la figura tiene un router con solo una interfaz entre las redes 192.168.1.0/24 y 192.168.40.0/24
+
+[[file:media/dos-redes-ip-sobre-misma-ethernet.svg]]
 
 
 * Tablas de enrutamiento
