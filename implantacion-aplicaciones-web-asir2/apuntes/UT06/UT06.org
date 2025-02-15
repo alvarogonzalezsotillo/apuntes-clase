@@ -1,6 +1,6 @@
 
 #+INCLUDE: "../../../common/header.org"
-#+TITLE: Despliegue de Nexcloud con Docker Compose
+#+TITLE: Despliegue de Nextcloud con Docker Compose
 #+SUBTITLE: 
 #+KEYWORDS: 
 #+OPTIONS: reveal_single_file:nil
@@ -23,7 +23,7 @@
 - [[https://docs.docker.com/reference/compose-file/services/][=services=]]: Lista de /containers/ a crear
 - [[https://docs.docker.com/reference/compose-file/networks/][=networks=]]: Lista de redes que usarán los /containers/
 - [[https://docs.docker.com/reference/compose-file/volumes/][=volumes=]]: Lista de volúmenes, generalmente compartidos entre los /containers/
-- Otros (=secrets=,=configs=)
+- Otros (=secrets=, =configs=)
 
 ** [[https://docs.docker.com/reference/compose-file/services/][Servicios]]
 - Nombre del servcio
@@ -33,7 +33,7 @@
 
 ** Ejemplo
 - Conectar desde el host con
-  - mysql --host localhost --port 1234 -u root -pcosmicsecret
+  - =mysql --host localhost --port 1234 -u root -pcosmicsecret=
 
 #+include: "./ejemplos-docker-compose/mariadb.yml" src yaml
 
@@ -73,7 +73,7 @@
 ** Dirección de acceso
 - Para evitar problemas, usaremos una IP estática en el host
 - Usaremos esa IP para acceder al nextcloud
-  - =config/config.php= , cambiar "trusted_domains"
+  - =config/config.php= , cambiar =trusted_domains=
 #+begin_src php
   'trusted_domains' => 
   array (

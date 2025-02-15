@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SUDO=
 
 numeros(){
     seq 1 16
@@ -8,11 +9,11 @@ numeros(){
 ruta(){
   local ALUMNO=$1
 
-  sudo ip route add 192.168.$ALUMNO.0/24 via 10.1.33.$ALUMNO
+  $SUDO ip route add 192.168.$ALUMNO.0/24 via 10.1.33.$ALUMNO
 }
 
 enruta(){
-  sudo sysctl -w net.ipv4.ip_forward=1
+  $SUDO sysctl -w net.ipv4.ip_forward=1
 }
 
 
@@ -51,12 +52,13 @@ monitoriza(){
         for A in $(numeros)
         do
             ping_alumno $A &
-        done | sort
+        done | sort | grep ENCONTRADO
         sleep 10s
     done
 }
 
-enruta
-rutas
-monitoriza
+#enruta
+#rutas
+monitoriza | tee -a monitoriza.log
+
 
