@@ -16,20 +16,54 @@ En esta práctica se espera que el alumno:
 - Instale y configure Nextcloud
 
 
-* Instalación de Nextcloud (5 puntos)
+* Instalación de Nextcloud (4 puntos)
 Modifica del fichero de /docker compose/ de la teoría para que:
 - El nombre del /stack/ sea =nextcloud-/tunombre/=
 - Las contraseñas de /mysql/ y /nextcloud/ se indicarán en un fichero aparte: =.env=
-- No se usará una caché /redis/
+- No es necesario usar una caché /redis/
+- Los datos estarán en directorios con ruta relativa desde el =yml=:
+  - Los datos de Nextcloud estarán el directorio =./nextcloud/=
+  - Los datos de /mysql/ estarán el el directorio =./db/=  
 
 * Backups de la base de datos (5 puntos)
-- Habrá un container /debian/ que tendrá un /cron/ de usuario que cada minuto hará un backup de la base de datos:
+- Habrá un container /debian/ que tendrá un /cron/ de usuario que cada minuto hará un backup de la base de datos (no de los ficheros de Nextcloud):
   - Modifica el container /debian/ con la opción =post_start=
   - Instala herramientas necesarias con =apt=
   - Usa /crontab -/ para insertar una nueva tarea programada
   - Los backups se grabarán en el directorio =./backups= relativo al fichero =yml= (móntalo como volumen)
   - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql.zip=  
 
+- Nota: no es necesario leer las contraseñas del fichero =.env=    
+
+#+begin_src bash
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+*/1 *  *   *   *     mysqldump ....
+#+end_src
+
+#+latex: \begin{Aviso}
+Paquetes interesantes para instalar:
+- =cron=: para tener =crontab= y =cron=
+- =procps=: para el comando =ps=
+- =mariadb-client=: para =mysqldump=
+- =iputils-ping=: para ping
+
+#+latex: \end{Aviso}
 * Normas de entrega
 :PROPERTIES:
 :UNNUMBERED: t
@@ -37,7 +71,8 @@ Modifica del fichero de /docker compose/ de la teoría para que:
 - Se entrega un ZIP con
   - fichero =docker-compose.yml=
   - resto de ficheros que se necesiten
-- El profesor descomprimirá el fichero y ejecutará =docker compose up= en el directorio donde esté =docker-compose.yml=.      
+- El profesor descomprimirá el fichero y ejecutará =docker compose up= en el directorio donde esté =docker-compose.yml=.
+  - Los /container/ tendrán acceso a internet durante la corrección de la práctica 
         
 * Resultados de aprendizaje
 :PROPERTIES:
