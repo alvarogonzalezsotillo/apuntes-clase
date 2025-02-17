@@ -42,6 +42,8 @@
   - No hay comunicación entre redes distintas
   - Cada red simula estar detrás de un NAT, siendo el /host/ el router  
 - Pueden definirse redes /bridge/ adicionales
+- DNS
+  - Se añaden los nombres del /stack/ a la resolución de DNS  
 * Wordpress
 #+include: "./ejemplos-docker-compose/wordpress.yml" src yaml
 
@@ -71,8 +73,8 @@
 
 - Containers:
   - Nexcloud:
-  - Redis: cache en memoria para rendimiento
   - Base de datos Mariadb
+  - Redis: cache en memoria para rendimiento (opcional)
   - Opcional: proxy inverso apache/nginx para mejorar la seguridad
 - [[https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/with-nginx-proxy/mariadb/apache/compose.yaml][Ejemplos]]    
 

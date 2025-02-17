@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-02-15 sáb 20:07 -->
+<!-- 2025-02-17 lun 18:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Despliegue de Nextcloud con Docker Compose</title>
@@ -343,6 +343,10 @@ window.addEventListener("load",()=>{
 <li>Cada red simula estar detrás de un NAT, siendo el <i>host</i> el router</li>
 </ul></li>
 <li>Pueden definirse redes <i>bridge</i> adicionales</li>
+<li>DNS
+<ul class="org-ul">
+<li>Se añaden los nombres del <i>stack</i> a la resolución de DNS</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -439,8 +443,8 @@ window.addEventListener("load",()=>{
 <li>Containers:
 <ul class="org-ul">
 <li>Nexcloud:</li>
-<li>Redis: cache en memoria para rendimiento</li>
 <li>Base de datos Mariadb</li>
+<li>Redis: cache en memoria para rendimiento (opcional)</li>
 <li>Opcional: proxy inverso apache/nginx para mejorar la seguridad</li>
 </ul></li>
 <li><a href="https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/with-nginx-proxy/mariadb/apache/compose.yaml">Ejemplos</a></li>
@@ -585,7 +589,7 @@ You have not configured the allow-list for WOPI requests. Without this setting u
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-02-15 sáb 20:07</p>
+<p class="date">Created: 2025-02-17 lun 18:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

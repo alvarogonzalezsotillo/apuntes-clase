@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Despliegue de Nextcloud con Docker Compose</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-02-15 sáb 20:07</p>
+<h1 class="title">Despliegue de Nextcloud con Docker Compose</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-02-17 lun 18:54</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -595,6 +595,11 @@ volumes:
 
 </ul></li>
 <li>Pueden definirse redes <i>bridge</i> adicionales</li>
+<li>DNS
+<ul>
+<li>Se añaden los nombres del <i>stack</i> a la resolución de DNS</li>
+
+</ul></li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -701,8 +706,8 @@ volumes:
 <li>Containers:
 <ul>
 <li>Nexcloud:</li>
-<li>Redis: cache en memoria para rendimiento</li>
 <li>Base de datos Mariadb</li>
+<li>Redis: cache en memoria para rendimiento (opcional)</li>
 <li>Opcional: proxy inverso apache/nginx para mejorar la seguridad</li>
 
 </ul></li>
