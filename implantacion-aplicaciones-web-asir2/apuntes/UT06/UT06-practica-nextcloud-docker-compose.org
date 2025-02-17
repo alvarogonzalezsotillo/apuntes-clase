@@ -31,7 +31,7 @@ Modifica del fichero de /docker compose/ de la teoría para que:
   - Instala herramientas necesarias con =apt=
   - Usa /crontab -/ para insertar una nueva tarea programada
   - Los backups se grabarán en el directorio =./backups= relativo al fichero =yml= (móntalo como volumen)
-  - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql.zip=  
+  - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql=  
 
 - Nota: no es necesario leer las contraseñas del fichero =.env=    
 
