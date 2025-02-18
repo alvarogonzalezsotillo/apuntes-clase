@@ -650,6 +650,9 @@ set headsep off
 set linesize 1000
 set feedback off
 set underline off
+set verify off
+set echo off
+set termout off
 
 spool tablas.csv
 
