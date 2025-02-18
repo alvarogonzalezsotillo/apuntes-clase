@@ -5,7 +5,7 @@
 #+LATEX_HEADER: \lhead{IAW}
 #+LATEX_HEADER: \rhead{Práctica Nextcloud con Docker Compose}
 
-#+title: Tercera práctica PHP
+#+title: Instalación de Nextcloud con Docker Compose
 
 * Objetivos de la práctica:
 :PROPERTIES:
@@ -18,7 +18,7 @@ En esta práctica se espera que el alumno:
 
 * Instalación de Nextcloud (4 puntos)
 Modifica del fichero de /docker compose/ de la teoría para que:
-- El nombre del /stack/ sea =nextcloud-/tunombre/=
+- El nombre del /stack/ sea =nextcloud-tunombre= (por ejemplo, =nextcloud-alvarogonzalez=)
 - Las contraseñas de /mysql/ y /nextcloud/ se indicarán en un fichero aparte: =.env=
 - No es necesario usar una caché /redis/
 - Los datos estarán en directorios con ruta relativa desde el =yml=:
@@ -79,5 +79,5 @@ Paquetes interesantes para instalar:
 :UNNUMBERED: t
 :END:
 Esta práctica contribuye a la calificación de los siguientes RA:
-- RA4: parte de "prácticas"
+- RA4: parte de "prácticas" y "examen" (por falta de tiempo)
 
