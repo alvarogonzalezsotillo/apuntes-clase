@@ -27,6 +27,12 @@ Modifica del fichero de /docker compose/ de la teoría para que:
 - El puerto de la aplicación será 8888    
 - El usuario y contraseña para /nextcloud/ (en el fichero =.env=) servirán para entrar directamente en la aplicación (70%)
 
+#+latex: \begin{Aviso}[Trusted domains]
+- la aplicación de nextcloud solo se puede acceder desde los [[https://help.nextcloud.com/t/howto-add-a-new-trusted-domain/26][trusted domains]].
+- El profesor probará desde /localhost/, donde esté instalado el container.
+- Si está en una máquina remota, utilizará un túnel SSH (por ejemplo, =ssh usario@dockerserver -L 8888:localhost:8888=)
+#+latex: \end{Aviso}
+
 * Backups de la base de datos (6 puntos)
 - Habrá un container /debian/ que tendrá un /cron/ de usuario que cada minuto hará un backup de la base de datos (no de los ficheros de Nextcloud):
   - Modifica el container /debian/ con la opción =post_start=
