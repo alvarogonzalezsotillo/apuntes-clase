@@ -19,19 +19,21 @@ En esta práctica se espera que el alumno:
 * Instalación de Nextcloud (4 puntos)
 Modifica del fichero de /docker compose/ de la teoría para que:
 - El nombre del /stack/ sea =nextcloud-tunombre= (por ejemplo, =nextcloud-alvarogonzalez=)
-- Las contraseñas de /mysql/ y /nextcloud/ se indicarán en un fichero aparte: =.env=
+- Las contraseñas de /mysql/ y /nextcloud/ se indicarán en un fichero aparte: =.env= (20%)
 - No es necesario usar una caché /redis/
-- Los datos estarán en directorios con ruta relativa desde el =yml=:
+- Los datos estarán en directorios con ruta relativa desde el =yml=: (10%)
   - Los datos de Nextcloud estarán el directorio =./nextcloud/=
-  - Los datos de /mysql/ estarán el el directorio =./db/=  
+  - Los datos de /mysql/ estarán el el directorio =./db/=
+- El puerto de la aplicación será 8888    
+- El usuario y contraseña para /nextcloud/ (en el fichero =.env=) servirán para entrar directamente en la aplicación (70%)
 
-* Backups de la base de datos (5 puntos)
+* Backups de la base de datos (6 puntos)
 - Habrá un container /debian/ que tendrá un /cron/ de usuario que cada minuto hará un backup de la base de datos (no de los ficheros de Nextcloud):
   - Modifica el container /debian/ con la opción =post_start=
   - Instala herramientas necesarias con =apt=
-  - Usa /crontab -/ para insertar una nueva tarea programada
-  - Los backups se grabarán en el directorio =./backups= relativo al fichero =yml= (móntalo como volumen)
-  - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql=  
+  - Usa /crontab -/ o similar para insertar una nueva tarea programada (30%)
+  - Los backups se grabarán en el directorio =./backups= relativo al fichero =yml= (móntalo como volumen) (60%)
+  - Los backups tendrán de nombre =YYYY-MM-DD-HH-MM.sql= (10%)
 
 - Nota: no es necesario leer las contraseñas del fichero =.env=    
 
@@ -80,4 +82,3 @@ Paquetes interesantes para instalar:
 :END:
 Esta práctica contribuye a la calificación de los siguientes RA:
 - RA4: parte de "prácticas" y "examen" (por falta de tiempo)
-
