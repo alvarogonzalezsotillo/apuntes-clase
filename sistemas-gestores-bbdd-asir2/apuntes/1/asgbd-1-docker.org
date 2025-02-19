@@ -135,7 +135,7 @@ curl https://get.docker.com/ | sh
   - =-v= : El volumen =/usr/local/apache2/htdocs= será el directorio /home/  
   - Resultado: Apache corriendo en el puerto 8080 sirviendo los ficheros del directorio /home/
 
-* "Entrar" en un /container/
+* Entrar en un /container/
 - Se pueden ejecutar comandos en un /container/ en ejecución
   #+begin_src bash
   docker exec -it my-apache-app bash
