@@ -162,3 +162,9 @@ window.addEventListener("load",()=>{
 #+KEYWORDS: 
 #+SUBTITLE:
 
+#+begin_export html
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
+#+end_export

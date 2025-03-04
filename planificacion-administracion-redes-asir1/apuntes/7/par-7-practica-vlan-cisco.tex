@@ -55,10 +55,14 @@ A pesar de ello, se desea que todos los equipos de la red puedan comunicarse ent
   \item Un ordenador por departamento en una planta que no es la suya.
   \item Los switchs especificados.
   \item Los servidores especificados.
+  \item Los routers serán del modelo 1941  
   \end{itemize}
-\item Los equipos estarán en subredes de \texttt{10.N.0.0/16} (siendo \texttt{N} el número del ordenador del alumno usado en otras prácticas).
+\item Los equipos estarán en subredes de \texttt{10.N.0.0/16} (siendo \texttt{N} el número asignado al alumno usado en otras prácticas de Packetracer).
 \item Además de los pedidos en el enunciado, pueden añadirse los switches y routers adicionales que se necesiten.  
 \end{itemize}
+
+\section{Opcional: IPv6}
+Se desea que, además de las direcciones IPv4, internamente se pueda utilizar el protocolo IPv6. La red a repartir será la \texttt{fc00:N:/7}.
 
 \section{Documentación de la red}
 Rellena una tabla como la siguiente con la configuración de tu red
@@ -99,15 +103,15 @@ Es posible que no todas las columnas deban usarse para todos los adaptadores de 
   \item Se entiende que dos equipos \textit{no comparten dominio de difusión} si un broadcast de Ethernet (por ejemplo, ARP) no consigue viajar entre ellos en ninguno de los sentidos.
   \end{itemize}
 \item Que se incluyan etiquetas identificativas en cada equipo (\textbf{1.5} puntos)  
-\item Que los departamentos puedan comunicarse a través de la capa 3 (\textbf{2} puntos)
+\item Que los departamentos puedan comunicarse a través de la capa 3 (\textbf{2.5} puntos)
 \item Que se rellene correctamente la tabla de documentación de la red (\textbf{2} puntos)
 \item Que todos los ordenadores puedan comunicarse con Internet (\textbf{1} punto)
-\item Que los equipos de red no pierdan la configuración al reiniciar (\textbf{0.5} puntos)
 \item \textbf{No se valorará} el ejercicio
   \begin{itemize}
+  \item Si los equipos pierden la configuración al reiniciar.
   \item Si se usa \texttt{\enlace{https://es.wikipedia.org/wiki/Proxy\_ARP}{ARP Proxy}}
   \item si las direcciones IP no son de la subred \texttt{10.N.0.0/16}.
-  \item si algún router tiene más de dos interfaces utilizadas.
+  \item si algún router tiene más de dos interfaces utilizadas
   \item si no va acompañado de la tabla de documentación de la red.
   \end{itemize}
 \end{itemize}
