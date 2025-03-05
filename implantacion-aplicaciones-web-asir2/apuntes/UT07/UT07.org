@@ -23,7 +23,7 @@
   - =save_post=, =get_footer=, =setup_theme= ([[https://developer.wordpress.org/apis/hooks/action-reference/][lista completa]]) ([[https://adambrown.info/p/wp_hooks/version/6.2][otra lista]])
   - Internamente, Wordpress los llama con [[https://developer.wordpress.org/reference/functions/do_action/][=do_action=]] o [[https://developer.wordpress.org/reference/functions/do_action_ref_array/][=do_action_ref_array=]]  
 - Una acción
-  - Recibe información sobre el objeto que actua
+  - Recibe información sobre el objeto que actúa
   - Modifica ese objeto, u otra parte de Wordpress, y no devuelve nada
   - Es como un /procedure/ de Oracle
 
