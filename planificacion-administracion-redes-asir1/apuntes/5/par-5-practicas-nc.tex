@@ -155,7 +155,7 @@ watch -d ls -l
       (Aquí hay que darle al Enter dos veces)
     \end{cuadrito}
   \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.
-  \item Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{-d 1} para añadir un retardo en cada línea enviada.
+  \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 1} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
   \end{itemize}
 
 Encuentra un número que te parezca curioso, e incluye su curiosidad en la memoria del trabajo.
