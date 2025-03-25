@@ -24,6 +24,7 @@
 \setlength{\parskip}{1em}
 
 
+
 \section{Objetivo de la práctica}
 Los objetivos  de la práctica son:
 \begin{itemize}
@@ -48,6 +49,7 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
 
 
   En las salidas de \texttt{netstat}, incluye tus conexiones y las de tus compañeros, identificando las conexiones de la práctica en cada máquina.
+          {\noindent\hspace{-100cm}Las direcciones IP serán dinámicas, distribuidas por un servidor DHCP local, que deberás instalar y  configurar para que reparta el rango 172.16.4.0/23, dejando la 172.16.8.1 para el gateway}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[: \imenu{Protege un servidor de chat (2 puntos)}]
@@ -56,12 +58,16 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Crea otro servidor de chat que escuche en la dirección \texttt{127.0.0.1}, \textbf{en el mismo puerto} que el servidor anterior.
   \item Explica por qué los dos servidores pueden funcionar a la vez en el mismo puerto. Explica también qué clientes pueden conectarse a cada uno de los servidores.
   \end{itemize}
+        {\noindent\hspace{-100cm}Recuerda proteger el chat con reglas de firewall, usando iptables o ufw.}  
 \end{homeworkProblem}
 
 
 
 \begin{homeworkProblem}[: \imenu{Envía información de tus ficheros (2 puntos)}]
   Envía información de los ficheros y directorios de tu directorio \texttt{\$HOME} a otro ordenador del aula, usando tuberías (pipes). Después, cambia los roles de cliente y servidor enviando la ayuda del comando nc (\texttt{man nc}).
+
+        {\noindent\hspace{-100cm}Recuerda proteger el chat con reglas de firewall, usando iptables o ufw, usa el que no hayas usado en el ejercicio anterior.}
+
 
 
 
@@ -103,14 +109,16 @@ watch -d ls -l
 
   Utiliza \texttt{netcat} para crear un servidor en el puerto \texttt{8080} (u otro que esté libre). Utiliza un navegador web para visitar el servidor, en \url{http://localhost:8080}. Consigue que el navegador vea una página como la siguiente:
 
+  
   \begin{cuadrito}
     {\large \textbf{Un título de nivel 1}}
     
     Un ejemplo de página que tiene \textbf{negrita} y \textit{cursiva}.
   \end{cuadrito}
 
-  Puedes escribir directamente la página en el terminal, o enviar un fichero. Debes conseguir que funcionen los clientes Chrome y Firefox.
+  {\noindent\hspace{-100cm}Se comprobará con tcpdump los bytes enviados y recibidos. La página deberá utilizar javascript con jquery. Los út9icos tags permitidos son title y span. El css será generado mediante el uso de jquery.}
 
+  Puedes escribir directamente la página en el terminal, o enviar un fichero. Debes conseguir que funcionen los clientes Chrome y Firefox.
 
 \begin{comment}
   HTTP/1.1 200 OK
@@ -156,6 +164,8 @@ watch -d ls -l
     \end{cuadrito}
   \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.
   \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 1} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
+      {\noindent\hspace{-100cm}es necesario compilar netcat desde los fuentes. Incluye los comandos para clonar el repositorio, la instalación de los paquetes necesarios para las herramientas de construcción, y los comandos para construir el programa. El programa se compilará con opciones avanzadas de optimización.}
+
   \end{itemize}
 
 Encuentra un número que te parezca curioso, e incluye su curiosidad en la memoria del trabajo.
@@ -207,5 +217,7 @@ http://api.football-data.org/v4/competitions/
 \item Sube el documento a la tarea correspondiente \enlace{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala}{en el aula virtual}
 \item Presta atención al plazo de entrega (con fecha y hora).
 \end{itemize}
+
+
 
 \end{document}
