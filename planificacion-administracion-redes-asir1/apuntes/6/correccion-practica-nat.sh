@@ -92,7 +92,7 @@ ALUMNOS="
 15
 16
 200
-"g
+"
 
 main(){
     sudo ip addr add dev enp0s31f6 192.168.255.201/24
