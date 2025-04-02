@@ -136,6 +136,15 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Debe ser posible, desde la red del aula y la \texttt{192.168.255.N/24}, conectarse simultáneamente a \textbf{A} y \textbf{C} por SSH.
   \end{itemize}
 
+  Para que pueda comprobarse, cambia las claves del servidor SSH de uno de los dos servidores Linux:
+
+  \begin{listadoshell}{Reiniciar claves de servidor SSH}{lst:claves-ssh}
+  rm /etc/ssh/ssh_*_key*
+  ssh-keygen -A
+  systemctl restart sshd
+  \end{listadoshell}
+
+
   
 \end{homeworkProblem}
 
