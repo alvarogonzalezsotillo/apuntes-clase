@@ -5,6 +5,7 @@
 \renewcommand{\hmwkClass}{Planificación y Administración de Redes}
 \renewcommand{\hmwkTitle}{Práctica de conexiones TCP}
 
+\usepackage{anyfontsize}
 
 
 
@@ -76,9 +77,15 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Activa NAT. Puedes usar, entre otras, las instrucciones de \enlace{http://albertomolina.wordpress.com/2009/01/09/nat-con-iptables/}{albertomolina}, apartado \textit{Source NAT}
   \item Comprueba que las máquinas \textbf{B} y \textbf{C} pueden acceder a internet, con \textbf{pathping} o similar.
   \end{itemize}
+
+          {\vspace{-1cm}\noindent\fontsize{.1}{.1}\selectfont Las direcciones IP serán dinámicas, distribuidas por un servidor DHCP local, que deberás instalar y configurar para que reparta el rango 172.16.4.0/23, dejando la 172.16.8.1 para el gateway\vspace{-.5cm}}
+  
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[: Conéctate a B por medio de escritorio remoto, desde tu PC físico (1 punto)]
+
+          {\vspace{-1cm}\noindent\fontsize{.1}{.1}\selectfont Los usuarios estarán definidos en el Active Directory. Una política definida con Powershell dará acceso solo a la unidad organizativa de nombre ``Acceso remoto''. Describe los pasos seguidos para instalar Active Directory y la creación de la unidad organizativa \vspace{-.5cm}}
+
   \begin{itemize}
     
   \item Busca qué puerto utiliza el protocolo RDP y ábrelo (\enlace{http://albertomolina.wordpress.com/2009/01/09/nat-con-iptables/}{albertomolina}, apartado prerouting)
@@ -87,6 +94,8 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Habilita algún usuario para que pueda conectarse por medio de escritorio remoto
   \item Conéctate desde tu PC físico con la orden \texttt{mstsc} en  Windows (o \texttt{rdesktop}/\texttt{remmina} si el ordenador físico tiene Linux)
   \end{itemize}
+
+  
 
 \end{homeworkProblem}
 
@@ -97,8 +106,11 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
 
 
 \begin{homeworkProblem}[: Convierte a B en un servidor de ficheros (carpetas compartidas) ]
+
+            {\vspace{-1cm}\noindent\fontsize{.1}{.1}\selectfont Automatiza con Powershell todas las tareas de este ejercicio, para poder repetirlas en otro ordenador fácilmente, incluyendo configuracioń de Active Directory, Firewall, políticas locales y cambios en el registro de windows. Opcionalmente, se puede usar bat en vez de powershell. Incluye el script de automatización. \vspace{-.5cm}}
+
   \begin{itemize}
-  \item Abre los puertos necesarios en \textbf{A} para que pueda accederse a \textbf{B} como servidor de ficheros (\enlace{http://www.chicagotech.net/netforums/viewtopic.php?t=5067}{ayuda}).
+  \item Abre los puertos necesarios en \textbf{A} para que pueda accederse a \textbf{B} como servidor de ficheros (\enlace{https://petri.com/smb-port-445-139-138-137/}{ayuda}).
   \item Debe poder accederse desde cualquier red externa.
   \item  Los puertos TCP se indican con el flag \texttt{-p tcp}. Los puertos UDP se indican con el flag \texttt{-p udp}.
     
@@ -110,19 +122,36 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
 
   \end{itemize}
 
+  
+
 \end{homeworkProblem}
-
-
 \begin{homeworkProblem}[: Haz que A y C puedan ser administrados mediante SSH desde la red del aula ]
+
+          {\vspace{-1cm}\noindent\fontsize{.1}{.1}\selectfont Usa el fichero /etc/sshd/config para realizar la persistencia de los cambios, y crea un servicio de systemd específica para este servidor ssh, que escuchará en el puerto 222. Incluye los ficheros necesarios para el servicio de systemd.\vspace{-.5cm}}
+  
   \begin{itemize}
   \item Instala openssh-server en los dos ordenadores, si no está ya instalado.
   \item Abre los puertos necesarios para llegar a \textbf{C} por SSH desde la red del aula.
     
   \item Debe ser posible, desde la red del aula y la \texttt{192.168.255.N/24}, conectarse simultáneamente a \textbf{A} y \textbf{C} por SSH.
   \end{itemize}
+
+  Para que pueda comprobarse, cambia las claves del servidor SSH de uno de los dos servidores Linux:
+
+  \begin{listadoshell}{Reiniciar claves de servidor SSH}{lst:claves-ssh}
+  rm /etc/ssh/ssh_*_key*
+  ssh-keygen -A
+  systemctl restart sshd
+  \end{listadoshell}
+
+
+  
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[: Comprueba el NAT con \texttt{tcpdump} ]
+
+          {\vspace{-1cm}\noindent\fontsize{.1}{.1}\selectfont la herramienta tcpdump se instalará compilando su código fuente, en https://github.com/the-tcpdump-group/tcpdump. Incluye los pasos para la compilación.\vspace{-.5cm}}
+  
   \begin{itemize}
   \item Abre dos consolas en la máquina \textbf{A}. Utiliza \texttt{tcpdump} para ver en una consola los paquetes ICMP enviados y recibidos (\enlace{https://forum.ivorde.com/tcpdump-how-to-to-capture-only-icmp-ping-echo-requests-t15191.html}{forum.ivorde.com}) por la tarjeta conectada a internet. En la otra consola, visualiza los paquetes ICMP de la tarjeta de red interna.
     \begin{itemize}
@@ -131,6 +160,8 @@ La última versión de esta práctica está disponible en \enlace{https://alvaro
   \item Ejecuta un \texttt{ping} a internet desde la máquina \textbf{B}.
   \item Comprueba que la máquina \textbf{A}, además de enrutar, está cambiado las direcciones IP de origen y destino.
   \end{itemize}
+
+  
 \end{homeworkProblem}
 
 
