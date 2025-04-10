@@ -496,27 +496,6 @@ g) /Se han utilizado diferentes tecnologías de túnel para interconectar redes 
 | UT7 Interconexión con redes públicas     |         |         |        |        |         |         | 100.00% |
 
 
-* Orientaciones pedagógicas.                   :noexport:
-Este módulo profesional contiene la formación necesaria para desempeñar la función de administrar sistemas gestores de bases de datos.
-La administración de sistemas gestores de base de datos incluye aspectos como:
-- La implantación de sistemas gestores de bases de datos.
-- La manipulación de bases de datos.
-- La aplicación de medidas de seguridad.
-- La planificación y realización de tareas administrativas.
-- La monitorización y optimización de la base de datos y del sistema gestor de base de datos.
-#+REVEAL: split
-Las actividades profesionales asociadas a esta función se aplican en:
-- La implantación y administración de sistemas gestores de base de datos.
-- La implantación y administración de bases de datos.
-#+REVEAL: split
-Las líneas de actuación en el proceso de enseñanza-aprendizaje que permiten alcanzar
-los objetivos del módulo versarán sobre:
-- La instalación y configuración de sistemas gestores de base de datos.
-- La manipulación de base de datos.
-- La realización de operaciones con bases de datos.
-- La administración de bases de datos.
-- La planificación y automatización de tareas en un sistema gestor.
-
   
 * Referencias
 #+include: "../../../common/footer.org"
