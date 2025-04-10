@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:09 -->
+<!-- 2025-04-10 Thu 10:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -247,6 +247,11 @@ window.addEventListener("load",()=>{
 });
 
 </script>
+
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
 
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">1.</span> Exportar datos</h2>
@@ -596,7 +601,7 @@ expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<spa
 </div>
 
 <div class="org-src-container">
-<pre class="src src-bash">expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>sys@pdasir as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+<pre class="src src-bash">expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>sys@PDB_PDASIR as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
 </pre>
 </div>
 </div>
@@ -1194,7 +1199,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:09</p>
+<p class="date">Created: 2025-04-10 Thu 10:31</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
