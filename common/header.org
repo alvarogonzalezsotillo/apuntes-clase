@@ -163,8 +163,10 @@ window.addEventListener("load",()=>{
 #+SUBTITLE:
 
 #+begin_export html
+<style>
 @font-face {
     font-family: Bobbli;
     src: url("../../../common/bobbli.otf") format("opentype");
 }
+</style>
 #+end_export

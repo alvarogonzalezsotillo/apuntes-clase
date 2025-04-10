@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-04-10 Thu 10:31 -->
+<!-- 2025-04-10 Thu 11:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
@@ -248,10 +248,12 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style>
 @font-face {
     font-family: Bobbli;
     src: url("../../../common/bobbli.otf") format("opentype");
 }
+</style>
 
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">1.</span> Exportar datos</h2>
@@ -265,22 +267,22 @@ window.addEventListener("load",()=>{
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #8ae234;">Export</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:32:15 2016
+<pre class="src src-C"><span style="color: #008b8b;">Export</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:32:15 2016
 
 Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 
-The Data Pump export utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
+The Data Pump export utility provides a mechanism <span style="color: #a020f0;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
    
-  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+   Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
    
-You can control how Export runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>expdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
-by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
+You can control how Export runs by entering the <span style="color: #ff0000; font-weight: bold;">'</span>expdp<span style="color: #ff0000; font-weight: bold;">'</span> command followed
+by various parameters. To specify parameters, you use <span style="color: #228b22;">keywords</span>:
    
-  <span style="color: #6c7f6868233c;"> </span>Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> <span style="color: #445d571d66c6;"> </span> <span style="color: #4b8b50434ea1;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #445d571d66c6;"> </span>or TABLES=(T1:P1,T1:P2), <span style="color: #729fcf; font-weight: bold;">if</span> T1 is partitioned table
+   Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+   Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
+               or TABLES=(T1:P1,T1:P2), <span style="color: #a020f0;">if</span> T1 is partitioned table
                
 USERID must be the first parameter on the command line.
 
@@ -291,7 +293,7 @@ The available keywords and their descriptions follow. Default values are listed 
 ABORT_STEP
 Stop the job after it is initialized or at the indicated object.
 Valid values are -1 or N where N is zero or greater.
-N corresponds to the object<span style="color: #f57900; font-weight: bold;">'</span>s process order number in the master table.
+N corresponds to the object<span style="color: #ff0000; font-weight: bold;">'</span>s process order number in the master table.
 
 ACCESS_METHOD
 Instructs Export to use a particular method to unload data.
@@ -321,7 +323,7 @@ Data layer option flags.
 Valid keyword values are: XML_CLOBS.
 
 DIRECTORY
-Directory object to be used <span style="color: #729fcf; font-weight: bold;">for</span> dump and log files.
+Directory object to be used <span style="color: #a020f0;">for</span> dump and log files.
 
 DUMPFILE
 Specify list of destination dump file names [expdat.dmp].
@@ -337,14 +339,14 @@ Valid keyword values are: [AES128], AES192 and AES256.
 
 ENCRYPTION_MODE
 Method of generating encryption key.
-Valid keyword values are: DUAL, <span style="color: #8ae234; font-weight: bold;">PASSWORD</span> <span style="color: #ff6347;">and</span> [TRANSPARENT].
+Valid keyword values are: DUAL, <span style="color: #228b22;">PASSWORD</span> <span style="color: #a0522d;">and</span> [TRANSPARENT].
 
 ENCRYPTION_PASSWORD
-Password key <span style="color: #729fcf; font-weight: bold;">for</span> creating encrypted data within a dump file.
+Password key <span style="color: #a020f0;">for</span> creating encrypted data within a dump file.
 
 ENCRYPTION_PWD_PROMPT
-Specifies whether to prompt <span style="color: #729fcf; font-weight: bold;">for</span> the encryption password [NO].
-Terminal echo will be suppressed <span style="color: #729fcf; font-weight: bold;">while</span> standard input is read.
+Specifies whether to prompt <span style="color: #a020f0;">for</span> the encryption password [NO].
+Terminal echo will be suppressed <span style="color: #a020f0;">while</span> standard input is read.
 
 ESTIMATE
 Calculate job estimates.
@@ -355,7 +357,7 @@ Calculate job estimates without performing the export [NO].
 
 EXCLUDE
 Exclude specific object types.
-For example, EXCLUDE=SCHEMA:<span style="color: #ad7fa8; font-style: italic;">"='HR'"</span>.
+For example, EXCLUDE=SCHEMA:<span style="color: #8b2252;">"='HR'"</span>.
 
 FILESIZE
 Specify the size of each dump file in units of bytes.
@@ -399,21 +401,21 @@ NOLOGFILE
 Do not write log file [NO].
 
 PARALLEL
-Change the number of active workers <span style="color: #729fcf; font-weight: bold;">for</span> current job.
+Change the number of active workers <span style="color: #a020f0;">for</span> current job.
 
 PARFILE
 Specify parameter file name.
 
 QUERY
 Predicate clause used to export a subset of a table.
-For example, QUERY=employees:<span style="color: #ad7fa8; font-style: italic;">"WHERE department_id &gt; 10"</span>.
+For example, QUERY=employees:<span style="color: #8b2252;">"WHERE department_id &gt; 10"</span>.
 
 REMAP_DATA
 Specify a data conversion function.
 For example, REMAP_DATA=EMP.EMPNO:REMAPPKG.EMPNO.
 
 REUSE_DUMPFILES
-Overwrite destination dump file <span style="color: #729fcf; font-weight: bold;">if</span> it exists [NO].
+Overwrite destination dump file <span style="color: #a020f0;">if</span> it exists [NO].
 
 SAMPLE
 Percentage of data to be exported. 
@@ -425,11 +427,11 @@ SERVICE_NAME
 Name of an active Service and associated resource group to constrain Oracle RAC resources.
 
 SOURCE_EDITION
-Edition to be used <span style="color: #729fcf; font-weight: bold;">for</span> extracting metadata.
+Edition to be used <span style="color: #a020f0;">for</span> extracting metadata.
 
 STATUS
 Frequency (secs) job status is to be monitored where
-the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+the <span style="color: #a020f0;">default</span> [0] will show new status when available.
 
 TABLES
 Identifies a list of tables to export.
@@ -458,20 +460,20 @@ For example, VIEWS_AS_TABLES=HR.EMP_DETAILS_VIEW.
 
 ------------------------------------------------------------------------------
 
-The following commands are valid <span style="color: #729fcf; font-weight: bold;">while</span> in interactive mode.
+The following commands are valid <span style="color: #a020f0;">while</span> in interactive mode.
 Note: abbreviations are allowed.
 
 ADD_FILE
 Add dumpfile to dumpfile set.
 
 CONTINUE_CLIENT
-Return to logging mode. Job will be restarted <span style="color: #729fcf; font-weight: bold;">if</span> idle.
+Return to logging mode. Job will be restarted <span style="color: #a020f0;">if</span> idle.
 
 EXIT_CLIENT
 Quit client session and leave job running.
 
 FILESIZE
-Default filesize (bytes) <span style="color: #729fcf; font-weight: bold;">for</span> subsequent ADD_FILE commands.
+Default filesize (bytes) <span style="color: #a020f0;">for</span> subsequent ADD_FILE commands.
 
 HELP
 Summarize interactive commands.
@@ -480,10 +482,10 @@ KILL_JOB
 Detach and delete job.
 
 PARALLEL
-Change the number of active workers <span style="color: #729fcf; font-weight: bold;">for</span> current job.
+Change the number of active workers <span style="color: #a020f0;">for</span> current job.
 
 REUSE_DUMPFILES
-Overwrite destination dump file <span style="color: #729fcf; font-weight: bold;">if</span> it exists [NO]. 
+Overwrite destination dump file <span style="color: #a020f0;">if</span> it exists [NO]. 
 
 START_JOB
 Start or resume current job.
@@ -491,7 +493,7 @@ Valid keyword values are: SKIP_CURRENT.
 
 STATUS
 Frequency (secs) job status is to be monitored where
-the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+the <span style="color: #a020f0;">default</span> [0] will show new status when available.
 
 STOP_JOB
 Orderly shutdown of job execution and exits the client.
@@ -524,13 +526,13 @@ Valid keyword values are: IMMEDIATE.
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Definir un directorio</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">any</span> directory <span style="color: #729fcf; font-weight: bold;">to</span> unusuario; 
-<span style="color: #729fcf; font-weight: bold;">create</span> directory mi_directorio_de_backup <span style="color: #729fcf; font-weight: bold;">as</span> <span style="color: #ad7fa8; font-style: italic;">'/home/alumno/backups'</span>;
+<pre class="src src-sql"><span style="color: #a020f0;">grant</span> <span style="color: #a020f0;">create</span> <span style="color: #a020f0;">any</span> directory <span style="color: #a020f0;">to</span> unusuario; 
+<span style="color: #a020f0;">create</span> directory mi_directorio_de_backup <span style="color: #a020f0;">as</span> <span style="color: #8b2252;">'/home/alumno/backups'</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">GRANT</span> <span style="color: #729fcf; font-weight: bold;">READ</span>, <span style="color: #729fcf; font-weight: bold;">WRITE</span> <span style="color: #729fcf; font-weight: bold;">ON</span> DIRECTORY mi_directorio_de_backup <span style="color: #729fcf; font-weight: bold;">TO</span> usuario; 
+<pre class="src src-sql"><span style="color: #a020f0;">GRANT</span> <span style="color: #a020f0;">READ</span>, <span style="color: #a020f0;">WRITE</span> <span style="color: #a020f0;">ON</span> DIRECTORY mi_directorio_de_backup <span style="color: #a020f0;">TO</span> usuario; 
 </pre>
 </div>
 
@@ -554,7 +556,7 @@ Valid keyword values are: IMMEDIATE.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>sys/alumno@localhost:1521/orclpdb1 as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+<pre class="src src-bash">expdp <span style="color: #8b2252;">\'</span>sys/alumno@localhost:1521/orclpdb1 as sysdba<span style="color: #8b2252;">\'</span> <span style="color: #a0522d;">DIRECTORY</span>=datos <span style="color: #a0522d;">DUMPFILE</span>=<span style="color: #8b2252;">\'</span>con espacios.dmp<span style="color: #8b2252;">\'</span>
 </pre>
 </div>
 </div>
@@ -568,9 +570,9 @@ Valid keyword values are: IMMEDIATE.
 <li>Por lo que sea, no funciona con <code>sqlplus</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">ORACLE_SID</span>=ORCL
-<span style="color: #729fcf;">export</span> <span style="color: #ff6347;">ORACLE_PDB_SID</span>=pdasir
-expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+<pre class="src src-bash"><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">ORACLE_SID</span>=ORCL
+<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">ORACLE_PDB_SID</span>=pdasir
+expdp <span style="color: #8b2252;">\'</span>/ as sysdba<span style="color: #8b2252;">\'</span> <span style="color: #a0522d;">DIRECTORY</span>=datos <span style="color: #a0522d;">DUMPFILE</span>=<span style="color: #8b2252;">\'</span>con espacios.dmp<span style="color: #8b2252;">\'</span>
 </pre>
 </div>
 </div>
@@ -592,16 +594,16 @@ expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<spa
 <div class="org-src-container">
 <pre class="src src-lisp">PDB_PDASIR =
   (DESCRIPTION =
-  <span style="color: #6c7f6868233c;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
-  <span style="color: #6c7f6868233c;"> </span> (CONNECT_DATA =
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVICE_NAME = pdasir)
-  <span style="color: #6c7f6868233c;"> </span> )
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVICE_NAME = pdasir)
+    )
   )
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-bash">expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>sys@PDB_PDASIR as sysdba<span style="color: #ad7fa8; font-style: italic;">\'</span> <span style="color: #ff6347;">DIRECTORY</span>=datos <span style="color: #ff6347;">DUMPFILE</span>=<span style="color: #ad7fa8; font-style: italic;">\'</span>con espacios.dmp<span style="color: #ad7fa8; font-style: italic;">\'</span>
+<pre class="src src-bash">expdp <span style="color: #8b2252;">\'</span>sys@PDB_PDASIR as sysdba<span style="color: #8b2252;">\'</span> <span style="color: #a0522d;">DIRECTORY</span>=datos <span style="color: #a0522d;">DUMPFILE</span>=<span style="color: #8b2252;">\'</span>con espacios.dmp<span style="color: #8b2252;">\'</span>
 </pre>
 </div>
 </div>
@@ -612,14 +614,14 @@ expdp <span style="color: #ad7fa8; font-style: italic;">\'</span>/ as sysdba<spa
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-shell">
-[alumno@centos-asgbd ~]$ expdp alumno/alumno <span style="color: #ff6347;">directory</span>=mi_directorio_de_backup <span style="color: #ff6347;">schemas</span>=alumno <span style="color: #ff6347;">dumpfile</span>=alumno.dmp <span style="color: #ff6347;">logfile</span>=alumno.log
+[alumno@centos-asgbd ~]$ expdp alumno/alumno <span style="color: #a0522d;">directory</span>=mi_directorio_de_backup <span style="color: #a0522d;">schemas</span>=alumno <span style="color: #a0522d;">dumpfile</span>=alumno.dmp <span style="color: #a0522d;">logfile</span>=alumno.log
 Export: Release 12.1.0.2.0 - Production on Fri Dec 16 13:07:26 2016
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+<span style="color: #0000ff;">Copyright</span> (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 Connected to: Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
-Starting <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_EXPORT_SCHEMA_01"</span>:  alumno/******** <span style="color: #ff6347;">directory</span>=mi_directorio_de_backup <span style="color: #ff6347;">schemas</span>=alumno <span style="color: #ff6347;">dumpfile</span>=alumno.dmp <span style="color: #ff6347;">logfile</span>=alumno.log 
-Estimate<span style="color: #729fcf; font-weight: bold;"> in</span> progress using BLOCKS method...
+Starting <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"SYS_EXPORT_SCHEMA_01"</span>:  alumno/******** <span style="color: #a0522d;">directory</span>=mi_directorio_de_backup <span style="color: #a0522d;">schemas</span>=alumno <span style="color: #a0522d;">dumpfile</span>=alumno.dmp <span style="color: #a0522d;">logfile</span>=alumno.log 
+Estimate<span style="color: #a020f0;"> in</span> progress using BLOCKS method...
 Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
 Total estimation using BLOCKS method: 192 KB
 Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
@@ -632,14 +634,14 @@ Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
 Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
 Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
 Processing object type SCHEMA_EXPORT/STATISTICS/MARKER
-. . exported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"MATRICULAS"</span>                     6.523 KB      44 rows
-. . exported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"MULTAS"</span>                         8.195 KB      35 rows
-. . exported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"PERSONAS"</span>                       6.875 KB      47 rows
-Master table <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_EXPORT_SCHEMA_01"</span> successfully loaded/unloaded
+. . exported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"MATRICULAS"</span>                     6.523 KB      44 rows
+. . exported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"MULTAS"</span>                         8.195 KB      35 rows
+. . exported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"PERSONAS"</span>                       6.875 KB      47 rows
+Master table <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"SYS_EXPORT_SCHEMA_01"</span> successfully loaded/unloaded
 ******************************************************************************
 Dump file set for ALUMNO.SYS_EXPORT_SCHEMA_01 is:
   /home/alumno/backups/alumno.dmp
-Job <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_EXPORT_SCHEMA_01"</span> successfully completed at Fri Dec 16 13:08:00 2016 elapsed 0 00:00:33
+Job <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"SYS_EXPORT_SCHEMA_01"</span> successfully completed at Fri Dec 16 13:08:00 2016 elapsed 0 00:00:33
 </pre>
 </div>
 </div>
@@ -659,21 +661,21 @@ Job <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span styl
 
 <div class="org-src-container">
 <pre class="src src-C">
-<span style="color: #8ae234;">Import</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:31:18 2016
+<span style="color: #008b8b;">Import</span>: Release 12.1.0.2.0 - Production on Fri Dec 16 13:31:18 2016
 
 Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 
-The Data Pump Import utility provides a mechanism <span style="color: #729fcf; font-weight: bold;">for</span> transferring data objects
+The Data Pump Import utility provides a mechanism <span style="color: #a020f0;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
      
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
-You can control how Import runs by entering the <span style="color: #f57900; font-weight: bold;">'</span>impdp<span style="color: #f57900; font-weight: bold;">'</span> command followed
-by various parameters. To specify parameters, you use <span style="color: #8ae234; font-weight: bold;">keywords</span>:
+You can control how Import runs by entering the <span style="color: #ff0000; font-weight: bold;">'</span>impdp<span style="color: #ff0000; font-weight: bold;">'</span> command followed
+by various parameters. To specify parameters, you use <span style="color: #228b22;">keywords</span>:
      
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+     Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
 USERID must be the first parameter on the command line.
 
@@ -684,7 +686,7 @@ The available keywords and their descriptions follow. Default values are listed 
 ABORT_STEP
 Stop the job after it is initialized or at the indicated object.
 Valid values are -1 or N where N is zero or greater.
-N corresponds to the object<span style="color: #f57900; font-weight: bold;">'</span>s process order number in the master table.
+N corresponds to the object<span style="color: #ff0000; font-weight: bold;">'</span>s process order number in the master table.
 
 ACCESS_METHOD
 Instructs Import to use a particular method to load data.
@@ -707,19 +709,19 @@ Data layer option flags.
 Valid keywords are: DISABLE_APPEND_HINT and SKIP_CONSTRAINT_ERRORS.
 
 DIRECTORY
-Directory object to be used <span style="color: #729fcf; font-weight: bold;">for</span> dump, log and SQL files.
+Directory object to be used <span style="color: #a020f0;">for</span> dump, log and SQL files.
 
 DUMPFILE
 List of dump files to import from [expdat.dmp].
 For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
 
 ENCRYPTION_PASSWORD
-Password key <span style="color: #729fcf; font-weight: bold;">for</span> accessing encrypted data within a dump file.
-Not valid <span style="color: #729fcf; font-weight: bold;">for</span> network import jobs.
+Password key <span style="color: #a020f0;">for</span> accessing encrypted data within a dump file.
+Not valid <span style="color: #a020f0;">for</span> network import jobs.
 
 ENCRYPTION_PWD_PROMPT
-Specifies whether to prompt <span style="color: #729fcf; font-weight: bold;">for</span> the encryption password [NO].
-Terminal echo will be suppressed <span style="color: #729fcf; font-weight: bold;">while</span> standard input is read.
+Specifies whether to prompt <span style="color: #a020f0;">for</span> the encryption password [NO].
+Terminal echo will be suppressed <span style="color: #a020f0;">while</span> standard input is read.
 
 ESTIMATE
 Calculate network job estimates.
@@ -727,7 +729,7 @@ Valid keywords are: [BLOCKS] and STATISTICS.
 
 EXCLUDE
 Exclude specific object types.
-For example, EXCLUDE=SCHEMA:<span style="color: #ad7fa8; font-style: italic;">"='HR'"</span>.
+For example, EXCLUDE=SCHEMA:<span style="color: #8b2252;">"='HR'"</span>.
 
 FLASHBACK_SCN
 SCN used to reset session snapshot.
@@ -771,18 +773,18 @@ NOLOGFILE
 Do not write log file [NO].
 
 PARALLEL
-Change the number of active workers <span style="color: #729fcf; font-weight: bold;">for</span> current job.
+Change the number of active workers <span style="color: #a020f0;">for</span> current job.
 
 PARFILE
 Specify parameter file.
 
 PARTITION_OPTIONS
 Specify how partitions should be transformed.
-Valid keywords are: DEPARTITION, <span style="color: #8ae234; font-weight: bold;">MERGE</span> <span style="color: #ff6347;">and</span> [NONE].
+Valid keywords are: DEPARTITION, <span style="color: #228b22;">MERGE</span> <span style="color: #a0522d;">and</span> [NONE].
 
 QUERY
 Predicate clause used to import a subset of a table.
-For example, QUERY=employees:<span style="color: #ad7fa8; font-style: italic;">"WHERE department_id &gt; 10"</span>.
+For example, QUERY=employees:<span style="color: #8b2252;">"WHERE department_id &gt; 10"</span>.
 
 REMAP_DATA
 Specify a data conversion function.
@@ -802,7 +804,7 @@ REMAP_TABLESPACE
 Tablespace objects are remapped to another tablespace.
 
 REUSE_DATAFILES
-Tablespace will be initialized <span style="color: #729fcf; font-weight: bold;">if</span> it already exists [NO].
+Tablespace will be initialized <span style="color: #a020f0;">if</span> it already exists [NO].
 
 SCHEMAS
 List of schemas to import.
@@ -814,20 +816,20 @@ SKIP_UNUSABLE_INDEXES
 Skip indexes that were set to the Index Unusable state.
 
 SOURCE_EDITION
-Edition to be used <span style="color: #729fcf; font-weight: bold;">for</span> extracting metadata.
+Edition to be used <span style="color: #a020f0;">for</span> extracting metadata.
 
 SQLFILE
 Write all the SQL DDL to a specified file.
 
 STATUS
 Frequency (secs) job status is to be monitored where
-the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+the <span style="color: #a020f0;">default</span> [0] will show new status when available.
 
 STREAMS_CONFIGURATION
 Enable the loading of Streams metadata [YES].
 
 TABLE_EXISTS_ACTION
-Action to take <span style="color: #729fcf; font-weight: bold;">if</span> imported object already exists.
+Action to take <span style="color: #a020f0;">if</span> imported object already exists.
 Valid keywords are: APPEND, REPLACE, [SKIP] and TRUNCATE.
 
 TABLES
@@ -838,7 +840,7 @@ TABLESPACES
 Identifies a list of tablespaces to import.
 
 TARGET_EDITION
-Edition to be used <span style="color: #729fcf; font-weight: bold;">for</span> loading metadata.
+Edition to be used <span style="color: #a020f0;">for</span> loading metadata.
 
 TRANSFORM
 Metadata transform to apply to applicable objects.
@@ -847,7 +849,7 @@ LOB_STORAGE, OID, PCTSPACE, SEGMENT_ATTRIBUTES, STORAGE, and
 TABLE_COMPRESSION_CLAUSE.
 
 TRANSPORTABLE
-Options <span style="color: #729fcf; font-weight: bold;">for</span> choosing transportable data movement.
+Options <span style="color: #a020f0;">for</span> choosing transportable data movement.
 Valid keywords are: ALWAYS and [NEVER].
 Only valid in NETWORK_LINK mode import operations.
 
@@ -865,7 +867,7 @@ Only valid in NETWORK_LINK mode import operations.
 VERSION
 Version of objects to import.
 Valid keywords are: [COMPATIBLE], LATEST, or any valid database version.
-Only valid <span style="color: #729fcf; font-weight: bold;">for</span> NETWORK_LINK and SQLFILE.
+Only valid <span style="color: #a020f0;">for</span> NETWORK_LINK and SQLFILE.
 
 VIEWS_AS_TABLES
 Identifies one or more views to be imported as tables.
@@ -875,11 +877,11 @@ to the view name.
 
 ------------------------------------------------------------------------------
 
-The following commands are valid <span style="color: #729fcf; font-weight: bold;">while</span> in interactive mode.
+The following commands are valid <span style="color: #a020f0;">while</span> in interactive mode.
 Note: abbreviations are allowed.
 
 CONTINUE_CLIENT
-Return to logging mode. Job will be restarted <span style="color: #729fcf; font-weight: bold;">if</span> idle.
+Return to logging mode. Job will be restarted <span style="color: #a020f0;">if</span> idle.
 
 EXIT_CLIENT
 Quit client session and leave job running.
@@ -891,7 +893,7 @@ KILL_JOB
 Detach and delete job.
 
 PARALLEL
-Change the number of active workers <span style="color: #729fcf; font-weight: bold;">for</span> current job.
+Change the number of active workers <span style="color: #a020f0;">for</span> current job.
 
 START_JOB
 Start or resume current job.
@@ -899,7 +901,7 @@ Valid keywords are: SKIP_CURRENT.
 
 STATUS
 Frequency (secs) job status is to be monitored where
-the <span style="color: #729fcf; font-weight: bold;">default</span> [0] will show new status when available.
+the <span style="color: #a020f0;">default</span> [0] will show new status when available.
 
 STOP_JOB
 Orderly shutdown of job execution and exits the client.
@@ -920,7 +922,7 @@ Valid keywords are: IMMEDIATE.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">impdp USERNAME/PASSWORD <span style="color: #ff6347;">schemas</span>=USERNAME <span style="color: #ff6347;">directory</span>=backup <span style="color: #ff6347;">dumpfile</span>=full.dmp <span style="color: #ff6347;">EXCLUDE</span>=TABLE:<span style="color: #ad7fa8; font-style: italic;">\"</span>like <span style="color: #ad7fa8; font-style: italic;">'IMG_%%'\"</span> <span style="color: #ff6347;">EXCLUDE</span>=TABLE:<span style="color: #ad7fa8; font-style: italic;">\"</span>IN <span style="color: #ad7fa8; font-style: italic;">\(\'</span>EMP<span style="color: #ad7fa8; font-style: italic;">\'</span>,<span style="color: #ad7fa8; font-style: italic;">\'</span>DEPT<span style="color: #ad7fa8; font-style: italic;">\'\)\"</span>
+<pre class="src src-bash">impdp USERNAME/PASSWORD <span style="color: #a0522d;">schemas</span>=USERNAME <span style="color: #a0522d;">directory</span>=backup <span style="color: #a0522d;">dumpfile</span>=full.dmp <span style="color: #a0522d;">EXCLUDE</span>=TABLE:<span style="color: #8b2252;">\"</span>like <span style="color: #8b2252;">'IMG_%%'\"</span> <span style="color: #a0522d;">EXCLUDE</span>=TABLE:<span style="color: #8b2252;">\"</span>IN <span style="color: #8b2252;">\(\'</span>EMP<span style="color: #8b2252;">\'</span>,<span style="color: #8b2252;">\'</span>DEPT<span style="color: #8b2252;">\'\)\"</span>
 </pre>
 </div>
 </div>
@@ -935,29 +937,29 @@ Valid keywords are: IMMEDIATE.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-shell">impdp system/alumno <span style="color: #ff6347;">SCHEMAS</span>=alumno <span style="color: #ff6347;">remap_schema</span>=alumno:profesor <span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ff6347;">directory</span>=EXPORTDIR <span style="color: #ad7fa8; font-style: italic;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ff6347;">dumpfile</span>=profesor.dmp
+<pre class="src src-shell">impdp system/alumno <span style="color: #a0522d;">SCHEMAS</span>=alumno <span style="color: #a0522d;">remap_schema</span>=alumno:profesor <span style="color: #8b2252;">\</span>
+            <span style="color: #a0522d;">directory</span>=EXPORTDIR <span style="color: #8b2252;">\</span>
+            <span style="color: #a0522d;">dumpfile</span>=profesor.dmp
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-shell">[alumno@centos-asgbd backups]$ impdp system/alumno <span style="color: #ff6347;">schemas</span>=profesor <span style="color: #ff6347;">remap_schema</span>=profesor:alumno <span style="color: #ff6347;">directory</span>=mi_directorio_de_backup <span style="color: #ff6347;">dumpfile</span>=profesor.dmp       
+<pre class="src src-shell">[alumno@centos-asgbd backups]$ impdp system/alumno <span style="color: #a0522d;">schemas</span>=profesor <span style="color: #a0522d;">remap_schema</span>=profesor:alumno <span style="color: #a0522d;">directory</span>=mi_directorio_de_backup <span style="color: #a0522d;">dumpfile</span>=profesor.dmp       
 
 Import: Release 12.1.0.2.0 - Production on Fri Dec 16 13:23:38 2016
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
+<span style="color: #0000ff;">Copyright</span> (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 
 Connected to: Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
-Master table <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_IMPORT_SCHEMA_01"</span> successfully loaded/unloaded
-Starting <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_IMPORT_SCHEMA_01"</span>:  system/******** <span style="color: #ff6347;">schemas</span>=profesor <span style="color: #ff6347;">remap_schema</span>=profesor:alumno <span style="color: #ff6347;">directory</span>=mi_directorio_de_backup <span style="color: #ff6347;">dumpfile</span>=profesor.dm
+Master table <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">"SYS_IMPORT_SCHEMA_01"</span> successfully loaded/unloaded
+Starting <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">"SYS_IMPORT_SCHEMA_01"</span>:  system/******** <span style="color: #a0522d;">schemas</span>=profesor <span style="color: #a0522d;">remap_schema</span>=profesor:alumno <span style="color: #a0522d;">directory</span>=mi_directorio_de_backup <span style="color: #a0522d;">dumpfile</span>=profesor.dm
 p 
 Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
 Processing object type SCHEMA_EXPORT/TABLE/TABLE
 Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
-. . imported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"MATRICULAS"</span>                       6.523 KB      44 rows
-. . imported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"MULTAS"</span>                           8.195 KB      35 rows
-. . imported <span style="color: #ad7fa8; font-style: italic;">"ALUMNO"</span>.<span style="color: #ad7fa8; font-style: italic;">"PERSONAS"</span>                         6.875 KB      47 rows
+. . imported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"MATRICULAS"</span>                       6.523 KB      44 rows
+. . imported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"MULTAS"</span>                           8.195 KB      35 rows
+. . imported <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">"PERSONAS"</span>                         6.875 KB      47 rows
 Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
 Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
 Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
@@ -965,7 +967,7 @@ Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
 Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
 Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
 Processing object type SCHEMA_EXPORT/STATISTICS/MARKER
-Job <span style="color: #ad7fa8; font-style: italic;">"SYSTEM"</span>.<span style="color: #ad7fa8; font-style: italic;">"SYS_IMPORT_SCHEMA_01"</span> successfully completed at Fri Dec 16 13:23:58 2016 elapsed 0 00:00:19
+Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">"SYS_IMPORT_SCHEMA_01"</span> successfully completed at Fri Dec 16 13:23:58 2016 elapsed 0 00:00:19
 </pre>
 </div>
 
@@ -1114,15 +1116,15 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #ad7fa8; font-style: italic;">'datos'</span>, <span style="color: #729fcf; font-weight: bold;">name</span> <span style="color: #729fcf; font-weight: bold;">from</span> v$datafile
-<span style="color: #729fcf; font-weight: bold;">union</span>
-<span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #ad7fa8; font-style: italic;">'temporal'</span>, <span style="color: #729fcf; font-weight: bold;">name</span> <span style="color: #729fcf; font-weight: bold;">from</span> v$tempfile
-<span style="color: #729fcf; font-weight: bold;">union</span>
-<span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #ad7fa8; font-style: italic;">'redo'</span>, member <span style="color: #729fcf; font-weight: bold;">from</span> v$logfile
-<span style="color: #729fcf; font-weight: bold;">union</span>
-<span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #ad7fa8; font-style: italic;">'control'</span>, <span style="color: #729fcf; font-weight: bold;">name</span> <span style="color: #729fcf; font-weight: bold;">from</span> v$controlfile
-<span style="color: #729fcf; font-weight: bold;">union</span>
-<span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #ad7fa8; font-style: italic;">'spfile'</span>, <span style="color: #729fcf; font-weight: bold;">value</span> <span style="color: #729fcf; font-weight: bold;">from</span> v$<span style="color: #729fcf; font-weight: bold;">parameter</span> <span style="color: #729fcf; font-weight: bold;">where</span> <span style="color: #729fcf; font-weight: bold;">name</span>=<span style="color: #ad7fa8; font-style: italic;">'spfile'</span>;
+<pre class="src src-sql"><span style="color: #a020f0;">select</span> <span style="color: #8b2252;">'datos'</span>, <span style="color: #a020f0;">name</span> <span style="color: #a020f0;">from</span> v$datafile
+<span style="color: #a020f0;">union</span>
+<span style="color: #a020f0;">select</span> <span style="color: #8b2252;">'temporal'</span>, <span style="color: #a020f0;">name</span> <span style="color: #a020f0;">from</span> v$tempfile
+<span style="color: #a020f0;">union</span>
+<span style="color: #a020f0;">select</span> <span style="color: #8b2252;">'redo'</span>, member <span style="color: #a020f0;">from</span> v$logfile
+<span style="color: #a020f0;">union</span>
+<span style="color: #a020f0;">select</span> <span style="color: #8b2252;">'control'</span>, <span style="color: #a020f0;">name</span> <span style="color: #a020f0;">from</span> v$controlfile
+<span style="color: #a020f0;">union</span>
+<span style="color: #a020f0;">select</span> <span style="color: #8b2252;">'spfile'</span>, <span style="color: #a020f0;">value</span> <span style="color: #a020f0;">from</span> v$<span style="color: #a020f0;">parameter</span> <span style="color: #a020f0;">where</span> <span style="color: #a020f0;">name</span>=<span style="color: #8b2252;">'spfile'</span>;
 </pre>
 </div>
 </div>
@@ -1136,22 +1138,22 @@ Si solo se restauran los ficheros de datos (y se tienen suficientes ficheros de 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SQL</span>&gt; startup mount
-ORACLE <span style="color: #729fcf; font-weight: bold;">instance</span> started.
+<pre class="src src-sql"><span style="color: #a020f0;">SQL</span>&gt; startup mount
+ORACLE <span style="color: #a020f0;">instance</span> started.
 
-Total <span style="color: #729fcf; font-weight: bold;">System</span> <span style="color: #729fcf; font-weight: bold;">Global</span> Area  264241152 bytes
-Fixed <span style="color: #729fcf; font-weight: bold;">Size</span>                  1286916 bytes
-<span style="color: #729fcf; font-weight: bold;">Variable</span> <span style="color: #729fcf; font-weight: bold;">Size</span>             205524220 bytes
+Total <span style="color: #a020f0;">System</span> <span style="color: #a020f0;">Global</span> Area  264241152 bytes
+Fixed <span style="color: #a020f0;">Size</span>                  1286916 bytes
+<span style="color: #a020f0;">Variable</span> <span style="color: #a020f0;">Size</span>             205524220 bytes
 Database Buffers           54525952 bytes
 Redo Buffers                2904064 bytes
 Database mounted.
-<span style="color: #729fcf; font-weight: bold;">SQL</span>&gt; recover database until cancel;
+<span style="color: #a020f0;">SQL</span>&gt; recover database until cancel;
 Media recovery complete.
-<span style="color: #729fcf; font-weight: bold;">SQL</span>&gt; <span style="color: #729fcf; font-weight: bold;">alter</span> database <span style="color: #729fcf; font-weight: bold;">open</span> resetlogs;
+<span style="color: #a020f0;">SQL</span>&gt; <span style="color: #a020f0;">alter</span> database <span style="color: #a020f0;">open</span> resetlogs;
 
 Database altered.
 
-<span style="color: #729fcf; font-weight: bold;">SQL</span>&gt;
+<span style="color: #a020f0;">SQL</span>&gt;
 </pre>
 </div>
 </div>
@@ -1199,7 +1201,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-04-10 Thu 10:31</p>
+<p class="date">Created: 2025-04-10 Thu 11:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
