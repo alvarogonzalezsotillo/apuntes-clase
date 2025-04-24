@@ -302,6 +302,16 @@ ALTER SYSTEM KILL SESSION 'sid,serial#';
 
   
 
+* Ejercicio
+
+- Consigue que una sesión se quede esperando a otra indefinidamente
+  - Con =for update=
+  - Con =lock table=
+  - Con =insert=
+  - Con =delete=  
+- Termina esa espera
+  - Terminando la sesión bloqueante con =kill session=
+  - Asignando previamente un perfil a la sesión bloqueante, que limite el tiempo de conexión          
 
 * Referencias
 #+include: "../../../common/footer.org"
