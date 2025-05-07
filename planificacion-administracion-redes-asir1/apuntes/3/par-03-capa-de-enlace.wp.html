@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:07 -->
+<!-- 2025-05-07 mié 11:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Capa de enlace</title>
@@ -245,7 +245,8 @@
 <li><a href="#org0000026">4. Acceso al medio</a></li>
 <li><a href="#org000003e">5. Control de errores</a></li>
 <li><a href="#org000005d">6. Corrección de errores</a></li>
-<li><a href="#org0000060">7. Referencias</a></li>
+<li><a href="#org0000062">7. Ejemplo: RS232</a></li>
+<li><a href="#org0000065">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -283,6 +284,11 @@ window.addEventListener("load",()=>{
 });
 
 </script>
+
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
 
 
 <div id="outline-container-org0000009" class="outline-2">
@@ -1697,11 +1703,39 @@ Se transmite <code>10001100101</code>
 </div>
 </div>
 
-
-
-<div id="outline-container-org0000060" class="outline-2">
-<h2 id="org0000060"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org0000062" class="outline-2">
+<h2 id="org0000062"><span class="section-number-2">7.</span> Ejemplo: <a href="https://en.wikipedia.org/wiki/RS-232">RS232</a></h2>
 <div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Conocido como <a href="https://es.wikipedia.org/wiki/Puerto_serie"><i>puerto serie</i></a></li>
+<li>Utiliza codificación de canal <a href="https://es.wikipedia.org/wiki/C%C3%B3digos_NRZ">NRZ</a></li>
+<li>Siempre hay un bit de inicio de palabra, a nivel alto</li>
+<li>Parámetros:
+<ul class="org-ul">
+<li>baudios</li>
+<li>bits de datos: generalmente 8</li>
+<li>bit de paridad: sin paridad, paridad par o paridad impar</li>
+<li>bits de parada: 1 o 2, nivel bajo</li>
+</ul></li>
+</ul>
+
+
+<div id="org0000060" class="figure">
+<p><img src="media/Puerto_serie_Rs232.png" alt="Puerto_serie_Rs232.png" />
+</p>
+</div>
+
+
+<div id="org0000061" class="figure">
+<p><img src="media/configuracion-puerto-serie-putty.png" alt="configuracion-puerto-serie-putty.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0000065" class="outline-2">
+<h2 id="org0000065"><span class="section-number-2">8.</span> Referencias</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -1723,7 +1757,7 @@ Se transmite <code>10001100101</code>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:07</p>
+<p class="date">Created: 2025-05-07 mié 11:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
