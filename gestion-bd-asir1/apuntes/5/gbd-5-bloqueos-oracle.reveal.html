@@ -443,7 +443,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Concurrencia y bloqueos en Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:04</p>
+<h1 class="title">Concurrencia y bloqueos en Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-04-24 Thu 10:22</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -454,7 +454,8 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-2">2. Propiedades <b>ACID</b></a></li>
 <li><a href="#/slide-3">3. Problemas del uso concurrente</a></li>
 <li><a href="#/slide-4">4. Bloqueos</a></li>
-<li><a href="#/slide-5">5. Referencias</a></li>
+<li><a href="#/slide-5">5. Ejercicio</a></li>
+<li><a href="#/slide-6">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -493,6 +494,23 @@ window.addEventListener("load",()=>{
 });
 
 </script>
+
+<style type="text/css">
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
+
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 
 
 
@@ -1061,7 +1079,30 @@ for update
 </section>
 <section>
 <section id="slide-5">
-<h2 id="5"><span class="section-number-2">5.</span> Referencias</h2>
+<h2 id="5"><span class="section-number-2">5.</span> Ejercicio</h2>
+<ul>
+<li>Consigue que una sesión se quede esperando a otra indefinidamente
+<ul>
+<li>Con <code>for update</code></li>
+<li>Con <code>lock table</code></li>
+<li>Con <code>insert</code></li>
+
+</ul></li>
+<li>Termina esa espera
+<ul>
+<li>Terminando la sesión bloqueante con <code>kill session</code></li>
+<li>Asignando previamente un perfil a la sesión bloqueante, que limite el tiempo de conexión</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+
+</section>
+</section>
+<section>
+<section id="slide-6">
+<h2 id="6"><span class="section-number-2">6.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>

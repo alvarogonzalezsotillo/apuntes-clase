@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:04 -->
+<!-- 2025-04-24 Thu 10:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
@@ -208,7 +208,8 @@
 <li><a href="#org000000f">2. Propiedades <b>ACID</b></a></li>
 <li><a href="#org000001e">3. Problemas del uso concurrente</a></li>
 <li><a href="#org000002a">4. Bloqueos</a></li>
-<li><a href="#org000002d">5. Referencias</a></li>
+<li><a href="#org000002d">5. Ejercicio</a></li>
+<li><a href="#org0000030">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -246,6 +247,23 @@ window.addEventListener("load",()=>{
 });
 
 </script>
+
+<style type="text/css">
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
+
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 
 
 
@@ -481,10 +499,10 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <h3 id="org0000015"><span class="section-number-3">3.2.</span> Datos para pruebas de bloqueos</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">ALUMNOS</span>( DNI <span style="color: #8ae234; font-weight: bold;">varchar</span>(10), NOMBRE <span style="color: #8ae234; font-weight: bold;">varchar</span>(10));
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'1'</span>,<span style="color: #ad7fa8; font-style: italic;">'Pepe'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'2'</span>,<span style="color: #ad7fa8; font-style: italic;">'Juan'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'3'</span>,<span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>);
+<pre class="src src-sql"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">ALUMNOS</span>( DNI <span style="color: #228b22;">varchar</span>(10), NOMBRE <span style="color: #228b22;">varchar</span>(10));
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'1'</span>,<span style="color: #8b2252;">'Pepe'</span>);
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'2'</span>,<span style="color: #8b2252;">'Juan'</span>);
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'3'</span>,<span style="color: #8b2252;">'Mar&#237;a'</span>);
 </pre>
 </div>
 </div>
@@ -789,8 +807,8 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <li>Bloqueo de algunas filas:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
-<span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">update</span>
+<pre class="src src-sql"><span style="color: #a020f0;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
+<span style="color: #a020f0;">for</span> <span style="color: #a020f0;">update</span>
 </pre>
 </div>
 </div>
@@ -799,8 +817,27 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 
 
 <div id="outline-container-org000002d" class="outline-2">
-<h2 id="org000002d"><span class="section-number-2">5.</span> Referencias</h2>
+<h2 id="org000002d"><span class="section-number-2">5.</span> Ejercicio</h2>
 <div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Consigue que una sesión se quede esperando a otra indefinidamente
+<ul class="org-ul">
+<li>Con <code>for update</code></li>
+<li>Con <code>lock table</code></li>
+<li>Con <code>insert</code></li>
+</ul></li>
+<li>Termina esa espera
+<ul class="org-ul">
+<li>Terminando la sesión bloqueante con <code>kill session</code></li>
+<li>Asignando previamente un perfil a la sesión bloqueante, que limite el tiempo de conexión</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">6.</span> Referencias</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -822,7 +859,7 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:04</p>
+<p class="date">Created: 2025-04-24 Thu 10:22</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

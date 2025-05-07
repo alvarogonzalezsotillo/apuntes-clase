@@ -303,7 +303,7 @@ PDB_PDASIR =
 #+end_src
 
 #+begin_src bash
-expdp \'sys@pdasir as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
+expdp \'sys@PDB_PDASIR as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 #+end_src
 
 
