@@ -361,7 +361,20 @@ http://www.ecs.umass.edu/ece/koren/FaultTolerantSystems/simulator/Hamming/Hammin
   - Raid 6
   - DVB, WiMax, transmisiones aeroespaciales    
  
+* Ejemplo: [[https://en.wikipedia.org/wiki/RS-232][RS232]]
+- Conocido como [[https://es.wikipedia.org/wiki/Puerto_serie][/puerto serie/]]
+- Utiliza codificación de canal [[https://es.wikipedia.org/wiki/C%C3%B3digos_NRZ][NRZ]]
+- Siempre hay un bit de inicio de palabra, a nivel alto  
+- Parámetros:
+  - baudios
+  - bits de datos: generalmente 8
+  - bit de paridad: sin paridad, paridad par o paridad impar
+  - bits de parada: 1 o 2, nivel bajo
 
+[[file:media/Puerto_serie_Rs232.png]]
+
+#+reveal: split
+[[file:media/configuracion-puerto-serie-putty.png]]
 
 * Referencias
 #+include: "../../../common/footer.org"
