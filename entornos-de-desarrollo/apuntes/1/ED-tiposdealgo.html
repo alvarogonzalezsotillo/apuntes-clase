@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Generated on 2025-09-12 vie 13:51 -->
+<meta charset="utf-8"/>
+<meta name="author" content="alvaro"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/black.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h2 class="author">alvaro</h2><p class="date">Created: 2025-09-12 vie 13:51</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-0-1">1. Definiciones</a></li>
+<li><a href="#/slide-0-2">2. Cercanía al programador</a></li>
+<li><a href="#/slide-0-3">3. Generaciones</a></li>
+<li><a href="#/slide-0-4">4. Lenguaje Máquina</a></li>
+<li><a href="#/slide-0-5">5. Lenguaje de bajo nivel (Ensamblador)</a></li>
+<li><a href="#/slide-0-6">6. Lenguaje de alto nivel</a></li>
+<li><a href="#/slide-0-7">7. Compiladores</a></li>
+<li><a href="#/slide-0-8">8. Intérpretes</a></li>
+<li><a href="#/slide-0-9">9. Máquina virtual</a>
+<ul>
+<li><a href="#/slide-0-9-1">9.1. Lenguaje compilado</a></li>
+<li><a href="#/slide-0-9-2">9.2. Lenguaje interpretado</a></li>
+<li><a href="#/slide-0-9-3">9.3. Lenguaje mixto o intermedio</a></li>
+</ul>
+</li>
+<li><a href="#/slide-0-10">10. Programación Imperativa</a>
+<ul>
+<li><a href="#/slide-0-10-1">10.1. Programación estructurada</a></li>
+<li><a href="#/slide-0-10-2">10.2. Programación procedimental</a></li>
+<li><a href="#/slide-0-10-3">10.3. Programación modular</a></li>
+</ul>
+</li>
+<li><a href="#/slide-0-11">11. Programación Declarativa</a></li>
+<li><a href="#/slide-0-12">12. Programación Orientada a Objetos</a></li>
+<li><a href="#/slide-0-13">13. Programación Orientada a Eventos</a></li>
+</ul>
+</div>
+</div>
+</section>
+<p>
+Sistemas Informáticos
+</p>
+
+<p>
+Cuando el procesamiento de los datos y la información en un sistema de información lo realiza un ordenador lo llamamos "Sistema Informático"
+</p>
+
+<p>
+En un Sistema Informático el algoritmo se describe mediante un programa.
+</p>
+<section>
+<section id="slide-0-1">
+<h2 id="0-1"><span class="section-number-2">1.</span> Definiciones</h2>
+<p>
+Programa: Conjunto ordenado de instrucciones que se dan al ordenador indicándole las operaciones o tareas que ha de realizar para resolver un problema. Para escribir programas utilizamos lenguajes de programación.
+Instrucción: conjunto de datos insertados en una secuencia. Ej: Instrucciones de transferencia de datos: en este tipo de instrucciones, se transfieren datos desde una localización a otra.
+Dato: representación simbólica (numérica, alfabética, algorítmica, espacial, etc.) de un atributo o variable cuantitativa o cualitativa.
+</p>
+
+<p>
+Lenguajes de programación
+</p>
+
+<p>
+Para que un ordenador realice un proceso, se le debe suministrar en primer lugar un algoritmo adecuado, que llamamos programa.
+</p>
+
+<p>
+El procesador debe ser capaz de interpretar el algoritmo, lo que significa:
+</p>
+
+<p>
+Comprender las instrucciones de cada paso.
+Realizar las operaciones correspondientes.
+</p>
+
+<p>
+Tipos de Lenguajes
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-2">
+<h2 id="0-2"><span class="section-number-2">2.</span> Cercanía al programador</h2>
+<p>
+Alto nivel: C, C++, Java, Kotlin, Python, etc.
+Bajo nivel: ensamblador, máquina, etc.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-3">
+<h2 id="0-3"><span class="section-number-2">3.</span> Generaciones</h2>
+<p>
+Primera generación: lenguaje máquina.
+Segunda generación: se crearon los primeros lenguajes ensambladores.
+Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…
+Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+Quinta generación: aquí se encuentran los lenguajes orientados a la inteligencia artificial. Ej. LISP
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-4">
+<h2 id="0-4"><span class="section-number-2">4.</span> Lenguaje Máquina</h2>
+<p>
+Son aquellos que están escritos en lenguajes que directamente entiende el ordenador, ya que sus instrucciones son cadenas binarias (secuencias de ceros y unos) que especifican una operación y las posiciones (dirección) de memoria implicadas en la operación. Se denominan instrucciones de máquina o código máquina.
+</p>
+
+<p>
+Características:
+</p>
+
+<p>
+Las instrucciones en lenguaje máquina dependen del hardware del ordenador y por tanto serán diferentes de un ordenador a otro.
+Se puede transferir un programa a memoria sin necesidad de traducción posterior, lo que supone una mayor velocidad de ejecución a cualquier otro lenguaje.
+Dificultad y lentitud en la codificación.
+Conjunto de instrucciones reducido (operaciones muy elementales)
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-5">
+<h2 id="0-5"><span class="section-number-2">5.</span> Lenguaje de bajo nivel (Ensamblador)</h2>
+<p>
+Los lenguajes de bajo nivel son más fáciles de utilizar que los lenguajes máquina, pero, al igual que ellos, dependen de la máquina en particular. El lenguaje de bajo nivel por excelencia es el ensamblador.
+</p>
+
+<p>
+Las instrucciones en lenguaje ensamblador son instrucciones conocidas como mnemónicos.
+</p>
+
+<p>
+Un programa escrito en lenguaje ensamblador no puede ser ejecutado directamente por la máquina, sino que requiere una fase de traducción al lenguaje máquina.
+</p>
+
+<p>
+El programa original escrito en lenguaje ensamblador se denomina programa fuente y el programa traducido en lenguaje máquina se conoce como programa objeto, ya directamente entendible por el ordenador.
+</p>
+
+<p>
+Mismo programa en C y en Ensamblador
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-6">
+<h2 id="0-6"><span class="section-number-2">6.</span> Lenguaje de alto nivel</h2>
+<p>
+Los lenguajes de alto nivel son los mas utilizados por los programadores.
+</p>
+
+<p>
+Están diseñados para que las personas escriban y entiendan los programas de un modo mucho más fácil que los lenguajes máquina y ensambladores.
+</p>
+
+<p>
+Otra razón es que un programa escrito en un lenguaje de alto nivel es independiente de la máquina, o sea, las instrucciones del programa del ordenador no dependen del diseño hardware de un ordenador en particular. Por lo tanto los programas escritos en lenguajes de alto nivel son portables o transportables, lo que significa la posibilidad de poder ser ejecutados con poca o ninguna modificación en diferentes tipos de ordenadores.
+</p>
+
+<p>
+Al igual que sucede con los lenguajes ensambladores, los programas fuente tienen que ser traducidos por programas traductores, llamados en este caso compiladores o intérpretes.
+</p>
+
+<p>
+Ejemplos de lenguajes de programación de alto nivel:
+BASIC, COBOL, PASCAL, C, VISUAL BASIC, JAVA, PYTHON, PERL, GO, PHP, RUBY,&#x2026;
+</p>
+
+<p>
+Traductores: Compiladores e Intérpretes
+</p>
+
+<p>
+La traducción de un programa escrito en un lenguaje de programación a un lenguaje de máquina se realiza mediante un traductor. Este traductor puede ser un compilador o un intérprete. Sus fases principales, son:
+</p>
+
+<p>
+Análisis léxico: se analiza el programa fuente y se separa en tokens.
+Análisis sintáctico: se analiza la estructura del programa y se comprueba que la sintaxis sea correcta.
+Análisis semántico: se comprueba que el programa tenga sentido y que no haya errores.
+Optimización: se realiza una serie de optimizaciones para mejorar el rendimiento del programa.
+</p>
+
+<p>
+Los traductores transforman programas escritos en un lenguaje de alto nivel en programas escritos en código máquina. Podemos indicar distintos tipos:
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-7">
+<h2 id="0-7"><span class="section-number-2">7.</span> Compiladores</h2>
+<p>
+Convierte un programa escrito en alto nivel (código fuente) a un programa máquina (código ejecutable).
+Para generar el código ejecutable el código no debe tener errores de sintaxis.
+Necesitamos un compilador para cada arquitectura y sistema operativo.
+Los programas ejecutables no son compatibles entre plataformas.
+Una vez generado el programa ejecutable, no es necesario tener el código fuente.
+Ejemplos: C, Pascal,&#x2026;
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-8">
+<h2 id="0-8"><span class="section-number-2">8.</span> Intérpretes</h2>
+<p>
+La traducción y ejecución de código fuente a código máquina se hace línea por línea.
+Los errores de sintaxis aparecen cuando se interpreta la instrucción con error.
+Necesitamos el código fuente para ejecutar el programa.
+Los lenguajes interpretados suelen ser más lentos en su ejecución
+Ejemplos: Python, PHP, &#x2026;
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-9">
+<h2 id="0-9"><span class="section-number-2">9.</span> Máquina virtual</h2>
+<p>
+La traducción se hace en dos pasos.
+Primero se compila el código fuente a un código intermedio (bytecode).
+Segundo, este bytecode se interpreta y ejecuta por una "máquina virtual".
+El bytecode es multiplataforma.
+Necesito una "máquina virtual" para cada plataforma.
+No necesito el código fuente.
+Ejemplo: Java, C#, &#x2026;
+</p>
+</section>
+<section id="slide-0-9-1">
+<h3 id="0-9-1"><span class="section-number-3">9.1.</span> Lenguaje compilado</h3>
+<p>
+Gracias a los compiladores se convierte el código a binario, que se ejecuta en el sistema operativo.
+</p>
+</section>
+<section id="slide-0-9-2">
+<h3 id="0-9-2"><span class="section-number-3">9.2.</span> Lenguaje interpretado</h3>
+<p>
+Los lenguaje interpretados, necesita de dicho intérprete, que lea la instrucción que se necesita ejecutar, realice el proceso de traducción de la misma y la ejecute.
+</p>
+</section>
+<section id="slide-0-9-3">
+<h3 id="0-9-3"><span class="section-number-3">9.3.</span> Lenguaje mixto o intermedio</h3>
+<p>
+Es un lenguaje que se compila a un código objeto o intermedio y se interpreta en una máquina virtual. Ej. Java o Kotlin.
+</p>
+
+<p>
+Paradigmas de programación
+</p>
+
+<p>
+Es un modelo básico para el diseño y la implementación de programas.
+Este modelo determinará como será el proceso de diseño y la estructura final de un programa.
+Son las reglas del juego.
+Tienes una pelota o balón y una portería, pero no es lo mismo jugar al fútbol que al balonmano.
+Tipos: Programación Estructurada, Programación Modular, Programación Declarativa Programación Orientada a Objetos, Programación Reactiva, etc.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-10">
+<h2 id="0-10"><span class="section-number-2">10.</span> Programación Imperativa</h2>
+<div class="outline-text-2" id="text-0-10">
+</div>
+</section>
+<section id="slide-0-10-1">
+<h3 id="0-10-1"><span class="section-number-3">10.1.</span> Programación estructurada</h3>
+<p>
+El enfoque estructurado de programación constituye una forma simplificada de programación imperativa.
+En vez de saltos, uso de bucles y estructuras de control. Un ejemplo de ello es el uso de "do&#x2026;while" para realizar una instrucción de forma automática siempre que se dé una determinada condición (al menos una vez).
+</p>
+</section>
+<section id="slide-0-10-2">
+<h3 id="0-10-2"><span class="section-number-3">10.2.</span> Programación procedimental</h3>
+<p>
+Posibilidad de desglosar algoritmos en porciones manejables.
+Estos se denominan como procedimientos, dependiendo del lenguaje de programación, o también como subprogramas, rutinas o funciones.
+El sentido y el propósito de esta distribución es hacer que el código de programa sea más claro y evitar las repeticiones innecesarias de código.
+</p>
+</section>
+<section id="slide-0-10-3">
+<h3 id="0-10-3"><span class="section-number-3">10.3.</span> Programación modular</h3>
+<p>
+La programación modular también se clasifica como un subtipo del paradigma de programación imperativo.
+En principio, es muy similar al enfoque procedimental, o más bien lo adapta a los requerimientos de proyectos de software mayores y más amplios.
+El código fuente se divide específicamente en bloques parciales lógicos independientes los unos de los otros para proporcionar más transparencia y facilitar el proceso de debugging (resolución de errores).
+Los bloques parciales individuales, denominados módulos, se pueden probar por separado antes de vincularlos posteriormente a una aplicación conjunta.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-11">
+<h2 id="0-11"><span class="section-number-2">11.</span> Programación Declarativa</h2>
+<p>
+Lenguajes como SQL soportan otra manera de programar llamada Programación Declarativa.
+Con ésta forma DECLARATIVA, especificamos lo que queremos obtener o hacer en lugar de cómo:
+</p>
+
+<pre class="example" id="org0000000">
+SELECT name FROM people AS kids WHERE age &lt;= 12;
+</pre>
+
+<p>
+Si SQL fuese en español escribiríamos algo como:
+</p>
+
+<blockquote>
+<p>
+SELECCIONE EL nombre DE personas COMO niños DONDE edad &lt;= 12 años;
+</p>
+</blockquote>
+
+<p>
+Obtenemos los nombres de las personas que tienen 12 años o menos «declarando» lo que queremos en lugar de escribir las operaciones para conseguir lo que queremos.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-12">
+<h2 id="0-12"><span class="section-number-2">12.</span> Programación Orientada a Objetos</h2>
+<p>
+(Incluye la imagen original sobre Programación Orientada a Objetos)
+</p>
+</section>
+</section>
+<section>
+<section id="slide-0-13">
+<h2 id="0-13"><span class="section-number-2">13.</span> Programación Orientada a Eventos</h2>
+<p>
+El flujo del programa está determinado por eventos, como la entrada del usuario o los cambios en el estado del sistema.
+Este paradigma es comúnmente utilizado en la programación de interfaces gráficas de usuario y servidores.
+Los lenguajes que soportan la programación basada en eventos incluyen JavaScript y Python.
+</p>
+
+<p>
+Conclusión Estos son solo algunos de los paradigmas de programación más comunes.
+</p>
+
+<p>
+Muchos lenguajes de programación soportan múltiples paradigmas. Por ejemplo, Python admite tanto la programación imperativa como la orientada a objetos.
+</p>
+
+<p>
+La elección del paradigma depende del problema que se esté tratando de resolver y de las preferencias del programador.
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
