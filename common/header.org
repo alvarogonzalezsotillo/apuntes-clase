@@ -163,10 +163,15 @@ window.addEventListener("load",()=>{
 #+SUBTITLE:
 
 #+begin_export html
-<style>
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
 @font-face {
-    font-family: Bobbli;
+    font-family: 'League Gothic';
     src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
 }
+
 </style>
 #+end_export

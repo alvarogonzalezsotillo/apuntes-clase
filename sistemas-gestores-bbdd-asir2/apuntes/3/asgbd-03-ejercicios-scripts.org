@@ -333,8 +333,6 @@ Haz un script con whiptail que muestre un menú con tres entradas:
 
 ** Solución :noexport:
 #+BEGIN_SRC sh
-#!/bin/bash
-
 
 source variables-oracle.sh
 
@@ -355,18 +353,9 @@ EOF
 }
 
 apagar_instancia(){
-    ejecutar_en_instancia <<EOF  & 
+    ejecutar_en_instancia <<EOF   
 shutdown immediate;
 EOF
-
-    SQLPLUS=$!
-    contador=0
-    while kill -0 $SQLPLUS
-    do
-	contador=$(($contador + 1))
-	sleep 1
-        whiptail --title "Oracle" --gauge "Apagando instancia" 8 78 $contador
-    done
 }
 
 encender_listener(){
@@ -421,7 +410,7 @@ listener_mensaje_opcion(){
 
 
 mostrar_menu(){
-    whiptail \
+    dialog \
 	--title "Oracle" \
         --menu "Enciende o apaga compontenes de Oracle" \
         18 50 10 \
@@ -432,12 +421,53 @@ mostrar_menu(){
 
 cambiar_estado_instancia(){
 
+    
     if instancia_encendida
     then
-	apagar_instancia
+	apagar_instancia | espera_stdin "Apagando instancia"
     else
-	encender_instancia
+	encender_instancia | espera_stdin "Encendiendo instancia"
     fi
+}
+
+espera_stdin(){
+    local MESSAGE="$1"
+    local SECONDS=0
+
+    while IFS='' read -r LINE || [ -n "$LINE" ]
+    do
+        SECONDS=$((SECONDS+10))
+        if [ $SECONDS -ge 100 ]
+        then
+            SECONDS=$((99-RANDOM%10))
+        fi
+        printf 'XXX\n%d\n%s: %s\n' $SECONDS "$MESSAGE" "$LINE"
+        
+    done | dialog --gauge "$MESSAGE" 6 70 0    
+}
+
+espera(){
+    local WAIT_CONDITION_CMD="$1"
+    local MESSAGE="$2"
+
+    delay(){
+        local WAIT_CONDITION_CMD="$1"
+        
+        local SECONDS=0
+        while eval "$WAIT_CONDITION_CMD"
+        do
+            SECONDS=$((SECONDS+10))
+            if [ $SECONDS -ge 100 ]
+            then
+                SECONDS=$((99-RANDOM%10))
+            fi
+            sleep 1s
+            printf "XXX\n%d\nHan transcurrido %d segundos\n" $SECONDS $SECONDS
+        done
+        echo 100
+    }
+
+    delay "$WAIT_CONDITION_CMD" | dialog --gauge "$MESSAGE" 6 60 0
 }
 
 cambiar_estado_listener(){
@@ -456,7 +486,7 @@ ejecutar_menu(){
 	local opcion=$(mostrar_menu)
 	if [[ $opcion = "L" ]]
 	then
-	    cambiar_estado_listener
+	    cambiar_estado_listener 
 	fi
 
 	if [[ $opcion = "I" ]]
@@ -472,6 +502,37 @@ ejecutar_menu(){
     done
 
 }
+
+ejecutar_menu_tradicional()(
+    PS3="Elige una opción:"
+    while [ ! "$REPLY" = "3" ]
+    do
+        printf "\n\n\n\n"
+        select OPT in "$(listener_mensaje_opcion)" "$(instancia_mensaje_opcion)" "Salir"
+        do
+            echo has elegido "$OPT" que es el número "$REPLY"
+            case "$REPLY" in
+                "1")
+                    cambiar_estado_listener
+                    break
+                    ;;
+                "2")
+                    cambiar_estado_instancia
+                    break
+                    ;;
+                "3")
+                    break
+                    ;;
+                *)
+                    echo "Opción inválida: $REPLY"
+            esac
+        done
+    done    
+)
+
+#espera "[ ! -f findeespera ]" "Prueba de espera"
+#espera_stdin "Prueba de espera"
+#exit
 
 ejecutar_menu
 #+END_SRC

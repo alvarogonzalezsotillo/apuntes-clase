@@ -198,7 +198,7 @@ $$ bitrate = baudios*bitsporbaudio $$
 - Desventajas
   - La amplitud media no es 0, por lo que hay un componente de corriente continua apreciable
 
-** Código [[https://es.wikipedia.org/wiki/C%25C3%25B3digos_NRZ][NRZ-L]] (bipolar)
+** Código [[https://es.wikipedia.org/wiki/Códigos_NRZ][NRZ-L]] (bipolar)
 | 0 | -xV |
 | 1 | +xV |
 
