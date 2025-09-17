@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-09-17 mié 20:54 -->
+<!-- 2025-09-17 mié 21:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -290,26 +290,20 @@ informático.</li>
 <h3 id="relación-hardware-software"><span class="section-number-3">1.2.</span> Relación Hardware-Software</h3>
 <div class="outline-text-3" id="text-relación-hardware-software">
 <ul class="org-ul">
-<li><b>Disco duro</b> : almacena de forma permanente los archivos ejecutables y
-los archivos de datos.</li>
-
-<li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los
-archivos ejecutables y los archivos de datos necesarios.</li>
-
-<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así
-como los datos necesarios.</li>
-
-<li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los
-resultados, se leen/guardan a disco, &#x2026;</li>
+<li><b>Disco duro</b> : almacena de forma permanente los archivos ejecutables y los archivos de datos.
+<ul class="org-ul">
+<li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
+</ul></li>
 </ul>
 
-<p>
-El disco duro se considera un periférico de E/S (Entrada/Salida).
-</p>
 
-<p>
-La CPU se llama también UCP (en inglés), procesador o microprocesador.
-</p>
+<ul class="org-ul">
+<li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
+
+<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
+
+<li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-org0000004" class="outline-3">
@@ -327,24 +321,53 @@ La CPU se llama también UCP (en inglés), procesador o microprocesador.
 <h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.4.</span> Códigos fuente, objeto y ejecutable</h3>
 <div class="outline-text-3" id="text-códigos-fuente-objeto-y-ejecutable">
 <ul class="org-ul">
-<li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de
-programación.</li>
-<li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.</li>
-<li><b>Código ejecutable</b>: archivo binario ejecutable.</li>
+<li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de programación.</li>
+<li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.
+<ul class="org-ul">
+<li>Pueden ser ya instrucciones legibles por la CPU</li>
+<li>O puede ser un formato intermedio</li>
+</ul></li>
+<li><b>Código ejecutable</b>: archivo binario ejecutable.
+<ul class="org-ul">
+<li>En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
+<li>Aunque podría existir en memoria (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT compiler</a>)</li>
+</ul></li>
 </ul>
 
-<p>
-Sólo válido para <b>lenguajes compilados: C, C++, Java</b>.
-</p>
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador, equivalente a código ejecutable</label><pre class="src src-asm"><span style="color: #edd400; font-weight: bold;">objdump</span> -d  /usr/bin/ls
 
-<p>
-En lenguajes interpretados no exite código objeto, ni binario. Solo
-código fuente. Por ejemplo: PHP, Javascript, &#x2026;
-</p>
 
-<p>
-<b>El código objeto en Java se denomina ByteCode</b>.
-</p>
+/usr/bin/ls:     file format elf64-x86-64
+
+
+<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .init:
+
+<span style="color: #edd400; font-weight: bold;">000000000000033c</span> &lt;.init&gt;:
+ <span style="color: #729fcf; font-weight: bold;">33c</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #729fcf; font-weight: bold;">340</span>:   48 83 ec 08             sub    $0x8,<span style="color: #ff6347;">%rsp</span>
+ <span style="color: #729fcf; font-weight: bold;">344</span>:   48 8b 05 75 2c 02 00    mov    0x22c75(<span style="color: #ff6347;">%rip</span>),<span style="color: #ff6347;">%rax</span>        # 22fc0 <a href="mailto:__gmon_start__%40Base">&lt;__gmon_start__@Base&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">34b</span>:   48 85 c0                test   <span style="color: #ff6347;">%rax</span>,<span style="color: #ff6347;">%rax</span>
+ <span style="color: #729fcf; font-weight: bold;">34e</span>:   74 02                   je     352 <a href="mailto:__ctype_toupper_loc%40plt-0x67e">&lt;__ctype_toupper_loc@plt-0x67e&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">350</span>:   ff d0                   call   *<span style="color: #ff6347;">%rax</span>
+ <span style="color: #729fcf; font-weight: bold;">352</span>:   48 83 c4 08             add    $0x8,<span style="color: #ff6347;">%rsp</span>
+ <span style="color: #729fcf; font-weight: bold;">356</span>:   c3                      ret
+
+<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .plt:
+
+<span style="color: #edd400; font-weight: bold;">0000000000000360</span> &lt;.plt&gt;:
+ <span style="color: #729fcf; font-weight: bold;">360</span>:   ff 35 ca 28 02 00       push   0x228ca(<span style="color: #ff6347;">%rip</span>)        # 22c30 &lt;error_at_line@@Base+0x21943&gt;
+ <span style="color: #729fcf; font-weight: bold;">366</span>:   ff 25 cc 28 02 00       jmp    *0x228cc(<span style="color: #ff6347;">%rip</span>)        # 22c38 &lt;error_at_line@@Base+0x2194b&gt;
+ <span style="color: #729fcf; font-weight: bold;">36c</span>:   0f 1f 40 00             nopl   0x0(<span style="color: #ff6347;">%rax</span>)
+ <span style="color: #729fcf; font-weight: bold;">370</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #729fcf; font-weight: bold;">374</span>:   68 00 00 00 00          push   $0x0
+ <span style="color: #729fcf; font-weight: bold;">379</span>:   e9 e2 ff ff ff          jmp    360 <a href="mailto:__ctype_toupper_loc%40plt-0x670">&lt;__ctype_toupper_loc@plt-0x670&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">37e</span>:   66 90                   xchg   <span style="color: #ff6347;">%ax</span>,<span style="color: #ff6347;">%ax</span>
+ <span style="color: #729fcf; font-weight: bold;">380</span>:   f3 0f 1e fa             endbr64
+        
+ ...  
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -999,7 +1022,7 @@ simplificada</a>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-09-17 mié 20:54</p>
+<p class="date">Created: 2025-09-17 mié 21:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

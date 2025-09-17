@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-09-17 mié 20:54 -->
+<!-- Generated on 2025-09-17 mié 21:57 -->
 <meta charset="utf-8"/>
 <title>Elementos del desarrollo de Software</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-09-17 mié 20:54</p>
+<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-09-17 mié 21:57</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -541,27 +541,23 @@ informático.</li>
 <section id="slide-relación-hardware-software">
 <h3 id="relación-hardware-software"><span class="section-number-3">1.2.</span> Relación Hardware-Software</h3>
 <ul>
-<li><b>Disco duro</b> : almacena de forma permanente los archivos ejecutables y
-los archivos de datos.</li>
+<li><b>Disco duro</b> : almacena de forma permanente los archivos ejecutables y los archivos de datos.
+<ul>
+<li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
 
-<li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los
-archivos ejecutables y los archivos de datos necesarios.</li>
-
-<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así
-como los datos necesarios.</li>
-
-<li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los
-resultados, se leen/guardan a disco, &#x2026;</li>
+</ul></li>
 
 </ul>
 
-<p>
-El disco duro se considera un periférico de E/S (Entrada/Salida).
-</p>
 
-<p>
-La CPU se llama también UCP (en inglés), procesador o microprocesador.
-</p>
+<ul>
+<li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
+
+<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
+
+<li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
+
+</ul>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-1-3">
@@ -577,25 +573,61 @@ La CPU se llama también UCP (en inglés), procesador o microprocesador.
 <section id="slide-códigos-fuente-objeto-y-ejecutable">
 <h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.4.</span> Códigos fuente, objeto y ejecutable</h3>
 <ul>
-<li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de
-programación.</li>
-<li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.</li>
-<li><b>Código ejecutable</b>: archivo binario ejecutable.</li>
+<li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de programación.</li>
+<li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.
+<ul>
+<li>Pueden ser ya instrucciones legibles por la CPU</li>
+<li>O puede ser un formato intermedio</li>
+
+</ul></li>
+<li><b>Código ejecutable</b>: archivo binario ejecutable.
+<ul>
+<li>En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
+<li>Aunque podría existir en memoria (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT compiler</a>)</li>
+
+</ul></li>
 
 </ul>
 
-<p>
-Sólo válido para <b>lenguajes compilados: C, C++, Java</b>.
-</p>
+<div class="slide-footer"></div>
+</section>
+<section>
 
-<p>
-En lenguajes interpretados no exite código objeto, ni binario. Solo
-código fuente. Por ejemplo: PHP, Javascript, &#x2026;
-</p>
+<div class="org-src-container">
+<label class="org-src-name">Código ensamblador, equivalente a código ejecutable</label>
+<pre><code class="asm" >objdump -d  /usr/bin/ls
 
-<p>
-<b>El código objeto en Java se denomina ByteCode</b>.
-</p>
+
+/usr/bin/ls:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+000000000000033c &lt;.init&gt;:
+ 33c:   f3 0f 1e fa             endbr64
+ 340:   48 83 ec 08             sub    $0x8,%rsp
+ 344:   48 8b 05 75 2c 02 00    mov    0x22c75(%rip),%rax        # 22fc0 &lt;__gmon_start__@Base&gt;
+ 34b:   48 85 c0                test   %rax,%rax
+ 34e:   74 02                   je     352 &lt;__ctype_toupper_loc@plt-0x67e&gt;
+ 350:   ff d0                   call   *%rax
+ 352:   48 83 c4 08             add    $0x8,%rsp
+ 356:   c3                      ret
+
+Disassembly of section .plt:
+
+0000000000000360 &lt;.plt&gt;:
+ 360:   ff 35 ca 28 02 00       push   0x228ca(%rip)        # 22c30 &lt;error_at_line@@Base+0x21943&gt;
+ 366:   ff 25 cc 28 02 00       jmp    *0x228cc(%rip)        # 22c38 &lt;error_at_line@@Base+0x2194b&gt;
+ 36c:   0f 1f 40 00             nopl   0x0(%rax)
+ 370:   f3 0f 1e fa             endbr64
+ 374:   68 00 00 00 00          push   $0x0
+ 379:   e9 e2 ff ff ff          jmp    360 &lt;__ctype_toupper_loc@plt-0x670&gt;
+ 37e:   66 90                   xchg   %ax,%ax
+ 380:   f3 0f 1e fa             endbr64
+        
+ ...  
+</code></pre>
+</div>
 <div class="slide-footer"></div>
 </section>
 </section>

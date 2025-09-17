@@ -26,21 +26,17 @@
 :PROPERTIES:
 :CUSTOM_ID: relación-hardware-software
 :END:
-- *Disco duro* : almacena de forma permanente los archivos ejecutables y
-  los archivos de datos.
+- *Disco duro* : almacena de forma permanente los archivos ejecutables y los archivos de datos.
+  - El disco duro se considera un periférico de E/S (Entrada/Salida).
 
-- *Memoria RAM* : almacena de forma temporal el código binario de los
-  archivos ejecutables y los archivos de datos necesarios.
 
-- *CPU* : lee y ejecuta instrucciones almacenadas en memoria RAM, así
-  como los datos necesarios.
+- *Memoria RAM* : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.
 
-- *E/S*: recoge nuevos datos desde la entrada, se muestran los
-  resultados, se leen/guardan a disco, ...
+- *CPU* : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.
 
-El disco duro se considera un periférico de E/S (Entrada/Salida).
+- *E/S*: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, ...
 
-La CPU se llama también UCP (en inglés), procesador o microprocesador.
+
 
 ** Arquitectura de Von neuman
 #+caption: Arquitectura de Von Neuman
@@ -50,17 +46,52 @@ La CPU se llama también UCP (en inglés), procesador o microprocesador.
 :PROPERTIES:
 :CUSTOM_ID: códigos-fuente-objeto-y-ejecutable
 :END:
-- *Código fuente*: archivo de texto legible escrito en un lenguaje de
-  programación.
+- *Código fuente*: archivo de texto legible escrito en un lenguaje de programación.
 - *Código objeto* (intermedio): archivo binario no ejecutable.
+  - Pueden ser ya instrucciones legibles por la CPU
+  - O puede ser un formato intermedio  
 - *Código ejecutable*: archivo binario ejecutable.
+  - En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, ...
+  - Aunque podría existir en memoria ([[https://en.wikipedia.org/wiki/Just-in-time_compilation][JIT compiler]])  
 
-Sólo válido para *lenguajes compilados: C, C++, Java*.
+#+reveal: split
 
-En lenguajes interpretados no exite código objeto, ni binario. Solo
-código fuente. Por ejemplo: PHP, Javascript, ...
+#+caption: Código ensamblador, equivalente a código ejecutable
+#+begin_src asm
+objdump -d  /usr/bin/ls
 
-*El código objeto en Java se denomina ByteCode*.
+
+/usr/bin/ls:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+000000000000033c <.init>:
+ 33c:   f3 0f 1e fa             endbr64
+ 340:   48 83 ec 08             sub    $0x8,%rsp
+ 344:   48 8b 05 75 2c 02 00    mov    0x22c75(%rip),%rax        # 22fc0 <__gmon_start__@Base>
+ 34b:   48 85 c0                test   %rax,%rax
+ 34e:   74 02                   je     352 <__ctype_toupper_loc@plt-0x67e>
+ 350:   ff d0                   call   *%rax
+ 352:   48 83 c4 08             add    $0x8,%rsp
+ 356:   c3                      ret
+
+Disassembly of section .plt:
+
+0000000000000360 <.plt>:
+ 360:   ff 35 ca 28 02 00       push   0x228ca(%rip)        # 22c30 <error_at_line@@Base+0x21943>
+ 366:   ff 25 cc 28 02 00       jmp    *0x228cc(%rip)        # 22c38 <error_at_line@@Base+0x2194b>
+ 36c:   0f 1f 40 00             nopl   0x0(%rax)
+ 370:   f3 0f 1e fa             endbr64
+ 374:   68 00 00 00 00          push   $0x0
+ 379:   e9 e2 ff ff ff          jmp    360 <__ctype_toupper_loc@plt-0x670>
+ 37e:   66 90                   xchg   %ax,%ax
+ 380:   f3 0f 1e fa             endbr64
+        
+ ...  
+#+end_src
+
+  
 
 * Ciclo de vida del software
 :PROPERTIES:
