@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-09-17 mié 21:57 -->
+<!-- Generated on 2025-09-22 lun 18:33 -->
 <meta charset="utf-8"/>
 <title>Elementos del desarrollo de Software</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-09-17 mié 21:57</p>
+<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-09-22 lun 18:33</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -536,6 +536,12 @@ informático.</li>
 <li><b>De desarrollo</b> (Editores, compiladores, interpretes, &#x2026;)</li>
 
 </ul>
+
+
+<div id="org0000000" class="figure">
+<p><img src="https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png" alt="drivers-192x350.png" />
+</p>
+</div>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-relación-hardware-software">
@@ -546,24 +552,72 @@ informático.</li>
 <li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
 
 </ul></li>
-
-</ul>
-
-
-<ul>
 <li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
-
 <li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
-
 <li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
 
 </ul>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-1-3">
-<h3 id="1-3"><span class="section-number-3">1.3.</span> Arquitectura de Von neuman</h3>
+<h3 id="1-3"><span class="section-number-3">1.3.</span> ¿pero qué es un ordenador?</h3>
+<ul>
+<li>Es un dispositivo capaz de
+<ul>
+<li>Ejecutar órdenes de forma secuencial</li>
+<li>Con dos tipos especiales de órdenes
+<ul>
+<li>Condicionales: se ejecutan dependiendo de los datos disponibles</li>
+<li>Salto: se interrumpe el orden normal de ejecución</li>
 
-<div id="org0000000" class="figure">
+</ul></li>
+
+</ul></li>
+
+<li>Preguntas:
+<ul>
+<li>¿una reloj digital es un ordenador?</li>
+<li>¿una <a href="https://www.casio.com/es/scientific-calculators/product.FX-55PLUS/">calculadora</a> es un <a href="https://www.casio.com/es/scientific-calculators/product.FX-9860GIII/">ordenador</a>?</li>
+<li>¿<a href="https://bogdanthegeek.github.io/blog/projects/vapeserver/">un vaper es un ordenador</a>?</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+<section>
+<ul>
+<li>Conclusión
+<ul>
+<li>Muchísimos dispositivos contienen ordenadores</li>
+<li>No todos esos ordenadores se exponen al usuario final
+<ul>
+<li>El usuario final no puede modificar los programas</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-1-4">
+<h3 id="1-4"><span class="section-number-3">1.4.</span> Arquitectura de Von neuman</h3>
+<ul>
+<li>La <a href="https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing#Descripci%C3%B3n_informal">máquina de Turing</a> distinguía entre datos y programa</li>
+<li>Pero los programas son también datos. Esto posibilita:
+<ul>
+<li>Emuladores</li>
+<li>Programas que hacen programas</li>
+<li>Actualización de software</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="org0000001" class="figure">
 <p><img src="https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png" alt="word-image200.png" />
 </p>
 <p><span class="figure-number">Figura 1: </span>Arquitectura de Von Neuman</p>
@@ -571,7 +625,7 @@ informático.</li>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-códigos-fuente-objeto-y-ejecutable">
-<h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.4.</span> Códigos fuente, objeto y ejecutable</h3>
+<h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.5.</span> Códigos fuente, objeto y ejecutable</h3>
 <ul>
 <li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de programación.</li>
 <li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.
@@ -580,9 +634,9 @@ informático.</li>
 <li>O puede ser un formato intermedio</li>
 
 </ul></li>
-<li><b>Código ejecutable</b>: archivo binario ejecutable.
+<li><b>Código ejecutable</b>: código máquina
 <ul>
-<li>En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
+<li>En lenguajes interpretados no existe código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
 <li>Aunque podría existir en memoria (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT compiler</a>)</li>
 
 </ul></li>
@@ -594,7 +648,7 @@ informático.</li>
 <section>
 
 <div class="org-src-container">
-<label class="org-src-name">Código ensamblador, equivalente a código ejecutable</label>
+<label class="org-src-name">Código ensamblador amd64, y su equivalente a código máquina</label>
 <pre><code class="asm" >objdump -d  /usr/bin/ls
 
 
@@ -630,6 +684,15 @@ Disassembly of section .plt:
 </div>
 <div class="slide-footer"></div>
 </section>
+<section id="slide-1-6">
+<h3 id="1-6"><span class="section-number-3">1.6.</span> Para entenderlo mejor</h3>
+<ul>
+<li>Simulador de CPU: <a href="https://cpuvisualsimulator.github.io/">https://cpuvisualsimulator.github.io/</a></li>
+<li>Compilador online: <a href="https://godbolt.org/">https://godbolt.org/</a></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
 </section>
 <section>
 <section id="slide-ciclo-de-vida-del-software">
@@ -640,18 +703,13 @@ Disassembly of section .plt:
 <h3 id="ingeniería-de-software"><span class="section-number-3">2.1.</span> Ingeniería de software</h3>
 <blockquote>
 <p>
-Disciplina que estudia los principios y metodologías para el desarrollo
-y mantenimiento de sistemas software.
+Disciplina que estudia los principios y metodologías para el desarrollo y mantenimiento de sistemas software.
 </p>
 </blockquote>
 
 <ul>
-<li>Algunos autores consideran que "<b><i>desarrollo de software</i></b>" es un
-término más apropiado que "<b><i>ingeniería de software</i></b>" puesto que este
-último implica niveles de rigor y prueba de procesos que no son
-apropiados para todo tipo de desarrollo de software.</li>
-<li><a href="https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software">Ingeniería
-del software</a></li>
+<li>Algunos autores consideran que "<b><i>desarrollo de software</i></b>" es un término más apropiado que "<b><i>ingeniería de software</i></b>" puesto que este último implica niveles de rigor y prueba de procesos que no son apropiados para todo tipo de desarrollo de software.</li>
+<li><a href="https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software">Ingeniería del software</a></li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -663,17 +721,17 @@ del software</a></li>
 <section id="slide-fases-principales">
 <h4 id="fases-principales"><span class="section-number-4">2.2.1.</span> <b><i>Fases principales</i></b></h4>
 <ul>
-<li><b>ANÁLISIS</b><br /></li>
-<li><b>DISEÑO</b></li>
-<li><b>CODIFICACIÓN</b></li>
-<li><b>PRUEBAS</b></li>
-<li><b>MANTENIMIENTO</b></li>
+<li><b>ANÁLISIS</b>: Qué debe hacer la aplicación.</li>
+<li><b>DISEÑO</b>: Cómo se va a organizar internamente la aplicación. Sus decisiones no afectan directamente al usario, más allá de elegir una plataforma.</li>
+<li><b>CODIFICACIÓN</b>: Realización de la aplicación.</li>
+<li><b>PRUEBAS</b>: Búsqueda de defectos.</li>
+<li><b>MANTENIMIENTO</b>: Solución de defectos que escaparon a las pruebas, o adaptación a nuevos requisitos.</li>
 
 </ul>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-análisis">
-<h4 id="análisis"><span class="section-number-4">2.2.2.</span> <b>ANÁLISIS</b></h4>
+<h4 id="análisis"><span class="section-number-4">2.2.2.</span> ANÁLISIS</h4>
 <ul>
 <li>Se determina y define claramente las necesidades del cliente y se
 especifica los requisitos que debe cumplir el software a desarrollar.</li>
@@ -694,7 +752,7 @@ especifica los requisitos que debe cumplir el software a desarrollar.</li>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-diseño">
-<h4 id="diseño"><span class="section-number-4">2.2.3.</span> <b>DISEÑO</b></h4>
+<h4 id="diseño"><span class="section-number-4">2.2.3.</span> DISEÑO</h4>
 <ul>
 <li>Se descompone y organiza el sistema en elementos componentes que
 pueden ser desarrollados por separado.</li>
@@ -713,13 +771,14 @@ componentes.</li>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-codificación">
-<h4 id="codificación"><span class="section-number-4">2.2.4.</span> <b>CODIFICACIÓN</b></h4>
+<h4 id="codificación"><span class="section-number-4">2.2.4.</span> CODIFICACIÓN</h4>
 <ul>
 <li>Se escribe el código fuente de cada componente.</li>
-<li>Pueden utilizarse distintos lenguajes informáticos:
+<li>Pueden utilizarse distintos lenguajes informáticos y plataformas:
 <ul>
-<li><b>Lenguajes de programación</b>: C, C++, Java, Javascript, &#x2026;</li>
-<li><b>Lenguajes de otro tipo</b>: HTML, XML, JSON, &#x2026;</li>
+<li>Aplicación web: javascript, HTML, PHP, JSP, ASP&#x2026;</li>
+<li>Escritorio: C++, python, java, C#</li>
+<li>Móvil: flutter, kotlin&#x2026;</li>
 
 </ul></li>
 
@@ -727,7 +786,7 @@ componentes.</li>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-pruebas">
-<h4 id="pruebas"><span class="section-number-4">2.2.5.</span> <b>PRUEBAS</b></h4>
+<h4 id="pruebas"><span class="section-number-4">2.2.5.</span> PRUEBAS</h4>
 <ul>
 <li>El principal objetivo de las pruebas debe ser conseguir que el
 programa funcione incorrectamente y que se descubran defectos.</li>
@@ -738,7 +797,7 @@ diferentes.</li>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-mantenimiento">
-<h4 id="mantenimiento"><span class="section-number-4">2.2.6.</span> <b>MANTENIMIENTO</b></h4>
+<h4 id="mantenimiento"><span class="section-number-4">2.2.6.</span> MANTENIMIENTO</h4>
 <ul>
 <li>Durante la explotación del sistema software es necesario realizar
 cambios ocasionales.</li>
@@ -754,6 +813,10 @@ previas.</li>
 </ul></li>
 
 </ul>
+
+<p>
+¿Qué tipos de mantenimiento suponen una nueva fase de análisis y diseño?    
+</p>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-resultado-tras-cada-fase-i">
@@ -761,8 +824,12 @@ previas.</li>
 <ul>
 <li>Ingeniería de sistemas: <b>Especificación del sistema</b></li>
 <li>ANÁLISIS: <b>Especificación de requisitos del software</b></li>
-<li>DISENO arquitectónico: <b>Documento de arquitectura del software</b></li>
-<li>DISENO detallado: <b>Especificación de módulos y funciones</b></li>
+<li>DISEÑO
+<ul>
+<li>arquitectónico: <b>Documento de arquitectura del software</b></li>
+<li>detallado: <b>Especificación de módulos y funciones</b></li>
+
+</ul></li>
 <li>CODIFICACIÓN: <b>Código fuente</b></li>
 
 </ul>
@@ -807,7 +874,7 @@ previas.</li>
 <section id="slide-modelo-en-cascada-i">
 <h3 id="modelo-en-cascada-i"><span class="section-number-3">2.6.</span> Modelo en cascada (I)</h3>
 
-<div id="org0000001" class="figure">
+<div id="org0000002" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png" alt="cascada.png" />
 </p>
 <p><span class="figure-number">Figura 2: </span>Modelo en cascada</p>
@@ -832,7 +899,7 @@ actividades.</li>
 <section id="slide-modelo-en-v-i">
 <h3 id="modelo-en-v-i"><span class="section-number-3">2.8.</span> Modelo en V (I)</h3>
 
-<div id="org0000002" class="figure">
+<div id="org0000003" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png" alt="v.png" />
 </p>
 <p><span class="figure-number">Figura 3: </span>Modelo en V</p>
@@ -866,7 +933,7 @@ actividades.</li>
 </ul>
 
 
-<div id="org0000003" class="figure">
+<div id="org0000004" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png" alt="prototipos.png" />
 </p>
 <p><span class="figure-number">Figura 4: </span>Modelo de construcción de prototipos</p>
@@ -893,7 +960,7 @@ desarrollar.</li>
 <ul>
 <li>Tipos de prototipos:
 <ul>
-<li><b>Prototipos rápidos</b>
+<li><b>Prototipos rápidos</b> (desechables)
 <ul>
 <li>El prototipo puede estar desarrollado usando otro lenguaje y/o
 herramientas.</li>
@@ -923,7 +990,7 @@ clásicos: análisis, diseño, codificación, &#x2026;</li>
 </ul>
 
 
-<div id="org0000004" class="figure">
+<div id="org0000005" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png" alt="espiral.png" />
 </p>
 <p><span class="figure-number">Figura 5: </span>Modelo en espiral</p>
@@ -932,10 +999,6 @@ clásicos: análisis, diseño, codificación, &#x2026;</li>
 </section>
 <section id="slide-modelo-en-espiral-ii">
 <h3 id="modelo-en-espiral-ii"><span class="section-number-3">2.14.</span> Modelo en espiral (II)</h3>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-aplicado-a-la-programación-orientada-a-objetos">
-<h4 id="aplicado-a-la-programación-orientada-a-objetos"><span class="section-number-4">2.14.1.</span> <b><i>Aplicado a la programación orientada a objetos</i></b></h4>
 <ul>
 <li>En la actividad de <b><i>ingeniería</i></b> se da gran importancia a la
 reutilización de código.</li>
@@ -943,7 +1006,7 @@ reutilización de código.</li>
 </ul>
 
 
-<div id="org0000005" class="figure">
+<div id="org0000006" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png" alt="espiral-poo.png" />
 </p>
 <p><span class="figure-number">Figura 6: </span>Modelo en espiral</p>
@@ -1012,7 +1075,7 @@ Pizarra kanban
 </p>
 
 
-<div id="org0000006" class="figure">
+<div id="org0000007" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png" alt="kanban-board.png" />
 </p>
 <p><span class="figure-number">Figura 7: </span>Pizarra kanban</p>
@@ -1036,7 +1099,7 @@ por el cliente</b>.</li>
 <section id="slide-scrum-ii">
 <h4 id="scrum-ii"><span class="section-number-4">2.16.4.</span> <b>Scrum (II)</b></h4>
 
-<div id="org0000007" class="figure">
+<div id="org0000008" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png" alt="scrum.png" />
 </p>
 <p><span class="figure-number">Figura 8: </span>Proceso SCRUM</p>
@@ -1162,7 +1225,7 @@ de Java en lugar de código objeto nativo.</li>
 </ul></li>
 <li>Desventajas:
 <ul>
-<li>Menos eficiente que los lenguajes compilados</li>
+<li>Menos eficiente que los lenguajes compilados (con JIT, solo inicialmente)</li>
 
 </ul></li>
 
@@ -1241,23 +1304,19 @@ estructurados.</li>
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-historia-simplificada">
-<h3 id="historia-simplificada"><span class="section-number-3">3.12.</span> Historia simplificada</h3>
+<section id="slide-3-12">
+<h3 id="3-12"><span class="section-number-3">3.12.</span> Historia</h3>
 <p>
-<a href="http://rigaux.org/language-study/diagram-light.png">Historia
-simplificada</a>
+<a href="http://rigaux.org/language-study/diagram-light.png">Historia simplificada</a>
 </p>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-historia-detallada">
-<h3 id="historia-detallada"><span class="section-number-3">3.13.</span> Historia detallada</h3>
+
 <p>
 <a href="http://rigaux.org/language-study/diagram.png">Historia detallada</a>
 </p>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-criterios-para-la-selección-de-un-lenguaje">
-<h3 id="criterios-para-la-selección-de-un-lenguaje"><span class="section-number-3">3.14.</span> Criterios para la selección de un lenguaje</h3>
+<h3 id="criterios-para-la-selección-de-un-lenguaje"><span class="section-number-3">3.13.</span> Criterios para la selección de un lenguaje</h3>
 <ul>
 <li>Campo de aplicación</li>
 <li>Experiencia previa</li>
@@ -1266,6 +1325,7 @@ simplificada</a>
 <li>Base de usuarios</li>
 <li>Reusabilidad</li>
 <li>Transportabilidad</li>
+<li>Plataforma de ejecución</li>
 <li>Imposición del cliente</li>
 
 </ul>
