@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:08 -->
+<!-- 2025-09-16 mar 09:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -252,6 +252,22 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+@font-face {
+    font-family: Bobbli;
+    src: url("../../../common/bobbli.otf") format("opentype");
+}
+
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000039" class="outline-2">
 <h2 id="org0000039"><span class="section-number-2">1.</span> Instalación del software de base de datos</h2>
 <div class="outline-text-2" id="text-1">
@@ -276,7 +292,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Resolver el propio nombre</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -294,13 +309,8 @@ window.addEventListener("load",()=>{
 <li>Reiniciar la máquina</li>
 <li>Después de eso, se debería encontrar por nombre: <code>ping nombrealumnoASGBD.local</code></li>
 </ul>
-
-<p>
-(referencia em <a href="https://oracle-base.com/blog/2015/03/26/oracle-linux-7-1-preinstall-packages-available-for-11gr2-and-12cr1/">https://oracle-base.com/blog/2015/03/26/oracle-linux-7-1-preinstall-packages-available-for-11gr2-and-12cr1/</a>)
-</p>
 </div>
 </div>
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">1.3.</span> Entorno gráfico</h3>
 <div class="outline-text-3" id="text-1-3">
@@ -334,7 +344,6 @@ Arrancar un servidor <b>vnc</b>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000036" class="outline-3">
 <h3 id="org0000036"><span class="section-number-3">1.4.</span> Oracle 21c</h3>
 <div class="outline-text-3" id="text-1-4">
@@ -352,7 +361,6 @@ Arrancar un servidor <b>vnc</b>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-4">
 <h4 id="org000000f"><span class="section-number-4">1.4.2.</span> Arrancar el instalador</h4>
 <div class="outline-text-4" id="text-1-4-2">
@@ -387,9 +395,6 @@ Arrancar un servidor <b>vnc</b>
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000014" class="outline-4">
 <h4 id="org0000014"><span class="section-number-4">1.4.3.</span> Directorios de Oracle</h4>
 <div class="outline-text-4" id="text-1-4-3">
@@ -420,7 +425,6 @@ Dejamos los directorios por defecto:
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000018" class="outline-4">
 <h4 id="org0000018"><span class="section-number-4">1.4.4.</span> Grupos de <i>Linux</i></h4>
 <div class="outline-text-4" id="text-1-4-4">
@@ -440,7 +444,6 @@ Dejamos los directorios por defecto:
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001c" class="outline-4">
 <h4 id="org000001c"><span class="section-number-4">1.4.5.</span> Ejecución de scripts como <code>root</code></h4>
 <div class="outline-text-4" id="text-1-4-5">
@@ -457,7 +460,6 @@ Dejamos los directorios por defecto:
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000021" class="outline-4">
 <h4 id="org0000021"><span class="section-number-4">1.4.6.</span> Comprobaciones</h4>
 <div class="outline-text-4" id="text-1-4-6">
@@ -493,8 +495,6 @@ sudo yum install sudo yum install sysstat ksh make glibc-devel
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000025" class="outline-4">
 <h4 id="org0000025"><span class="section-number-4">1.4.7.</span> Resumen</h4>
 <div class="outline-text-4" id="text-1-4-7">
@@ -510,8 +510,6 @@ sudo yum install sudo yum install sysstat ksh make glibc-devel
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000028" class="outline-4">
 <h4 id="org0000028"><span class="section-number-4">1.4.8.</span> <i>scripts</i> de configuración</h4>
 <div class="outline-text-4" id="text-1-4-8">
@@ -572,8 +570,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000002b" class="outline-4">
 <h4 id="org000002b"><span class="section-number-4">1.4.9.</span> Finalización</h4>
 <div class="outline-text-4" id="text-1-4-9">
@@ -587,7 +583,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000030" class="outline-4">
 <h4 id="org0000030"><span class="section-number-4">1.4.10.</span> Relación entre ficheros de inicio de <i>shell</i></h4>
 <div class="outline-text-4" id="text-1-4-10">
@@ -598,8 +593,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000033" class="outline-4">
 <h4 id="org0000033"><span class="section-number-4">1.4.11.</span> Reiniciar</h4>
 <div class="outline-text-4" id="text-1-4-11">
@@ -625,9 +618,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000046" class="outline-2">
 <h2 id="org0000046"><span class="section-number-2">2.</span> Creación de una instancia de base de datos</h2>
 <div class="outline-text-2" id="text-2">
@@ -669,7 +659,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000040" class="outline-3">
 <h3 id="org0000040"><span class="section-number-3">2.1.</span> <i>Password management</i></h3>
 <div class="outline-text-3" id="text-2-1">
@@ -683,7 +672,6 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000043" class="outline-3">
 <h3 id="org0000043"><span class="section-number-3">2.2.</span> ¡Ya se puede conectar!</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -728,9 +716,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000005c" class="outline-2">
 <h2 id="org000005c"><span class="section-number-2">3.</span> Instancia / <i>listener</i> / base de datos</h2>
 <div class="outline-text-2" id="text-3">
@@ -755,7 +740,6 @@ SQL&gt;
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000004a" class="outline-3">
 <h3 id="org000004a"><span class="section-number-3">3.1.</span> Instancias y bases de DATOS</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -766,7 +750,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000004e" class="outline-3">
 <h3 id="org000004e"><span class="section-number-3">3.2.</span> Ejemplo (I) de listener</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -777,8 +760,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000052" class="outline-3">
 <h3 id="org0000052"><span class="section-number-3">3.3.</span> Ejemplo (II) de listener</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -789,7 +770,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000056" class="outline-3">
 <h3 id="org0000056"><span class="section-number-3">3.4.</span> <i>Pluggable databases</i> de Oracle</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -820,7 +800,6 @@ SQL&gt;
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000059" class="outline-3">
 <h3 id="org0000059"><span class="section-number-3">3.5.</span> Cambiar de <i>pluggable database</i></h3>
 <div class="outline-text-3" id="text-3-5">
@@ -832,9 +811,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000062" class="outline-2">
 <h2 id="org0000062"><span class="section-number-2">4.</span> Creación de un <i>listener</i></h2>
 <div class="outline-text-2" id="text-4">
@@ -853,7 +829,6 @@ SQL&gt;
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000005f" class="outline-3">
 <h3 id="org000005f"><span class="section-number-3">4.1.</span> Arrancar y parar el listener</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -883,7 +858,6 @@ Comprobar si la instancia se ha conectado
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000072" class="outline-2">
 <h2 id="org0000072"><span class="section-number-2">5.</span> Conexión remota</h2>
 <div class="outline-text-2" id="text-5">
@@ -909,8 +883,6 @@ Comprobar si la instancia se ha conectado
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000065" class="outline-4">
 <h4 id="org0000065"><span class="section-number-4">5.1.1.</span> Conexión remota</h4>
 <div class="outline-text-4" id="text-5-1-1">
@@ -927,8 +899,6 @@ Comprobar si la instancia se ha conectado
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000006b" class="outline-3">
 <h3 id="org000006b"><span class="section-number-3">5.2.</span> Configuración de las conexiones (<b>sqlplus</b>)</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -952,8 +922,6 @@ Se puede usar también una cadena de conexión
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000006f" class="outline-3">
 <h3 id="org000006f"><span class="section-number-3">5.3.</span> Instalación de <b>sqlplus</b></h3>
 <div class="outline-text-3" id="text-5-3">
@@ -1032,8 +1000,6 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000075" class="outline-2">
 <h2 id="org0000075"><span class="section-number-2">6.</span> Dirección IP</h2>
 <div class="outline-text-2" id="text-6">
@@ -1055,7 +1021,6 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000007b" class="outline-2">
 <h2 id="org000007b"><span class="section-number-2">7.</span> Arrancar y parar la base de datos</h2>
 <div class="outline-text-2" id="text-7">
@@ -1089,7 +1054,6 @@ Arrancar y parar el <i>listener</i>. Comprobar que se admiten conexiones
 </div></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000078" class="outline-3">
 <h3 id="org0000078"><span class="section-number-3">7.1.</span> A mí <b>dbstart</b> y <b>dbshut</b> no me funcionan</h3>
 <div class="outline-text-3" id="text-7-1">
@@ -1123,12 +1087,6 @@ SQL&gt;
 </div>
 </div>
 </div>
-
-
-
-
-
-
 <div id="outline-container-org0000084" class="outline-2">
 <h2 id="org0000084"><span class="section-number-2">8.</span> Cosas que hemos aprendido <i>de pasada</i></h2>
 <div class="outline-text-2" id="text-8">
@@ -1158,7 +1116,6 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 &#x2026; pero ha sido necesario para instalar <b>Oracle</b>
 </p>
 </div>
-
 <div id="outline-container-org000007e" class="outline-3">
 <h3 id="org000007e"><span class="section-number-3">8.1.</span> Comandos</h3>
 <div class="outline-text-3" id="text-8-1">
@@ -1239,7 +1196,6 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </table>
 </div>
 </div>
-
 <div id="outline-container-org0000081" class="outline-3">
 <h3 id="org0000081"><span class="section-number-3">8.2.</span> Comandos, <i>shell</i> y variables</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -1296,9 +1252,6 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000089" class="outline-2">
 <h2 id="org0000089"><span class="section-number-2">9.</span> Diagrama resumen</h2>
 <div class="outline-text-2" id="text-9">
@@ -1309,11 +1262,6 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 </div>
 </div>
-
-
-
-
-
 <div id="outline-container-org000008c" class="outline-2">
 <h2 id="org000008c"><span class="section-number-2">10.</span> Referencias</h2>
 <div class="outline-text-2" id="text-10">
@@ -1338,7 +1286,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:08</p>
+<p class="date">Created: 2025-09-16 mar 09:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

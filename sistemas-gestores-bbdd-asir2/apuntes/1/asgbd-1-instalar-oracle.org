@@ -86,7 +86,6 @@ yum whatprovides <fichero>
 - Reiniciar la máquina
 - Después de eso, se debería encontrar por nombre: =ping nombrealumnoASGBD.local=
   
-(referencia em https://oracle-base.com/blog/2015/03/26/oracle-linux-7-1-preinstall-packages-available-for-11gr2-and-12cr1/)
 
 ** Entorno gráfico
 - El instalador más cómodo de Oracle necesita un sistema de ventanas
