@@ -217,6 +217,9 @@ env
 ** Ejercicio CGI
 - Consigue que el programa anterior funcione en Apache
   - El programa debe generar al menos la cabecera =Content-Type=
+  - El módulo de =cgi= debe estar activado (=a2enmod=)
+  - El programa estará en =/usr/lib/cgi-bin/micgi.sh=
+  - La URL para accederlo será =http://miservidor/cgi-bin/micgi.sh= 
     
 - Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/
 
@@ -226,6 +229,9 @@ env
 echo Content-Type: text/plain
 echo
 echo
+echo HOLA!!!
+echo la hora es $(date)
+echo Hasta luego!!!
 
 printf "Content-Length: ${#CONTENT}\r\n"
 printf "ENV_REQUEST_METHOD: \"$REQUEST_METHOD\"\r\n"
@@ -256,9 +262,6 @@ printf "ENV_PWD: \"$PWD\"\r\n"
 printf "ENV_SERVER_PROTOCOL: \"$SERVER_PROTOCOL\"\r\n"
 printf "ENV_SERVER_SOFTWARE: \"$SERVER_SOFTWARE\"\r\n"
 
-echo HOLA!!!
-echo la hora es $(date)
-echo Hasta luego!!!
 #+end_src  
 
 
