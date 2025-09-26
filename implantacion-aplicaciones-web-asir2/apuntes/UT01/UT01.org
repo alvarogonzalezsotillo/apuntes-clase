@@ -220,7 +220,7 @@ env
   - El módulo de =cgi= debe estar activado (=a2enmod=)
   - El programa estará en =/usr/lib/cgi-bin/micgi.sh=
   - La URL para accederlo será =http://miservidor/cgi-bin/micgi.sh= 
-    
+  - Los errores pueden verse en =/var/log/apache2=  
 - Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/
 
 #+begin_src bash
