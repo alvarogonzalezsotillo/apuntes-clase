@@ -445,6 +445,19 @@ Pizarra kanban
 :PROPERTIES:
 :CUSTOM_ID: lenguajes-de-programación
 :END:
+** Evolución
+
+  - Primera generación: lenguaje máquina.
+  - Segunda generación: se crearon los primeros lenguajes ensambladores.
+  - Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…
+  - Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+    - [[https://www.nocode.tech/article/what-is-no-code][Nocode]]
+    - Excel
+  - Quinta generación: Basados en restricciones declarativas, para IA clásica (prolog)    
+  - [[https://en.wikipedia.org/wiki/Vibe_coding][Vibe coding]]: utilizar sistemas LLM para la programación
+    - Nuevos (apenas dos años reales)
+    - Prometedores, pero solo para programadores con experiencia previa    
+
 ** Obtención de código ejecutable
 :PROPERTIES:
 :CUSTOM_ID: obtención-de-código-ejecutable
@@ -545,15 +558,6 @@ Pizarra kanban
   - Bajo nivel: ensamblador
   - Medio nivel: C
   - Alto nivel: C++, Java
-
-** Evolución
-:PROPERTIES:
-:CUSTOM_ID: evolución
-:END:
-- Código binario
-- Ensamblador
-- Lenguajes estructurados
-- Lenguajes orientados a objetos
 
 ** Historia
 [[http://rigaux.org/language-study/diagram-light.png][Historia simplificada]]
