@@ -337,7 +337,7 @@ sudo apt install php
 
 ** Ejercicio CGI
 - Consigue un programa en php que funcione como CGI
-- El probrama debe usar la función =phpinfo()=
+- El programa debe usar la función =phpinfo()=
 
   
 
