@@ -164,11 +164,6 @@ window.addEventListener("load",()=>{
 
 #+begin_export html
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';

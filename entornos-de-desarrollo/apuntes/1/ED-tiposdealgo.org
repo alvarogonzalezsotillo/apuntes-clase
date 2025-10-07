@@ -1,0 +1,176 @@
+
+    * Sistemas Informáticos
+
+Cuando el procesamiento de los datos y la información en un sistema de información lo realiza un ordenador lo llamamos "Sistema Informático"
+
+En un Sistema Informático el algoritmo se describe mediante un programa.
+
+** Definiciones
+
+    Programa: Conjunto ordenado de instrucciones que se dan al ordenador indicándole las operaciones o tareas que ha de realizar para resolver un problema. Para escribir programas utilizamos lenguajes de programación.
+    Instrucción: conjunto de datos insertados en una secuencia. Ej: Instrucciones de transferencia de datos: en este tipo de instrucciones, se transfieren datos desde una localización a otra.
+    Dato: representación simbólica (numérica, alfabética, algorítmica, espacial, etc.) de un atributo o variable cuantitativa o cualitativa.
+
+    Lenguajes de programación
+
+Para que un ordenador realice un proceso, se le debe suministrar en primer lugar un algoritmo adecuado, que llamamos programa.
+
+El procesador debe ser capaz de interpretar el algoritmo, lo que significa:
+
+    Comprender las instrucciones de cada paso.
+    Realizar las operaciones correspondientes.
+
+    Tipos de Lenguajes
+
+** Cercanía al programador
+
+    Alto nivel: C, C++, Java, Kotlin, Python, etc.
+    Bajo nivel: ensamblador, máquina, etc.
+
+** Generaciones
+
+    Primera generación: lenguaje máquina.
+    Segunda generación: se crearon los primeros lenguajes ensambladores.
+    Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…
+    Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+    Quinta generación: aquí se encuentran los lenguajes orientados a la inteligencia artificial. Ej. LISP
+
+** Lenguaje Máquina
+Son aquellos que están escritos en lenguajes que directamente entiende el ordenador, ya que sus instrucciones son cadenas binarias (secuencias de ceros y unos) que especifican una operación y las posiciones (dirección) de memoria implicadas en la operación. Se denominan instrucciones de máquina o código máquina.
+
+Características:
+
+    Las instrucciones en lenguaje máquina dependen del hardware del ordenador y por tanto serán diferentes de un ordenador a otro.
+    Se puede transferir un programa a memoria sin necesidad de traducción posterior, lo que supone una mayor velocidad de ejecución a cualquier otro lenguaje.
+    Dificultad y lentitud en la codificación.
+    Conjunto de instrucciones reducido (operaciones muy elementales)
+
+** Lenguaje de bajo nivel (Ensamblador)
+Los lenguajes de bajo nivel son más fáciles de utilizar que los lenguajes máquina, pero, al igual que ellos, dependen de la máquina en particular. El lenguaje de bajo nivel por excelencia es el ensamblador.
+
+Las instrucciones en lenguaje ensamblador son instrucciones conocidas como mnemónicos.
+
+Un programa escrito en lenguaje ensamblador no puede ser ejecutado directamente por la máquina, sino que requiere una fase de traducción al lenguaje máquina.
+
+El programa original escrito en lenguaje ensamblador se denomina programa fuente y el programa traducido en lenguaje máquina se conoce como programa objeto, ya directamente entendible por el ordenador.
+
+Mismo programa en C y en Ensamblador
+
+** Lenguaje de alto nivel
+Los lenguajes de alto nivel son los mas utilizados por los programadores.
+
+Están diseñados para que las personas escriban y entiendan los programas de un modo mucho más fácil que los lenguajes máquina y ensambladores.
+
+Otra razón es que un programa escrito en un lenguaje de alto nivel es independiente de la máquina, o sea, las instrucciones del programa del ordenador no dependen del diseño hardware de un ordenador en particular. Por lo tanto los programas escritos en lenguajes de alto nivel son portables o transportables, lo que significa la posibilidad de poder ser ejecutados con poca o ninguna modificación en diferentes tipos de ordenadores.
+
+Al igual que sucede con los lenguajes ensambladores, los programas fuente tienen que ser traducidos por programas traductores, llamados en este caso compiladores o intérpretes.
+
+Ejemplos de lenguajes de programación de alto nivel:
+BASIC, COBOL, PASCAL, C, VISUAL BASIC, JAVA, PYTHON, PERL, GO, PHP, RUBY,...
+
+    Traductores: Compiladores e Intérpretes
+
+La traducción de un programa escrito en un lenguaje de programación a un lenguaje de máquina se realiza mediante un traductor. Este traductor puede ser un compilador o un intérprete. Sus fases principales, son:
+
+    Análisis léxico: se analiza el programa fuente y se separa en tokens.
+    Análisis sintáctico: se analiza la estructura del programa y se comprueba que la sintaxis sea correcta.
+    Análisis semántico: se comprueba que el programa tenga sentido y que no haya errores.
+    Optimización: se realiza una serie de optimizaciones para mejorar el rendimiento del programa.
+
+Los traductores transforman programas escritos en un lenguaje de alto nivel en programas escritos en código máquina. Podemos indicar distintos tipos:
+
+** Compiladores
+
+    Convierte un programa escrito en alto nivel (código fuente) a un programa máquina (código ejecutable).
+    Para generar el código ejecutable el código no debe tener errores de sintaxis.
+    Necesitamos un compilador para cada arquitectura y sistema operativo.
+    Los programas ejecutables no son compatibles entre plataformas.
+    Una vez generado el programa ejecutable, no es necesario tener el código fuente.
+    Ejemplos: C, Pascal,...
+
+** Intérpretes
+
+    La traducción y ejecución de código fuente a código máquina se hace línea por línea.
+    Los errores de sintaxis aparecen cuando se interpreta la instrucción con error.
+    Necesitamos el código fuente para ejecutar el programa.
+    Los lenguajes interpretados suelen ser más lentos en su ejecución
+    Ejemplos: Python, PHP, ...
+
+** Máquina virtual
+
+    La traducción se hace en dos pasos.
+    Primero se compila el código fuente a un código intermedio (bytecode).
+    Segundo, este bytecode se interpreta y ejecuta por una "máquina virtual".
+    El bytecode es multiplataforma.
+    Necesito una "máquina virtual" para cada plataforma.
+    No necesito el código fuente.
+    Ejemplo: Java, C#, ...
+
+*** Lenguaje compilado
+Gracias a los compiladores se convierte el código a binario, que se ejecuta en el sistema operativo.
+
+*** Lenguaje interpretado
+Los lenguaje interpretados, necesita de dicho intérprete, que lea la instrucción que se necesita ejecutar, realice el proceso de traducción de la misma y la ejecute.
+
+*** Lenguaje mixto o intermedio
+Es un lenguaje que se compila a un código objeto o intermedio y se interpreta en una máquina virtual. Ej. Java o Kotlin.
+
+    Paradigmas de programación
+
+    Es un modelo básico para el diseño y la implementación de programas.
+    Este modelo determinará como será el proceso de diseño y la estructura final de un programa.
+    Son las reglas del juego.
+    Tienes una pelota o balón y una portería, pero no es lo mismo jugar al fútbol que al balonmano.
+    Tipos: Programación Estructurada, Programación Modular, Programación Declarativa Programación Orientada a Objetos, Programación Reactiva, etc.
+
+** Programación Imperativa
+
+*** Programación estructurada
+
+    El enfoque estructurado de programación constituye una forma simplificada de programación imperativa.
+    En vez de saltos, uso de bucles y estructuras de control. Un ejemplo de ello es el uso de "do...while" para realizar una instrucción de forma automática siempre que se dé una determinada condición (al menos una vez).
+
+*** Programación procedimental
+
+    Posibilidad de desglosar algoritmos en porciones manejables.
+    Estos se denominan como procedimientos, dependiendo del lenguaje de programación, o también como subprogramas, rutinas o funciones.
+    El sentido y el propósito de esta distribución es hacer que el código de programa sea más claro y evitar las repeticiones innecesarias de código.
+
+*** Programación modular
+
+    La programación modular también se clasifica como un subtipo del paradigma de programación imperativo.
+    En principio, es muy similar al enfoque procedimental, o más bien lo adapta a los requerimientos de proyectos de software mayores y más amplios.
+    El código fuente se divide específicamente en bloques parciales lógicos independientes los unos de los otros para proporcionar más transparencia y facilitar el proceso de debugging (resolución de errores).
+    Los bloques parciales individuales, denominados módulos, se pueden probar por separado antes de vincularlos posteriormente a una aplicación conjunta.
+
+** Programación Declarativa
+
+    Lenguajes como SQL soportan otra manera de programar llamada Programación Declarativa.
+    Con ésta forma DECLARATIVA, especificamos lo que queremos obtener o hacer en lugar de cómo:
+
+#+BEGIN_EXAMPLE
+SELECT name FROM people AS kids WHERE age <= 12;
+#+END_EXAMPLE
+
+    Si SQL fuese en español escribiríamos algo como:
+
+#+BEGIN_QUOTE
+SELECCIONE EL nombre DE personas COMO niños DONDE edad <= 12 años;
+#+END_QUOTE
+
+Obtenemos los nombres de las personas que tienen 12 años o menos «declarando» lo que queremos en lugar de escribir las operaciones para conseguir lo que queremos.
+
+** Programación Orientada a Objetos
+(Incluye la imagen original sobre Programación Orientada a Objetos)
+
+** Programación Orientada a Eventos
+
+    El flujo del programa está determinado por eventos, como la entrada del usuario o los cambios en el estado del sistema.
+    Este paradigma es comúnmente utilizado en la programación de interfaces gráficas de usuario y servidores.
+    Los lenguajes que soportan la programación basada en eventos incluyen JavaScript y Python.
+
+    Conclusión Estos son solo algunos de los paradigmas de programación más comunes.
+
+Muchos lenguajes de programación soportan múltiples paradigmas. Por ejemplo, Python admite tanto la programación imperativa como la orientada a objetos.
+
+La elección del paradigma depende del problema que se esté tratando de resolver y de las preferencias del programador.

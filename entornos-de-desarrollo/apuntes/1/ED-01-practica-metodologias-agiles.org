@@ -1,0 +1,53 @@
+
+
+
+
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil 
+
+#+LATEX_HEADER: \lhead{ED}
+#+LATEX_HEADER: \rhead{Práctica metodologías ágiles}
+
+#+title: Metodologías ágiles
+
+* Objetivos de la práctica:
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+En esta práctica se espera que el alumno alcance los siguientes objetivos:
+- Se han identificado las fases de desarrollo de una aplicación informática.
+- Se ha evaluado la funcionalidad ofrecida por las herramientas utilizadas en el desarrollo de software.
+- Se han identificado las características y escenarios de uso de las metodologías ágiles de desarrollo de software.
+  
+* Elección de grupo y herramienta
+Se formarán grupos de, preferiblemente, tres alumnos. Cada grupo elegirá una herramienta asociada a las metodologías ágiles:
+- Lean, Design sprint, Agile inception, XP, SCRUM, KANBAN, Test-Driven Development (TDD), Continuous Integration, Pair Programming...
+
+Formaliza [[https://docs.google.com/spreadsheets/d/1-r-t4JHkw15FHfjQbuXN0CBH2zV-dWmBIPGqJIP8ZrQ/edit?gid=0#gid=0][tu grupo en esta hoja de cálculo]]  
+
+* En qué consiste el trabajo
+Después de haber elegido cada pareja/grupo una herramienta que utiliza metodologías ágiles, se procederá a investigar sobre ella para proceder a una exposición en clase sobre la misma, 
+
+Podrás hacer uso de una presentación power point, canva, o similar. Este recurso de presentación se enviará a la tarea del aula virtual por todos los integrantes del equipo. En el caso de un recurso online, se enviará un documento con la URL.
+
+El día del la presentación, el profesor abrirá el recurso entregado en el proyector, y cederá su sitio al grupo. Se dispondrá de 9 minutos para la exposición.
+
+* Qué se valorará
+
+- Individual (40%)
+  - (30%) *Contenido*. Se nota un buen dominio de la parte que le ha tocado exponer, no comete errores, no duda.
+  - (10%) *Exposición*. Atrae la atención del público y mantiene el interés durante toda la exposición.
+
+- Grupal (50%)
+  - (30%) *Contenido*: El material preparado permite entender la herramienta elegida. Bien resumido, ordenado, claro, con los diagramas necesarios para ser entendido.
+  - (10%) *Agile*. Se establecerá la relación con el /agile manifiesto/
+  - (10%) *Trabajo en equipo*. La exposición muestra planificación y trabajo en equipo reflejando que todos han colaborado de forma equitativa y organizada. Todos los miembros exponen por igual.
+
+* Resultados de aprendizaje
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+Esta práctica contribuye a la calificación de los siguientes RA:
+- RA 1
+
