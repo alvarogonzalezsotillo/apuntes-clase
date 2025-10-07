@@ -20,10 +20,10 @@ detecta_parallel_ssh(){
     fi
 }
 
+detecta_parallel_ssh
 
 
-
-if ! detecta_parallel_ssh
+if [ $? -ne 0 ]
 then
     echo Instalación cancelada
     exit 1
@@ -44,12 +44,13 @@ pssh --askpass --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 2400 
 echo Parece que estoy dentro
 whoami
 hostname
-curl http://10.1.0.100/Virtualbox/VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm > VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm
-printf $PASSWORD | xxd -p -r | sudo --stdin dnf remove --assumeyes VirtualBox-7.1-7.1.8_168469_fedora40-1.x86_64
-printf $PASSWORD | xxd -p -r | sudo --stdin rpm -ivh VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm
-printf $PASSWORD | xxd -p -r | sudo --stdin modprobe kvm
-printf $PASSWORD | xxd -p -r | sudo --stdin modprobe kvm_intel
-printf $PASSWORD | xxd -p -r | sudo --stdin rm /etc/modprobe.d/blacklist.conf
+rm ./.ssh/authorized_keys
+echo \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlFeDV76uxp+yxw80l8YqF1g2gZlHhVjQOV8/MZIERy alvaro@a37\" >> ./.ssh/authorized_keys
+echo  >> ./.ssh/authorized_keys
+echo \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkG5MIZRi0BuIin/5B+DqBHBIGfvjuGY3TZEhMuG0KKbN4Pemqs8njlkGXJZSm2t3QlRibxQg4PDLo0rRHa7xm7IId8l2UQY5ul738x/IHrr5LYQY7zyqMnj2XUV/UL/Cwwqh+hrBWKODPbE7z9gkH6FRuaM3optx00c6XYDAH76e0vxAetkoDMTCxEuNiWbAtAPIFP0saDENb17ILH06DCrdVRTUzvhY5nM3YV4Xpaw77HEuc5n6SfOu9gEkMo6Jj+tU2bj4UjuWzh7CagIYYMboa8TBW5v3kX30DElENnLk2qcp7Xr8nbh0+7WmHeyjesI++Qg9e/S+Fe9qbUWc2zOBkSg8aqC8I/a/C6NPd4F2TqM6HhBaO4XGlbL/gqo5WjFvcL2Y1ZgFcud7XarQv+T7xecfDkqXxvNGY5wf+w3QRUoZijn/Yozlojazxo2h2J6k+bZycM1b34El1gSecMlTZQF7T5YyOjlpSUL0rRhIaZpp8UTyik4AF7U2sW2E= profesor@a38profesor
+\" >> ./.ssh/authorized_keys
+echo  >> ./ssh/authorized_keys
+chmod 600 ./ssh/authorized_keys
 echo FIN
 "
 
