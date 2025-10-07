@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-09-15 lun 09:42 -->
+<!-- 2025-09-30 mar 19:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PLANIFICACIÓN Y ADMINISTRACIÓN DE REDES</title>
+<title>Elementos del desarrollo de Software</title>
 <meta name="author" content="Álvaro González Sotillo" />
-<meta name="keywords" content=" 0370" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -200,26 +199,15 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">PLANIFICACIÓN Y ADMINISTRACIÓN DE REDES
-<br />
-<span class="subtitle"> (CÓDIGO: 0370)</span>
-</h1>
+<h1 class="title">Elementos del desarrollo de Software</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000000">1. Cómo serán las clases</a></li>
-<li><a href="#org0000007">2. Materiales</a></li>
-<li><a href="#org000000a">3. Entrega de Trabajos</a></li>
-<li><a href="#org0000010">4. Normas</a></li>
-<li><a href="#org0000013">5. Cómo será la evaluación</a></li>
-<li><a href="#org0000016">6. Actividades</a></li>
-<li><a href="#org0000019">7. Cuenta NETACAD</a></li>
-<li><a href="#org0000040">8. Temas del libro de referencia</a></li>
-<li><a href="#org000005b">9. Contenidos</a></li>
-<li><a href="#org0000073">10. Criterios de evaluación</a></li>
-<li><a href="#org0000076">11. Distribución de RA en unidades de trabajo</a></li>
-<li><a href="#org0000079">12. Referencias</a></li>
+<li><a href="#org000000e">1. Introducción</a></li>
+<li><a href="#ciclo-de-vida-del-software">2. Ciclo de vida del software</a></li>
+<li><a href="#lenguajes-de-programación">3. Lenguajes de programación</a></li>
+<li><a href="#org000001e">4. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -259,11 +247,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -274,920 +257,814 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000000" class="outline-2">
-<h2 id="org0000000"><span class="section-number-2">1.</span> Cómo serán las clases</h2>
+<div id="outline-container-org000000e" class="outline-2">
+<h2 id="org000000e"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Teoría
+<li>En esta Unidad aprenderemos a
 <ul class="org-ul">
-<li>Basada en apuntes</li>
-<li>Con un libro de texto</li>
-</ul></li>
-<li>Ejercicios
-<ul class="org-ul">
-<li>Se realizan en clase o en casa</li>
-<li>Se ponen en común al día siguiente</li>
-</ul></li>
-<li>Práctica
-<ul class="org-ul">
-<li>Máquinas virtuales</li>
-<li>Packet Tracer</li>
-</ul></li>
-<li>Trabajos</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000007" class="outline-2">
-<h2 id="org0000007"><span class="section-number-2">2.</span> Materiales</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>Memoria USB</li>
-<li>Correo electrónico</li>
-<li>Acceso a Internet fuera del aula</li>
-<li>Portátil propio (opcional)
-<ul class="org-ul">
-<li>No se puede usar la red cableada del centro</li>
-<li>Se usará la Wifi</li>
+<li>Reconocer la relación de los programas con los componentes del sistema
+informático.</li>
+<li>Diferenciar código fuente, objeto y ejecutable.</li>
+<li>Identificar las fases de desarrollo de una aplicación informática.</li>
+<li>Clasificar los lenguajes de programación.</li>
 </ul></li>
 </ul>
+</div>
+<div id="outline-container-org0000001" class="outline-3">
+<h3 id="org0000001"><span class="section-number-3">1.1.</span> Tipos de software</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><b>De sistema</b> (Sistema operativo, <i>drivers</i> -controladores-)
+<ul class="org-ul">
+<li>Los <b><i>drivers</i></b> son los controladores de dispositivos.</li>
+<li>El <b><i>firmware</i></b> es el programa que funciona dentro de un dispositivo</li>
+<li><b>BIOS/UEFI</b> es el <i>firmware</i> de la placa base de un PC</li>
+</ul></li>
+<li><b>De aplicación</b> (Suite ofimática, Navegador, Edición de imagen, &#x2026;)</li>
+<li><b>De desarrollo</b> (Editores, compiladores, interpretes, &#x2026;)</li>
+</ul>
+
+
+<div id="org0000000" class="figure">
+<p><img src="https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png" alt="drivers-192x350.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-relación-hardware-software" class="outline-3">
+<h3 id="relación-hardware-software"><span class="section-number-3">1.2.</span> Relación Hardware-Software</h3>
+<div class="outline-text-3" id="text-relación-hardware-software">
+<ul class="org-ul">
+<li><b>Disco duro</b> : almacena de forma permanente los archivos ejecutables y los archivos de datos.
+<ul class="org-ul">
+<li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
+</ul></li>
+<li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
+<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
+<li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
+</ul>
+</div>
 </div>
 <div id="outline-container-org0000004" class="outline-3">
-<h3 id="org0000004"><span class="section-number-3">2.1.</span> Libro de texto</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org0000004"><span class="section-number-3">1.3.</span> ¿pero qué es un ordenador?</h3>
+<div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
-<li><b>Planificación y Administración de Redes</b></li>
-<li>Editorial: Garceta</li>
-<li>Autor: Juan Manuel Castro Ramos, José Ramón Rodríguez Sánchez</li>
-<li>ISBN: 978-84-1545-296-6</li>
+<li>Es un dispositivo capaz de
+<ul class="org-ul">
+<li>Ejecutar órdenes de forma secuencial</li>
+<li>Con dos tipos especiales de órdenes
+<ul class="org-ul">
+<li>Condicionales: se ejecutan dependiendo de los datos disponibles</li>
+<li>Salto: se interrumpe el orden normal de ejecución</li>
+</ul></li>
+</ul></li>
+
+<li>Preguntas:
+<ul class="org-ul">
+<li>¿una reloj digital es un ordenador?</li>
+<li>¿una <a href="https://www.casio.com/es/scientific-calculators/product.FX-55PLUS/">calculadora</a> es un <a href="https://www.casio.com/es/scientific-calculators/product.FX-9860GIII/">ordenador</a>?</li>
+<li>¿<a href="https://bogdanthegeek.github.io/blog/projects/vapeserver/">un vaper es un ordenador</a>?</li>
+</ul></li>
 </ul>
 
-<div id="org0000003" class="figure">
-<p><img src="portada-libro.gif" alt="portada-libro.gif" />
+<ul class="org-ul">
+<li>Conclusión
+<ul class="org-ul">
+<li>Muchísimos dispositivos contienen ordenadores</li>
+<li>No todos esos ordenadores se exponen al usuario final
+<ul class="org-ul">
+<li>El usuario final no puede modificar los programas</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000008" class="outline-3">
+<h3 id="org0000008"><span class="section-number-3">1.4.</span> Arquitectura de Von neuman</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>La <a href="https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing#Descripci%C3%B3n_informal">máquina de Turing</a> distinguía entre datos y programa</li>
+<li>Pero los programas son también datos. Esto posibilita:
+<ul class="org-ul">
+<li>Emuladores</li>
+<li>Programas que hacen programas</li>
+<li>Actualización de software</li>
+</ul></li>
+</ul>
+
+
+<div id="org0000007" class="figure">
+<p><img src="https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png" alt="word-image200.png" />
+</p>
+<p><span class="figure-number">Figura 1: </span>Arquitectura de Von Neuman</p>
+</div>
+</div>
+</div>
+<div id="outline-container-códigos-fuente-objeto-y-ejecutable" class="outline-3">
+<h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.5.</span> Códigos fuente, objeto y ejecutable</h3>
+<div class="outline-text-3" id="text-códigos-fuente-objeto-y-ejecutable">
+<ul class="org-ul">
+<li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de programación.</li>
+<li><b>Código objeto</b> (intermedio): archivo binario no ejecutable.
+<ul class="org-ul">
+<li>Pueden ser ya instrucciones legibles por la CPU</li>
+<li>O puede ser un formato intermedio</li>
+</ul></li>
+<li><b>Código ejecutable</b>: código máquina
+<ul class="org-ul">
+<li>En lenguajes interpretados no existe código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
+<li>Aunque podría existir en memoria (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT compiler</a>)</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador amd64, y su equivalente a código máquina</label><pre class="src src-asm"><span style="color: #edd400; font-weight: bold;">objdump</span> -d  /usr/bin/ls
+
+
+/usr/bin/ls:     file format elf64-x86-64
+
+
+<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .init:
+
+<span style="color: #edd400; font-weight: bold;">000000000000033c</span> &lt;.init&gt;:
+ <span style="color: #729fcf; font-weight: bold;">33c</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #729fcf; font-weight: bold;">340</span>:   48 83 ec 08             sub    $0x8,<span style="color: #ff6347;">%rsp</span>
+ <span style="color: #729fcf; font-weight: bold;">344</span>:   48 8b 05 75 2c 02 00    mov    0x22c75(<span style="color: #ff6347;">%rip</span>),<span style="color: #ff6347;">%rax</span>        # 22fc0 <a href="mailto:__gmon_start__%40Base">&lt;__gmon_start__@Base&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">34b</span>:   48 85 c0                test   <span style="color: #ff6347;">%rax</span>,<span style="color: #ff6347;">%rax</span>
+ <span style="color: #729fcf; font-weight: bold;">34e</span>:   74 02                   je     352 <a href="mailto:__ctype_toupper_loc%40plt-0x67e">&lt;__ctype_toupper_loc@plt-0x67e&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">350</span>:   ff d0                   call   *<span style="color: #ff6347;">%rax</span>
+ <span style="color: #729fcf; font-weight: bold;">352</span>:   48 83 c4 08             add    $0x8,<span style="color: #ff6347;">%rsp</span>
+ <span style="color: #729fcf; font-weight: bold;">356</span>:   c3                      ret
+
+<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .plt:
+
+<span style="color: #edd400; font-weight: bold;">0000000000000360</span> &lt;.plt&gt;:
+ <span style="color: #729fcf; font-weight: bold;">360</span>:   ff 35 ca 28 02 00       push   0x228ca(<span style="color: #ff6347;">%rip</span>)        # 22c30 &lt;error_at_line@@Base+0x21943&gt;
+ <span style="color: #729fcf; font-weight: bold;">366</span>:   ff 25 cc 28 02 00       jmp    *0x228cc(<span style="color: #ff6347;">%rip</span>)        # 22c38 &lt;error_at_line@@Base+0x2194b&gt;
+ <span style="color: #729fcf; font-weight: bold;">36c</span>:   0f 1f 40 00             nopl   0x0(<span style="color: #ff6347;">%rax</span>)
+ <span style="color: #729fcf; font-weight: bold;">370</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #729fcf; font-weight: bold;">374</span>:   68 00 00 00 00          push   $0x0
+ <span style="color: #729fcf; font-weight: bold;">379</span>:   e9 e2 ff ff ff          jmp    360 <a href="mailto:__ctype_toupper_loc%40plt-0x670">&lt;__ctype_toupper_loc@plt-0x670&gt;</a>
+ <span style="color: #729fcf; font-weight: bold;">37e</span>:   66 90                   xchg   <span style="color: #ff6347;">%ax</span>,<span style="color: #ff6347;">%ax</span>
+ <span style="color: #729fcf; font-weight: bold;">380</span>:   f3 0f 1e fa             endbr64
+        
+ ...  
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org000000b" class="outline-3">
+<h3 id="org000000b"><span class="section-number-3">1.6.</span> Para entenderlo mejor</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Simulador de CPU: <a href="https://cpuvisualsimulator.github.io/">https://cpuvisualsimulator.github.io/</a></li>
+<li>Compilador online: <a href="https://godbolt.org/">https://godbolt.org/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-ciclo-de-vida-del-software" class="outline-2">
+<h2 id="ciclo-de-vida-del-software"><span class="section-number-2">2.</span> Ciclo de vida del software</h2>
+<div class="outline-text-2" id="text-ciclo-de-vida-del-software">
+</div>
+<div id="outline-container-ingeniería-de-software" class="outline-3">
+<h3 id="ingeniería-de-software"><span class="section-number-3">2.1.</span> Ingeniería de software</h3>
+<div class="outline-text-3" id="text-ingeniería-de-software">
+<blockquote>
+<p>
+Disciplina que estudia los principios y metodologías para el desarrollo y mantenimiento de sistemas software.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Algunos autores consideran que "<b><i>desarrollo de software</i></b>" es un término más apropiado que "<b><i>ingeniería de software</i></b>" puesto que este último implica niveles de rigor y prueba de procesos que no son apropiados para todo tipo de desarrollo de software.</li>
+<li><a href="https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software">Ingeniería del software</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-desarrollo-de-software" class="outline-3">
+<h3 id="desarrollo-de-software"><span class="section-number-3">2.2.</span> Desarrollo de software</h3>
+<div class="outline-text-3" id="text-desarrollo-de-software">
+</div>
+<div id="outline-container-fases-principales" class="outline-4">
+<h4 id="fases-principales"><span class="section-number-4">2.2.1.</span> <b><i>Fases principales</i></b></h4>
+<div class="outline-text-4" id="text-fases-principales">
+<ul class="org-ul">
+<li><b>ANÁLISIS</b>: Qué debe hacer la aplicación.</li>
+<li><b>DISEÑO</b>: Cómo se va a organizar internamente la aplicación. Sus decisiones no afectan directamente al usario, más allá de elegir una plataforma.</li>
+<li><b>CODIFICACIÓN</b>: Realización de la aplicación.</li>
+<li><b>PRUEBAS</b>: Búsqueda de defectos.</li>
+<li><b>MANTENIMIENTO</b>: Solución de defectos que escaparon a las pruebas, o adaptación a nuevos requisitos.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-análisis" class="outline-4">
+<h4 id="análisis"><span class="section-number-4">2.2.2.</span> ANÁLISIS</h4>
+<div class="outline-text-4" id="text-análisis">
+<ul class="org-ul">
+<li>Se determina y define claramente las necesidades del cliente y se
+especifica los requisitos que debe cumplir el software a desarrollar.</li>
+<li>La <b>especificación de requisitos</b> debe:
+<ul class="org-ul">
+<li>Ser completa y sin omisiones</li>
+<li>Ser concisa y sin trivialidades</li>
+<li>Evitar ambigüedades. Utilizar lenguaje formal.</li>
+<li>Evitar detalles de diseño o implementación</li>
+<li>Ser entendible por el cliente</li>
+<li>Separar requisitos funcionales y no funcionales</li>
+<li>Dividir y jerarquizar el modelo</li>
+<li>Fijar criterios de validación</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-diseño" class="outline-4">
+<h4 id="diseño"><span class="section-number-4">2.2.3.</span> DISEÑO</h4>
+<div class="outline-text-4" id="text-diseño">
+<ul class="org-ul">
+<li>Se descompone y organiza el sistema en elementos componentes que
+pueden ser desarrollados por separado.</li>
+<li>Se especifica la interrelación y funcionalidad de los elementos
+componentes.</li>
+<li>Las actividades habituales son las siguientes:
+<ul class="org-ul">
+<li>Diseño arquitectónico</li>
+<li>Diseño detallado</li>
+<li>Diseño de datos</li>
+<li>Diseño de interfaz de usuario</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-codificación" class="outline-4">
+<h4 id="codificación"><span class="section-number-4">2.2.4.</span> CODIFICACIÓN</h4>
+<div class="outline-text-4" id="text-codificación">
+<ul class="org-ul">
+<li>Se escribe el código fuente de cada componente.</li>
+<li>Pueden utilizarse distintos lenguajes informáticos y plataformas:
+<ul class="org-ul">
+<li>Aplicación web: javascript, HTML, PHP, JSP, ASP&#x2026;</li>
+<li>Escritorio: C++, python, java, C#</li>
+<li>Móvil: flutter, kotlin&#x2026;</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-pruebas" class="outline-4">
+<h4 id="pruebas"><span class="section-number-4">2.2.5.</span> PRUEBAS</h4>
+<div class="outline-text-4" id="text-pruebas">
+<ul class="org-ul">
+<li>El principal objetivo de las pruebas debe ser conseguir que el
+programa funcione incorrectamente y que se descubran defectos.</li>
+<li>Deberemos someter al programa al máximo número de situaciones
+diferentes.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-mantenimiento" class="outline-4">
+<h4 id="mantenimiento"><span class="section-number-4">2.2.6.</span> MANTENIMIENTO</h4>
+<div class="outline-text-4" id="text-mantenimiento">
+<ul class="org-ul">
+<li>Durante la explotación del sistema software es necesario realizar
+cambios ocasionales.</li>
+<li>Para ello hay que rehacer parte del trabajo realizado en las fases
+previas.</li>
+<li>Tipos de mantenimiento:
+<ul class="org-ul">
+<li><b>Correctivo</b>: se corrigen defectos.</li>
+<li><b>Perfectivo</b>: se mejora la funcionalidad.</li>
+<li><b>Evolutivo</b>: se añade funcionalidades nuevas.</li>
+<li><b>Adaptativo</b>: se adapta a nuevos entornos.</li>
+</ul></li>
+</ul>
+
+<p>
+¿Qué tipos de mantenimiento suponen una nueva fase de análisis y diseño?    
 </p>
 </div>
 </div>
 </div>
+<div id="outline-container-resultado-tras-cada-fase-i" class="outline-3">
+<h3 id="resultado-tras-cada-fase-i"><span class="section-number-3">2.3.</span> Resultado tras cada fase (I)</h3>
+<div class="outline-text-3" id="text-resultado-tras-cada-fase-i">
+<ul class="org-ul">
+<li>Ingeniería de sistemas: <b>Especificación del sistema</b></li>
+<li>ANÁLISIS: <b>Especificación de requisitos del software</b></li>
+<li>DISEÑO
+<ul class="org-ul">
+<li>arquitectónico: <b>Documento de arquitectura del software</b></li>
+<li>detallado: <b>Especificación de módulos y funciones</b></li>
+</ul></li>
+<li>CODIFICACIÓN: <b>Código fuente</b></li>
+</ul>
 </div>
-<div id="outline-container-org000000a" class="outline-2">
-<h2 id="org000000a"><span class="section-number-2">3.</span> Entrega de Trabajos</h2>
-<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-resultado-tras-cada-fase-ii" class="outline-3">
+<h3 id="resultado-tras-cada-fase-ii"><span class="section-number-3">2.4.</span> Resultado tras cada fase (II)</h3>
+<div class="outline-text-3" id="text-resultado-tras-cada-fase-ii">
+<p>
+( <i>Continuación</i> )
+</p>
+
 <ul class="org-ul">
-<li>Via <b>Moodle</b>
+<li>PRUEBAS de unidades: <b>Módulos utilizables</b></li>
+<li>PRUEBAS de integración: <b>Sistema utilizable</b></li>
+<li>PRUEBAS del sistema: <b>Sistema aceptado</b></li>
+<li>Documentación: <b>Documentación técnica y de usuario</b></li>
+<li>MANTENIMIENTO: <b>Informes de errores y control de cambios</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-modelos-de-desarrollo-de-software" class="outline-3">
+<h3 id="modelos-de-desarrollo-de-software"><span class="section-number-3">2.5.</span> Modelos de desarrollo de software</h3>
+<div class="outline-text-3" id="text-modelos-de-desarrollo-de-software">
 <ul class="org-ul">
-<li>Nuestro curso es <a href="https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=72">https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=72</a></li>
-<li>El curso es accesible incluso sin usuario</li>
+<li>Modelos clásicos (predictivos)
+<ul class="org-ul">
+<li>Modelo en cascada</li>
+<li>Modelo en V</li>
 </ul></li>
-<li>Se utilizará Microsoft Office (<b>DOC</b>, <b>DOCX</b>)
+<li>Modelo de construcción de prototipos</li>
+<li>Modelos evolutivos o incrementales
 <ul class="org-ul">
-<li>Opcionalmente, <b>PDF</b> o LibreOffice (<b>ODT</b>)</li>
-</ul></li>
-<li>Se tendrá en cuenta
-<ul class="org-ul">
-<li>La corrección técnica de los trabajos</li>
-<li>La fecha de entrega</li>
-<li>Expresión, sintaxis, ortografía</li>
-<li>La apariencia profesional</li>
+<li>Modelo en espiral (iterativos)</li>
+<li>Metodologías ágiles (adaptativos)</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000010" class="outline-2">
-<h2 id="org0000010"><span class="section-number-2">4.</span> Normas</h2>
+<div id="outline-container-modelo-en-cascada-i" class="outline-3">
+<h3 id="modelo-en-cascada-i"><span class="section-number-3">2.6.</span> Modelo en cascada (I)</h3>
+<div class="outline-text-3" id="text-modelo-en-cascada-i">
+
+<div id="org0000011" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png" alt="cascada.png" />
+</p>
+<p><span class="figure-number">Figura 2: </span>Modelo en cascada</p>
+</div>
+</div>
+</div>
+<div id="outline-container-modelo-en-cascada-ii" class="outline-3">
+<h3 id="modelo-en-cascada-ii"><span class="section-number-3">2.7.</span> Modelo en cascada (II)</h3>
+<div class="outline-text-3" id="text-modelo-en-cascada-ii">
+<ul class="org-ul">
+<li>Modelo de mayor antigüedad.</li>
+<li>Identifica las fases principales del desarrollo software.</li>
+<li>Las fases han de realizarse en el orden indicado.</li>
+<li>El resultado de una fase es la entrada de la siguiente fase.</li>
+<li>Es un modelo bastante rígido que se adapta mal al cambio continuo de
+especificaciones.</li>
+<li>Existen diferentes variantes con mayor o menor cantidad de
+actividades.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-modelo-en-v-i" class="outline-3">
+<h3 id="modelo-en-v-i"><span class="section-number-3">2.8.</span> Modelo en V (I)</h3>
+<div class="outline-text-3" id="text-modelo-en-v-i">
+
+<div id="org0000012" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png" alt="v.png" />
+</p>
+<p><span class="figure-number">Figura 3: </span>Modelo en V</p>
+</div>
+</div>
+</div>
+<div id="outline-container-modelo-en-v-ii" class="outline-3">
+<h3 id="modelo-en-v-ii"><span class="section-number-3">2.9.</span> Modelo en V (II)</h3>
+<div class="outline-text-3" id="text-modelo-en-v-ii">
+<ul class="org-ul">
+<li>Modelo muy parecido al modelo en cascada.</li>
+<li>Visión jerarquizada con distintos niveles.</li>
+<li>Los niveles superiores indican mayor abstracción.</li>
+<li>Los niveles inferiores indican mayor nivel de detalle.</li>
+<li>El resultado de una fase es la entrada de la siguiente fase.</li>
+<li>Existen diferentes variantes con mayor o menor cantidad de
+actividades.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-prototipos-i" class="outline-3">
+<h3 id="prototipos-i"><span class="section-number-3">2.10.</span> Prototipos (I)</h3>
+<div class="outline-text-3" id="text-prototipos-i">
+<ul class="org-ul">
+<li>A menudo los requisitos no están especificados claramente:
+<ul class="org-ul">
+<li>por no existir experiencia previa.</li>
+<li>por omisión o falta de concreción del usuario/cliente.</li>
+</ul></li>
+</ul>
+
+
+<div id="org0000013" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png" alt="prototipos.png" />
+</p>
+<p><span class="figure-number">Figura 4: </span>Modelo de construcción de prototipos</p>
+</div>
+</div>
+</div>
+<div id="outline-container-prototipos-ii" class="outline-3">
+<h3 id="prototipos-ii"><span class="section-number-3">2.11.</span> Prototipos (II)</h3>
+<div class="outline-text-3" id="text-prototipos-ii">
+<ul class="org-ul">
+<li>Proceso:
+<ul class="org-ul">
+<li>Se crea un prototipo durante la <b>fase de análisis</b> y es probado por
+el usuario/cliente para refinar los requisitos del software a
+desarrollar.</li>
+<li>Se repite el paso anterior las veces necesarias.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-prototipos-iii" class="outline-3">
+<h3 id="prototipos-iii"><span class="section-number-3">2.12.</span> Prototipos (III)</h3>
+<div class="outline-text-3" id="text-prototipos-iii">
+<ul class="org-ul">
+<li>Tipos de prototipos:
+<ul class="org-ul">
+<li><b>Prototipos rápidos</b> (desechables)
+<ul class="org-ul">
+<li>El prototipo puede estar desarrollado usando otro lenguaje y/o
+herramientas.</li>
+<li>Finalmente el prototipo se desecha.</li>
+</ul></li>
+<li><b>Prototipos evolutivos</b>
+<ul class="org-ul">
+<li>El prototipo está diseñado en el mismo lenguaje y herramientas del
+proyecto.</li>
+<li>El prototipo se usa como base para desarrollar el proyecto.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-modelo-en-espiral-i" class="outline-3">
+<h3 id="modelo-en-espiral-i"><span class="section-number-3">2.13.</span> Modelo en espiral (I)</h3>
+<div class="outline-text-3" id="text-modelo-en-espiral-i">
+<ul class="org-ul">
+<li>Desarrollado por Boehm en 1988.</li>
+<li>La actividad de <b><i>ingeniería</i></b> corresponde a las fases de los modelos
+clásicos: análisis, diseño, codificación, &#x2026;</li>
+</ul>
+
+
+<div id="org0000014" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png" alt="espiral.png" />
+</p>
+<p><span class="figure-number">Figura 5: </span>Modelo en espiral</p>
+</div>
+</div>
+</div>
+<div id="outline-container-modelo-en-espiral-ii" class="outline-3">
+<h3 id="modelo-en-espiral-ii"><span class="section-number-3">2.14.</span> Modelo en espiral (II)</h3>
+<div class="outline-text-3" id="text-modelo-en-espiral-ii">
+<ul class="org-ul">
+<li>En la actividad de <b><i>ingeniería</i></b> se da gran importancia a la
+reutilización de código.</li>
+</ul>
+
+
+<div id="org0000015" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png" alt="espiral-poo.png" />
+</p>
+<p><span class="figure-number">Figura 6: </span>Modelo en espiral</p>
+</div>
+</div>
+</div>
+<div id="outline-container-metodologías-ágiles-i" class="outline-3">
+<h3 id="metodologías-ágiles-i"><span class="section-number-3">2.15.</span> Metodologías ágiles (I)</h3>
+<div class="outline-text-3" id="text-metodologías-ágiles-i">
+<ul class="org-ul">
+<li>Son métodos de ingeniería del software basados en el desarrollo
+iterativo e incremental.</li>
+<li>Los requisitos y soluciones evolucionan con el tiempo según la
+necesidad del proyecto.</li>
+<li>El trabajo es realizado mediante la colaboración de equipos
+auto-organizados y multidisciplinarios, inmersos en un proceso
+compartido de toma de decisiones a corto plazo.</li>
+<li>Las metodologías más conocidas son:
+<ul class="org-ul">
+<li>Kanban</li>
+<li>Scrum</li>
+<li>XP (eXtreme Programming)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-metodologías-ágiles-ii" class="outline-3">
+<h3 id="metodologías-ágiles-ii"><span class="section-number-3">2.16.</span> Metodologías ágiles (II)</h3>
+<div class="outline-text-3" id="text-metodologías-ágiles-ii">
+<p>
+<a href="https://es.wikipedia.org/wiki/Manifiesto_%C3%A1gil">Manifiesto por el
+Desarrollo Ágil</a>
+</p>
+
+<ul class="org-ul">
+<li><b>Individuos e interacciones</b> sobre procesos y herramientas</li>
+<li><b>Software funcionando</b> sobre documentación extensiva</li>
+<li><b>Colaboración con el cliente</b> sobre negociación contractual</li>
+<li><b>Respuesta ante el cambio</b> sobre seguir un plan</li>
+</ul>
+</div>
+<div id="outline-container-kanban-i" class="outline-4">
+<h4 id="kanban-i"><span class="section-number-4">2.16.1.</span> <b>Kanban (I)</b></h4>
+<div class="outline-text-4" id="text-kanban-i">
+<ul class="org-ul">
+<li>También se denomina "sistema de tarjetas".</li>
+<li><b>Desarrollado inicialmente por Toyota para la industria de fabricación
+de productos</b>.</li>
+<li><b>Controla por demanda</b> la fabricación de los productos necesarios en
+la cantidad y tiempo necesarios.</li>
+<li>Enfocado a entregar el máximo valor para los clientes, utilizando los
+recursos justos.</li>
+<li><a href="https://es.wikipedia.org/wiki/Lean_manufacturing">Lean
+manufacturing</a></li>
+<li><a href="https://dosideas.com/noticias/metodologias/184-como-usar-kanban-en-el-desarrollo-de-software">Kanban
+en desarrollo software</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-kanban-ii" class="outline-4">
+<h4 id="kanban-ii"><span class="section-number-4">2.16.2.</span> <b>Kanban (II)</b></h4>
+<div class="outline-text-4" id="text-kanban-ii">
+<p>
+Pizarra kanban
+</p>
+
+
+<div id="org0000016" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png" alt="kanban-board.png" />
+</p>
+<p><span class="figure-number">Figura 7: </span>Pizarra kanban</p>
+</div>
+</div>
+</div>
+<div id="outline-container-scrum-i" class="outline-4">
+<h4 id="scrum-i"><span class="section-number-4">2.16.3.</span> <b>Scrum (I)</b></h4>
+<div class="outline-text-4" id="text-scrum-i">
+<ul class="org-ul">
+<li>Modelo de desarrollo incremental.</li>
+<li>Iteraciones (<b>sprint</b>) regulares cada 2 a 4 semanas.</li>
+<li>Al principio de cada iteración se establecen sus <b>objetivos
+priorizados</b> (<b>sprint backlog</b>).</li>
+<li>Al finalizar cada iteración se obtiene una <b>entrega parcial utilizable
+por el cliente</b>.</li>
+<li>Existen reuniones diarias para tratar la marcha del <i>sprint</i>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-scrum-ii" class="outline-4">
+<h4 id="scrum-ii"><span class="section-number-4">2.16.4.</span> <b>Scrum (II)</b></h4>
+<div class="outline-text-4" id="text-scrum-ii">
+
+<div id="org0000017" class="figure">
+<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png" alt="scrum.png" />
+</p>
+<p><span class="figure-number">Figura 8: </span>Proceso SCRUM</p>
+</div>
+</div>
+</div>
+<div id="outline-container-xp-programación-extrema-i" class="outline-4">
+<h4 id="xp-programación-extrema-i"><span class="section-number-4">2.16.5.</span> <b>XP (Programación extrema) (I)</b></h4>
+<div class="outline-text-4" id="text-xp-programación-extrema-i">
+<p>
+<b>Valores</b>
+</p>
+
+<ul class="org-ul">
+<li>Simplicidad</li>
+<li>Comunicación</li>
+<li>Retroalimentación</li>
+<li>Valentía o coraje</li>
+<li>Respeto o humildad</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-xp-programación-extrema-ii" class="outline-4">
+<h4 id="xp-programación-extrema-ii"><span class="section-number-4">2.16.6.</span> <b>XP (Programación extrema) (II)</b></h4>
+<div class="outline-text-4" id="text-xp-programación-extrema-ii">
+<p>
+<b>Características</b>
+</p>
+
+<ul class="org-ul">
+<li>Diseño sencillo</li>
+<li>Pequeñas mejoras continuas</li>
+<li>Pruebas y refactorización</li>
+<li>Integración continua</li>
+<li><b>Programación por parejas</b></li>
+<li><b>El cliente se integra en el equipo de desarrollo</b></li>
+<li>Propiedad del código compartida</li>
+<li>Estándares de codificación</li>
+<li>40 horas semanales</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-lenguajes-de-programación" class="outline-2">
+<h2 id="lenguajes-de-programación"><span class="section-number-2">3.</span> Lenguajes de programación</h2>
+<div class="outline-text-2" id="text-lenguajes-de-programación">
+</div>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">3.1.</span> Evolución</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Primera generación: lenguaje máquina.</li>
+<li>Segunda generación: se crearon los primeros lenguajes ensambladores.</li>
+<li>Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…</li>
+<li>Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+<ul class="org-ul">
+<li><a href="https://www.nocode.tech/article/what-is-no-code">Nocode</a></li>
+<li>Excel</li>
+</ul></li>
+<li>Quinta generación: Basados en restricciones declarativas, para IA clásica (prolog)</li>
+<li><a href="https://en.wikipedia.org/wiki/Vibe_coding">Vibe coding</a>: utilizar sistemas LLM para la programación
+<ul class="org-ul">
+<li>Nuevos (apenas dos años reales)</li>
+<li>Prometedores, pero solo para programadores con experiencia previa</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-obtención-de-código-ejecutable" class="outline-3">
+<h3 id="obtención-de-código-ejecutable"><span class="section-number-3">3.2.</span> Obtención de código ejecutable</h3>
+<div class="outline-text-3" id="text-obtención-de-código-ejecutable">
+<ul class="org-ul">
+<li>Para obtener código binario ejecutable tenemos 2 opciones:
+<ul class="org-ul">
+<li><b>Compilar</b></li>
+<li><b>Interpretar</b></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-proceso-de-compilacióninterpretación" class="outline-3">
+<h3 id="proceso-de-compilacióninterpretación"><span class="section-number-3">3.3.</span> Proceso de compilación/interpretación</h3>
+<div class="outline-text-3" id="text-proceso-de-compilacióninterpretación">
+<ul class="org-ul">
+<li>La compilación/interpretación del código fuente se lleva a cabo en dos
+fases:
+<ol class="org-ol">
+<li><b>Análisis léxico</b></li>
+<li><b>Análisis sintáctico</b></li>
+</ol></li>
+<li>Si no existen errores, se genera el código objeto correspondiente.</li>
+<li>Un código fuente correctamente escrito no significa que funcione según
+lo deseado.</li>
+<li>No se realiza un análisis semántico.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-lenguajes-compilados" class="outline-3">
+<h3 id="lenguajes-compilados"><span class="section-number-3">3.4.</span> Lenguajes compilados</h3>
+<div class="outline-text-3" id="text-lenguajes-compilados">
+<ul class="org-ul">
+<li>Ejemplos: C, C++</li>
+<li>Principal ventaja: Ejecución muy eficiente.</li>
+<li>Principal desventaja: Es necesario compilar cada vez que el código
+fuente es modificado.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-lenguajes-interpretados" class="outline-3">
+<h3 id="lenguajes-interpretados"><span class="section-number-3">3.5.</span> Lenguajes interpretados</h3>
+<div class="outline-text-3" id="text-lenguajes-interpretados">
+<ul class="org-ul">
+<li>Ejemplos: PHP, Javascript</li>
+<li>Principal ventaja: El código fuente se interpreta directamente.</li>
+<li>Principal desventaja: Ejecución menos eficiente.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-java-i" class="outline-3">
+<h3 id="java-i"><span class="section-number-3">3.6.</span> JAVA (I)</h3>
+<div class="outline-text-3" id="text-java-i">
+<ul class="org-ul">
+<li>Lenguajes compilado e interpretado.</li>
+<li>El código fuente Java <b>se compila</b> y se obtiene un código binario
+intermedio denominado <b>bytecode</b>.</li>
+<li>Puede considerarse código objeto pero destinado a la máquina virtual
+de Java en lugar de código objeto nativo.</li>
+<li>Después este <b>bytecode</b> <b>se interpreta</b> para ejecutarlo.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-java-ii" class="outline-3">
+<h3 id="java-ii"><span class="section-number-3">3.7.</span> JAVA (II)</h3>
+<div class="outline-text-3" id="text-java-ii">
+<ul class="org-ul">
+<li>Ventajas:
+<ul class="org-ul">
+<li>Estructurado y Orientado a Objetos</li>
+<li>Relativamente fácil de aprender</li>
+<li>Buena documentación y base de usuarios</li>
+</ul></li>
+<li>Desventajas:
+<ul class="org-ul">
+<li>Menos eficiente que los lenguajes compilados (con JIT, solo inicialmente)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-tipos-i" class="outline-3">
+<h3 id="tipos-i"><span class="section-number-3">3.8.</span> Tipos (I)</h3>
+<div class="outline-text-3" id="text-tipos-i">
+<ul class="org-ul">
+<li>Según la forma en la que operan:
+<ul class="org-ul">
+<li><b>Declarativos</b>: indicamos el resultado a obtener sin especificar los
+pasos.</li>
+<li><b>Imperativos</b>: indicamos los pasos a seguir para obtener un
+resultado.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-tipos-ii" class="outline-3">
+<h3 id="tipos-ii"><span class="section-number-3">3.9.</span> Tipos (II)</h3>
+<div class="outline-text-3" id="text-tipos-ii">
+<ul class="org-ul">
+<li>Tipos de <b>lenguajes declarativos</b>:
+<ul class="org-ul">
+<li>Lógicos: Utilizan reglas. Ej: Prolog</li>
+<li>Funcionales: Utilizan funciones. Ej: Lisp, Haskell</li>
+<li>Algebraicos: Utilizan sentencias. Ej: SQL</li>
+</ul></li>
+<li>Normalmente son lenguajes interpretados.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-tipos-iii" class="outline-3">
+<h3 id="tipos-iii"><span class="section-number-3">3.10.</span> Tipos (III)</h3>
+<div class="outline-text-3" id="text-tipos-iii">
+<ul class="org-ul">
+<li>Tipos de <b>lenguajes imperativos</b>:
+<ul class="org-ul">
+<li>Estructurados: C</li>
+<li>Orientados a objetos: Java</li>
+<li>Multiparadigma: C++, Javascript</li>
+</ul></li>
+<li>Los lenguajes orientados a objetos son también lenguajes
+estructurados.</li>
+<li>Muchos de estos lenguajes son compilados.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-tipos-iv" class="outline-3">
+<h3 id="tipos-iv"><span class="section-number-3">3.11.</span> Tipos (IV)</h3>
+<div class="outline-text-3" id="text-tipos-iv">
+<ul class="org-ul">
+<li>Tipos de lenguajes según nivel de abstracción:
+<ul class="org-ul">
+<li>Bajo nivel: ensamblador</li>
+<li>Medio nivel: C</li>
+<li>Alto nivel: C++, Java</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001b" class="outline-3">
+<h3 id="org000001b"><span class="section-number-3">3.12.</span> Historia</h3>
+<div class="outline-text-3" id="text-3-12">
+<p>
+<a href="http://rigaux.org/language-study/diagram-light.png">Historia simplificada</a>
+</p>
+
+<p>
+<a href="http://rigaux.org/language-study/diagram.png">Historia detallada</a>
+</p>
+</div>
+</div>
+<div id="outline-container-criterios-para-la-selección-de-un-lenguaje" class="outline-3">
+<h3 id="criterios-para-la-selección-de-un-lenguaje"><span class="section-number-3">3.13.</span> Criterios para la selección de un lenguaje</h3>
+<div class="outline-text-3" id="text-criterios-para-la-selección-de-un-lenguaje">
+<ul class="org-ul">
+<li>Campo de aplicación</li>
+<li>Experiencia previa</li>
+<li>Herramientas de desarrollo</li>
+<li>Documentación disponible</li>
+<li>Base de usuarios</li>
+<li>Reusabilidad</li>
+<li>Transportabilidad</li>
+<li>Plataforma de ejecución</li>
+<li>Imposición del cliente</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000001e" class="outline-2">
+<h2 id="org000001e"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li>Retrasos y faltas</li>
-<li>Uso de los ordenadores
-<ul class="org-ul">
-<li>No pueden utilizarse para tareas distintas de las encargadas por el profesor</li>
-<li>Se respetará a otros alumnos</li>
-</ul></li>
-<li>Móviles
-<ul class="org-ul">
-<li>No.</li>
-<li>Un <i>smartwatch</i> se considera un móvil.</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org000000d" class="outline-3">
-<h3 id="org000000d"><span class="section-number-3">4.1.</span> Averías de los ordenadores</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>Los problemas se comunican al profesor en cuanto se detectan</li>
-<li>Se deben hacer copias de seguridad para no perder los datos de los discos
-<ul class="org-ul">
-<li>Pen Drive</li>
-<li>Disco Externo</li>
-<li>Correos enviados a uno mismo</li>
-<li>Copias en los ordenadores de otros compañeros</li>
-</ul></li>
-<li>Norma fundamental:</li>
-</ul>
-<p>
-<b>Si se pierde porque no hay copia, es que no era importante</b>
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000013" class="outline-2">
-<h2 id="org0000013"><span class="section-number-2">5.</span> Cómo será la evaluación</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li>Las notas de las evaluaciones (1ª,2ª,3ª) no son realmente importantes</li>
-<li>Solo interesa la nota de la evaluación final</li>
-<li>Basado en <i>Resultados de aprendizaje</i> (RA)
-<ul class="org-ul">
-<li>Cada RA supone un porcentaje de la nota final</li>
-<li>Cada prueba (examen, trabajo) indicará que RA evalúa, en qué porcentaje</li>
-<li>Se necesita aprobar cada RA para aprobar el módulo</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000016" class="outline-2">
-<h2 id="org0000016"><span class="section-number-2">6.</span> Actividades</h2>
-<div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li>Trabajos</li>
-<li>Actitud
-<ul class="org-ul">
-<li>Puntualidad, interés, preguntas al profesor, puesta en común de resultados, comportamiento&#x2026;</li>
-</ul></li>
-<li>Exámenes</li>
-<li>Examen final evaluación ordinaria
-<ul class="org-ul">
-<li>Con los RA no superados</li>
-</ul></li>
-<li>Examen evaluación extraordinaria
-<ul class="org-ul">
-<li>Incluirá todos los RA. La nota del examen será la nota del módulo.</li>
-</ul></li>
-<li>Entrega de trabajos
-<ul class="org-ul">
-<li>Individuales, o por parejas si se comparte ordenador</li>
-<li>Un trabajo entregado fuera de plazo tiene una nota máxima de <i>6</i></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000019" class="outline-2">
-<h2 id="org0000019"><span class="section-number-2">7.</span> Cuenta NETACAD</h2>
-<div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li>Utilizaremos NETACAD si no se dan las condiciones para realizar prácticas en el aula</li>
-<li>Packet tracer VS Linux &amp; Windows
-<ul class="org-ul">
-<li>Packet tracer es necesario para simular switches</li>
-<li>Para simular redes y routers se sienten más reales las máquinas virtuales</li>
-<li>Versión 8.2.2 (aunque cambie durante el curso, usaremos esta)</li>
-</ul></li>
-<li>Curso NETACAD:
-<ul class="org-ul">
-<li>Se necesita un <i><a href="https://www.netacad.com/portal/user/redeem/token">redeem token</a></i> para matricularse</li>
-<li>Los repartiré en clase</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">8.</span> Temas del libro de referencia</h2>
-<div class="outline-text-2" id="text-8">
-</div>
-<div id="outline-container-org000001c" class="outline-3">
-<h3 id="org000001c"><span class="section-number-3">8.1.</span> Capítulo 1. Caracterización de redes</h3>
-<div class="outline-text-3" id="text-8-1">
-<ol class="org-ol">
-<li>La comunicación</li>
-<li>Concepto de red. Ventajas</li>
-<li>Topología de red</li>
-<li>Clasificación general de redes</li>
-<li>Evolución del trabajo en red (networking)</li>
-<li>Sistemas de numeración</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000001f" class="outline-3">
-<h3 id="org000001f"><span class="section-number-3">8.2.</span> Capítulo 2. Arquitecturas de red</h3>
-<div class="outline-text-3" id="text-8-2">
-<ol class="org-ol">
-<li>Organizaciones de estándares</li>
-<li>Arquitectura de red</li>
-<li>Arquitectura TCP/IP</li>
-<li>Modelo de referencia OSI</li>
-<li>Comparativa del modelo OSI con la arquitectura TCP/IP</li>
-<li>Captura de tráfico con Wireshark</li>
-<li>Captura de tráfico http con Packet Tracer</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">8.3.</span> Capítulo 3. Redes de área Local</h3>
-<div class="outline-text-3" id="text-8-3">
-<ol class="org-ol">
-<li>Introducción a las LAN</li>
-<li>Proyecto IEEE 802</li>
-<li>La familia Ethernet</li>
-<li>Token Bus</li>
-<li>Token Ring</li>
-<li>FDDI</li>
-<li>WLAN. Wireless LAN</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000025" class="outline-3">
-<h3 id="org0000025"><span class="section-number-3">8.4.</span> Capítulo 4. Nivel Físico</h3>
-<div class="outline-text-3" id="text-8-4">
-<ol class="org-ol">
-<li>Introducción a las señales</li>
-<li>Tipos de transmisión</li>
-<li>Técnicas de transmisión</li>
-<li>Medios de transmisión</li>
-<li>Limitaciones de los medios de transmisión</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">8.5.</span> Capítulo 5. Cableado estructurado</h3>
-<div class="outline-text-3" id="text-8-5">
-<ol class="org-ol">
-<li>Introducción</li>
-<li>Espacios y recorridos para telecomunicaciones en edificios comerciales</li>
-<li>Cableado de telecomunicaciones en edificios comerciales</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000002b" class="outline-3">
-<h3 id="org000002b"><span class="section-number-3">8.6.</span> Capítulo 6. Nivel de Enlace</h3>
-<div class="outline-text-3" id="text-8-6">
-<ol class="org-ol">
-<li>Funciones del nivel de enlace</li>
-<li>Tramado
-<ol class="org-ol">
-<li>Formato de trama PPP para redes WAN</li>
-<li>Formato de trama Ethernet</li>
-<li>Formato de trama 802.11 (Wi-Fi)</li>
-</ol></li>
-<li>Control de acceso al medio
-<ol class="org-ol">
-<li>Multiplexación FDM y TDM</li>
-<li>Paso de testigo</li>
-<li>CSMA/CD</li>
-<li>CSMA/CA</li>
-</ol></li>
-<li>Control de flujo</li>
-<li>Control de errores</li>
-<li>Direccionamiento físico</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000002e" class="outline-3">
-<h3 id="org000002e"><span class="section-number-3">8.7.</span> Capítulo 7. El switch. STP. VLAN. Diseño de una red</h3>
-<div class="outline-text-3" id="text-8-7">
-<ol class="org-ol">
-<li>El switch
-<ol class="org-ol">
-<li>Evolución histórica</li>
-<li>Funcionamiento</li>
-<li>Características del switch</li>
-<li>Técnicas de reenvío</li>
-<li>Tipos de switches</li>
-<li>Configuración básica de un switch gestionable CISCO</li>
-</ol></li>
-<li>VLAN. Red LAN virtual
-<ol class="org-ol">
-<li>Concepto de VLAN</li>
-<li>Tipos de VLAN según membresía</li>
-<li>Tipos de enlaces</li>
-<li>Tipos de VLAN según su función</li>
-<li>Protocolo VTP. Configuración dinámica de VLANs</li>
-</ol></li>
-<li>Diseño de una red jerárquica
-<ol class="org-ol">
-<li>Capas de una red jerárquica</li>
-<li>Ventajas del diseño de una red jerárquica</li>
-<li>Principios de diseño de redes jerárquicas</li>
-<li>Características de los switeches de cada capa</li>
-<li>Protocolo SNMP. Monitores de red</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000031" class="outline-3">
-<h3 id="org0000031"><span class="section-number-3">8.8.</span> Capítulo 8. Nivel de red. Direccionamiento IPv4 e IPv6. Adaptadores de red</h3>
-<div class="outline-text-3" id="text-8-8">
-<ol class="org-ol">
-<li>Nivel de red. Objetivo, funciones y protocolos</li>
-<li>Protocolo IP
-<ol class="org-ol">
-<li>Características</li>
-<li>Formato del datagrama IPv4</li>
-<li>Formato del datagrama IPv6</li>
-</ol></li>
-<li>Direccionamiento IPv4
-<ol class="org-ol">
-<li>Direcciones IPv4</li>
-<li>Clases</li>
-<li>Direcciones reservadas</li>
-<li>Direcciones especiales</li>
-<li>Direcciones públicas</li>
-<li>Direcciones privadas</li>
-<li>Máscaras de subred</li>
-</ol></li>
-<li>Subredes
-<ol class="org-ol">
-<li>Necesidad de las subredes</li>
-<li>Método para la creación de subredes (subnetting)</li>
-<li>Herramientas para subnetting</li>
-</ol></li>
-<li>Configuración del adaptador de red
-<ol class="org-ol">
-<li>Configuración en Windows</li>
-<li>Configuración en Linux</li>
-</ol></li>
-<li>Asignación dinámica de direcciones (DHCP)</li>
-<li>Protocolo ARP</li>
-<li>Protocolo ICMP. Diagnóstico de redes
-<ol class="org-ol">
-<li>Mensajes de solicitud y respuesta de eco (Echo y Echo Reply)</li>
-<li>Mensajes de tiempo excedido (Time exceeded)</li>
-</ol></li>
-<li>Direccionamiento IPv6
-<ol class="org-ol">
-<li>Formatos de direcciones IPv6</li>
-<li>Tipos de direcciones IPv6</li>
-<li>Índice de zona</li>
-<li>Mecanismos de transición IPv4 a IPv6</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000034" class="outline-3">
-<h3 id="org0000034"><span class="section-number-3">8.9.</span> Capítulo 9. El router. Configuración</h3>
-<div class="outline-text-3" id="text-8-9">
-<ol class="org-ol">
-<li>El router
-<ol class="org-ol">
-<li>Introducción</li>
-<li>Arquitectura del router</li>
-<li>Nivel de operación</li>
-<li>Funcionamiento</li>
-<li>Tipos de router según su función</li>
-</ol></li>
-<li>Configuración de routers CISCO
-<ol class="org-ol">
-<li>Modos de operación</li>
-<li>Modo usuario EXEC</li>
-<li>Modo privilegiado EXEC</li>
-<li>Modo configuración global</li>
-<li>Modo configuración de una interfaz</li>
-<li>Modo configuración de una línea</li>
-<li>Configuración de una conexión SSH</li>
-<li>Configuración del servicio DHCP</li>
-</ol></li>
-<li>Router Linksys</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000037" class="outline-3">
-<h3 id="org0000037"><span class="section-number-3">8.10.</span> Capítulo 10. Protocolos de enrutamiento</h3>
-<div class="outline-text-3" id="text-8-10">
-<ol class="org-ol">
-<li>Concepto de enrutamiento</li>
-<li>Tipos de enrutamiento
-<ol class="org-ol">
-<li>Enrutamiento estático</li>
-<li>Enrutamiento dinámico</li>
-<li>Características de un protocolo de enrutamiento</li>
-</ol></li>
-<li>Mejoras en el diseño de redes y en el enrutamiento
-<ol class="org-ol">
-<li>VLSM (Variable Length Subnetting Mask)</li>
-<li>CIDR (Clasless InterDomain Routing)</li>
-</ol></li>
-<li>Clasificación de los protocolos de enrutamiento
-<ol class="org-ol">
-<li>Protocolos interiores y exteriores</li>
-<li>Protocolos basados en vector-distancia</li>
-<li>Protocolos basados en estado del enlace</li>
-<li>Protocolos híbridos</li>
-</ol></li>
-<li>RIPv1</li>
-<li>RIPv2
-<ol class="org-ol">
-<li>RIPng</li>
-</ol></li>
-<li>OSPF</li>
-<li>BGP</li>
-<li>Enrutamiento entre VLANs</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">8.11.</span> Capítulo 11. Seguridad: ACL, Firewall y DMZ</h3>
-<div class="outline-text-3" id="text-8-11">
-<ol class="org-ol">
-<li>ACL. Listas de control de acceso
-<ol class="org-ol">
-<li>Definición y características</li>
-<li>Funcionamiento de las ACL</li>
-<li>ACL estándar</li>
-<li>ACL extendida</li>
-</ol></li>
-<li>Firewall y DMZ
-<ol class="org-ol">
-<li>Definición</li>
-<li>Arquitectura de Firewalls</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000003d" class="outline-3">
-<h3 id="org000003d"><span class="section-number-3">8.12.</span> Capítulo 12. Acceso a Internet. NAPT</h3>
-<div class="outline-text-3" id="text-8-12">
-<ol class="org-ol">
-<li>Técnicas de conmutación
-<ol class="org-ol">
-<li>Conmutación de circuitos</li>
-<li>Conmutación de paquetes</li>
-</ol></li>
-<li>Tecnologías de acceso a Internet
-<ol class="org-ol">
-<li>La red telefónica conmutada (RTC)</li>
-<li>La red digital de servicios integrados (RDSI)</li>
-<li>La línea de abonado digital (DSL)</li>
-<li>FTTx. Accesos mediante fibra</li>
-<li>La red híbrida de fibra y cobre (HFC)</li>
-<li>La red inalámbrica (WiMAX)</li>
-<li>El Sistema Universal de Telecomunicaciones Móviles (UTMS)</li>
-</ol></li>
-<li>Traducción de direcciones NAT/NAPT
-<ol class="org-ol">
-<li>Funcionamiento de NAPT</li>
-<li>Configuración de NAPT en routers CISCO</li>
-</ol></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org000005b" class="outline-2">
-<h2 id="org000005b"><span class="section-number-2">9.</span> Contenidos</h2>
-<div class="outline-text-2" id="text-9">
-<ul class="org-ul">
-<li>Decreto 12/2010, de 18 de marzo</li>
-</ul>
-</div>
-<div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">9.1.</span> Caracterización de redes:</h3>
-<div class="outline-text-3" id="text-9-1">
-<ul class="org-ul">
-<li>Sistemas de numeración decimal, binario y hexadecimal. Conversión entre sistemas.</li>
-<li>Sistemas de comunicación. Características y componentes.</li>
-<li>Componentes de una red. Dispositivos hardware (finales e intermedios), software, unidades de información y medios de transmisión.</li>
-<li>Terminología: redes LAN (Local Area Network), MAN (Metropolitan Area Network) y WAN (Wide Area Network), topologías, arquitecturas, tecnologías de transmisión (difusión y conmutación), protocolos e interredes.</li>
-<li>Arquitectura de redes. Niveles, protocolos, unidades de datos, funcionamiento y evolución. Encapsulamiento de la información.</li>
-<li>El modelo OSI (Open System Interconnection). Estructura de niveles y unidades de información.</li>
-<li>El modelo TCP/IP (Transmission Control Protocol/Internet Protocol). Características y niveles.</li>
-<li>Arquitectura en las redes de área local. Descripción básica de los principales estándares. Introducción a las tecnologías «Ethernet».</li>
-<li>Comparativa entre el modelo OSI, el modelo TCP/IP y la arquitectura de redes de área local.</li>
-<li>Generalidades sobre estándares y organismos de normalización.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000046" class="outline-3">
-<h3 id="org0000046"><span class="section-number-3">9.2.</span> Integración de elementos en una red: Fundamentos de redes.</h3>
-<div class="outline-text-3" id="text-9-2">
-<ul class="org-ul">
-<li>Nivel físico. Aspectos físicos básicos en la transmisión de datos:
-<ul class="org-ul">
-<li>Objetivos y funciones.</li>
-<li>Tipos de transmisión.</li>
-<li>Los medios físicos. Los cables metálicos: cable coaxial, cables de pares STP (Shielded Twisted Pair), FTP (Foiled Twisted Pair), UTP (Unshielded Twisted Pair) y fibra óptica.</li>
-<li>Medios inalámbricos.</li>
-<li>Conectores.</li>
-<li>Factores físicos que afectan a la transmisión (atenuación, ruido…).</li>
-<li>Ancho de banda y tasa de transferencia. Capacidad de transferencia útil.</li>
-</ul></li>
-<li>Nivel de enlace
-<ul class="org-ul">
-<li>Objetivos y funciones</li>
-<li>Tramas. Formatos, tipos y direccionamiento (unicast, multicast y broadcast).</li>
-<li>Estándares y protocolos de nivel de enlace.</li>
-</ul></li>
-<li>Nivel de red (TCP/IP)
-<ul class="org-ul">
-<li>Objetivos y funciones</li>
-<li>Direccionamiento.</li>
-<li>Direcciones IPv4 y máscaras de red. Direcciones IP especiales (red, broadcast, loopback…). Direcciones IP públicas y privadas.</li>
-<li>Direccionamiento dinámico DHCP (Dynamic Host Configuration Protocol).</li>
-<li>Protocolo IP. Características y formato del datagrama IP.</li>
-<li>Protocolos de resolución de direcciones. ARP (Address Resolution Protocol).Características y funcionamiento.</li>
-<li>Protocolo ICMP (Internet Control Message Protocol). Características y mensajes ICMP.</li>
-<li>Encaminamiento IP. Proceso de reenvió/encaminamiento. Tablas de encaminamiento. Introducción a los protocolos de encaminamiento.</li>
-<li>Clases de direcciones IP.</li>
-<li>La subdivisión de redes y el uso de máscaras de longitud variable VLMs (Variable Length Subnet Mask).</li>
-<li>Superredes y CIRD (Classless Inter-Domain Routing).</li>
-<li>Fragmentación IP.</li>
-<li>IPv6. Características básicas.</li>
-</ul></li>
-<li>Nivel de transporte (TCP/IP)
-<ul class="org-ul">
-<li>Objetivos y funciones.</li>
-<li>Puertos. Multiplexación de conexiones.</li>
-<li>Protocolo UDP (User Datagram Protocol). Características y funciones.</li>
-<li>Protocolo TCP. Características y funciones. Establecimiento y liberación de conexiones.</li>
-</ul></li>
-<li>Nivel de aplicación (TCP/IP)
-<ul class="org-ul">
-<li>Aplicaciones, protocolos y servicios.</li>
-<li>Modelo cliente/servidor, modelos P2P (Peer-to-Peer), modelos híbridos.</li>
-<li>Descripción general y utilidad de los protocolos de nivel de aplicación. DNS (Domain Name Service), HTTP (Hypertext Transfer Protocol), FTP (File Transfer Protocol), SMTP (Simple Mail Transfer Protocol), POP (Post Office Protocol), IMAP (Internet Message Access Protocol), Tenet, SSH (Secure Shell), SNMP (Simple Network Management Protocol), DHCP.</li>
-<li>Uso y configuración básica de aplicaciones clientes.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000049" class="outline-3">
-<h3 id="org0000049"><span class="section-number-3">9.3.</span> Integración de elementos en una red: Redes de área local.</h3>
-<div class="outline-text-3" id="text-9-3">
-<ul class="org-ul">
-<li>Características.</li>
-<li>Estándares.</li>
-<li>Nivel de enlace en las redes de área local. MAC (Media Access Control). LLC (Logical Link Control). Direcciones MAC.</li>
-<li>Redes de área local Ethernet (IEEE 802.3)
-<ul class="org-ul">
-<li>Topologías</li>
-<li>Medios de transmisión. Tipos de cableado «Ethernet».</li>
-<li>Formato de trama.</li>
-<li>Dispositivos de interconexión: Concentradores, Puentes, Switchs…</li>
-<li>Dominios de colisión y de «broadcast».</li>
-<li>Modos de funcionamiento (half-duplex/full-duplex). Autonegociación.</li>
-<li>Normas Ethernet (IEEE 802.3).</li>
-<li>Agregación de enlaces (Etherchanel).</li>
-<li>Adaptadores alámbricos: instalación y configuración.</li>
-</ul></li>
-<li>Redes de área local inalámbricas (IEEE 802.11)
-<ul class="org-ul">
-<li>Los espectros de onda de microondas y radio.</li>
-<li>Formato de trama.</li>
-<li>La conexión inalámbrica. . Asociación y autenticación en la WLAN (Wireless Local Area Network).</li>
-<li>Topologías. Arquitectura celular BSS (Basic Service Set). Ad-hoc (Peer-to-Perr). Modo infraestructura. SSID. Canales. Interconexión de BSSs ESS (Extended Service).</li>
-<li>Dispositivos de interconexión: Repetidores, Puentes inalámbricos, Puntos de acceso, Routers inalámbricos</li>
-<li>Normas IEEE 802.11.</li>
-<li>Amenazas de seguridad y mecanismos de seguridad básicos (filtrado de MAC, WEP, WPA…).</li>
-<li>Adaptadores inalámbricos: instalación y configuración.</li>
-<li>Instalación y configuración de puntos de acceso.</li>
-</ul></li>
-<li>Implantación de redes de área local.
-<ul class="org-ul">
-<li>Cableado estructurado. Tomas de red. Espacios. Cuartos de comunicaciones. Armarios de comunicaciones. Paneles de parcheo. Canalizaciones. Recomendaciones en la instalación del cableado.</li>
-<li>Herramientas.</li>
-<li>El diseño de redes locales a tres capas (núcleo, distribución y acceso). Latencia, congestión de red, ancho de banda. Mapa físico y lógico de la red.</li>
-<li>Creación de cables (Estándar EIA/TIA 568B).</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000004c" class="outline-3">
-<h3 id="org000004c"><span class="section-number-3">9.4.</span> Configuración y administración de conmutadores:</h3>
-<div class="outline-text-3" id="text-9-4">
-<ul class="org-ul">
-<li>Tipos de conmutadores: Velocidad, gestionables/no gestionables, ubicación,…</li>
-<li>Conmutadores y dominios de colisión y «broadcast».</li>
-<li>Segmentación de redes. Segmentación de la red. Ventajas que presenta.</li>
-<li>Direcciones y tablas MAC.</li>
-<li>Métodos de reenvío de los conmutadores.</li>
-<li>Proceso de arranque.</li>
-<li>Formas de conexión al conmutador para su configuración. Puertos y acceso remoto (http, telnet, ssh…).</li>
-<li>Configuración del conmutador. Modos de configuración. Estado del conmutador. Configuración TCP/IP del interfaz de administración. Habilitar acceso remoto (http, telnet, ssh…). Administración gráfica. Contraseñas de acceso. Seguridad de puertos, Archivos de configuración.</li>
-<li>Configuración estática y dinámica de la tabla de direcciones MAC.</li>
-<li>Redundancia y bucles. Protocolo STP (Spanning Tree Protocol) y sus evoluciones.</li>
-<li>Conmutadores de nivel 3.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000004f" class="outline-3">
-<h3 id="org000004f"><span class="section-number-3">9.5.</span> Configuración y administración básica de «routers»:</h3>
-<div class="outline-text-3" id="text-9-5">
-<ul class="org-ul">
-<li>Los «routers» en las LAN y en las WAN.</li>
-<li>Componentes del «router».</li>
-<li>Proceso de arranque.</li>
-<li>Formas de conexión al «router» para su configuración inicial. Puertos y acceso remoto (http, telnet, ssh).</li>
-<li>Comandos para configuración del «router». Comandos para administración del «router». Modos de configuración. Archivos de configuración. Contraseñas de acceso. Configuración de interfaces.</li>
-<li>Configuración del enrutamiento estático. Mostrar la tabla de rutas. Añadir/eliminar rutas estáticas.</li>
-<li>Listas de control de acceso ACLs (Access Control List). Definición y ubicación de ACLs.</li>
-<li>Tipos de ACLs.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">9.6.</span> Configuración de redes virtuales VLANs (Virtual Local Area Network):</h3>
-<div class="outline-text-3" id="text-9-6">
-<ul class="org-ul">
-<li>Características de las VLANs</li>
-<li>Ventajas.</li>
-<li>Tipos de VLANs.</li>
-<li>Tipos de enlaces. Enlaces de acceso y enlaces troncales y etiquetado de tramas.</li>
-<li>Implantación y configuración de redes virtuales.</li>
-<li>Definición de enlaces troncales en los conmutadores y «routers». El protocolo IEEE802.1Q.</li>
-<li>Interconexión (enrutamiento) entre VLANs.</li>
-<li>Protocolos de administración centralizada de VLANs.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000055" class="outline-3">
-<h3 id="org0000055"><span class="section-number-3">9.7.</span> Configuración y administración de protocolos dinámicos:</h3>
-<div class="outline-text-3" id="text-9-7">
-<ul class="org-ul">
-<li>Protocolos enrutables y protocolos de enrutamiento.</li>
-<li>Encaminamiento estático vs. encaminamiento dinámico.</li>
-<li>Algoritmos de encaminamiento.</li>
-<li>Encaminamiento en Internet. Sistemas autónomos. Protocolos de enrutamiento interior y exterior.</li>
-<li>El enrutamiento sin clase vs. el encaminamiento con clase.</li>
-<li>El protocolo RIPv2 (Routing Information Protocol); comparación con RIPv1.</li>
-<li>Configuración y administración de RIPv1.</li>
-<li>Configuración y administración de RIPv2.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000058" class="outline-3">
-<h3 id="org0000058"><span class="section-number-3">9.8.</span> Configuración del acceso a Internet desde una LAN:</h3>
-<div class="outline-text-3" id="text-9-8">
-<ul class="org-ul">
-<li>Arquitectura de acceso a Internet.</li>
-<li>Tecnologías de acceso a Internet.
-<ul class="org-ul">
-<li>RTC (Red Telefónica Conmutada), RDSI (Red Digital de Servicios Integrados), xDSL (Digital Subscriber Line), redes de cable, líneas dedicadas, UMTS (Universal Mobile Telecommunications System), HSDPA (High Speed Downlink Packet Access) y otras tecnologías vigentes en el momento actual.</li>
-<li>Dispositivos de acceso a Internet.</li>
-</ul></li>
-<li>Direccionamiento interno y direccionamiento externo.</li>
-<li>NAT (Network Address Translation) origen y NAT destino.</li>
-<li>Tipos de NAT. NAT estático, dinámico, de sobrecarga PAT (Port Address Translation) e inverso.</li>
-<li>Configuración de NAT.</li>
-<li>Configuración de PAT.</li>
-<li>Diagnóstico de incidencias de NAT/PAT.</li>
-<li>Redirección de puertos.</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000073" class="outline-2">
-<h2 id="org0000073"><span class="section-number-2">10.</span> Criterios de evaluación</h2>
-<div class="outline-text-2" id="text-10">
-<p>
-Cada resultado de aprendizaje tiene sus criterios de evaluación correspondiente.
-La nota del módulo depende del logro de los criterios de evaluación.
-</p>
-</div>
-<div id="outline-container-org000005e" class="outline-3">
-<h3 id="org000005e"><span class="section-number-3">10.1.</span> Reconoce la estructura de las redes de datos identificando sus elementos y principios de funcionamiento.</h3>
-<div class="outline-text-3" id="text-10-1">
-<ol class="org-ol">
-<li>Se han identificado los factores que impulsan la continua expansión y evolución de las redes de datos.</li>
-<li>Se han diferenciado los distintos medios de transmisión utilizados en las redes.</li>
-<li>Se han reconocido los distintos tipos de red y sus topologías.</li>
-<li>Se han descrito las arquitecturas de red y los niveles que las componen.</li>
-<li>Se ha descrito el concepto de protocolo de comunicación.</li>
-<li>Se ha descrito el funcionamiento de las pilas de protocolos en las distintas arquitecturas de red.</li>
-<li>Se han presentado y descrito los elementos funcionales, físicos y lógicos, de las redes de datos.</li>
-<li>Se han diferenciado los dispositivos de interconexión de redes atendiendo al nivel funcional en el que se encuadran.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">10.2.</span> Integra ordenadores y periféricos en redes cableadas e inalámbricas, evaluando su funcionamiento y prestaciones.</h3>
-<div class="outline-text-3" id="text-10-2">
-<ol class="org-ol">
-<li>Se han identificado los estándares para redes cableadas e inalámbricas.</li>
-<li>Se han montado cables directos, cruzados y de consola.</li>
-<li>Se han utilizado comprobadores para verificar la conectividad de distintos tipos de cables.</li>
-<li>Se ha utilizado el sistema de direccionamiento lógico IP para asignar direcciones de red y máscaras de subred.</li>
-<li>Se han configurado adaptadores de red cableados e inalámbricos bajo distintos sistemas operativos.</li>
-<li>Se han integrado dispositivos en redes cableadas e inalámbricas.</li>
-<li>Se ha comprobado la conectividad entre diversos dispositivos y adaptadores inalámbricos sobre distintas configuraciones.</li>
-<li>Se han utilizado aplicaciones para representar el mapa físico y lógico de una red.</li>
-<li>Se ha monitorizado la red mediante aplicaciones basadas en el protocolo SNMP.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">10.3.</span> Administra conmutadores estableciendo opciones de configuración para su integración en la red.</h3>
-<div class="outline-text-3" id="text-10-3">
-<ol class="org-ol">
-<li>Se han conectado conmutadores entre sí y con las estaciones de trabajo.</li>
-<li>Se ha interpretado la información que proporcionan los «leds» del conmutador.</li>
-<li>Se han utilizado distintos métodos para acceder al modo de configuración del conmutador.</li>
-<li>Se han identificado los archivos que guardan la configuración del conmutador.</li>
-<li>Se ha administrado la tabla de direcciones MAC del conmutador.</li>
-<li>Se ha configurado la seguridad del puerto.</li>
-<li>Se ha actualizado el sistema operativo del conmutador.</li>
-<li>Se  han utilizado  los comandos proporcionados por el sistema operativo del conmutador que permiten hacer el seguimiento de posibles incidencias.</li>
-<li>Se ha verificado el funcionamiento del Spanning Tree Protocol en un conmutador.</li>
-<li>Se han modificado los parámetros que determinan el proceso de selección del puente raíz.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000067" class="outline-3">
-<h3 id="org0000067"><span class="section-number-3">10.4.</span> Administra las funciones básicas de un «router» estableciendo opciones de configuración para su integración en la red.</h3>
-<div class="outline-text-3" id="text-10-4">
-<ol class="org-ol">
-<li>Se ha interpretado la información que proporcionan los «leds» del «router».</li>
-<li>Se han utilizado distintos métodos para acceder al modo de configuración del «router».</li>
-<li>Se han identificado las etapas de la secuencia de arranque del «router».</li>
-<li>Se han utilizado los comandos para la configuración y administración básica del «router».</li>
-<li>Se han identificado los archivos que guardan la configuración del «router» y se han gestionado mediante los comandos correspondientes.</li>
-<li>Se han configurado rutas estáticas.</li>
-<li>Se han utilizado los comandos proporcionados por el sistema operativo del «router» que permiten hacer el seguimiento de posibles incidencias.</li>
-<li>Se ha configurado el «router» como servidor de direcciones IP dinámicas.</li>
-<li>Se han descrito las capacidades de filtrado de tráfico del «router».</li>
-<li>Se han utilizado comandos para gestionar listas de control de acceso.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000006a" class="outline-3">
-<h3 id="org000006a"><span class="section-number-3">10.5.</span> Configura redes locales virtuales identificando su campo de aplicación.</h3>
-<div class="outline-text-3" id="text-10-5">
-<ol class="org-ol">
-<li>Se han descrito las ventajas que presenta la utilización de redes locales virtuales (VLANs).</li>
-<li>Se han implementado VLANs.</li>
-<li>Se ha realizado el diagnóstico de incidencias en VLANs.</li>
-<li>Se han configurado enlaces troncales.</li>
-<li>Se ha utilizado un router para interconectar diversas VLANs.</li>
-<li>Se  han descrito  las ventajas que aporta el uso de protocolos de administración centralizada de VLANs.</li>
-<li>Se han configurado los conmutadores para trabajar de acuerdo con los protocolos de administración centralizada.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000006d" class="outline-3">
-<h3 id="org000006d"><span class="section-number-3">10.6.</span> Realiza tareas avanzadas de administración de red analizando y utilizando protocolos dinámicos de encaminamiento.</h3>
-<div class="outline-text-3" id="text-10-6">
-<p>
-Criterios de evaluación:
-</p>
-<ol class="org-ol">
-<li>Se ha configurado el protocolo de enrutamiento RIPv1.</li>
-<li>Se han configurado redes con el protocolo RIPv2.</li>
-<li>Se ha realizado el diagnóstico de fallos en una red que utiliza RIP.</li>
-<li>Se ha valorado la necesidad de utilizar máscaras de longitud variable en IPv4.</li>
-<li>Se ha dividido una red principal en subredes de distintos tamaños con VLSM.</li>
-<li>Se han realizado agrupaciones de redes con CIDR.</li>
-<li>Se ha habilitado y configurado OSPF en un «router».</li>
-<li>Se ha establecido y propagado una ruta por defecto usando OSPF.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org0000070" class="outline-3">
-<h3 id="org0000070"><span class="section-number-3">10.7.</span> Conecta redes privadas a redes públicas identificando y aplicando diferentes tecnologías.</h3>
-<div class="outline-text-3" id="text-10-7">
-<ol class="org-ol">
-<li>Se han descrito las ventajas e inconvenientes del uso de la traducción de direcciones de red (NAT).</li>
-<li>Se ha utilizado NAT para realizar la traducción estática de direcciones de red.</li>
-<li>Se ha utilizado NAT para realizar la traducción dinámica de direcciones de red.</li>
-<li>Se han descrito las características de las tecnologías «Frame Relay», RDSI y ADSL.</li>
-<li>Se han descrito las analogías y diferencias entre las tecnologías «Wifi» y «Wimax».</li>
-<li>Se han descrito las características de las tecnologías UMTS y HSDPA.</li>
-<li><i>Se han utilizado diferentes tecnologías de túnel para interconectar redes a través de Internet</i></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000076" class="outline-2">
-<h2 id="org0000076"><span class="section-number-2">11.</span> Distribución de RA en unidades de trabajo</h2>
-<div class="outline-text-2" id="text-11">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Peso en la calificación final de cada RA</th>
-<th scope="col" class="org-right">5.00%</th>
-<th scope="col" class="org-right">5.00%</th>
-<th scope="col" class="org-right">10.00%</th>
-<th scope="col" class="org-right">20.00%</th>
-<th scope="col" class="org-left">15.00%</th>
-<th scope="col" class="org-left">40.00%</th>
-<th scope="col" class="org-left">5.00%</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">RA1</td>
-<td class="org-right">RA2</td>
-<td class="org-right">RA3</td>
-<td class="org-right">RA4</td>
-<td class="org-left">RA5</td>
-<td class="org-left">RA6</td>
-<td class="org-left">RA7</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">UT1 Estructura de redes de datos</td>
-<td class="org-right">100.00%</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT2 Conexión básica de ordenadores</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">100.00%</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT3 Switches</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">40.00%</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT4 Enrutamiento</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">50.00%</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT5 VLAN</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">60.00%</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">100.00%</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT6 Administración de routers</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">50.00%</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">100.00%</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">UT7 Interconexión con redes públicas</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">100.00%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000079" class="outline-2">
-<h2 id="org0000079"><span class="section-number-2">12.</span> Referencias</h2>
-<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
-<li><a href="./par-0-contenidos-criterios-evaluacion.reveal.html">Transparencias</a></li>
-<li><a href="./par-0-contenidos-criterios-evaluacion.pdf">PDF</a></li>
-<li><a href="./par-0-contenidos-criterios-evaluacion.wp.html">Página web</a></li>
-<li><a href="./par-0-contenidos-criterios-evaluacion.epub">EPUB</a></li>
+<li><a href="./ED-01-elementos-desarrollo-software.reveal.html">Transparencias</a></li>
+<li><a href="./ED-01-elementos-desarrollo-software.pdf">PDF</a></li>
+<li><a href="./ED-01-elementos-desarrollo-software.wp.html">Página web</a></li>
+<li><a href="./ED-01-elementos-desarrollo-software.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
 <ul class="org-ul">
@@ -1202,7 +1079,7 @@ Criterios de evaluación:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-09-15 lun 09:42</p>
+<p class="date">Created: 2025-09-30 mar 19:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
