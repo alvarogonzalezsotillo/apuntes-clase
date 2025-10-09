@@ -216,7 +216,53 @@ env
 
 ** Ejercicio CGI
 - Consigue que el programa anterior funcione en Apache
-- Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/  
+  - El programa debe generar al menos la cabecera =Content-Type=
+  - El módulo de =cgi= debe estar activado (=a2enmod=)
+  - El programa estará en =/usr/lib/cgi-bin/micgi.sh=
+  - La URL para accederlo será =http://miservidor/cgi-bin/micgi.sh= 
+  - Los errores pueden verse en =/var/log/apache2=  
+- Examina las variables recibidas y su relación con las [[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields][cabeceras HTTP]] de /request/
+
+#+begin_src bash
+#!/usr/bin/bash
+
+echo Content-Type: text/plain
+echo
+echo
+echo HOLA!!!
+echo la hora es $(date)
+echo Hasta luego!!!
+
+printf "Content-Length: ${#CONTENT}\r\n"
+printf "ENV_REQUEST_METHOD: \"$REQUEST_METHOD\"\r\n"
+printf "ENV_CONTENT_TYPE: \"$CONTENT_TYPE\"\r\n"
+printf "ENV_CONTENT_LENGTH: \"$CONTENT_LENGTH\"\r\n"
+
+printf "ENV_REMOTE_ADDR: \"$REMOTE_ADDR\"\r\n"
+printf "ENV_REMOTE_PORT: \"$REMOTE_PORT\"\r\n"
+printf "ENV_SERVER_PORT: \"$SERVER_PORT\"\r\n"
+
+printf "ENV_REQUEST_URI: \"$REQUEST_URI\"\r\n"
+printf "ENV_QUERY_STRING: \"$QUERY_STRING\"\r\n"
+
+# all headers from request now available with the HTTP_ prefix
+printf "ENV_HTTP_HOST: \"$HTTP_HOST\"\r\n"
+printf "ENV_HTTP_USER_AGENT: \"$HTTP_USER_AGENT\"\r\n"
+printf "ENV_HTTP_ACCEPT: \"$HTTP_ACCEPT\"\r\n"
+printf "ENV_HTTP_REFERER: \"$HTTP_REFERER\"\r\n"
+
+# username from basic auth (e.g. without password)
+printf "ENV_REMOTE_USER: \"$REMOTE_USER\"\r\n"
+
+printf "ENV_SCRIPT_NAME: \"$SCRIPT_NAME\"\r\n"
+printf "ENV_PATH_INFO: \"$PATH_INFO\"\r\n"
+printf "ENV_PATH: \"$PATH\"\r\n"
+printf "ENV_PWD: \"$PWD\"\r\n"
+
+printf "ENV_SERVER_PROTOCOL: \"$SERVER_PROTOCOL\"\r\n"
+printf "ENV_SERVER_SOFTWARE: \"$SERVER_SOFTWARE\"\r\n"
+
+#+end_src  
 
 
 * MariaDB/MySQL
@@ -291,7 +337,7 @@ sudo apt install php
 
 ** Ejercicio CGI
 - Consigue un programa en php que funcione como CGI
-- El probrama debe usar la función =phpinfo()=
+- El programa debe usar la función =phpinfo()=
 
   
 
