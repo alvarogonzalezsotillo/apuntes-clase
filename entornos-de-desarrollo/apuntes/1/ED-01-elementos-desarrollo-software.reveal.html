@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-09-30 mar 19:05 -->
+<!-- Generated on 2025-10-16 jue 10:26 -->
 <meta charset="utf-8"/>
 <title>Elementos del desarrollo de Software</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-09-30 mar 19:05</p>
+<h1 class="title">Elementos del desarrollo de Software</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-10-16 jue 10:26</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1211,6 +1211,26 @@ lo deseado.</li>
 fuente es modificado.</li>
 
 </ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-3-4-1">
+<h4 id="3-4-1"><span class="section-number-4">3.4.1.</span> Ejemplo compilación</h4>
+<ul>
+<li><code>gcc -E</code>: Preprocessor, but don't compile</li>
+<li><code>gcc -S</code>: Compile but don't assemble</li>
+<li><code>gcc -c</code>: Preprocess, compile, and assemble, but don't link</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="cpp" >#include &lt;stdio&gt;
+
+void main(){
+  std::printf( "Resultado:%d", 5*7 );
+}
+</code></pre>
+</div>
 <div class="slide-footer"></div>
 </section>
 <section id="slide-lenguajes-interpretados">

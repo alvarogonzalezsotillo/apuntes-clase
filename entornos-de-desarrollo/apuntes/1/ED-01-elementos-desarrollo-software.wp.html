@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-09-30 mar 19:05 -->
+<!-- 2025-10-16 jue 10:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -207,7 +207,7 @@
 <li><a href="#org000000e">1. Introducción</a></li>
 <li><a href="#ciclo-de-vida-del-software">2. Ciclo de vida del software</a></li>
 <li><a href="#lenguajes-de-programación">3. Lenguajes de programación</a></li>
-<li><a href="#org000001e">4. Referencias</a></li>
+<li><a href="#org0000021">4. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -928,6 +928,25 @@ lo deseado.</li>
 fuente es modificado.</li>
 </ul>
 </div>
+<div id="outline-container-org000001b" class="outline-4">
+<h4 id="org000001b"><span class="section-number-4">3.4.1.</span> Ejemplo compilación</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li><code>gcc -E</code>: Preprocessor, but don't compile</li>
+<li><code>gcc -S</code>: Compile but don't assemble</li>
+<li><code>gcc -c</code>: Preprocess, compile, and assemble, but don't link</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #729fcf;">#include</span> <span style="color: #ad7fa8; font-style: italic;">&lt;stdio&gt;</span>
+
+<span style="color: #8ae234; font-weight: bold;">void</span> <span style="color: #edd400; font-weight: bold;">main</span>(){
+  <span style="color: #8ae234;">std</span>::printf( <span style="color: #ad7fa8; font-style: italic;">"Resultado:%d"</span>, 5*7 );
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-lenguajes-interpretados" class="outline-3">
 <h3 id="lenguajes-interpretados"><span class="section-number-3">3.5.</span> Lenguajes interpretados</h3>
@@ -1026,8 +1045,8 @@ estructurados.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">3.12.</span> Historia</h3>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.12.</span> Historia</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 <a href="http://rigaux.org/language-study/diagram-light.png">Historia simplificada</a>
@@ -1055,8 +1074,8 @@ estructurados.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">4.</span> Referencias</h2>
+<div id="outline-container-org0000021" class="outline-2">
+<h2 id="org0000021"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Formatos:
@@ -1079,7 +1098,7 @@ estructurados.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-09-30 mar 19:05</p>
+<p class="date">Created: 2025-10-16 jue 10:26</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

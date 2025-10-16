@@ -488,6 +488,19 @@ Pizarra kanban
 - Principal desventaja: Es necesario compilar cada vez que el código
   fuente es modificado.
 
+*** Ejemplo compilación
+- =gcc -E=: Preprocessor, but don't compile
+- =gcc -S=: Compile but don't assemble
+- =gcc -c=: Preprocess, compile, and assemble, but don't link
+
+#+begin_src cpp
+#include <stdio>
+
+void main(){
+  std::printf( "Resultado:%d", 5*7 );
+}
+#+end_src
+  
 ** Lenguajes interpretados
 :PROPERTIES:
 :CUSTOM_ID: lenguajes-interpretados
