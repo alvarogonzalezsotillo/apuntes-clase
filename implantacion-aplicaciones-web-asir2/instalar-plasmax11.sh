@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AULA=a37
+AULA=a33
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(

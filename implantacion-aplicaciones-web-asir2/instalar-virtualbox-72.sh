@@ -1,11 +1,11 @@
 #!/bin/bash
 
-AULA=a37
+AULA=a33
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(
     local AULA=${1:-$AULA_DEFECTO}
-    for ORDENADOR in $(seq 1 16)
+    for ORDENADOR in 9 # $(seq 1 16)
     do
         printf "%spc%02d.local\n" $AULA $ORDENADOR
     done
