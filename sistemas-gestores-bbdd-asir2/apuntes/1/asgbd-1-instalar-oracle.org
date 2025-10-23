@@ -86,7 +86,6 @@ yum whatprovides <fichero>
 - Reiniciar la máquina
 - Después de eso, se debería encontrar por nombre: =ping nombrealumnoASGBD.local=
   
-(referencia em https://oracle-base.com/blog/2015/03/26/oracle-linux-7-1-preinstall-packages-available-for-11gr2-and-12cr1/)
 
 ** Entorno gráfico
 - El instalador más cómodo de Oracle necesita un sistema de ventanas
@@ -503,8 +502,9 @@ ALTER SESSION SET container=NOMBREDEPLUGGABLEDATABASE;
   - http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
   - https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
   - https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-sqlplus-linux.x64-19.3.0.0.0dbru.zip
-- Tras descomprimir, hay que definir las variables =ORACLE_HOME= y =LD_LIBRARY_PATH= al directorio de instalación
-- Puede ser necesaria la libería =libaio=
+- Tras descomprimir, hay que definir la variable =LD_LIBRARY_PATH= al directorio de instalación
+  - Otros años ha echo falta también =ORACLE_HOME=
+- Puede ser necesaria la libería =libaio= o =libnsl=
 
 
 

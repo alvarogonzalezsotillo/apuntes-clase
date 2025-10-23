@@ -1,0 +1,111 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE: Awardspace
+#+SUBTITLE: 
+#+KEYWORDS: 
+#+OPTIONS: reveal_single_file:nil
+
+
+* Awardspace
+- Hosting LAMP
+  - PHP
+  - MySQL
+- Opciones gratuitas y de pago
+  - Una opción de pago se puede considerar como /material escolar/, como un /pen drive/ o un libro.
+  - También puede ser útil para el proyecto intermodular  
+  
+#+reveal: split
+#+caption: Resumen de características gratuitas  
+[[file:./awardspace/clipboard-20251022T083641.png]]
+
+#+reveal: split
+#+caption: Algunas opciones de pago
+[[file:./awardspace/clipboard-20251022T083808.png]]
+
+* Dominios
+
+Aquí se enlazan dominos de DNS con directorios del espacio de ficheros. Hay que
+1. Crear un subdominio
+   - Opciones gratuitas y de pago
+2. Comprobar el directorio donde se alojará   
+
+#+reveal: split
+#+caption: Gestor de dominios
+[[file:./awardspace/clipboard-20251021T190441.png]]
+
+#+reveal: split
+#+caption: Creación de dominio
+[[file:./awardspace/clipboard-20251021T191106.png]]
+
+#+reveal: split
+#+caption: Directorio asociado al dominio
+[[file:./awardspace/clipboard-20251021T191330.png]]
+
+
+
+* Ficheros
+
+1. Descomprimir wordpress en local
+2. Subir los ficheros
+   - Con interfaz web (no recomendado)
+   - Con ftp y filezilla    
+3. Atentos a las limitaciones
+   - =Response:	530 Sorry, Only 5 connections per host are allowed=:
+   - bajar el número de conexiones simultáneas de filezilla
+4. Puede tardar incluso una hora ☹️
+
+#+reveal: split
+#+caption: Configuración FTP
+[[file:./awardspace/clipboard-20251021T192207.png]]
+   
+#+reveal: split
+#+caption: Cuenta de FTP
+[[file:./awardspace/clipboard-20251021T192135.png]]
+
+
+* Editar ficheros
+Se puede hacer:
+- Montando el directorio por sftp (cómodo, pero al ser gratuito es muy lento)
+- Con filezilla
+- Con el editor de la interfaz web de ficheros
+
+#+reveal: split
+#+caption: Editar un fichero via web  
+[[file:./awardspace/clipboard-20251021T194922.png]]
+
+* Base de datos mysql   
+
+1. Crear base de datos
+   - Recordar host, usuario, contraseña y nombre
+2. Se puede manejar con phpmyadmin
+
+#+reveal: split
+#+caption: Configuración de bases de datos   
+[[file:./awardspace/clipboard-20251021T193603.png]]
+
+#+reveal: split
+#+caption: Creación de base de datos
+[[file:./awardspace/clipboard-20251021T193707.png]]
+
+#+reveal: split
+#+caption: Información de la base de datos
+[[file:./awardspace/clipboard-20251021T193827.png]]
+
+
+* Referencias
+#+include: "../../../common/footer.org"
+
+** privado :noexport:
+
+Host de la Base de Datos
+fdb1029.awardspace.net
+Puerto de la Base de Datos:
+3306
+Nombre de la Base de Datos
+4532719_wp
+Usuario de la Base de Datos:
+4532719_wp
+Contraseña de la Base de Datos
+La contraseña para 4532719_wp Cambiar
+Versión de la Base de Datos:
+8.0
+ebg13: ;h#eZurP7s_)2e2j

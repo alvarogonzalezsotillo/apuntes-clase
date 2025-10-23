@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-10-23 jue 08:55 -->
+<!-- 2025-10-23 jue 08:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -204,10 +204,10 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000007">1. Introducción</a></li>
+<li><a href="#org000000e">1. Introducción</a></li>
 <li><a href="#ciclo-de-vida-del-software">2. Ciclo de vida del software</a></li>
 <li><a href="#lenguajes-de-programación">3. Lenguajes de programación</a></li>
-<li><a href="#org0000011">4. Referencias</a></li>
+<li><a href="#org0000021">4. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -257,8 +257,8 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000007" class="outline-2">
-<h2 id="org0000007"><span class="section-number-2">1.</span> Introducción</h2>
+<div id="outline-container-org000000e" class="outline-2">
+<h2 id="org000000e"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>En esta Unidad aprenderemos a
@@ -271,8 +271,8 @@ informático.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000000" class="outline-3">
-<h3 id="org0000000"><span class="section-number-3">1.1.</span> Tipos de software</h3>
+<div id="outline-container-org0000001" class="outline-3">
+<h3 id="org0000001"><span class="section-number-3">1.1.</span> Tipos de software</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><b>De sistema</b> (Sistema operativo, <i>drivers</i> -controladores-)
@@ -284,6 +284,12 @@ informático.</li>
 <li><b>De aplicación</b> (Suite ofimática, Navegador, Edición de imagen, &#x2026;)</li>
 <li><b>De desarrollo</b> (Editores, compiladores, intérpretes, &#x2026;)</li>
 </ul>
+
+
+<div id="org0000000" class="figure">
+<p><img src="https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png" alt="drivers-192x350.png" />
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-relación-hardware-software" class="outline-3">
@@ -294,23 +300,61 @@ informático.</li>
 <ul class="org-ul">
 <li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
 </ul></li>
-</ul>
-
-
-<ul class="org-ul">
 <li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
-
 <li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
-
 <li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
 </ul>
 </div>
 </div>
 <div id="outline-container-org0000004" class="outline-3">
-<h3 id="org0000004"><span class="section-number-3">1.3.</span> Arquitectura de Von neuman</h3>
+<h3 id="org0000004"><span class="section-number-3">1.3.</span> ¿pero qué es un ordenador?</h3>
 <div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Es un dispositivo capaz de
+<ul class="org-ul">
+<li>Ejecutar órdenes de forma secuencial</li>
+<li>Con dos tipos especiales de órdenes
+<ul class="org-ul">
+<li>Condicionales: se ejecutan dependiendo de los datos disponibles</li>
+<li>Salto: se interrumpe el orden normal de ejecución</li>
+</ul></li>
+</ul></li>
 
-<div id="org0000003" class="figure">
+<li>Preguntas:
+<ul class="org-ul">
+<li>¿una reloj digital es un ordenador?</li>
+<li>¿una <a href="https://www.casio.com/es/scientific-calculators/product.FX-55PLUS/">calculadora</a> es un <a href="https://www.casio.com/es/scientific-calculators/product.FX-9860GIII/">ordenador</a>?</li>
+<li>¿<a href="https://bogdanthegeek.github.io/blog/projects/vapeserver/">un vaper es un ordenador</a>?</li>
+</ul></li>
+</ul>
+
+<ul class="org-ul">
+<li>Conclusión
+<ul class="org-ul">
+<li>Muchísimos dispositivos contienen ordenadores</li>
+<li>No todos esos ordenadores se exponen al usuario final
+<ul class="org-ul">
+<li>El usuario final no puede modificar los programas</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000008" class="outline-3">
+<h3 id="org0000008"><span class="section-number-3">1.4.</span> Arquitectura de Von neuman</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>La <a href="https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing#Descripci%C3%B3n_informal">máquina de Turing</a> distinguía entre datos y programa</li>
+<li>Pero los programas son también datos. Esto posibilita:
+<ul class="org-ul">
+<li>Emuladores</li>
+<li>Programas que hacen programas</li>
+<li>Actualización de software</li>
+</ul></li>
+</ul>
+
+
+<div id="org0000007" class="figure">
 <p><img src="https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png" alt="word-image200.png" />
 </p>
 <p><span class="figure-number">Figura 1: </span>Arquitectura de Von Neuman</p>
@@ -318,7 +362,7 @@ informático.</li>
 </div>
 </div>
 <div id="outline-container-códigos-fuente-objeto-y-ejecutable" class="outline-3">
-<h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.4.</span> Códigos fuente, objeto y ejecutable</h3>
+<h3 id="códigos-fuente-objeto-y-ejecutable"><span class="section-number-3">1.5.</span> Códigos fuente, objeto y ejecutable</h3>
 <div class="outline-text-3" id="text-códigos-fuente-objeto-y-ejecutable">
 <ul class="org-ul">
 <li><b>Código fuente</b>: archivo de texto legible escrito en un lenguaje de programación.</li>
@@ -327,15 +371,15 @@ informático.</li>
 <li>Pueden ser ya instrucciones legibles por la CPU</li>
 <li>O puede ser un formato intermedio</li>
 </ul></li>
-<li><b>Código ejecutable</b>: archivo binario ejecutable.
+<li><b>Código ejecutable</b>: código máquina
 <ul class="org-ul">
-<li>En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
+<li>En lenguajes interpretados no existe código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, &#x2026;</li>
 <li>Aunque podría existir en memoria (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT compiler</a>)</li>
 </ul></li>
 </ul>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador, equivalente a código ejecutable</label><pre class="src src-asm"><span style="color: #edd400; font-weight: bold;">objdump</span> -d  /usr/bin/ls
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador amd64, y su equivalente a código máquina</label><pre class="src src-asm"><span style="color: #edd400; font-weight: bold;">objdump</span> -d  /usr/bin/ls
 
 
 /usr/bin/ls:     file format elf64-x86-64
@@ -370,6 +414,15 @@ informático.</li>
 </div>
 </div>
 </div>
+<div id="outline-container-org000000b" class="outline-3">
+<h3 id="org000000b"><span class="section-number-3">1.6.</span> Para entenderlo mejor</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Simulador de CPU: <a href="https://cpuvisualsimulator.github.io/">https://cpuvisualsimulator.github.io/</a></li>
+<li>Compilador online: <a href="https://godbolt.org/">https://godbolt.org/</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div id="outline-container-ciclo-de-vida-del-software" class="outline-2">
 <h2 id="ciclo-de-vida-del-software"><span class="section-number-2">2.</span> Ciclo de vida del software</h2>
@@ -380,18 +433,13 @@ informático.</li>
 <div class="outline-text-3" id="text-ingeniería-de-software">
 <blockquote>
 <p>
-Disciplina que estudia los principios y metodologías para el desarrollo
-y mantenimiento de sistemas software.
+Disciplina que estudia los principios y metodologías para el desarrollo y mantenimiento de sistemas software.
 </p>
 </blockquote>
 
 <ul class="org-ul">
-<li>Algunos autores consideran que "<b><i>desarrollo de software</i></b>" es un
-término más apropiado que "<b><i>ingeniería de software</i></b>" puesto que este
-último implica niveles de rigor y prueba de procesos que no son
-apropiados para todo tipo de desarrollo de software.</li>
-<li><a href="https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software">Ingeniería
-del software</a></li>
+<li>Algunos autores consideran que "<b><i>desarrollo de software</i></b>" es un término más apropiado que "<b><i>ingeniería de software</i></b>" puesto que este último implica niveles de rigor y prueba de procesos que no son apropiados para todo tipo de desarrollo de software.</li>
+<li><a href="https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software">Ingeniería del software</a></li>
 </ul>
 </div>
 </div>
@@ -403,16 +451,16 @@ del software</a></li>
 <h4 id="fases-principales"><span class="section-number-4">2.2.1.</span> <b><i>Fases principales</i></b></h4>
 <div class="outline-text-4" id="text-fases-principales">
 <ul class="org-ul">
-<li><b>ANÁLISIS</b><br /></li>
-<li><b>DISEÑO</b></li>
-<li><b>CODIFICACIÓN</b></li>
-<li><b>PRUEBAS</b></li>
-<li><b>MANTENIMIENTO</b></li>
+<li><b>ANÁLISIS</b>: Qué debe hacer la aplicación.</li>
+<li><b>DISEÑO</b>: Cómo se va a organizar internamente la aplicación. Sus decisiones no afectan directamente al usario, más allá de elegir una plataforma.</li>
+<li><b>CODIFICACIÓN</b>: Realización de la aplicación.</li>
+<li><b>PRUEBAS</b>: Búsqueda de defectos.</li>
+<li><b>MANTENIMIENTO</b>: Solución de defectos que escaparon a las pruebas, o adaptación a nuevos requisitos.</li>
 </ul>
 </div>
 </div>
 <div id="outline-container-análisis" class="outline-4">
-<h4 id="análisis"><span class="section-number-4">2.2.2.</span> <b>ANÁLISIS</b></h4>
+<h4 id="análisis"><span class="section-number-4">2.2.2.</span> ANÁLISIS</h4>
 <div class="outline-text-4" id="text-análisis">
 <ul class="org-ul">
 <li>Se determina y define claramente las necesidades del cliente y se
@@ -432,7 +480,7 @@ especifica los requisitos que debe cumplir el software a desarrollar.</li>
 </div>
 </div>
 <div id="outline-container-diseño" class="outline-4">
-<h4 id="diseño"><span class="section-number-4">2.2.3.</span> <b>DISEÑO</b></h4>
+<h4 id="diseño"><span class="section-number-4">2.2.3.</span> DISEÑO</h4>
 <div class="outline-text-4" id="text-diseño">
 <ul class="org-ul">
 <li>Se descompone y organiza el sistema en elementos componentes que
@@ -450,20 +498,21 @@ componentes.</li>
 </div>
 </div>
 <div id="outline-container-codificación" class="outline-4">
-<h4 id="codificación"><span class="section-number-4">2.2.4.</span> <b>CODIFICACIÓN</b></h4>
+<h4 id="codificación"><span class="section-number-4">2.2.4.</span> CODIFICACIÓN</h4>
 <div class="outline-text-4" id="text-codificación">
 <ul class="org-ul">
 <li>Se escribe el código fuente de cada componente.</li>
-<li>Pueden utilizarse distintos lenguajes informáticos:
+<li>Pueden utilizarse distintos lenguajes informáticos y plataformas:
 <ul class="org-ul">
-<li><b>Lenguajes de programación</b>: C, C++, Java, Javascript, &#x2026;</li>
-<li><b>Lenguajes de otro tipo</b>: HTML, XML, JSON, &#x2026;</li>
+<li>Aplicación web: javascript, HTML, PHP, JSP, ASP&#x2026;</li>
+<li>Escritorio: C++, python, java, C#</li>
+<li>Móvil: flutter, kotlin&#x2026;</li>
 </ul></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-pruebas" class="outline-4">
-<h4 id="pruebas"><span class="section-number-4">2.2.5.</span> <b>PRUEBAS</b></h4>
+<h4 id="pruebas"><span class="section-number-4">2.2.5.</span> PRUEBAS</h4>
 <div class="outline-text-4" id="text-pruebas">
 <ul class="org-ul">
 <li>El principal objetivo de las pruebas debe ser conseguir que el
@@ -474,7 +523,7 @@ diferentes.</li>
 </div>
 </div>
 <div id="outline-container-mantenimiento" class="outline-4">
-<h4 id="mantenimiento"><span class="section-number-4">2.2.6.</span> <b>MANTENIMIENTO</b></h4>
+<h4 id="mantenimiento"><span class="section-number-4">2.2.6.</span> MANTENIMIENTO</h4>
 <div class="outline-text-4" id="text-mantenimiento">
 <ul class="org-ul">
 <li>Durante la explotación del sistema software es necesario realizar
@@ -489,6 +538,10 @@ previas.</li>
 <li><b>Adaptativo</b>: se adapta a nuevos entornos.</li>
 </ul></li>
 </ul>
+
+<p>
+¿Qué tipos de mantenimiento suponen una nueva fase de análisis y diseño?    
+</p>
 </div>
 </div>
 </div>
@@ -498,8 +551,11 @@ previas.</li>
 <ul class="org-ul">
 <li>Ingeniería de sistemas: <b>Especificación del sistema</b></li>
 <li>ANÁLISIS: <b>Especificación de requisitos del software</b></li>
-<li>DISENO arquitectónico: <b>Documento de arquitectura del software</b></li>
-<li>DISENO detallado: <b>Especificación de módulos y funciones</b></li>
+<li>DISEÑO
+<ul class="org-ul">
+<li>arquitectónico: <b>Documento de arquitectura del software</b></li>
+<li>detallado: <b>Especificación de módulos y funciones</b></li>
+</ul></li>
 <li>CODIFICACIÓN: <b>Código fuente</b></li>
 </ul>
 </div>
@@ -542,7 +598,7 @@ previas.</li>
 <h3 id="modelo-en-cascada-i"><span class="section-number-3">2.6.</span> Modelo en cascada (I)</h3>
 <div class="outline-text-3" id="text-modelo-en-cascada-i">
 
-<div id="org000000a" class="figure">
+<div id="org0000011" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png" alt="cascada.png" />
 </p>
 <p><span class="figure-number">Figura 2: </span>Modelo en cascada</p>
@@ -568,7 +624,7 @@ actividades.</li>
 <h3 id="modelo-en-v-i"><span class="section-number-3">2.8.</span> Modelo en V (I)</h3>
 <div class="outline-text-3" id="text-modelo-en-v-i">
 
-<div id="org000000b" class="figure">
+<div id="org0000012" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png" alt="v.png" />
 </p>
 <p><span class="figure-number">Figura 3: </span>Modelo en V</p>
@@ -601,7 +657,7 @@ actividades.</li>
 </ul>
 
 
-<div id="org000000c" class="figure">
+<div id="org0000013" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png" alt="prototipos.png" />
 </p>
 <p><span class="figure-number">Figura 4: </span>Modelo de construcción de prototipos</p>
@@ -628,7 +684,7 @@ desarrollar.</li>
 <ul class="org-ul">
 <li>Tipos de prototipos:
 <ul class="org-ul">
-<li><b>Prototipos rápidos</b>
+<li><b>Prototipos rápidos</b> (desechables)
 <ul class="org-ul">
 <li>El prototipo puede estar desarrollado usando otro lenguaje y/o
 herramientas.</li>
@@ -654,7 +710,7 @@ clásicos: análisis, diseño, codificación, &#x2026;</li>
 </ul>
 
 
-<div id="org000000d" class="figure">
+<div id="org0000014" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png" alt="espiral.png" />
 </p>
 <p><span class="figure-number">Figura 5: </span>Modelo en espiral</p>
@@ -664,21 +720,16 @@ clásicos: análisis, diseño, codificación, &#x2026;</li>
 <div id="outline-container-modelo-en-espiral-ii" class="outline-3">
 <h3 id="modelo-en-espiral-ii"><span class="section-number-3">2.14.</span> Modelo en espiral (II)</h3>
 <div class="outline-text-3" id="text-modelo-en-espiral-ii">
-</div>
-<div id="outline-container-aplicado-a-la-programación-orientada-a-objetos" class="outline-4">
-<h4 id="aplicado-a-la-programación-orientada-a-objetos"><span class="section-number-4">2.14.1.</span> <b><i>Aplicado a la programación orientada a objetos</i></b></h4>
-<div class="outline-text-4" id="text-aplicado-a-la-programación-orientada-a-objetos">
 <ul class="org-ul">
 <li>En la actividad de <b><i>ingeniería</i></b> se da gran importancia a la
 reutilización de código.</li>
 </ul>
 
 
-<div id="org000000e" class="figure">
+<div id="org0000015" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png" alt="espiral-poo.png" />
 </p>
 <p><span class="figure-number">Figura 6: </span>Modelo en espiral</p>
-</div>
 </div>
 </div>
 </div>
@@ -743,7 +794,7 @@ Pizarra kanban
 </p>
 
 
-<div id="org000000f" class="figure">
+<div id="org0000016" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png" alt="kanban-board.png" />
 </p>
 <p><span class="figure-number">Figura 7: </span>Pizarra kanban</p>
@@ -768,7 +819,7 @@ por el cliente</b>.</li>
 <h4 id="scrum-ii"><span class="section-number-4">2.16.4.</span> <b>Scrum (II)</b></h4>
 <div class="outline-text-4" id="text-scrum-ii">
 
-<div id="org0000010" class="figure">
+<div id="org0000017" class="figure">
 <p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png" alt="scrum.png" />
 </p>
 <p><span class="figure-number">Figura 8: </span>Proceso SCRUM</p>
@@ -817,8 +868,29 @@ por el cliente</b>.</li>
 <h2 id="lenguajes-de-programación"><span class="section-number-2">3.</span> Lenguajes de programación</h2>
 <div class="outline-text-2" id="text-lenguajes-de-programación">
 </div>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">3.1.</span> Evolución</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Primera generación: lenguaje máquina.</li>
+<li>Segunda generación: se crearon los primeros lenguajes ensambladores.</li>
+<li>Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…</li>
+<li>Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+<ul class="org-ul">
+<li><a href="https://www.nocode.tech/article/what-is-no-code">Nocode</a></li>
+<li>Excel</li>
+</ul></li>
+<li>Quinta generación: Basados en restricciones declarativas, para IA clásica (prolog)</li>
+<li><a href="https://en.wikipedia.org/wiki/Vibe_coding">Vibe coding</a>: utilizar sistemas LLM para la programación
+<ul class="org-ul">
+<li>Nuevos (apenas dos años reales)</li>
+<li>Prometedores, pero solo para programadores con experiencia previa</li>
+</ul></li>
+</ul>
+</div>
+</div>
 <div id="outline-container-obtención-de-código-ejecutable" class="outline-3">
-<h3 id="obtención-de-código-ejecutable"><span class="section-number-3">3.1.</span> Obtención de código ejecutable</h3>
+<h3 id="obtención-de-código-ejecutable"><span class="section-number-3">3.2.</span> Obtención de código ejecutable</h3>
 <div class="outline-text-3" id="text-obtención-de-código-ejecutable">
 <ul class="org-ul">
 <li>Para obtener código binario ejecutable tenemos 2 opciones:
@@ -830,7 +902,7 @@ por el cliente</b>.</li>
 </div>
 </div>
 <div id="outline-container-proceso-de-compilacióninterpretación" class="outline-3">
-<h3 id="proceso-de-compilacióninterpretación"><span class="section-number-3">3.2.</span> Proceso de compilación/interpretación</h3>
+<h3 id="proceso-de-compilacióninterpretación"><span class="section-number-3">3.3.</span> Proceso de compilación/interpretación</h3>
 <div class="outline-text-3" id="text-proceso-de-compilacióninterpretación">
 <ul class="org-ul">
 <li>La compilación/interpretación del código fuente se lleva a cabo en dos
@@ -847,7 +919,7 @@ lo deseado.</li>
 </div>
 </div>
 <div id="outline-container-lenguajes-compilados" class="outline-3">
-<h3 id="lenguajes-compilados"><span class="section-number-3">3.3.</span> Lenguajes compilados</h3>
+<h3 id="lenguajes-compilados"><span class="section-number-3">3.4.</span> Lenguajes compilados</h3>
 <div class="outline-text-3" id="text-lenguajes-compilados">
 <ul class="org-ul">
 <li>Ejemplos: C, C++</li>
@@ -856,9 +928,28 @@ lo deseado.</li>
 fuente es modificado.</li>
 </ul>
 </div>
+<div id="outline-container-org000001b" class="outline-4">
+<h4 id="org000001b"><span class="section-number-4">3.4.1.</span> Ejemplo compilación</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li><code>gcc -E</code>: Preprocessor, but don't compile</li>
+<li><code>gcc -S</code>: Compile but don't assemble</li>
+<li><code>gcc -c</code>: Preprocess, compile, and assemble, but don't link</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #729fcf;">#include</span> <span style="color: #ad7fa8; font-style: italic;">&lt;stdio&gt;</span>
+
+<span style="color: #8ae234; font-weight: bold;">void</span> <span style="color: #edd400; font-weight: bold;">main</span>(){
+  <span style="color: #8ae234;">std</span>::printf( <span style="color: #ad7fa8; font-style: italic;">"Resultado:%d"</span>, 5*7 );
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-lenguajes-interpretados" class="outline-3">
-<h3 id="lenguajes-interpretados"><span class="section-number-3">3.4.</span> Lenguajes interpretados</h3>
+<h3 id="lenguajes-interpretados"><span class="section-number-3">3.5.</span> Lenguajes interpretados</h3>
 <div class="outline-text-3" id="text-lenguajes-interpretados">
 <ul class="org-ul">
 <li>Ejemplos: PHP, Javascript</li>
@@ -868,7 +959,7 @@ fuente es modificado.</li>
 </div>
 </div>
 <div id="outline-container-java-i" class="outline-3">
-<h3 id="java-i"><span class="section-number-3">3.5.</span> JAVA (I)</h3>
+<h3 id="java-i"><span class="section-number-3">3.6.</span> JAVA (I)</h3>
 <div class="outline-text-3" id="text-java-i">
 <ul class="org-ul">
 <li>Lenguajes compilado e interpretado.</li>
@@ -881,7 +972,7 @@ de Java en lugar de código objeto nativo.</li>
 </div>
 </div>
 <div id="outline-container-java-ii" class="outline-3">
-<h3 id="java-ii"><span class="section-number-3">3.6.</span> JAVA (II)</h3>
+<h3 id="java-ii"><span class="section-number-3">3.7.</span> JAVA (II)</h3>
 <div class="outline-text-3" id="text-java-ii">
 <ul class="org-ul">
 <li>Ventajas:
@@ -892,13 +983,13 @@ de Java en lugar de código objeto nativo.</li>
 </ul></li>
 <li>Desventajas:
 <ul class="org-ul">
-<li>Menos eficiente que los lenguajes compilados</li>
+<li>Menos eficiente que los lenguajes compilados (con JIT, solo inicialmente)</li>
 </ul></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-tipos-i" class="outline-3">
-<h3 id="tipos-i"><span class="section-number-3">3.7.</span> Tipos (I)</h3>
+<h3 id="tipos-i"><span class="section-number-3">3.8.</span> Tipos (I)</h3>
 <div class="outline-text-3" id="text-tipos-i">
 <ul class="org-ul">
 <li>Según la forma en la que operan:
@@ -912,7 +1003,7 @@ resultado.</li>
 </div>
 </div>
 <div id="outline-container-tipos-ii" class="outline-3">
-<h3 id="tipos-ii"><span class="section-number-3">3.8.</span> Tipos (II)</h3>
+<h3 id="tipos-ii"><span class="section-number-3">3.9.</span> Tipos (II)</h3>
 <div class="outline-text-3" id="text-tipos-ii">
 <ul class="org-ul">
 <li>Tipos de <b>lenguajes declarativos</b>:
@@ -926,7 +1017,7 @@ resultado.</li>
 </div>
 </div>
 <div id="outline-container-tipos-iii" class="outline-3">
-<h3 id="tipos-iii"><span class="section-number-3">3.9.</span> Tipos (III)</h3>
+<h3 id="tipos-iii"><span class="section-number-3">3.10.</span> Tipos (III)</h3>
 <div class="outline-text-3" id="text-tipos-iii">
 <ul class="org-ul">
 <li>Tipos de <b>lenguajes imperativos</b>:
@@ -942,7 +1033,7 @@ estructurados.</li>
 </div>
 </div>
 <div id="outline-container-tipos-iv" class="outline-3">
-<h3 id="tipos-iv"><span class="section-number-3">3.10.</span> Tipos (IV)</h3>
+<h3 id="tipos-iv"><span class="section-number-3">3.11.</span> Tipos (IV)</h3>
 <div class="outline-text-3" id="text-tipos-iv">
 <ul class="org-ul">
 <li>Tipos de lenguajes según nivel de abstracción:
@@ -954,36 +1045,20 @@ estructurados.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-evolución" class="outline-3">
-<h3 id="evolución"><span class="section-number-3">3.11.</span> Evolución</h3>
-<div class="outline-text-3" id="text-evolución">
-<ul class="org-ul">
-<li>Código binario</li>
-<li>Ensamblador</li>
-<li>Lenguajes estructurados</li>
-<li>Lenguajes orientados a objetos</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-historia-simplificada" class="outline-3">
-<h3 id="historia-simplificada"><span class="section-number-3">3.12.</span> Historia simplificada</h3>
-<div class="outline-text-3" id="text-historia-simplificada">
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.12.</span> Historia</h3>
+<div class="outline-text-3" id="text-3-12">
 <p>
-<a href="http://rigaux.org/language-study/diagram-light.png">Historia
-simplificada</a>
+<a href="http://rigaux.org/language-study/diagram-light.png">Historia simplificada</a>
 </p>
-</div>
-</div>
-<div id="outline-container-historia-detallada" class="outline-3">
-<h3 id="historia-detallada"><span class="section-number-3">3.13.</span> Historia detallada</h3>
-<div class="outline-text-3" id="text-historia-detallada">
+
 <p>
 <a href="http://rigaux.org/language-study/diagram.png">Historia detallada</a>
 </p>
 </div>
 </div>
 <div id="outline-container-criterios-para-la-selección-de-un-lenguaje" class="outline-3">
-<h3 id="criterios-para-la-selección-de-un-lenguaje"><span class="section-number-3">3.14.</span> Criterios para la selección de un lenguaje</h3>
+<h3 id="criterios-para-la-selección-de-un-lenguaje"><span class="section-number-3">3.13.</span> Criterios para la selección de un lenguaje</h3>
 <div class="outline-text-3" id="text-criterios-para-la-selección-de-un-lenguaje">
 <ul class="org-ul">
 <li>Campo de aplicación</li>
@@ -993,13 +1068,14 @@ simplificada</a>
 <li>Base de usuarios</li>
 <li>Reusabilidad</li>
 <li>Transportabilidad</li>
+<li>Plataforma de ejecución</li>
 <li>Imposición del cliente</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000011" class="outline-2">
-<h2 id="org0000011"><span class="section-number-2">4.</span> Referencias</h2>
+<div id="outline-container-org0000021" class="outline-2">
+<h2 id="org0000021"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Formatos:
@@ -1022,7 +1098,7 @@ simplificada</a>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-10-23 jue 08:55</p>
+<p class="date">Created: 2025-10-23 jue 08:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

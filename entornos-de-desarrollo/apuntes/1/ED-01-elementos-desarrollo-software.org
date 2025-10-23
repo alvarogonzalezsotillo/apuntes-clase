@@ -20,7 +20,7 @@
 - *De aplicación* (Suite ofimática, Navegador, Edición de imagen, ...)
 - *De desarrollo* (Editores, compiladores, intérpretes, ...)
 
-
+[[https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png]]
 
 ** Relación Hardware-Software
 :PROPERTIES:
@@ -28,17 +28,35 @@
 :END:
 - *Disco duro* : almacena de forma permanente los archivos ejecutables y los archivos de datos.
   - El disco duro se considera un periférico de E/S (Entrada/Salida).
-
-
 - *Memoria RAM* : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.
-
 - *CPU* : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.
-
 - *E/S*: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, ...
 
+** ¿pero qué es un ordenador?
+- Es un dispositivo capaz de
+  - Ejecutar órdenes de forma secuencial
+  - Con dos tipos especiales de órdenes
+    - Condicionales: se ejecutan dependiendo de los datos disponibles
+    - Salto: se interrumpe el orden normal de ejecución
 
+- Preguntas:
+  - ¿una reloj digital es un ordenador?
+  - ¿una [[https://www.casio.com/es/scientific-calculators/product.FX-55PLUS/][calculadora]] es un [[https://www.casio.com/es/scientific-calculators/product.FX-9860GIII/][ordenador]]? 
+  - ¿[[https://bogdanthegeek.github.io/blog/projects/vapeserver/][un vaper es un ordenador]]?
+
+#+reveal: split
+- Conclusión
+  - Muchísimos dispositivos contienen ordenadores
+  - No todos esos ordenadores se exponen al usuario final
+    - El usuario final no puede modificar los programas  
 
 ** Arquitectura de Von neuman
+- La [[https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing#Descripci%C3%B3n_informal][máquina de Turing]] distinguía entre datos y programa
+- Pero los programas son también datos. Esto posibilita:
+  - Emuladores
+  - Programas que hacen programas
+  - Actualización de software    
+
 #+caption: Arquitectura de Von Neuman
 [[https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png]]
 
@@ -50,13 +68,13 @@
 - *Código objeto* (intermedio): archivo binario no ejecutable.
   - Pueden ser ya instrucciones legibles por la CPU
   - O puede ser un formato intermedio  
-- *Código ejecutable*: archivo binario ejecutable.
-  - En lenguajes interpretados no exite código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, ...
+- *Código ejecutable*: código máquina
+  - En lenguajes interpretados no existe código objeto, ni ejecutable. Solo código fuente. Por ejemplo: PHP, Javascript, ...
   - Aunque podría existir en memoria ([[https://en.wikipedia.org/wiki/Just-in-time_compilation][JIT compiler]])  
 
 #+reveal: split
 
-#+caption: Código ensamblador, equivalente a código ejecutable
+#+caption: Código ensamblador amd64, y su equivalente a código máquina
 #+begin_src asm
 objdump -d  /usr/bin/ls
 
@@ -91,7 +109,11 @@ Disassembly of section .plt:
  ...  
 #+end_src
 
-  
+** Para entenderlo mejor
+
+- Simulador de CPU: [[https://cpuvisualsimulator.github.io/]]
+- Compilador online: [[https://godbolt.org/][https://godbolt.org/]]   
+
 
 * Ciclo de vida del software
 :PROPERTIES:
@@ -103,17 +125,12 @@ Disassembly of section .plt:
 :END:
 
 #+begin_quote
-Disciplina que estudia los principios y metodologías para el desarrollo
-y mantenimiento de sistemas software.
+Disciplina que estudia los principios y metodologías para el desarrollo y mantenimiento de sistemas software.
 
 #+end_quote
 
-- Algunos autores consideran que "*/desarrollo de software/*" es un
-  término más apropiado que "*/ingeniería de software/*" puesto que este
-  último implica niveles de rigor y prueba de procesos que no son
-  apropiados para todo tipo de desarrollo de software.
-- [[https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software][Ingeniería
-  del software]]
+- Algunos autores consideran que "*/desarrollo de software/*" es un término más apropiado que "*/ingeniería de software/*" puesto que este último implica niveles de rigor y prueba de procesos que no son apropiados para todo tipo de desarrollo de software.
+- [[https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software][Ingeniería del software]]
 
 ** Desarrollo de software
 :PROPERTIES:
@@ -123,13 +140,13 @@ y mantenimiento de sistemas software.
 :PROPERTIES:
 :CUSTOM_ID: fases-principales
 :END:
-- *ANÁLISIS*\\
-- *DISEÑO*
-- *CODIFICACIÓN*
-- *PRUEBAS*
-- *MANTENIMIENTO*
+- *ANÁLISIS*: Qué debe hacer la aplicación.
+- *DISEÑO*: Cómo se va a organizar internamente la aplicación. Sus decisiones no afectan directamente al usario, más allá de elegir una plataforma.
+- *CODIFICACIÓN*: Realización de la aplicación.
+- *PRUEBAS*: Búsqueda de defectos.
+- *MANTENIMIENTO*: Solución de defectos que escaparon a las pruebas, o adaptación a nuevos requisitos.
 
-*** *ANÁLISIS*
+*** ANÁLISIS
 :PROPERTIES:
 :CUSTOM_ID: análisis
 :END:
@@ -145,7 +162,7 @@ y mantenimiento de sistemas software.
   - Dividir y jerarquizar el modelo
   - Fijar criterios de validación
 
-*** *DISEÑO*
+*** DISEÑO
 :PROPERTIES:
 :CUSTOM_ID: diseño
 :END:
@@ -159,16 +176,17 @@ y mantenimiento de sistemas software.
   - Diseño de datos
   - Diseño de interfaz de usuario
 
-*** *CODIFICACIÓN*
+*** CODIFICACIÓN
 :PROPERTIES:
 :CUSTOM_ID: codificación
 :END:
 - Se escribe el código fuente de cada componente.
-- Pueden utilizarse distintos lenguajes informáticos:
-  - *Lenguajes de programación*: C, C++, Java, Javascript, ...
-  - *Lenguajes de otro tipo*: HTML, XML, JSON, ...
+- Pueden utilizarse distintos lenguajes informáticos y plataformas:
+  - Aplicación web: javascript, HTML, PHP, JSP, ASP...
+  - Escritorio: C++, python, java, C#
+  - Móvil: flutter, kotlin...
 
-*** *PRUEBAS*
+*** PRUEBAS
 :PROPERTIES:
 :CUSTOM_ID: pruebas
 :END:
@@ -177,7 +195,7 @@ y mantenimiento de sistemas software.
 - Deberemos someter al programa al máximo número de situaciones
   diferentes.
 
-*** *MANTENIMIENTO*
+*** MANTENIMIENTO
 :PROPERTIES:
 :CUSTOM_ID: mantenimiento
 :END:
@@ -191,14 +209,17 @@ y mantenimiento de sistemas software.
   - *Evolutivo*: se añade funcionalidades nuevas.
   - *Adaptativo*: se adapta a nuevos entornos.
 
+¿Qué tipos de mantenimiento suponen una nueva fase de análisis y diseño?    
+
 ** Resultado tras cada fase (I)
 :PROPERTIES:
 :CUSTOM_ID: resultado-tras-cada-fase-i
 :END:
 - Ingeniería de sistemas: *Especificación del sistema*
 - ANÁLISIS: *Especificación de requisitos del software*
-- DISENO arquitectónico: *Documento de arquitectura del software*
-- DISENO detallado: *Especificación de módulos y funciones*
+- DISEÑO
+  - arquitectónico: *Documento de arquitectura del software*
+  - detallado: *Especificación de módulos y funciones*
 - CODIFICACIÓN: *Código fuente*
 
 ** Resultado tras cada fase (II)
@@ -290,7 +311,7 @@ y mantenimiento de sistemas software.
 :CUSTOM_ID: prototipos-iii
 :END:
 - Tipos de prototipos:
-  - *Prototipos rápidos*
+  - *Prototipos rápidos* (desechables)
     - El prototipo puede estar desarrollado usando otro lenguaje y/o
       herramientas.
     - Finalmente el prototipo se desecha.
@@ -313,10 +334,6 @@ y mantenimiento de sistemas software.
 ** Modelo en espiral (II)
 :PROPERTIES:
 :CUSTOM_ID: modelo-en-espiral-ii
-:END:
-*** */Aplicado a la programación orientada a objetos/*
-:PROPERTIES:
-:CUSTOM_ID: aplicado-a-la-programación-orientada-a-objetos
 :END:
 - En la actividad de */ingeniería/* se da gran importancia a la
   reutilización de código.
@@ -428,6 +445,19 @@ Pizarra kanban
 :PROPERTIES:
 :CUSTOM_ID: lenguajes-de-programación
 :END:
+** Evolución
+
+  - Primera generación: lenguaje máquina.
+  - Segunda generación: se crearon los primeros lenguajes ensambladores.
+  - Tercera generación: se crean los primeros lenguajes de alto nivel. Ej. C, Pascal, Cobol…
+  - Cuarta generación: son los lenguajes capaces de generar código por si solos, son los llamados RAD, con lo cuales se pueden realizar aplicaciones sin ser un experto en el lenguaje.
+    - [[https://www.nocode.tech/article/what-is-no-code][Nocode]]
+    - Excel
+  - Quinta generación: Basados en restricciones declarativas, para IA clásica (prolog)    
+  - [[https://en.wikipedia.org/wiki/Vibe_coding][Vibe coding]]: utilizar sistemas LLM para la programación
+    - Nuevos (apenas dos años reales)
+    - Prometedores, pero solo para programadores con experiencia previa    
+
 ** Obtención de código ejecutable
 :PROPERTIES:
 :CUSTOM_ID: obtención-de-código-ejecutable
@@ -458,6 +488,19 @@ Pizarra kanban
 - Principal desventaja: Es necesario compilar cada vez que el código
   fuente es modificado.
 
+*** Ejemplo compilación
+- =gcc -E=: Preprocessor, but don't compile
+- =gcc -S=: Compile but don't assemble
+- =gcc -c=: Preprocess, compile, and assemble, but don't link
+
+#+begin_src cpp
+#include <stdio>
+
+void main(){
+  std::printf( "Resultado:%d", 5*7 );
+}
+#+end_src
+  
 ** Lenguajes interpretados
 :PROPERTIES:
 :CUSTOM_ID: lenguajes-interpretados
@@ -486,7 +529,7 @@ Pizarra kanban
   - Relativamente fácil de aprender
   - Buena documentación y base de usuarios
 - Desventajas:
-  - Menos eficiente que los lenguajes compilados
+  - Menos eficiente que los lenguajes compilados (con JIT, solo inicialmente)
 
 ** Tipos (I)
 :PROPERTIES:
@@ -529,26 +572,9 @@ Pizarra kanban
   - Medio nivel: C
   - Alto nivel: C++, Java
 
-** Evolución
-:PROPERTIES:
-:CUSTOM_ID: evolución
-:END:
-- Código binario
-- Ensamblador
-- Lenguajes estructurados
-- Lenguajes orientados a objetos
+** Historia
+[[http://rigaux.org/language-study/diagram-light.png][Historia simplificada]]
 
-** Historia simplificada
-:PROPERTIES:
-:CUSTOM_ID: historia-simplificada
-:END:
-[[http://rigaux.org/language-study/diagram-light.png][Historia
-simplificada]]
-
-** Historia detallada
-:PROPERTIES:
-:CUSTOM_ID: historia-detallada
-:END:
 [[http://rigaux.org/language-study/diagram.png][Historia detallada]]
 
 ** Criterios para la selección de un lenguaje
@@ -562,6 +588,7 @@ simplificada]]
 - Base de usuarios
 - Reusabilidad
 - Transportabilidad
+- Plataforma de ejecución  
 - Imposición del cliente
 
 
