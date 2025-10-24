@@ -12,6 +12,21 @@
 - El nivel de enlace genera grupo de bits (tramas). Los medios físicos transportan señales, que representan los bits.
 
 
+#+begin_export latex
+Ya sea una conexión a una impresora local en el hogar o a un sitio web en otro país, para que se pueda producir cualquier comunicación de red se debe establecer antes una conexión a una red local. Una conexión física puede ser una conexión por cable o una conexión inalámbrica mediante ondas de radio.
+
+El tipo de conexión física utilizada depende de la configuración de la red. Por ejemplo, en muchas oficinas corporativas, los empleados tienen PC de escritorio o portátiles que se conectan físicamente, mediante cables, a un switch compartido. Este tipo de configuración se denomina red cableada. Los datos se transmiten a través de un cable físico.
+
+Además de las conexiones por cable, muchas empresas también ofrecen conexiones inalámbricas para PC portátiles, tablets y smartphones. En el caso de los dispositivos inalámbricos, los datos se transmiten mediante ondas de radio. La conectividad inalámbrica es común a medida que las personas y las empresas descubren sus ventajas. Los dispositivos en una red inalámbrica deben estar conectados a un punto de acceso inalámbrico (AP) o router inalámbrico
+
+La capa física de OSI proporciona los medios de transporte de los bits que conforman una trama de la capa de enlace de datos a través de los medios de red. Esta capa acepta una trama completa desde la capa de enlace de datos y la codifica como una secuencia de señales que se transmiten en los medios locales. Un dispositivo final o un dispositivo intermediario recibe los bits codificados que componen una trama.
+
+Haga clic en Reproducir en la figura para ver un ejemplo del proceso de encapsulación. La última parte de este proceso muestra los bits que se envían a través del medio físico. La capa física codifica las tramas y crea las señales eléctricas, ópticas o de ondas de radio que representan los bits en cada trama. Estas señales se envían por los medios, una a la vez.
+
+La capa física del nodo de destino recupera estas señales individuales de los medios, las restaura a sus representaciones en bits y pasa los bits a la capa de enlace de datos en forma de trama completa.
+
+#+end_export
+
 ** Elementos
 - Elementos de una comunicación:
   -  Emisor: codificar en señales los dígitos binarios que representan las tramas de la capa de enlace de datos.
@@ -46,6 +61,24 @@
 
 #+attr_latex: :width 0.6\textwidth
 [[file:media/estandares-y-niveles.png]]
+
+#+begin_export latex
+
+Los protocolos y las operaciones de las capas OSI superiores se llevan a cabo en software diseñado por ingenieros en software e informáticos. El grupo de trabajo de ingeniería de Internet (IETF) define los servicios y protocolos del conjunto TCP/IP.
+
+La capa física consta de circuitos electrónicos, medios y conectores desarrollados por ingenieros. Por lo tanto, es necesario que las principales organizaciones especializadas en ingeniería eléctrica y en comunicaciones definan los estándares que rigen este hardware.
+
+Existen muchas organizaciones internacionales y nacionales, organizaciones de regulación gubernamentales y empresas privadas que intervienen en el establecimiento y el mantenimiento de los estándares de la capa física. Por ejemplo, los estándares de hardware, medios, codificación y señalización de la capa física están definidos y regidos por estas organizaciones de estándares:
+
+    \item Organización Internacional para la Estandarización (ISO)
+    \item     Asociación de las Industrias de las Telecomunicaciones (TIA) y Asociación de Industrias Electrónicas (EIA)
+    \item     Unión Internacional de Telecomunicaciones (ITU)
+    \item     Instituto Nacional Estadounidense de Estándares (ANSI)
+    \item     Instituto de Ingenieros Eléctricos y Electrónicos (IEEE)
+    \item     Autoridades nacionales reguladoras de las telecomunicaciones, incluida la Federal Communication Commission (FCC) de los Estados Unidos y el Instituto Europeo de Estándares de Telecomunicaciones (ETSI)
+
+Además de estos, a menudo hay grupos de normas de cableado regionales como CSA (Asociación de Normas Canadienses), CENELEC (Comité Europeo de Normalización Electrotécnica) y JSA / JIS (Asociación de Normas Japonesas), que desarrollan especificaciones locales.
+#+end_export
 * Medio de transmisión
 ** Tipos básicos de medios de red:
 -  Cable de cobre. Pulsos eléctricos.
