@@ -209,7 +209,7 @@ $$ bitrate = baudios*bitsporbaudio $$
   - Un semáforo, que puede cambiar cada 0.5 segundos a uno de sus tres colores
   - Un semáforo, que puede cambiar cada 0.5 segundos a cualquier combinación de sus tres colores
   - Una sinusoidal, que 10 veces por segundo puede
-    - cambiar de frecuencia tres a frecuencias posibles
+    - cambiar a tres frecuencias posibles
     - y a la vez, cambiar de amplitud a dos amplitudes posibles
 
 * Codificación de canal
