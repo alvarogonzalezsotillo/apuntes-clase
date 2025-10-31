@@ -44,12 +44,12 @@ pssh --askpass --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 2400 
 echo Parece que estoy dentro
 whoami
 hostname
-printf $PASSWORD | xxd -p -r | sudo --stdin cp /home/profesor/repos/*.repo /etc/yum.repos.d/
-echo 1
-printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes install filezilla
-echo 3
-printf $PASSWORD | xxd -p -r | sudo --stdin rm /etc/yum.repos.d/*.repo
-echo 4
+printf $PASSWORD | xxd -p -r | sudo --stdin sh -c \"sed -i '/10.1.33.202/d' /etc/hosts\"
+printf $PASSWORD | xxd -p -r | sudo --stdin sh -c \"curl http://10.1.0.100/profesores/alvaro/hosts-para-coder.txt >> /etc/hosts\"
+cat /etc/group
+cat /etc/passwd
+cat /etc/hosts
+echo FIN
 "
 
 echo "--------"
