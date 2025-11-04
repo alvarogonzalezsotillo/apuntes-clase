@@ -3,11 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-10-10 vie 10:15 -->
+<!-- 2025-09-18 jue 09:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Instalación de CMS en LAMP</title>
+<title>ENTORNOS DE DESARROLLO</title>
 <meta name="author" content="Álvaro González Sotillo" />
+<meta name="keywords" content=" 0487" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -199,22 +200,24 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Instalación de CMS en LAMP
+<h1 class="title">ENTORNOS DE DESARROLLO
 <br />
-<span class="subtitle"> </span>
+<span class="subtitle"> (CÓDIGO: 0487)</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000000">1. CMS</a></li>
-<li><a href="#org0000003">2. Wordpress</a></li>
-<li><a href="#org0000012">3. Instalación</a></li>
-<li><a href="#org0000015">4. <i>Frontend</i> / <i>backend</i></a></li>
-<li><a href="#org000001e">5. Conceptos Wordpress</a></li>
-<li><a href="#org0000022">6. Roles Wordpress</a></li>
-<li><a href="#org000002b">7. Instalación de otros CMS LAMP</a></li>
-<li><a href="#org000002e">8. Referencias</a></li>
+<li><a href="#org0000000">1. Cómo serán las clases</a></li>
+<li><a href="#org0000003">2. Materiales</a></li>
+<li><a href="#org0000006">3. Entrega de Trabajos</a></li>
+<li><a href="#org000000c">4. Normas</a></li>
+<li><a href="#org000000f">5. Cómo será la evaluación</a></li>
+<li><a href="#org0000012">6. Actividades</a></li>
+<li><a href="#org0000015">7. Contenidos</a></li>
+<li><a href="#org000002a">8. Criterios de evaluación</a></li>
+<li><a href="#org000002d">9. Distribución de RA en unidades de trabajo</a></li>
+<li><a href="#org0000030">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -265,438 +268,438 @@ window.addEventListener("load",()=>{
 
 </style>
 <div id="outline-container-org0000000" class="outline-2">
-<h2 id="org0000000"><span class="section-number-2">1.</span> CMS</h2>
+<h2 id="org0000000"><span class="section-number-2">1.</span> Cómo serán las clases</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><i>Content Management System</i></li>
-<li><p>
-Más simple para un usuario que HTML/CSS
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 1</span> Tipos de CMS</caption>
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Blogs</td>
-<td class="org-left">Páginas corporativas</td>
-<td class="org-left">Foros de soporte</td>
-</tr>
-
-<tr>
-<td class="org-left">Wikis</td>
-<td class="org-left">Trabajo colaborativo (documentos)</td>
-<td class="org-left">Cursos</td>
-</tr>
-
-<tr>
-<td class="org-left">eShop</td>
-<td class="org-left"><i>Personal Information Manager</i></td>
-<td class="org-left">Intercambio de ficheros</td>
-</tr>
-</tbody>
-</table></li>
+<li>Teoría
+<ul class="org-ul">
+<li>Basada en apuntes</li>
+<li>Y un aula virtual</li>
+</ul></li>
+<li>Ejercicios
+<ul class="org-ul">
+<li>Se realizan en clase o en casa</li>
+<li>Se ponen en común al día siguiente</li>
+</ul></li>
+<li>Práctica
+<ul class="org-ul">
+<li>Máquinas virtuales</li>
+<li>Posiblemente, una nube</li>
+</ul></li>
+<li>Trabajos
+<ul class="org-ul">
+<li>Expondremos algunos en clase</li>
+</ul></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-org0000003" class="outline-2">
-<h2 id="org0000003"><span class="section-number-2">2.</span> Wordpress</h2>
+<h2 id="org0000003"><span class="section-number-2">2.</span> Materiales</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>CMS más popular</li>
-<li>Fácil instalación y manejo</li>
-<li>Suficiente para muchos tipos de webs corporativas</li>
-<li>Multitud de <i>plugins</i> y temas</li>
+<li>Memoria USB</li>
+<li>Correo electrónico</li>
+<li>Acceso a Internet fuera del aula</li>
 </ul>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-right">% All Websites</th>
-<th scope="col" class="org-right">% CMS Market</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">WordPress</td>
-<td class="org-right">43.5</td>
-<td class="org-right">62.7</td>
-</tr>
-
-<tr>
-<td class="org-left">Shopify</td>
-<td class="org-right">4.5</td>
-<td class="org-right">6.4</td>
-</tr>
-
-<tr>
-<td class="org-left">Wix</td>
-<td class="org-right">2.8</td>
-<td class="org-right">4.0</td>
-</tr>
-
-<tr>
-<td class="org-left">Squarespace</td>
-<td class="org-right">2.1</td>
-<td class="org-right">3.1</td>
-</tr>
-
-<tr>
-<td class="org-left">Joomla</td>
-<td class="org-right">1.6</td>
-<td class="org-right">2.4</td>
-</tr>
-</tbody>
-</table>
-
+</div>
+</div>
+<div id="outline-container-org0000006" class="outline-2">
+<h2 id="org0000006"><span class="section-number-2">3.</span> Entrega de Trabajos</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Via <b>Moodle</b>
+<ul class="org-ul">
+<li>Nuestro curso es <a href="https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala">https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala</a></li>
+<li>El curso es accesible incluso sin usuario, inicialmente</li>
+</ul></li>
+<li>Se utilizará Microsoft Office (, <b>DOCX</b>, <b>PPTX</b>)
+<ul class="org-ul">
+<li>Opcionalmente, <b>PDF</b> o LibreOffice (<b>ODT</b>, <b>ODP</b>)</li>
+<li>También es desable entregas <i>online</i> (Canvas, Figlet&#x2026;)</li>
+</ul></li>
+<li>Se tendrá en cuenta
+<ul class="org-ul">
+<li>La corrección técnica de los trabajos</li>
+<li>La fecha de entrega</li>
+<li>Expresión, sintaxis, ortografía</li>
+<li>La apariencia profesional</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000000c" class="outline-2">
+<h2 id="org000000c"><span class="section-number-2">4.</span> Normas</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Retrasos y faltas</li>
+<li>Uso de los ordenadores
+<ul class="org-ul">
+<li>No pueden utilizarse para tareas distintas de las encargadas por el profesor</li>
+<li>Se respetará a otros alumnos</li>
+</ul></li>
+<li>Móviles
+<ul class="org-ul">
+<li>No.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000009" class="outline-3">
+<h3 id="org0000009"><span class="section-number-3">4.1.</span> Averías de los ordenadores</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Los problemas se comunican al profesor en cuanto se detectan</li>
+<li>Se deben hacer copias de seguridad para no perder los datos de los discos
+<ul class="org-ul">
+<li>Pen Drive</li>
+<li>Disco Externo</li>
+<li>Correos enviados a uno mismo</li>
+<li>Copias en los ordenadores de otros compañeros</li>
+</ul></li>
+<li>Norma fundamental:</li>
+</ul>
 <p>
-<a href="https://kinsta.com/wordpress-market-share/">Fuente</a>
+<b>Si se pierde porque no hay copia, es que no era importante</b>
 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org000000f" class="outline-2">
+<h2 id="org000000f"><span class="section-number-2">5.</span> Cómo será la evaluación</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Las notas de las evaluaciones (1ª,2ª,3ª) no son realmente importantes</li>
+<li>Solo interesa la nota de la evaluación final</li>
+<li>Basado en <i>Resultados de aprendizaje</i> (RA)
+<ul class="org-ul">
+<li>Cada RA supone un porcentaje de la nota final</li>
+<li>Cada prueba (examen, trabajo) indicará que RA evalúa, en qué porcentaje</li>
+<li>Se necesita aprobar cada RA para aprobar el módulo</li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div id="outline-container-org0000012" class="outline-2">
-<h2 id="org0000012"><span class="section-number-2">3.</span> Instalación</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org0000006" class="outline-3">
-<h3 id="org0000006"><span class="section-number-3">3.1.</span> <i>Download</i> y descompresión</h3>
-<div class="outline-text-3" id="text-3-1">
+<h2 id="org0000012"><span class="section-number-2">6.</span> Actividades</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
-<li>Se necesita un servidor LAMP</li>
-<li>Descomprimir el <a href="https://es.wordpress.org/download/releases/">fichero comprimido</a> en un directorio accesible por Apache</li>
-<li>Visitar la página desde un navegador</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000009" class="outline-3">
-<h3 id="org0000009"><span class="section-number-3">3.2.</span> Fichero <code>wp-config.php</code></h3>
-<div class="outline-text-3" id="text-3-2">
+<li>Trabajos</li>
+<li>Exámenes</li>
+<li>Examen final evaluación ordinaria
 <ul class="org-ul">
-<li>Un asistente preguntará por los datos necesarios para conectar a la base de datos
+<li>Con los RA no superados</li>
+</ul></li>
+<li>Examen evaluación extraordinaria
 <ul class="org-ul">
-<li>usuario</li>
-<li>contraseña</li>
-<li>nombre de la base de datos</li>
-<li>dirección del servidor MySQL/MariaDB</li>
-<li>prefijo para las tablas</li>
+<li>Incluirá todos los RA. La nota del examen será la nota del módulo.</li>
+</ul></li>
+<li>Entrega de trabajos
+<ul class="org-ul">
+<li>Individuales, o por parejas si se comparte ordenador</li>
+<li>Un trabajo entregado fuera de plazo tiene una nota máxima de <i>6</i></li>
 </ul></li>
 </ul>
-
-<p>
-Nota: El prefijo permite utilizar la misma base de datos para más de una instancia de Wordpress
-</p>
-</div>
-</div>
-<div id="outline-container-org000000c" class="outline-3">
-<h3 id="org000000c"><span class="section-number-3">3.3.</span> ¿Sin permisos de escritura?</h3>
-<div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li>Es posible que Wordpress no pueda escribir el fichero <code>wp-config.php</code>
-<ul class="org-ul">
-<li>Permisos linux y usuario de Apache</li>
-</ul></li>
-<li>En ese caso, pedirá que lo cree el usuario</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000000f" class="outline-3">
-<h3 id="org000000f"><span class="section-number-3">3.4.</span> Siguientes pasos</h3>
-<div class="outline-text-3" id="text-3-4">
-<ul class="org-ul">
-<li>Usuario administrador de Wordpress, y contraseña</li>
-<li>Título del sitio</li>
-<li>etc&#x2026;</li>
-<li>Puede configurarse más adelante</li>
-</ul>
-</div>
 </div>
 </div>
 <div id="outline-container-org0000015" class="outline-2">
-<h2 id="org0000015"><span class="section-number-2">4.</span> <i>Frontend</i> / <i>backend</i></h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li><i>Frontend</i>
-<ul class="org-ul">
-<li>Es la página visible por los usuarios de Internet</li>
-</ul></li>
-<li><i>Backend</i>
-<ul class="org-ul">
-<li>Se accede añadiendo <code>wp-admin</code> a la URL del sitio</li>
-<li>Permite controlar el aspecto del <i>frontend</i></li>
-<li>Acceso restringido a usuarios registrados</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">5.</span> Conceptos Wordpress</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li>Entrada (post): un artículo que se publicará con el resto de artículos, ordenado por fecha</li>
-<li>Categoría: una forma de clasificar las entradas. Jerárquicas.</li>
-<li>Tag: similar a categorías</li>
-<li>Página: contenido HTML pensado para ser enlazado y visualizado de forma independiente</li>
-<li>Página de inicio: la página por defecto al llegar al sitio web</li>
-<li>Bloque (<i>widget</i>): elementos de construcción de una página o entrada de blog. Pueden equivaler a:
-<ul class="org-ul">
-<li>etiquetas simples HTML</li>
-<li>contenedores para organizar el contenido (tablas, columnas, filas&#x2026;)</li>
-<li>elementos incrustados (visor de PDF, imágenes&#x2026;)</li>
-<li>integración con otros sitios (vídeos de YouTube&#x2026;)</li>
-<li>lista de entradas del blog</li>
-</ul></li>
-<li>Menú:
-<ul class="org-ul">
-<li><i>widget</i> que muestra varias opciones de navegación</li>
-<li>Cada opción puede ser otra página, una noticia, una URL externa&#x2026;</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org0000018" class="outline-3">
-<h3 id="org0000018"><span class="section-number-3">5.1.</span> Temas</h3>
-<div class="outline-text-3" id="text-5-1">
+<h2 id="org0000015"><span class="section-number-2">7.</span> Contenidos</h2>
+<div class="outline-text-2" id="text-7">
 <p>
-Un tema puede incluir:
+Según el Decreto 3/2011, de 13 de enero
+</p>
+
+
+<p>
+Desarrollo de software:
 </p>
 <ul class="org-ul">
-<li>Plantillas iniciales para páginas y entradas</li>
-<li>Páginas de inicio propias</li>
-<li>Editores propios para la página de inicio</li>
-<li>Esquemas de colores</li>
+<li>Concepto de programa informático. Instrucciones y datos.</li>
+<li>Ejecución de programas en ordenadores:
+<ul class="org-ul">
+<li>Datos y programas.</li>
+<li>Hardware vs. software.</li>
+<li>Estructura funcional de un ordenador: procesador, memoria.</li>
+<li>Tipos de software. BIOS. Sistema. Aplicaciones.</li>
+<li>Código fuente, código objeto y código ejecutable; máquinas virtuales.</li>
+</ul></li>
+<li>Lenguajes de programación:
+<ul class="org-ul">
+<li>Tipos de lenguajes de programación.</li>
+<li>Características de los lenguajes más difundidos.</li>
+</ul></li>
+<li>Introducción a la ingeniería del software:
+<ul class="org-ul">
+<li>Proceso software y ciclo de vida del software.</li>
+<li>Fases del desarrollo de una aplicación: análisis, diseño, codificación, pruebas, documentación, explotación y mantenimiento, entre otras.
+<ul class="org-ul">
+<li>Modelos de proceso de desarrollo software (cascada, iterativo, evolutivo).</li>
+<li>Metodologías de desarrollo software. Características. Técnicas. Objetivos. Tipos de metodologías:</li>
+<li>Herramientas CASE (Computer Aided Software Engineering).</li>
+</ul></li>
+</ul></li>
+<li>Proceso de obtención de código ejecutable a partir del código fuente; herramientas implicadas (editores, compiladores, enlazadores, etcétera).</li>
+<li>Errores en el desarrollo de programas.</li>
+<li>Importancia de la reutilización de código.</li>
 </ul>
 
 <p>
-<a href="https://wordpress.org/themes/">Temas gratuitos de Wordpress.com</a>
+Instalación y uso de entornos de desarrollo:
 </p>
+<ul class="org-ul">
+<li>Funciones de un entorno de desarrollo.</li>
+<li>Tipos de entornos de desarrollo. Entornos de desarrollo libres y propietarios. Características.</li>
+<li>Instalación de un entorno de desarrollo.</li>
+<li>Uso básico de un entorno de desarrollo:
+<ul class="org-ul">
+<li>Uso de herramientas y asistentes.</li>
+<li>Creación de proyectos.</li>
+<li>Incorporación de elementos a proyectos.</li>
+<li>Edición de programas. Sintaxis y formateo de código.</li>
+<li>Compilación de programas. Detección de errores.</li>
+<li>Generación de ejecutables.</li>
+<li>Ejecución de programas.</li>
+<li>Paneles y vistas.</li>
+<li>Importación y exportación de ficheros.</li>
+<li>Personalización.</li>
+<li>Acceso a documentación.</li>
+<li>Instalación y desinstalación de aplicaciones, módulos y plugins adicionales.</li>
+<li>Configuración de actualizaciones.</li>
+<li>Automatización de tareas.</li>
+</ul></li>
+</ul>
+
+<p>
+Diseño y realización de pruebas:
+</p>
+<ul class="org-ul">
+<li>Pruebas en el proceso de desarrollo de software:
+<ul class="org-ul">
+<li>Planificación de pruebas a lo largo del ciclo de desarrollo.</li>
+<li>Tipos de pruebas: funcionales, estructurales, regresión, caja negra.</li>
+<li>Procedimientos y casos de prueba.</li>
+</ul></li>
+<li>Pruebas de código:
+<ul class="org-ul">
+<li>Cubrimiento, valores límite, clases de equivalencia.</li>
+<li>Pruebas unitarias de clases y funciones.</li>
+<li>Uso de herramientas integradas en los entornos de desarrollo para realizar pruebas unitarias.</li>
+<li>Automatización de pruebas unitarias.</li>
+<li>Pruebas de integración.</li>
+<li>Diseño y documentación casos de prueba.</li>
+</ul></li>
+<li>Depuración de programas:
+<ul class="org-ul">
+<li>Herramientas de depuración integradas en los entornos de desarrollo,</li>
+<li>Puntos de ruptura y seguimiento en tiempo de ejecución.</li>
+<li>Examinadores de variables.</li>
+</ul></li>
+</ul>
+<p>
+Optimización y documentación:
+</p>
+<ul class="org-ul">
+<li>Refactorización:
+<ul class="org-ul">
+<li>Concepto. Limitaciones.</li>
+<li>Patrones de refactorización más usuales.</li>
+<li>Refactorización y pruebas.</li>
+<li>Herramientas de ayuda a la refactorización.</li>
+</ul></li>
+<li>Control de versiones:
+<ul class="org-ul">
+<li>Desarrollos colectivos</li>
+<li>Herramientas de control de versiones. Utilidad. Características. Estructura (cliente/servidor). Repositorio.</li>
+<li>Clientes de control de versiones. Descarga de ficheros inicial. Modificación de ficheros. Actualización de ficheros en local. Actualización de ficheros en el repositorio. Diferencias entre versiones. Restauración de versiones anteriores. Resolución de conflictos. Historial de versiones.</li>
+</ul></li>
+
+<li>Documentación:
+<ul class="org-ul">
+<li>Uso de comentarios.</li>
+<li>Herramientas integradas en el entorno de desarrollo para generar documentación automáticas de clases.</li>
+<li>Alternativas.</li>
+</ul></li>
+</ul>
+
+<p>
+Introducción al lenguaje unificado de modelado (UML, Unified Modeling Language):
+</p>
+<ul class="org-ul">
+<li>Características.</li>
+<li>Versiones.</li>
+<li>Diagramas UML.</li>
+<li>Utilización en metodologías de desarrollo orientado a objetos.</li>
+<li>Herramientas CASE con soporte UML.</li>
+</ul>
+
+<p>
+Elaboración de diagramas de clases:
+</p>
+<ul class="org-ul">
+<li>Notación de los diagramas de clases:
+<ul class="org-ul">
+<li>Clases. Atributos, métodos y visibilidad.</li>
+<li>Objetos. Instanciación.</li>
+<li>Relaciones. Asociación, herencia, composición, agregación, dependencia, navegabilidad.</li>
+<li>Clases abstractas. Interfaces.</li>
+<li>Paquetes.</li>
+<li>Grado de detalle.</li>
+</ul></li>
+<li>Utilización de herramientas CASE para elaborar diagramas de clases.</li>
+<li>Módulos integrados en entornos de desarrollo para elaborar diagramas de clases.</li>
+<li>Creación de código a partir de diagramas de clases.</li>
+<li>Generación de diagramas de clases a partir de código (ingeniería inversa).</li>
+</ul>
+
+<p>
+Elaboración de diagramas de comportamiento:
+</p>
+<ul class="org-ul">
+<li>Tipos. Campo de aplicación.</li>
+<li>Diagramas de casos de uso. Actores, casos de uso, escenario, asociaciones (rela ción de comunicación entre actores y casos de uso), relaciones entre casos de uso.</li>
+<li>Diagramas de secuencia. Línea de vida de un objeto/actor, activación, envío de mensajes.</li>
+<li>Diagramas de colaboración. Objetos/actores, mensajes.</li>
+<li>Otros diagramas:
+<ul class="org-ul">
+<li>Diagramas de actividades.</li>
+<li>Diagramas de estado.</li>
+</ul></li>
+<li>Utilización de herramientas CASE para elaborar diagramas de comportamiento</li>
+<li>Módulos integrados en entornos de desarrollo para elaborar diagramas de comportamiento.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000002a" class="outline-2">
+<h2 id="org000002a"><span class="section-number-2">8.</span> Criterios de evaluación</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Según Real Decreto 450/2010, de 16 de abril
+Modificados en Real Decreto 405/2023, de 29 de mayo
+</p>
+</div>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">8.1.</span> RA1 Reconoce los elementos y herramientas que intervienen en el desarrollo de un programa informático, analizando sus características y las fases en las que actúan hasta llegar a su puesta en funcionamiento.</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Criterios de evaluación:
+</p>
+<ol class="org-ol">
+<li>Se ha reconocido la relación de los programas con los componentes del sistema informático: memoria, procesador, periféricos, entre otros.</li>
+<li>Se han identificado las fases de desarrollo de una aplicación informática.</li>
+<li>Se han diferenciado los conceptos de código fuente, objeto y ejecutable.</li>
+<li>Se han reconocido las características de la generación de código intermedio para su ejecución en máquinas virtuales.</li>
+<li>Se han clasificado los lenguajes de programación, identificando sus características.</li>
+<li>Se ha evaluado la funcionalidad ofrecida por las herramientas utilizadas en el desarrollo de software.</li>
+<li>Se han identificado las características y escenarios de uso de las metodologías ágiles de desarrollo de software.</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">5.2.</span> <i>Plugins</i></h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="org000001b"><span class="section-number-3">8.2.</span> RA2 Evalúa entornos integrados de desarrollo analizando sus características para editar código fuente y generar ejecutables.</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
-Un plugin puede incluir:
+Criterios de evaluación:
 </p>
-<ul class="org-ul">
-<li>Nuevos bloques (widgets)</li>
-<li>Editores de contenido</li>
-<li>Funcionalidades del <i>backend</i></li>
-</ul>
-
+<ol class="org-ol">
+<li>Se han instalado entornos de desarrollo, propietarios y libres.</li>
+<li>Se han añadido y eliminado módulos en el entorno de desarrollo.</li>
+<li>Se ha personalizado y automatizado el entorno de desarrollo.</li>
+<li>Se ha configurado el sistema de actualización del entorno de desarrollo.</li>
+<li>Se han generado ejecutables a partir de código fuente de diferentes lenguajes en un mismo entorno de desarrollo.</li>
+<li>Se han generado ejecutables a partir de un mismo código fuente con varios entornos de desarrollo.</li>
+<li>Se han identificado las características comunes y específicas de diversos entornos de desarrollo.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">8.3.</span> RA3 Verifica el funcionamiento de programas diseñando y realizando pruebas.</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
-<a href="https://wordpress.org/plugins/"><i>Plugins</i> gratuitos de Wordpress.com</a>  
+Criterios de evaluación:
 </p>
+<ol class="org-ol">
+<li>Se han identificado los diferentes tipos de pruebas.</li>
+<li>Se han definido casos de prueba.</li>
+<li>Se han identificado las herramientas de depuración y prueba de aplicaciones ofrecidas por el entorno de desarrollo.</li>
+<li>Se han utilizado herramientas de depuración para definir puntos de ruptura y seguimiento.</li>
+<li>Se han utilizado las herramientas de depuración para examinar y modificar el comportamiento de un programa en tiempo de ejecución.</li>
+<li>Se han efectuado pruebas unitarias de clases y funciones.</li>
+<li>Se han implementado pruebas automáticas.</li>
+<li>Se han documentado las incidencias detectadas.</li>
+<li>Se han utilizado dobles de prueba para aislar los componentes durante las pruebas.</li>
+</ol>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000022" class="outline-2">
-<h2 id="org0000022"><span class="section-number-2">6.</span> Roles Wordpress</h2>
-<div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li>Sin rol (anónimo):
-<ul class="org-ul">
-<li>visitar el sitio</li>
-</ul></li>
-<li>Suscriptor:
-<ul class="org-ul">
-<li>Dejar comentarios en el blog</li>
-</ul></li>
-<li>Colaborador:
-<ul class="org-ul">
-<li>Creación de entradas de blog, sin publicar</li>
-</ul></li>
-<li>Autor:
-<ul class="org-ul">
-<li>Subir archivos</li>
-<li>Crear y modificar entradas propias</li>
-<li>Crear y modificar páginas propias</li>
-</ul></li>
-<li>Editor
-<ul class="org-ul">
-<li>Gestionar comentarios, categorías, etiquetas</li>
-<li>Modificar cualquier entrada o página</li>
-<li>Publicar entradas</li>
-</ul></li>
-<li>Administrador
-<ul class="org-ul">
-<li>Gestionar usuarios</li>
-<li>Gestionar plantillas y plugins</li>
-</ul></li>
-</ul>
-
-
-<div id="org0000021" class="figure">
-<p><img src="media/roles-de-usuario-wordpress.png" alt="roles-de-usuario-wordpress.png" />
-</p>
-</div>
-
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">8.4.</span> RA4 Optimiza código empleando las herramientas disponibles en el entorno de desarrollo.</h3>
+<div class="outline-text-3" id="text-8-4">
 <p>
-<a href="https://www.lucushost.com/blog/roles-wordpress-que-son-como-gestionarlos/">Fuente</a>
+Criterios de evaluación:
 </p>
+<ol class="org-ol">
+<li>Se han identificado los patrones de refactorización más usuales.</li>
+<li>Se han elaborado las pruebas asociadas a la refactorización.</li>
+<li>Se ha revisado el código fuente usando un analizador de código.</li>
+<li>Se han identificado las posibilidades de configuración de un analizador de código.</li>
+<li>Se han aplicado patrones de refactorización con las herramientas que proporciona el entorno de desarrollo.</li>
+<li>Se ha realizado el control de versiones integrado en el entorno de desarrollo.</li>
+<li>Se han utilizado herramientas del entorno de desarrollo para documentar las clases.</li>
+<li>Se han utilizado repositorios remotos para el desarrollo de código colaborativo.</li>
+<li>Se han utilizado herramientas para la integración continua del código.</li>
+</ol>
 </div>
 </div>
-<div id="outline-container-org000002b" class="outline-2">
-<h2 id="org000002b"><span class="section-number-2">7.</span> Instalación de otros CMS LAMP</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">8.5.</span> RA5 Genera diagramas de clases valorando su importancia en el desarrollo de aplicaciones y empleando herramientas específicas.</h3>
+<div class="outline-text-3" id="text-8-5">
 <p>
-Todos las aplicaciones LAMP comparten un patrón común:
+Criterios de evaluación:
 </p>
-<ul class="org-ul">
-<li>El código PHP debe estar accessible por Apache</li>
-<li>En algún fichero, información sobre como conectar a MySQL
-<ul class="org-ul">
-<li>Usuario, contraseña, <i>dabatase</i>, dirección IP, puerto</li>
-</ul></li>
-<li>Dependiendo de la aplicación:
-<ul class="org-ul">
-<li>Directorios de adicionales</li>
-<li><a href="https://www.php.net/manual/en/extensions.alphabetical.php">Módulos PHP</a> adicionales</li>
-<li><a href="https://httpd.apache.org/docs/current/mod/">Módulos de Apache</a> adicionales</li>
-<li><a href="https://www.php.net/manual/es/ini.php">Opciones de PHP</a> adicionales</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org0000025" class="outline-3">
-<h3 id="org0000025"><span class="section-number-3">7.1.</span> Ejercicio: Moodle en Debian</h3>
-<div class="outline-text-3" id="text-7-1">
-<ul class="org-ul">
-<li>Instala Moodle en tu máquina Debian
-<ul class="org-ul">
-<li>Usa el nombre AVAHI: <b>xxxxxIAW.local</b></li>
-<li>Apunta las modificaciones necesarias: módulos de PHP, módulos Apache, opciones PHP, directorios&#x2026;</li>
-</ul></li>
-</ul>
+<ol class="org-ol">
+<li>Se han identificado los conceptos básicos de la programación orientada a objetos.</li>
+<li>Se han utilizado herramientas para la elaboración de diagramas de clases.</li>
+<li>Se ha interpretado el significado de diagramas de clases.</li>
+<li>Se han trazado diagramas de clases a partir de las especificaciones de las mismas.</li>
+<li>Se ha generado código a partir de un diagrama de clases.</li>
+<li>Se ha generado un diagrama de clases mediante ingeniería inversa.</li>
+</ol>
 </div>
 </div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">7.2.</span> Ejercicio: Moodle en Coder</h3>
-<div class="outline-text-3" id="text-7-2">
-<ul class="org-ul">
-<li>Instala Moodle en tu <i>workspace de Coder</i>
-<ul class="org-ul">
-<li>Aplicación en <code>~/public-html/moodle</code></li>
-<li>Datos adicionales en un subdirectorio de <code>/extradata</code> (no se borra)</li>
-<li>Usa HTTPS</li>
-<li>Comparte el puerto 443 como <b>Public</b>, no como <b>Authenticated</b></li>
-<li><code>https://443s--main--IAW--usuario.coder.iesavellaneda.es/public-html/moodle</code></li>
-<li>Ejemplo:
-<ul class="org-ul">
-<li><a href="https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle">https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle</a></li>
-</ul></li>
-</ul></li>
-</ul>
-
-
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-</tbody>
-</table>
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">8.6.</span> RA6 Genera diagramas de comportamiento valorando su importancia en el desarrollo de aplicaciones y empleando herramientas específicas.</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+Criterios de evaluación:
+</p>
+<ol class="org-ol">
+<li>Se han identificado los distintos tipos de diagramas de comportamiento.</li>
+<li>Se ha reconocido el significado de los diagramas de casos de uso.</li>
+<li>Se han interpretado diagramas de interacción.</li>
+<li>Se han elaborado diagramas de interacción sencillos.</li>
+<li>Se ha interpretado el significado de diagramas de actividades.</li>
+<li>Se han elaborado diagramas de actividades sencillos.</li>
+<li>Se han interpretado diagramas de estados.</li>
+<li>Se han planteado diagramas de estados sencillos.</li>
+</ol>
 </div>
 </div>
 </div>
-<div id="outline-container-org000002e" class="outline-2">
-<h2 id="org000002e"><span class="section-number-2">8.</span> Referencias</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org000002d" class="outline-2">
+<h2 id="org000002d"><span class="section-number-2">9.</span> Distribución de RA en unidades de trabajo</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<a href="ed-0-contenidos-criterios-evaluacion.xlsx">Enlace a hoja excel</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">10.</span> Referencias</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
-<li><a href="./UT02.reveal.html">Transparencias</a></li>
-<li><a href="./UT02.pdf">PDF</a></li>
-<li><a href="./UT02.wp.html">Página web</a></li>
-<li><a href="./UT02.epub">EPUB</a></li>
+<li><a href="./ed-0-contenidos-criterios-evaluacion.reveal.html">Transparencias</a></li>
+<li><a href="./ed-0-contenidos-criterios-evaluacion.pdf">PDF</a></li>
+<li><a href="./ed-0-contenidos-criterios-evaluacion.wp.html">Página web</a></li>
+<li><a href="./ed-0-contenidos-criterios-evaluacion.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
 <ul class="org-ul">
@@ -711,7 +714,7 @@ Todos las aplicaciones LAMP comparten un patrón común:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-10-10 vie 10:15</p>
+<p class="date">Created: 2025-09-18 jue 09:27</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
