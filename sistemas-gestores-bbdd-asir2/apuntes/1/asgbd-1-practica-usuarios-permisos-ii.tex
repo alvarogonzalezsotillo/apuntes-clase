@@ -1,4 +1,4 @@
-% Created 2024-11-01 vie 18:36
+% Created 2025-10-30 jue 11:53
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -59,7 +59,7 @@
  pdftitle={Práctica de usuarios y niveles de acceso},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
+ pdfcreator={Emacs 30.2 (Org mode 9.7.11)}, 
  pdflang={Spanish}}
 \begin{document}
 
@@ -67,6 +67,9 @@
 \tableofcontents
 
 \captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/1/asgbd-1-practica-usuarios-permisos-ii.org}{} \vspace{-1em}
+
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
@@ -99,10 +102,19 @@
   \end{cuadrito}
 }
 
-
-
-
-
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
 \section*{Objetivo de la práctica}
 \label{sec:org0000000}
 En esta práctica utilizaremos a la base de datos \textbf{Oracle} como un verdadero servidor, conectándonos desde otros ordenadores. Para ello:
@@ -122,7 +134,6 @@ Crea un tablespace
 \item Con dos ficheros que se guardarán en \texttt{/datos/paraotros}. (50\%)
 \item El tamaño de cada fichero será como máximo de 100 MBytes. (50\%)
 \end{itemize}
-
 \section{(2 puntos) Crear usuarios para tus compañeros}
 \label{sec:org0000006}
 
@@ -130,23 +141,33 @@ Crea un usuario para tí, uno para cada uno de tus compañeros, y uno para el pr
 \begin{multicols}{3}
 \begin{itemize}
 \item ADRIANALVAREZ10
-\item EDUARDOANTON1
+\item IKERALVARO1
+\item SEBASTIANBONILLA6
+\item SAMUELCAICEDO
+\item HUGOCASTRO9
+\item DAVIDGARCIA501
 \item AGARCIA190
-\item ALEJANDROJIMENEZ34
-\item ISMAELMACARENO
-\item IVANMARIN1
-\item PABLONUNEZ16
-\item AROAPEREZ2
-\item PABLORAMO
-\item JORGERAMOS6
+\item NEREAGIL1
+\item JAVIERGOMEZ24
+\item ANDRESGONZALEZ52
+\item DANIELGONZALEZ70
+\item LUIGIHALAS
+\item HUGOHERMOSILLA1
+\item JUANJARILLO1
+\item SERGIOLOPEZVENTURA
+\item MONICAMARTINEZ26
+\item JPMC50
+\item HECTORMORENO41
+\item PABLONOMBELA
+\item ASIERPARDO
+\item KRISTINAPELESHOK
+\item MARIOTSVETELINOV
+\item MIGUELRAMOSDEDIEGO
 \item MIGUELREYES1
-\item JOSEROJAS12
+\item MIGUELROMAN9
 \item OSKARSAJEK
-\item ALVAROSANCHEZ308
-\item ANDREASANTOSESTEBAN
-\item FERNANDOVAQUERIZO
-\item ALVAROVICENTE1
 \item VERONICAVILLASECA
+\item DANIELZUMARRAGA
 \item ALVAROGONZALEZ
 \end{itemize}
 \end{multicols}
@@ -163,7 +184,6 @@ Cuando tengas listos los usuarios:
 \item Pide a algunos compañeros que comprueben su usuario
 \item Pide al profesor que compruebe su usuario
 \end{itemize}
-
 \section{(2 puntos) Creación de las tablas}
 \label{sec:org0000009}
 Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún compañero pueda utilizarlo (con \texttt{ALTER USER}).
@@ -177,7 +197,6 @@ Cambia la contraseña de tu usuario, si no lo has hecho ya, para que ningún com
 \item Tu usuario necesitará cuota en ese \emph{tablespace}
 \end{itemize}
 \end{itemize}
-
 \section{(3 puntos) Dar acceso a otros usuarios a un campo de tus tablas}
 \label{sec:org000000c}
 Tras la importación, haz que las tablas puedan ser leídas por el resto de usuarios:
@@ -200,8 +219,6 @@ Después, haz que puedan escribir en un campo de la tabla \texttt{RESULTADOS}:
 \item Pide a algún otro compañero que compruebe que funciona
 \item Pide al profesor que compruebe que funciona.
 \end{itemize}
-
-
 \section{\texttt{PROFESOR} con permisos especiales}
 \label{sec:org000000f}
 Haz un usuario \texttt{PROFESOR} con contraseña \texttt{PROFESOR} que pueda iniciar sesión y tenga permisos de lectura en las vistas de sistema

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-09-30 mar 19:05 -->
+<!-- 2025-10-23 jue 20:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -207,7 +207,7 @@
 <li><a href="#org000000e">1. Introducción</a></li>
 <li><a href="#ciclo-de-vida-del-software">2. Ciclo de vida del software</a></li>
 <li><a href="#lenguajes-de-programación">3. Lenguajes de programación</a></li>
-<li><a href="#org000001e">4. Referencias</a></li>
+<li><a href="#org0000021">4. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -272,7 +272,7 @@ informático.</li>
 </ul>
 </div>
 <div id="outline-container-org0000001" class="outline-3">
-<h3 id="org0000001"><span class="section-number-3">1.1.</span> Tipos de software</h3>
+<h3 id="org0000001"><span class="section-number-3">1.1.</span> Tipos de <i>software</i></h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><b>De sistema</b> (Sistema operativo, <i>drivers</i> -controladores-)
@@ -282,13 +282,14 @@ informático.</li>
 <li><b>BIOS/UEFI</b> es el <i>firmware</i> de la placa base de un PC</li>
 </ul></li>
 <li><b>De aplicación</b> (Suite ofimática, Navegador, Edición de imagen, &#x2026;)</li>
-<li><b>De desarrollo</b> (Editores, compiladores, interpretes, &#x2026;)</li>
+<li><b>De desarrollo</b> (Editores, compiladores, intérpretes, &#x2026;)</li>
 </ul>
 
 
 <div id="org0000000" class="figure">
-<p><img src="https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png" alt="drivers-192x350.png" />
+<p><img src="./media/drivers-192x350.png" alt="drivers-192x350.png" />
 </p>
+<p><span class="figure-number">Figura 1: </span>Niveles de <i>software</i> en un PC (fuente: www.computerscience.gcse.guru)</p>
 </div>
 </div>
 </div>
@@ -301,7 +302,7 @@ informático.</li>
 <li>El disco duro se considera un periférico de E/S (Entrada/Salida).</li>
 </ul></li>
 <li><b>Memoria RAM</b> : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.</li>
-<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.</li>
+<li><b>CPU</b> : lee y ejecuta instrucciones almacenadas en memoria RAM.</li>
 <li><b>E/S</b>: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, &#x2026;</li>
 </ul>
 </div>
@@ -354,10 +355,11 @@ informático.</li>
 </ul>
 
 
+
 <div id="org0000007" class="figure">
-<p><img src="https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png" alt="word-image200.png" />
+<p><img src="./media/word-image200.png" alt="word-image200.png" />
 </p>
-<p><span class="figure-number">Figura 1: </span>Arquitectura de Von Neuman</p>
+<p><span class="figure-number">Figura 2: </span>Arquitectura de Von Neuman (Fuente cdn1.byjus.com)</p>
 </div>
 </div>
 </div>
@@ -379,35 +381,35 @@ informático.</li>
 </ul>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador amd64, y su equivalente a código máquina</label><pre class="src src-asm"><span style="color: #edd400; font-weight: bold;">objdump</span> -d  /usr/bin/ls
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Código ensamblador amd64, y su equivalente a código máquina</label><pre class="src src-asm"><span style="color: #0000ff;">objdump</span> -d  /usr/bin/ls
 
 
 /usr/bin/ls:     file format elf64-x86-64
 
 
-<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .init:
+<span style="color: #0000ff;">Disassembly</span> <span style="color: #a020f0;">of</span> section .init:
 
-<span style="color: #edd400; font-weight: bold;">000000000000033c</span> &lt;.init&gt;:
- <span style="color: #729fcf; font-weight: bold;">33c</span>:   f3 0f 1e fa             endbr64
- <span style="color: #729fcf; font-weight: bold;">340</span>:   48 83 ec 08             sub    $0x8,<span style="color: #ff6347;">%rsp</span>
- <span style="color: #729fcf; font-weight: bold;">344</span>:   48 8b 05 75 2c 02 00    mov    0x22c75(<span style="color: #ff6347;">%rip</span>),<span style="color: #ff6347;">%rax</span>        # 22fc0 <a href="mailto:__gmon_start__%40Base">&lt;__gmon_start__@Base&gt;</a>
- <span style="color: #729fcf; font-weight: bold;">34b</span>:   48 85 c0                test   <span style="color: #ff6347;">%rax</span>,<span style="color: #ff6347;">%rax</span>
- <span style="color: #729fcf; font-weight: bold;">34e</span>:   74 02                   je     352 <a href="mailto:__ctype_toupper_loc%40plt-0x67e">&lt;__ctype_toupper_loc@plt-0x67e&gt;</a>
- <span style="color: #729fcf; font-weight: bold;">350</span>:   ff d0                   call   *<span style="color: #ff6347;">%rax</span>
- <span style="color: #729fcf; font-weight: bold;">352</span>:   48 83 c4 08             add    $0x8,<span style="color: #ff6347;">%rsp</span>
- <span style="color: #729fcf; font-weight: bold;">356</span>:   c3                      ret
+<span style="color: #0000ff;">000000000000033c</span> &lt;.init&gt;:
+ <span style="color: #a020f0;">33c</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #a020f0;">340</span>:   48 83 ec 08             sub    $0x8,<span style="color: #a0522d;">%rsp</span>
+ <span style="color: #a020f0;">344</span>:   48 8b 05 75 2c 02 00    mov    0x22c75(<span style="color: #a0522d;">%rip</span>),<span style="color: #a0522d;">%rax</span>        # 22fc0 <a href="mailto:__gmon_start__%40Base">&lt;__gmon_start__@Base&gt;</a>
+ <span style="color: #a020f0;">34b</span>:   48 85 c0                test   <span style="color: #a0522d;">%rax</span>,<span style="color: #a0522d;">%rax</span>
+ <span style="color: #a020f0;">34e</span>:   74 02                   je     352 <a href="mailto:__ctype_toupper_loc%40plt-0x67e">&lt;__ctype_toupper_loc@plt-0x67e&gt;</a>
+ <span style="color: #a020f0;">350</span>:   ff d0                   call   *<span style="color: #a0522d;">%rax</span>
+ <span style="color: #a020f0;">352</span>:   48 83 c4 08             add    $0x8,<span style="color: #a0522d;">%rsp</span>
+ <span style="color: #a020f0;">356</span>:   c3                      ret
 
-<span style="color: #edd400; font-weight: bold;">Disassembly</span> <span style="color: #729fcf; font-weight: bold;">of</span> section .plt:
+<span style="color: #0000ff;">Disassembly</span> <span style="color: #a020f0;">of</span> section .plt:
 
-<span style="color: #edd400; font-weight: bold;">0000000000000360</span> &lt;.plt&gt;:
- <span style="color: #729fcf; font-weight: bold;">360</span>:   ff 35 ca 28 02 00       push   0x228ca(<span style="color: #ff6347;">%rip</span>)        # 22c30 &lt;error_at_line@@Base+0x21943&gt;
- <span style="color: #729fcf; font-weight: bold;">366</span>:   ff 25 cc 28 02 00       jmp    *0x228cc(<span style="color: #ff6347;">%rip</span>)        # 22c38 &lt;error_at_line@@Base+0x2194b&gt;
- <span style="color: #729fcf; font-weight: bold;">36c</span>:   0f 1f 40 00             nopl   0x0(<span style="color: #ff6347;">%rax</span>)
- <span style="color: #729fcf; font-weight: bold;">370</span>:   f3 0f 1e fa             endbr64
- <span style="color: #729fcf; font-weight: bold;">374</span>:   68 00 00 00 00          push   $0x0
- <span style="color: #729fcf; font-weight: bold;">379</span>:   e9 e2 ff ff ff          jmp    360 <a href="mailto:__ctype_toupper_loc%40plt-0x670">&lt;__ctype_toupper_loc@plt-0x670&gt;</a>
- <span style="color: #729fcf; font-weight: bold;">37e</span>:   66 90                   xchg   <span style="color: #ff6347;">%ax</span>,<span style="color: #ff6347;">%ax</span>
- <span style="color: #729fcf; font-weight: bold;">380</span>:   f3 0f 1e fa             endbr64
+<span style="color: #0000ff;">0000000000000360</span> &lt;.plt&gt;:
+ <span style="color: #a020f0;">360</span>:   ff 35 ca 28 02 00       push   0x228ca(<span style="color: #a0522d;">%rip</span>)        # 22c30 &lt;error_at_line@@Base+0x21943&gt;
+ <span style="color: #a020f0;">366</span>:   ff 25 cc 28 02 00       jmp    *0x228cc(<span style="color: #a0522d;">%rip</span>)        # 22c38 &lt;error_at_line@@Base+0x2194b&gt;
+ <span style="color: #a020f0;">36c</span>:   0f 1f 40 00             nopl   0x0(<span style="color: #a0522d;">%rax</span>)
+ <span style="color: #a020f0;">370</span>:   f3 0f 1e fa             endbr64
+ <span style="color: #a020f0;">374</span>:   68 00 00 00 00          push   $0x0
+ <span style="color: #a020f0;">379</span>:   e9 e2 ff ff ff          jmp    360 <a href="mailto:__ctype_toupper_loc%40plt-0x670">&lt;__ctype_toupper_loc@plt-0x670&gt;</a>
+ <span style="color: #a020f0;">37e</span>:   66 90                   xchg   <span style="color: #a0522d;">%ax</span>,<span style="color: #a0522d;">%ax</span>
+ <span style="color: #a020f0;">380</span>:   f3 0f 1e fa             endbr64
         
  ...  
 </pre>
@@ -599,9 +601,9 @@ previas.</li>
 <div class="outline-text-3" id="text-modelo-en-cascada-i">
 
 <div id="org0000011" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png" alt="cascada.png" />
+<p><img src="./media/cascada.png" alt="cascada.png" />
 </p>
-<p><span class="figure-number">Figura 2: </span>Modelo en cascada</p>
+<p><span class="figure-number">Figura 3: </span>Modelo en cascada (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -625,9 +627,9 @@ actividades.</li>
 <div class="outline-text-3" id="text-modelo-en-v-i">
 
 <div id="org0000012" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png" alt="v.png" />
+<p><img src="./media/v.png" alt="v.png" />
 </p>
-<p><span class="figure-number">Figura 3: </span>Modelo en V</p>
+<p><span class="figure-number">Figura 4: </span>Modelo en V  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -658,9 +660,9 @@ actividades.</li>
 
 
 <div id="org0000013" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png" alt="prototipos.png" />
+<p><img src="./media/prototipos.png" alt="prototipos.png" />
 </p>
-<p><span class="figure-number">Figura 4: </span>Modelo de construcción de prototipos</p>
+<p><span class="figure-number">Figura 5: </span>Modelo de construcción de prototipos  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -711,9 +713,9 @@ clásicos: análisis, diseño, codificación, &#x2026;</li>
 
 
 <div id="org0000014" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png" alt="espiral.png" />
+<p><img src="./media/espiral.png" alt="espiral.png" />
 </p>
-<p><span class="figure-number">Figura 5: </span>Modelo en espiral</p>
+<p><span class="figure-number">Figura 6: </span>Modelo en espiral  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -727,9 +729,9 @@ reutilización de código.</li>
 
 
 <div id="org0000015" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png" alt="espiral-poo.png" />
+<p><img src="./media/espiral-poo.png" alt="espiral-poo.png" />
 </p>
-<p><span class="figure-number">Figura 6: </span>Modelo en espiral</p>
+<p><span class="figure-number">Figura 7: </span>Modelo en espiral  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -795,9 +797,9 @@ Pizarra kanban
 
 
 <div id="org0000016" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png" alt="kanban-board.png" />
+<p><img src="./media/kanban-board.png" alt="kanban-board.png" />
 </p>
-<p><span class="figure-number">Figura 7: </span>Pizarra kanban</p>
+<p><span class="figure-number">Figura 8: </span>Pizarra kanban  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -820,9 +822,9 @@ por el cliente</b>.</li>
 <div class="outline-text-4" id="text-scrum-ii">
 
 <div id="org0000017" class="figure">
-<p><img src="http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png" alt="scrum.png" />
+<p><img src="./media/scrum.png" alt="scrum.png" />
 </p>
-<p><span class="figure-number">Figura 8: </span>Proceso SCRUM</p>
+<p><span class="figure-number">Figura 9: </span>Proceso SCRUM  (Fuente: jamj2000.github.io/entornosdesarrollo)</p>
 </div>
 </div>
 </div>
@@ -913,8 +915,11 @@ fases:
 </ol></li>
 <li>Si no existen errores, se genera el código objeto correspondiente.</li>
 <li>Un código fuente correctamente escrito no significa que funcione según
-lo deseado.</li>
-<li>No se realiza un análisis semántico.</li>
+lo deseado.
+<ul class="org-ul">
+<li>No se realiza un análisis semántico en cuanto a si el programa es correcto</li>
+<li>El análisis semántico se reduce a si las operaciones individuales tienen sentido</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -927,6 +932,25 @@ lo deseado.</li>
 <li>Principal desventaja: Es necesario compilar cada vez que el código
 fuente es modificado.</li>
 </ul>
+</div>
+<div id="outline-container-org000001b" class="outline-4">
+<h4 id="org000001b"><span class="section-number-4">3.4.1.</span> Ejemplo compilación</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li><code>gcc -E</code>: Preprocessor, but don't compile</li>
+<li><code>gcc -S</code>: Compile but don't assemble</li>
+<li><code>gcc -c</code>: Preprocess, compile, and assemble, but don't link</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;stdio&gt;</span>
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span>(){
+  <span style="color: #008b8b;">std</span>::printf( <span style="color: #8b2252;">"Resultado:%d"</span>, 5*7 );
+}
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="outline-container-lenguajes-interpretados" class="outline-3">
@@ -1026,8 +1050,8 @@ estructurados.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">3.12.</span> Historia</h3>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.12.</span> Historia</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 <a href="http://rigaux.org/language-study/diagram-light.png">Historia simplificada</a>
@@ -1055,8 +1079,8 @@ estructurados.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">4.</span> Referencias</h2>
+<div id="outline-container-org0000021" class="outline-2">
+<h2 id="org0000021"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Formatos:
@@ -1079,7 +1103,7 @@ estructurados.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-09-30 mar 19:05</p>
+<p class="date">Created: 2025-10-23 jue 20:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
