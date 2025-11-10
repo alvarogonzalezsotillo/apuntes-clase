@@ -26,7 +26,7 @@ La última versión de este documento está disponible en [[https://alvarogonzal
   Las tramas de /broadcast/ son las que tienen la dirección del nivel de enlace =FF:FF:FF:FF:FF:FF=.
   
   - Monitoriza la red durante uno o dos minutos y determina qué tramas de las recibidas son de /broadcast/.
-  - Haz una lista de las pilas de protocolos (desde nivel de enlace hasta nivel de aplicación) que viajan sobre tramas de /broadcast/, e incluye al menos 3 pantallazos de estas pilas como ejemplo.
+  - Haz una lista de las pilas de protocolos (desde nivel de enlace hasta el nivel más alto) que viajan sobre tramas de /broadcast/, e incluye al menos 3 pantallazos de estas pilas como ejemplo.
   - ¿Para qué se utilizan esos protocolos encontrados de nivel superior?
 
 #+latex: \begin{adjustwidth}{2cm}{2cm}
@@ -36,7 +36,10 @@ La última versión de este documento está disponible en [[https://alvarogonzal
 #+latex: \end{adjustwidth}
 
 
+* Encuentra protocolos de nivel de enlace
+En la red hay al menos dos protocolos que son de nivel de enlace, con funciones muy similares entre ellos.
 
+Encuéntralos y pon aquí al menos dos pilas de protocolos que usen esos niveles de enlace
 
 * ¿Qué protocolos viajan sobre el nivel de enlace?
   Más de un protocolo puede utilizar el nivel de enlace para enviar sus datos. En esos casos, el nivel de enlace debe apuntar a qué protocolo se le entregarán los datos en el ordenador de destino.
