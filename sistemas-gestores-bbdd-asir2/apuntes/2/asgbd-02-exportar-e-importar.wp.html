@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-04-10 Thu 12:07 -->
+<!-- 2025-11-12 mié 13:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exportar e importar datos de Oracle</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -249,11 +249,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -264,7 +259,6 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">1.</span> Exportar datos</h2>
 <div class="outline-text-2" id="text-1">
@@ -285,14 +279,14 @@ Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 The Data Pump export utility provides a mechanism <span style="color: #a020f0;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
    
-   Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
    
 You can control how Export runs by entering the <span style="color: #ff0000; font-weight: bold;">'</span>expdp<span style="color: #ff0000; font-weight: bold;">'</span> command followed
 by various parameters. To specify parameters, you use <span style="color: #228b22;">keywords</span>:
    
-   Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-   Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
-               or TABLES=(T1:P1,T1:P2), <span style="color: #a020f0;">if</span> T1 is partitioned table
+  <span style="color: #6c7f6868233c;"> </span>Format:  expdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #6c7f6868233c;"> </span>Example: expdp scott/tiger DUMPFILE=scott.dmp DIRECTORY=dmpdir SCHEMAS=scott
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> <span style="color: #445d571d66c6;"> </span> <span style="color: #4b8b50434ea1;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #4c326cf93434;"> </span> <span style="color: #445d571d66c6;"> </span>or TABLES=(T1:P1,T1:P2), <span style="color: #a020f0;">if</span> T1 is partitioned table
                
 USERID must be the first parameter on the command line.
 
@@ -513,8 +507,6 @@ Valid keyword values are: IMMEDIATE.
 </pre>
 </div>
 </div>
-
-
 <div id="outline-container-org0000000" class="outline-3">
 <h3 id="org0000000"><span class="section-number-3">1.1.</span> <code>directory</code> de <b>Oracle</b></h3>
 <div class="outline-text-3" id="text-1-1">
@@ -529,9 +521,6 @@ Valid keyword values are: IMMEDIATE.
 </ul>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Definir un directorio</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -555,7 +544,6 @@ Valid keyword values are: IMMEDIATE.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">1.3.</span> Caracteres de escape</h3>
 <div class="outline-text-3" id="text-1-3">
@@ -571,13 +559,12 @@ Valid keyword values are: IMMEDIATE.
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">1.4.</span> Conectar sin contraseña como <code>SYS</code> a PDB en local</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li>Se usa la variable <code>ORACLE_PDB_SID</code>, junto con <code>ORACLE_SID_</code></li>
-<li>Por lo que sea, no funciona con <code>sqlplus</code></li>
+<li>Se usa la variable <code>ORACLE_PDB_SID</code>, junto con <code>ORACLE_SID</code></li>
+<li>También no funciona con <code>sqlplus</code></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">ORACLE_SID</span>=ORCL
@@ -587,8 +574,6 @@ expdp <span style="color: #8b2252;">\'</span>/ as sysdba<span style="color: #8b2
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">1.5.</span> Conectar sin contraseña en <i>connection string</i></h3>
 <div class="outline-text-3" id="text-1-5">
@@ -604,10 +589,10 @@ expdp <span style="color: #8b2252;">\'</span>/ as sysdba<span style="color: #8b2
 <div class="org-src-container">
 <pre class="src src-lisp">PDB_PDASIR =
   (DESCRIPTION =
-    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
-    (CONNECT_DATA =
-      (SERVICE_NAME = pdasir)
-    )
+  <span style="color: #6c7f6868233c;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+  <span style="color: #6c7f6868233c;"> </span> (CONNECT_DATA =
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVICE_NAME = pdasir)
+  <span style="color: #6c7f6868233c;"> </span> )
   )
 </pre>
 </div>
@@ -618,7 +603,6 @@ expdp <span style="color: #8b2252;">\'</span>/ as sysdba<span style="color: #8b2
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-3">
 <h3 id="org000000f"><span class="section-number-3">1.6.</span> Ejemplo de exportación</h3>
 <div class="outline-text-3" id="text-1-6">
@@ -657,8 +641,6 @@ Job <span style="color: #8b2252;">"ALUMNO"</span>.<span style="color: #8b2252;">
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000001b" class="outline-2">
 <h2 id="org000001b"><span class="section-number-2">2.</span> Importar datos</h2>
 <div class="outline-text-2" id="text-2">
@@ -679,13 +661,13 @@ Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
 The Data Pump Import utility provides a mechanism <span style="color: #a020f0;">for</span> transferring data objects
 between Oracle databases. The utility is invoked with the following command:
      
-     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
 You can control how Import runs by entering the <span style="color: #ff0000; font-weight: bold;">'</span>impdp<span style="color: #ff0000; font-weight: bold;">'</span> command followed
 by various parameters. To specify parameters, you use <span style="color: #228b22;">keywords</span>:
      
-     Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
-     Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Format:  impdp KEYWORD=value or KEYWORD=(value1,value2,...,valueN)
+  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span>Example: impdp scott/tiger DIRECTORY=dmpdir DUMPFILE=scott.dmp
      
 USERID must be the first parameter on the command line.
 
@@ -919,7 +901,6 @@ Valid keywords are: IMMEDIATE.
 </pre>
 </div>
 </div>
-
 <div id="outline-container-org0000015" class="outline-3">
 <h3 id="org0000015"><span class="section-number-3">2.1.</span> <code>INCLUDE/EXCLUDE</code> una tabla</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -937,8 +918,6 @@ Valid keywords are: IMMEDIATE.
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">2.2.</span> Importar un <code>schema</code> en otro <code>schema</code></h3>
 <div class="outline-text-3" id="text-2-2">
@@ -948,8 +927,8 @@ Valid keywords are: IMMEDIATE.
 
 <div class="org-src-container">
 <pre class="src src-shell">impdp system/alumno <span style="color: #a0522d;">SCHEMAS</span>=alumno <span style="color: #a0522d;">remap_schema</span>=alumno:profesor <span style="color: #8b2252;">\</span>
-            <span style="color: #a0522d;">directory</span>=EXPORTDIR <span style="color: #8b2252;">\</span>
-            <span style="color: #a0522d;">dumpfile</span>=profesor.dmp
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #a0522d;">directory</span>=EXPORTDIR <span style="color: #8b2252;">\</span>
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #a0522d;">dumpfile</span>=profesor.dmp
 </pre>
 </div>
 
@@ -987,8 +966,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000028" class="outline-2">
 <h2 id="org0000028"><span class="section-number-2">3.</span> Ejercicio (1)</h2>
 <div class="outline-text-2" id="text-3">
@@ -1004,7 +981,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000020" class="outline-3">
 <h3 id="org0000020"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -1015,7 +991,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000025" class="outline-3">
 <h3 id="org0000025"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -1027,8 +1002,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000030" class="outline-2">
 <h2 id="org0000030"><span class="section-number-2">4.</span> Ejercicio (2)</h2>
 <div class="outline-text-2" id="text-4">
@@ -1049,7 +1022,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </ul></li>
 </ol>
 </div>
-
 <div id="outline-container-org000002d" class="outline-3">
 <h3 id="org000002d"><span class="section-number-3">4.1.</span> Tareas</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -1061,8 +1033,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000042" class="outline-2">
 <h2 id="org0000042"><span class="section-number-2">5.</span> Otras soluciones</h2>
 <div class="outline-text-2" id="text-5">
@@ -1071,7 +1041,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 <li>Copias de <i>tablespaces</i></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000033" class="outline-3">
 <h3 id="org0000033"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
 <div class="outline-text-3" id="text-5-1">
@@ -1089,8 +1058,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000003c" class="outline-3">
 <h3 id="org000003c"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
 <div class="outline-text-3" id="text-5-2">
@@ -1111,7 +1078,6 @@ Job <span style="color: #8b2252;">"SYSTEM"</span>.<span style="color: #8b2252;">
 Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup.htm#BRADV016">docs.oracle.com</a>
 </p>
 </div>
-
 <div id="outline-container-org0000036" class="outline-4">
 <h4 id="org0000036"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
 <div class="outline-text-4" id="text-5-2-1">
@@ -1139,7 +1105,6 @@ Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-4">
 <h4 id="org0000039"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
 <div class="outline-text-4" id="text-5-2-2">
@@ -1169,8 +1134,6 @@ Database altered.
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000003f" class="outline-3">
 <h3 id="org000003f"><span class="section-number-3">5.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -1184,9 +1147,6 @@ Database altered.
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000045" class="outline-2">
 <h2 id="org0000045"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
@@ -1211,7 +1171,7 @@ Database altered.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-04-10 Thu 12:07</p>
+<p class="date">Created: 2025-11-12 mié 13:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
