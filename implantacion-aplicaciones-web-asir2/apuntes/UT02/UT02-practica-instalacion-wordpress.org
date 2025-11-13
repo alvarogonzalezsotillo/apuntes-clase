@@ -41,8 +41,9 @@ Se pide que configures un servidor web con Wordpress capaz de servir este sitio,
 
 El sitio tendrá:
 - Una página de inicio con imágenes y un menú al resto de páginas
+- El menú estará en todas las páginas  
 - Una página de /Quiénes somos/
-- Una página con las últimas noticias
+- Una página con las últimas noticias. Esta página muestra las noticias según se van creando.
 - Habrá al menos tres noticias. Todas tendrán un fichero PDF que podrá descargarse.
 - Una noticia será cómo se ha instalado el Wordpress: pasos seguidos, pantallazos, herramientas (ssh, ftp...)
 

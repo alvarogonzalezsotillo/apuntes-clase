@@ -12,7 +12,7 @@
   - Identificar las fases de desarrollo de una aplicación informática.
   - Clasificar los lenguajes de programación.
 
-** Tipos de software
+** Tipos de /software/
 - *De sistema* (Sistema operativo, /drivers/ -controladores-)
   - Los */drivers/* son los controladores de dispositivos.
   - El */firmware/* es el programa que funciona dentro de un dispositivo
@@ -20,7 +20,9 @@
 - *De aplicación* (Suite ofimática, Navegador, Edición de imagen, ...)
 - *De desarrollo* (Editores, compiladores, intérpretes, ...)
 
-[[https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png]]
+#+comment: [[https://www.computerscience.gcse.guru/wp-content/uploads/2019/09/drivers-192x350.png]]
+#+caption: Niveles de /software/ en un PC (fuente: www.computerscience.gcse.guru)
+[[./media/drivers-192x350.png]]
 
 ** Relación Hardware-Software
 :PROPERTIES:
@@ -29,7 +31,7 @@
 - *Disco duro* : almacena de forma permanente los archivos ejecutables y los archivos de datos.
   - El disco duro se considera un periférico de E/S (Entrada/Salida).
 - *Memoria RAM* : almacena de forma temporal el código binario de los archivos ejecutables y los archivos de datos necesarios.
-- *CPU* : lee y ejecuta instrucciones almacenadas en memoria RAM, así  como los datos necesarios.
+- *CPU* : lee y ejecuta instrucciones almacenadas en memoria RAM.
 - *E/S*: recoge nuevos datos desde la entrada, se muestran los resultados, se leen/guardan a disco, ...
 
 ** ¿pero qué es un ordenador?
@@ -57,8 +59,12 @@
   - Programas que hacen programas
   - Actualización de software    
 
-#+caption: Arquitectura de Von Neuman
-[[https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png]]
+
+#+comment: [[https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png]]
+#+caption: Arquitectura de Von Neuman (Fuente cdn1.byjus.com)
+[[./media/word-image200.png]]
+
+
 
 ** Códigos fuente, objeto y ejecutable
 :PROPERTIES:
@@ -250,8 +256,10 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
 :PROPERTIES:
 :CUSTOM_ID: modelo-en-cascada-i
 :END:
-#+caption: Modelo en cascada
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png]]
+
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/cascada.png]]
+#+caption: Modelo en cascada (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/cascada.png]]
 
 ** Modelo en cascada (II)
 :PROPERTIES:
@@ -270,8 +278,10 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
 :PROPERTIES:
 :CUSTOM_ID: modelo-en-v-i
 :END:
-#+caption: Modelo en V
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png]]
+
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/v.png]]
+#+caption: Modelo en V  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/v.png]]
 
 ** Modelo en V (II)
 :PROPERTIES:
@@ -293,8 +303,11 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
   - por no existir experiencia previa.
   - por omisión o falta de concreción del usuario/cliente.
 
-#+caption: Modelo de construcción de prototipos
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png]]
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/prototipos.png]]
+#+caption: Modelo de construcción de prototipos  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/prototipos.png]]
+
+
 
 ** Prototipos (II)
 :PROPERTIES:
@@ -328,8 +341,9 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
 - La actividad de */ingeniería/* corresponde a las fases de los modelos
   clásicos: análisis, diseño, codificación, ...
 
-#+caption: Modelo en espiral
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png]]
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral.png]]
+#+caption: Modelo en espiral  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/espiral.png]]
 
 ** Modelo en espiral (II)
 :PROPERTIES:
@@ -338,8 +352,9 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
 - En la actividad de */ingeniería/* se da gran importancia a la
   reutilización de código.
 
-#+caption: Modelo en espiral
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png]]
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/espiral-poo.png]]
+#+caption: Modelo en espiral  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/espiral-poo.png]]
 
 ** Metodologías ágiles (I)
 :PROPERTIES:
@@ -369,6 +384,9 @@ Desarrollo Ágil]]
 - *Colaboración con el cliente* sobre negociación contractual
 - *Respuesta ante el cambio* sobre seguir un plan
 
+*** cosas :noexport:
+https://dev.to/r_elena_mendez_escobar/agile-inception-36af
+
 *** *Kanban (I)*
 :PROPERTIES:
 :CUSTOM_ID: kanban-i
@@ -391,8 +409,9 @@ Desarrollo Ágil]]
 :END:
 Pizarra kanban
 
-#+caption: Pizarra kanban
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png]]
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/kanban-board.png]]
+#+caption: Pizarra kanban  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/kanban-board.png]]
 
 *** *Scrum (I)*
 :PROPERTIES:
@@ -410,8 +429,12 @@ Pizarra kanban
 :PROPERTIES:
 :CUSTOM_ID: scrum-ii
 :END:
-#+caption: Proceso SCRUM
-[[http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png]]
+
+#+comment: [[http://jamj2000.github.io/entornosdesarrollo/1/assets/scrum.png]]
+#+caption: Proceso SCRUM  (Fuente: jamj2000.github.io/entornosdesarrollo)
+[[./media/scrum.png]]
+
+
 
 *** *XP (Programación extrema) (I)*
 :PROPERTIES:
@@ -477,7 +500,8 @@ Pizarra kanban
 - Si no existen errores, se genera el código objeto correspondiente.
 - Un código fuente correctamente escrito no significa que funcione según
   lo deseado.
-- No se realiza un análisis semántico.
+  - No se realiza un análisis semántico en cuanto a si el programa es correcto
+  - El análisis semántico se reduce a si las operaciones individuales tienen sentido
 
 ** Lenguajes compilados
 :PROPERTIES:
