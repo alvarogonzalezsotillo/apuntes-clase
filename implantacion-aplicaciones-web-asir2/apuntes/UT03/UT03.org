@@ -26,6 +26,7 @@
 - Plugins
 - Ficheros extra
 - Base de datos
+- Configuración Linux y/o PHP y/o Apache  
 
 ** Cómo restaurar
 - Cambio de ruta de ficheros
@@ -60,16 +61,39 @@
 
 * Ejercicio
 - Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
-  1. Bajar ficheros
-  2. Bajar base de datos
-  3. Subir ficheros a debian
-  4. Modificar en la base de datos la URL antigua por la nueva
-  5. Modificar fichero =.htaccess=
-  6. Activar =mod_rewrite= y =Allow override All= en Apache
-  7. Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.   
-  8. 🙏🤞
+  1. Bajar ficheros PHP
+  2. Bajar fichero SQL de base de datos
+  3. Modificar en la base de datos la URL antigua por la nueva
+  4. Subir ficheros a debian
+  5. Importar base de datos en MySQL
+     - Con un usuario y base de datos nueva   
+  6. Modificar fichero =.htaccess=
+  7. Activar =mod_rewrite=
+  8. =Allow override All= en el =directory= de Apache
+  9. Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.   
+  10. 🙏🤞
 
 [[https://developer.wordpress.org/advanced-administration/upgrade/migrating/][Instrucciones alternativas]]     
+
+* Gráfico
+#+begin_src dot :file ./pasos-migracion.svg :exports results :cmdline -Tsvg
+digraph{
+  graph [nodesep=0.5, ranksep=1]
+  node [ shape="box", style="rounded"]
+  edge [fontname="courier", fontsize="10"]
+  splines=true
+
+  "bajar php de hosting" -> "subir php a debian" -> "modificar fichero .htaccess" ->  "conseguido"
+  "bajar SQL de hosting" -> "cambiar URL vieja por nueva" -> "subir sql a debian" -> "importar base de datos en debian"
+  "crear usuario y base de datos en debian" -> "importar base de datos en debian" ->  "conseguido"
+  "activar mod_rewrite" ->  "conseguido"
+  "permitir Allow Override All" ->  "conseguido"
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:./pasos-migracion.svg]]
 
 * Referencias
 #+include: "../../../common/footer.org"

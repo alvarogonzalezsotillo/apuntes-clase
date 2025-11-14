@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2025-11-12 mié 13:17 -->
 <meta charset="utf-8"/>
 <title>Exportar e importar datos de Oracle</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -443,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-04-10 Thu 12:07</p>
+<h1 class="title">Exportar e importar datos de Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-11-12 mié 13:17</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -496,11 +497,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -511,7 +507,6 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> Exportar datos</h2>
@@ -763,8 +758,6 @@ Valid keyword values are: IMMEDIATE.
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-1-1">
 <h3 id="1-1"><span class="section-number-3">1.1.</span> <code>directory</code> de <b>Oracle</b></h3>
@@ -780,9 +773,6 @@ Valid keyword values are: IMMEDIATE.
 
 </ul>
 <div class="slide-footer"></div>
-
-
-
 </section>
 <section id="slide-1-2">
 <h3 id="1-2"><span class="section-number-3">1.2.</span> Definir un directorio</h3>
@@ -809,7 +799,6 @@ create directory mi_directorio_de_backup as '/home/alumno/backups';
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-1-3">
 <h3 id="1-3"><span class="section-number-3">1.3.</span> Caracteres de escape</h3>
@@ -826,13 +815,12 @@ create directory mi_directorio_de_backup as '/home/alumno/backups';
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-1-4">
 <h3 id="1-4"><span class="section-number-3">1.4.</span> Conectar sin contraseña como <code>SYS</code> a PDB en local</h3>
 <ul>
-<li>Se usa la variable <code>ORACLE_PDB_SID</code>, junto con <code>ORACLE_SID_</code></li>
-<li>Por lo que sea, no funciona con <code>sqlplus</code></li>
+<li>Se usa la variable <code>ORACLE_PDB_SID</code>, junto con <code>ORACLE_SID</code></li>
+<li>También no funciona con <code>sqlplus</code></li>
 
 </ul>
 <div class="org-src-container">
@@ -843,8 +831,6 @@ expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-1-5">
 <h3 id="1-5"><span class="section-number-3">1.5.</span> Conectar sin contraseña en <i>connection string</i></h3>
@@ -877,7 +863,6 @@ expdp \'/ as sysdba\' DIRECTORY=datos DUMPFILE=\'con espacios.dmp\'
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-1-6">
 <h3 id="1-6"><span class="section-number-3">1.6.</span> Ejemplo de exportación</h3>
@@ -915,8 +900,6 @@ Job "ALUMNO"."SYS_EXPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:08:0
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1182,7 +1165,6 @@ Valid keywords are: IMMEDIATE.
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-2-1">
 <h3 id="2-1"><span class="section-number-3">2.1.</span> <code>INCLUDE/EXCLUDE</code> una tabla</h3>
@@ -1202,8 +1184,6 @@ Valid keywords are: IMMEDIATE.
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-2-2">
 <h3 id="2-2"><span class="section-number-3">2.2.</span> Importar un <code>schema</code> en otro <code>schema</code></h3>
@@ -1253,8 +1233,6 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 <a href="https://stackoverflow.com/questions/14397668/ora-39122-unprivileged-users-may-not-perform-remap-schema-remappings">Permiso para cambiar schema</a>
 </p>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1275,182 +1253,178 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Tareas para la exportación</h3>
 
 <div id="org0000000" class="figure">
-<p><svg width="692pt" height="260pt"
- viewBox="0.00 0.00 692.25 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p><svg width="560pt" height="260pt"
+ viewBox="0.00 0.00 559.75 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
-<polygon fill="white" stroke="none" points="-4,4 -4,-256 688.25,-256 688.25,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-256 555.75,-256 555.75,4 -4,4"/>
 <!-- Registrar directorio -->
 <g id="node1" class="node">
 <title>Registrar directorio</title>
-<polygon fill="none" stroke="black" points="157.75,-144 0,-144 0,-108 157.75,-108 157.75,-144"/>
-<text text-anchor="middle" x="78.88" y="-121.33" font-family="Times,serif" font-size="14.00">Registrar directorio</text>
+<polygon fill="none" stroke="black" points="121.75,-144 0,-144 0,-108 121.75,-108 121.75,-144"/>
+<text text-anchor="middle" x="60.88" y="-120.95" font-family="Times,serif" font-size="14.00">Registrar directorio</text>
 </g>
 <!-- Crear directorio -->
 <g id="node2" class="node">
 <title>Crear directorio</title>
-<polygon fill="none" stroke="black" points="144.25,-36 13.5,-36 13.5,0 144.25,0 144.25,-36"/>
-<text text-anchor="middle" x="78.88" y="-13.32" font-family="Times,serif" font-size="14.00">Crear directorio</text>
+<polygon fill="none" stroke="black" points="112,-36 9.75,-36 9.75,0 112,0 112,-36"/>
+<text text-anchor="middle" x="60.88" y="-12.95" font-family="Times,serif" font-size="14.00">Crear directorio</text>
 </g>
 <!-- Registrar directorio&#45;&gt;Crear directorio -->
 <g id="edge1" class="edge">
 <title>Registrar directorio&#45;&gt;Crear directorio</title>
-<path fill="none" stroke="black" d="M78.88,-107.97C78.88,-91.61 78.88,-66.59 78.88,-47.24"/>
-<polygon fill="black" stroke="black" points="82.38,-47.34 78.88,-37.34 75.38,-47.34 82.38,-47.34"/>
+<path fill="none" stroke="black" d="M60.88,-107.97C60.88,-91.76 60.88,-67.06 60.88,-47.79"/>
+<polygon fill="black" stroke="black" points="64.38,-47.85 60.88,-37.85 57.38,-47.85 64.38,-47.85"/>
 </g>
 <!-- expdp -->
 <g id="node3" class="node">
 <title>expdp</title>
-<polygon fill="none" stroke="black" points="334.62,-252 275.12,-252 275.12,-216 334.62,-216 334.62,-252"/>
-<text text-anchor="middle" x="304.88" y="-229.32" font-family="Times,serif" font-size="14.00">expdp</text>
+<polygon fill="none" stroke="black" points="271.88,-252 217.88,-252 217.88,-216 271.88,-216 271.88,-252"/>
+<text text-anchor="middle" x="244.88" y="-228.95" font-family="Times,serif" font-size="14.00">expdp</text>
 </g>
 <!-- expdp&#45;&gt;Registrar directorio -->
 <g id="edge2" class="edge">
 <title>expdp&#45;&gt;Registrar directorio</title>
-<path fill="none" stroke="black" d="M274.86,-218.92C236.8,-201.07 170.73,-170.08 125.93,-149.07"/>
-<polygon fill="black" stroke="black" points="127.7,-145.56 117.16,-144.49 124.72,-151.9 127.7,-145.56"/>
+<path fill="none" stroke="black" d="M217.73,-217.36C186.84,-199.57 136.12,-170.35 100.74,-149.97"/>
+<polygon fill="black" stroke="black" points="102.92,-147.18 92.51,-145.23 99.43,-153.25 102.92,-147.18"/>
 </g>
 <!-- Privilegios de usuario Oracle -->
 <g id="node4" class="node">
 <title>Privilegios de usuario Oracle</title>
-<polygon fill="none" stroke="black" points="416,-144 193.75,-144 193.75,-108 416,-108 416,-144"/>
-<text text-anchor="middle" x="304.88" y="-121.33" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
+<polygon fill="none" stroke="black" points="332,-144 157.75,-144 157.75,-108 332,-108 332,-144"/>
+<text text-anchor="middle" x="244.88" y="-120.95" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
 </g>
 <!-- expdp&#45;&gt;Privilegios de usuario Oracle -->
 <g id="edge3" class="edge">
 <title>expdp&#45;&gt;Privilegios de usuario Oracle</title>
-<path fill="none" stroke="black" d="M304.88,-215.97C304.88,-199.61 304.88,-174.59 304.88,-155.24"/>
-<polygon fill="black" stroke="black" points="308.38,-155.34 304.88,-145.34 301.38,-155.34 308.38,-155.34"/>
+<path fill="none" stroke="black" d="M244.88,-215.97C244.88,-199.76 244.88,-175.06 244.88,-155.79"/>
+<polygon fill="black" stroke="black" points="248.38,-155.85 244.88,-145.85 241.38,-155.85 248.38,-155.85"/>
 </g>
 <!-- Permisos usuario S.O. -->
 <g id="node5" class="node">
 <title>Permisos usuario S.O.</title>
-<polygon fill="none" stroke="black" points="623.88,-144 451.88,-144 451.88,-108 623.88,-108 623.88,-144"/>
-<text text-anchor="middle" x="537.88" y="-121.33" font-family="Times,serif" font-size="14.00">Permisos usuario S.O.</text>
+<polygon fill="none" stroke="black" points="506,-144 367.75,-144 367.75,-108 506,-108 506,-144"/>
+<text text-anchor="middle" x="436.88" y="-120.95" font-family="Times,serif" font-size="14.00">Permisos usuario S.O.</text>
 </g>
 <!-- expdp&#45;&gt;Permisos usuario S.O. -->
 <g id="edge4" class="edge">
 <title>expdp&#45;&gt;Permisos usuario S.O.</title>
-<path fill="none" stroke="black" d="M334.86,-219.36C374.02,-201.54 443.06,-170.13 489.63,-148.95"/>
-<polygon fill="black" stroke="black" points="490.84,-151.79 498.5,-144.46 487.94,-145.42 490.84,-151.79"/>
+<path fill="none" stroke="black" d="M271.98,-218.04C304.1,-200.3 357.98,-170.55 395.37,-149.91"/>
+<polygon fill="black" stroke="black" points="397.06,-152.98 404.12,-145.08 393.68,-146.85 397.06,-152.98"/>
 </g>
 <!-- ¿Qué usuario S.O. ejecuta la instancia? -->
 <g id="node6" class="node">
 <title>¿Qué usuario S.O. ejecuta la instancia?</title>
-<polygon fill="none" stroke="black" points="684.25,-36 391.5,-36 391.5,0 684.25,0 684.25,-36"/>
-<text text-anchor="middle" x="537.88" y="-13.32" font-family="Times,serif" font-size="14.00">¿Qué usuario S.O. ejecuta la instancia?</text>
+<polygon fill="none" stroke="black" points="551.75,-36 322,-36 322,0 551.75,0 551.75,-36"/>
+<text text-anchor="middle" x="436.88" y="-12.95" font-family="Times,serif" font-size="14.00">¿Qué usuario S.O. ejecuta la instancia?</text>
 </g>
 <!-- Permisos usuario S.O.&#45;&gt;¿Qué usuario S.O. ejecuta la instancia? -->
 <g id="edge5" class="edge">
 <title>Permisos usuario S.O.&#45;&gt;¿Qué usuario S.O. ejecuta la instancia?</title>
-<path fill="none" stroke="black" d="M537.88,-107.97C537.88,-91.61 537.88,-66.59 537.88,-47.24"/>
-<polygon fill="black" stroke="black" points="541.38,-47.34 537.88,-37.34 534.38,-47.34 541.38,-47.34"/>
+<path fill="none" stroke="black" d="M436.88,-107.97C436.88,-91.76 436.88,-67.06 436.88,-47.79"/>
+<polygon fill="black" stroke="black" points="440.38,-47.85 436.88,-37.85 433.38,-47.85 440.38,-47.85"/>
 </g>
 </g>
 </svg>
 </p>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-2">
 <h3 id="3-2"><span class="section-number-3">3.2.</span> Tareas para la importación</h3>
 
 <div id="org0000002" class="figure">
-<p><svg width="733pt" height="260pt"
- viewBox="0.00 0.00 732.88 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p><svg width="611pt" height="260pt"
+ viewBox="0.00 0.00 611.12 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
-<polygon fill="white" stroke="none" points="-4,4 -4,-256 728.88,-256 728.88,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-256 607.12,-256 607.12,4 -4,4"/>
 <!-- impdp -->
 <g id="node1" class="node">
 <title>impdp</title>
-<polygon fill="none" stroke="black" points="465.62,-252 404.62,-252 404.62,-216 465.62,-216 465.62,-252"/>
-<text text-anchor="middle" x="435.12" y="-229.32" font-family="Times,serif" font-size="14.00">impdp</text>
+<polygon fill="none" stroke="black" points="382.12,-252 328.12,-252 328.12,-216 382.12,-216 382.12,-252"/>
+<text text-anchor="middle" x="355.12" y="-228.95" font-family="Times,serif" font-size="14.00">impdp</text>
 </g>
 <!-- Privilegios de usuario Oracle -->
 <g id="node2" class="node">
 <title>Privilegios de usuario Oracle</title>
-<polygon fill="none" stroke="black" points="222.25,-144 0,-144 0,-108 222.25,-108 222.25,-144"/>
-<text text-anchor="middle" x="111.12" y="-121.33" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
+<polygon fill="none" stroke="black" points="174.25,-144 0,-144 0,-108 174.25,-108 174.25,-144"/>
+<text text-anchor="middle" x="87.12" y="-120.95" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
 </g>
 <!-- impdp&#45;&gt;Privilegios de usuario Oracle -->
 <g id="edge1" class="edge">
 <title>impdp&#45;&gt;Privilegios de usuario Oracle</title>
-<path fill="none" stroke="black" d="M404.35,-222.93C351.92,-205.78 244.21,-170.54 174.95,-147.88"/>
-<polygon fill="black" stroke="black" points="176.19,-144.28 165.6,-144.49 174.01,-150.93 176.19,-144.28"/>
+<path fill="none" stroke="black" d="M327.95,-222.25C284.45,-205.05 198.31,-170.98 141.72,-148.59"/>
+<polygon fill="black" stroke="black" points="143.16,-145.4 132.58,-144.98 140.59,-151.91 143.16,-145.4"/>
 </g>
 <!-- Cambio de schema -->
 <g id="node3" class="node">
 <title>Cambio de schema</title>
-<polygon fill="none" stroke="black" points="408.25,-144 258,-144 258,-108 408.25,-108 408.25,-144"/>
-<text text-anchor="middle" x="333.12" y="-121.33" font-family="Times,serif" font-size="14.00">Cambio de schema</text>
+<polygon fill="none" stroke="black" points="331.62,-144 210.62,-144 210.62,-108 331.62,-108 331.62,-144"/>
+<text text-anchor="middle" x="271.12" y="-120.95" font-family="Times,serif" font-size="14.00">Cambio de schema</text>
 </g>
 <!-- impdp&#45;&gt;Cambio de schema -->
 <g id="edge2" class="edge">
 <title>impdp&#45;&gt;Cambio de schema</title>
-<path fill="none" stroke="black" d="M418.74,-215.97C402.11,-198.69 376.18,-171.74 357.21,-152.03"/>
-<polygon fill="black" stroke="black" points="360.27,-150.12 350.81,-145.34 355.22,-154.97 360.27,-150.12"/>
+<path fill="none" stroke="black" d="M341.63,-215.97C328.24,-199.07 307.53,-172.94 292.01,-153.36"/>
+<polygon fill="black" stroke="black" points="294.76,-151.19 285.81,-145.53 289.27,-155.54 294.76,-151.19"/>
 </g>
 <!-- Cuota de nuevo usuario -->
 <g id="node4" class="node">
 <title>Cuota de nuevo usuario</title>
-<polygon fill="none" stroke="black" points="629.5,-144 444.75,-144 444.75,-108 629.5,-108 629.5,-144"/>
-<text text-anchor="middle" x="537.12" y="-121.33" font-family="Times,serif" font-size="14.00">Cuota de nuevo usuario</text>
+<polygon fill="none" stroke="black" points="512.62,-144 367.62,-144 367.62,-108 512.62,-108 512.62,-144"/>
+<text text-anchor="middle" x="440.12" y="-120.95" font-family="Times,serif" font-size="14.00">Cuota de nuevo usuario</text>
 </g>
 <!-- impdp&#45;&gt;Cuota de nuevo usuario -->
 <g id="edge3" class="edge">
 <title>impdp&#45;&gt;Cuota de nuevo usuario</title>
-<path fill="none" stroke="black" d="M451.51,-215.97C468.14,-198.69 494.07,-171.74 513.04,-152.03"/>
-<polygon fill="black" stroke="black" points="515.03,-154.97 519.44,-145.34 509.98,-150.12 515.03,-154.97"/>
+<path fill="none" stroke="black" d="M368.78,-215.97C382.39,-198.99 403.48,-172.7 419.2,-153.09"/>
+<polygon fill="black" stroke="black" points="421.75,-155.51 425.27,-145.52 416.29,-151.13 421.75,-155.51"/>
 </g>
 <!-- expdp -->
 <g id="node7" class="node">
 <title>expdp</title>
-<polygon fill="none" stroke="black" points="724.88,-144 665.38,-144 665.38,-108 724.88,-108 724.88,-144"/>
-<text text-anchor="middle" x="695.12" y="-121.33" font-family="Times,serif" font-size="14.00">expdp</text>
+<polygon fill="none" stroke="black" points="603.12,-144 549.12,-144 549.12,-108 603.12,-108 603.12,-144"/>
+<text text-anchor="middle" x="576.12" y="-120.95" font-family="Times,serif" font-size="14.00">expdp</text>
 </g>
 <!-- impdp&#45;&gt;expdp -->
 <g id="edge6" class="edge">
 <title>impdp&#45;&gt;expdp</title>
-<path fill="none" stroke="black" d="M465.97,-220.42C513.14,-201.2 603.17,-164.49 655.24,-143.26"/>
-<polygon fill="black" stroke="black" points="656.18,-146.25 664.12,-139.23 653.54,-139.77 656.18,-146.25"/>
+<path fill="none" stroke="black" d="M382.22,-220C421.41,-201.21 494.05,-166.37 538.44,-145.08"/>
+<polygon fill="black" stroke="black" points="539.94,-148.24 547.44,-140.76 536.91,-141.93 539.94,-148.24"/>
 </g>
 <!-- grant datapump_imp_full_database to ... -->
 <g id="node6" class="node">
 <title>grant datapump_imp_full_database to ...</title>
-<polygon fill="none" stroke="black" points="452.75,-36 149.5,-36 149.5,0 452.75,0 452.75,-36"/>
-<text text-anchor="middle" x="301.12" y="-13.32" font-family="Times,serif" font-size="14.00">grant datapump_imp_full_database to ...</text>
+<polygon fill="none" stroke="black" points="365.12,-36 127.12,-36 127.12,0 365.12,0 365.12,-36"/>
+<text text-anchor="middle" x="246.12" y="-12.95" font-family="Times,serif" font-size="14.00">grant datapump_imp_full_database to ...</text>
 </g>
 <!-- Cambio de schema&#45;&gt;grant datapump_imp_full_database to ... -->
 <g id="edge5" class="edge">
 <title>Cambio de schema&#45;&gt;grant datapump_imp_full_database to ...</title>
-<path fill="none" stroke="black" d="M327.98,-107.97C323,-91.45 315.35,-66.12 309.49,-46.7"/>
-<polygon fill="black" stroke="black" points="312.6,-45.9 306.36,-37.34 305.9,-47.93 312.6,-45.9"/>
+<path fill="none" stroke="black" d="M267.11,-107.97C263.27,-91.69 257.4,-66.82 252.85,-47.52"/>
+<polygon fill="black" stroke="black" points="256.26,-46.74 250.56,-37.81 249.45,-48.35 256.26,-46.74"/>
 </g>
 <!-- Crear nuevo usuario -->
 <g id="node5" class="node">
 <title>Crear nuevo usuario</title>
-<polygon fill="none" stroke="black" points="649.88,-36 488.38,-36 488.38,0 649.88,0 649.88,-36"/>
-<text text-anchor="middle" x="569.12" y="-13.32" font-family="Times,serif" font-size="14.00">Crear nuevo usuario</text>
+<polygon fill="none" stroke="black" points="527.25,-36 401,-36 401,0 527.25,0 527.25,-36"/>
+<text text-anchor="middle" x="464.12" y="-12.95" font-family="Times,serif" font-size="14.00">Crear nuevo usuario</text>
 </g>
 <!-- Cuota de nuevo usuario&#45;&gt;Crear nuevo usuario -->
 <g id="edge4" class="edge">
 <title>Cuota de nuevo usuario&#45;&gt;Crear nuevo usuario</title>
-<path fill="none" stroke="black" d="M542.27,-107.97C547.25,-91.45 554.9,-66.12 560.76,-46.7"/>
-<polygon fill="black" stroke="black" points="564.35,-47.93 563.89,-37.34 557.65,-45.9 564.35,-47.93"/>
+<path fill="none" stroke="black" d="M443.98,-107.97C447.67,-91.69 453.3,-66.82 457.67,-47.52"/>
+<polygon fill="black" stroke="black" points="461.07,-48.34 459.86,-37.82 454.24,-46.8 461.07,-48.34"/>
 </g>
 </g>
 </svg>
 </p>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1477,137 +1451,134 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 
 </ol>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-1">
 <h3 id="4-1"><span class="section-number-3">4.1.</span> Tareas</h3>
 
 <div id="org0000004" class="figure">
-<p><svg width="1079pt" height="368pt"
- viewBox="0.00 0.00 1078.50 368.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p><svg width="887pt" height="368pt"
+ viewBox="0.00 0.00 886.75 368.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 364)">
-<polygon fill="white" stroke="none" points="-4,4 -4,-364 1074.5,-364 1074.5,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-364 882.75,-364 882.75,4 -4,4"/>
 <!-- Registrar directorio -->
 <g id="node1" class="node">
 <title>Registrar directorio</title>
-<polygon fill="none" stroke="black" points="157.75,-144 0,-144 0,-108 157.75,-108 157.75,-144"/>
-<text text-anchor="middle" x="78.88" y="-121.33" font-family="Times,serif" font-size="14.00">Registrar directorio</text>
+<polygon fill="none" stroke="black" points="121.75,-144 0,-144 0,-108 121.75,-108 121.75,-144"/>
+<text text-anchor="middle" x="60.88" y="-120.95" font-family="Times,serif" font-size="14.00">Registrar directorio</text>
 </g>
 <!-- Crear directorio -->
 <g id="node2" class="node">
 <title>Crear directorio</title>
-<polygon fill="none" stroke="black" points="144.25,-36 13.5,-36 13.5,0 144.25,0 144.25,-36"/>
-<text text-anchor="middle" x="78.88" y="-13.32" font-family="Times,serif" font-size="14.00">Crear directorio</text>
+<polygon fill="none" stroke="black" points="112,-36 9.75,-36 9.75,0 112,0 112,-36"/>
+<text text-anchor="middle" x="60.88" y="-12.95" font-family="Times,serif" font-size="14.00">Crear directorio</text>
 </g>
 <!-- Registrar directorio&#45;&gt;Crear directorio -->
 <g id="edge1" class="edge">
 <title>Registrar directorio&#45;&gt;Crear directorio</title>
-<path fill="none" stroke="black" d="M78.88,-107.97C78.88,-91.61 78.88,-66.59 78.88,-47.24"/>
-<polygon fill="black" stroke="black" points="82.38,-47.34 78.88,-37.34 75.38,-47.34 82.38,-47.34"/>
+<path fill="none" stroke="black" d="M60.88,-107.97C60.88,-91.76 60.88,-67.06 60.88,-47.79"/>
+<polygon fill="black" stroke="black" points="64.38,-47.85 60.88,-37.85 57.38,-47.85 64.38,-47.85"/>
 </g>
 <!-- expdp -->
 <g id="node3" class="node">
 <title>expdp</title>
-<polygon fill="none" stroke="black" points="334.62,-252 275.12,-252 275.12,-216 334.62,-216 334.62,-252"/>
-<text text-anchor="middle" x="304.88" y="-229.32" font-family="Times,serif" font-size="14.00">expdp</text>
+<polygon fill="none" stroke="black" points="271.88,-252 217.88,-252 217.88,-216 271.88,-216 271.88,-252"/>
+<text text-anchor="middle" x="244.88" y="-228.95" font-family="Times,serif" font-size="14.00">expdp</text>
 </g>
 <!-- expdp&#45;&gt;Registrar directorio -->
 <g id="edge2" class="edge">
 <title>expdp&#45;&gt;Registrar directorio</title>
-<path fill="none" stroke="black" d="M274.86,-218.92C236.8,-201.07 170.73,-170.08 125.93,-149.07"/>
-<polygon fill="black" stroke="black" points="127.7,-145.56 117.16,-144.49 124.72,-151.9 127.7,-145.56"/>
+<path fill="none" stroke="black" d="M217.73,-217.36C186.84,-199.57 136.12,-170.35 100.74,-149.97"/>
+<polygon fill="black" stroke="black" points="102.92,-147.18 92.51,-145.23 99.43,-153.25 102.92,-147.18"/>
 </g>
 <!-- Privilegios de usuario Oracle -->
 <g id="node4" class="node">
 <title>Privilegios de usuario Oracle</title>
-<polygon fill="none" stroke="black" points="416,-144 193.75,-144 193.75,-108 416,-108 416,-144"/>
-<text text-anchor="middle" x="304.88" y="-121.33" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
+<polygon fill="none" stroke="black" points="332,-144 157.75,-144 157.75,-108 332,-108 332,-144"/>
+<text text-anchor="middle" x="244.88" y="-120.95" font-family="Times,serif" font-size="14.00">Privilegios de usuario Oracle</text>
 </g>
 <!-- expdp&#45;&gt;Privilegios de usuario Oracle -->
 <g id="edge3" class="edge">
 <title>expdp&#45;&gt;Privilegios de usuario Oracle</title>
-<path fill="none" stroke="black" d="M304.88,-215.97C304.88,-199.61 304.88,-174.59 304.88,-155.24"/>
-<polygon fill="black" stroke="black" points="308.38,-155.34 304.88,-145.34 301.38,-155.34 308.38,-155.34"/>
+<path fill="none" stroke="black" d="M244.88,-215.97C244.88,-199.76 244.88,-175.06 244.88,-155.79"/>
+<polygon fill="black" stroke="black" points="248.38,-155.85 244.88,-145.85 241.38,-155.85 248.38,-155.85"/>
 </g>
 <!-- Permisos usuario S.O. -->
 <g id="node5" class="node">
 <title>Permisos usuario S.O.</title>
-<polygon fill="none" stroke="black" points="623.88,-144 451.88,-144 451.88,-108 623.88,-108 623.88,-144"/>
-<text text-anchor="middle" x="537.88" y="-121.33" font-family="Times,serif" font-size="14.00">Permisos usuario S.O.</text>
+<polygon fill="none" stroke="black" points="506,-144 367.75,-144 367.75,-108 506,-108 506,-144"/>
+<text text-anchor="middle" x="436.88" y="-120.95" font-family="Times,serif" font-size="14.00">Permisos usuario S.O.</text>
 </g>
 <!-- expdp&#45;&gt;Permisos usuario S.O. -->
 <g id="edge4" class="edge">
 <title>expdp&#45;&gt;Permisos usuario S.O.</title>
-<path fill="none" stroke="black" d="M334.86,-219.36C374.02,-201.54 443.06,-170.13 489.63,-148.95"/>
-<polygon fill="black" stroke="black" points="490.84,-151.79 498.5,-144.46 487.94,-145.42 490.84,-151.79"/>
+<path fill="none" stroke="black" d="M271.98,-218.04C304.1,-200.3 357.98,-170.55 395.37,-149.91"/>
+<polygon fill="black" stroke="black" points="397.06,-152.98 404.12,-145.08 393.68,-146.85 397.06,-152.98"/>
 </g>
 <!-- ¿Qué usuario S.O. ejecuta la instancia? -->
 <g id="node6" class="node">
 <title>¿Qué usuario S.O. ejecuta la instancia?</title>
-<polygon fill="none" stroke="black" points="684.25,-36 391.5,-36 391.5,0 684.25,0 684.25,-36"/>
-<text text-anchor="middle" x="537.88" y="-13.32" font-family="Times,serif" font-size="14.00">¿Qué usuario S.O. ejecuta la instancia?</text>
+<polygon fill="none" stroke="black" points="551.75,-36 322,-36 322,0 551.75,0 551.75,-36"/>
+<text text-anchor="middle" x="436.88" y="-12.95" font-family="Times,serif" font-size="14.00">¿Qué usuario S.O. ejecuta la instancia?</text>
 </g>
 <!-- Permisos usuario S.O.&#45;&gt;¿Qué usuario S.O. ejecuta la instancia? -->
 <g id="edge5" class="edge">
 <title>Permisos usuario S.O.&#45;&gt;¿Qué usuario S.O. ejecuta la instancia?</title>
-<path fill="none" stroke="black" d="M537.88,-107.97C537.88,-91.61 537.88,-66.59 537.88,-47.24"/>
-<polygon fill="black" stroke="black" points="541.38,-47.34 537.88,-37.34 534.38,-47.34 541.38,-47.34"/>
+<path fill="none" stroke="black" d="M436.88,-107.97C436.88,-91.76 436.88,-67.06 436.88,-47.79"/>
+<polygon fill="black" stroke="black" points="440.38,-47.85 436.88,-37.85 433.38,-47.85 440.38,-47.85"/>
 </g>
 <!-- impdp -->
 <g id="node7" class="node">
 <title>impdp</title>
-<polygon fill="none" stroke="black" points="604.38,-360 543.38,-360 543.38,-324 604.38,-324 604.38,-360"/>
-<text text-anchor="middle" x="573.88" y="-337.32" font-family="Times,serif" font-size="14.00">impdp</text>
+<polygon fill="none" stroke="black" points="504.88,-360 450.88,-360 450.88,-324 504.88,-324 504.88,-360"/>
+<text text-anchor="middle" x="477.88" y="-336.95" font-family="Times,serif" font-size="14.00">impdp</text>
 </g>
 <!-- impdp&#45;&gt;expdp -->
 <g id="edge6" class="edge">
 <title>impdp&#45;&gt;expdp</title>
-<path fill="none" stroke="black" d="M543.02,-328.84C494.14,-309.58 398.93,-272.06 344.88,-250.76"/>
-<polygon fill="black" stroke="black" points="346.55,-247.27 335.96,-246.86 343.98,-253.78 346.55,-247.27"/>
+<path fill="none" stroke="black" d="M450.69,-328.63C409.15,-309.73 329.75,-273.61 282.63,-252.18"/>
+<polygon fill="black" stroke="black" points="284.18,-249.03 273.62,-248.08 281.28,-255.41 284.18,-249.03"/>
 </g>
 <!-- Vaciar RESULTADOS -->
 <g id="node8" class="node">
 <title>Vaciar RESULTADOS</title>
-<polygon fill="none" stroke="black" points="536.88,-252 370.88,-252 370.88,-216 536.88,-216 536.88,-252"/>
-<text text-anchor="middle" x="453.88" y="-229.32" font-family="Times,serif" font-size="14.00">Vaciar RESULTADOS</text>
+<polygon fill="none" stroke="black" points="448.12,-252 307.62,-252 307.62,-216 448.12,-216 448.12,-252"/>
+<text text-anchor="middle" x="377.88" y="-228.95" font-family="Times,serif" font-size="14.00">Vaciar RESULTADOS</text>
 </g>
 <!-- impdp&#45;&gt;Vaciar RESULTADOS -->
 <g id="edge7" class="edge">
 <title>impdp&#45;&gt;Vaciar RESULTADOS</title>
-<path fill="none" stroke="black" d="M554.33,-323.73C534.54,-306.25 503.77,-279.07 481.49,-259.4"/>
-<polygon fill="black" stroke="black" points="484.23,-257.26 474.41,-253.26 479.59,-262.5 484.23,-257.26"/>
+<path fill="none" stroke="black" d="M461.81,-323.97C445.65,-306.84 420.54,-280.22 401.99,-260.56"/>
+<polygon fill="black" stroke="black" points="404.68,-258.31 395.27,-253.44 399.59,-263.12 404.68,-258.31"/>
 </g>
 <!-- Seleccionar importar solo datos -->
 <g id="node9" class="node">
 <title>Seleccionar importar solo datos</title>
-<polygon fill="none" stroke="black" points="815.12,-252 572.62,-252 572.62,-216 815.12,-216 815.12,-252"/>
-<text text-anchor="middle" x="693.88" y="-229.32" font-family="Times,serif" font-size="14.00">Seleccionar importar solo datos</text>
+<polygon fill="none" stroke="black" points="673.12,-252 484.62,-252 484.62,-216 673.12,-216 673.12,-252"/>
+<text text-anchor="middle" x="578.88" y="-228.95" font-family="Times,serif" font-size="14.00">Seleccionar importar solo datos</text>
 </g>
 <!-- impdp&#45;&gt;Seleccionar importar solo datos -->
 <g id="edge8" class="edge">
 <title>impdp&#45;&gt;Seleccionar importar solo datos</title>
-<path fill="none" stroke="black" d="M593.42,-323.73C613.21,-306.25 643.98,-279.07 666.26,-259.4"/>
-<polygon fill="black" stroke="black" points="668.16,-262.5 673.34,-253.26 663.52,-257.26 668.16,-262.5"/>
+<path fill="none" stroke="black" d="M494.1,-323.97C510.42,-306.84 535.79,-280.22 554.52,-260.56"/>
+<polygon fill="black" stroke="black" points="556.94,-263.09 561.31,-253.44 551.88,-258.26 556.94,-263.09"/>
 </g>
 <!-- Seleccionar tabla a importar -->
 <g id="node10" class="node">
 <title>Seleccionar tabla a importar</title>
-<polygon fill="none" stroke="black" points="1070.5,-252 851.25,-252 851.25,-216 1070.5,-216 1070.5,-252"/>
-<text text-anchor="middle" x="960.88" y="-229.32" font-family="Times,serif" font-size="14.00">Seleccionar tabla a importar</text>
+<polygon fill="none" stroke="black" points="878.75,-252 709,-252 709,-216 878.75,-216 878.75,-252"/>
+<text text-anchor="middle" x="793.88" y="-228.95" font-family="Times,serif" font-size="14.00">Seleccionar tabla a importar</text>
 </g>
 <!-- impdp&#45;&gt;Seleccionar tabla a importar -->
 <g id="edge9" class="edge">
 <title>impdp&#45;&gt;Seleccionar tabla a importar</title>
-<path fill="none" stroke="black" d="M604.57,-332.59C665.06,-316.02 801.23,-278.73 886.62,-255.34"/>
-<polygon fill="black" stroke="black" points="887.31,-258.5 896.03,-252.49 885.46,-251.75 887.31,-258.5"/>
+<path fill="none" stroke="black" d="M505.37,-331.78C555.39,-315 662.48,-279.07 731.18,-256.03"/>
+<polygon fill="black" stroke="black" points="732.06,-259.43 740.43,-252.93 729.84,-252.79 732.06,-259.43"/>
 </g>
 </g>
 </svg>
 </p>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1619,7 +1590,6 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1">
 <h3 id="5-1"><span class="section-number-3">5.1.</span> <a href="https://oracle-base.com/articles/9i/recovery-manager-9i">RMAN</a></h3>
@@ -1639,8 +1609,6 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-2">
 <h3 id="5-2"><span class="section-number-3">5.2.</span> Copias de <i>tablespaces</i></h3>
@@ -1664,7 +1632,6 @@ Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:23:5
 Fuente: <a href="https://docs.oracle.com/cd/E11882_01/backup.112/e10642/osbackup.htm#BRADV016">docs.oracle.com</a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-2-1">
 <h4 id="5-2-1"><span class="section-number-4">5.2.1.</span> Lista de ficheros a copiar</h4>
@@ -1694,7 +1661,6 @@ select 'spfile', value from v$parameter where name='spfile';
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-2-2">
 <h4 id="5-2-2"><span class="section-number-4">5.2.2.</span> Arrancar la base de datos</h4>
@@ -1723,8 +1689,6 @@ SQL&gt;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-3">
 <h3 id="5-3"><span class="section-number-3">5.3.</span> Ejercicio</h3>
@@ -1737,9 +1701,6 @@ SQL&gt;
 
 </ol>
 <div class="slide-footer"></div>
-
-
-
 </section>
 </section>
 <section>
