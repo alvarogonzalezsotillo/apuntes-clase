@@ -1,10 +1,12 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Elementos del desarrollo de Software
+#+REVEAL_HLEVEL: 1
 
 
 
-**
 
 * IDE
-- =I= ntegrated =D= evelopment =E= nvironment
+- *I* ntegrated *D* evelopment *E* nvironment
 - Una aplicación con conjunto de herramientas que facilitan la tarea al programador
   - Editor de texto
   - Compilador
@@ -116,7 +118,7 @@ clean:
 - Como (casi) todos los IDE
   - [[https://www.jetbrains.com/idea/download/?section=linux][Bajar la instalación]] (la /Comunity Edition/), o en el NAS 
   - Descomprimir la instalación
-  - Ejecutar =bin/idea.sh/=
+  - Ejecutar =bin/idea.sh=
   - Opcional: crear fichero =.desktop= para lanzarlo cómodamente    
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
@@ -130,10 +132,11 @@ clean:
 - Librería
   - Fichero =jar=: clases precompiladas de Java
   - SDK (compilador del lenguaje). En Java, se llama JDK
-- Facet: capacidades que se añaden a un proyecto
+- /Facet/: capacidades que se añaden a un proyecto
   - Ejemplo: añadir un lenguaje
-- Artifacts: creación de ficheros entregables/desplegables/ejecutables      
-  
+- /Artifacts/: creación de ficheros entregables/desplegables/ejecutables      
+
+ #+reveal: split 
     [[attachment:clipboard-20251113T192607.png]]
     
 ** Proyecto
@@ -165,5 +168,10 @@ clean:
 - Crea un módulo nuevo de nombre =all=
 - Mostrará un menú modo texto para elegir el juego a lanzar
 - Lanzará el juego y al acabar el juego se acabará el programa
+
+
+* Ejercicio
+- Crea un =jar= ejecutable con el módulo =all= y todas sus dependencias
+- Pruébalo con =java -jar all.jar=  
 
   
