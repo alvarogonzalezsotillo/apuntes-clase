@@ -6,13 +6,21 @@
 
 * CMS
 - /Content Management System/
-- Más simple para un usuario que HTML/CSS
 
   #+caption: Tipos de CMS
   | Blogs | Páginas corporativas              | Foros de soporte        |
   | Wikis | Trabajo colaborativo (documentos) | Cursos                  |
   | eShop | /Personal Information Manager/    | Intercambio de ficheros |
 
+** Ventajas
+- Sobre un desarrollo propio o un sitio con HTML/CSS
+  - Facilidad de uso
+  - Niveles de acceso  
+  - Comunidad de usuarios
+    - Comparten conocimiento
+    - Temas
+    - Plugins
+    
 * Wordpress
 - CMS más popular
 - Fácil instalación y manejo
