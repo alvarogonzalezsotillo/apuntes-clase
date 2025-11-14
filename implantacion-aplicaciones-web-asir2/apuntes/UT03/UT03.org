@@ -61,14 +61,18 @@
 
 * Ejercicio
 - Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
-  1. Bajar ficheros
-  2. Bajar base de datos
-  3. Subir ficheros a debian
+  1. Bajar ficheros PHP
+  2. Bajar fichero SQL de base de datos
+  3. Modificar base de datos
   4. Modificar en la base de datos la URL antigua por la nueva
-  5. Modificar fichero =.htaccess=
-  6. Activar =mod_rewrite= y =Allow override All= en Apache
-  7. Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.   
-  8. 🙏🤞
+  5. Subir ficheros a debian
+  6. Importar base de datos en MySQL
+     - Con un usuario y base de datos nueva   
+  7. Modificar fichero =.htaccess=
+  8. Activar =mod_rewrite=
+  9. =Allow override All= en el =directory= de Apache
+  10. Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.   
+  11. 🙏🤞
 
 [[https://developer.wordpress.org/advanced-administration/upgrade/migrating/][Instrucciones alternativas]]     
 

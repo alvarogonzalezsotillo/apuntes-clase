@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-11-14 vie 11:28 -->
+<!-- 2025-11-14 vie 12:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Backups y restauración de CMS</title>
@@ -370,12 +370,18 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
 <ol class="org-ol">
-<li>Bajar ficheros</li>
-<li>Bajar base de datos</li>
-<li>Subir ficheros a debian</li>
+<li>Bajar ficheros PHP</li>
+<li>Bajar fichero SQL de base de datos</li>
+<li>Modificar base de datos</li>
 <li>Modificar en la base de datos la URL antigua por la nueva</li>
+<li>Subir ficheros a debian</li>
+<li>Importar base de datos en MySQL
+<ul class="org-ul">
+<li>Con un usuario y base de datos nueva</li>
+</ul></li>
 <li>Modificar fichero <code>.htaccess</code></li>
-<li>Activar <code>mod_rewrite</code> y <code>Allow override All</code> en Apache</li>
+<li>Activar <code>mod_rewrite</code></li>
+<li><code>Allow override All</code> en el <code>directory</code> de Apache</li>
 <li>Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.</li>
 <li>🙏🤞</li>
 </ol></li>
@@ -410,7 +416,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-11-14 vie 11:28</p>
+<p class="date">Created: 2025-11-14 vie 12:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
