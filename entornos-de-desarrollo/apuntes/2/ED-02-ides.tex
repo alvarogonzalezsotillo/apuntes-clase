@@ -1,4 +1,4 @@
-% Created 2025-11-14 Fri 14:03
+% Created 2025-11-14 Fri 14:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -201,7 +201,7 @@ IDE & Enfoque Principal & Características Clave & Audiencia Objetivo\\
 \begin{itemize}
 \item \href{https://www.jetbrains.com/idea/download/?section=linux}{Bajar la instalación} (la \emph{Comunity Edition}), o en el NAS
 \item Descomprimir la instalación
-\item Ejecutar \texttt{bin/idea.sh/}
+\item Ejecutar \texttt{bin/idea.sh}
 \item Opcional: crear fichero \texttt{.desktop} para lanzarlo cómodamente
 \end{itemize}
 \item Algunos IDE complejos necesitan una instalación real
@@ -219,16 +219,16 @@ IDE & Enfoque Principal & Características Clave & Audiencia Objetivo\\
 \item Fichero \texttt{jar}: clases precompiladas de Java
 \item SDK (compilador del lenguaje). En Java, se llama JDK
 \end{itemize}
-\item Facet: capacidades que se añaden a un proyecto
+\item \emph{Facet}: capacidades que se añaden a un proyecto
 \begin{itemize}
 \item Ejemplo: añadir un lenguaje
 \end{itemize}
-\item Artifacts: creación de ficheros entregables/desplegables/ejecutables      
+\item \emph{Artifacts}: creación de ficheros entregables/desplegables/ejecutables
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{/home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png}
 \end{center}
-\end{itemize}
 \subsection{Proyecto}
 \label{sec:org0000033}
 \begin{itemize}
@@ -278,5 +278,11 @@ IDE & Enfoque Principal & Características Clave & Audiencia Objetivo\\
 \item Crea un módulo nuevo de nombre \texttt{all}
 \item Mostrará un menú modo texto para elegir el juego a lanzar
 \item Lanzará el juego y al acabar el juego se acabará el programa
+\end{itemize}
+\section{Ejercicio}
+\label{sec:org0000048}
+\begin{itemize}
+\item Crea un \texttt{jar} ejecutable con el módulo \texttt{all} y todas sus dependencias
+\item Pruébalo con \texttt{java -jar all.jar}
 \end{itemize}
 \end{document}
