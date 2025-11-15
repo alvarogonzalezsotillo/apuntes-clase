@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-11-14 Fri 14:03 -->
+<!-- 2025-11-15 sáb 13:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -209,9 +209,8 @@
 <li><a href="#org0000024">3. Proyecto de ejemplo</a></li>
 <li><a href="#org000002d">4. Intellij</a></li>
 <li><a href="#org0000030">5. Instalación Intellij</a></li>
-<li><a href="#org0000040">6. Conceptos Intellij</a></li>
-<li><a href="#org0000043">7. Ejercicio</a></li>
-<li><a href="#org0000046">8. Ejercicio</a></li>
+<li><a href="#org0000049">6. Conceptos Intellij</a></li>
+<li><a href="#org0000058">7. Navegación</a></li>
 </ul>
 </div>
 </div>
@@ -377,28 +376,28 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span style="color: #ff6347;">src</span>=src/*.java
-<span style="color: #ff6347;">pkg</span>=tetris.jar
-<span style="color: #ff6347;">main</span>=PlayTetris
+<pre class="src src-makefile"><span style="color: #a0522d;">src</span>=src/*.java
+<span style="color: #a0522d;">pkg</span>=tetris.jar
+<span style="color: #a0522d;">main</span>=PlayTetris
 
 
-<span style="color: #edd400; font-weight: bold;">all</span>:
+<span style="color: #0000ff;">all</span>:
         mkdir -p bin
-        javac ${<span style="color: #ff6347;">src</span>} -d bin/
+        javac ${<span style="color: #a0522d;">src</span>} -d bin/
 
-<span style="color: #edd400; font-weight: bold;">package</span>: all
-        ../package.sh ${<span style="color: #ff6347;">pkg</span>} ${<span style="color: #ff6347;">main</span>}
+<span style="color: #0000ff;">package</span>: all
+        ../package.sh ${<span style="color: #a0522d;">pkg</span>} ${<span style="color: #a0522d;">main</span>}
 
-<span style="color: #edd400; font-weight: bold;">doc</span>:
-        javadoc ${<span style="color: #ff6347;">src</span>} -d doc/
+<span style="color: #0000ff;">doc</span>:
+        javadoc ${<span style="color: #a0522d;">src</span>} -d doc/
 
-<span style="color: #edd400; font-weight: bold;">play</span>: all
-        java -cp bin/ ${<span style="color: #ff6347;">main</span>}
+<span style="color: #0000ff;">play</span>: all
+        java -cp bin/ ${<span style="color: #a0522d;">main</span>}
 
-<span style="color: #edd400; font-weight: bold;">clean</span>:
+<span style="color: #0000ff;">clean</span>:
         rm -rf bin
         rm -rf doc
-        rm -f ${<span style="color: #ff6347;">pkg</span>}
+        rm -f ${<span style="color: #a0522d;">pkg</span>}
 </pre>
 </div>
 </div>
@@ -531,7 +530,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <ul class="org-ul">
 <li><a href="https://www.jetbrains.com/idea/download/?section=linux">Bajar la instalación</a> (la <i>Comunity Edition</i>), o en el NAS</li>
 <li>Descomprimir la instalación</li>
-<li>Ejecutar <code>bin/idea.sh/</code></li>
+<li>Ejecutar <code>bin/idea.sh</code></li>
 <li>Opcional: crear fichero <code>.desktop</code> para lanzarlo cómodamente</li>
 </ul></li>
 <li>Algunos IDE complejos necesitan una instalación real
@@ -541,8 +540,8 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">6.</span> Conceptos Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">6.</span> Conceptos Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Proyecto</li>
@@ -552,17 +551,17 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <li>Fichero <code>jar</code>: clases precompiladas de Java</li>
 <li>SDK (compilador del lenguaje). En Java, se llama JDK</li>
 </ul></li>
-<li>Facet: capacidades que se añaden a un proyecto
+<li><i>Facet</i>: capacidades que se añaden a un proyecto
 <ul class="org-ul">
 <li>Ejemplo: añadir un lenguaje</li>
 </ul></li>
 <li><p>
-Artifacts: creación de ficheros entregables/desplegables/ejecutables      
+<i>Artifacts</i>: creación de ficheros entregables/desplegables/ejecutables      
 </p>
 
 
 <div id="org0000033" class="figure">
-<p><img src="file:///home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png" alt="clipboard-20251113T192607.png" />
+<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png" alt="clipboard-20251113T192607.png" />
 </p>
 </div></li>
 </ul>
@@ -612,23 +611,22 @@ Artifacts: creación de ficheros entregables/desplegables/ejecutables
 </ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000043" class="outline-2">
-<h2 id="org0000043"><span class="section-number-2">7.</span> Ejercicio</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">6.5.</span> Ejercicio compilación</h3>
+<div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
-<li>Crea un módulo para cada juego</li>
-<li>Compila y juega al <code>tetris</code>
+<li>Crea un módulo para varios juegos
 <ul class="org-ul">
+<li>Compila y juega al <code>tetris</code></li>
 <li>y al <code>mathhero</code></li>
-</ul></li>
 <li>Opcional: juega con otro compañero al <code>pongserver</code></li>
+</ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000046" class="outline-2">
-<h2 id="org0000046"><span class="section-number-2">8.</span> Ejercicio</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">6.6.</span> Ejercicio de liberías</h3>
+<div class="outline-text-3" id="text-6-6">
 <ul class="org-ul">
 <li>Crea un módulo nuevo de nombre <code>all</code></li>
 <li>Mostrará un menú modo texto para elegir el juego a lanzar</li>
@@ -636,10 +634,183 @@ Artifacts: creación de ficheros entregables/desplegables/ejecutables
 </ul>
 </div>
 </div>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">6.7.</span> Ejercicio <i>artifact</i></h3>
+<div class="outline-text-3" id="text-6-7">
+<ul class="org-ul">
+<li>Crea un <code>jar</code> ejecutable con el módulo <code>all</code> y todas sus dependencias</li>
+<li>Pruébalo con <code>java -jar all.jar</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">7.</span> Navegación</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Una de las facilidades más importantes del IDE</li>
+<li>El código se escribe una vez, pero se lee muchas veces</li>
+<li>Facilidades para:
+<ul class="org-ul">
+<li>Búsqueda de cadenas/símbolos en el proyecto</li>
+<li>Ir rápidamente a una clase/fichero/método/variable</li>
+<li>Buscar referencias/definiciones de clases/métodos/variables</li>
+<li>Conocer la cadena de llamadas a un método</li>
+<li>Saber qué métodos llaman/son llamados por otros métodos</li>
+<li>Saber la cadena de herencia de una clase/interfaz</li>
+<li>Saber qué clases y métodos se definen en el fichero actual</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org000004c" class="outline-3">
+<h3 id="org000004c"><span class="section-number-3">7.1.</span> Ejercicio de búsqueda de atributo</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>Busca la clase <code>Level</code> entre los juegos</li>
+<li>Busca quién lee y quién escribe en el atributo <code>Level.key</code></li>
+<li>Decide para qué sirve <code>Level.key</code></li>
+<li>Úsalo en el juego</li>
+<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>00000000</code></li>
+<li>Opcional: <i>hackea el juego</i> para tener vida infinita</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">7.2.</span> Ejercicio de búsqueda de cadena</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>Traduce los mensajes del juego <code>MathHero</code> a castellano
+<ul class="org-ul">
+<li>Level</li>
+<li>Key</li>
+<li>You loose</li>
+</ul></li>
+<li>Opcional: añade un texto con la vida que aún queda</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">7.3.</span> Ejercicio de herencia</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li>Busca la clase <code>MathHero</code></li>
+<li>Encuentra de qué clases hereda dicha clase</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">7.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los que quieras)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Idea</th>
+<th scope="col" class="org-left">VSCode</th>
+<th scope="col" class="org-left"><i>Otros</i></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Búsqueda de cadenas en proyecto</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Ir a fichero</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Ir a clase/método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Buscar definición de simbolo</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Buscar usos de símbolo</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Buscar métodos llamados por un método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Buscar métodos que llaman a un método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Cadena de herencia de una clase</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Ir rápidamente a un método del fichero</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Volver al sitio anterior</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><i>Otras</i></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-11-14 Fri 14:03</p>
+<p class="date">Created: 2025-11-15 sáb 13:44</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
