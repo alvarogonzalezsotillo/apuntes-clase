@@ -1,10 +1,12 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Elementos del desarrollo de Software
+#+REVEAL_HLEVEL: 1
 
 
 
-**
 
 * IDE
-- =I= ntegrated =D= evelopment =E= nvironment
+- *I* ntegrated *D* evelopment *E* nvironment
 - Una aplicación con conjunto de herramientas que facilitan la tarea al programador
   - Editor de texto
   - Compilador
@@ -116,7 +118,7 @@ clean:
 - Como (casi) todos los IDE
   - [[https://www.jetbrains.com/idea/download/?section=linux][Bajar la instalación]] (la /Comunity Edition/), o en el NAS 
   - Descomprimir la instalación
-  - Ejecutar =bin/idea.sh/=
+  - Ejecutar =bin/idea.sh=
   - Opcional: crear fichero =.desktop= para lanzarlo cómodamente    
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
@@ -130,10 +132,11 @@ clean:
 - Librería
   - Fichero =jar=: clases precompiladas de Java
   - SDK (compilador del lenguaje). En Java, se llama JDK
-- Facet: capacidades que se añaden a un proyecto
+- /Facet/: capacidades que se añaden a un proyecto
   - Ejemplo: añadir un lenguaje
-- Artifacts: creación de ficheros entregables/desplegables/ejecutables      
-  
+- /Artifacts/: creación de ficheros entregables/desplegables/ejecutables      
+
+ #+reveal: split 
     [[attachment:clipboard-20251113T192607.png]]
     
 ** Proyecto
@@ -155,15 +158,69 @@ clean:
 - Un fichero que es el resultado de la aplicación
   - Por ejemplo, un =jar= ejecutable
 
-* Ejercicio
-- Crea un módulo para cada juego
-- Compila y juega al =tetris=
-  - y al =mathhero=
-- Opcional: juega con otro compañero al =pongserver=    
 
-* Ejercicio
+** Ejercicio compilación
+- Crea un módulo para varios juegos
+  - Compila y juega al =tetris=
+  - y al =mathhero=
+  - Opcional: juega con otro compañero al =pongserver=    
+
+** Ejercicio de liberías
 - Crea un módulo nuevo de nombre =all=
 - Mostrará un menú modo texto para elegir el juego a lanzar
 - Lanzará el juego y al acabar el juego se acabará el programa
 
+
+** Ejercicio /artifact/
+- Crea un =jar= ejecutable con el módulo =all= y todas sus dependencias
+- Pruébalo con =java -jar all.jar=  
+
+
+* Navegación
+- Una de las facilidades más importantes del IDE
+- El código se escribe una vez, pero se lee muchas veces
+- Facilidades para:
+  - Búsqueda de cadenas/símbolos en el proyecto
+  - Ir rápidamente a una clase/fichero/método/variable
+  - Buscar referencias/definiciones de clases/métodos/variables
+  - Conocer la cadena de llamadas a un método
+  - Saber qué métodos llaman/son llamados por otros métodos
+  - Saber la cadena de herencia de una clase/interfaz
+  - Saber qué clases y métodos se definen en el fichero actual
+
+** Ejercicio de búsqueda de atributo
+- Busca la clase =Level= entre los juegos
+- Busca quién lee y quién escribe en el atributo =Level.key=  
+- Decide para qué sirve =Level.key=
+- Úsalo en el juego
+- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =00000000=
+- Opcional: /hackea el juego/ para tener vida infinita  
+
+** Ejercicio de búsqueda de cadena
+- Traduce los mensajes del juego =MathHero= a castellano
+  - Level
+  - Key
+  - You loose
+- Opcional: añade un texto con la vida que aún queda    
+
+** Ejercicio de herencia
+- Busca la clase =MathHero=
+- Encuentra de qué clases hereda dicha clase
   
+** Ejercicio
+Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los que quieras)
+
+|                                        | Idea | VSCode | /Otros/ |
+|----------------------------------------+------+--------+---------|
+| Búsqueda de cadenas en proyecto        |      |        |         |
+| Ir a fichero                           |      |        |         |
+| Ir a clase/método                      |      |        |         |
+| Buscar definición de símbolo           |      |        |         |
+| Buscar usos de símbolo                 |      |        |         |
+| Buscar métodos llamados por un método  |      |        |         |
+| Buscar métodos que llaman a un método  |      |        |         |
+| Cadena de herencia de una clase        |      |        |         |
+| Ir rápidamente a un método del fichero |      |        |         |
+| Volver al sitio anterior               |      |        |         |
+| /Otras/                                |      |        |         |
+
