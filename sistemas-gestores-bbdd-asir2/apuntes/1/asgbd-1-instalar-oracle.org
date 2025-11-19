@@ -339,6 +339,9 @@ digraph {
 ** ¡Ya se puede conectar!
 
 - Es necesario informar a =sqlplus= del =SID=
+  - =ORACLE_SID=
+  - =ORACLE_PDB_SID=
+  
 - Pero solo se puede conectar desde la máquina local  
 
 #+begin_src bash
