@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-11-15 sáb 13:44 -->
+<!-- 2025-11-16 dom 17:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elementos del desarrollo de Software</title>
@@ -209,8 +209,9 @@
 <li><a href="#org0000024">3. Proyecto de ejemplo</a></li>
 <li><a href="#org000002d">4. Intellij</a></li>
 <li><a href="#org0000030">5. Instalación Intellij</a></li>
-<li><a href="#org0000049">6. Conceptos Intellij</a></li>
+<li><a href="#org0000049">6. Compilación ocn Intellij</a></li>
 <li><a href="#org0000058">7. Navegación</a></li>
+<li><a href="#org000005e">8. Depuración (<i>debug</i>)</a></li>
 </ul>
 </div>
 </div>
@@ -541,7 +542,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </div>
 </div>
 <div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">6.</span> Conceptos Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
+<h2 id="org0000049"><span class="section-number-2">6.</span> Compilación ocn Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Proyecto</li>
@@ -695,6 +696,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <ul class="org-ul">
 <li>Busca la clase <code>MathHero</code></li>
 <li>Encuentra de qué clases hereda dicha clase</li>
+<li>Encuentra todos los métodos, heredados o no, de esa clase</li>
 </ul>
 </div>
 </div>
@@ -702,7 +704,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <h3 id="org0000055"><span class="section-number-3">7.4.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
-Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los que quieras)
+Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -748,7 +750,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los qu
 </tr>
 
 <tr>
-<td class="org-left">Buscar definición de simbolo</td>
+<td class="org-left">Buscar definición de símbolo</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
@@ -807,10 +809,46 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los qu
 </div>
 </div>
 </div>
+<div id="outline-container-org000005e" class="outline-2">
+<h2 id="org000005e"><span class="section-number-2">8.</span> Depuración (<i>debug</i>)</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Capacidad de avanzar paso a paso en un programa, visualizando variables</li>
+<li>Técnica complementaria a las trazas (<code>println</code> por el código)</li>
+<li>Conceptos
+<ul class="org-ul">
+<li>Punto de ruptura (<i>breakpoint</i>)</li>
+<li><i>breakpoint</i> condicional</li>
+<li>Pila de llamadas (<i>call stack</i>)</li>
+<li>Visualizar variale (<i>watch</i>)</li>
+<li>Inspección de variable (<i>inspect</i>)</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org000005b" class="outline-3">
+<h3 id="org000005b"><span class="section-number-3">8.1.</span> <i>breakpoint</i></h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>Parar la ejecución al llegar a cierta instrucción</li>
+<li>El <i>breakpoint</i> puede ser condicional
+<ul class="org-ul">
+<li>Dependiendo del valor de una variable</li>
+<li>Cuando se lanza una excepción</li>
+</ul></li>
+<li>Después, se puede seguir avanzando
+<ul class="org-ul">
+<li><i>step into</i>: Se adentra en los métodos ejecutados en la línea, parando en el primero de ellos</li>
+<li><i>step over</i>: Ejecuta la línea entera y para</li>
+<li><i>continue</i>: Continua sin volver a parar</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-11-15 sáb 13:44</p>
+<p class="date">Created: 2025-11-16 dom 17:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

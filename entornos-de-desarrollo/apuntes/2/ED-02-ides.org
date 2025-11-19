@@ -123,7 +123,7 @@ clean:
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
         
-* Conceptos Intellij                                                 :ATTACH:
+* Compilación ocn Intellij                                           :ATTACH:
 :PROPERTIES:
 :ID:       d0909688-03e4-4791-8c4b-2f2fcac11fda
 :END:
@@ -206,9 +206,10 @@ clean:
 ** Ejercicio de herencia
 - Busca la clase =MathHero=
 - Encuentra de qué clases hereda dicha clase
+- Encuentra todos los métodos, heredados o no, de esa clase  
   
 ** Ejercicio
-Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los que quieras)
+Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 |                                        | Idea | VSCode | /Otros/ |
 |----------------------------------------+------+--------+---------|
@@ -224,3 +225,23 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno (elije los qu
 | Volver al sitio anterior               |      |        |         |
 | /Otras/                                |      |        |         |
 
+
+* Depuración (/debug/)
+- Capacidad de avanzar paso a paso en un programa, visualizando variables
+- Técnica complementaria a las trazas (=println= por el código)  
+- Conceptos
+  - Punto de ruptura (/breakpoint/)
+  - /breakpoint/ condicional
+  - Pila de llamadas (/call stack/)  
+  - Visualizar variale (/watch/)
+  - Inspección de variable (/inspect/)
+
+** /breakpoint/
+- Parar la ejecución al llegar a cierta instrucción
+- El /breakpoint/ puede ser condicional
+  - Dependiendo del valor de una variable
+  - Cuando se lanza una excepción
+- Después, se puede seguir avanzando
+  - /step into/: Se adentra en los métodos ejecutados en la línea, parando en el primero de ellos
+  - /step over/: Ejecuta la línea entera y para
+  - /continue/: Continua sin volver a parar         
