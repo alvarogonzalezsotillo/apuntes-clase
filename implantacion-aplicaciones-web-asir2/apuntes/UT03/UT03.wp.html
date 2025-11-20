@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-04-03 jue 11:38 -->
+<!-- 2025-11-14 vie 12:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Backups y restauración de CMS</title>
@@ -212,7 +212,8 @@
 <li><a href="#org0000012">3. Backup MySQL/MariaDB</a></li>
 <li><a href="#org0000018">4. Backup de ficheros</a></li>
 <li><a href="#org000001b">5. Ejercicio</a></li>
-<li><a href="#org000001e">6. Referencias</a></li>
+<li><a href="#org0000020">6. Gráfico</a></li>
+<li><a href="#org0000023">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -251,10 +252,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
 @font-face {
-    font-family: Bobbli;
+    font-family: 'League Gothic';
     src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
 }
+
+</style>
 <div id="outline-container-org0000003" class="outline-2">
 <h2 id="org0000003"><span class="section-number-2">1.</span> Backups de la aplicación</h2>
 <div class="outline-text-2" id="text-1">
@@ -292,6 +300,7 @@ window.addEventListener("load",()=>{
 <li>Plugins</li>
 <li>Ficheros extra</li>
 <li>Base de datos</li>
+<li>Configuración Linux y/o PHP y/o Apache</li>
 </ul>
 </div>
 </div>
@@ -362,12 +371,17 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Restaurar completamente el wordpress del hosting gratuito en la máquina Debian
 <ol class="org-ol">
-<li>Bajar ficheros</li>
-<li>Bajar base de datos</li>
-<li>Subir ficheros a debian</li>
+<li>Bajar ficheros PHP</li>
+<li>Bajar fichero SQL de base de datos</li>
 <li>Modificar en la base de datos la URL antigua por la nueva</li>
+<li>Subir ficheros a debian</li>
+<li>Importar base de datos en MySQL
+<ul class="org-ul">
+<li>Con un usuario y base de datos nueva</li>
+</ul></li>
 <li>Modificar fichero <code>.htaccess</code></li>
-<li>Activar <code>mod_rewrite</code> y <code>Allow override All</code> en Apache</li>
+<li>Activar <code>mod_rewrite</code></li>
+<li><code>Allow override All</code> en el <code>directory</code> de Apache</li>
 <li>Es posible que algunos menús/enlaces se pusieran como URL en vez de a una página. Habrá que modificarlos con el backend.</li>
 <li>🙏🤞</li>
 </ol></li>
@@ -378,9 +392,19 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">6.</span> Referencias</h2>
+<div id="outline-container-org0000020" class="outline-2">
+<h2 id="org0000020"><span class="section-number-2">6.</span> Gráfico</h2>
 <div class="outline-text-2" id="text-6">
+
+<div id="org000001e" class="figure">
+<p><img src="./pasos-migracion.svg" alt="pasos-migracion.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000023" class="outline-2">
+<h2 id="org0000023"><span class="section-number-2">7.</span> Referencias</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -402,7 +426,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-04-03 jue 11:38</p>
+<p class="date">Created: 2025-11-14 vie 12:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

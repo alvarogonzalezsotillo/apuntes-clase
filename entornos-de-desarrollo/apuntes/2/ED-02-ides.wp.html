@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-10-10 vie 10:15 -->
+<!-- 2025-11-16 dom 17:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Instalación de CMS en LAMP</title>
+<title>Elementos del desarrollo de Software</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -199,22 +199,19 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Instalación de CMS en LAMP
-<br />
-<span class="subtitle"> </span>
-</h1>
+<h1 class="title">Elementos del desarrollo de Software</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000000">1. CMS</a></li>
-<li><a href="#org0000003">2. Wordpress</a></li>
-<li><a href="#org0000012">3. Instalación</a></li>
-<li><a href="#org0000015">4. <i>Frontend</i> / <i>backend</i></a></li>
-<li><a href="#org000001e">5. Conceptos Wordpress</a></li>
-<li><a href="#org0000022">6. Roles Wordpress</a></li>
-<li><a href="#org000002b">7. Instalación de otros CMS LAMP</a></li>
-<li><a href="#org000002e">8. Referencias</a></li>
+<li><a href="#org0000018">1. IDE</a></li>
+<li><a href="#org000001b">2. Plugins</a></li>
+<li><a href="#org0000024">3. Proyecto de ejemplo</a></li>
+<li><a href="#org000002d">4. Intellij</a></li>
+<li><a href="#org0000030">5. Instalación Intellij</a></li>
+<li><a href="#org0000049">6. Compilación ocn Intellij</a></li>
+<li><a href="#org0000058">7. Navegación</a></li>
+<li><a href="#org000005e">8. Depuración (<i>debug</i>)</a></li>
 </ul>
 </div>
 </div>
@@ -264,454 +261,594 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000000" class="outline-2">
-<h2 id="org0000000"><span class="section-number-2">1.</span> CMS</h2>
+<div id="outline-container-org0000018" class="outline-2">
+<h2 id="org0000018"><span class="section-number-2">1.</span> IDE</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><i>Content Management System</i></li>
-<li><p>
-Más simple para un usuario que HTML/CSS
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 1</span> Tipos de CMS</caption>
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Blogs</td>
-<td class="org-left">Páginas corporativas</td>
-<td class="org-left">Foros de soporte</td>
-</tr>
-
-<tr>
-<td class="org-left">Wikis</td>
-<td class="org-left">Trabajo colaborativo (documentos)</td>
-<td class="org-left">Cursos</td>
-</tr>
-
-<tr>
-<td class="org-left">eShop</td>
-<td class="org-left"><i>Personal Information Manager</i></td>
-<td class="org-left">Intercambio de ficheros</td>
-</tr>
-</tbody>
-</table></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000003" class="outline-2">
-<h2 id="org0000003"><span class="section-number-2">2.</span> Wordpress</h2>
-<div class="outline-text-2" id="text-2">
+<li><b>I</b> ntegrated <b>D</b> evelopment <b>E</b> nvironment</li>
+<li>Una aplicación con conjunto de herramientas que facilitan la tarea al programador
 <ul class="org-ul">
-<li>CMS más popular</li>
-<li>Fácil instalación y manejo</li>
-<li>Suficiente para muchos tipos de webs corporativas</li>
-<li>Multitud de <i>plugins</i> y temas</li>
+<li>Editor de texto</li>
+<li>Compilador</li>
+<li>Enlazador</li>
+<li>Control de versiones</li>
+<li>Depurador</li>
+<li>Integración con IA generativa</li>
+<li>Empaquetado, generador de instalaciones</li>
+</ul></li>
 </ul>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-right">% All Websites</th>
-<th scope="col" class="org-right">% CMS Market</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">WordPress</td>
-<td class="org-right">43.5</td>
-<td class="org-right">62.7</td>
-</tr>
-
-<tr>
-<td class="org-left">Shopify</td>
-<td class="org-right">4.5</td>
-<td class="org-right">6.4</td>
-</tr>
-
-<tr>
-<td class="org-left">Wix</td>
-<td class="org-right">2.8</td>
-<td class="org-right">4.0</td>
-</tr>
-
-<tr>
-<td class="org-left">Squarespace</td>
-<td class="org-right">2.1</td>
-<td class="org-right">3.1</td>
-</tr>
-
-<tr>
-<td class="org-left">Joomla</td>
-<td class="org-right">1.6</td>
-<td class="org-right">2.4</td>
-</tr>
-</tbody>
-</table>
-
+</div>
+<div id="outline-container-org0000000" class="outline-3">
+<h3 id="org0000000"><span class="section-number-3">1.1.</span> Editor de código</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-<a href="https://kinsta.com/wordpress-market-share/">Fuente</a>
+Proporciona una interfaz para escribir y editar el código fuente. Suele incluir características como resaltado de sintaxis, autocompletado, indentación automática y otras utilidades para facilitar la escritura del código.
 </p>
 </div>
 </div>
-<div id="outline-container-org0000012" class="outline-2">
-<h2 id="org0000012"><span class="section-number-2">3.</span> Instalación</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org0000003" class="outline-3">
+<h3 id="org0000003"><span class="section-number-3">1.2.</span> Compilador/Intérprete</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Permite compilar o interpretar el código fuente en un formato ejecutable o en bytecode, dependiendo del lenguaje de programación utilizado. Algunos IDEs también ofrecen la capacidad de ejecutar el código directamente desde el entorno.
+</p>
+</div>
 </div>
 <div id="outline-container-org0000006" class="outline-3">
-<h3 id="org0000006"><span class="section-number-3">3.1.</span> <i>Download</i> y descompresión</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li>Se necesita un servidor LAMP</li>
-<li>Descomprimir el <a href="https://es.wordpress.org/download/releases/">fichero comprimido</a> en un directorio accesible por Apache</li>
-<li>Visitar la página desde un navegador</li>
-</ul>
+<h3 id="org0000006"><span class="section-number-3">1.3.</span> Depurador</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Es una herramienta que ayuda a identificar y corregir errores en el código. Permite establecer puntos de interrupción, examinar el estado de las variables, ejecutar el código paso a paso y realizar otras operaciones para analizar y solucionar problemas en el programa.
+</p>
 </div>
 </div>
 <div id="outline-container-org0000009" class="outline-3">
-<h3 id="org0000009"><span class="section-number-3">3.2.</span> Fichero <code>wp-config.php</code></h3>
-<div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>Un asistente preguntará por los datos necesarios para conectar a la base de datos
-<ul class="org-ul">
-<li>usuario</li>
-<li>contraseña</li>
-<li>nombre de la base de datos</li>
-<li>dirección del servidor MySQL/MariaDB</li>
-<li>prefijo para las tablas</li>
-</ul></li>
-</ul>
-
+<h3 id="org0000009"><span class="section-number-3">1.4.</span> Gestión de proyectos/ficheros</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
-Nota: El prefijo permite utilizar la misma base de datos para más de una instancia de Wordpress
+Permite crear, organizar y administrar proyectos de desarrollo de software. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
 </p>
 </div>
 </div>
 <div id="outline-container-org000000c" class="outline-3">
-<h3 id="org000000c"><span class="section-number-3">3.3.</span> ¿Sin permisos de escritura?</h3>
-<div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li>Es posible que Wordpress no pueda escribir el fichero <code>wp-config.php</code>
-<ul class="org-ul">
-<li>Permisos linux y usuario de Apache</li>
-</ul></li>
-<li>En ese caso, pedirá que lo cree el usuario</li>
-</ul>
+<h3 id="org000000c"><span class="section-number-3">1.5.</span> Control de versiones</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Algunos IDEs incluyen integración con sistemas de control de versiones como Git, que permiten realizar seguimiento de cambios en el código, realizar confirmaciones (commits), fusionar (merge) ramas y otras operaciones relacionadas con la gestión del código fuente.
+</p>
 </div>
 </div>
 <div id="outline-container-org000000f" class="outline-3">
-<h3 id="org000000f"><span class="section-number-3">3.4.</span> Siguientes pasos</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="org000000f"><span class="section-number-3">1.6.</span> Herramientas de construcción</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Algunos IDEs proporcionan herramientas para automatizar el proceso de construcción del software, como la generación de archivos de configuración, la compilación, el empaquetado y otras tareas relacionadas con la construcción del proyecto.
+</p>
+</div>
+</div>
+<div id="outline-container-org0000012" class="outline-3">
+<h3 id="org0000012"><span class="section-number-3">1.7.</span> Herramientas externas</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Los IDEs suelen ofrecer integración con otras herramientas y servicios externos, como sistemas de gestión de bases de datos, terminal, servidores web, frameworks, bibliotecas, entre otros, para facilitar el desarrollo y la integración con otros componentes del sistema.
+</p>
+</div>
+</div>
+<div id="outline-container-org0000015" class="outline-3">
+<h3 id="org0000015"><span class="section-number-3">1.8.</span> <i>Agentic code</i></h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+Integración con IA generativa, que permite realizar funciones que antes se realizaban manualmente o con plugins específicos
+</p>
 <ul class="org-ul">
-<li>Usuario administrador de Wordpress, y contraseña</li>
-<li>Título del sitio</li>
-<li>etc&#x2026;</li>
-<li>Puede configurarse más adelante</li>
+<li>Generación de código</li>
+<li>Modificación de código (<i>refactor</i>)</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000015" class="outline-2">
-<h2 id="org0000015"><span class="section-number-2">4.</span> <i>Frontend</i> / <i>backend</i></h2>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">2.</span> Plugins</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Complementos que se relacionan con otras herramientas para agregarle una nueva función.</li>
+<li>Esta aplicación adicional es ejecutada por la aplicación principal.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000024" class="outline-2">
+<h2 id="org0000024"><span class="section-number-2">3.</span> Proyecto de ejemplo</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><a href="sin-construccion.zip">Proyecto de ejemplo</a></li>
+<li>Descomprime el ZIP</li>
+</ul>
+</div>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.1.</span> Construcción sin IDE</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Carpeta <code>Tetris</code></li>
+<li>Fichero <code>Makefile</code>
+<ul class="org-ul">
+<li>Es un sistema básico de construcción</li>
+<li>Antiguo, pero muy estándar y muy utilizado</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #a0522d;">src</span>=src/*.java
+<span style="color: #a0522d;">pkg</span>=tetris.jar
+<span style="color: #a0522d;">main</span>=PlayTetris
+
+
+<span style="color: #0000ff;">all</span>:
+        mkdir -p bin
+        javac ${<span style="color: #a0522d;">src</span>} -d bin/
+
+<span style="color: #0000ff;">package</span>: all
+        ../package.sh ${<span style="color: #a0522d;">pkg</span>} ${<span style="color: #a0522d;">main</span>}
+
+<span style="color: #0000ff;">doc</span>:
+        javadoc ${<span style="color: #a0522d;">src</span>} -d doc/
+
+<span style="color: #0000ff;">play</span>: all
+        java -cp bin/ ${<span style="color: #a0522d;">main</span>}
+
+<span style="color: #0000ff;">clean</span>:
+        rm -rf bin
+        rm -rf doc
+        rm -f ${<span style="color: #a0522d;">pkg</span>}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">3.2.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Utiliza solo la línea de comandos</li>
+<li>Construye la aplicación con los comandos que se deducen del fichero <code>Makefile</code></li>
+<li>Ejecuta la aplicación</li>
+<li>Extra: utiliza el comando <code>make</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000002d" class="outline-2">
+<h2 id="org000002d"><span class="section-number-2">4.</span> Intellij</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
-<li><i>Frontend</i>
+<li>IDE profesional
 <ul class="org-ul">
-<li>Es la página visible por los usuarios de Internet</li>
+<li>Originalmente para Java</li>
+<li>Pero soporta otros lenguajes</li>
 </ul></li>
-<li><i>Backend</i>
+</ul>
+</div>
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">4.1.</span> IDEs basados en IntelliJ</h3>
+<div class="outline-text-3" id="text-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">IDE</th>
+<th scope="col" class="org-left">Enfoque Principal</th>
+<th scope="col" class="org-left">Características Clave</th>
+<th scope="col" class="org-left">Audiencia Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>IntelliJ IDEA Ultimate</b></td>
+<td class="org-left">Desarrollo Java y web empresarial</td>
+<td class="org-left">- IDE más completo, Soporte total para desarrollo empresarial</td>
+<td class="org-left">Desarrolladores profesionales, equipos empresariales</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>IntelliJ IDEA Community Edition</b></td>
+<td class="org-left">Desarrollo Java de código abierto</td>
+<td class="org-left">- Versión gratuita, Características básicas de Java</td>
+<td class="org-left">Desarrolladores individuales, estudiantes</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>PyCharm</b></td>
+<td class="org-left">Desarrollo en Python</td>
+<td class="org-left">- Entorno especializado para Python, Herramientas de análisis de datos</td>
+<td class="org-left">Programadores Python, científicos de datos</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>WebStorm</b></td>
+<td class="org-left">Desarrollo web y JavaScript</td>
+<td class="org-left">- Soporte avanzado para JavaScript Herramientas de frontend</td>
+<td class="org-left">Desarrolladores web front-end y full-stack</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>CLion</b></td>
+<td class="org-left">Desarrollo en C y C++</td>
+<td class="org-left">- Soporte multiplataforma- Herramientas de optimización</td>
+<td class="org-left">Programadores de sistemas, desarrollo de juegos</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>GoLand</b></td>
+<td class="org-left">Desarrollo en Go</td>
+<td class="org-left">- Soporte para microservicios</td>
+<td class="org-left">Desarrolladores de Go, ingenieros backend</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Rider</b></td>
+<td class="org-left">Desarrollo .NET</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Desarrolladores .NET y C#</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Android Studio</b></td>
+<td class="org-left">Desarrollo de aplicaciones Android</td>
+<td class="org-left">- Herramienta oficial de Google, Soporte nativo para Kotlin/Java, Emulador integrado</td>
+<td class="org-left">Desarrolladores de aplicaciones móviles</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">4.2.</span> Por qué tantas versiones</h3>
+<div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
-<li>Se accede añadiendo <code>wp-admin</code> a la URL del sitio</li>
-<li>Permite controlar el aspecto del <i>frontend</i></li>
-<li>Acceso restringido a usuarios registrados</li>
+<li>La aplicación IntelliJ es prácticamente la misma</li>
+<li>Las diferentes versiones se diferencian en los <i>plugins</i> instalados</li>
+<li>No todos los plugins se pueden instalar en todas las versiones
+<ul class="org-ul">
+<li>La razón no es técnica, sino comercial</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000001e" class="outline-2">
-<h2 id="org000001e"><span class="section-number-2">5.</span> Conceptos Wordpress</h2>
+</div>
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">5.</span> Instalación Intellij</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
-<li>Entrada (post): un artículo que se publicará con el resto de artículos, ordenado por fecha</li>
-<li>Categoría: una forma de clasificar las entradas. Jerárquicas.</li>
-<li>Tag: similar a categorías</li>
-<li>Página: contenido HTML pensado para ser enlazado y visualizado de forma independiente</li>
-<li>Página de inicio: la página por defecto al llegar al sitio web</li>
-<li>Bloque (<i>widget</i>): elementos de construcción de una página o entrada de blog. Pueden equivaler a:
+<li>Como (casi) todos los IDE
 <ul class="org-ul">
-<li>etiquetas simples HTML</li>
-<li>contenedores para organizar el contenido (tablas, columnas, filas&#x2026;)</li>
-<li>elementos incrustados (visor de PDF, imágenes&#x2026;)</li>
-<li>integración con otros sitios (vídeos de YouTube&#x2026;)</li>
-<li>lista de entradas del blog</li>
+<li><a href="https://www.jetbrains.com/idea/download/?section=linux">Bajar la instalación</a> (la <i>Comunity Edition</i>), o en el NAS</li>
+<li>Descomprimir la instalación</li>
+<li>Ejecutar <code>bin/idea.sh</code></li>
+<li>Opcional: crear fichero <code>.desktop</code> para lanzarlo cómodamente</li>
 </ul></li>
-<li>Menú:
+<li>Algunos IDE complejos necesitan una instalación real
 <ul class="org-ul">
-<li><i>widget</i> que muestra varias opciones de navegación</li>
-<li>Cada opción puede ser otra página, una noticia, una URL externa&#x2026;</li>
+<li>Pero se debe más al S.O. que al IDE</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000018" class="outline-3">
-<h3 id="org0000018"><span class="section-number-3">5.1.</span> Temas</h3>
-<div class="outline-text-3" id="text-5-1">
-<p>
-Un tema puede incluir:
-</p>
-<ul class="org-ul">
-<li>Plantillas iniciales para páginas y entradas</li>
-<li>Páginas de inicio propias</li>
-<li>Editores propios para la página de inicio</li>
-<li>Esquemas de colores</li>
-</ul>
-
-<p>
-<a href="https://wordpress.org/themes/">Temas gratuitos de Wordpress.com</a>
-</p>
 </div>
-</div>
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">5.2.</span> <i>Plugins</i></h3>
-<div class="outline-text-3" id="text-5-2">
-<p>
-Un plugin puede incluir:
-</p>
-<ul class="org-ul">
-<li>Nuevos bloques (widgets)</li>
-<li>Editores de contenido</li>
-<li>Funcionalidades del <i>backend</i></li>
-</ul>
-
-<p>
-<a href="https://wordpress.org/plugins/"><i>Plugins</i> gratuitos de Wordpress.com</a>  
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000022" class="outline-2">
-<h2 id="org0000022"><span class="section-number-2">6.</span> Roles Wordpress</h2>
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">6.</span> Compilación ocn Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
-<li>Sin rol (anónimo):
+<li>Proyecto</li>
+<li>Módulo</li>
+<li>Librería
 <ul class="org-ul">
-<li>visitar el sitio</li>
+<li>Fichero <code>jar</code>: clases precompiladas de Java</li>
+<li>SDK (compilador del lenguaje). En Java, se llama JDK</li>
 </ul></li>
-<li>Suscriptor:
+<li><i>Facet</i>: capacidades que se añaden a un proyecto
 <ul class="org-ul">
-<li>Dejar comentarios en el blog</li>
+<li>Ejemplo: añadir un lenguaje</li>
 </ul></li>
-<li>Colaborador:
+<li><p>
+<i>Artifacts</i>: creación de ficheros entregables/desplegables/ejecutables      
+</p>
+
+
+<div id="org0000033" class="figure">
+<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png" alt="clipboard-20251113T192607.png" />
+</p>
+</div></li>
+</ul>
+</div>
+<div id="outline-container-org0000034" class="outline-3">
+<h3 id="org0000034"><span class="section-number-3">6.1.</span> Proyecto</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
-<li>Creación de entradas de blog, sin publicar</li>
-</ul></li>
-<li>Autor:
+<li>Un proyecto contiene código fuente y otros recursos para construir una aplicación</li>
+<li>La aplicación se compone de módulos
 <ul class="org-ul">
-<li>Subir archivos</li>
-<li>Crear y modificar entradas propias</li>
-<li>Crear y modificar páginas propias</li>
-</ul></li>
-<li>Editor
-<ul class="org-ul">
-<li>Gestionar comentarios, categorías, etiquetas</li>
-<li>Modificar cualquier entrada o página</li>
-<li>Publicar entradas</li>
-</ul></li>
-<li>Administrador
-<ul class="org-ul">
-<li>Gestionar usuarios</li>
-<li>Gestionar plantillas y plugins</li>
+<li>Debe tener al menos un módulo</li>
 </ul></li>
 </ul>
-
-
-<div id="org0000021" class="figure">
-<p><img src="media/roles-de-usuario-wordpress.png" alt="roles-de-usuario-wordpress.png" />
-</p>
-</div>
-
-<p>
-<a href="https://www.lucushost.com/blog/roles-wordpress-que-son-como-gestionarlos/">Fuente</a>
-</p>
 </div>
 </div>
-<div id="outline-container-org000002b" class="outline-2">
-<h2 id="org000002b"><span class="section-number-2">7.</span> Instalación de otros CMS LAMP</h2>
+<div id="outline-container-org0000037" class="outline-3">
+<h3 id="org0000037"><span class="section-number-3">6.2.</span> Módulo</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li>Varios ficheros fuente y recursos en una unidad compilable</li>
+<li>Un módulo se compila completo o no puede ejecutarse</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000003a" class="outline-3">
+<h3 id="org000003a"><span class="section-number-3">6.3.</span> Libería</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>Código java ya compilado
+<ul class="org-ul">
+<li>Un fichero <code>jar</code> ya generado</li>
+<li>Otro módulo del proyecto</li>
+</ul></li>
+<li>Se pueden añadir a cada módulo</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000003d" class="outline-3">
+<h3 id="org000003d"><span class="section-number-3">6.4.</span> Artifact/entregable</h3>
+<div class="outline-text-3" id="text-6-4">
+<ul class="org-ul">
+<li>Un fichero que es el resultado de la aplicación
+<ul class="org-ul">
+<li>Por ejemplo, un <code>jar</code> ejecutable</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">6.5.</span> Ejercicio compilación</h3>
+<div class="outline-text-3" id="text-6-5">
+<ul class="org-ul">
+<li>Crea un módulo para varios juegos
+<ul class="org-ul">
+<li>Compila y juega al <code>tetris</code></li>
+<li>y al <code>mathhero</code></li>
+<li>Opcional: juega con otro compañero al <code>pongserver</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">6.6.</span> Ejercicio de liberías</h3>
+<div class="outline-text-3" id="text-6-6">
+<ul class="org-ul">
+<li>Crea un módulo nuevo de nombre <code>all</code></li>
+<li>Mostrará un menú modo texto para elegir el juego a lanzar</li>
+<li>Lanzará el juego y al acabar el juego se acabará el programa</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">6.7.</span> Ejercicio <i>artifact</i></h3>
+<div class="outline-text-3" id="text-6-7">
+<ul class="org-ul">
+<li>Crea un <code>jar</code> ejecutable con el módulo <code>all</code> y todas sus dependencias</li>
+<li>Pruébalo con <code>java -jar all.jar</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">7.</span> Navegación</h2>
 <div class="outline-text-2" id="text-7">
-<p>
-Todos las aplicaciones LAMP comparten un patrón común:
-</p>
 <ul class="org-ul">
-<li>El código PHP debe estar accessible por Apache</li>
-<li>En algún fichero, información sobre como conectar a MySQL
+<li>Una de las facilidades más importantes del IDE</li>
+<li>El código se escribe una vez, pero se lee muchas veces</li>
+<li>Facilidades para:
 <ul class="org-ul">
-<li>Usuario, contraseña, <i>dabatase</i>, dirección IP, puerto</li>
-</ul></li>
-<li>Dependiendo de la aplicación:
-<ul class="org-ul">
-<li>Directorios de adicionales</li>
-<li><a href="https://www.php.net/manual/en/extensions.alphabetical.php">Módulos PHP</a> adicionales</li>
-<li><a href="https://httpd.apache.org/docs/current/mod/">Módulos de Apache</a> adicionales</li>
-<li><a href="https://www.php.net/manual/es/ini.php">Opciones de PHP</a> adicionales</li>
+<li>Búsqueda de cadenas/símbolos en el proyecto</li>
+<li>Ir rápidamente a una clase/fichero/método/variable</li>
+<li>Buscar referencias/definiciones de clases/métodos/variables</li>
+<li>Conocer la cadena de llamadas a un método</li>
+<li>Saber qué métodos llaman/son llamados por otros métodos</li>
+<li>Saber la cadena de herencia de una clase/interfaz</li>
+<li>Saber qué clases y métodos se definen en el fichero actual</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000025" class="outline-3">
-<h3 id="org0000025"><span class="section-number-3">7.1.</span> Ejercicio: Moodle en Debian</h3>
+<div id="outline-container-org000004c" class="outline-3">
+<h3 id="org000004c"><span class="section-number-3">7.1.</span> Ejercicio de búsqueda de atributo</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
-<li>Instala Moodle en tu máquina Debian
-<ul class="org-ul">
-<li>Usa el nombre AVAHI: <b>xxxxxIAW.local</b></li>
-<li>Apunta las modificaciones necesarias: módulos de PHP, módulos Apache, opciones PHP, directorios&#x2026;</li>
-</ul></li>
+<li>Busca la clase <code>Level</code> entre los juegos</li>
+<li>Busca quién lee y quién escribe en el atributo <code>Level.key</code></li>
+<li>Decide para qué sirve <code>Level.key</code></li>
+<li>Úsalo en el juego</li>
+<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>00000000</code></li>
+<li>Opcional: <i>hackea el juego</i> para tener vida infinita</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">7.2.</span> Ejercicio: Moodle en Coder</h3>
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">7.2.</span> Ejercicio de búsqueda de cadena</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
-<li>Instala Moodle en tu <i>workspace de Coder</i>
+<li>Traduce los mensajes del juego <code>MathHero</code> a castellano
 <ul class="org-ul">
-<li>Aplicación en <code>~/public-html/moodle</code></li>
-<li>Datos adicionales en un subdirectorio de <code>/extradata</code> (no se borra)</li>
-<li>Usa HTTPS</li>
-<li>Comparte el puerto 443 como <b>Public</b>, no como <b>Authenticated</b></li>
-<li><code>https://443s--main--IAW--usuario.coder.iesavellaneda.es/public-html/moodle</code></li>
-<li>Ejemplo:
-<ul class="org-ul">
-<li><a href="https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle">https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/moodle</a></li>
+<li>Level</li>
+<li>Key</li>
+<li>You loose</li>
 </ul></li>
-</ul></li>
+<li>Opcional: añade un texto con la vida que aún queda</li>
 </ul>
-
-
+</div>
+</div>
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">7.3.</span> Ejercicio de herencia</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li>Busca la clase <code>MathHero</code></li>
+<li>Encuentra de qué clases hereda dicha clase</li>
+<li>Encuentra todos los métodos, heredados o no, de esa clase</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">7.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Rellena la siguiente tabla con las teclas rápidas de cada entorno
+</p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
 <col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
 </colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Idea</th>
+<th scope="col" class="org-left">VSCode</th>
+<th scope="col" class="org-left"><i>Otros</i></th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Búsqueda de cadenas en proyecto</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Ir a fichero</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Ir a clase/método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Buscar definición de símbolo</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Buscar usos de símbolo</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Buscar métodos llamados por un método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Buscar métodos que llaman a un método</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Cadena de herencia de una clase</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Ir rápidamente a un método del fichero</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left">Volver al sitio anterior</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/moodle</a></td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle">https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/moodle</a></td>
+<td class="org-left"><i>Otras</i></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div id="outline-container-org000002e" class="outline-2">
-<h2 id="org000002e"><span class="section-number-2">8.</span> Referencias</h2>
+<div id="outline-container-org000005e" class="outline-2">
+<h2 id="org000005e"><span class="section-number-2">8.</span> Depuración (<i>debug</i>)</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
-<li>Formatos:
+<li>Capacidad de avanzar paso a paso en un programa, visualizando variables</li>
+<li>Técnica complementaria a las trazas (<code>println</code> por el código)</li>
+<li>Conceptos
 <ul class="org-ul">
-<li><a href="./UT02.reveal.html">Transparencias</a></li>
-<li><a href="./UT02.pdf">PDF</a></li>
-<li><a href="./UT02.wp.html">Página web</a></li>
-<li><a href="./UT02.epub">EPUB</a></li>
+<li>Punto de ruptura (<i>breakpoint</i>)</li>
+<li><i>breakpoint</i> condicional</li>
+<li>Pila de llamadas (<i>call stack</i>)</li>
+<li>Visualizar variale (<i>watch</i>)</li>
+<li>Inspección de variable (<i>inspect</i>)</li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
-<li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
+</div>
+<div id="outline-container-org000005b" class="outline-3">
+<h3 id="org000005b"><span class="section-number-3">8.1.</span> <i>breakpoint</i></h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>Parar la ejecución al llegar a cierta instrucción</li>
+<li>El <i>breakpoint</i> puede ser condicional
+<ul class="org-ul">
+<li>Dependiendo del valor de una variable</li>
+<li>Cuando se lanza una excepción</li>
+</ul></li>
+<li>Después, se puede seguir avanzando
+<ul class="org-ul">
+<li><i>step into</i>: Se adentra en los métodos ejecutados en la línea, parando en el primero de ellos</li>
+<li><i>step over</i>: Ejecuta la línea entera y para</li>
+<li><i>continue</i>: Continua sin volver a parar</li>
+</ul></li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-10-10 vie 10:15</p>
+<p class="date">Created: 2025-11-16 dom 17:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

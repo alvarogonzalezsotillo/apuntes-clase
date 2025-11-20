@@ -1,11 +1,11 @@
 #!/bin/bash
 
-AULA=a33
+AULA=a37
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(
     local AULA=${1:-$AULA_DEFECTO}
-    for ORDENADOR in 9 # $(seq 1 16)
+    for ORDENADOR in $(seq 1 16)
     do
         printf "%spc%02d.local\n" $AULA $ORDENADOR
     done
@@ -20,10 +20,10 @@ detecta_parallel_ssh(){
     fi
 }
 
+detecta_parallel_ssh
 
 
-
-if ! detecta_parallel_ssh
+if [ $? -ne 0 ]
 then
     echo Instalación cancelada
     exit 1
@@ -44,12 +44,11 @@ pssh --askpass --hosts <(nombres_de_ordenadores_de_alumno $AULA) --timeout 2400 
 echo Parece que estoy dentro
 whoami
 hostname
-curl http://10.1.0.100/Virtualbox/VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm > VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm
-printf $PASSWORD | xxd -p -r | sudo --stdin dnf remove --assumeyes VirtualBox-7.1-7.1.8_168469_fedora40-1.x86_64
-printf $PASSWORD | xxd -p -r | sudo --stdin rpm -ivh VirtualBox-7.2-7.2.2_170484_fedora40-1.x86_64.rpm
-printf $PASSWORD | xxd -p -r | sudo --stdin modprobe kvm
-printf $PASSWORD | xxd -p -r | sudo --stdin modprobe kvm_intel
-printf $PASSWORD | xxd -p -r | sudo --stdin rm /etc/modprobe.d/blacklist.conf
+printf $PASSWORD | xxd -p -r | sudo --stdin sh -c \"sed -i '/10.1.33.202/d' /etc/hosts\"
+printf $PASSWORD | xxd -p -r | sudo --stdin sh -c \"curl http://10.1.0.100/profesores/alvaro/hosts-para-coder.txt >> /etc/hosts\"
+cat /etc/group
+cat /etc/passwd
+cat /etc/hosts
 echo FIN
 "
 

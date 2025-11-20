@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-10-01 mié 12:37 -->
+<!-- 2025-11-19 mié 12:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -253,11 +253,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -539,8 +534,8 @@ The execution of the script is complete.
 Performing root user operation.
 
 The following environment variables are set as:
-    <span style="color: #ff6347;">ORACLE_OWNER</span>= alumno
-    <span style="color: #ff6347;">ORACLE_HOME</span>=  /opt/oracle-install
+    <span style="color: #a0522d;">ORACLE_OWNER</span>= alumno
+    <span style="color: #a0522d;">ORACLE_HOME</span>=  /opt/oracle-install
 
 Enter the full pathname of the local bin directory: [/usr/local/bin]: 
    Copying dbhome to /usr/local/bin ...
@@ -559,7 +554,7 @@ Oracle Trace File Analyzer (TFA - Non Daemon Mode) is available at :
     /opt//oracle-install/suptools/tfa/release/tfa_home/bin/tfactl
 
 Note :
-1. tfactl will use TFA Daemon Mode if TFA already running<span style="color: #729fcf; font-weight: bold;"> in</span> Daemon Mode and user has access to TFA
+1. tfactl will use TFA Daemon Mode if TFA already running<span style="color: #a020f0;"> in</span> Daemon Mode and user has access to TFA
 2. tfactl will configure TFA Non Daemon Mode only if user has no access to TFA Daemon mode or TFA Daemon mode is not installed
 
 OR
@@ -676,17 +671,22 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 <h3 id="org0000043"><span class="section-number-3">2.2.</span> ¡Ya se puede conectar!</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
-<li>Es necesario informar a <code>sqlplus</code> del <code>SID</code></li>
+<li>Es necesario informar a <code>sqlplus</code> del <code>SID</code>
+<ul class="org-ul">
+<li><code>ORACLE_SID</code></li>
+<li><code>ORACLE_PDB_SID</code></li>
+</ul></li>
+
 <li>Pero solo se puede conectar desde la máquina local</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">[alumno@oraclelinux-r8 ~]$ <span style="color: #ff6347;">ORACLE_SID</span>=asir sqlplus / as sysdba                            
+<pre class="src src-bash">[alumno@oraclelinux-r8 ~]$ <span style="color: #a0522d;">ORACLE_SID</span>=asir sqlplus / as sysdba                            
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Sep 7 13:48:47 2023                                       
 Version 21.3.0.0.0
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2021, Oracle.  All rights reserved.                                                    
+<span style="color: #0000ff;">Copyright</span> (c) 1982, 2021, Oracle.  All rights reserved.                                                    
 
 
 Connected to:
@@ -697,9 +697,9 @@ SQL&gt; show pdbs;
 
     CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                            
 ---------- ------------------------------ ---------- ----------                                            
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>2 PDB$<span style="color: #a0522d;">SEED</span>                       READ ONLY  NO                                                    
     <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>3 PDASIR                         READ WRITE NO                                                    
-SQL&gt; alter session set <span style="color: #ff6347;">container</span>=PDASIR
+SQL&gt; alter session set <span style="color: #a0522d;">container</span>=PDASIR
   2  ;
 
 Session altered.
@@ -804,8 +804,8 @@ SQL&gt;
 <h3 id="org0000059"><span class="section-number-3">3.5.</span> Cambiar de <i>pluggable database</i></h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=CDB$ROOT;
-<span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=NOMBREDEPLUGGABLEDATABASE;
+<pre class="src src-sql"><span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">SESSION</span> <span style="color: #a020f0;">SET</span> container=CDB$ROOT;
+<span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">SESSION</span> <span style="color: #a020f0;">SET</span> container=NOMBREDEPLUGGABLEDATABASE;
 </pre>
 </div>
 </div>
@@ -916,7 +916,7 @@ Se puede usar también una cadena de conexión
 
     sqlplus sys/alumno@centosprofe.local/asir as sysdba
 
-    sqlplus sys@<span style="color: #ad7fa8; font-style: italic;">\"</span>host:port/service<span style="color: #ad7fa8; font-style: italic;">\"</span> as sysdba
+    sqlplus sys@<span style="color: #8b2252;">\"</span>host:port/service<span style="color: #8b2252;">\"</span> as sysdba
 </pre>
 </div></li>
 </ul>
@@ -955,7 +955,7 @@ See the Instant Client Home Page for more information.
 Unzip the packages into a single directory such as /opt/oracle/instantclient<sub>12</sub><sub>2</sub> that is accessible to your application. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle                     
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #483d8b;">cd</span> /opt/oracle                     
     <span style="color: #6c7f6868233c;"> </span>unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
 </pre>
 </div></li>
@@ -963,7 +963,7 @@ Unzip the packages into a single directory such as /opt/oracle/instantclient<sub
 Create the appropriate libclntsh.so and libocci.so links for the version of Instant Client. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle/instantclient_12_2
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #483d8b;">cd</span> /opt/oracle/instantclient_12_2
     <span style="color: #6c7f6868233c;"> </span>ln -s libclntsh.so.12.1 libclntsh.so
     <span style="color: #6c7f6868233c;"> </span>ln -s libocci.so.12.1 libocci.so
 </pre>
@@ -982,7 +982,7 @@ On some Linux distributions the package is called libaio1.
 Set the environment variable LD<sub>LIBRARY</sub><sub>PATH</sub> to the directory created in Step 2, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">LD_LIBRARY_PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">LD_LIBRARY_PATH</span>
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">LD_LIBRARY_PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #a0522d;">LD_LIBRARY_PATH</span>
 </pre>
 </div>
 <p>
@@ -992,7 +992,7 @@ Alternatively, add this path to an ldconfig configuration file if there is no ot
 To use supplied binaries such as SQL*Plus, update your PATH environment variable, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">PATH</span>
+<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #a0522d;">PATH</span>
 </pre>
 </div></li>
 <li>Start your application.</li>
@@ -1013,9 +1013,9 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 <code>etc/sysconfig/network-scripts/ifcfg-enp0s3</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #ff6347;">BOOTPROTO</span>=none
-    <span style="color: #ff6347;">PREFIX</span>=16
-    <span style="color: #ff6347;">IPADDR</span>=10.1.35.xxx
+<pre class="src src-sh">    <span style="color: #a0522d;">BOOTPROTO</span>=none
+    <span style="color: #a0522d;">PREFIX</span>=16
+    <span style="color: #a0522d;">IPADDR</span>=10.1.35.xxx
 </pre>
 </div></li>
 <li><a href="https://docs.google.com/spreadsheets/d/1onVe6zpdLe_MWj4k5iQ7bGc5K43kVZ9fhMONyG9whMU/edit#">Lista de direcciones</a></li>
@@ -1035,15 +1035,15 @@ Se necesitan las variables <code>ORACLE_HOME</code>, <code>ORACLE_SID</code>, <c
 <li>Se definen <b>manualmente</b> con ayuda del script <code>oraenv</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">  <span style="color: #729fcf;">source</span> oraenv
+<pre class="src src-sh">  <span style="color: #483d8b;">source</span> oraenv
 </pre>
 </div></li>
 <li><p>
 Arrancar y parar la base de datos
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">  dbstart $<span style="color: #ff6347;">ORACLE_HOME</span>
-  dbshut $<span style="color: #ff6347;">ORACLE_HOME</span>
+<pre class="src src-sh">  dbstart $<span style="color: #a0522d;">ORACLE_HOME</span>
+  dbshut $<span style="color: #a0522d;">ORACLE_HOME</span>
 </pre>
 </div></li>
 <li><p>
@@ -1065,12 +1065,12 @@ Se puede hacer <i>a mano</i>. Lo veremos en el próximo tema.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">[alumno@centos7 ~]$ export <span style="color: #ff6347;">ORACLE_SID</span>=asir
+<pre class="src src-sh">[alumno@centos7 ~]$ export <span style="color: #a0522d;">ORACLE_SID</span>=asir
 [alumno@centos7 ~]$ sqlplus / as sysdba
 
 SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2014, Oracle.  All rights reserved.
+<span style="color: #0000ff;">Copyright</span> (c) 1982, 2014, Oracle.  All rights reserved.
 
 Connected to an idle instance.
 
@@ -1289,7 +1289,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-10-01 mié 12:37</p>
+<p class="date">Created: 2025-11-19 mié 12:42</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
