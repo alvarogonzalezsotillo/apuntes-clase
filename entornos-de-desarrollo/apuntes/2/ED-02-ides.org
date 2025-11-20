@@ -1,5 +1,5 @@
 #+INCLUDE: "../../../common/header.org"
-#+TITLE:  Elementos del desarrollo de Software
+#+TITLE:  Instalación y uso de IDE's
 #+REVEAL_HLEVEL: 1
 
 
@@ -12,9 +12,11 @@
   - Compilador
   - Enlazador
   - Control de versiones
+  - Gestión de tareas  
   - Depurador
   - Integración con IA generativa
-  - Empaquetado, generador de instalaciones  
+  - Empaquetado, generador de instalaciones
+      
           
 ** Editor de código
 Proporciona una interfaz para escribir y editar el código fuente. Suele incluir características como resaltado de sintaxis, autocompletado, indentación automática y otras utilidades para facilitar la escritura del código.
@@ -26,13 +28,13 @@ Permite compilar o interpretar el código fuente en un formato ejecutable o en b
 Es una herramienta que ayuda a identificar y corregir errores en el código. Permite establecer puntos de interrupción, examinar el estado de las variables, ejecutar el código paso a paso y realizar otras operaciones para analizar y solucionar problemas en el programa.
 
 ** Gestión de proyectos/ficheros
-Permite crear, organizar y administrar proyectos de desarrollo de software. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
+Permite crear, organizar y administrar proyectos de desarrollo de /software/. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
 
 ** Control de versiones
 Algunos IDEs incluyen integración con sistemas de control de versiones como Git, que permiten realizar seguimiento de cambios en el código, realizar confirmaciones (commits), fusionar (merge) ramas y otras operaciones relacionadas con la gestión del código fuente.
 
 ** Herramientas de construcción
-Algunos IDEs proporcionan herramientas para automatizar el proceso de construcción del software, como la generación de archivos de configuración, la compilación, el empaquetado y otras tareas relacionadas con la construcción del proyecto.
+Algunos IDEs proporcionan herramientas para automatizar el proceso de construcción del /software/, como la generación de archivos de configuración, la compilación, el empaquetado y otras tareas relacionadas con la construcción del proyecto.
 
 ** Herramientas externas
 Los IDEs suelen ofrecer integración con otras herramientas y servicios externos, como sistemas de gestión de bases de datos, terminal, servidores web, frameworks, bibliotecas, entre otros, para facilitar el desarrollo y la integración con otros componentes del sistema.
@@ -116,7 +118,8 @@ clean:
 
 * Instalación Intellij
 - Como (casi) todos los IDE
-  - [[https://www.jetbrains.com/idea/download/?section=linux][Bajar la instalación]] (la /Comunity Edition/), o en el NAS 
+  - [[https://www.jetbrains.com/idea/download/?section=linux][Instalación CE (/comunitiy edition/)]] o en el NAS
+  - *Preferido*:  [[https://www.jetbrains.com/idea/download/?section=linux][Ultimate editio]]n ([[https://www.jetbrains.com/shop/eform/students][tras conseguir licencia gratuita de estudiante]])
   - Descomprimir la instalación
   - Ejecutar =bin/idea.sh=
   - Opcional: crear fichero =.desktop= para lanzarlo cómodamente    
