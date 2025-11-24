@@ -161,8 +161,8 @@ https://es.wikipedia.org/wiki/TIA-568B
 
 *** ¿Se necesitan todos estos cables?
 - La mayoría de equipos modernos detectan automáticamente al otro equipo
-- Se /cruzan/ ellos mismos si es necesario
-- Hay algunas excepciones, como Cisco
+- Se /cruzan/ ellos mismos si es necesario: [[https://en.wikipedia.org/wiki/Medium-dependent_interface#Automatic_MDI-X][MDI-X automático]]
+- Hay algunas excepciones, como [[https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/16-10/configuration_guide/int_hw/b_1610_int_and_hw_9300_cg/configuring_auto_mdix.pdf][Cisco]]
 
 
 *** Construcción de cables
