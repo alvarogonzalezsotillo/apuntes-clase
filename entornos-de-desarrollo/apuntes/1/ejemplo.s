@@ -1,4 +1,4 @@
-	.file	"ejemplo.cpp"
+	.file	"ejemplo.c"
 	.text
 	.section	.rodata
 .LC0:
@@ -7,7 +7,7 @@
 	.globl	main
 	.type	main, @function
 main:
-.LFB2:
+.LFB0:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -23,7 +23,7 @@ main:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2:
+.LFE0:
 	.size	main, .-main
 	.ident	"GCC: (GNU) 15.2.1 20250808 (Red Hat 15.2.1-1)"
 	.section	.note.GNU-stack,"",@progbits
