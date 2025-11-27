@@ -1,0 +1,247 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Elementos del desarrollo de Software
+#+REVEAL_HLEVEL: 1
+
+
+
+
+* IDE
+- *I* ntegrated *D* evelopment *E* nvironment
+- Una aplicación con conjunto de herramientas que facilitan la tarea al programador
+  - Editor de texto
+  - Compilador
+  - Enlazador
+  - Control de versiones
+  - Depurador
+  - Integración con IA generativa
+  - Empaquetado, generador de instalaciones  
+          
+** Editor de código
+Proporciona una interfaz para escribir y editar el código fuente. Suele incluir características como resaltado de sintaxis, autocompletado, indentación automática y otras utilidades para facilitar la escritura del código.
+
+** Compilador/Intérprete
+Permite compilar o interpretar el código fuente en un formato ejecutable o en bytecode, dependiendo del lenguaje de programación utilizado. Algunos IDEs también ofrecen la capacidad de ejecutar el código directamente desde el entorno.
+
+** Depurador
+Es una herramienta que ayuda a identificar y corregir errores en el código. Permite establecer puntos de interrupción, examinar el estado de las variables, ejecutar el código paso a paso y realizar otras operaciones para analizar y solucionar problemas en el programa.
+
+** Gestión de proyectos/ficheros
+Permite crear, organizar y administrar proyectos de desarrollo de software. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
+
+** Control de versiones
+Algunos IDEs incluyen integración con sistemas de control de versiones como Git, que permiten realizar seguimiento de cambios en el código, realizar confirmaciones (commits), fusionar (merge) ramas y otras operaciones relacionadas con la gestión del código fuente.
+
+** Herramientas de construcción
+Algunos IDEs proporcionan herramientas para automatizar el proceso de construcción del software, como la generación de archivos de configuración, la compilación, el empaquetado y otras tareas relacionadas con la construcción del proyecto.
+
+** Herramientas externas
+Los IDEs suelen ofrecer integración con otras herramientas y servicios externos, como sistemas de gestión de bases de datos, terminal, servidores web, frameworks, bibliotecas, entre otros, para facilitar el desarrollo y la integración con otros componentes del sistema.
+
+** /Agentic code/
+Integración con IA generativa, que permite realizar funciones que antes se realizaban manualmente o con plugins específicos
+- Generación de código
+- Modificación de código (/refactor/)
+    
+* Plugins
+- Complementos que se relacionan con otras herramientas para agregarle una nueva función.
+- Esta aplicación adicional es ejecutada por la aplicación principal.
+
+
+* Proyecto de ejemplo
+- [[file:sin-construccion.zip][Proyecto de ejemplo]]
+- Descomprime el ZIP
+
+** Construcción sin IDE
+- Carpeta =Tetris=
+- Fichero =Makefile=
+  - Es un sistema básico de construcción
+  - Antiguo, pero muy estándar y muy utilizado    
+
+#+reveal: split
+
+#+begin_src makefile
+src=src/*.java
+pkg=tetris.jar
+main=PlayTetris
+
+
+all:
+	mkdir -p bin
+	javac ${src} -d bin/
+
+package: all
+	../package.sh ${pkg} ${main}
+
+doc:
+	javadoc ${src} -d doc/
+
+play: all
+	java -cp bin/ ${main}
+
+clean:
+	rm -rf bin
+	rm -rf doc
+	rm -f ${pkg}
+#+end_src
+
+** Ejercicio
+- Utiliza solo la línea de comandos
+- Construye la aplicación con los comandos que se deducen del fichero =Makefile=
+- Ejecuta la aplicación  
+- Extra: utiliza el comando =make=
+
+* Intellij
+- IDE profesional
+  - Originalmente para Java
+  - Pero soporta otros lenguajes
+
+** IDEs basados en IntelliJ
+
+| IDE                               | Enfoque Principal                  | Características Clave                                                                | Audiencia Objetivo                                   |
+|-----------------------------------+------------------------------------+--------------------------------------------------------------------------------------+------------------------------------------------------|
+| *IntelliJ IDEA Ultimate*          | Desarrollo Java y web empresarial  | - IDE más completo, Soporte total para desarrollo empresarial                        | Desarrolladores profesionales, equipos empresariales |
+| *IntelliJ IDEA Community Edition* | Desarrollo Java de código abierto  | - Versión gratuita, Características básicas de Java                                  | Desarrolladores individuales, estudiantes            |
+| *PyCharm*                         | Desarrollo en Python               | - Entorno especializado para Python, Herramientas de análisis de datos               | Programadores Python, científicos de datos           |
+| *WebStorm*                        | Desarrollo web y JavaScript        | - Soporte avanzado para JavaScript Herramientas de frontend                          | Desarrolladores web front-end y full-stack           |
+| *CLion*                           | Desarrollo en C y C++              | - Soporte multiplataforma- Herramientas de optimización                              | Programadores de sistemas, desarrollo de juegos      |
+| *GoLand*                          | Desarrollo en Go                   | - Soporte para microservicios                                                        | Desarrolladores de Go, ingenieros backend            |
+| *Rider*                           | Desarrollo .NET                    |                                                                                      | Desarrolladores .NET y C#                            |
+| *Android Studio*                  | Desarrollo de aplicaciones Android | - Herramienta oficial de Google, Soporte nativo para Kotlin/Java, Emulador integrado | Desarrolladores de aplicaciones móviles              |
+
+** Por qué tantas versiones
+- La aplicación IntelliJ es prácticamente la misma
+- Las diferentes versiones se diferencian en los /plugins/ instalados
+- No todos los plugins se pueden instalar en todas las versiones
+  - La razón no es técnica, sino comercial  
+
+* Instalación Intellij
+- Como (casi) todos los IDE
+  - [[https://www.jetbrains.com/idea/download/?section=linux][Bajar la instalación]] (la /Comunity Edition/), o en el NAS 
+  - Descomprimir la instalación
+  - Ejecutar =bin/idea.sh=
+  - Opcional: crear fichero =.desktop= para lanzarlo cómodamente    
+- Algunos IDE complejos necesitan una instalación real
+  - Pero se debe más al S.O. que al IDE
+        
+* Compilación con Intellij                                           :ATTACH:
+:PROPERTIES:
+:ID:       d0909688-03e4-4791-8c4b-2f2fcac11fda
+:END:
+- Proyecto
+- Módulo
+- Librería
+  - Fichero =jar=: clases precompiladas de Java
+  - SDK (compilador del lenguaje). En Java, se llama JDK
+- /Facet/: capacidades que se añaden a un proyecto
+  - Ejemplo: añadir un lenguaje
+- /Artifacts/: creación de ficheros entregables/desplegables/ejecutables      
+
+ #+reveal: split 
+    [[attachment:clipboard-20251113T192607.png]]
+    
+** Proyecto
+- Un proyecto contiene código fuente y otros recursos para construir una aplicación
+- La aplicación se compone de módulos
+  - Debe tener al menos un módulo
+    
+** Módulo
+- Varios ficheros fuente y recursos en una unidad compilable
+- Un módulo se compila completo o no puede ejecutarse
+
+** Libería
+- Código java ya compilado
+  - Un fichero =jar= ya generado
+  - Otro módulo del proyecto
+- Se pueden añadir a cada módulo
+
+** Artifact/entregable
+- Un fichero que es el resultado de la aplicación
+  - Por ejemplo, un =jar= ejecutable
+
+
+** Ejercicio compilación
+- Crea un módulo para varios juegos
+  - Compila y juega al =tetris=
+  - y al =mathhero=
+  - Opcional: juega con otro compañero al =pongserver=    
+
+** Ejercicio de liberías
+- Crea un módulo nuevo de nombre =all=
+- Mostrará un menú modo texto para elegir el juego a lanzar
+- Lanzará el juego y al acabar el juego se acabará el programa
+
+
+** Ejercicio /artifact/
+- Crea un =jar= ejecutable con el módulo =all= y todas sus dependencias
+- Pruébalo con =java -jar all.jar=  
+
+
+* Navegación
+- Una de las facilidades más importantes del IDE
+- El código se escribe una vez, pero se lee muchas veces
+- Facilidades para:
+  - Búsqueda de cadenas/símbolos en el proyecto
+  - Ir rápidamente a una clase/fichero/método/variable
+  - Buscar referencias/definiciones de clases/métodos/variables
+  - Conocer la cadena de llamadas a un método
+  - Saber qué métodos llaman/son llamados por otros métodos
+  - Saber la cadena de herencia de una clase/interfaz
+  - Saber qué clases y métodos se definen en el fichero actual
+
+** Ejercicio de búsqueda de atributo
+- Busca la clase =Level= entre los juegos
+- Busca quién lee y quién escribe en el atributo =Level.key=  
+- Decide para qué sirve =Level.key=
+- Úsalo en el juego
+- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =00000000=
+- Opcional: /hackea el juego/ para tener vida infinita  
+
+** Ejercicio de búsqueda de cadena
+- Traduce los mensajes del juego =MathHero= a castellano
+  - /Level/
+  - /Key/
+  - /You loose/
+- Opcional: añade un texto con la vida que aún queda    
+
+** Ejercicio de herencia
+- Busca la clase =MathHero=
+- Encuentra de qué clases hereda dicha clase
+- Encuentra todos los métodos, heredados o no, de esa clase  
+  
+** Ejercicio
+Rellena la siguiente tabla con las teclas rápidas de cada entorno
+
+|                                        | Idea | VSCode | /Otros/ |
+|----------------------------------------+------+--------+---------|
+| Búsqueda de cadenas en proyecto        |      |        |         |
+| Ir a fichero                           |      |        |         |
+| Ir a clase/método                      |      |        |         |
+| Buscar definición de símbolo           |      |        |         |
+| Buscar usos de símbolo                 |      |        |         |
+| Buscar métodos llamados por un método  |      |        |         |
+| Buscar métodos que llaman a un método  |      |        |         |
+| Cadena de herencia de una clase        |      |        |         |
+| Ir rápidamente a un método del fichero |      |        |         |
+| Volver al sitio anterior               |      |        |         |
+| /Otras/                                |      |        |         |
+
+
+* Depuración (/debug/)
+- Capacidad de avanzar paso a paso en un programa, visualizando variables
+- Técnica complementaria a las trazas (=println= por el código)  
+- Conceptos
+  - Punto de ruptura (/breakpoint/)
+  - /breakpoint/ condicional
+  - Pila de llamadas (/call stack/)  
+  - Visualizar variale (/watch/)
+  - Inspección de variable (/inspect/)
+
+** /breakpoint/
+- Parar la ejecución al llegar a cierta instrucción
+- El /breakpoint/ puede ser condicional
+  - Dependiendo del valor de una variable
+  - Cuando se lanza una excepción
+- Después, se puede seguir avanzando
+  - /step into/: Se adentra en los métodos ejecutados en la línea, parando en el primero de ellos
+  - /step over/: Ejecuta la línea entera y para
+  - /continue/: Continua sin volver a parar         
