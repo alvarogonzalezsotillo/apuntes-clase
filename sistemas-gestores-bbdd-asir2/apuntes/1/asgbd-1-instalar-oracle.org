@@ -502,9 +502,10 @@ ALTER SESSION SET container=NOMBREDEPLUGGABLEDATABASE;
 ** Instalación de *sqlplus*
 - El cliente *sqlplus* viene en la instalación de *oracle*
 - Pero también puede instalarse por separado:
-  - http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
-  - https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
-  - https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-sqlplus-linux.x64-19.3.0.0.0dbru.zip
+  - https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
+  - https://download.oracle.com/otn_software/linux/instantclient/2120000/instantclient-basic-linux.x64-21.20.0.0.0dbru.zip  
+  - https://download.oracle.com/otn_software/linux/instantclient/2120000/instantclient-sqlplus-linux.x64-21.20.0.0.0dbru.zip
+  - https://download.oracle.com/otn_software/linux/instantclient/2120000/instantclient-tools-linux.x64-21.20.0.0.0dbru.zip
 - Tras descomprimir, hay que definir la variable =LD_LIBRARY_PATH= al directorio de instalación
   - Otros años ha echo falta también =ORACLE_HOME=
 - Puede ser necesaria la libería =libaio= o =libnsl=

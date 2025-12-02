@@ -126,7 +126,7 @@ clean:
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
         
-* Compilación ocn Intellij                                           :ATTACH:
+* Compilación con Intellij                                           :ATTACH:
 :PROPERTIES:
 :ID:       d0909688-03e4-4791-8c4b-2f2fcac11fda
 :END:
@@ -201,9 +201,9 @@ clean:
 
 ** Ejercicio de búsqueda de cadena
 - Traduce los mensajes del juego =MathHero= a castellano
-  - Level
-  - Key
-  - You loose
+  - /Level/
+  - /Key/
+  - /You loose/
 - Opcional: añade un texto con la vida que aún queda    
 
 ** Ejercicio de herencia
