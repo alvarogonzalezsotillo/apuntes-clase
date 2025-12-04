@@ -1,11 +1,11 @@
 #!/bin/bash
 
-AULA=a33
+AULA=a28
 USUARIO=profesor
 
 nombres_de_ordenadores_de_alumno()(
     local AULA=${1:-$AULA_DEFECTO}
-    for ORDENADOR in $(seq 1 16)
+    for ORDENADOR in $(seq 1 20)
     do
         printf "%spc%02d.local\n" $AULA $ORDENADOR
     done
@@ -46,7 +46,9 @@ whoami
 hostname
 printf $PASSWORD | xxd -p -r | sudo --stdin cp /home/profesor/repos/*.repo /etc/yum.repos.d/
 echo 1
-printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes install filezilla
+printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes update
+echo 2
+printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes install plasma-workspace-x11
 echo 3
 printf $PASSWORD | xxd -p -r | sudo --stdin rm /etc/yum.repos.d/*.repo
 echo 4
