@@ -49,6 +49,7 @@ echo 1
 printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes update
 echo 2
 printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes install plasma-workspace-x11
+printf $PASSWORD | xxd -p -r | sudo --stdin dnf --assumeyes install ava-21-openjdk-src
 echo 3
 printf $PASSWORD | xxd -p -r | sudo --stdin rm /etc/yum.repos.d/*.repo
 echo 4

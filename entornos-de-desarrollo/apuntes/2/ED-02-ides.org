@@ -196,7 +196,7 @@ clean:
 - Busca quién lee y quién escribe en el atributo =Level.key=  
 - Decide para qué sirve =Level.key=
 - Úsalo en el juego
-- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =00000000=
+- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =1111111=
 - Opcional: /hackea el juego/ para tener vida infinita  
 
 ** Ejercicio de búsqueda de cadena
