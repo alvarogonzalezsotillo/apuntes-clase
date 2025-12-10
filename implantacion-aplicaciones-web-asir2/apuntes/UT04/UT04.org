@@ -344,8 +344,12 @@ Nota: para =$GLOBALS= ver [[#variablespredefinidas][Variables predefinidas]]
 
 ** Ejercicio
 - =es_capicua=
+  - =strval($numero)= para pasar de número a cadena
+  - =$cadena[$posicion]= para conseguir un carácter de la cadena
+  - =strlen($cadena)= para conseguir la longitud de una cadena  
 - =es_primo=
-- Encuentra un primo mayor de 1000000 utilizando las funciones anteriores
+  - =$dividendo % $divisor= para conseguir el resto de una división
+- Encuentra un primo mayor de 1000000 utilizando las funciones =es_capicula= y =es_primo=
 
 ** Parámetros por referencia/valor
 - Un parámetro por valor *copia* su valor para la función, tanto para [[#tiposdevariables][escalares]] como para [[#arrays][/arrays/]]
