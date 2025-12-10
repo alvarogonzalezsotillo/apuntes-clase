@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-11-28 vie 10:48 -->
+<!-- 2025-12-10 mié 13:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -787,9 +787,17 @@ Nota: para <code>$GLOBALS</code> ver <a href="#variablespredefinidas">Variables 
 <h3 id="org000002b"><span class="section-number-3">4.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
-<li><code>es_capicua</code></li>
-<li><code>es_primo</code></li>
-<li>Encuentra un primo mayor de 1000000 utilizando las funciones anteriores</li>
+<li><code>es_capicua</code>
+<ul class="org-ul">
+<li><code>strval($numero)</code> para pasar de número a cadena</li>
+<li><code>$cadena[$posicion]</code> para conseguir un carácter de la cadena</li>
+<li><code>strlen($cadena)</code> para conseguir la longitud de una cadena</li>
+</ul></li>
+<li><code>es_primo</code>
+<ul class="org-ul">
+<li><code>$dividendo % $divisor</code> para conseguir el resto de una división</li>
+</ul></li>
+<li>Encuentra un primo mayor de 1000000 utilizando las funciones <code>es_capicula</code> y <code>es_primo</code></li>
 </ul>
 </div>
 </div>
@@ -1311,7 +1319,7 @@ header(<span style="color: #8b2252;">'Content-Type: application/json'</span>);
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-11-28 vie 10:48</p>
+<p class="date">Created: 2025-12-10 mié 13:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
