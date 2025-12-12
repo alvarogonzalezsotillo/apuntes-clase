@@ -146,12 +146,12 @@ sbezhynevb($rfgehpghen_sbezhynevb);
 Se creará un fichero =calculadora.php=.
 - Mostrará un formulario con un número con dos decimales, un selector con operaciones matemáticas, y un segundo número con dos decimales.
   - =+=, =-=, =%=, =/=, =*=
-- Al enviar el formulario, se mostrará el resultado de la operación. El formulario volverá a mostrar los últimos valores introducidos.
-- Si la operación no es posible, en vez del resultado se mostrará =Error=
-- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado.
+- Al enviar el formulario, se mostrará el resultado de la operación (10%). El formulario volverá a mostrar los últimos valores introducidos (10%)
+- Si la operación no es posible, en vez del resultado se mostrará =Error= (50%)
+- Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado (10%)
 - Para la operación módulo:
-  - Los operandos se aproximarán a enteros
-  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero.  
+  - Los operandos se aproximarán a enteros (10%)
+  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero (10%).  
 ([[https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01/calculadora.php][ver ejemplo]])
 #+caption: Ejemplo de caluladora
 #+attr_latex: :width 0.5\textwidth
@@ -183,7 +183,7 @@ Se creará un fichero =calculadora.php=.
 - *No deben aparcer errores ni avisos de PHP*. Hay que tener en cuenta que se ejecutarán con opciones de /debug/, como =display_errors= a =true=
   - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
   - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota  
-- Para probar los dos primeros ejercicios, el profesor incluirá un fichero como el siguiente, y lo ejecutará en Apache del alumno
+- Para probar los dos primeros ejercicios, el profesor subirá un fichero como el siguiente al Apache del alumno
 
 
 #+caption: Ejemplo de fichero de prueba
@@ -234,27 +234,6 @@ Esta práctica contribuye a la calificación de los siguientes RA:
 - RA 5: 4.5%
 
 * URLS a probar :noexport:
-
-
-https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--eduardoanton1.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--alejandrojimenez34.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--ismaelmacareno.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--ivanmarin1.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--pablonunez16.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--aroaperez2.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--pabloramo.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--jorgeramos6.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--joserojas12.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--oskarsajek.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--alvarosanchez308.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--andreasantosesteban.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--fernandovaquerizo.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--alvarovicente1.coder.iesavellaneda.es/public-html/practica01
-https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/practica01
 
 
 
