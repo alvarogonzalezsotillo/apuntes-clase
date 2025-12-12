@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-12-09 mar 18:11 -->
+<!-- Generated on 2025-12-11 jue 08:17 -->
 <meta charset="utf-8"/>
 <title>Instalación y uso de IDE's</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Instalación y uso de IDE's</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-12-09 mar 18:11</p>
+<h1 class="title">Instalación y uso de IDE's</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-12-11 jue 08:17</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -807,7 +807,7 @@ clean:
 </section>
 <section>
 <section id="slide-6">
-<h2 id="6"><span class="section-number-2">6.</span> Compilación con Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
+<h2 id="6"><span class="section-number-2">6.</span> Compilación con Intellij</h2>
 <ul>
 <li>Proyecto</li>
 <li>Módulo</li>
@@ -946,7 +946,7 @@ clean:
 <li>Busca quién lee y quién escribe en el atributo <code>Level.key</code></li>
 <li>Decide para qué sirve <code>Level.key</code></li>
 <li>Úsalo en el juego</li>
-<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>00000000</code></li>
+<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>1111111</code></li>
 <li>Opcional: <i>hackea el juego</i> para tener vida infinita</li>
 
 </ul>
@@ -1096,8 +1096,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Punto de ruptura (<i>breakpoint</i>)</li>
 <li><i>breakpoint</i> condicional</li>
 <li>Pila de llamadas (<i>call stack</i>)</li>
-<li>Visualizar variale (<i>watch</i>)</li>
-<li>Inspección de variable (<i>inspect</i>)</li>
+<li>Visualizar variale (<i>watch</i>, <i>inspect</i>)</li>
 
 </ul></li>
 
@@ -1110,7 +1109,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Parar la ejecución al llegar a cierta instrucción</li>
 <li>El <i>breakpoint</i> puede ser condicional
 <ul>
-<li>Dependiendo del valor de una variable</li>
+<li>Dependiendo del valor de una expresión</li>
 <li>Cuando se lanza una excepción</li>
 
 </ul></li>
@@ -1120,7 +1119,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <div class="slide-footer"></div>
 </section>
 <section id="slide-8-2">
-<h3 id="8-2"><span class="section-number-3">8.2.</span> <i>step into</i>, <i>step out</i>, <i>step over</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="8-2"><span class="section-number-3">8.2.</span> <i>step into</i>, <i>step out</i>, <i>step over</i></h3>
 <ul>
 <li>Tras parar en un breakpoint
 <ul>
@@ -1140,7 +1139,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <div class="slide-footer"></div>
 </section>
 <section id="slide-8-3">
-<h3 id="8-3"><span class="section-number-3">8.3.</span> Pila de llamadas <i>stack trace</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="8-3"><span class="section-number-3">8.3.</span> Pila de llamadas <i>stack trace</i></h3>
 <ul>
 <li>La ejecución comienza en un método <code>main</code></li>
 <li>Cada método puede llamar a otros métodos
@@ -1166,7 +1165,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <div class="slide-footer"></div>
 </section>
 <section id="slide-8-4">
-<h3 id="8-4"><span class="section-number-3">8.4.</span> <i>Watch</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="8-4"><span class="section-number-3">8.4.</span> <i>Watch</i></h3>
 <ul>
 <li>En un <i>breakpoint</i> se muestran por defecto todas las variables locales del método</li>
 <li>Pueden añadirse
@@ -1231,6 +1230,21 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Usan <code>JAVA_HOME</code> para encontrar el JDK/JRE</li>
 <li>Utilizan el programa <code>java</code> o <code>javac</code> que esté en el <a href="https://wiki.debian.org/path"><code>PATH</code></a></li>
 <li>O bien, usan el camino completo al intérprete <code>java</code></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-9-2">
+<h3 id="9-2"><span class="section-number-3">9.2.</span> Variable PATH</h3>
+<ul>
+<li>Existe en linux y windows</li>
+<li>Contiene los directorios donde se buscan los programas</li>
+<li>Se puede ver con:
+<ul>
+<li>Linux: <code>echo $PATH</code></li>
+<li>Windows: <code>echo %PATH%</code></li>
 
 </ul></li>
 

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-11-20 jue 08:24 -->
+<!-- 2025-12-11 jue 08:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación y uso de IDE's</title>
@@ -209,9 +209,10 @@
 <li><a href="#org0000024">3. Proyecto de ejemplo</a></li>
 <li><a href="#org000002d">4. Intellij</a></li>
 <li><a href="#org0000030">5. Instalación Intellij</a></li>
-<li><a href="#org0000049">6. Compilación ocn Intellij</a></li>
+<li><a href="#org0000049">6. Compilación con Intellij</a></li>
 <li><a href="#org0000058">7. Navegación</a></li>
-<li><a href="#org000005e">8. Depuración (<i>debug</i>)</a></li>
+<li><a href="#org000006d">8. Depuración (<i>debug</i>)</a></li>
+<li><a href="#org0000076">9. JDK vs JRE</a></li>
 </ul>
 </div>
 </div>
@@ -307,7 +308,7 @@ Es una herramienta que ayuda a identificar y corregir errores en el código. Per
 <h3 id="org0000009"><span class="section-number-3">1.4.</span> Gestión de proyectos/ficheros</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
-Permite crear, organizar y administrar proyectos de desarrollo de software. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
+Permite crear, organizar y administrar proyectos de desarrollo de <i>software</i>. Esto incluye la capacidad de crear estructuras de directorios, agregar o eliminar archivos, gestionar dependencias y realizar otras tareas relacionadas con la organización del proyecto.
 </p>
 </div>
 </div>
@@ -378,28 +379,28 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span style="color: #ff6347;">src</span>=src/*.java
-<span style="color: #ff6347;">pkg</span>=tetris.jar
-<span style="color: #ff6347;">main</span>=PlayTetris
+<pre class="src src-makefile"><span style="color: #a0522d;">src</span>=src/*.java
+<span style="color: #a0522d;">pkg</span>=tetris.jar
+<span style="color: #a0522d;">main</span>=PlayTetris
 
 
-<span style="color: #edd400; font-weight: bold;">all</span>:
+<span style="color: #0000ff;">all</span>:
         mkdir -p bin
-        javac ${<span style="color: #ff6347;">src</span>} -d bin/
+        javac ${<span style="color: #a0522d;">src</span>} -d bin/
 
-<span style="color: #edd400; font-weight: bold;">package</span>: all
-        ../package.sh ${<span style="color: #ff6347;">pkg</span>} ${<span style="color: #ff6347;">main</span>}
+<span style="color: #0000ff;">package</span>: all
+        ../package.sh ${<span style="color: #a0522d;">pkg</span>} ${<span style="color: #a0522d;">main</span>}
 
-<span style="color: #edd400; font-weight: bold;">doc</span>:
-        javadoc ${<span style="color: #ff6347;">src</span>} -d doc/
+<span style="color: #0000ff;">doc</span>:
+        javadoc ${<span style="color: #a0522d;">src</span>} -d doc/
 
-<span style="color: #edd400; font-weight: bold;">play</span>: all
-        java -cp bin/ ${<span style="color: #ff6347;">main</span>}
+<span style="color: #0000ff;">play</span>: all
+        java -cp bin/ ${<span style="color: #a0522d;">main</span>}
 
-<span style="color: #edd400; font-weight: bold;">clean</span>:
+<span style="color: #0000ff;">clean</span>:
         rm -rf bin
         rm -rf doc
-        rm -f ${<span style="color: #ff6347;">pkg</span>}
+        rm -f ${<span style="color: #a0522d;">pkg</span>}
 </pre>
 </div>
 </div>
@@ -544,7 +545,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </div>
 </div>
 <div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">6.</span> Compilación con Intellij&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
+<h2 id="org0000049"><span class="section-number-2">6.</span> Compilación con Intellij</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Proyecto</li>
@@ -563,7 +564,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 
 
 <div id="org0000033" class="figure">
-<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase-profesor/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png" alt="clipboard-20251113T192607.png" />
+<p><img src="file:///home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d0/909688-03e4-4791-8c4b-2f2fcac11fda/clipboard-20251113T192607.png" alt="clipboard-20251113T192607.png" />
 </p>
 </div>
 </div>
@@ -671,7 +672,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <li>Busca quién lee y quién escribe en el atributo <code>Level.key</code></li>
 <li>Decide para qué sirve <code>Level.key</code></li>
 <li>Úsalo en el juego</li>
-<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>00000000</code></li>
+<li>Opcional: crea nivel <i>superhardcore</i> con 10 enemigos simultáneos y clave <code>1111111</code></li>
 <li>Opcional: <i>hackea el juego</i> para tener vida infinita</li>
 </ul>
 </div>
@@ -820,8 +821,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Punto de ruptura (<i>breakpoint</i>)</li>
 <li><i>breakpoint</i> condicional</li>
 <li>Pila de llamadas (<i>call stack</i>)</li>
-<li>Visualizar variale (<i>watch</i>)</li>
-<li>Inspección de variable (<i>inspect</i>)</li>
+<li>Visualizar variale (<i>watch</i>, <i>inspect</i>)</li>
 </ul></li>
 </ul>
 </div>
@@ -832,7 +832,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Parar la ejecución al llegar a cierta instrucción</li>
 <li>El <i>breakpoint</i> puede ser condicional
 <ul class="org-ul">
-<li>Dependiendo del valor de una variable</li>
+<li>Dependiendo del valor de una expresión</li>
 <li>Cuando se lanza una excepción</li>
 </ul></li>
 <li>Después, se puede seguir avanzando</li>
@@ -840,7 +840,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </div>
 </div>
 <div id="outline-container-org000005f" class="outline-3">
-<h3 id="org000005f"><span class="section-number-3">8.2.</span> <i>step into</i>, <i>step out</i>, <i>step over</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="org000005f"><span class="section-number-3">8.2.</span> <i>step into</i>, <i>step out</i>, <i>step over</i></h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>Tras parar en un breakpoint
@@ -853,13 +853,13 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 
 <div id="org000005e" class="figure">
-<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase-profesor/entornos-de-desarrollo/apuntes/2/data/d7/840056-7b8b-4fd7-8a97-65b82e791e93/clipboard-20251209T180829.png" alt="clipboard-20251209T180829.png" />
+<p><img src="file:///home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/d7/840056-7b8b-4fd7-8a97-65b82e791e93/clipboard-20251209T180829.png" alt="clipboard-20251209T180829.png" />
 </p>
 </div>
 </div>
 </div>
 <div id="outline-container-org0000063" class="outline-3">
-<h3 id="org0000063"><span class="section-number-3">8.3.</span> Pila de llamadas <i>stack trace</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="org0000063"><span class="section-number-3">8.3.</span> Pila de llamadas <i>stack trace</i></h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
 <li>La ejecución comienza en un método <code>main</code></li>
@@ -877,13 +877,13 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 
 <div id="org0000062" class="figure">
-<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase-profesor/entornos-de-desarrollo/apuntes/2/data/8f/d9bb47-2757-4dfc-a29b-2621491a1a44/clipboard-20251209T181024.png" alt="clipboard-20251209T181024.png" />    
+<p><img src="file:///home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/8f/d9bb47-2757-4dfc-a29b-2621491a1a44/clipboard-20251209T181024.png" alt="clipboard-20251209T181024.png" />    
 </p>
 </div>
 </div>
 </div>
 <div id="outline-container-org0000067" class="outline-3">
-<h3 id="org0000067"><span class="section-number-3">8.4.</span> <i>Watch</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<h3 id="org0000067"><span class="section-number-3">8.4.</span> <i>Watch</i></h3>
 <div class="outline-text-3" id="text-8-4">
 <ul class="org-ul">
 <li>En un <i>breakpoint</i> se muestran por defecto todas las variables locales del método</li>
@@ -897,7 +897,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 
 <div id="org0000066" class="figure">
-<p><img src="file:///datos-luks/datos-alvaro/apuntes-clase-profesor/entornos-de-desarrollo/apuntes/2/data/2b/710c05-832c-489a-ae9c-70cef7c9cf28/clipboard-20251209T180932.png" alt="clipboard-20251209T180932.png" />  
+<p><img src="file:///home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/2/data/2b/710c05-832c-489a-ae9c-70cef7c9cf28/clipboard-20251209T180932.png" alt="clipboard-20251209T180932.png" />  
 </p>
 </div>
 </div>
@@ -918,8 +918,8 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </div>
 </div>
 </div>
-<div id="outline-container-org0000073" class="outline-2">
-<h2 id="org0000073"><span class="section-number-2">9.</span> JDK vs JRE</h2>
+<div id="outline-container-org0000076" class="outline-2">
+<h2 id="org0000076"><span class="section-number-2">9.</span> JDK vs JRE</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Java Runtime Environment
@@ -947,11 +947,25 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </ul>
 </div>
 </div>
+<div id="outline-container-org0000073" class="outline-3">
+<h3 id="org0000073"><span class="section-number-3">9.2.</span> Variable PATH</h3>
+<div class="outline-text-3" id="text-9-2">
+<ul class="org-ul">
+<li>Existe en linux y windows</li>
+<li>Contiene los directorios donde se buscan los programas</li>
+<li>Se puede ver con:
+<ul class="org-ul">
+<li>Linux: <code>echo $PATH</code></li>
+<li>Windows: <code>echo %PATH%</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-09 mar 18:11</p>
+<p class="date">Created: 2025-12-11 jue 08:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

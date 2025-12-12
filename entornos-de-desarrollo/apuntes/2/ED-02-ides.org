@@ -126,7 +126,7 @@ clean:
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
         
-* Compilación con Intellij                                           :ATTACH:
+* Compilación con Intellij
 :PROPERTIES:
 :ID:       d0909688-03e4-4791-8c4b-2f2fcac11fda
 :END:
@@ -196,7 +196,7 @@ clean:
 - Busca quién lee y quién escribe en el atributo =Level.key=  
 - Decide para qué sirve =Level.key=
 - Úsalo en el juego
-- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =00000000=
+- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =1111111=
 - Opcional: /hackea el juego/ para tener vida infinita  
 
 ** Ejercicio de búsqueda de cadena
@@ -246,7 +246,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 - Después, se puede seguir avanzando
 
   
-** /step into/, /step out/, /step over/                              :ATTACH:
+** /step into/, /step out/, /step over/
 :PROPERTIES:
 :ID:       d7840056-7b8b-4fd7-8a97-65b82e791e93
 :END:
@@ -257,7 +257,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 [[attachment:clipboard-20251209T180829.png]]
   
-** Pila de llamadas /stack trace/                                    :ATTACH:
+** Pila de llamadas /stack trace/
 :PROPERTIES:
 :ID:       8fd9bb47-2757-4dfc-a29b-2621491a1a44
 :END:
@@ -271,7 +271,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
 [[attachment:clipboard-20251209T181024.png]]    
 
-** /Watch/                                                           :ATTACH:
+** /Watch/
 :PROPERTIES:
 :ID:       2b710c05-832c-489a-ae9c-70cef7c9cf28
 :END:
