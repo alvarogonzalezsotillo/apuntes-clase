@@ -349,7 +349,7 @@ Nota: para =$GLOBALS= ver [[#variablespredefinidas][Variables predefinidas]]
   - =strlen($cadena)= para conseguir la longitud de una cadena  
 - =es_primo=
   - =$dividendo % $divisor= para conseguir el resto de una división
-- Encuentra un primo mayor de 1000000 utilizando las funciones =es_capicula= y =es_primo=
+- Encuentra un primo mayor de 1000000 utilizando las funciones =es_capicua= y =es_primo=
 
 ** Parámetros por referencia/valor
 - Un parámetro por valor *copia* su valor para la función, tanto para [[#tiposdevariables][escalares]] como para [[#arrays][/arrays/]]
@@ -404,7 +404,7 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 | =phpinfo=                |
 | =htmlspecialchars=       |
 | =parse_url=              |
-| [[https://www.php.net/manual/es/ref.strings.php][=explode, explode=]]       |
+| [[https://www.php.net/manual/es/ref.strings.php][=explode, implode=]]       |
 | [[https://www.php.net/manual/es/ref.strings.php][=strpos, substr, trim=]]   |
 | [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper=]] |
 | [[https://www.php.net/manual/es/function.filter-var.php][=filter_var=]]             |
