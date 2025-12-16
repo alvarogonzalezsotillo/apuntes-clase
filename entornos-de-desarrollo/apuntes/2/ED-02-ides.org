@@ -126,7 +126,7 @@ clean:
 - Algunos IDE complejos necesitan una instalación real
   - Pero se debe más al S.O. que al IDE
         
-* Compilación con Intellij                                           :ATTACH:
+* Compilación con Intellij
 :PROPERTIES:
 :ID:       d0909688-03e4-4791-8c4b-2f2fcac11fda
 :END:
@@ -196,7 +196,7 @@ clean:
 - Busca quién lee y quién escribe en el atributo =Level.key=  
 - Decide para qué sirve =Level.key=
 - Úsalo en el juego
-- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =00000000=
+- Opcional: crea nivel /superhardcore/ con 10 enemigos simultáneos y clave =1111111=
 - Opcional: /hackea el juego/ para tener vida infinita  
 
 ** Ejercicio de búsqueda de cadena
@@ -236,15 +236,80 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
   - Punto de ruptura (/breakpoint/)
   - /breakpoint/ condicional
   - Pila de llamadas (/call stack/)  
-  - Visualizar variale (/watch/)
-  - Inspección de variable (/inspect/)
+  - Visualizar variale (/watch/, /inspect/)
 
 ** /breakpoint/
 - Parar la ejecución al llegar a cierta instrucción
 - El /breakpoint/ puede ser condicional
-  - Dependiendo del valor de una variable
+  - Dependiendo del valor de una expresión
   - Cuando se lanza una excepción
 - Después, se puede seguir avanzando
-  - /step into/: Se adentra en los métodos ejecutados en la línea, parando en el primero de ellos
-  - /step over/: Ejecuta la línea entera y para
-  - /continue/: Continua sin volver a parar         
+
+  
+** /step into/, /step out/, /step over/
+:PROPERTIES:
+:ID:       d7840056-7b8b-4fd7-8a97-65b82e791e93
+:END:
+- Tras parar en un breakpoint
+  - /step into/: Se puede seguir ejecutando la siguiente instrucción, aunque sea en otro método
+  - /step over/: Se ejecuta la siguiente instrucción del método actual
+  - /step out/: Se ejecuta hasta salir del método actual (vuelve un nivel en el /stack trace/)
+
+[[attachment:clipboard-20251209T180829.png]]
+  
+** Pila de llamadas /stack trace/
+:PROPERTIES:
+:ID:       8fd9bb47-2757-4dfc-a29b-2621491a1a44
+:END:
+- La ejecución comienza en un método =main=
+- Cada método puede llamar a otros métodos
+  - El método actual se ve "/encima/"
+  - Los métodos que llamaron al método actual quedan "/debajo/"
+- /Threads/
+  - Hilos de ejecución, de forma concurrente
+  - Cada uno tiene su propia pila de llamadas
+
+[[attachment:clipboard-20251209T181024.png]]    
+
+** /Watch/
+:PROPERTIES:
+:ID:       2b710c05-832c-489a-ae9c-70cef7c9cf28
+:END:
+- En un /breakpoint/ se muestran por defecto todas las variables locales del método
+- Pueden añadirse
+  - Variables globales
+  - Expresiones /java/: llamadas a métodos, aritmética...
+- /inspect/: Las variables complejas (objetos) pueden expandirse para ver sus componentes
+
+[[attachment:clipboard-20251209T180932.png]]  
+
+** /hot reload/ o /hot swap/
+- Se puede cambiar el código de un método y aplicar los cambios al programa debugueado
+- Hay límites:
+  - No se pueden añadir métodos ni clases y atributos a clases
+  - No se puede cambiar el tipo de los métodos (qué devuelven y qué reciben)
+  - No se pueden cambiar variables estáticas
+- Ampliación: [[https://www.jrebel.com/][jrebel]]
+
+
+* JDK vs JRE
+- Java Runtime Environment
+  - Herramientas para ejecutar programas java  
+- Java Development Kit
+  - Herramientas para desarrollar programas en java
+  - Incluye el compilador (y más herramientas) y un JRE
+
+** Versiones java
+- Pueden tenerse múltiples versiones de JDK y JRE instaladas
+- La mayoría de herramientas:
+  - Usan =JAVA_HOME= para encontrar el JDK/JRE
+  - Utilizan el programa =java= o =javac= que esté en el [[https://wiki.debian.org/path][=PATH=]]
+  - O bien, usan el camino completo al intérprete =java=
+
+** Variable PATH
+- Existe en linux y windows
+- Contiene los directorios donde se buscan los programas  
+- Se puede ver con:
+  - Linux: =echo $PATH=      
+  - Windows: =echo %PATH%=
+
