@@ -250,48 +250,48 @@ Router(config-if)# no ip access-group <numero ACL> <out o in>
 
 ** ACL estándar
 Crear una ACL o añadir una regla
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# access-list <numero> <permit o deny>  <host|source source-wildcard|any>
-#+END_example
+#+end_src
 
 Borrar una ACLs
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# no access-list <numero> 
-#+END_example
+#+end_src
 
 ** ACL extendidas
 Protocolo IP (hay más opciones, no explicadas aquí)
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# access-list <numero> <permit o deny> ip
    <host|source source-wildcard|any>
    <host|destination destination-wildcard|any>
-#+END_example
+#+end_src
 
 Protocolo ICMP
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# access-list <numero> <permit o deny> icmp
    <host|source source-wildcard|any>
    <host|destination destination-wildcard|any>
-#+END_example
+#+end_src
 
 
 
 ** ACL extendidas TCP y UDP
 
 Protocolo TCP
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# access-list <numero> <permit o deny> TCP
    <host|source source-wildcard|any> [puerto]
    <host|destination destination-wildcard|any> [puerto]
    [established]
-#+END_example
+#+end_src
 
 Protocolo UDP
-#+BEGIN_example
+#+begin_src lisp
 Router(config)# access-list <numero> <permit o deny> UDP
    <host|source source-wildcard|any> [puerto]
    <host|destination destination-wildcard|any> [puerto]
-#+END_example
+#+end_src
 
 | Operador de puerto | Significa    |
 |--------------------+--------------|
