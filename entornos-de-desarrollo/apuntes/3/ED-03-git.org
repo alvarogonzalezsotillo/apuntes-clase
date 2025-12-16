@@ -1,0 +1,427 @@
+\input{plantilla-beamer.tex}
+\title{Documentación y Control de versiones}
+\graphicspath{{./},{09/}}
+
+\usepackage{multicol}
+
+
+\begin{document}
+
+\dosprimerastransparencias
+
+
+\section{Introducción}
+
+
+\begin{frame}
+  \frametitle{Introducción}
+  
+  
+  Un desarrollo suele ser un trabajo colaborativo entre varias personas. Por ello, hay que resolver varios problemas:
+  \begin{itemize}
+  \item Cómo dividir el trabajo en varias partes (módulos)
+  \item Cómo integrar las partes para conseguir el resultado final.
+  \item Cómo comunicar instrucciones para:
+    \begin{itemize}
+    \item Instalar un entorno de desarrollo (cuando llegan nuevos desarrolladores)
+    \item Instalar la aplicación en el servidor de producción
+    \item Utilizar los módulos de otras personas
+    \item Traspasar el conocimiento (cuando un desarrollador deja el equipo)
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\section{Trabajo colaborativo}
+
+\subsection{M\'odulos}
+\begin{frame}
+  \frametitle{Módulos: Java}
+  
+
+  \begin{itemize}
+  \item \textbf{Aplicaciones empresariales}: Varios contextos en un EAR
+  \item \textbf{Contextos}: Aplicaciones en WAR
+  \item \textbf{Librer\'\ias}: En ficheros JAR, o en clases en \codigo{WEB-INF/classes}
+  \item \textbf{Servlets y JSP}
+    \begin{itemize}
+    \item \codigo{<\%@include file=>}
+    \item \codigo{<jsp:include page=>}
+    \end{itemize}
+  \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{M\'odulos: PHP}
+  \begin{itemize}
+    
+  \item Clases
+  \item Funciones
+  \item Ficheros PHP
+    \begin{itemize}
+    \item \codigo{include}, \codigo{include\_once}
+    \item \codigo{require}, \codigo{require\_once}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Integración de c\'odigo}
+
+\begin{frame}
+  \frametitle{Integración de código}
+  \begin{itemize}
+  \item Cada miembro del equipo realiza su parte del trabajo
+  \item Al terminar
+    \begin{itemize}
+    \item ¿Cómo se integran todas las partes?
+    \end{itemize}
+  \item Si hay errores o cambios
+    \begin{itemize}
+    \item ¿Cómo se actualizan solo los nuevos cambios?
+    \end{itemize}
+  \item Si hay m\'as de una versión
+    \begin{itemize}
+    \item ¿Cómo se gestionan los conjuntos de módulos compatibles con cierta versión?
+    \item ¿Cómo se recupera una versión antigua?
+    \item ¿Cómo se fusionan dos versiones?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Control de versiones}
+
+\begin{frame}
+  \frametitle{Control de versiones}
+  \begin{itemize}
+  \item Un control de versiones (de código) mantiene una base de datos con todos los cambios producidos sobre el código fuente y otros ficheros necesarios para generar una aplicación
+  \item Pueden ser
+    \begin{itemize}
+    \item Centralizados/distribuidos
+    \item Basados en ficheros/Basados en \textit{changesets}
+    \item Bloqueantes/No bloqueantes
+    \end{itemize}
+  \item Ejemplos
+    \begin{itemize}
+    \item GIT
+    \item Subversion
+    \item Mercurial
+    \end{itemize}
+  \end{itemize}
+  \begin{scriptsize}
+    \enlace{Control de versiones en Wikipedia}{https://en.wikipedia.org/wiki/Version\_control}
+  \end{scriptsize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Control de versiones: terminolog\'ia}
+  \begin{itemize}
+  \item \textbf{Repositorio}: Base de datos con las sucesivas versiones
+  \item \textbf{Copia de trabajo}: Ficheros sobre los que trabaja el programador
+  \item \textbf{Commit}: Confirmación de una nueva versión (de la copia de trabajo al repositorio)
+  \item \textbf{Checkout}: (Re)generación de la copia de trabajo a partir de la información del repositorio
+  \item \textbf{Changeset}: Conjunto de cambios en el repositorio, considerado atómico
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Control de versiones: terminolog\'ia}
+  \begin{itemize}
+  \item \textbf{Rama (Branch)}: Versión paralela (ni anterior, ni posterior)
+  \item \textbf{Rama master o trunk}: Rama principal del desarrollo
+  \item \textbf{Fusión (Merge)}: Acumular cambios en una misma versión
+    \begin{itemize}
+    \item Tras un checkout, mezclando la copia de trabajo con la versión del repositorio
+    \item Entre diferentes branchs del repositorio
+    \end{itemize}
+  \item \textbf{Comentario}: Cada commit deber\'ia documentar sus efectos y motivaciones.
+  \end{itemize}
+\end{frame}
+
+\subsection{GIT}
+
+\begin{frame}
+  \frametitle{GIT}
+  \begin{itemize}
+  \item Gratis, de código abierto
+  \item Muy popular, en m\'ultiples plataformas
+  \item Distribuido
+  \item Basado en \textit{changesets}
+  \item No bloqueante 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: Resumen de comandos}
+  \includegraphics[width=12cm]{resumen-git.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: Flujo de trabajo común}
+  \includegraphics[width=11cm]{trabajo-normal-git.pdf}
+\end{frame}
+
+
+
+\newcommand{\referenciagit}[2][Referencia de]{%
+  %\begin{scriptsize}
+    \enlace{https://git-scm.com/docs/git-#2}{#1 \texttt{git #2}}
+  %\end{scriptsize}
+}
+
+\begin{frame}
+  \frametitle{gitk}
+  \begin{itemize}
+  \item \textbf{gitk} es un visor del repositorio local
+  \item Permite revisar
+    \begin{itemize}
+    \item Ramas
+    \item Commits
+    \item Merges
+    \end{itemize}
+  \item Muy útil para 
+    \begin{itemize}
+    \item Recuperar versiones antiguas de un fichero
+    \item Visualizar las ramas de un repositorio
+    \item \textit{Culpar} a alguien de lo sucedido \smiley
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{gitk}
+  \includegraphics[width=11cm]{gitk.pdf}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{GIT: init}
+  \begin{itemize}
+  \item Crea un nuevo repositorio en el directorio
+  \item Inicialmente vac\'io
+  \item Se almacena en el directorio oculto \codigo{.git}
+  \end{itemize}
+\begin{listadogit}{Ejemplo de \texttt{git init}}
+alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git init
+Initialized empty Git repository in /home/alvaro/aplicacion-web/.git/
+
+\end{listadogit}  
+  % $
+
+  \vfill
+  \referenciagit{init}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{GIT: clone}
+  \begin{itemize}
+  \item Crea un nuevo repositorio, copia de uno ya existente
+  \item El repositorio puede ser local o remoto, dependiendo de la \enlace{https://git-scm.com/docs/git-clone\#URLS}{URL}
+  \item La copia de trabajo ser\'a la de la rama MASTER
+  \end{itemize}
+
+
+
+  \begin{listadogit}{Ejemplo de \texttt{git clone}}
+  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone \
+       https://github.com/alvarogonzalezsotillo/aplicacion-php.git
+  Cloning into 'aplicacion-php'...
+  remote: Counting objects: 50, done.
+  remote: Compressing objects: 100% (35/35), done.
+  remote: Total 50 (delta 21), reused 39 (delta 12), pack-reused 0
+  Unpacking objects: 100% (50/50), done.
+  Checking connectivity... done.
+  \end{listadogit}
+    % $
+  \referenciagit{clone}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: add}
+  \begin{itemize}
+  \item Git no incluye todos los ficheros de la copia de trabajo en el repositorio
+  \item Si se desea un fichero en el repositorio, se debe incluir con \texttt{add}
+  \item Cada cambio posterior debe indicarse tambi\'en con \texttt{add}
+  \item Se puede quitar con \texttt{rm} (las versiones antiguas siguen en el repositorio)
+
+  \vfill
+
+\referenciagit{add}\\
+\referenciagit{rm}\\
+\referenciagit{mv}\\
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: status}
+  
+  \begin{itemize}
+  \item Imprime un resumen del estado de los ficheros de la copia de trabajo
+    \begin{itemize}
+    \item \textbf{Untracked}: No guardados en el repositorio. Git ignora el fichero
+    \item \textbf{Unmodified}: Igual que en la rama activa del repositorio
+    \item \textbf{Modified}: Con cambios respecto al repositorio, pero que no está previsto guardar
+    \item \textbf{Staged}:  El fichero está en el \textit{index}. Será parte del próximo \textit{changeset} que se añadirá al repositorio
+    \end{itemize}
+  \end{itemize}
+
+  \vfill
+\referenciagit{status}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{GIT: Resumen de estados}
+  \includegraphics[width=12cm]{estados-fichero-git.pdf}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{GIT: commit}
+  \begin{itemize}
+  \item Incluye los cambios en el index como una nueva versión en el repositorio
+  \item Los ficheros pasan al index con \texttt{add} 
+  \item \texttt{git commit -a} incluye en el index a todos los ficheros del repositorio con cambios en local
+  \end{itemize}
+
+  \begin{listadogit}{Ejemplo de \texttt{git commit -a}}
+alvaro@alvaro-vaio:~/aplicacion-web$ git commit -a                                                                                  
+[master 906fa20] Cambiados varios permisos de ejecución
+ 5 files changed, 411 insertions(+), 2 deletions(-)
+ create mode 100644 09/estados-fichero-git.svg
+ mode change 100755 => 100644 borrar-temporales-latex.sh
+ mode change 100755 => 100644 generar-pdf.sh
+ mode change 100755 => 100644 generar-pdfs.sh
+ mode change 100755 => 100644 publicar-pdfs.sh
+  \end{listadogit}
+%$
+
+  \vfill
+
+  \referenciagit{commit}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{GIT: push}
+  \begin{itemize}
+  \item Sube las versiones del repositorio local a un repositorio remoto
+  \item El repositorio remoto puede establecerse:
+    \begin{itemize}
+    \item con \texttt{git clone} (en este caso se denomina \textbf{origin}) 
+    \item con \texttt{git remote add}
+    \end{itemize}
+  \item El repositorio debe tener todas las versiones del repositorio remoto
+    \begin{itemize}
+    \item En otro caso, deberá realizarse un \texttt{git pull} previo
+    \end{itemize}
+  \end{itemize}
+
+  \vfill
+
+\referenciagit{push}\\
+\referenciagit{remote}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{GIT: push}
+  \begin{listadogit}{Ejemplo de \texttt{git push} con error}
+alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git push
+Password for 'https://alvarogonzalezsotillo@bitbucket.org': 
+To https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git
+! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 
+'https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+  \end{listadogit}
+  %$
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{GIT: diff}
+  Muestra los cambios de los ficheros en estado \textbf{modified}
+  \begin{itemize}
+  \item \texttt{@@ -lineO,nlinesO +lineD,nlinesD @@}
+    \begin{itemize}
+    \item Se muestra a partir de \texttt{lineO} del fichero antiguo y \texttt{lineD} del fichero actual
+    \item Se muestran \texttt{nlinesO} líneas del fichero antiguo y \texttt{nlinesD} líneas del fichero actual 
+    \end{itemize}
+  \item \texttt{-}: Línea borrada
+  \item \texttt{+}: Línea añadida
+  \end{itemize}
+  
+  \vfill
+  \referenciagit{diff}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{GIT: diff}
+
+  
+  \begin{listadogit}{Extracto de \texttt{git diff}}$
+
+@@ -159,7 +162,7 @@
+ 
+ \newcommand{\entradausuario}[1]{\textit{\textbf{#1}}}
+ 
+-\newcommand{\enlace}[2]{\textcolor{blue}{\underline{\href{#1}{#2}}}}
++\newcommand{\enlace}[2]{\textcolor{blue}{{\href{#1}{#2}}}}
+ 
+ \newcommand{\codigo}[1]{\texttt{#1}}
+ 
+
+  \end{listadogit}
+  %$
+  
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: checkout}
+  \begin{itemize}
+  \item Extrae versiones del repositorio a la copia de trabajo
+    \begin{itemize}
+    \item \textbf{Un fichero}: \texttt{git checkout \textit{fichero}}
+    \item \textbf{Una versión}: \texttt{git checkout \textit{hashdeversión}}
+    \item \textbf{Un branch}: \texttt{git checkout \textit{branch}}
+    \end{itemize}
+  \item También crea nuevas ramas, con \texttt{git checkout -b \textit{nombrerama}}
+  \item Si coinciden una versión/nombre de fichero
+    \begin{itemize}
+    \item Utilizar \enlace{https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html\#\_specifying\_revisions}{Referencias a objetos en Git}
+    \item Es \textbf{mejor} evitar que coincidan
+    \end{itemize}
+
+  \end{itemize}
+
+  \vfill
+\referenciagit{checkout}\\
+\referenciagit{branch}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GIT: Otros comandos}
+  \begin{itemize}
+  \item \referenciagit[]{blame}: Lista un fichero con el autor de cada l\'inea
+  \item \referenciagit[]{log}: Historia de cambios de un repositorio (parecido a \texttt{gitk}, en modo texto)
+  \item \referenciagit[]{gui}: Interfaz gr\'afica b\'asica para utilizar git
+  \item \referenciagit[]{merge}: Fusión de dos ramas
+  \end{itemize}
+
+\end{frame}
+
+\end{document}
+
+
+
+

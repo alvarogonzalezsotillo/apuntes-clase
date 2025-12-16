@@ -140,7 +140,7 @@ clean:
 - /Artifacts/: creación de ficheros entregables/desplegables/ejecutables      
 
 #+reveal: split 
-    [[attachment:clipboard-20251113T192607.png]]
+[[file:media/project-structure.png]]
     
 ** Proyecto
 - Un proyecto contiene código fuente y otros recursos para construir una aplicación
@@ -247,20 +247,14 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 
   
 ** /step into/, /step out/, /step over/
-:PROPERTIES:
-:ID:       d7840056-7b8b-4fd7-8a97-65b82e791e93
-:END:
 - Tras parar en un breakpoint
   - /step into/: Se puede seguir ejecutando la siguiente instrucción, aunque sea en otro método
   - /step over/: Se ejecuta la siguiente instrucción del método actual
   - /step out/: Se ejecuta hasta salir del método actual (vuelve un nivel en el /stack trace/)
 
-[[attachment:clipboard-20251209T180829.png]]
+[[file:media/continue-stepinto-stepover-stepout.png]]
   
 ** Pila de llamadas /stack trace/
-:PROPERTIES:
-:ID:       8fd9bb47-2757-4dfc-a29b-2621491a1a44
-:END:
 - La ejecución comienza en un método =main=
 - Cada método puede llamar a otros métodos
   - El método actual se ve "/encima/"
@@ -269,20 +263,16 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
   - Hilos de ejecución, de forma concurrente
   - Cada uno tiene su propia pila de llamadas
 
-[[attachment:clipboard-20251209T181024.png]]    
+[[file:media/threads.png]]
 
 ** /Watch/
-:PROPERTIES:
-:ID:       2b710c05-832c-489a-ae9c-70cef7c9cf28
-:END:
 - En un /breakpoint/ se muestran por defecto todas las variables locales del método
 - Pueden añadirse
   - Variables globales
   - Expresiones /java/: llamadas a métodos, aritmética...
 - /inspect/: Las variables complejas (objetos) pueden expandirse para ver sus componentes
 
-[[attachment:clipboard-20251209T180932.png]]  
-
+[[file:media/watch.png]]
 ** /hot reload/ o /hot swap/
 - Se puede cambiar el código de un método y aplicar los cambios al programa debugueado
 - Hay límites:
