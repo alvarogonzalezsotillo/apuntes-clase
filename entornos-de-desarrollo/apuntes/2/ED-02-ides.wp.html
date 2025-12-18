@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-11 jue 08:17 -->
+<!-- 2025-12-18 jue 08:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación y uso de IDE's</title>
@@ -355,6 +355,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <ul class="org-ul">
 <li>Complementos que se relacionan con otras herramientas para agregarle una nueva función.</li>
 <li>Esta aplicación adicional es ejecutada por la aplicación principal.</li>
+<li>Ejercicio: Probar <a href="https://plugins.jetbrains.com/plugin/7066-keymap-exporter">Keymap Exporter</a></li>
 </ul>
 </div>
 </div>
@@ -379,28 +380,28 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span style="color: #a0522d;">src</span>=src/*.java
-<span style="color: #a0522d;">pkg</span>=tetris.jar
-<span style="color: #a0522d;">main</span>=PlayTetris
+<pre class="src src-makefile"><span style="color: #ff6347;">src</span>=src/*.java
+<span style="color: #ff6347;">pkg</span>=tetris.jar
+<span style="color: #ff6347;">main</span>=PlayTetris
 
 
-<span style="color: #0000ff;">all</span>:
+<span style="color: #edd400; font-weight: bold;">all</span>:
         mkdir -p bin
-        javac ${<span style="color: #a0522d;">src</span>} -d bin/
+        javac ${<span style="color: #ff6347;">src</span>} -d bin/
 
-<span style="color: #0000ff;">package</span>: all
-        ../package.sh ${<span style="color: #a0522d;">pkg</span>} ${<span style="color: #a0522d;">main</span>}
+<span style="color: #edd400; font-weight: bold;">package</span>: all
+        ../package.sh ${<span style="color: #ff6347;">pkg</span>} ${<span style="color: #ff6347;">main</span>}
 
-<span style="color: #0000ff;">doc</span>:
-        javadoc ${<span style="color: #a0522d;">src</span>} -d doc/
+<span style="color: #edd400; font-weight: bold;">doc</span>:
+        javadoc ${<span style="color: #ff6347;">src</span>} -d doc/
 
-<span style="color: #0000ff;">play</span>: all
-        java -cp bin/ ${<span style="color: #a0522d;">main</span>}
+<span style="color: #edd400; font-weight: bold;">play</span>: all
+        java -cp bin/ ${<span style="color: #ff6347;">main</span>}
 
-<span style="color: #0000ff;">clean</span>:
+<span style="color: #edd400; font-weight: bold;">clean</span>:
         rm -rf bin
         rm -rf doc
-        rm -f ${<span style="color: #a0522d;">pkg</span>}
+        rm -f ${<span style="color: #ff6347;">pkg</span>}
 </pre>
 </div>
 </div>
@@ -965,7 +966,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-11 jue 08:17</p>
+<p class="date">Created: 2025-12-18 jue 08:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
