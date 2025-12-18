@@ -303,3 +303,6 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
   - Linux: =echo $PATH=      
   - Windows: =echo %PATH%=
 
+
+* Referencias
+#+include: "../../../common/footer.org"

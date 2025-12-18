@@ -1,10 +1,9 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Control de versiones (git)
+#+REVEAL_HLEVEL: 1
+
+
 * Introducción
-
-
-
-
-  
-  
   Un desarrollo suele ser un trabajo colaborativo entre varias personas. Por ello, hay que resolver varios problemas:
   
   - Cómo dividir el trabajo en varias partes (módulos)
@@ -16,31 +15,20 @@
     - Utilizar los módulos de otras personas
     - Traspasar el conocimiento (cuando un desarrollador deja el equipo)
     
-  
-
-
 
 * Trabajo colaborativo
 
- 
 
+** Integración de código
 
-** Integración de c\'odigo
-
-
-
-  
   - Cada miembro del equipo realiza su parte del trabajo
   - Al terminar
-    
     - ¿Cómo se integran todas las partes?
     
   - Si hay errores o cambios
-    
     - ¿Cómo se actualizan solo los nuevos cambios?
     
-  - Si hay m\'as de una versión
-    
+  - Si hay más de una versión
     - ¿Cómo se gestionan los conjuntos de módulos compatibles con cierta versión?
     - ¿Cómo se recupera una versión antigua?
     - ¿Cómo se fusionan dos versiones?
@@ -49,19 +37,13 @@
 
 
 ** Control de versiones
-
-
-
-  
   - Un control de versiones (de código) mantiene una base de datos con todos los cambios producidos sobre el código fuente y otros ficheros necesarios para generar una aplicación
   - Pueden ser
-    
     - Centralizados/distribuidos
     - Basados en ficheros/Basados en /changesets/
     - Bloqueantes/No bloqueantes
     
   - Ejemplos
-    
     - GIT
     - Subversion
     - Mercurial
@@ -72,10 +54,6 @@
   
 
 ** Conceptos de control de versiones (I)
-
-
-
-  
   - *Repositorio*: Base de datos con las sucesivas versiones
   - *Copia de trabajo*: Ficheros sobre los que trabaja el programador
   - *Commit*: Confirmación de una nueva versión (de la copia de trabajo al repositorio)
@@ -84,168 +62,119 @@
   
 
 ** Conceptos de control de versiones (II)
-
-
-  
   - *Rama (Branch)*: Versión paralela (ni anterior, ni posterior)
   - *Rama master o trunk*: Rama principal del desarrollo
   - *Fusión (Merge)*: Acumular cambios en una misma versión
-    
-    - Tras un checkout, mezclando la copia de trabajo con la versión del repositorio
+    - Tras un /checkout/, mezclando la copia de trabajo con la versión del repositorio
     - Entre diferentes branchs del repositorio
     
-  - *Comentario*: Cada commit deber\'ia documentar sus efectos y motivaciones.
+  - *Comentario*: Cada commit debería documentar sus efectos y motivaciones.
   
 
 
-** GIT
-
-
-
-  
+* GIT
   - Gratis, de código abierto
-  - Muy popular, en m\'ultiples plataformas
+  - Muy popular, en múltiples plataformas
   - Distribuido
   - Basado en /changesets/
   - No bloqueante 
   
 
-
-
-
-  \includegraphics[width=12cm]{resumen-git.pdf}
-
-
-
-
-  \includegraphics[width=11cm]{trabajo-normal-git.pdf}
+  [[resumen-git.pdf]]
 
 
 
 
-\newcommand{\referenciagit}[2][Referencia de]{%
-  %
-    \enlace{https://git-scm.com/docs/git-#2}{#1 \texttt{git #2}}
-  %
-}
+  [[trabajo-normal-git.pdf]]
 
 
-
-  
-  - *gitk* es un visor del repositorio local
-  - Permite revisar
-    
-    - Ramas
-    - Commits
-    - Merges
-    
-  - Muy útil para 
-    
-    - Recuperar versiones antiguas de un fichero
-    - Visualizar las ramas de un repositorio
-    - /Culpar/ a alguien de lo sucedido \smiley
-    
-  
+#+MACRO: referenciagit [[https://git-scm.com/docs/git-$1][Comando /git $1/]]
 
 
 
 
-  \includegraphics[width=11cm]{gitk.pdf}
 
-
-[fragile]
+** =init=
 
   
   - Crea un nuevo repositorio en el directorio
-  - Inicialmente vac\'io
-  - Se almacena en el directorio oculto \codigo{.git}
+  - Inicialmente vacío
+  - Se almacena en el directorio oculto =.git=
   
-\begin{listadogit}{Ejemplo de \texttt{git init}}
+#+label: Ejemplo de =git init=
+#+begin_src bash
 alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git init
-Initialized empty Git repository in /home/alvaro/aplicacion-web/.git/
-
-\end{listadogit}  
-  % $
-
-  \vfill
-  \referenciagit{init}
+Initialized emp
+#+end_src
 
 
-[fragile]
+** =clone=
 
-  
   - Crea un nuevo repositorio, copia de uno ya existente
-  - El repositorio puede ser local o remoto, dependiendo de la \enlace{https://git-scm.com/docs/git-clone\#URLS}{URL}
-  - La copia de trabajo ser\'a la de la rama MASTER
+  - El repositorio puede ser local o remoto, dependiendo de la [[https://git-scm.com/docs/git-clone#_git_urls][URL]]
+  - La copia de trabajo será la de la rama =master=
   
 
 
-
-  \begin{listadogit}{Ejemplo de \texttt{git clone}}
+#+label: Ejemplo de =git clone=
+#+begin_src bash
   alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone \
        https://github.com/alvarogonzalezsotillo/aplicacion-php.git
   Cloning into 'aplicacion-php'...
   remote: Counting objects: 50, done.
-  remote: Compressing objects: 100% (35/35), done.
-  remote: Total 50 (delta 21), reused 39 (delta 12), pack-reused 0
-  Unpacking objects: 100% (50/50), done.
-  Checking connectivity... done.
-  \end{listadogit}
-    % $
-  \referenciagit{clone}
+  remote: Compressing objects: 100% (35
+
+#+end_src
+
+{{{referenciagit(clone)}}}
 
 
+** =add=
 
 
-
-  
   - Git no incluye todos los ficheros de la copia de trabajo en el repositorio
-  - Si se desea un fichero en el repositorio, se debe incluir con \texttt{add}
-  - Cada cambio posterior debe indicarse tambi\'en con \texttt{add}
-  - Se puede quitar con \texttt{rm} (las versiones antiguas siguen en el repositorio)
+  - Si se desea un fichero en el repositorio, se debe incluir con =add=
+  - Cada cambio posterior debe indicarse también con =add=
+  - Se puede quitar con =rm= (las versiones antiguas siguen en el repositorio)
 
-  \vfill
-
-\referenciagit{add}\\
-\referenciagit{rm}\\
-\referenciagit{mv}\\
   
 
+{{{referenciagit(add)}}}
 
-
-
+** =status=
   
   
   - Imprime un resumen del estado de los ficheros de la copia de trabajo
-    
+   
     - *Untracked*: No guardados en el repositorio. Git ignora el fichero
     - *Unmodified*: Igual que en la rama activa del repositorio
-    - *Modified*: Con cambios respecto al repositorio, pero que no está previsto guardar
-    - *Staged*:  El fichero está en el /index/. Será parte del próximo /changeset/ que se añadirá al repositorio
+    - *Modified*: Con cambios respecto al repositorio, pero que no está previsto guardar    
+  
+{{{referenciagit(status)}}}
+  
+  [[estados-fichero-git.pdf]]
+  
+
+** =diff=
+
+  Muestra los cambios de los ficheros en estado *modified*
+  
+  - =@@ -lineO,nlinesO +lineD,nlinesD @@=    
+    - Se muestra a partir de =lineO= del fichero antiguo y =lineD= del fichero actual
+    - Se muestran =nlinesO= líneas del fichero antiguo y =nlinesD= líneas del fichero actual 
     
+  - =-= Línea borrada
+  - =+= Línea añadida
   
-
-  \vfill
-\referenciagit{status}
-
-
-
-
-
-  \includegraphics[width=12cm]{estados-fichero-git.pdf}
-
-
-
-[fragile]
+  
+  
+  {{{referenciagit(diff)}}}
 
   
-  - Incluye los cambios en el index como una nueva versión en el repositorio
-  - Los ficheros pasan al index con \texttt{add} 
-  - \texttt{git commit -a} incluye en el index a todos los ficheros del repositorio con cambios en local
-  
+** =commit=  
 
-  \begin{listadogit}{Ejemplo de \texttt{git commit -a}}
-alvaro@alvaro-vaio:~/aplicacion-web$ git commit -a                                                                                  
+#+label: Ejemplo de =commit -a=
+#+begin_src bash
 [master 906fa20] Cambiados varios permisos de ejecución
  5 files changed, 411 insertions(+), 2 deletions(-)
  create mode 100644 09/estados-fichero-git.svg
@@ -253,39 +182,33 @@ alvaro@alvaro-vaio:~/aplicacion-web$ git commit -a
  mode change 100755 => 100644 generar-pdf.sh
  mode change 100755 => 100644 generar-pdfs.sh
  mode change 100755 => 100644 publicar-pdfs.sh
-  \end{listadogit}
-%$
-
-  \vfill
-
-  \referenciagit{commit}
+#+end_src
 
 
+  
+
+  {{{referenciagit(commit)}}}
 
 
 
+
+** =push=
   
   - Sube las versiones del repositorio local a un repositorio remoto
   - El repositorio remoto puede establecerse:
-    
-    - con \texttt{git clone} (en este caso se denomina *origin*) 
-    - con \texttt{git remote add}
-    
+    - con =git clone= (en este caso se denomina *origin*) 
+    - con =git remote add=    
   - El repositorio debe tener todas las versiones del repositorio remoto
-    
-    - En otro caso, deberá realizarse un \texttt{git pull} previo
-    
-  
+    - En otro caso, deberá realizarse un =git pull= previo
 
-  \vfill
-
-\referenciagit{push}\\
-\referenciagit{remote}
+{{{referenciagit(push)}}}
+{{{referenciagit(remote)}}}
 
 
-[fragile]
 
-  \begin{listadogit}{Ejemplo de \texttt{git push} con error}
+
+#+label: Ejemplo de =git push=con error}
+#+begin_src bash
 alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git push
 Password for 'https://alvarogonzalezsotillo@bitbucket.org': 
 To https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git
@@ -298,88 +221,62 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-  \end{listadogit}
-  %$
+  #+end_src
 
 
 
-
-
-
-
-  Muestra los cambios de los ficheros en estado *modified*
-  
-  - \texttt{@@ -lineO,nlinesO +lineD,nlinesD @@}
-    
-    - Se muestra a partir de \texttt{lineO} del fichero antiguo y \texttt{lineD} del fichero actual
-    - Se muestran \texttt{nlinesO} líneas del fichero antiguo y \texttt{nlinesD} líneas del fichero actual 
-    
-  - \texttt{-}: Línea borrada
-  - \texttt{+}: Línea añadida
-  
-  
-  \vfill
-  \referenciagit{diff}
-
-
-[fragile]
 
 
   
-  \begin{listadogit}{Extracto de \texttt{git diff}}$
-
-@@ -159,7 +162,7 @@
- 
- \newcommand{\entradausuario}[1]{/*#1*/}
- 
--\newcommand{\enlace}[2]{\textcolor{blue}{\underline{\href{#1}{#2}}}}
-+\newcommand{\enlace}[2]{\textcolor{blue}{{\href{#1}{#2}}}}
- 
- \newcommand{\codigo}[1]{\texttt{#1}}
- 
-
-  \end{listadogit}
-  %$
-  
 
 
-
-
-
+** =checkout=
   
   - Extrae versiones del repositorio a la copia de trabajo
     
-    - *Un fichero*: \texttt{git checkout /fichero/}
-    - *Una versión*: \texttt{git checkout /hashdeversión/}
-    - *Un branch*: \texttt{git checkout /branch/}
-    
-  - También crea nuevas ramas, con \texttt{git checkout -b /nombrerama/}
+    - *Un fichero*: =git checkout <fichero>=
+    - *Una versión*: =git checkout <hashdeversión>=
+    - *Un branch*: =git checkout <branch>=    
+  - También crea nuevas ramas, con =git checkout -b <nombrerama>=
   - Si coinciden una versión/nombre de fichero
-    
-    - Utilizar \enlace{https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html\#\_specifying\_revisions}{Referencias a objetos en Git}
+    - Utilizar [[https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html#_specifying_revisions][Referencias a objetos en Git]]
     - Es *mejor* evitar que coincidan
     
 
   
 
-  \vfill
-\referenciagit{checkout}\\
-\referenciagit{branch}
+  
+{{{referenciagit(checkout)}}}
+{{{referenciagit(branch)}}}
+
+** =merge=
+- Fusiona la rama actual con otra rama
+- En el caso de que haya conflictos:
+  - Los ficheros se quedan con [[https://www.kernel.org/pub/software/scm/git/docs/git-merge.html#_how_conflicts_are_presented][marcas de conflictos]]
+  - Para aceptar el fichero completo de la otra rama: =git checkout --theirs path/file=  
+  - Para aceptar el fichero completo de la rama actual: =git checkout --ours path/file=
+  - Para casos más complicados, editar los ficheros y confirmarlos con =git add=
+- Recomendación: =git mergetool=, o usar el IDE
+
+{{{referenciagit(merge)}}}: Fusión de dos ramas
 
 
+** Otros comandos
 
 
   
-  - \referenciagit[]{blame}: Lista un fichero con el autor de cada l\'inea
-  - \referenciagit[]{log}: Historia de cambios de un repositorio (parecido a \texttt{gitk}, en modo texto)
-  - \referenciagit[]{gui}: Interfaz gr\'afica b\'asica para utilizar git
-  - \referenciagit[]{merge}: Fusión de dos ramas
+  - {{{referenciagit(blame)}}}: Lista un fichero con el autor de cada línea
+  - {{{referenciagit(log)}}}: Historia de cambios de un repositorio (parecido a =gitk= en modo texto)
+  - {{{referenciagit(gui)}}}: Interfaz gráfica básica para utilizar git
   
 
 
 
-\end{document}
 
 
 
 
+
+
+* Referencias
+#+include: "../../../common/footer.org"
