@@ -97,7 +97,8 @@
 
 ** Flujo de trabajo básico
 
-
+#+attr_html: :width 100%
+#+attr_latex: :width 0.7\textwidth
   [[./media/trabajo-normal-git.svg]]
 
 
@@ -106,6 +107,32 @@
 
 
 
+
+** Ramas
+- Cada /commit/ genera una nueva versión del código
+- Generalmente, una versión "/desciende/" de otra versión  
+  - En un /merge/, se puede "/descender/" de más de una versión
+- Las versiones se identifican por un /hash/
+- Una *rama* (=branch=) es un nombre que se da a un /hash/, y que va avanzando al hacer nuevas versiones
+- Un =tag= es como un =branch=, pero no avanza al hacer nuevas versiones 
+
+*** Ramas típicas
+- =master= o =main=: Versiones oficiales del código
+  - Se garantiza que funcionan
+  - Se entregan al usuario final
+- =develop=: Trabajo para las siguientes versiones oficiales
+  - Se acaban fusionando (/merge/) en =master=
+- =feature=: Trabajo para una sola funcionalidad
+  - Se acaban fusionando en =develop=
+  - Pueden ser personales: solo las utiliza un desarrollador
+- =hotfix=: Un arreglo urgente en =master=    
+
+#+reveal:split  
+
+[[file:media/git-branches-2.png]]
+
+
+* Comandos de Git
 
 ** =init=
 
@@ -284,7 +311,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
   
 
 
+* Git desde Intellij
+[[file:media/git-en-intellij.png]]
 
+* Si todo se complica...
+[[https://training.github.com/downloads/github-git-cheat-sheet.pdf][Git cheat sheet]]
+[[https://www.explainxkcd.com/wiki/index.php/1597:_Git][file:./media/xkcd-git.png]]
 
 
 
@@ -293,3 +325,4 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 * Referencias
 #+include: "../../../common/footer.org"
+
