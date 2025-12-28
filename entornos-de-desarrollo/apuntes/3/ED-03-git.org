@@ -80,12 +80,25 @@
   - No bloqueante 
   
 
-  [[resumen-git.pdf]]
+** GIT como cliente-servidor
+- Git tiene una arquitectura [[https://en.wikipedia.org/wiki/Peer-to-peer][peer-to-peer]]
+  - Todos los repositorios son igual de "/importantes/"
+- Por convenio, suele haber un repositorio "/central/"
+  - Como servicio: [[https://github.com/][github]], [[https://gitlab.com/users/sign_in][gitlab]], [[https://codeberg.org/][codeberg]]...
+  - Autoalojado: [[https://about.gitea.com/products/gitea/][gitea]], [[https://forgejo.org/][forjego]]
+  - [[https://www.systutorials.com/set-up-git-server-through-ssh-connection/][O solo con Git y linux]]
+
+#+reveal:split
+
+#+attr_html: :width 100%
+#+attr_latex: :width 0.7\textwidth
+  [[./media/resumen-git.svg]]
 
 
+** Flujo de trabajo básico
 
 
-  [[trabajo-normal-git.pdf]]
+  [[./media/trabajo-normal-git.svg]]
 
 
 #+MACRO: referenciagit [[https://git-scm.com/docs/git-$1][Comando /git $1/]]
@@ -152,7 +165,7 @@ Initialized emp
   
 {{{referenciagit(status)}}}
   
-  [[estados-fichero-git.pdf]]
+  [[./media/estados-fichero-git.svg]]
   
 
 ** =diff=
