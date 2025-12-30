@@ -310,7 +310,40 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 {{{referenciagit(merge)}}}: Fusión de dos ramas
 
-** Ejercicio GIT
+        
+
+** Otros comandos
+
+
+  
+  - {{{referenciagit(blame)}}}: Lista un fichero con el autor de cada línea
+  - {{{referenciagit(log)}}}: Historia de cambios de un repositorio
+  - {{{referenciagit(gui)}}}: Interfaz gráfica básica para utilizar git
+  - {{{referenciagit(switch)}}}: Cambia rápidamente entre ramas
+  - {{{referenciagit(reset)}}}: Deshace cambios (con precaución)
+  - {{{referenciagit(tag)}}}: Da un nombre legible (no un /hash/) a una versión
+  
+  
+
+
+* Ejercicio GIT
+- Clona el repositorio https://codeberg.org/alvarogonzalezsotillo/Java-Games.git
+- Crea la rama =translate= a partir de =master= (comando =checkout= o =branch=)
+- Traduce a otro idioma las interfaces de los juegos:
+  - Tetris
+  - MathHero
+  - FallDown
+- Incorpora los cambios a la rama =translate= (comando =add= y =commit=)
+- Fusiona los cambios con la rama =master=
+  - =git checkout master=
+  - =git merge --no-ff translate=
+- Enseña los resultados al profesor
+  - =git log --graph --oneline=
+  
+* Git desde Intellij
+[[file:media/git-en-intellij.png]]
+
+* Ejercicio GIT (II)
 - Crea una cuenta en [[https://codeberg.org][Codeberg]]
   - Usa tu cuenta de correo de educamadrid
 - Clona el repositorio [[https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git]]
@@ -321,20 +354,6 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 - Confirma tus cambios en local ([[#add][=add=]],[[#commit][=commit=]])
 - Sube tus cambios con [[#push][=push=]]
   - Si algún compañero ha cambiado el fichero antes que tú, consigue sus cambios con [[#pull][=pull=]], y vuelve a intentar subir tus cambios
-        
-
-** Otros comandos
-
-
-  
-  - {{{referenciagit(blame)}}}: Lista un fichero con el autor de cada línea
-  - {{{referenciagit(log)}}}: Historia de cambios de un repositorio (parecido a =gitk= en modo texto)
-  - {{{referenciagit(gui)}}}: Interfaz gráfica básica para utilizar git
-  
-
-
-* Git desde Intellij
-[[file:media/git-en-intellij.png]]
 
 * ¿Qué es un /pull request/ y un /fork/?
 - Un PR es un concepto ajeno a Git
@@ -343,7 +362,8 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
   - A veces se quieren hacer cambios en un repositorio donde no tenemos permisos de escritura
   - Se hace un /fork/ (copia) de ese repositorio
   - Se realizan los cambios que se considere en esa copia
-  - Finalmente, se pide que el dueño del repositorio original haga un /pull/    
+  - Finalmente, se pide que el dueño del repositorio original haga un /pull/
+- [[https://docs.github.com/en/get-started/start-your-journey/hello-world?source=post_page-----62dea67aa2eb--------------------------------][Guía de Github]]       
 
 * Si todo se complica...
 [[https://training.github.com/downloads/github-git-cheat-sheet.pdf][Git cheat sheet]]

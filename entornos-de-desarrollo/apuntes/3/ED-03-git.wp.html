@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-30 mar 18:39 -->
+<!-- 2025-12-30 mar 19:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control de versiones (git)</title>
@@ -208,11 +208,13 @@
 <li><a href="#org0000004">2. Trabajo en solitario</a></li>
 <li><a href="#org0000013">3. Trabajo colaborativo</a></li>
 <li><a href="#org0000025">4. GIT</a></li>
-<li><a href="#org000004e">5. Comandos de Git</a></li>
-<li><a href="#org0000052">6. Git desde Intellij</a></li>
-<li><a href="#org0000055">7. ¿Qué es un <i>pull request</i> y un <i>fork</i>?</a></li>
-<li><a href="#org0000058">8. Si todo se complica&#x2026;</a></li>
-<li><a href="#org000005b">9. Referencias</a></li>
+<li><a href="#org000004b">5. Comandos de Git</a></li>
+<li><a href="#org000004e">6. Ejercicio GIT</a></li>
+<li><a href="#org0000052">7. Git desde Intellij</a></li>
+<li><a href="#org0000055">8. Ejercicio GIT (II)</a></li>
+<li><a href="#org0000058">9. ¿Qué es un <i>pull request</i> y un <i>fork</i>?</a></li>
+<li><a href="#org000005b">10. Si todo se complica&#x2026;</a></li>
+<li><a href="#org000005e">11. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -453,8 +455,8 @@ Ejemplos
 </div>
 </div>
 </div>
-<div id="outline-container-org000004e" class="outline-2">
-<h2 id="org000004e"><span class="section-number-2">5.</span> Comandos de Git</h2>
+<div id="outline-container-org000004b" class="outline-2">
+<h2 id="org000004b"><span class="section-number-2">5.</span> Comandos de Git</h2>
 <div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org000002a" class="outline-3">
@@ -685,8 +687,57 @@ hint: See the <span style="color: #ad7fa8; font-style: italic;">'Note about fast
 </div>
 </div>
 <div id="outline-container-org0000048" class="outline-3">
-<h3 id="org0000048"><span class="section-number-3">5.11.</span> Ejercicio GIT</h3>
+<h3 id="org0000048"><span class="section-number-3">5.11.</span> Otros comandos</h3>
 <div class="outline-text-3" id="text-5-11">
+<ul class="org-ul">
+<li><a href="https://git-scm.com/docs/git-blame">Comando <i>git blame</i></a>: Lista un fichero con el autor de cada línea</li>
+<li><a href="https://git-scm.com/docs/git-log">Comando <i>git log</i></a>: Historia de cambios de un repositorio</li>
+<li><a href="https://git-scm.com/docs/git-gui">Comando <i>git gui</i></a>: Interfaz gráfica básica para utilizar git</li>
+<li><a href="https://git-scm.com/docs/git-switch">Comando <i>git switch</i></a>: Cambia rápidamente entre ramas</li>
+<li><a href="https://git-scm.com/docs/git-reset">Comando <i>git reset</i></a>: Deshace cambios (con precaución)</li>
+<li><a href="https://git-scm.com/docs/git-tag">Comando <i>git tag</i></a>: Da un nombre legible (no un <i>hash</i>) a una versión</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000004e" class="outline-2">
+<h2 id="org000004e"><span class="section-number-2">6.</span> Ejercicio GIT</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Clona el repositorio <a href="https://codeberg.org/alvarogonzalezsotillo/Java-Games.git">https://codeberg.org/alvarogonzalezsotillo/Java-Games.git</a></li>
+<li>Crea la rama <code>translate</code> a partir de <code>master</code> (comando <code>checkout</code> o <code>branch</code>)</li>
+<li>Traduce a otro idioma las interfaces de los juegos:
+<ul class="org-ul">
+<li>Tetris</li>
+<li>MathHero</li>
+<li>FallDown</li>
+</ul></li>
+<li>Incorpora los cambios a la rama <code>translate</code> (comando <code>add</code> y <code>commit</code>)</li>
+<li>Fusiona los cambios con la rama <code>master</code>
+<ul class="org-ul">
+<li><code>git checkout master</code></li>
+<li><code>git merge --no-ff translate</code></li>
+</ul></li>
+<li>Enseña los resultados al profesor
+<ul class="org-ul">
+<li><code>git log --graph --oneline</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000052" class="outline-2">
+<h2 id="org0000052"><span class="section-number-2">7.</span> Git desde Intellij</h2>
+<div class="outline-text-2" id="text-7">
+
+<div id="org0000051" class="figure">
+<p><img src="media/git-en-intellij.png" alt="git-en-intellij.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000055" class="outline-2">
+<h2 id="org0000055"><span class="section-number-2">8.</span> Ejercicio GIT (II)</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Crea una cuenta en <a href="https://codeberg.org">Codeberg</a>
 <ul class="org-ul">
@@ -709,30 +760,9 @@ hint: See the <span style="color: #ad7fa8; font-style: italic;">'Note about fast
 </ul>
 </div>
 </div>
-<div id="outline-container-org000004b" class="outline-3">
-<h3 id="org000004b"><span class="section-number-3">5.12.</span> Otros comandos</h3>
-<div class="outline-text-3" id="text-5-12">
-<ul class="org-ul">
-<li><a href="https://git-scm.com/docs/git-blame">Comando <i>git blame</i></a>: Lista un fichero con el autor de cada línea</li>
-<li><a href="https://git-scm.com/docs/git-log">Comando <i>git log</i></a>: Historia de cambios de un repositorio (parecido a <code>gitk</code> en modo texto)</li>
-<li><a href="https://git-scm.com/docs/git-gui">Comando <i>git gui</i></a>: Interfaz gráfica básica para utilizar git</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000052" class="outline-2">
-<h2 id="org0000052"><span class="section-number-2">6.</span> Git desde Intellij</h2>
-<div class="outline-text-2" id="text-6">
-
-<div id="org0000051" class="figure">
-<p><img src="media/git-en-intellij.png" alt="git-en-intellij.png" />
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000055" class="outline-2">
-<h2 id="org0000055"><span class="section-number-2">7.</span> ¿Qué es un <i>pull request</i> y un <i>fork</i>?</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">9.</span> ¿Qué es un <i>pull request</i> y un <i>fork</i>?</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Un PR es un concepto ajeno a Git
 <ul class="org-ul">
@@ -745,21 +775,22 @@ hint: See the <span style="color: #ad7fa8; font-style: italic;">'Note about fast
 <li>Se realizan los cambios que se considere en esa copia</li>
 <li>Finalmente, se pide que el dueño del repositorio original haga un <i>pull</i></li>
 </ul></li>
+<li><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world?source=post_page-----62dea67aa2eb--------------------------------">Guía de Github</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-2">
-<h2 id="org0000058"><span class="section-number-2">8.</span> Si todo se complica&#x2026;</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org000005b" class="outline-2">
+<h2 id="org000005b"><span class="section-number-2">10.</span> Si todo se complica&#x2026;</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 <a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a>
 <a href="https://www.explainxkcd.com/wiki/index.php/1597:_Git"><img src="./media/xkcd-git.png" alt="xkcd-git.png" /></a>
 </p>
 </div>
 </div>
-<div id="outline-container-org000005b" class="outline-2">
-<h2 id="org000005b"><span class="section-number-2">9.</span> Referencias</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org000005e" class="outline-2">
+<h2 id="org000005e"><span class="section-number-2">11.</span> Referencias</h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -781,7 +812,7 @@ hint: See the <span style="color: #ad7fa8; font-style: italic;">'Note about fast
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-30 mar 18:39</p>
+<p class="date">Created: 2025-12-30 mar 19:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
