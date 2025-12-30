@@ -4,32 +4,24 @@
 
 
 * Introducción
-  Un desarrollo suele ser un trabajo colaborativo entre varias personas. Por ello, hay que resolver varios problemas:
-  
-  - Cómo dividir el trabajo en varias partes (módulos)
-  - Cómo integrar las partes para conseguir el resultado final.
-  - Cómo comunicar instrucciones para:
-    
-    - Instalar un entorno de desarrollo (cuando llegan nuevos desarrolladores)
-    - Instalar la aplicación en el servidor de producción
-    - Utilizar los módulos de otras personas
-    - Traspasar el conocimiento (cuando un desarrollador deja el equipo)
-    
+- Problemas típicos en el desarrollo de aplicaciones
+  - ¿Cómo trabajan varios desarrolladores sobre el mismo código?
+  - ¿Qué cambios se han realizado?
+  - ¿Quién ha realizado los cambios?
+
+* Trabajo en solitario
+- Los IDE suelen tener /historia local/
+- Indica los cambios que ha tenido el código en la máquina local
+[[file:media/local-history-en-intellij.png]]    
 
 * Trabajo colaborativo
-
 
 ** Integración de código
 
   - Cada miembro del equipo realiza su parte del trabajo
-  - Al terminar
-    - ¿Cómo se integran todas las partes?
-    
-  - Si hay errores o cambios
-    - ¿Cómo se actualizan solo los nuevos cambios?
-    
+  - Si hay errores
+    - ¿Cómo se aislan los cambios que dieron lugar a un /bug/?  
   - Si hay más de una versión
-    - ¿Cómo se gestionan los conjuntos de módulos compatibles con cierta versión?
     - ¿Cómo se recupera una versión antigua?
     - ¿Cómo se fusionan dos versiones?
     
@@ -42,13 +34,10 @@
     - Centralizados/distribuidos
     - Basados en ficheros/Basados en /changesets/
     - Bloqueantes/No bloqueantes
-    
   - Ejemplos
     - GIT
     - Subversion
     - Mercurial
-    
-  
   
     [[https://en.wikipedia.org/wiki/Version\_control][Control de versiones en Wikipedia]]
   
@@ -56,19 +45,19 @@
 ** Conceptos de control de versiones (I)
   - *Repositorio*: Base de datos con las sucesivas versiones
   - *Copia de trabajo*: Ficheros sobre los que trabaja el programador
-  - *Commit*: Confirmación de una nueva versión (de la copia de trabajo al repositorio)
-  - *Checkout*: (Re)generación de la copia de trabajo a partir de la información del repositorio
-  - *Changeset*: Conjunto de cambios en el repositorio, considerado atómico
+  - */Commit/*: Confirmación de una nueva versión (de la copia de trabajo al repositorio)
+  - */Checkout/*: (Re)generación de la copia de trabajo a partir de la información del repositorio
+  - */Changeset/*: Conjunto de cambios en el repositorio, considerado atómico
   
 
 ** Conceptos de control de versiones (II)
-  - *Rama (Branch)*: Versión paralela (ni anterior, ni posterior)
-  - *Rama master o trunk*: Rama principal del desarrollo
-  - *Fusión (Merge)*: Acumular cambios en una misma versión
+  - *Rama (/Branch/)*: Versión paralela (ni anterior, ni posterior)
+  - *Rama =master= o =main=*: Rama principal del desarrollo
+  - *Fusión (/Merge/)*: Acumular cambios en una misma versión
     - Tras un /checkout/, mezclando la copia de trabajo con la versión del repositorio
-    - Entre diferentes branchs del repositorio
+    - Entre diferentes /branchs/ del repositorio
     
-  - *Comentario*: Cada commit debería documentar sus efectos y motivaciones.
+  - *Comentario*: Cada /commit/ debería documentar sus efectos y motivaciones.
   
 
 
@@ -88,18 +77,18 @@
   - Autoalojado: [[https://about.gitea.com/products/gitea/][gitea]], [[https://forgejo.org/][forjego]]
   - [[https://www.systutorials.com/set-up-git-server-through-ssh-connection/][O solo con Git y linux]]
 
+** Flujo de trabajo básico
+
+#+attr_html: :width 100%
+#+attr_latex: :width 0.7\textwidth
+  [[./media/trabajo-normal-git.svg]]
+
 #+reveal:split
 
 #+attr_html: :width 100%
 #+attr_latex: :width 0.7\textwidth
   [[./media/resumen-git.svg]]
 
-
-** Flujo de trabajo básico
-
-#+attr_html: :width 100%
-#+attr_latex: :width 0.7\textwidth
-  [[./media/trabajo-normal-git.svg]]
 
 
 #+MACRO: referenciagit [[https://git-scm.com/docs/git-$1][Comando /git $1/]]
@@ -148,7 +137,10 @@ Initialized emp
 #+end_src
 
 
-** =clone=
+** =clone= <<#clone>>
+  :PROPERTIES:
+  :CUSTOM_ID: clone
+  :END:
 
   - Crea un nuevo repositorio, copia de uno ya existente
   - El repositorio puede ser local o remoto, dependiendo de la [[https://git-scm.com/docs/git-clone#_git_urls][URL]]
@@ -158,18 +150,20 @@ Initialized emp
 
 #+label: Ejemplo de =git clone=
 #+begin_src bash
-  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone \
-       https://github.com/alvarogonzalezsotillo/aplicacion-php.git
+  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone https://github.com/alvarogonzalezsotillo/aplicacion-php.git
   Cloning into 'aplicacion-php'...
   remote: Counting objects: 50, done.
-  remote: Compressing objects: 100% (35
-
+  remote: Compressing objects: 100%
+  ....
 #+end_src
 
 {{{referenciagit(clone)}}}
 
 
-** =add=
+** =add= <<#add>>
+  :PROPERTIES:
+  :CUSTOM_ID: add
+  :END:
 
 
   - Git no incluye todos los ficheros de la copia de trabajo en el repositorio
@@ -211,7 +205,10 @@ Initialized emp
   {{{referenciagit(diff)}}}
 
   
-** =commit=  
+** =commit= <<#commit>>
+  :PROPERTIES:
+  :CUSTOM_ID: commit
+  :END:
 
 #+label: Ejemplo de =commit -a=
 #+begin_src bash
@@ -232,7 +229,10 @@ Initialized emp
 
 
 
-** =push=
+** =push= <<#push>>
+  :PROPERTIES:
+  :CUSTOM_ID: push
+  :END:
   
   - Sube las versiones del repositorio local a un repositorio remoto
   - El repositorio remoto puede establecerse:
@@ -265,12 +265,19 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 
 
-
-
+** =pull= <<#pull>>
+  :PROPERTIES:
+  :CUSTOM_ID: pull
+  :END:
+  
+  - Consigue la última versión de la rama actual
   
 
 
-** =checkout=
+** =checkout= <<#checkout>>
+  :PROPERTIES:
+  :CUSTOM_ID: checkout
+  :END:
   
   - Extrae versiones del repositorio a la copia de trabajo
     
@@ -289,7 +296,10 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 {{{referenciagit(checkout)}}}
 {{{referenciagit(branch)}}}
 
-** =merge=
+** =merge= <<#merge>>
+  :PROPERTIES:
+  :CUSTOM_ID: merge
+  :END:
 - Fusiona la rama actual con otra rama
 - En el caso de que haya conflictos:
   - Los ficheros se quedan con [[https://www.kernel.org/pub/software/scm/git/docs/git-merge.html#_how_conflicts_are_presented][marcas de conflictos]]
@@ -300,6 +310,18 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 {{{referenciagit(merge)}}}: Fusión de dos ramas
 
+** Ejercicio GIT
+- Crea una cuenta en [[https://codeberg.org][Codeberg]]
+  - Usa tu cuenta de correo de educamadrid
+- Clona el repositorio [[https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git]]
+  - Comando [[#clone][=clone=]]
+- Extrae la rama =curso-2025-2026=
+  - Comando [[#checkout][=checkout=]]
+- Modifica el fichero =listado-alumnos.md= y añade tu nombre y apellidos en el orden correcto
+- Confirma tus cambios en local ([[#add][=add=]],[[#commit][=commit=]])
+- Sube tus cambios con [[#push][=push=]]
+  - Si algún compañero ha cambiado el fichero antes que tú, consigue sus cambios con [[#pull][=pull=]], y vuelve a intentar subir tus cambios
+        
 
 ** Otros comandos
 
@@ -313,6 +335,15 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 * Git desde Intellij
 [[file:media/git-en-intellij.png]]
+
+* ¿Qué es un /pull request/ y un /fork/?
+- Un PR es un concepto ajeno a Git
+  - El equivalente de Git a un PR es un /push/
+- En servicios de Git (como GitHub)
+  - A veces se quieren hacer cambios en un repositorio donde no tenemos permisos de escritura
+  - Se hace un /fork/ (copia) de ese repositorio
+  - Se realizan los cambios que se considere en esa copia
+  - Finalmente, se pide que el dueño del repositorio original haga un /pull/    
 
 * Si todo se complica...
 [[https://training.github.com/downloads/github-git-cheat-sheet.pdf][Git cheat sheet]]
