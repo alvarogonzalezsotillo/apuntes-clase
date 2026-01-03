@@ -1,0 +1,45 @@
+Explica qué variables de entorno se necesitan para que funcione Oracle, y cuál es su valor. ¿por qué no las define directamente el instalador para todos los usuarios
+{
+}
+
+
+Explica las diferencias entre los roles y los perfiles de Oracle. ¿Qué opciones permiten definir cada uno de ellos?
+{
+}
+
+En un sistema está instalado el /software/ de Oracle y creada una instancia, pero acaba de reiniciarse. Describe la secuencia de pasos que hay que seguir para que la instancia esté disponible para que puedan conectarse los clientes. Incluye los comandos concretos que se utilizan.
+{
+}
+
+
+Explica qué variables de entorno se necesitan para que funcione Oracle, y cuál es su valor. ¿por qué no las define directamente el instalador para todos los usuarios?
+{
+}
+
+
+Para las siguientes preguntas de SQL recuerda que
+<ul>
+  <li>Las realiza un usuario con acceso a todas las tablas DBA_XXX</li>
+  <li>Deben ser válidas independientemente del estado de la base de datos: número de usuarios, número de tablas...</li>
+</ul>
+
+
+Consulta SQL: ¿Qué otros usuarios tienen el mismo tablespace por defecto que el tuyo?
+{
+}
+
+
+Consulta SQL: ¿Qué roles tienen otorgado el permiso CONNECT? (directamente, sin que otro rol se lo otorgue)
+{
+}
+
+
+Consulta SQL: ¿En qué tablas de las que no eres propietario puedes hacer UPDATE? (en todos los campos, no campos sueltos)
+{
+}
+
+
+Consulta SQL: ¿Qué sinónimos públicos están definidos para las tablas del usuario, y a qué tablas?
+{
+}
+
