@@ -149,9 +149,10 @@ Se creará un fichero =calculadora.php=.
 - Al enviar el formulario, se mostrará el resultado de la operación (10%). El formulario volverá a mostrar los últimos valores introducidos (10%)
 - Si la operación no es posible, en vez del resultado se mostrará =Error= (50%)
 - Si es la primera vez que se ejecuta, aparecerán los valores vacíos, y =+= seleccionado (10%)
+  - No es un error que se intente ejecutar con algún valor vacío, simplemente no se hace la cuenta y se vuelven a mostrar los valores sí introducidos  
 - Para la operación módulo:
   - Los operandos se aproximarán a enteros (10%)
-  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero (10%).  
+  - En vez de mostrar los operandos originales, se mostrarán los aproximados a entero, sin punto decimal (10%).  
 ([[https://443s--main--p3--admin.coder.iesavellaneda.es/public-html/practica01/calculadora.php][ver ejemplo]])
 #+caption: Ejemplo de caluladora
 #+attr_latex: :width 0.5\textwidth
@@ -236,4 +237,32 @@ Esta práctica contribuye a la calificación de los siguientes RA:
 * URLS a probar :noexport:
 
 
+<<<<<<< Updated upstream
+=======
+https://443s--main--iaw--adrianalvarez10.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--agarcia190.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--andresgonzalez52.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--asierpardo.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--danielgonzalez70.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--hectormoreno41.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--hugocastro9.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--hugohermosilla1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--ikeralvaro1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--javiergomez24.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--jpmc50.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--juanjarillo1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--kristinapeleshok.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--luigihalas.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--mariotsvetelinov.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--miguelreyes1.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--miguelroman9.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--monicamartinez26.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--oskarsajekgo.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--pablonombela.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--samuelcaicedo.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--sebastianbonilla6.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--sergiolopezventura.coder.iesavellaneda.es/public-html/practica01
+https://443s--main--iaw--veronicavillaseca.coder.iesavellaneda.es/public-html/practica01
+
+>>>>>>> Stashed changes
 
