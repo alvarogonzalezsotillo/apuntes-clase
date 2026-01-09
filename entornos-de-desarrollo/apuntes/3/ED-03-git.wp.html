@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-16 Tue 11:06 -->
+<!-- 2026-01-08 jue 12:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Comandos IOS</title>
+<title>Control de versiones (git)</title>
 <meta name="author" content="Álvaro González Sotillo" />
-<meta name="keywords" content=" IOS, Packet Tracer" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -200,24 +199,22 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Comandos IOS
-<br />
-<span class="subtitle"> </span>
-</h1>
+<h1 class="title">Control de versiones (git)</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000012">1. General</a></li>
-<li><a href="#org000001b">2. Direcciones IP</a></li>
-<li><a href="#org000002b">3. Enrutamiento</a></li>
-<li><a href="#org0000040">4. VLAN</a></li>
-<li><a href="#org0000043">5. STP</a></li>
-<li><a href="#org0000046">6. Link agregation</a></li>
-<li><a href="#org0000049">7. RIP</a></li>
-<li><a href="#org0000058">8. ACL</a></li>
-<li><a href="#org0000067">9. NAT</a></li>
-<li><a href="#org000006a">10. Referencias</a></li>
+<li><a href="#org0000000">1. Introducción</a></li>
+<li><a href="#org0000005">2. Trabajo en solitario</a></li>
+<li><a href="#org0000014">3. Trabajo colaborativo</a></li>
+<li><a href="#org0000026">4. GIT</a></li>
+<li><a href="#org000004c">5. Comandos de Git</a></li>
+<li><a href="#org000004f">6. Ejercicio GIT</a></li>
+<li><a href="#org0000053">7. Git desde Intellij</a></li>
+<li><a href="#org0000056">8. Ejercicio GIT (II)</a></li>
+<li><a href="#org0000059">9. ¿Qué es un <i>pull request</i> y un <i>fork</i>?</a></li>
+<li><a href="#org000005c">10. Si todo se complica&#x2026;</a></li>
+<li><a href="#org000005f">11. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -267,754 +264,546 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000012" class="outline-2">
-<h2 id="org0000012"><span class="section-number-2">1.</span> General</h2>
+<div id="outline-container-org0000000" class="outline-2">
+<h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><code>CTRL-ALT-6</code> para parar un comando incorrecto</li>
-<li><code>?</code> para conseguir siguientes comandos</li>
-<li><code>TAB</code> para autocompletar</li>
-<li>Un comando con <code>no</code> deshace el comando</li>
-</ul>
-</div>
-<div id="outline-container-org0000000" class="outline-3">
-<h3 id="org0000000"><span class="section-number-3">1.1.</span> Introducción de comandos</h3>
-<div class="outline-text-3" id="text-1-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Tabulación</td>
-<td class="org-left">Completa una entrada de nombre de comando parcial.</td>
-</tr>
-
-<tr>
-<td class="org-left">Retroceso</td>
-<td class="org-left">Borra el carácter a la izquierda del cursor.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-D</td>
-<td class="org-left">Borra el carácter donde está el cursor.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-K</td>
-<td class="org-left">Borra todos los caracteres desde el cursor hasta el final de la línea de comandos.</td>
-</tr>
-
-<tr>
-<td class="org-left">Esc D</td>
-<td class="org-left">Borra todos los caracteres desde el cursor hasta el final de la palabra.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-U o Ctrl-X</td>
-<td class="org-left">Borra todos los caracteres desde el cursor hasta el comienzo de la línea de comandos.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-W</td>
-<td class="org-left">Borra la palabra a la izquierda del cursor.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-A</td>
-<td class="org-left">Desplaza el cursor hacia el principio de la línea.</td>
-</tr>
-
-<tr>
-<td class="org-left">Flecha izquierda o Ctrl-B</td>
-<td class="org-left">Desplaza el cursor un carácter hacia la izquierda.</td>
-</tr>
-
-<tr>
-<td class="org-left">Esc B</td>
-<td class="org-left">Desplaza el cursor una palabra hacia la izquierda.</td>
-</tr>
-
-<tr>
-<td class="org-left">Esc F</td>
-<td class="org-left">Desplaza el cursor una palabra hacia la derecha.</td>
-</tr>
-
-<tr>
-<td class="org-left">Flecha derecha o Ctrl-F</td>
-<td class="org-left">Desplaza el cursor un carácter hacia la derecha.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-E</td>
-<td class="org-left">Desplaza el cursor hasta el final de la línea de comandos.</td>
-</tr>
-
-<tr>
-<td class="org-left">Flecha arriba o Ctrl-P</td>
-<td class="org-left">Vuelve a introducir el comando que se encuentra en el búfer del historial, a partir de los comandos más recientes.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-R, Ctrl-I o Ctrl-L</td>
-<td class="org-left">Vuelve a mostrar la petición de entrada del sistema y la línea de comando después de que se recibe un mensaje de la consola.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000003" class="outline-3">
-<h3 id="org0000003"><span class="section-number-3">1.2.</span> Listados largos (<code>--more--</code>)</h3>
-<div class="outline-text-3" id="text-1-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Tecla Entrar</td>
-<td class="org-left">Muestra la siguiente línea.</td>
-</tr>
-
-<tr>
-<td class="org-left">Barra espaciadora</td>
-<td class="org-left">Muestra la siguiente pantalla.</td>
-</tr>
-
-<tr>
-<td class="org-left">Cualquier tecla</td>
-<td class="org-left">Termina la cadena que se muestra y vuelve al modo EXEC con privilegios.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000006" class="outline-3">
-<h3 id="org0000006"><span class="section-number-3">1.3.</span> Interrupción de comandos</h3>
-<div class="outline-text-3" id="text-1-3">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Ctrl-C</td>
-<td class="org-left">Cuando está en cualquier modo de configuración, termina el modo de configuración y regresa al modo EXEC con privilegios. Cuando está en modo de configuración, interrumpe y regresa al símbolo del sistema.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-Z</td>
-<td class="org-left">Cuando está en cualquier modo de configuración, termina el modo de configuración y regresa al modo EXEC con privilegios.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-Shift-6</td>
-<td class="org-left">Secuencia de pausa multiuso. Se la utiliza para interrumpir búsquedas DNS, traceroutes, pings.</td>
-</tr>
-
-<tr>
-<td class="org-left">Ctrl-6</td>
-<td class="org-left">Secuencia de pausa multiuso. Se la utiliza para interrumpir búsquedas DNS, traceroutes, pings.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000009" class="outline-3">
-<h3 id="org0000009"><span class="section-number-3">1.4.</span> Modos</h3>
-<div class="outline-text-3" id="text-1-4">
+<li>Problemas típicos en el desarrollo de aplicaciones
 <ul class="org-ul">
-<li><code>Press RETURN to get started.</code>
-<ul class="org-ul">
-<li>Desactivado</li>
-</ul></li>
-<li><code>Router&gt;</code>
-<ul class="org-ul">
-<li><code>show</code> para mostrar información</li>
-<li><code>enable</code> para configurar (privileged commands)</li>
-</ul></li>
-<li><code>Router#</code>
-<ul class="org-ul">
-<li>Resto de comandos</li>
-<li><code>configure terminal</code> para cambiar la configuración</li>
-</ul></li>
-<li><code>Router(config)#</code>
-<ul class="org-ul">
-<li>Raíz de la configuración</li>
+<li>¿Cómo trabajan varios desarrolladores sobre el mismo código?</li>
+<li>¿Qué cambios se han realizado?</li>
+<li>¿Quién ha realizado los cambios?</li>
 </ul></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org0000005" class="outline-2">
+<h2 id="org0000005"><span class="section-number-2">2.</span> Trabajo en solitario</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Los IDE suelen tener <i>historia local</i></li>
+<li>Indica los cambios que ha tenido el código en la máquina local</li>
+</ul>
 
-<p>
-Nota: Se puede usar <code>do</code> para ejecutar un comando de <i>enabled</i> en el modo de configuración.    
+<div id="org0000003" class="figure">
+<p><img src="media/local-history-en-intellij.png" alt="local-history-en-intellij.png" />    
+</p>
+</div>
+
+
+<div id="org0000004" class="figure">
+<p><img src="media/meme-control-versiones.png" alt="meme-control-versiones.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org000000c" class="outline-3">
-<h3 id="org000000c"><span class="section-number-3">1.5.</span> Para activar la configuración</h3>
-<div class="outline-text-3" id="text-1-5">
-<div class="org-src-container">
-<pre class="src src-java">Router&gt; enable
-Router# configure terminal
-Router(config)#
-</pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org000000f" class="outline-3">
-<h3 id="org000000f"><span class="section-number-3">1.6.</span> Salvar la configuración</h3>
-<div class="outline-text-3" id="text-1-6">
-<div class="org-src-container">
-<pre class="src src-lisp">Router# write memory
-Router# copy running-config startup-config
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org000001b" class="outline-2">
-<h2 id="org000001b"><span class="section-number-2">2.</span> Direcciones IP</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org0000015" class="outline-3">
-<h3 id="org0000015"><span class="section-number-3">2.1.</span> Asignar IP</h3>
-<div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# interface fa0/0
-Router(config-if)# ip address 192.168.6.1 255.255.255.0
-Router(config-if)# no shutdown
-Router(config-if)# exit
-Router(config)#
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000018" class="outline-3">
-<h3 id="org0000018"><span class="section-number-3">2.2.</span> Consultar IP</h3>
-<div class="outline-text-3" id="text-2-2">
-<div class="org-src-container">
-<pre class="src src-lisp">Router&gt; show ip interface
-Router&gt; show ip interface brief
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org000002b" class="outline-2">
-<h2 id="org000002b"><span class="section-number-2">3.</span> Enrutamiento</h2>
+<div id="outline-container-org0000014" class="outline-2">
+<h2 id="org0000014"><span class="section-number-2">3.</span> Trabajo colaborativo</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org000001e" class="outline-3">
-<h3 id="org000001e"><span class="section-number-3">3.1.</span> Añadir ruta</h3>
+<div id="outline-container-org0000008" class="outline-3">
+<h3 id="org0000008"><span class="section-number-3">3.1.</span> Integración de código</h3>
 <div class="outline-text-3" id="text-3-1">
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# ip route 172.16.0.0 255.255.255.0 192.168.6.254
-</pre>
+<ul class="org-ul">
+<li>Cada miembro del equipo realiza su parte del trabajo</li>
+<li>Si hay errores
+<ul class="org-ul">
+<li>¿Cómo se aislan los cambios que dieron lugar a un <i>bug</i>?</li>
+</ul></li>
+<li>Si hay más de una versión
+<ul class="org-ul">
+<li>¿Cómo se recupera una versión antigua?</li>
+<li>¿Cómo se fusionan dos versiones?</li>
+</ul></li>
+</ul>
 </div>
-
-<p>
-También se puede usar una interfaz de red en vez de un gateway. Esto es útil en interfaces serie (donde solo hay un destino posible)
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# ip route 172.16.0.0 255.255.255.0 s0/0/1
-</pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org0000021" class="outline-3">
-<h3 id="org0000021"><span class="section-number-3">3.2.</span> Borrar ruta</h3>
+<div id="outline-container-org000000b" class="outline-3">
+<h3 id="org000000b"><span class="section-number-3">3.2.</span> Control de versiones</h3>
 <div class="outline-text-3" id="text-3-2">
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# no ip route 172.16.0.0 255.255.255.0 192.168.6.254
-</pre>
+<ul class="org-ul">
+<li>Un control de versiones (de código) mantiene una base de datos con todos los cambios producidos sobre el código fuente y otros ficheros necesarios para generar una aplicación</li>
+<li>Pueden ser
+<ul class="org-ul">
+<li>Centralizados/distribuidos</li>
+<li>Basados en ficheros/Basados en <i>changesets</i></li>
+<li>Bloqueantes/No bloqueantes</li>
+</ul></li>
+<li><p>
+Ejemplos
+</p>
+<ul class="org-ul">
+<li>GIT</li>
+<li>Subversion</li>
+<li>Mercurial</li>
+</ul>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Version%5C_control">Control de versiones en Wikipedia</a>
+</p></li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000024" class="outline-3">
-<h3 id="org0000024"><span class="section-number-3">3.3.</span> Consultar rutas</h3>
+<div id="outline-container-org000000e" class="outline-3">
+<h3 id="org000000e"><span class="section-number-3">3.3.</span> Conceptos de control de versiones (I)</h3>
 <div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<pre class="src src-lisp">Router&gt; show ip route
-</pre>
+<ul class="org-ul">
+<li><b>Repositorio</b>: Base de datos con las sucesivas versiones</li>
+<li><b>Copia de trabajo</b>: Ficheros sobre los que trabaja el programador</li>
+<li><b><i>Commit</i></b>: Confirmación de una nueva versión (de la copia de trabajo al repositorio)</li>
+<li><b><i>Checkout</i></b>: (Re)generación de la copia de trabajo a partir de la información del repositorio</li>
+<li><b><i>Changeset</i></b>: Conjunto de cambios en el repositorio, considerado atómico</li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">3.4.</span> Desactivar <i>ARP proxy</i></h3>
+<div id="outline-container-org0000011" class="outline-3">
+<h3 id="org0000011"><span class="section-number-3">3.4.</span> Conceptos de control de versiones (II)</h3>
 <div class="outline-text-3" id="text-3-4">
-<pre class="example" id="org0000027">
-Router(config)#interface FastEthernet0/1
-Router(config-if)#no ip proxy-arp
-</pre>
+<ul class="org-ul">
+<li><b>Rama (<i>Branch</i>)</b>: Versión paralela (ni anterior, ni posterior)</li>
+<li><b>Rama <code>master</code> o <code>main</code></b>: Rama principal del desarrollo</li>
+<li><b>Fusión (<i>Merge</i>)</b>: Acumular cambios en una misma versión
+<ul class="org-ul">
+<li>Tras un <i>checkout</i>, mezclando la copia de trabajo con la versión del repositorio</li>
+<li>Entre diferentes <i>branchs</i> del repositorio</li>
+</ul></li>
+
+<li><b>Comentario</b>: Cada <i>commit</i> debería documentar sus efectos y motivaciones.</li>
+</ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000040" class="outline-2">
-<h2 id="org0000040"><span class="section-number-2">4.</span> VLAN</h2>
+<div id="outline-container-org0000026" class="outline-2">
+<h2 id="org0000026"><span class="section-number-2">4.</span> GIT</h2>
 <div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Gratis, de código abierto</li>
+<li>Muy popular, en múltiples plataformas</li>
+<li>Distribuido</li>
+<li>Basado en <i>changesets</i></li>
+<li>No bloqueante</li>
+</ul>
 </div>
-<div id="outline-container-org000002e" class="outline-3">
-<h3 id="org000002e"><span class="section-number-3">4.1.</span> Consultar VLANs</h3>
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">4.1.</span> GIT como cliente-servidor</h3>
 <div class="outline-text-3" id="text-4-1">
-<div class="org-src-container">
-<pre class="src src-lisp">Switch&gt; show vlan brief
-Switch&gt; show interfaces trunk
-Switch&gt; show interfaces f0/1 switchport
-</pre>
+<ul class="org-ul">
+<li>Git tiene una arquitectura <a href="https://en.wikipedia.org/wiki/Peer-to-peer">peer-to-peer</a>
+<ul class="org-ul">
+<li>Todos los repositorios son igual de "<i>importantes</i>"</li>
+</ul></li>
+<li>Por convenio, suele haber un repositorio "<i>central</i>"
+<ul class="org-ul">
+<li>Como servicio: <a href="https://github.com/">github</a>, <a href="https://gitlab.com/users/sign_in">gitlab</a>, <a href="https://codeberg.org/">codeberg</a>&#x2026;</li>
+<li>Autoalojado: <a href="https://about.gitea.com/products/gitea/">gitea</a>, <a href="https://forgejo.org/">forjego</a></li>
+<li><a href="https://www.systutorials.com/set-up-git-server-through-ssh-connection/">O solo con Git y linux</a></li>
+</ul></li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000031" class="outline-3">
-<h3 id="org0000031"><span class="section-number-3">4.2.</span> Crear una VLAN</h3>
+<div id="outline-container-org000001c" class="outline-3">
+<h3 id="org000001c"><span class="section-number-3">4.2.</span> Flujo de trabajo básico</h3>
 <div class="outline-text-3" id="text-4-2">
-<div class="org-src-container">
-<pre class="src src-lisp">Switch(config)#vlan 2
-Switch(config-vlan)#name nombredevlan
-Switch(config-vlan)#exit
-</pre>
+
+<div id="org000001a" class="figure">
+<p><img src="./media/trabajo-normal-git.svg" alt="trabajo-normal-git.svg" class="org-svg" width="100%" />
+</p>
+</div>
+
+
+<div id="org000001b" class="figure">
+<p><img src="./media/resumen-git.svg" alt="resumen-git.svg" class="org-svg" width="100%" />
+</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000034" class="outline-3">
-<h3 id="org0000034"><span class="section-number-3">4.3.</span> Asignar un puerto a una VLAN (access)</h3>
+<div id="outline-container-org0000023" class="outline-3">
+<h3 id="org0000023"><span class="section-number-3">4.3.</span> Ramas</h3>
 <div class="outline-text-3" id="text-4-3">
-<div class="org-src-container">
-<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
-Switch(config-if)#switchport access vlan 2
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000037" class="outline-3">
-<h3 id="org0000037"><span class="section-number-3">4.4.</span> Asignar un puerto como trunk</h3>
-<div class="outline-text-3" id="text-4-4">
-<div class="org-src-container">
-<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
-Switch(config-if)#switchport mode trunk
-Switch(config-if)#switchport trunk native vlan 99
-Switch(config-if)#switchport trunk allowed vlan 1,2,5
-</pre>
-</div>
-
-<p>
-El puerto del otro switch cambiará automáticamente, a no ser que esté configurado como <code>switchport nonegotiate</code>
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">%SPANTREE-2-RECV_PVID_ERR: Received 802.1Q BPDU on non trunk FastEthernet0/1 VLAN1.
-
-%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking FastEthernet0/1 on VLAN0001. Inconsistent port type
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">4.5.</span> Permitir/denegar una VLAN en un puerto trunk</h3>
-<div class="outline-text-3" id="text-4-5">
-<div class="org-src-container">
-<pre class="src src-lisp">Switch(config)#interface FastEthernet0/1
-Switch(config-if)#switchport trunk allowed vlan remove 2
-Switch(config-if)#switchport trunk allowed vlan add 2
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org000003d" class="outline-3">
-<h3 id="org000003d"><span class="section-number-3">4.6.</span> Routers</h3>
-<div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
-<li>Los routers pueden tener interfaces virtuales, a las que llegan las tramas 802.1q de cierta VLAN.</li>
-<li>Estas interfaces se configuran como las demás, y se añaden a la tabla de rutas de la misma forma</li>
+<li>Cada <i>commit</i> genera una nueva versión del código</li>
+<li>Generalmente, una versión "<i>desciende</i>" de otra versión  
+<ul class="org-ul">
+<li>En un <i>merge</i>, se puede "<i>descender</i>" de más de una versión</li>
+</ul></li>
+<li>Las versiones se identifican por un <i>hash</i></li>
+<li>Una <b>rama</b> (<code>branch</code>) es un nombre que se da a un <i>hash</i>, y que va avanzando al hacer nuevas versiones</li>
+<li>Un <code>tag</code> es como un <code>branch</code>, pero no avanza al hacer nuevas versiones</li>
+</ul>
+</div>
+<div id="outline-container-org0000020" class="outline-4">
+<h4 id="org0000020"><span class="section-number-4">4.3.1.</span> Ramas típicas</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li><code>master</code> o <code>main</code>: Versiones oficiales del código
+<ul class="org-ul">
+<li>Se garantiza que funcionan</li>
+<li>Se entregan al usuario final</li>
+</ul></li>
+<li><code>develop</code>: Trabajo para las siguientes versiones oficiales
+<ul class="org-ul">
+<li>Se acaban fusionando (<i>merge</i>) en <code>master</code></li>
+</ul></li>
+<li><code>feature</code>: Trabajo para una sola funcionalidad
+<ul class="org-ul">
+<li>Se acaban fusionando en <code>develop</code></li>
+<li>Pueden ser personales: solo las utiliza un desarrollador</li>
+</ul></li>
+<li><code>hotfix</code>: Un arreglo urgente en <code>master</code></li>
 </ul>
 
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Crea la interfaz virtual <code>fa0/0.1</code> sobre la interfaz real <code>fa0/0</code>, que recibirá las tramas 802.1q de la VLAN 2.</label><pre class="src src-lisp">Router(config)# interface fa0/0.1
-Router(config-subif)# encap dot1q 2
-Router(config-subif)# ip address 192.168.6.1 255.255.255.0
-Router(config-subif)# exit
-Router(config)# interface fa0/0
-Router(config-if)# no shutdown
-Router(config-if)# exit
-</pre>
-</div>
 
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span>Mostrar información de las interfaces (incluido VLAN) en un router</label><pre class="src src-lisp">Router# show interfaces
-</pre>
+<div id="org000001f" class="figure">
+<p><img src="media/git-branches-2.png" alt="git-branches-2.png" />
+</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000043" class="outline-2">
-<h2 id="org0000043"><span class="section-number-2">5.</span> STP</h2>
+</div>
+<div id="outline-container-org000004c" class="outline-2">
+<h2 id="org000004c"><span class="section-number-2">5.</span> Comandos de Git</h2>
 <div class="outline-text-2" id="text-5">
-<p>
-Consultar y poner la prioridad de un switch
-</p>
+</div>
+<div id="outline-container-org000002b" class="outline-3">
+<h3 id="org000002b"><span class="section-number-3">5.1.</span> <code>init</code></h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Crea un nuevo repositorio en el directorio</li>
+<li>Inicialmente vacío</li>
+<li>Se almacena en el directorio oculto <code>.git</code></li>
+</ul>
+
 <div class="org-src-container">
-<pre class="src src-lisp">Switch# show spanning-tree 
+<pre class="src src-bash" id="org0000029">alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git init
+Initialized emp
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-clone" class="outline-3">
+<h3 id="clone"><span class="section-number-3">5.2.</span> <code>clone</code> <a id="org0000030"></a></h3>
+<div class="outline-text-3" id="text-clone">
+<ul class="org-ul">
+<li>Crea un nuevo repositorio, copia de uno ya existente</li>
+<li>El repositorio puede ser local o remoto, dependiendo de la <a href="https://git-scm.com/docs/git-clone#_git_urls">URL</a></li>
+<li>La copia de trabajo será la de la rama <code>master</code></li>
+</ul>
+
+
+
+<div class="org-src-container">
+<pre class="src src-bash" id="org000002e">  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone https://github.com/alvarogonzalezsotillo/aplicacion-php.git
+  Cloning into <span style="color: #ad7fa8; font-style: italic;">'aplicacion-php'</span>...
+  remote: Counting objects: 50, done.
+  remote: Compressing objects: 100%
+  ....
 </pre>
 </div>
 
+<p>
+<a href="https://git-scm.com/docs/git-clone">Comando <i>git clone</i></a>
+</p>
+</div>
+</div>
+<div id="outline-container-add" class="outline-3">
+<h3 id="add"><span class="section-number-3">5.3.</span> <code>add</code> <a id="org0000032"></a></h3>
+<div class="outline-text-3" id="text-add">
+<ul class="org-ul">
+<li>Git no incluye todos los ficheros de la copia de trabajo en el repositorio</li>
+<li>Si se desea un fichero en el repositorio, se debe incluir con <code>add</code></li>
+<li>Cada cambio posterior debe indicarse también con <code>add</code></li>
+<li>Se puede quitar con <code>rm</code> (las versiones antiguas siguen en el repositorio)</li>
+</ul>
+
+
+
+<p>
+<a href="https://git-scm.com/docs/git-add">Comando <i>git add</i></a>
+</p>
+</div>
+</div>
+<div id="outline-container-org0000035" class="outline-3">
+<h3 id="org0000035"><span class="section-number-3">5.4.</span> <code>status</code></h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>Imprime un resumen del estado de los ficheros de la copia de trabajo
+
+<ul class="org-ul">
+<li><b>Untracked</b>: No guardados en el repositorio. Git ignora el fichero</li>
+<li><b>Unmodified</b>: Igual que en la rama activa del repositorio</li>
+<li><b>Modified</b>: Con cambios respecto al repositorio, pero que no está previsto guardar</li>
+</ul></li>
+</ul>
+
+<p>
+<a href="https://git-scm.com/docs/git-status">Comando <i>git status</i></a>
+</p>
+
+
+<div id="org0000034" class="figure">
+<p><img src="./media/estados-fichero-git.svg" alt="estados-fichero-git.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000038" class="outline-3">
+<h3 id="org0000038"><span class="section-number-3">5.5.</span> <code>diff</code></h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Muestra los cambios de los ficheros en estado <b>modified</b>
+</p>
+
+<ul class="org-ul">
+<li><code>@@ -lineO,nlinesO +lineD,nlinesD @@</code>    
+<ul class="org-ul">
+<li>Se muestra a partir de <code>lineO</code> del fichero antiguo y <code>lineD</code> del fichero actual</li>
+<li>Se muestran <code>nlinesO</code> líneas del fichero antiguo y <code>nlinesD</code> líneas del fichero actual</li>
+</ul></li>
+
+<li><code>-</code> Línea borrada</li>
+<li><code>+</code> Línea añadida</li>
+</ul>
+
+
+
+<p>
+<a href="https://git-scm.com/docs/git-diff">Comando <i>git diff</i></a>
+</p>
+</div>
+</div>
+<div id="outline-container-commit" class="outline-3">
+<h3 id="commit"><span class="section-number-3">5.6.</span> <code>commit</code> <a id="org000003d"></a></h3>
+<div class="outline-text-3" id="text-commit">
 <div class="org-src-container">
-<pre class="src src-lisp">Switch(config)# spanning-tree vlan 1 priority 1
+<pre class="src src-bash" id="org000003b">[master 906fa20] Cambiados varios permisos de ejecuci&#243;n
+ 5 files changed, 411 insertions(+), 2 deletions(-)
+ create mode 100644 09/estados-fichero-git.svg
+ mode change <span style="color: #ff6347;">100755</span> =&gt; 100644 borrar-temporales-latex.sh
+ mode change <span style="color: #ff6347;">100755</span> =&gt; 100644 generar-pdf.sh
+ mode change <span style="color: #ff6347;">100755</span> =&gt; 100644 generar-pdfs.sh
+ mode change <span style="color: #ff6347;">100755</span> =&gt; 100644 publicar-pdfs.sh
+</pre>
+</div>
+
+
+
+
+<p>
+<a href="https://git-scm.com/docs/git-commit">Comando <i>git commit</i></a>
+</p>
+</div>
+</div>
+<div id="outline-container-push" class="outline-3">
+<h3 id="push"><span class="section-number-3">5.7.</span> <code>push</code> <a id="org0000041"></a></h3>
+<div class="outline-text-3" id="text-push">
+<ul class="org-ul">
+<li>Sube las versiones del repositorio local a un repositorio remoto</li>
+<li>El repositorio remoto puede establecerse:
+<ul class="org-ul">
+<li>con <code>git clone</code> (en este caso se denomina <b>origin</b>)</li>
+<li>con <code>git remote add</code></li>
+</ul></li>
+<li>El repositorio debe tener todas las versiones del repositorio remoto
+<ul class="org-ul">
+<li>En otro caso, deberá realizarse un <code>git pull</code> previo</li>
+</ul></li>
+</ul>
+
+<p>
+<a href="https://git-scm.com/docs/git-push">Comando <i>git push</i></a>
+<a href="https://git-scm.com/docs/git-remote">Comando <i>git remote</i></a>
+</p>
+
+
+
+
+<div class="org-src-container">
+<pre class="src src-bash" id="org000003f">alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git push
+Password for <span style="color: #ad7fa8; font-style: italic;">'https://alvarogonzalezsotillo@bitbucket.org'</span>: 
+To https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git
+<span style="color: #6ac214;">!</span> [rejected]        master -&gt; master (fetch first)
+error: failed to push some refs to 
+<span style="color: #ad7fa8; font-style: italic;">'https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git'</span>
+hint: Updates were rejected because the remote contains work that you<span style="color: #729fcf; font-weight: bold;"> do</span>
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., <span style="color: #ad7fa8; font-style: italic;">'git pull ...'</span>) before pushing again.
+hint: See the <span style="color: #ad7fa8; font-style: italic;">'Note about fast-forwards'</span><span style="color: #729fcf; font-weight: bold;"> in</span> <span style="color: #ad7fa8; font-style: italic;">'git push --help'</span> for details.
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000046" class="outline-2">
-<h2 id="org0000046"><span class="section-number-2">6.</span> Link agregation</h2>
+<div id="outline-container-pull" class="outline-3">
+<h3 id="pull"><span class="section-number-3">5.8.</span> <code>pull</code> <a id="org0000043"></a></h3>
+<div class="outline-text-3" id="text-pull">
+<ul class="org-ul">
+<li>Consigue la última versión de la rama actual</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-checkout" class="outline-3">
+<h3 id="checkout"><span class="section-number-3">5.9.</span> <code>checkout</code> <a id="org0000045"></a></h3>
+<div class="outline-text-3" id="text-checkout">
+<ul class="org-ul">
+<li>Extrae versiones del repositorio a la copia de trabajo
+
+<ul class="org-ul">
+<li><b>Un fichero</b>: <code>git checkout &lt;fichero&gt;</code></li>
+<li><b>Una versión</b>: <code>git checkout &lt;hashdeversión&gt;</code></li>
+<li><b>Un branch</b>: <code>git checkout &lt;branch&gt;</code></li>
+</ul></li>
+<li>También crea nuevas ramas, con <code>git checkout -b &lt;nombrerama&gt;</code></li>
+<li>Si coinciden una versión/nombre de fichero
+<ul class="org-ul">
+<li>Utilizar <a href="https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html#_specifying_revisions">Referencias a objetos en Git</a></li>
+<li>Es <b>mejor</b> evitar que coincidan</li>
+</ul></li>
+</ul>
+
+
+
+
+
+<p>
+<a href="https://git-scm.com/docs/git-checkout">Comando <i>git checkout</i></a>
+<a href="https://git-scm.com/docs/git-branch">Comando <i>git branch</i></a>
+</p>
+</div>
+</div>
+<div id="outline-container-merge" class="outline-3">
+<h3 id="merge"><span class="section-number-3">5.10.</span> <code>merge</code> <a id="org0000047"></a></h3>
+<div class="outline-text-3" id="text-merge">
+<ul class="org-ul">
+<li>Fusiona la rama actual con otra rama</li>
+<li>En el caso de que haya conflictos:
+<ul class="org-ul">
+<li>Los ficheros se quedan con <a href="https://www.kernel.org/pub/software/scm/git/docs/git-merge.html#_how_conflicts_are_presented">marcas de conflictos</a></li>
+<li>Para aceptar el fichero completo de la otra rama: <code>git checkout --theirs path/file</code></li>
+<li>Para aceptar el fichero completo de la rama actual: <code>git checkout --ours path/file</code></li>
+<li>Para casos más complicados, editar los ficheros y confirmarlos con <code>git add</code></li>
+</ul></li>
+<li>Recomendación: <code>git mergetool</code>, o usar el IDE</li>
+</ul>
+
+<p>
+<a href="https://git-scm.com/docs/git-merge">Comando <i>git merge</i></a>: Fusión de dos ramas
+</p>
+</div>
+</div>
+<div id="outline-container-org0000049" class="outline-3">
+<h3 id="org0000049"><span class="section-number-3">5.11.</span> Otros comandos</h3>
+<div class="outline-text-3" id="text-5-11">
+<ul class="org-ul">
+<li><a href="https://git-scm.com/docs/git-blame">Comando <i>git blame</i></a>: Lista un fichero con el autor de cada línea</li>
+<li><a href="https://git-scm.com/docs/git-log">Comando <i>git log</i></a>: Historia de cambios de un repositorio</li>
+<li><a href="https://git-scm.com/docs/git-gui">Comando <i>git gui</i></a>: Interfaz gráfica básica para utilizar git</li>
+<li><a href="https://git-scm.com/docs/git-switch">Comando <i>git switch</i></a>: Cambia rápidamente entre ramas</li>
+<li><a href="https://git-scm.com/docs/git-reset">Comando <i>git reset</i></a>: Deshace cambios (con precaución)</li>
+<li><a href="https://git-scm.com/docs/git-tag">Comando <i>git tag</i></a>: Da un nombre legible (no un <i>hash</i>) a una versión</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">6.</span> Ejercicio GIT</h2>
 <div class="outline-text-2" id="text-6">
-<p>
-Se añaden a un mismo <code>channel-group</code> todos los enlaces conectados al mismo switch.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-lisp">Switch(config)# interface fa0/1
-Switch(config-if)# channel-group 1 mode active
-
-Switch# show etherchannel summary
-</pre>
+<ul class="org-ul">
+<li>Clona el repositorio <a href="https://codeberg.org/alvarogonzalezsotillo/Java-Games.git">https://codeberg.org/alvarogonzalezsotillo/Java-Games.git</a></li>
+<li>Crea la rama <code>translate</code> a partir de <code>master</code> (comando <code>checkout</code> o <code>branch</code>)</li>
+<li>Traduce a otro idioma las interfaces de los juegos:
+<ul class="org-ul">
+<li>Tetris</li>
+<li>MathHero</li>
+<li>FallDown</li>
+</ul></li>
+<li>Incorpora los cambios a la rama <code>translate</code> (comando <code>add</code> y <code>commit</code>)</li>
+<li>Fusiona los cambios con la rama <code>master</code>
+<ul class="org-ul">
+<li><code>git checkout master</code></li>
+<li><code>git merge --no-ff translate</code></li>
+</ul></li>
+<li>Enseña los resultados al profesor
+<ul class="org-ul">
+<li><code>git log --graph --oneline</code></li>
+</ul></li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">7.</span> RIP</h2>
+<div id="outline-container-org0000053" class="outline-2">
+<h2 id="org0000053"><span class="section-number-2">7.</span> Git desde Intellij</h2>
 <div class="outline-text-2" id="text-7">
-<p>
-Habilitar RIP para dos redes conectadas directamente
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)#router rip
-Router(config-router)#network 192.168.1.0 
-Router(config-router)#network 200.200.1.0
-</pre>
-</div>
 
-<p>
-Comprobar la configuración RIP
+<div id="org0000052" class="figure">
+<p><img src="media/git-en-intellij.png" alt="git-en-intellij.png" />
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router# show ip protocols
-Router# show ip rip database
-</pre>
-</div>
-
-
-<p>
-Habilitar versión 2
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)#router rip
-Router(config-router)# version 2
-</pre>
-</div>
-
-<p>
-Interfaz pasiva, en la que no hay otros routers y por tanto no se envia información de routing
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)#router rip
-Router(config-router)# passive-interface g0/0
-</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-2">
-<h2 id="org0000058"><span class="section-number-2">8.</span> ACL</h2>
+<div id="outline-container-org0000056" class="outline-2">
+<h2 id="org0000056"><span class="section-number-2">8.</span> Ejercicio GIT (II)</h2>
 <div class="outline-text-2" id="text-8">
-<p>
-Consultar ACLs definidas
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router# show ip access-list
-</pre>
-</div>
-
-<p>
-Asociar una ACL a una interfaz
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# interface fa0/1
-Router(config-if)# ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
-</pre>
-</div>
-
-<p>
-Desasociar una ACL de una interfaz
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# interface fa0/1
-Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
-</pre>
+<ul class="org-ul">
+<li>Crea una cuenta en <a href="https://codeberg.org">Codeberg</a>
+<ul class="org-ul">
+<li>Usa tu cuenta de correo de educamadrid</li>
+</ul></li>
+<li>Clona el repositorio <a href="https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git">https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git</a>
+<ul class="org-ul">
+<li>Comando <a href="#clone"><code>clone</code></a></li>
+</ul></li>
+<li>Extrae la rama <code>curso-2025-2026</code>
+<ul class="org-ul">
+<li>Comando <a href="#checkout"><code>checkout</code></a></li>
+</ul></li>
+<li>Modifica el fichero <code>listado-alumnos.md</code> y añade tu nombre y apellidos en el orden correcto</li>
+<li>Confirma tus cambios en local (<a href="#add"><code>add</code></a>,<a href="#commit"><code>commit</code></a>)</li>
+<li>Sube tus cambios con <a href="#push"><code>push</code></a>
+<ul class="org-ul">
+<li>Si algún compañero ha cambiado el fichero antes que tú, consigue sus cambios con <a href="#pull"><code>pull</code></a>, y vuelve a intentar subir tus cambios</li>
+</ul></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org000004c" class="outline-3">
-<h3 id="org000004c"><span class="section-number-3">8.1.</span> ACL estándar</h3>
-<div class="outline-text-3" id="text-8-1">
-<p>
-Crear una ACL o añadir una regla
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
-</pre>
-</div>
-
-<p>
-Borrar una ACLs
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# no access-list &lt;numero&gt; 
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org000004f" class="outline-3">
-<h3 id="org000004f"><span class="section-number-3">8.2.</span> ACL extendidas</h3>
-<div class="outline-text-3" id="text-8-2">
-<p>
-Protocolo IP (hay más opciones, no explicadas aquí)
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt;
-</pre>
-</div>
-
-<p>
-Protocolo ICMP
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt;
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">8.3.</span> ACL extendidas TCP y UDP</h3>
-<div class="outline-text-3" id="text-8-3">
-<p>
-Protocolo TCP
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>[established]
-</pre>
-</div>
-
-<p>
-Protocolo UDP
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
-</pre>
-</div>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Operador de puerto</th>
-<th scope="col" class="org-left">Significa</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">eq</td>
-<td class="org-left"><code>=</code> igual</td>
-</tr>
-
-<tr>
-<td class="org-left">lt</td>
-<td class="org-left"><code>&lt;</code> Menor</td>
-</tr>
-
-<tr>
-<td class="org-left">ne</td>
-<td class="org-left"><code>≠</code> No igual</td>
-</tr>
-
-<tr>
-<td class="org-left">gt</td>
-<td class="org-left"><code>&gt;</code> Mayor</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000055" class="outline-3">
-<h3 id="org0000055"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
-<div class="outline-text-3" id="text-8-4">
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# ip access-list standard NOMBRE
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000067" class="outline-2">
-<h2 id="org0000067"><span class="section-number-2">9.</span> NAT</h2>
+<div id="outline-container-org0000059" class="outline-2">
+<h2 id="org0000059"><span class="section-number-2">9.</span> ¿Qué es un <i>pull request</i> y un <i>fork</i>?</h2>
 <div class="outline-text-2" id="text-9">
-<p>
-Información del estado de NAT
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router# show running-config
-Router# show ip nat translations
-Router# show ip nat statistics 
-</pre>
-</div>
-
-<p>
-Borrar todas las entradas de NAT dinámico
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">no ip nat source static
-</pre>
-</div>
-
-<p>
-Borrar todas las entradas de NAT estático
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">no ip nat source static
-</pre>
-</div>
-</div>
-<div id="outline-container-org000005b" class="outline-3">
-<h3 id="org000005b"><span class="section-number-3">9.1.</span> PAT</h3>
-<div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
-<li>Defina el grupo de direcciones globales que se debe usar para la traducción de sobrecarga.
+<li>Un PR es un concepto ajeno a Git
 <ul class="org-ul">
-<li><code>ip nat pool &lt;name&gt; &lt;start-ip&gt; &lt;end-ip&gt; {netmask &lt;netmask&gt; | prefix-length &lt;prefix-length&gt;}</code></li>
+<li>El equivalente de Git a un PR es un <i>push</i></li>
 </ul></li>
-<li>Defina una lista de acceso estándar que permita las direcciones que se deben traducir. 
+<li>En servicios de Git (como GitHub)
 <ul class="org-ul">
-<li><code>access-list &lt;access-list-number&gt; permit &lt;source&gt; [source-wildcard]</code></li>
+<li>A veces se quieren hacer cambios en un repositorio donde no tenemos permisos de escritura</li>
+<li>Se hace un <i>fork</i> (copia) de ese repositorio</li>
+<li>Se realizan los cambios que se considere en esa copia</li>
+<li>Finalmente, se pide que el dueño del repositorio original haga un <i>pull</i></li>
 </ul></li>
-<li>Especifique la lista de acceso y el grupo que se definieron en los pasos anteriores para establecer la traducción de sobrecarga. 
-<ul class="org-ul">
-<li><code>ip nat inside source list &lt;access-list-number&gt; pool &lt;name&gt; overload</code></li>
-</ul></li>
-<li>Identificar la interfaz interna. 
-<ul class="org-ul">
-<li><code>interface &lt;tipo-número&gt;</code></li>
-<li><code>ip nat inside</code></li>
-</ul></li>
-<li>Identificar la interfaz externa.
-<ul class="org-ul">
-<li><code>interface &lt;tipo-número&gt;</code></li>
-<li><code>ip nat outside</code></li>
-</ul></li>
+<li><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world?source=post_page-----62dea67aa2eb--------------------------------">Guía de Github</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000005e" class="outline-3">
-<h3 id="org000005e"><span class="section-number-3">9.2.</span> NAT dinámica</h3>
-<div class="outline-text-3" id="text-9-2">
-<ul class="org-ul">
-<li>Defina el conjunto de direcciones globales que se debe usar para la traducción.
-<ul class="org-ul">
-<li><code>ip nat pool &lt;name&gt; &lt;start-ip&gt; &lt;end-ip&gt; {netmask  &lt;netmask&gt; | prefix-length  &lt;prefix-length&gt;}</code></li>
-</ul></li>
-<li>Configure una lista de acceso estándar que permita las direcciones que se deben traducir.
-<ul class="org-ul">
-<li><code>access-list &lt;access-list-number&gt; permit &lt;source&gt; [source-wildcard]</code></li>
-</ul></li>
-<li>Especifique la lista de acceso y el grupo que se definieron en los pasos anteriores para establecer la traducción dinámica de origen.
-<ul class="org-ul">
-<li><code>ip nat inside source list &lt;access-list-number&gt; pool &lt;name&gt;</code></li>
-</ul></li>
-<li>Identifique la interfaz interna.
-<ul class="org-ul">
-<li><code>interface &lt;type-number&gt;</code></li>
-<li><code>ip nat inside</code></li>
-</ul></li>
-<li>Identifique la interfaz externa.
-<ul class="org-ul">
-<li><code>interface &lt;type-number&gt;</code></li>
-<li><code>ip nat outside</code></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">9.3.</span> NAT estática</h3>
-<div class="outline-text-3" id="text-9-3">
-<ul class="org-ul">
-<li>Se establece la traducción estática entre una dirección local interna y una dirección global interna.
-<ul class="org-ul">
-<li><code>Router(config)# ip nat inside source static &lt;local-ip&gt; &lt;global-ip&gt;</code></li>
-<li>Introduzca el comando <code>no ip nat inside source static</code> del modo de configuración global para eliminar la traducción dinámica de origen.</li>
-</ul></li>
-<li>Especificar la interfaz interna. 
-<ul class="org-ul">
-<li><code>Router(config)# interface &lt;type-number&gt;</code></li>
-</ul></li>
-<li>Marque la interfaz como conectada al interior. 
-<ul class="org-ul">
-<li><code>Router(config-if)# ip nat inside</code></li>
-</ul></li>
-<li>Salga del modo de configuración de interfaz. 
-<ul class="org-ul">
-<li><code>Router(config-if)# exit</code></li>
-</ul></li>
-<li>Especificar la interfaz externa. 
-<ul class="org-ul">
-<li><code>Router(config)# interface &lt;type-number&gt;</code></li>
-</ul></li>
-<li>Marque la interfaz como conectada al exterior.
-<ul class="org-ul">
-<li><code>Router(config-if)# ip nat outside</code></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">9.4.</span> Generales</h3>
-<div class="outline-text-3" id="text-9-4">
-<div class="org-src-container">
-<pre class="src src-lisp">show ip nat translations
-debug ip nat
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org000006a" class="outline-2">
-<h2 id="org000006a"><span class="section-number-2">10.</span> Referencias</h2>
+<div id="outline-container-org000005c" class="outline-2">
+<h2 id="org000005c"><span class="section-number-2">10.</span> Si todo se complica&#x2026;</h2>
 <div class="outline-text-2" id="text-10">
+<p>
+<a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a>
+<a href="https://www.explainxkcd.com/wiki/index.php/1597:_Git"><img src="./media/xkcd-git.png" alt="xkcd-git.png" /></a>
+</p>
+</div>
+</div>
+<div id="outline-container-org000005f" class="outline-2">
+<h2 id="org000005f"><span class="section-number-2">11.</span> Referencias</h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
-<li><a href="./par-4-comandos-ios.reveal.html">Transparencias</a></li>
-<li><a href="./par-4-comandos-ios.pdf">PDF</a></li>
-<li><a href="./par-4-comandos-ios.wp.html">Página web</a></li>
-<li><a href="./par-4-comandos-ios.epub">EPUB</a></li>
+<li><a href="./ED-03-git.reveal.html">Transparencias</a></li>
+<li><a href="./ED-03-git.pdf">PDF</a></li>
+<li><a href="./ED-03-git.wp.html">Página web</a></li>
+<li><a href="./ED-03-git.epub">EPUB</a></li>
 </ul></li>
 <li>Creado con:
 <ul class="org-ul">
@@ -1029,7 +818,7 @@ debug ip nat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-16 Tue 11:06</p>
+<p class="date">Created: 2026-01-08 jue 12:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
