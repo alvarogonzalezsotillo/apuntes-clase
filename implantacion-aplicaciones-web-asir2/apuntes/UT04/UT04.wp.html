@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-12 vie 11:17 -->
+<!-- 2026-01-12 lun 12:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -213,13 +213,14 @@
 <li><a href="#org0000034">4. Funciones</a></li>
 <li><a href="#org0000037">5. Funciones predefinidas</a></li>
 <li><a href="#org000003e">6. Entorno de desarrollo</a></li>
-<li><a href="#variablespredefinidas">7. Variables predefinidas</a></li>
-<li><a href="#org000004d">8. Formularios</a></li>
-<li><a href="#org0000067">9. HTTP</a></li>
-<li><a href="#org0000073">10. Sesiones</a></li>
-<li><a href="#org0000085">11. AJAX / <code>fetch</code></a></li>
-<li><a href="#org0000088">12. Ejercicios</a></li>
-<li><a href="#org000008b">13. Referencias</a></li>
+<li><a href="#org0000058">7. HTTP</a></li>
+<li><a href="#variablespredefinidas">8. Variables predefinidas</a></li>
+<li><a href="#org000005e">9. <i>Arrays</i></a></li>
+<li><a href="#org000006a">10. Formularios</a></li>
+<li><a href="#org0000076">11. Sesiones</a></li>
+<li><a href="#org0000088">12. AJAX / <code>fetch</code></a></li>
+<li><a href="#org000008b">13. Ejercicios</a></li>
+<li><a href="#org000008e">14. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -422,8 +423,8 @@ window.addEventListener("load",()=>{
 
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span><i>heredoc</i></label><pre class="src src-php">$<span style="color: #ff6347;">nombre</span> = <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>;
-<span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">&lt;&lt;&lt;EOT
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span><i>heredoc</i></label><pre class="src src-php">$<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Mar&#237;a"</span>;
+<span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">&lt;&lt;&lt;EOT
 Mi nombre es "$nombre".
 Esto deber&#237;a mostrar una 'A' may&#250;scula: \x41
 EOT</span>;
@@ -431,8 +432,8 @@ EOT</span>;
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span><i>nowdoc</i></label><pre class="src src-php">$<span style="color: #ff6347;">nombre</span> = <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>;
-<span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">&lt;&lt;&lt;'EOT'
+<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span><i>nowdoc</i></label><pre class="src src-php">$<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Mar&#237;a"</span>;
+<span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">&lt;&lt;&lt;'EOT'
 Mi nombre es "$nombre".
 Esto deber&#237;a mostrar una 'A' may&#250;scula: \x41
 EOT</span>;
@@ -472,11 +473,11 @@ EOT</span>;
 <h3 id="org000000e"><span class="section-number-3">3.1.</span> If</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">if</span>( <span style="color: #8ae234;">CONDICION</span> ){
-    <span style="color: #8ae234;">SI</span> <span style="color: #8ae234;">ES</span> <span style="color: #8ae234;">CIERTO</span>
+<pre class="src src-php"><span style="color: #a020f0;">if</span>( <span style="color: #008b8b;">CONDICION</span> ){
+    <span style="color: #008b8b;">SI</span> <span style="color: #008b8b;">ES</span> <span style="color: #008b8b;">CIERTO</span>
 }
-<span style="color: #729fcf; font-weight: bold;">else</span>{
-    <span style="color: #8ae234;">SI</span> <span style="color: #8ae234;">ES</span> <span style="color: #8ae234;">FALSO</span>
+<span style="color: #a020f0;">else</span>{
+    <span style="color: #008b8b;">SI</span> <span style="color: #008b8b;">ES</span> <span style="color: #008b8b;">FALSO</span>
 }
 </pre>
 </div>
@@ -490,9 +491,9 @@ Ejercicio: si la multiplicación de dos variables es mayor de 50, muestra el res
 <h3 id="org0000011"><span class="section-number-3">3.2.</span> While</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">while</span>(<span style="color: #8ae234;">CONDICION</span>){
-    <span style="color: #8ae234;">SENTENCIAS</span> <span style="color: #8ae234;">QUE</span> <span style="color: #8ae234;">SE</span> <span style="color: #8ae234;">REPITEN</span>
-    <span style="color: #8ae234;">DEBERIA</span> <span style="color: #8ae234;">CAMBIARSE</span> <span style="color: #8ae234;">LA</span> <span style="color: #8ae234;">CONDICION</span>    
+<pre class="src src-php"><span style="color: #a020f0;">while</span>(<span style="color: #008b8b;">CONDICION</span>){
+    <span style="color: #008b8b;">SENTENCIAS</span> <span style="color: #008b8b;">QUE</span> <span style="color: #008b8b;">SE</span> <span style="color: #008b8b;">REPITEN</span>
+    <span style="color: #008b8b;">DEBERIA</span> <span style="color: #008b8b;">CAMBIARSE</span> <span style="color: #008b8b;">LA</span> <span style="color: #008b8b;">CONDICION</span>    
 }
 </pre>
 </div>
@@ -505,8 +506,8 @@ Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se di
 <h3 id="org0000014"><span class="section-number-3">3.3.</span> for</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">for</span> (<span style="color: #8ae234;">EXPR1</span>; <span style="color: #8ae234;">EXPR2</span>; <span style="color: #8ae234;">EXPR3</span>){
-    <span style="color: #8ae234;">SENTENCIA</span>
+<pre class="src src-php"><span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">EXPR1</span>; <span style="color: #008b8b;">EXPR2</span>; <span style="color: #008b8b;">EXPR3</span>){
+    <span style="color: #008b8b;">SENTENCIA</span>
 }
 </pre>
 </div>
@@ -516,10 +517,10 @@ Es equivalente a un bucle <code>while</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #8ae234;">EXPR1</span>;
-<span style="color: #729fcf; font-weight: bold;">while</span> (<span style="color: #8ae234;">EXPR2</span>){
-    <span style="color: #8ae234;">SENTENCIA</span>
-    <span style="color: #8ae234;">EXPR3</span>
+<pre class="src src-php"><span style="color: #008b8b;">EXPR1</span>;
+<span style="color: #a020f0;">while</span> (<span style="color: #008b8b;">EXPR2</span>){
+    <span style="color: #008b8b;">SENTENCIA</span>
+    <span style="color: #008b8b;">EXPR3</span>
 }
 </pre>
 </div>
@@ -548,15 +549,15 @@ Ejercicio: Muestra todas las imágenes de <a href="https://jareksastro.org/astro
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">array</span> = [
-    <span style="color: #ad7fa8; font-style: italic;">"foo"</span> =&gt; <span style="color: #ad7fa8; font-style: italic;">"bar"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"bar"</span> =&gt; <span style="color: #ad7fa8; font-style: italic;">"foo"</span>,
+<pre class="src src-php">$<span style="color: #a0522d;">array</span> = [
+    <span style="color: #8b2252;">"foo"</span> =&gt; <span style="color: #8b2252;">"bar"</span>,
+    <span style="color: #8b2252;">"bar"</span> =&gt; <span style="color: #8b2252;">"foo"</span>,
 ];
-$<span style="color: #ff6347;">alumnos</span> = [
-    <span style="color: #ad7fa8; font-style: italic;">"Pepe"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Juan"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Susana"</span>
+$<span style="color: #a0522d;">alumnos</span> = [
+    <span style="color: #8b2252;">"Pepe"</span>,
+    <span style="color: #8b2252;">"Mar&#237;a"</span>,
+    <span style="color: #8b2252;">"Juan"</span>,
+    <span style="color: #8b2252;">"Susana"</span>
 ];
 </pre>
 </div>
@@ -570,17 +571,17 @@ $<span style="color: #ff6347;">alumnos</span> = [
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">alumnos</span> = [
-    <span style="color: #ad7fa8; font-style: italic;">"Pepe"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Mar&#237;a"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Juan"</span>,
-    <span style="color: #ad7fa8; font-style: italic;">"Susana"</span>
+<pre class="src src-php">$<span style="color: #a0522d;">alumnos</span> = [
+    <span style="color: #8b2252;">"Pepe"</span>,
+    <span style="color: #8b2252;">"Mar&#237;a"</span>,
+    <span style="color: #8b2252;">"Juan"</span>,
+    <span style="color: #8b2252;">"Susana"</span>
 ];
-<span style="color: #729fcf; font-weight: bold;">foreach</span>($<span style="color: #ff6347;">alumnos</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">alumno</span>){
-    <span style="color: #729fcf; font-weight: bold;">print</span>( <span style="color: #ad7fa8; font-style: italic;">"Alumno: </span><span style="color: #ff6347;">$alumno</span><span style="color: #ad7fa8; font-style: italic;">"</span> )
+<span style="color: #a020f0;">foreach</span>($<span style="color: #a0522d;">alumnos</span> <span style="color: #a020f0;">as</span> $<span style="color: #a0522d;">alumno</span>){
+    <span style="color: #a020f0;">print</span>( <span style="color: #8b2252;">"Alumno: </span><span style="color: #a0522d;">$alumno</span><span style="color: #8b2252;">"</span> )
 }
-<span style="color: #729fcf; font-weight: bold;">foreach</span>($<span style="color: #ff6347;">alumnos</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">posicion</span> =&gt; $<span style="color: #ff6347;">alumno</span>){
-    <span style="color: #729fcf; font-weight: bold;">print</span>( <span style="color: #ad7fa8; font-style: italic;">"Alumno </span><span style="color: #ff6347;">$posicion</span><span style="color: #ad7fa8; font-style: italic;">: </span><span style="color: #ff6347;">$alumno</span><span style="color: #ad7fa8; font-style: italic;">"</span> )
+<span style="color: #a020f0;">foreach</span>($<span style="color: #a0522d;">alumnos</span> <span style="color: #a020f0;">as</span> $<span style="color: #a0522d;">posicion</span> =&gt; $<span style="color: #a0522d;">alumno</span>){
+    <span style="color: #a020f0;">print</span>( <span style="color: #8b2252;">"Alumno </span><span style="color: #a0522d;">$posicion</span><span style="color: #8b2252;">: </span><span style="color: #a0522d;">$alumno</span><span style="color: #8b2252;">"</span> )
 }
 </pre>
 </div>
@@ -661,11 +662,11 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">for</span>( $<span style="color: #ff6347;">i</span> = 0 ; $<span style="color: #ff6347;">i</span> &lt; 10 ; $<span style="color: #ff6347;">i</span> += 1 ){
-    <span style="color: #729fcf; font-weight: bold;">if</span>( $<span style="color: #ff6347;">i</span> % 3 != 0 ){
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">continue</span>;
+<pre class="src src-php"><span style="color: #a020f0;">for</span>( $<span style="color: #a0522d;">i</span> = 0 ; $<span style="color: #a0522d;">i</span> &lt; 10 ; $<span style="color: #a0522d;">i</span> += 1 ){
+    <span style="color: #a020f0;">if</span>( $<span style="color: #a0522d;">i</span> % 3 != 0 ){
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">continue</span>;
     }
-    <span style="color: #729fcf; font-weight: bold;">echo</span>( <span style="color: #ad7fa8; font-style: italic;">"</span><span style="color: #ff6347;">$i</span><span style="color: #ad7fa8; font-style: italic;"> es m&#250;ltiplo de 3\n"</span>);
+    <span style="color: #a020f0;">echo</span>( <span style="color: #8b2252;">"</span><span style="color: #a0522d;">$i</span><span style="color: #8b2252;"> es m&#250;ltiplo de 3\n"</span>);
 }
 </pre>
 </div>
@@ -698,23 +699,23 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 <li>Intentaremos no usarlo, excepto con <code>mysqli</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf;">&lt;?php</span>
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">inverso</span>($<span style="color: #ff6347;">x</span>) {
-    <span style="color: #729fcf; font-weight: bold;">if</span> (!$<span style="color: #ff6347;">x</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">throw</span> <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Exception</span>(<span style="color: #ad7fa8; font-style: italic;">'Divisi&#243;n por cero.'</span>);
+<pre class="src src-php"><span style="color: #483d8b;">&lt;?php</span>
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">inverso</span>($<span style="color: #a0522d;">x</span>) {
+    <span style="color: #a020f0;">if</span> (!$<span style="color: #a0522d;">x</span>) {
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Exception</span>(<span style="color: #8b2252;">'Divisi&#243;n por cero.'</span>);
     }
-    <span style="color: #729fcf; font-weight: bold;">return</span> 1/$<span style="color: #ff6347;">x</span>;
+    <span style="color: #a020f0;">return</span> 1/$<span style="color: #a0522d;">x</span>;
 }
 
-<span style="color: #729fcf; font-weight: bold;">try</span> {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> inverso(5) . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
-    <span style="color: #729fcf; font-weight: bold;">echo</span> inverso(0) . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+<span style="color: #a020f0;">try</span> {
+    <span style="color: #a020f0;">echo</span> inverso(5) . <span style="color: #8b2252;">"\n"</span>;
+    <span style="color: #a020f0;">echo</span> inverso(0) . <span style="color: #8b2252;">"\n"</span>;
 }
-<span style="color: #729fcf; font-weight: bold;">catch</span> (<span style="color: #8ae234; font-weight: bold;">Exception</span> $<span style="color: #ff6347;">e</span>) {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'Excepci&#243;n capturada: '</span>,  $<span style="color: #ff6347;">e</span>-&gt;getMessage(), <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+<span style="color: #a020f0;">catch</span> (<span style="color: #228b22;">Exception</span> $<span style="color: #a0522d;">e</span>) {
+    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">'Excepci&#243;n capturada: '</span>,  $<span style="color: #a0522d;">e</span>-&gt;getMessage(), <span style="color: #8b2252;">"\n"</span>;
 }
-<span style="color: #729fcf; font-weight: bold;">finally</span>{
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">'Esto ocurre haya o no haya pasado por catch\n'</span>;
+<span style="color: #a020f0;">finally</span>{
+    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">'Esto ocurre haya o no haya pasado por catch\n'</span>;
 }
 
 </pre>
@@ -735,13 +736,13 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 
 <div class="org-src-container">
 <pre class="src src-php">
-<span style="color: #729fcf;">&lt;?php</span>
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">foo</span>($<span style="color: #ff6347;">arg_1</span>, $<span style="color: #ff6347;">arg_2</span>, <span style="color: #888a85;">/* </span><span style="color: #888a85;">...,</span><span style="color: #888a85;"> */</span> $<span style="color: #ff6347;">arg_n</span>)
+<span style="color: #483d8b;">&lt;?php</span>
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">foo</span>($<span style="color: #a0522d;">arg_1</span>, $<span style="color: #a0522d;">arg_2</span>, <span style="color: #b22222;">/* </span><span style="color: #b22222;">...,</span><span style="color: #b22222;"> */</span> $<span style="color: #a0522d;">arg_n</span>)
 {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Funci&#243;n de ejemplo.\n"</span>;
-    <span style="color: #729fcf; font-weight: bold;">return</span> $<span style="color: #ff6347;">valor_devuelto</span>;
+    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">"Funci&#243;n de ejemplo.\n"</span>;
+    <span style="color: #a020f0;">return</span> $<span style="color: #a0522d;">valor_devuelto</span>;
 }
-<span style="color: #729fcf;">?&gt;</span>
+<span style="color: #483d8b;">?&gt;</span>
 </pre>
 </div>
 </div>
@@ -759,21 +760,21 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">a</span> = 3; <span style="color: #888a85;">// </span><span style="color: #888a85;">GLOBAL
+<pre class="src src-php">$<span style="color: #a0522d;">a</span> = 3; <span style="color: #b22222;">// </span><span style="color: #b22222;">GLOBAL
 </span>
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">fun1</span>(){
-    <span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">a</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">ERROR, VARIABLE NO DEFINIDA
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun1</span>(){
+    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">ERROR, VARIABLE NO DEFINIDA
 </span>}
 
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">fun2</span>(){
-    <span style="color: #729fcf; font-weight: bold;">global</span> $<span style="color: #ff6347;">a</span>;
-    <span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">a</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">IMPRIME 3
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun2</span>(){
+    <span style="color: #a020f0;">global</span> $<span style="color: #a0522d;">a</span>;
+    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 3
 </span>}
 
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">fun3</span>(){
-    $<span style="color: #ff6347;">a</span> = 4
-    <span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">a</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">IMPRIME 4
-</span>    <span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">GLOBALS</span>[<span style="color: #ad7fa8; font-style: italic;">"a""]; // IMPRIME 3
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun3</span>(){
+    $<span style="color: #a0522d;">a</span> = 4
+    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 4
+</span>    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">GLOBALS</span>[<span style="color: #8b2252;">"a""]; // IMPRIME 3
 }</span>
 </pre>
 </div>
@@ -811,24 +812,24 @@ Nota: para <code>$GLOBALS</code> ver <a href="#variablespredefinidas">Variables 
 
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">incrementa</span>($<span style="color: #ff6347;">variable</span>, $<span style="color: #ff6347;">valor</span>){
-    $<span style="color: #ff6347;">variable</span> += $<span style="color: #ff6347;">valor</span>;
+<pre class="src src-php"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">incrementa</span>($<span style="color: #a0522d;">variable</span>, $<span style="color: #a0522d;">valor</span>){
+    $<span style="color: #a0522d;">variable</span> += $<span style="color: #a0522d;">valor</span>;
 }
 
-$<span style="color: #ff6347;">unavariable</span> = 3;
-incrementa($<span style="color: #ff6347;">unavariable</span>, 4);
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">unavariable</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">IMPRIME 3</span>
+$<span style="color: #a0522d;">unavariable</span> = 3;
+incrementa($<span style="color: #a0522d;">unavariable</span>, 4);
+<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">unavariable</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 3</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">incrementa</span>(&amp;$<span style="color: #ff6347;">variable</span>, $<span style="color: #ff6347;">valor</span>){
-    $<span style="color: #ff6347;">variable</span> += $<span style="color: #ff6347;">valor</span>;
+<pre class="src src-php"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">incrementa</span>(&amp;$<span style="color: #a0522d;">variable</span>, $<span style="color: #a0522d;">valor</span>){
+    $<span style="color: #a0522d;">variable</span> += $<span style="color: #a0522d;">valor</span>;
 }
 
-$<span style="color: #ff6347;">unavariable</span> = 3;
-incrementa($<span style="color: #ff6347;">unavariable</span>, 4);
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">unavariable</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">IMPRIME 7</span>
+$<span style="color: #a0522d;">unavariable</span> = 3;
+incrementa($<span style="color: #a0522d;">unavariable</span>, 4);
+<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">unavariable</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 7</span>
 </pre>
 </div>
 </div>
@@ -839,22 +840,22 @@ incrementa($<span style="color: #ff6347;">unavariable</span>, 4);
 <li>Los objetos se pasan siempre por referencia</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">class</span> <span style="color: #8ae234; font-weight: bold;">Persona</span> {
-    <span style="color: #729fcf; font-weight: bold;">public</span> $<span style="color: #ff6347;">nombre</span>;
+<pre class="src src-php"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Persona</span> {
+    <span style="color: #a020f0;">public</span> $<span style="color: #a0522d;">nombre</span>;
 
-    <span style="color: #729fcf; font-weight: bold;">public</span> <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">__construct</span>($<span style="color: #ff6347;">nombre</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #8ae234;">$</span><span style="color: #8ae234;">this</span>-&gt;<span style="color: #ff6347;">nombre</span> = $<span style="color: #ff6347;">nombre</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">function</span> <span style="color: #0000ff;">__construct</span>($<span style="color: #a0522d;">nombre</span>) {
+    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #008b8b;">$</span><span style="color: #008b8b;">this</span>-&gt;<span style="color: #a0522d;">nombre</span> = $<span style="color: #a0522d;">nombre</span>;
     }
 }
 
-<span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">cambiarNombre</span>($<span style="color: #ff6347;">persona</span>) {
-    $<span style="color: #ff6347;">persona</span>-&gt;<span style="color: #ff6347;">nombre</span> = <span style="color: #ad7fa8; font-style: italic;">"Carlos"</span>;
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">cambiarNombre</span>($<span style="color: #a0522d;">persona</span>) {
+    $<span style="color: #a0522d;">persona</span>-&gt;<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Carlos"</span>;
 }
 
-$<span style="color: #ff6347;">persona1</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Persona</span>(<span style="color: #ad7fa8; font-style: italic;">"Ana"</span>);
-cambiarNombre($<span style="color: #ff6347;">persona1</span>);
+$<span style="color: #a0522d;">persona1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Persona</span>(<span style="color: #8b2252;">"Ana"</span>);
+cambiarNombre($<span style="color: #a0522d;">persona1</span>);
 
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">persona1</span>-&gt;<span style="color: #ff6347;">nombre</span>; <span style="color: #888a85;">// </span><span style="color: #888a85;">Imprime "Carlos", no "Ana"</span>
+<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">persona1</span>-&gt;<span style="color: #a0522d;">nombre</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Imprime "Carlos", no "Ana"</span>
 </pre>
 </div>
 </div>
@@ -937,107 +938,38 @@ cambiarNombre($<span style="color: #ff6347;">persona1</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-variablespredefinidas" class="outline-2">
-<h2 id="variablespredefinidas"><span class="section-number-2">7.</span> <a id="org0000042"></a>Variables predefinidas</h2>
-<div class="outline-text-2" id="text-variablespredefinidas">
-<p>
-<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
-</p>
-
-<pre class="example" id="org0000041">
-$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
-$_SERVER — Información del entorno del servidor y de ejecución
-$_GET — Variables HTTP GET
-$_POST — Variables POST de HTTP
-$_FILES — Variables de subida de ficheros HTTP
-$_REQUEST — Variables HTTP Request
-$_SESSION — Variables de sesión
-$_ENV — Variables de entorno
-$_COOKIE — Cookies HTTP
-</pre>
-</div>
-</div>
-<div id="outline-container-org000004d" class="outline-2">
-<h2 id="org000004d"><span class="section-number-2">8.</span> Formularios</h2>
-<div class="outline-text-2" id="text-8">
-</div>
-<div id="outline-container-org0000044" class="outline-3">
-<h3 id="org0000044"><span class="section-number-3">8.1.</span> En HTML</h3>
-<div class="outline-text-3" id="text-8-1">
-<ul class="org-ul">
-<li>Vistos el año pasado en Lenguajes de marcas</li>
-<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000004a" class="outline-3">
-<h3 id="org000004a"><span class="section-number-3">8.2.</span> En PHP</h3>
-<div class="outline-text-3" id="text-8-2">
-<p>
-<a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
-<a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
-</p>
-<ul class="org-ul">
-<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
-<ul class="org-ul">
-<li><code>$_POST</code></li>
-<li><code>$_GET</code></li>
-<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
-<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org0000047" class="outline-4">
-<h4 id="org0000047"><span class="section-number-4">8.2.1.</span> Ficheros en formularios</h4>
-<div class="outline-text-4" id="text-8-2-1">
-<ul class="org-ul">
-<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
-<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
-<ul class="org-ul">
-<li><code>file_uploads</code></li>
-<li><code>upload_max_filesize</code></li>
-<li><code>upload_tmp_dir</code></li>
-<li><code>post_max_size</code></li>
-<li><code>max_input_time</code></li>
-</ul></li>
-<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000067" class="outline-2">
-<h2 id="org0000067"><span class="section-number-2">9.</span> HTTP</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">7.</span> HTTP</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
 </p>
 </div>
-<div id="outline-container-org0000050" class="outline-3">
-<h3 id="org0000050"><span class="section-number-3">9.1.</span> URL</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-org0000041" class="outline-3">
+<h3 id="org0000041"><span class="section-number-3">7.1.</span> URL</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-php">
-<span style="color: #729fcf;">&lt;?php</span>
-$<span style="color: #ff6347;">url</span> = <span style="color: #ad7fa8; font-style: italic;">'http://username:password@hostname:9090/path?arg=value#anchor'</span>;
+<span style="color: #483d8b;">&lt;?php</span>
+$<span style="color: #a0522d;">url</span> = <span style="color: #8b2252;">'http://username:password@hostname:9090/path?arg=value#anchor'</span>;
 
-var_dump(parse_url($<span style="color: #ff6347;">url</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_SCHEME</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_USER</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_PASS</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_HOST</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_PORT</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_PATH</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_QUERY</span>));
-var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color: #8ae234;">PHP_URL_FRAGMENT</span>));
-<span style="color: #729fcf;">?&gt;</span>
+var_dump(parse_url($<span style="color: #a0522d;">url</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_SCHEME</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_USER</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PASS</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_HOST</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PORT</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PATH</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_QUERY</span>));
+var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_FRAGMENT</span>));
+<span style="color: #483d8b;">?&gt;</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000053" class="outline-3">
-<h3 id="org0000053"><span class="section-number-3">9.2.</span> <i>Cookies</i></h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-org0000044" class="outline-3">
+<h3 id="org0000044"><span class="section-number-3">7.2.</span> <i>Cookies</i></h3>
+<div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>Las <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Cookies">/cookies</a>/ son cadenas que el servidor envía al navegador
 <ul class="org-ul">
@@ -1055,27 +987,27 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-3">
-<h3 id="org0000058"><span class="section-number-3">9.3.</span> Diagrama</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-org0000049" class="outline-3">
+<h3 id="org0000049"><span class="section-number-3">7.3.</span> Diagrama</h3>
+<div class="outline-text-3" id="text-7-3">
 
-<div id="org0000056" class="figure">
+<div id="org0000047" class="figure">
 <p><img src="./media/diagrama-cookies.png" alt="diagrama-cookies.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org000005e" class="outline-3">
-<h3 id="org000005e"><span class="section-number-3">9.4.</span> Uso de <i>cookies</i> en php</h3>
-<div class="outline-text-3" id="text-9-4">
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">7.4.</span> Uso de <i>cookies</i> en php</h3>
+<div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>Funcion <a href="https://www.php.net/manual/es/function.setcookie.php"><code>setcookie()</code></a></li>
 <li>Variable <code>$_COOKIE</code></li>
 </ul>
 </div>
-<div id="outline-container-org000005b" class="outline-4">
-<h4 id="org000005b"><span class="section-number-4">9.4.1.</span> Ejercicio</h4>
-<div class="outline-text-4" id="text-9-4-1">
+<div id="outline-container-org000004c" class="outline-4">
+<h4 id="org000004c"><span class="section-number-4">7.4.1.</span> Ejercicio</h4>
+<div class="outline-text-4" id="text-7-4-1">
 <ul class="org-ul">
 <li>Crea una página PHP que almacene una <i>cookie</i> en el navegador
 <ul class="org-ul">
@@ -1087,9 +1019,9 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </div>
 </div>
 </div>
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">9.5.</span> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"><i>headers</i></a></h3>
-<div class="outline-text-3" id="text-9-5">
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">7.5.</span> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"><i>headers</i></a></h3>
+<div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>Tanto cliente como servidor pueden enviar cabeceras en la petición/respuesta
 <ul class="org-ul">
@@ -1105,9 +1037,9 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000061" class="outline-4">
-<h4 id="org0000061"><span class="section-number-4">9.5.1.</span> Ejercicio</h4>
-<div class="outline-text-4" id="text-9-5-1">
+<div id="outline-container-org0000052" class="outline-4">
+<h4 id="org0000052"><span class="section-number-4">7.5.1.</span> Ejercicio</h4>
+<div class="outline-text-4" id="text-7-5-1">
 <ul class="org-ul">
 <li>Crea una página web PHP que reenvíe a <a href="https://www.google.com">https://www.google.com</a> utilizando una cabecera <code>Location</code></li>
 <li>Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando <code>Content-Type</code></li>
@@ -1117,17 +1049,140 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 </div>
 </div>
 </div>
-<div id="outline-container-org0000073" class="outline-2">
-<h2 id="org0000073"><span class="section-number-2">10.</span> Sesiones</h2>
+<div id="outline-container-variablespredefinidas" class="outline-2">
+<h2 id="variablespredefinidas"><span class="section-number-2">8.</span> <a id="org000005c"></a>Variables predefinidas</h2>
+<div class="outline-text-2" id="text-variablespredefinidas">
+<p>
+<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
+</p>
+
+<pre class="example" id="org000005b">
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+</pre>
+</div>
+</div>
+<div id="outline-container-org000005e" class="outline-2">
+<h2 id="org000005e"><span class="section-number-2">9.</span> <i>Arrays</i></h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>Como ya hemos visto, un <i>array</i> puede ser
+<ul class="org-ul">
+<li>Con claves numéricas</li>
+<li>Con claves alfanuméricas (ver <code>foreach</code>)</li>
+</ul></li>
+
+<li><p>
+Añadir al final de un <i>array</i> con claves numéricas:
+</p>
+<div class="org-src-container">
+<pre class="src src-php">  $<span style="color: #a0522d;">elarray</span>[] = <span style="color: #8b2252;">"ultimo"</span>;
+</pre>
+</div></li>
+
+<li>Ejercicio: consulta qué hacen las siguientes funciones sobre arrays:</li>
+</ul>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-keys.php"><code>array_keys()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-values.php"><code>array_values()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-reverse.php"><code>array_reverse()</code></a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.count.php"><code>count()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.in-array.php"><code>in_array()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-search.php"><code>array_search()</code></a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.implode.php"><code>implode()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.explode.php"><code>explode()</code></a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org000006a" class="outline-2">
+<h2 id="org000006a"><span class="section-number-2">10.</span> Formularios</h2>
 <div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">10.1.</span> En HTML</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>Vistos el año pasado en Lenguajes de marcas</li>
+<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000067" class="outline-3">
+<h3 id="org0000067"><span class="section-number-3">10.2.</span> En PHP</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+<a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
+<a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
+</p>
+<ul class="org-ul">
+<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
+<ul class="org-ul">
+<li><code>$_POST</code></li>
+<li><code>$_GET</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000064" class="outline-4">
+<h4 id="org0000064"><span class="section-number-4">10.2.1.</span> Ficheros en formularios</h4>
+<div class="outline-text-4" id="text-10-2-1">
+<ul class="org-ul">
+<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
+<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
+<ul class="org-ul">
+<li><code>file_uploads</code></li>
+<li><code>upload_max_filesize</code></li>
+<li><code>upload_tmp_dir</code></li>
+<li><code>post_max_size</code></li>
+<li><code>max_input_time</code></li>
+</ul></li>
+<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000076" class="outline-2">
+<h2 id="org0000076"><span class="section-number-2">11.</span> Sesiones</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.php.net/manual/es/book.session.php">https://www.php.net/manual/es/book.session.php</a>
 <a href="https://www.php.net/manual/es/session.examples.basic.php">https://www.php.net/manual/es/session.examples.basic.php</a>
 </p>
 </div>
-<div id="outline-container-org000006a" class="outline-3">
-<h3 id="org000006a"><span class="section-number-3">10.1.</span> Uso básico</h3>
-<div class="outline-text-3" id="text-10-1">
+<div id="outline-container-org000006d" class="outline-3">
+<h3 id="org000006d"><span class="section-number-3">11.1.</span> Uso básico</h3>
+<div class="outline-text-3" id="text-11-1">
 <ul class="org-ul">
 <li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
 <li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
@@ -1141,39 +1196,39 @@ var_dump(parse_url($<span style="color: #ff6347;">url</span>, <span style="color
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-<span style="color: #729fcf; font-weight: bold;">if</span> (!<span style="color: #729fcf; font-weight: bold;">isset</span>($<span style="color: #ff6347;">_SESSION</span>[<span style="color: #ad7fa8; font-style: italic;">'count'</span>])) {
-  $<span style="color: #ff6347;">_SESSION</span>[<span style="color: #ad7fa8; font-style: italic;">'count'</span>] = 0;
-} <span style="color: #729fcf; font-weight: bold;">else</span> {
-  $<span style="color: #ff6347;">_SESSION</span>[<span style="color: #ad7fa8; font-style: italic;">'count'</span>]++;
+<span style="color: #a020f0;">if</span> (!<span style="color: #a020f0;">isset</span>($<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>])) {
+  $<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>] = 0;
+} <span style="color: #a020f0;">else</span> {
+  $<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>]++;
 }
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-<span style="color: #729fcf; font-weight: bold;">unset</span>($<span style="color: #ff6347;">_SESSION</span>[<span style="color: #ad7fa8; font-style: italic;">'count'</span>]);
+<span style="color: #a020f0;">unset</span>($<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>]);
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-session_destroy(); <span style="color: #888a85;">// </span><span style="color: #888a85;">esto no destruye $_SESSION</span>
+session_destroy(); <span style="color: #b22222;">// </span><span style="color: #b22222;">esto no destruye $_SESSION</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org000006d" class="outline-3">
-<h3 id="org000006d"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
-<div class="outline-text-3" id="text-10-2">
+<div id="outline-container-org0000070" class="outline-3">
+<h3 id="org0000070"><span class="section-number-3">11.2.</span> Ejercicio: Contador de visitas</h3>
+<div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>Haz una página que cada vez que sea visitada, incremente el número de visitas</li>
 <li>Cada visitante tiene su propio número de visitas</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000070" class="outline-3">
-<h3 id="org0000070"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
-<div class="outline-text-3" id="text-10-3">
+<div id="outline-container-org0000073" class="outline-3">
+<h3 id="org0000073"><span class="section-number-3">11.3.</span> Ejercicio: ventana de <i>login</i></h3>
+<div class="outline-text-3" id="text-11-3">
 <ul class="org-ul">
 <li>Crea un formulario de <i>login</i></li>
 <li>Si la contraseña es un número impar, es correcta</li>
@@ -1182,9 +1237,9 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </div>
 </div>
 </div>
-<div id="outline-container-org0000085" class="outline-2">
-<h2 id="org0000085"><span class="section-number-2">11.</span> AJAX / <code>fetch</code></h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-org0000088" class="outline-2">
+<h2 id="org0000088"><span class="section-number-2">12.</span> AJAX / <code>fetch</code></h2>
+<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>El envío de un formulario implica la recarga de la página</li>
 <li>A veces, es necesario actualizar solo <i>parte</i> de la página
@@ -1195,9 +1250,9 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org0000076" class="outline-3">
-<h3 id="org0000076"><span class="section-number-3">11.1.</span> AJAX</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-org0000079" class="outline-3">
+<h3 id="org0000079"><span class="section-number-3">12.1.</span> AJAX</h3>
+<div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
 <li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a></li>
 <li>Es la forma antigua
@@ -1208,54 +1263,54 @@ session_destroy(); <span style="color: #888a85;">// </span><span style="color: #
 </ul>
 </div>
 </div>
-<div id="outline-container-org000007f" class="outline-3">
-<h3 id="org000007f"><span class="section-number-3">11.2.</span> <code>fetch</code></h3>
-<div class="outline-text-3" id="text-11-2">
+<div id="outline-container-org0000082" class="outline-3">
+<h3 id="org0000082"><span class="section-number-3">12.2.</span> <code>fetch</code></h3>
+<div class="outline-text-3" id="text-12-2">
 <ul class="org-ul">
 <li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li>
 <li>Integrado con modernas API asíncronas</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">response</span> = <span style="color: #729fcf; font-weight: bold;">await</span> fetch(<span style="color: #ad7fa8; font-style: italic;">"https://example.org/post"</span>, {
-  method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
+<pre class="src src-javascript"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">response</span> = <span style="color: #a020f0;">await</span> fetch(<span style="color: #8b2252;">"https://example.org/post"</span>, {
+  method: <span style="color: #8b2252;">"POST"</span>,
   headers: {
-    <span style="color: #ad7fa8; font-style: italic;">"Content-Type"</span>: <span style="color: #ad7fa8; font-style: italic;">"application/json"</span>,
+    <span style="color: #8b2252;">"Content-Type"</span>: <span style="color: #8b2252;">"application/json"</span>,
   },    
-  body: JSON.stringify({ username: <span style="color: #ad7fa8; font-style: italic;">"example"</span> }),  
+  body: JSON.stringify({ username: <span style="color: #8b2252;">"example"</span> }),  
 });
-<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = <span style="color: #729fcf; font-weight: bold;">await</span> response.json();
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">json</span> = <span style="color: #a020f0;">await</span> response.json();
 </pre>
 </div>
 </div>
-<div id="outline-container-org0000079" class="outline-4">
-<h4 id="org0000079"><span class="section-number-4">11.2.1.</span> Enviar un formulario</h4>
-<div class="outline-text-4" id="text-11-2-1">
+<div id="outline-container-org000007c" class="outline-4">
+<h4 id="org000007c"><span class="section-number-4">12.2.1.</span> Enviar un formulario</h4>
+<div class="outline-text-4" id="text-12-2-1">
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">form</span> = document.getElementById(<span style="color: #ad7fa8; font-style: italic;">"formulario"</span>);
-<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">formData</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">FormData</span>(form);
-<span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">response</span> = fetch( <span style="color: #ad7fa8; font-style: italic;">"./api.php"</span>, {
-    method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
+<pre class="src src-javascript"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">form</span> = document.getElementById(<span style="color: #8b2252;">"formulario"</span>);
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">formData</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span>(form);
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">response</span> = fetch( <span style="color: #8b2252;">"./api.php"</span>, {
+    method: <span style="color: #8b2252;">"POST"</span>,
     body: formData
 })
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org000007c" class="outline-4">
-<h4 id="org000007c"><span class="section-number-4">11.2.2.</span> Promesas</h4>
-<div class="outline-text-4" id="text-11-2-2">
+<div id="outline-container-org000007f" class="outline-4">
+<h4 id="org000007f"><span class="section-number-4">12.2.2.</span> Promesas</h4>
+<div class="outline-text-4" id="text-12-2-2">
 <div class="org-src-container">
-<pre class="src src-javascript">fetch( <span style="color: #ad7fa8; font-style: italic;">"./api/endpoint"</span>, {
-    method: <span style="color: #ad7fa8; font-style: italic;">"POST"</span>,
-    body: JSON.stringify({ username:<span style="color: #ad7fa8; font-style: italic;">"example"</span>, action:<span style="color: #ad7fa8; font-style: italic;">"create"</span>} )
+<pre class="src src-javascript">fetch( <span style="color: #8b2252;">"./api/endpoint"</span>, {
+    method: <span style="color: #8b2252;">"POST"</span>,
+    body: JSON.stringify({ username:<span style="color: #8b2252;">"example"</span>, action:<span style="color: #8b2252;">"create"</span>} )
 }).
-then( <span style="color: #729fcf; font-weight: bold;">async</span> (response) =&gt;{
-    <span style="color: #729fcf; font-weight: bold;">const</span> <span style="color: #ff6347;">json</span> = <span style="color: #729fcf; font-weight: bold;">await</span> response.json();
-    <span style="color: #888a85;">// </span><span style="color: #888a85;">PROCESAR EL JSON DE RESPUESTA
+then( <span style="color: #a020f0;">async</span> (response) =&gt;{
+    <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">json</span> = <span style="color: #a020f0;">await</span> response.json();
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">PROCESAR EL JSON DE RESPUESTA
 </span>}).
-<span style="color: #729fcf; font-weight: bold;">catch</span>( err =&gt; {
-    alert(<span style="color: #ad7fa8; font-style: italic;">"Error:"</span> + err );
+<span style="color: #a020f0;">catch</span>( err =&gt; {
+    alert(<span style="color: #8b2252;">"Error:"</span> + err );
     console.err(err);
 });
 </pre>
@@ -1263,41 +1318,41 @@ then( <span style="color: #729fcf; font-weight: bold;">async</span> (response) =
 </div>
 </div>
 </div>
-<div id="outline-container-org0000082" class="outline-3">
-<h3 id="org0000082"><span class="section-number-3">11.3.</span> JSON en PHP</h3>
-<div class="outline-text-3" id="text-11-3">
+<div id="outline-container-org0000085" class="outline-3">
+<h3 id="org0000085"><span class="section-number-3">12.3.</span> JSON en PHP</h3>
+<div class="outline-text-3" id="text-12-3">
 <ul class="org-ul">
 <li><a href="https://www.php.net/manual/es/function.json-decode.php"><code>json_decode()</code></a>: Convierte una cadena de JSON a un <i>array</i> de PHP.</li>
 <li><a href="https://www.php.net/manual/es/function.json-encode.php"><code>json_encode()</code></a>: Convierte un <i>array</i> de PHP a una cadena JSON.</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf;">&lt;?php</span>
-$<span style="color: #ff6347;">json</span> = file_get_contents(<span style="color: #ad7fa8; font-style: italic;">'php://input'</span>);
-$<span style="color: #ff6347;">request</span> = json_decode($<span style="color: #ff6347;">json</span>, <span style="color: #8ae234;">true</span>);
+<pre class="src src-php"><span style="color: #483d8b;">&lt;?php</span>
+$<span style="color: #a0522d;">json</span> = file_get_contents(<span style="color: #8b2252;">'php://input'</span>);
+$<span style="color: #a0522d;">request</span> = json_decode($<span style="color: #a0522d;">json</span>, <span style="color: #008b8b;">true</span>);
 
-<span style="color: #888a85;">// </span><span style="color: #888a85;">PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
+<span style="color: #b22222;">// </span><span style="color: #b22222;">PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
 </span>
-header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: application/json'</span>);
-<span style="color: #729fcf; font-weight: bold;">echo</span> json_encode($<span style="color: #ff6347;">response</span>);
-<span style="color: #729fcf;">?&gt;</span>
+header(<span style="color: #8b2252;">'Content-Type: application/json'</span>);
+<span style="color: #a020f0;">echo</span> json_encode($<span style="color: #a0522d;">response</span>);
+<span style="color: #483d8b;">?&gt;</span>
 
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000088" class="outline-2">
-<h2 id="org0000088"><span class="section-number-2">12.</span> Ejercicios</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-org000008b" class="outline-2">
+<h2 id="org000008b"><span class="section-number-2">13.</span> Ejercicios</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org000008b" class="outline-2">
-<h2 id="org000008b"><span class="section-number-2">13.</span> Referencias</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-org000008e" class="outline-2">
+<h2 id="org000008e"><span class="section-number-2">14.</span> Referencias</h2>
+<div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -1319,7 +1374,7 @@ header(<span style="color: #ad7fa8; font-style: italic;">'Content-Type: applicat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-12 vie 11:17</p>
+<p class="date">Created: 2026-01-12 lun 12:14</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

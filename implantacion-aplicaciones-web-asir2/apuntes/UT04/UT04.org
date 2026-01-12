@@ -430,50 +430,6 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 
 
 
-* <<variablespredefinidas>>Variables predefinidas
-  :PROPERTIES:
-  :CUSTOM_ID: variablespredefinidas
-  :END:
-
-https://www.php.net/manual/es/language.variables.predefined.php
-
-#+begin_example
-$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
-$_SERVER — Información del entorno del servidor y de ejecución
-$_GET — Variables HTTP GET
-$_POST — Variables POST de HTTP
-$_FILES — Variables de subida de ficheros HTTP
-$_REQUEST — Variables HTTP Request
-$_SESSION — Variables de sesión
-$_ENV — Variables de entorno
-$_COOKIE — Cookies HTTP
-#+end_example
-
-
-* Formularios
-** En HTML
-- Vistos el año pasado en Lenguajes de marcas
-- [[https://www.w3schools.com/html/html_forms.asp][Referencia de w3schools]]  
-
-** En PHP
-https://www.php.net/manual/es/tutorial.forms.php
-https://www.php.net/manual/es/language.variables.external.php
-- Los campos de un formulario llegan como valores en los /arrays/
-  - =$_POST=
-  - =$_GET=
-  - [[https://www.php.net/manual/es/reserved.variables.request.php][=$_REQUEST=]]: reune =$_POST=, =$_GET= y =$_COOKIE=
-  - [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]]: Ficheros subidos por un formulario.
-
-*** Ficheros en formularios
-- El formulario debe tener ~enctype="multipart/form-data"~
-- Se pueden poner límites a los ficheros subidos con los parámetros de =php.ini=
-  - =file_uploads=
-  - =upload_max_filesize=
-  - =upload_tmp_dir=
-  - =post_max_size=
-  - =max_input_time=
-- La variable [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]] contiene los ficheros subidos
-
 * HTTP
 https://developer.mozilla.org/es/docs/Web/HTTP
 
@@ -553,6 +509,67 @@ end
 - Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando =Content-Type=
 - Investiga qué cabeceras se utilizan para continuar un /download/ de un fichero grande, después de una interrupción.  
     
+* <<variablespredefinidas>>Variables predefinidas
+  :PROPERTIES:
+  :CUSTOM_ID: variablespredefinidas
+  :END:
+
+https://www.php.net/manual/es/language.variables.predefined.php
+
+#+begin_example
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+#+end_example
+
+* /Arrays/
+#+MACRO: referenciaphp (eval (format "[[https://www.php.net/manual/en/function.%s.php][=%s()=]]" (replace-regexp-in-string "_" "-" $1) $1))
+
+- Como ya hemos visto, un /array/ puede ser
+  - Con claves numéricas
+  - Con claves alfanuméricas (ver =foreach=)
+
+- Añadir al final de un /array/ con claves numéricas:
+  #+begin_src php
+  $elarray[] = "ultimo";
+  #+end_src 
+
+- Ejercicio: consulta qué hacen las siguientes funciones sobre arrays:
+
+  
+| {{{referenciaphp(array_keys)}}} | {{{referenciaphp(array_values)}}} | {{{referenciaphp(array_reverse)}}} |
+| {{{referenciaphp(count)}}}      | {{{referenciaphp(in_array)}}}     | {{{referenciaphp(array_search)}}}  |
+| {{{referenciaphp(implode)}}}    | {{{referenciaphp(explode)}}}      |                                    |
+      
+* Formularios
+** En HTML
+- Vistos el año pasado en Lenguajes de marcas
+- [[https://www.w3schools.com/html/html_forms.asp][Referencia de w3schools]]  
+
+** En PHP
+https://www.php.net/manual/es/tutorial.forms.php
+https://www.php.net/manual/es/language.variables.external.php
+- Los campos de un formulario llegan como valores en los /arrays/
+  - =$_POST=
+  - =$_GET=
+  - [[https://www.php.net/manual/es/reserved.variables.request.php][=$_REQUEST=]]: reune =$_POST=, =$_GET= y =$_COOKIE=
+  - [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]]: Ficheros subidos por un formulario.
+
+*** Ficheros en formularios
+- El formulario debe tener ~enctype="multipart/form-data"~
+- Se pueden poner límites a los ficheros subidos con los parámetros de =php.ini=
+  - =file_uploads=
+  - =upload_max_filesize=
+  - =upload_tmp_dir=
+  - =post_max_size=
+  - =max_input_time=
+- La variable [[https://www.php.net/manual/es/reserved.variables.files.php][=$_FILES=]] contiene los ficheros subidos
 
 * Sesiones
 
