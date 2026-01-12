@@ -401,13 +401,15 @@ echo $persona1->nombre; // Imprime "Carlos", no "Ana"
 : Carlos
 
 * Funciones predefinidas
-| =phpinfo=                |
-| =htmlspecialchars=       |
-| =parse_url=              |
-| [[https://www.php.net/manual/es/ref.strings.php][=explode, implode=]]       |
-| [[https://www.php.net/manual/es/ref.strings.php][=strpos, substr, trim=]]   |
-| [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper=]] |
-| [[https://www.php.net/manual/es/function.filter-var.php][=filter_var=]]             |
+#+MACRO: referenciaphp (eval (format "[[https://www.php.net/manual/en/function.%s.php][=%s()=]]" (replace-regexp-in-string "_" "-" $1) $1))
+
+| {{{referenciaphp(phpinfo)}}}          |
+| {{{referenciaphp(htmlspecialchars)}}} |
+| {{{referenciaphp(parse_url)}}}        |
+| [[https://www.php.net/manual/es/ref.strings.php][=explode, implode=]]                    |
+| [[https://www.php.net/manual/es/ref.strings.php][=strpos, substr, trim=]]                |
+| [[https://www.php.net/manual/es/ref.strings.php][=strtolower, strtoupper=]]              |
+| {{{referenciaphp(filter_var)}}}       |
 
 
 
@@ -529,7 +531,6 @@ $_COOKIE — Cookies HTTP
 #+end_example
 
 * /Arrays/
-#+MACRO: referenciaphp (eval (format "[[https://www.php.net/manual/en/function.%s.php][=%s()=]]" (replace-regexp-in-string "_" "-" $1) $1))
 
 - Como ya hemos visto, un /array/ puede ser
   - Con claves numéricas
@@ -545,7 +546,7 @@ $_COOKIE — Cookies HTTP
   
 | {{{referenciaphp(array_keys)}}} | {{{referenciaphp(array_values)}}} | {{{referenciaphp(array_reverse)}}} |
 | {{{referenciaphp(count)}}}      | {{{referenciaphp(in_array)}}}     | {{{referenciaphp(array_search)}}}  |
-| {{{referenciaphp(implode)}}}    | {{{referenciaphp(explode)}}}      |                                    |
+| {{{referenciaphp(implode)}}}    | {{{referenciaphp(explode)}}}      | {{{referenciaphp(array_rand)}}}    |
       
 * Formularios
 ** En HTML

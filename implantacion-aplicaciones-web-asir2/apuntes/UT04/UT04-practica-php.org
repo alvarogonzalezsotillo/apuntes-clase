@@ -178,12 +178,13 @@ Se creará un fichero =calculadora.php=.
 :UNNUMBERED: t
 :END:
 - El código estará en el directorio =~/public-html/practica01/= del /workspace/ de Coder del alumno
+- El profesor copiará el código a su propio servidor LAMP para probarlo  
 - Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
 - Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
 - *No deben aparcer errores ni avisos de PHP*. Hay que tener en cuenta que se ejecutarán con opciones de /debug/, como =display_errors= a =true=
   - Puede ser útil: =isset()=, =is_numeric()=, =floatval()=
   - Si hay errores o avisos, el ejercicio no tendrá más del 50% de la nota  
-- Para probar los dos primeros ejercicios, el profesor subirá un fichero como el siguiente al Apache del alumno
+- Para probar los dos primeros ejercicios, el profesor subirá un fichero como el siguiente:
 
 
 #+caption: Ejemplo de fichero de prueba
