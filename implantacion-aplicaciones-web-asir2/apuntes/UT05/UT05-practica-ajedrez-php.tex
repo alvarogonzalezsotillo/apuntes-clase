@@ -1,0 +1,237 @@
+% Created 2026-01-22 jue 16:18
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{IAW}
+\rhead{Práctica PHP (II)}
+\usepackage{skak}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{Segunda práctica PHP}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={Segunda práctica PHP},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 30.2 (Org mode 9.7.11)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/implantacion-aplicaciones-web-asir2/apuntes/UT05/UT05-practica-ajedrez-php.org}{} \vspace{-1em}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\attachfile{../UT04//tiles/tiles.zip}
+\section*{Objetivos de la práctica:}
+\label{sec:org0000000}
+En esta práctica se espera que el alumno:
+\begin{itemize}
+\item Se familiarice con el manejo de sesiones
+\item Se familiarice con el uso de MySQL
+\end{itemize}
+\section*{Creación de tablas}
+\label{sec:org0000003}
+\begin{Aviso}[No se corregirá la práctica si...]
+Estas son normas necesarias para poder corregir la práctica:
+\begin{itemize}
+\item La aplicación creará las tablas necesarias para su funcionamiento
+\item Se puede comenzar la aplicación por cualquier página (no debe suponerse que siempre se lanzará \texttt{mitablero.php} antes de \texttt{administracion.php}, por ejemplo)
+\item La información de conexión a la base de datos estará en un único fichero PHP. El resto de ficheros usarán esa información (\texttt{require()} o \texttt{include()})
+\end{itemize}
+\end{Aviso}
+\section{Tablero personal (2 puntos)}
+\label{sec:org0000006}
+\begin{itemize}
+\item En la página \texttt{mitablero.php}
+\begin{itemize}
+\item Se mostrará un tablero de ajedrez, inicialmente vacío, con indicaciones de filas y columnas (10\%)
+\item Cada sesión de usuario tendrá un tablero distinto (40\%)
+\item Habrá un formulario que permitirá introducir:
+\begin{itemize}
+\item Una posición del tablero (\texttt{a8}, \texttt{b3},\ldots{})
+\item Seleccionar una ficha de ajedrez, o una casilla vacía, con un \texttt{<select>}
+\item Al enviar el formulario, se anotará esa información en la base de datos y se mostrará el nuevo tablero (50\%)
+\item Nota: no se tendrán en cuenta las normas del juego, pueden crearse cualquier disposición de fichas
+\end{itemize}
+\item Las fichas de ajedrez pueden ser caracteres unicode
+
+\begin{html}
+♔ ♕ ♖ ♗ ♘ ♙
+♚ ♛ ♜ ♝ ♞ ♟
+\end{html}
+\begin{latex}
+\BlackBishopOnWhite \BlackRookOnWhite \BlackKingOnWhite  \BlackKnightOnWhite \BlackPawnOnWhite \BlackQueenOnWhite
+\WhiteBishopOnWhite \WhiteRookOnWhite \WhiteKingOnWhite  \WhiteKnightOnWhite \WhitePawnOnWhite \WhiteQueenOnWhite
+\end{latex}
+\begin{itemize}
+\item Ver \url{https://en.wikipedia.org/wiki/Chess\_symbols\_in\_Unicode}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\begin{center}
+\includesvg[width=0.4\textwidth]{media/chess}
+\end{center}
+\section{Tablero compartido (3 puntos)}
+\label{sec:org0000009}
+\begin{itemize}
+\item Añade en \texttt{mitablero.php} un enlace para compartir el tablero
+\begin{itemize}
+\item El enlace apuntará a \texttt{tablerocompartido.php}, y añadirá un parámetro GET para saber qué tablero se comparte (10\%)
+\end{itemize}
+\item Una vez en \texttt{tablerocompartido.php}, la página se comportará igual que \texttt{mitablero.php}, pero modificando el tablero indicado en el parámetro GET, en vez del tablero asociado a la sesión
+\begin{itemize}
+\item Esto incluye el tablero, el formulario para cambiar el tablero y el enlace de compartir (90\%)
+\end{itemize}
+\item Si \texttt{mitablero.php} y \texttt{tablerocompartido.php} no comparten el código PHP y HTML principal (usando \texttt{require()} o \texttt{include()}), este ejercicio contará como máximo la mitad de la puntuación.
+\end{itemize}
+\section{Página de administración (4 puntos)}
+\label{sec:org000000c}
+\begin{itemize}
+\item En la página \texttt{administracion.php}
+\begin{itemize}
+\item Se listarán todos los tableros, indicando su identificador
+\item Cada tablero tendrá
+\begin{itemize}
+\item Un enlace a su página en \texttt{tablerocompartido.php} (10\%)
+\item Un botón para borrarlo definitivamente (20\%)
+\end{itemize}
+\end{itemize}
+\item Habrá un botón para crear un tablero compartido nuevo
+\begin{itemize}
+\item Con todas las fichas iniciales de un juego normal de ajedrez (50\%)
+\item Al pulsarse, se irá al nuevo tablero compartido directamente (\href{https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php}{ver \texttt{header( "Location: ...")}}) (20\%)
+\end{itemize}
+\end{itemize}
+\section*{Normas de entrega}
+\label{sec:org000000f}
+\begin{itemize}
+\item El código estará en el directorio \texttt{\textasciitilde{}/public-html/practica02/} del \emph{workspace} de Coder del alumno
+\begin{itemize}
+\item El profesor copiará las páginas a su propio LAMP para corregir la práctica
+\item El profesor se encargará de cambiar los datos de acceso a MySQL.
+\end{itemize}
+\item Los nombres de fichero PHP y los nombres de funciones serán los especificados en los enunciados
+\item Todos los formularios serán \textbf{GET}
+\begin{itemize}
+\item Si no se pueden ver los parámetros en la URL, el ejercicio no tendrá más del 50\% de la nota
+\end{itemize}
+\item Se recuerda que los alumnos deben guardar una copia de seguridad de todos sus trabajos, en el caso de que Coder no funcione
+\item \textbf{No deben aparcer errores ni avisos de PHP}. Hay que tener en cuenta que se ejecutarán con opciones de \emph{debug}, como \texttt{display\_errors} a \texttt{true}
+\begin{itemize}
+\item Puede ser útil: \texttt{isset()}, \texttt{is\_numeric()}
+\item Si hay errores o avisos, el ejercicio no tendrá más del 50\% de la nota
+\end{itemize}
+\item No se tendrán en cuenta:
+\begin{itemize}
+\item Errores debidos al reenvío de formularios por duplicado (por recarga de página)
+\item Errores debidos a parámetros cambiados a mano
+\end{itemize}
+\end{itemize}
+\section*{Resultados de aprendizaje}
+\label{sec:org0000012}
+Esta práctica contribuye a la calificación de los siguientes RA:
+\begin{itemize}
+\item RA 5: parte de "prácticas"
+\item RA 6: parte de "prácticas"
+\end{itemize}
+\end{document}
