@@ -1,4 +1,4 @@
-% Created 2026-01-22 jue 16:18
+% Created 2026-01-22 jue 19:15
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -128,18 +128,20 @@ En esta práctica se espera que el alumno:
 \item Se familiarice con el manejo de sesiones
 \item Se familiarice con el uso de MySQL
 \end{itemize}
-\section*{Creación de tablas}
-\label{sec:org0000003}
+
+
 \begin{Aviso}[No se corregirá la práctica si...]
 Estas son normas necesarias para poder corregir la práctica:
 \begin{itemize}
 \item La aplicación creará las tablas necesarias para su funcionamiento
 \item Se puede comenzar la aplicación por cualquier página (no debe suponerse que siempre se lanzará \texttt{mitablero.php} antes de \texttt{administracion.php}, por ejemplo)
 \item La información de conexión a la base de datos estará en un único fichero PHP. El resto de ficheros usarán esa información (\texttt{require()} o \texttt{include()})
+\item El alumno debe ser capaz de explicar cada línea de PHP entregada. En otro caso, se considerará una práctica copiada
 \end{itemize}
+
 \end{Aviso}
 \section{Tablero personal (2 puntos)}
-\label{sec:org0000006}
+\label{sec:org0000003}
 \begin{itemize}
 \item En la página \texttt{mitablero.php}
 \begin{itemize}
@@ -172,7 +174,7 @@ Estas son normas necesarias para poder corregir la práctica:
 \includesvg[width=0.4\textwidth]{media/chess}
 \end{center}
 \section{Tablero compartido (3 puntos)}
-\label{sec:org0000009}
+\label{sec:org0000006}
 \begin{itemize}
 \item Añade en \texttt{mitablero.php} un enlace para compartir el tablero
 \begin{itemize}
@@ -185,7 +187,7 @@ Estas son normas necesarias para poder corregir la práctica:
 \item Si \texttt{mitablero.php} y \texttt{tablerocompartido.php} no comparten el código PHP y HTML principal (usando \texttt{require()} o \texttt{include()}), este ejercicio contará como máximo la mitad de la puntuación.
 \end{itemize}
 \section{Página de administración (4 puntos)}
-\label{sec:org000000c}
+\label{sec:org0000009}
 \begin{itemize}
 \item En la página \texttt{administracion.php}
 \begin{itemize}
@@ -201,6 +203,14 @@ Estas son normas necesarias para poder corregir la práctica:
 \item Con todas las fichas iniciales de un juego normal de ajedrez (50\%)
 \item Al pulsarse, se irá al nuevo tablero compartido directamente (\href{https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php}{ver \texttt{header( "Location: ...")}}) (20\%)
 \end{itemize}
+\end{itemize}
+\section{Para llegar al 10\ldots{} (1 punto)}
+\label{sec:org000000c}
+Modifica \texttt{tablerocompartido.php} y \texttt{mitablero.php} para que cuando se pinche en un escaque, el \texttt{<input>} que se utiliza para determinar la posición de la pieza se actualice al escaque pinchado.
+\begin{itemize}
+\item Utiliza \href{https://www.geeksforgeeks.org/javascript/javascript-onclick-event/}{\texttt{onclick}} en el escaque
+\item Asegúrate que el \texttt{<input>} tiene un \texttt{id}
+\item Y usa \texttt{document.getElementById(...).value=....}
 \end{itemize}
 \section*{Normas de entrega}
 \label{sec:org000000f}

@@ -18,16 +18,14 @@ En esta práctica se espera que el alumno:
 - Se familiarice con el manejo de sesiones
 - Se familiarice con el uso de MySQL
 
-* Creación de tablas
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 #+latex: \begin{Aviso}[No se corregirá la práctica si...]
 Estas son normas necesarias para poder corregir la práctica:
 - La aplicación creará las tablas necesarias para su funcionamiento
 - Se puede comenzar la aplicación por cualquier página (no debe suponerse que siempre se lanzará =mitablero.php= antes de =administracion.php=, por ejemplo)
-- La información de conexión a la base de datos estará en un único fichero PHP. El resto de ficheros usarán esa información (=require()= o =include()=)  
+- La información de conexión a la base de datos estará en un único fichero PHP. El resto de ficheros usarán esa información (=require()= o =include()=)
+- El alumno debe ser capaz de explicar cada línea de PHP entregada. En otro caso, se considerará una práctica copiada
+    
 #+latex: \end{Aviso}
 * Tablero personal (2 puntos)
 - En la página =mitablero.php=
@@ -70,6 +68,12 @@ Estas son normas necesarias para poder corregir la práctica:
 - Habrá un botón para crear un tablero compartido nuevo
   - Con todas las fichas iniciales de un juego normal de ajedrez (50%)
   - Al pulsarse, se irá al nuevo tablero compartido directamente ([[https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php][ver =header( "Location: ...")=]]) (20%)
+
+* Para llegar al 10... (1 punto)
+Modifica =tablerocompartido.php= y =mitablero.php= para que cuando se pinche en un escaque, el =<input>= que se utiliza para determinar la posición de la pieza se actualice al escaque pinchado.
+- Utiliza [[https://www.geeksforgeeks.org/javascript/javascript-onclick-event/][=onclick=]] en el escaque
+- Asegúrate que el =<input>= tiene un =id=
+- Y usa ~document.getElementById(...).value=....~   
     
 * Normas de entrega
 :PROPERTIES:
