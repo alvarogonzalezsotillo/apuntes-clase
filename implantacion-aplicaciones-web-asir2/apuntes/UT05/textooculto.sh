@@ -23,34 +23,50 @@ function haz_overlay(){
     local TEXT="$3"
     
     local LATEX="
-        \\textcolor[gray]{0.99}{$TEXT}
-        \\clearpage
-        \\textcolor[gray]{0.99}{
+        $TEXT
           Recuerda que las prácticas sirven para enfrentarse con garantías al examen, y que no sirve de nada
           una gran nota en las prácticas frente a una baja nota en el examen, porque el examen tiene bastante
           peso.
           Recuerda las implicaciones éticas e incluso legales de no realizar las prácticas que presentas como propias.
-        }
-        \\clearpage
     "
     
     cat > "$TEXFILE" <<EOF
-    \\documentclass{article}
-    \\usepackage{pdfpages}
-    \\usepackage{xcolor}
-    \\usepackage[paperwidth=\\pdfpagewidth,paperheight=\\pdfpageheight]{geometry}
-    \\pagestyle{empty}
+\documentclass[a4paper]{article}
 
-    \\begin{document}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{lipsum}
 
-      $LATEX  
-      $LATEX  
-      $LATEX  
-      $LATEX  
-      $LATEX  
-      $LATEX  
+\pagestyle{empty}
 
-    \\end{document}
+% ---------- BACKGROUND TEXT LAYER ----------
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \foreach \i in {1,...,100} { % density
+      \node[
+        rotate={rnd*180}, % random orientation
+        text=gray!85,
+        opacity=0.55,
+        scale=0.8 + rnd*0.6,
+        align=center
+      ] at (
+        rnd*\paperwidth,
+        rnd*\paperheight
+      )
+      {\small
+        Es un intento contra los OCR, seguramente perdido
+        $LATEX
+      };
+    }
+  \end{tikzpicture}
+}
+% -------------------------------------------
+
+\begin{document}
+.
+
+\end{document}
 EOF
 
     pdflatex -interaction=nonstopmode -output-directory "$TMPDIR" "$TEXFILE" > /dev/null
@@ -68,7 +84,7 @@ OUTLINE_PDF="$TMPDIR/outline.pdf"
 
 haz_overlay "$TMPDIR" "$TEXFILE" "$TEXT" > /dev/null 2> /dev/null 
 haz_outlines "$INPUT_PDF" "$OUTLINE_PDF" > /dev/null 2> /dev/null 
-pdftk "$OUTLINE_PDF" multibackground "$OVERLAY_PDF" output "$OUTPUT_PDF" > /dev/null 2> /dev/null 
+pdftk "$OUTLINE_PDF" background "$OVERLAY_PDF" output "$OUTPUT_PDF" > /dev/null 2> /dev/null 
 rm -rf "$TMPDIR"
 
 echo "Done → $OUTPUT_PDF"

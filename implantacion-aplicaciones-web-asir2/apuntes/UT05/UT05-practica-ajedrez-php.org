@@ -29,7 +29,7 @@ Estas son normas necesarias para poder corregir la práctica:
 #+latex: \end{Aviso}
 * Tablero personal (2 puntos)
 - En la página =mitablero.php=
-  - Se mostrará un tablero de ajedrez, inicialmente vacío, con indicaciones de filas y columnas (10%)
+  - Se mostrará un tablero de ajedrez como el de la figura, inicialmente vacío, con indicaciones de filas y columnas (10%)
   - Cada sesión de usuario tendrá un tablero distinto (40%)
   - Habrá un formulario que permitirá introducir:
     - Una posición del tablero (=a8=, =b3=,...)
