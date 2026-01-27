@@ -8,7 +8,7 @@
 #+LATEX_HEADER: \usepackage{tabularx}
 
 
-La última versión de este documento se puede descargar de [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts-2026.pdf]]
+La última versión de este documento se puede descargar de [[https://alvarogonzalezsotillo.github.io/apuntes-clase/sistemas-gestores-bbdd-asir2/apuntes/3/asgbd-03-trabajo-scripts-2026.release.pdf]]
 
 
 
@@ -16,9 +16,8 @@ La última versión de este documento se puede descargar de [[https://alvarogonz
 * /Scripts/ de inicio y parada de *Oracle* (1 punto)
 
 Crea dos /scripts/ para iniciar y parar *Oracle*. Deben controlar el /listener/, la instancia y las /pluggable database/
-  - =/home/alumno/scripts/oraclestart.sh=
-  - =/home/alumno/scripts/oraclestop.sh=
- 
+  - =/home/alumno/scripts/oraclestart.sh=: Si la instancia está parada, la arranca. Si no, dice que ya está arrancada.
+  - =/home/alumno/scripts/oraclestop.sh=: Si la instanacia está arrancada, la para. Si no, dice que ya está parada.
 
 
 
@@ -64,7 +63,7 @@ Puedes usar =read -r= en un =while= para leer las filas de la entrada estándar.
 #+latex: \end{Aviso} 
  
 
-* Envía un correo periódicamente (2 puntos)
+* Envía un correo periódicamente (3 puntos)
   - Programa un /script/ para que cada minuto envíe un correo con un resumen del uso de disco por cada /tablespace/ permanente:
     - Nombre de /tablespace/, fichero del /tablespace/, tamaño en /bytes/.
   - El destino será =alvaro@alvarogonzalez.no-ip.biz=, con copia a tu usuario local
