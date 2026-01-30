@@ -298,7 +298,7 @@ Intenta hacer =ping= a Google con un TTL de 10. ¿es suficiente? ¿y con 20?
 | Cuarta subred  | ~192.168.20.192/26~ | ~192.168.20.193~ | ~192.168.20.254~ | ~192.168.20.255~ |
 
 http://www.aprendaredes.com/cgi-bin/ipcalc/ipcalc_cgi
-[[https://arcadio.gq/calculadora-subredes-vlsm.html][https://arcadio.gq/calculadora-subredes-vlsm.html]]
+[[https://arcadio.gq/calculadora-subredes-flsm.html][https://arcadio.gq/calculadora-subredes-flsm.html]]
 
 ** Supernetting
 - A partir de varias redes pequeñas (generalmente clase C), conseguir una más grande

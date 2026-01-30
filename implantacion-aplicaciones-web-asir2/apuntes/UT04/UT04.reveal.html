@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-12-12 vie 11:17 -->
+<!-- Generated on 2026-01-12 lun 19:43 -->
 <meta charset="utf-8"/>
 <title>PHP y HTTP</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-12-12 vie 11:17</p>
+<h1 class="title">PHP y HTTP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-01-12 lun 19:43</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -458,13 +458,14 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-4">4. Funciones</a></li>
 <li><a href="#/slide-5">5. Funciones predefinidas</a></li>
 <li><a href="#/slide-6">6. Entorno de desarrollo</a></li>
-<li><a href="#/slide-variablespredefinidas">7. Variables predefinidas</a></li>
-<li><a href="#/slide-8">8. Formularios</a></li>
-<li><a href="#/slide-9">9. HTTP</a></li>
-<li><a href="#/slide-10">10. Sesiones</a></li>
-<li><a href="#/slide-11">11. AJAX / <code>fetch</code></a></li>
-<li><a href="#/slide-12">12. Ejercicios</a></li>
-<li><a href="#/slide-13">13. Referencias</a></li>
+<li><a href="#/slide-7">7. HTTP</a></li>
+<li><a href="#/slide-variablespredefinidas">8. Variables predefinidas</a></li>
+<li><a href="#/slide-9">9. <i>Arrays</i></a></li>
+<li><a href="#/slide-10">10. Formularios</a></li>
+<li><a href="#/slide-11">11. Sesiones</a></li>
+<li><a href="#/slide-12">12. AJAX / <code>fetch</code></a></li>
+<li><a href="#/slide-13">13. Ejercicios</a></li>
+<li><a href="#/slide-14">14. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -1162,15 +1163,15 @@ echo $persona1-&gt;nombre; // Imprime "Carlos", no "Ana"
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left"><code>phpinfo</code></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.phpinfo.php"><code>phpinfo()</code></a></td>
 </tr>
 
 <tr>
-<td class="org-left"><code>htmlspecialchars</code></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.htmlspecialchars.php"><code>htmlspecialchars()</code></a></td>
 </tr>
 
 <tr>
-<td class="org-left"><code>parse_url</code></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.parse-url.php"><code>parse_url()</code></a></td>
 </tr>
 
 <tr>
@@ -1186,7 +1187,7 @@ echo $persona1-&gt;nombre; // Imprime "Carlos", no "Ana"
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://www.php.net/manual/es/function.filter-var.php"><code>filter_var</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.filter-var.php"><code>filter_var()</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1233,89 +1234,15 @@ echo $persona1-&gt;nombre; // Imprime "Carlos", no "Ana"
 </section>
 </section>
 <section>
-<section id="slide-variablespredefinidas">
-<h2 id="variablespredefinidas"><span class="section-number-2">7.</span> <a id="org0000006"></a>Variables predefinidas</h2>
-<p>
-<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
-</p>
-
-<pre class="example" id="org0000005">
-$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
-$_SERVER — Información del entorno del servidor y de ejecución
-$_GET — Variables HTTP GET
-$_POST — Variables POST de HTTP
-$_FILES — Variables de subida de ficheros HTTP
-$_REQUEST — Variables HTTP Request
-$_SESSION — Variables de sesión
-$_ENV — Variables de entorno
-$_COOKIE — Cookies HTTP
-</pre>
-<div class="slide-footer"></div>
-</section>
-</section>
-<section>
-<section id="slide-8">
-<h2 id="8"><span class="section-number-2">8.</span> Formularios</h2>
-<div class="outline-text-2" id="text-8">
-</div>
-</section>
-<section id="slide-8-1">
-<h3 id="8-1"><span class="section-number-3">8.1.</span> En HTML</h3>
-<ul>
-<li>Vistos el año pasado en Lenguajes de marcas</li>
-<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
-
-</ul>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-8-2">
-<h3 id="8-2"><span class="section-number-3">8.2.</span> En PHP</h3>
-<p>
-<a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
-<a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
-</p>
-<ul>
-<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
-<ul>
-<li><code>$_POST</code></li>
-<li><code>$_GET</code></li>
-<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
-<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
-
-</ul></li>
-
-</ul>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-8-2-1">
-<h4 id="8-2-1"><span class="section-number-4">8.2.1.</span> Ficheros en formularios</h4>
-<ul>
-<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
-<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
-<ul>
-<li><code>file_uploads</code></li>
-<li><code>upload_max_filesize</code></li>
-<li><code>upload_tmp_dir</code></li>
-<li><code>post_max_size</code></li>
-<li><code>max_input_time</code></li>
-
-</ul></li>
-<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
-
-</ul>
-<div class="slide-footer"></div>
-</section>
-</section>
-<section>
-<section id="slide-9">
-<h2 id="9"><span class="section-number-2">9.</span> HTTP</h2>
+<section id="slide-7">
+<h2 id="7"><span class="section-number-2">7.</span> HTTP</h2>
 <p>
 <a href="https://developer.mozilla.org/es/docs/Web/HTTP">https://developer.mozilla.org/es/docs/Web/HTTP</a>
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-1">
-<h3 id="9-1"><span class="section-number-3">9.1.</span> URL</h3>
+<section id="slide-7-1">
+<h3 id="7-1"><span class="section-number-3">7.1.</span> URL</h3>
 <div class="org-src-container">
 
 <pre><code class="php" >
@@ -1336,8 +1263,8 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-2">
-<h3 id="9-2"><span class="section-number-3">9.2.</span> <i>Cookies</i></h3>
+<section id="slide-7-2">
+<h3 id="7-2"><span class="section-number-3">7.2.</span> <i>Cookies</i></h3>
 <ul>
 <li>Las <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Cookies">/cookies</a>/ son cadenas que el servidor envía al navegador
 <ul>
@@ -1359,17 +1286,17 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-3">
-<h3 id="9-3"><span class="section-number-3">9.3.</span> Diagrama</h3>
+<section id="slide-7-3">
+<h3 id="7-3"><span class="section-number-3">7.3.</span> Diagrama</h3>
 
-<div id="org0000008" class="figure">
+<div id="org0000005" class="figure">
 <p><img src="data:image/png;base64,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" />
 </p>
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-4">
-<h3 id="9-4"><span class="section-number-3">9.4.</span> Uso de <i>cookies</i> en php</h3>
+<section id="slide-7-4">
+<h3 id="7-4"><span class="section-number-3">7.4.</span> Uso de <i>cookies</i> en php</h3>
 <ul>
 <li>Funcion <a href="https://www.php.net/manual/es/function.setcookie.php"><code>setcookie()</code></a></li>
 <li>Variable <code>$_COOKIE</code></li>
@@ -1377,8 +1304,8 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-4-1">
-<h4 id="9-4-1"><span class="section-number-4">9.4.1.</span> Ejercicio</h4>
+<section id="slide-7-4-1">
+<h4 id="7-4-1"><span class="section-number-4">7.4.1.</span> Ejercicio</h4>
 <ul>
 <li>Crea una página PHP que almacene una <i>cookie</i> en el navegador
 <ul>
@@ -1391,8 +1318,8 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-5">
-<h3 id="9-5"><span class="section-number-3">9.5.</span> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"><i>headers</i></a></h3>
+<section id="slide-7-5">
+<h3 id="7-5"><span class="section-number-3">7.5.</span> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"><i>headers</i></a></h3>
 <ul>
 <li>Tanto cliente como servidor pueden enviar cabeceras en la petición/respuesta
 <ul>
@@ -1413,8 +1340,8 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-5-1">
-<h4 id="9-5-1"><span class="section-number-4">9.5.1.</span> Ejercicio</h4>
+<section id="slide-7-5-1">
+<h4 id="7-5-1"><span class="section-number-4">7.5.1.</span> Ejercicio</h4>
 <ul>
 <li>Crea una página web PHP que reenvíe a <a href="https://www.google.com">https://www.google.com</a> utilizando una cabecera <code>Location</code></li>
 <li>Crea una página web PHP que muestre código HTML, pero que se vea como texto, usando <code>Content-Type</code></li>
@@ -1425,16 +1352,148 @@ var_dump(parse_url($url, PHP_URL_FRAGMENT));
 </section>
 </section>
 <section>
+<section id="slide-variablespredefinidas">
+<h2 id="variablespredefinidas"><span class="section-number-2">8.</span> <a id="org0000008"></a>Variables predefinidas</h2>
+<p>
+<a href="https://www.php.net/manual/es/language.variables.predefined.php">https://www.php.net/manual/es/language.variables.predefined.php</a>
+</p>
+
+<pre class="example" id="org0000007">
+$GLOBALS — Hace referencia a todas las variables disponibles en el ámbito global
+$_SERVER — Información del entorno del servidor y de ejecución
+$_GET — Variables HTTP GET
+$_POST — Variables POST de HTTP
+$_FILES — Variables de subida de ficheros HTTP
+$_REQUEST — Variables HTTP Request
+$_SESSION — Variables de sesión
+$_ENV — Variables de entorno
+$_COOKIE — Cookies HTTP
+</pre>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-9">
+<h2 id="9"><span class="section-number-2">9.</span> <i>Arrays</i></h2>
+<ul>
+<li>Como ya hemos visto, un <i>array</i> puede ser
+<ul>
+<li>Con claves numéricas</li>
+<li>Con claves alfanuméricas (ver <code>foreach</code>)</li>
+
+</ul></li>
+
+<li><p>
+Añadir al final de un <i>array</i> con claves numéricas:
+</p>
+<div class="org-src-container">
+
+<pre><code class="php" >  $elarray[] = "ultimo";
+</code></pre>
+</div></li>
+
+<li>Ejercicio: consulta qué hacen las siguientes funciones sobre arrays:</li>
+
+</ul>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-keys.php"><code>array_keys()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-values.php"><code>array_values()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-reverse.php"><code>array_reverse()</code></a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.count.php"><code>count()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.in-array.php"><code>in_array()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-search.php"><code>array_search()</code></a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.implode.php"><code>implode()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.explode.php"><code>explode()</code></a></td>
+<td class="org-left"><a href="https://www.php.net/manual/en/function.array-rand.php"><code>array_rand()</code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
 <section id="slide-10">
-<h2 id="10"><span class="section-number-2">10.</span> Sesiones</h2>
+<h2 id="10"><span class="section-number-2">10.</span> Formularios</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+</section>
+<section id="slide-10-1">
+<h3 id="10-1"><span class="section-number-3">10.1.</span> En HTML</h3>
+<ul>
+<li>Vistos el año pasado en Lenguajes de marcas</li>
+<li><a href="https://www.w3schools.com/html/html_forms.asp">Referencia de w3schools</a></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-10-2">
+<h3 id="10-2"><span class="section-number-3">10.2.</span> En PHP</h3>
+<p>
+<a href="https://www.php.net/manual/es/tutorial.forms.php">https://www.php.net/manual/es/tutorial.forms.php</a>
+<a href="https://www.php.net/manual/es/language.variables.external.php">https://www.php.net/manual/es/language.variables.external.php</a>
+</p>
+<ul>
+<li>Los campos de un formulario llegan como valores en los <i>arrays</i>
+<ul>
+<li><code>$_POST</code></li>
+<li><code>$_GET</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.request.php"><code>$_REQUEST</code></a>: reune <code>$_POST</code>, <code>$_GET</code> y <code>$_COOKIE</code></li>
+<li><a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a>: Ficheros subidos por un formulario.</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-10-2-1">
+<h4 id="10-2-1"><span class="section-number-4">10.2.1.</span> Ficheros en formularios</h4>
+<ul>
+<li>El formulario debe tener <code>enctype="multipart/form-data"</code></li>
+<li>Se pueden poner límites a los ficheros subidos con los parámetros de <code>php.ini</code>
+<ul>
+<li><code>file_uploads</code></li>
+<li><code>upload_max_filesize</code></li>
+<li><code>upload_tmp_dir</code></li>
+<li><code>post_max_size</code></li>
+<li><code>max_input_time</code></li>
+
+</ul></li>
+<li>La variable <a href="https://www.php.net/manual/es/reserved.variables.files.php"><code>$_FILES</code></a> contiene los ficheros subidos</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-11">
+<h2 id="11"><span class="section-number-2">11.</span> Sesiones</h2>
 <p>
 <a href="https://www.php.net/manual/es/book.session.php">https://www.php.net/manual/es/book.session.php</a>
 <a href="https://www.php.net/manual/es/session.examples.basic.php">https://www.php.net/manual/es/session.examples.basic.php</a>
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-10-1">
-<h3 id="10-1"><span class="section-number-3">10.1.</span> Uso básico</h3>
+<section id="slide-11-1">
+<h3 id="11-1"><span class="section-number-3">11.1.</span> Uso básico</h3>
 <ul>
 <li>La variable <code>$_SESSION</code> es un <i>array</i> con valores, que pueden pasarse de una página a otra</li>
 <li><code>session_start()</code> se basa en <i>cookies</i> y ficheros en el servidor
@@ -1474,8 +1533,8 @@ session_destroy(); // esto no destruye $_SESSION
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-10-2">
-<h3 id="10-2"><span class="section-number-3">10.2.</span> Ejercicio: Contador de visitas</h3>
+<section id="slide-11-2">
+<h3 id="11-2"><span class="section-number-3">11.2.</span> Ejercicio: Contador de visitas</h3>
 <ul>
 <li>Haz una página que cada vez que sea visitada, incremente el número de visitas</li>
 <li>Cada visitante tiene su propio número de visitas</li>
@@ -1483,8 +1542,8 @@ session_destroy(); // esto no destruye $_SESSION
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-10-3">
-<h3 id="10-3"><span class="section-number-3">10.3.</span> Ejercicio: ventana de <i>login</i></h3>
+<section id="slide-11-3">
+<h3 id="11-3"><span class="section-number-3">11.3.</span> Ejercicio: ventana de <i>login</i></h3>
 <ul>
 <li>Crea un formulario de <i>login</i></li>
 <li>Si la contraseña es un número impar, es correcta</li>
@@ -1495,8 +1554,8 @@ session_destroy(); // esto no destruye $_SESSION
 </section>
 </section>
 <section>
-<section id="slide-11">
-<h2 id="11"><span class="section-number-2">11.</span> AJAX / <code>fetch</code></h2>
+<section id="slide-12">
+<h2 id="12"><span class="section-number-2">12.</span> AJAX / <code>fetch</code></h2>
 <ul>
 <li>El envío de un formulario implica la recarga de la página</li>
 <li>A veces, es necesario actualizar solo <i>parte</i> de la página
@@ -1510,8 +1569,8 @@ session_destroy(); // esto no destruye $_SESSION
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-1">
-<h3 id="11-1"><span class="section-number-3">11.1.</span> AJAX</h3>
+<section id="slide-12-1">
+<h3 id="12-1"><span class="section-number-3">12.1.</span> AJAX</h3>
 <ul>
 <li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a></li>
 <li>Es la forma antigua
@@ -1524,8 +1583,8 @@ session_destroy(); // esto no destruye $_SESSION
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2">
-<h3 id="11-2"><span class="section-number-3">11.2.</span> <code>fetch</code></h3>
+<section id="slide-12-2">
+<h3 id="12-2"><span class="section-number-3">12.2.</span> <code>fetch</code></h3>
 <ul>
 <li>Basado en <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li>
 <li>Integrado con modernas API asíncronas</li>
@@ -1546,8 +1605,8 @@ const json = await response.json();
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2-1">
-<h4 id="11-2-1"><span class="section-number-4">11.2.1.</span> Enviar un formulario</h4>
+<section id="slide-12-2-1">
+<h4 id="12-2-1"><span class="section-number-4">12.2.1.</span> Enviar un formulario</h4>
 <div class="org-src-container">
 
 <pre><code class="javascript" >const form = document.getElementById("formulario");
@@ -1560,8 +1619,8 @@ const response = fetch( "./api.php", {
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2-2">
-<h4 id="11-2-2"><span class="section-number-4">11.2.2.</span> Promesas</h4>
+<section id="slide-12-2-2">
+<h4 id="12-2-2"><span class="section-number-4">12.2.2.</span> Promesas</h4>
 <div class="org-src-container">
 
 <pre><code class="javascript" >fetch( "./api/endpoint", {
@@ -1580,8 +1639,8 @@ catch( err =&gt; {
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-3">
-<h3 id="11-3"><span class="section-number-3">11.3.</span> JSON en PHP</h3>
+<section id="slide-12-3">
+<h3 id="12-3"><span class="section-number-3">12.3.</span> JSON en PHP</h3>
 <ul>
 <li><a href="https://www.php.net/manual/es/function.json-decode.php"><code>json_decode()</code></a>: Convierte una cadena de JSON a un <i>array</i> de PHP.</li>
 <li><a href="https://www.php.net/manual/es/function.json-encode.php"><code>json_encode()</code></a>: Convierte un <i>array</i> de PHP a una cadena JSON.</li>
@@ -1606,8 +1665,8 @@ echo json_encode($response);
 </section>
 </section>
 <section>
-<section id="slide-12">
-<h2 id="12"><span class="section-number-2">12.</span> Ejercicios</h2>
+<section id="slide-13">
+<h2 id="13"><span class="section-number-2">13.</span> Ejercicios</h2>
 <p>
 <a href="https://www.w3schools.com/PHP/php_exercises.asp">https://www.w3schools.com/PHP/php_exercises.asp</a>
 </p>
@@ -1615,8 +1674,8 @@ echo json_encode($response);
 </section>
 </section>
 <section>
-<section id="slide-13">
-<h2 id="13"><span class="section-number-2">13.</span> Referencias</h2>
+<section id="slide-14">
+<h2 id="14"><span class="section-number-2">14.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>

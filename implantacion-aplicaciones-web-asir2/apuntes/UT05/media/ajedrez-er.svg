@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="125px" preserveAspectRatio="none" style="width:440px;height:125px;" version="1.1" viewBox="0 0 440 125" width="440px" zoomAndPan="magnify"><defs><filter height="300%" id="fnpfyg4nedkqk" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class Tablero--><rect fill="#FEFECE" filter="url(#fnpfyg4nedkqk)" height="72.3079" id="Tablero" style="stroke: #A80036; stroke-width: 1.5;" width="194" x="235" y="12.85"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="310.5" y="30.6781">Tablero</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="236" x2="428" y1="39.1941" y2="39.1941"/><ellipse cx="246" cy="52.1851" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="168" x="255" y="54.953">idtablero : number «generated»</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="236" x2="428" y1="62.176" y2="62.176"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="115" x="241" y="77.9349">nombre : varchar(255)</text><!--class PiezaEnTablero--><rect fill="#FEFECE" filter="url(#fnpfyg4nedkqk)" height="102.2717" id="PiezaEnTablero" style="stroke: #A80036; stroke-width: 1.5;" width="153" x="14" y="12"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="47" y="29.8281">PiezaEnTablero</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="15" x2="166" y1="38.3441" y2="38.3441"/><ellipse cx="25" cy="51.3351" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="127" x="34" y="54.103">idtablero : number «FK»</text><ellipse cx="25" cy="66.3169" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="67" x="34" y="69.0849">fila : number</text><ellipse cx="25" cy="81.2988" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="96" x="34" y="84.0668">columna : number</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="15" x2="166" y1="91.2898" y2="91.2898"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="20" y="107.0487">pieza: varchar(255)</text><!--link PiezaEnTablero to Tablero--><path d="M176.43,49 C176.43,49 234.82,49 234.82,49 " fill="none" id="PiezaEnTablero-Tablero" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="176.43" x2="168.43" y1="49" y2="57"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="176.43" x2="168.43" y1="49" y2="41"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="176.43" x2="168.43" y1="49" y2="49"/><!--
+@startuml
+hide circle
+
+skinparam linetype ortho
+
+left to right direction
+
+entity "Tablero" as Tablero {
+  * idtablero : number <<generated>>
+  __
+  nombre : varchar(255)
+}
+
+entity "PiezaEnTablero" as PiezaEnTablero {
+  * idtablero : number <<FK>>
+  * fila : number
+  * columna : number      
+  __
+  pieza: varchar(255)
+}
+
+
+Tablero .up.{ PiezaEnTablero::idtablero
+@enduml
+
+PlantUML version 1.2018.11(Sat Sep 22 18:43:53 CEST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 17.0.12+8-LTS-286
+Operating System: Linux
+OS Version: 6.18.5-100.fc42.x86_64
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

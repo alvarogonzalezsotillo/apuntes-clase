@@ -18,10 +18,10 @@ La última versión de este documento está accesible en [[https://alvarogonzale
 * Cuenta en Codeberg
 1. Crea una cuenta en [[https://codeberg.org/][codeberg]]. Utiliza tu correo de educamadrid.
 2. La práctica se realiza por parejas. En caso necesario, puede haber grupos de tres alumnos.   
-3. Un alumno hace un /fork/ del repositorio https://codeberg.org/alvarogonzalezsotillo/Java-Games.git
-4. El repositorio debe ser privado
-   - Da permisos completos al profesor alvaro.gonzalezsotillo@educa.madrid.org
-   - Da permisos completos a tu compañero de práctica
+3. Un alumno del grupo hace un [[https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo][/fork/]] del repositorio https://codeberg.org/alvarogonzalezsotillo/Java-Games.git
+4. El repositorio debe ser privado.
+   - Da permisos completos al profesor alvaro.gonzalezsotillo@educa.madrid.org.
+   - Da permisos completos a tu(s) compañero(s) de práctica.
 
 * Ramas concurrentes de desarrollo
 Los siguientes trabajos se repartirán entre los integrantes del equipo, de forma concurrente
@@ -78,3 +78,4 @@ Dependiendo del orden en que se fusionen las ramas, y de los /commits/ intermedi
 
 * Qué se valorará
 - Todos los integrantes del equipo han trabajado de forma equilibrada. Al menos han sido responsables de una rama.
+- Se comprobará mediante la historia del repositorio, el nombre y correo de los /commits/ y el comando [[https://git-scm.com/docs/git-blame][=git blame=]]  
