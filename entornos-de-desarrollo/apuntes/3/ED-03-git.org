@@ -373,6 +373,13 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 [[https://www.explainxkcd.com/wiki/index.php/1597:_Git][file:./media/xkcd-git.png]]
 
 
+* Para practicar
+- https://learngitbranching.js.org/
+- Es interesante para funcionalidades que no hemos visto, como:
+  - {{{referenciagit(cherry-pick)}}}
+  - {{{referenciagit(rebase)}}}
+  
+
 
 
 
