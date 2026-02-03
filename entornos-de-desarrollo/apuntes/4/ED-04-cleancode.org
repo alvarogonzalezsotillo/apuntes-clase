@@ -39,18 +39,43 @@
   
       
 * Sonarqube
-- La instalación es complicada
+La instalación es complicada, la simplificaremos con Podman
+[[https://medium.com/@akashlomas/code-evaluation-with-sonar-qube-sonar-scanner-on-podman-4e647866ea6b][Fuente]] 
+
+
+
+** /plugin/ para Intellij  
+- Instala el /plugin/ para Intellij
+- Comprueba las recomendaciones que da para el fichero =FallDownComponent.java=  
+[[file:media/clipboard-20260203T130947.png]]
+
+
 ** Servidor Sonarqube
-- No es necesario
+- Permite usarlo para proyectos completos
+  - Compartido con otros desarrolladores
+  - Desde la línea de comandos (se puede poner en un /script/)  
 - Una instalación simplificada, no apta para trabajo /serio/
   - Usuario =admin=, contraseña =admin= (se puede cambiar por =Contraseñacomplicada1=)
   #+begin_src sh
   podman run -p 9000:9000 --name sonarqube docker.io/sonarqube:community 
   #+end_src
 
-** /plugin/ para Intellij  
+** Cliente Sonarqube
+Tras crear el proyecto en el servidor, y conseguir el /token/
 
-[[file:media/clipboard-20260203T130947.png]]
+#+begin_src sh
+podman run --rm \
+       --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro \
+       --workdir /usr/src \
+       --network=host \
+       docker.io/sonarsource/sonar-scanner-cli \
+       -Dsonar.projectKey=java-games \
+       -Dsonar.java.binaries=bin \
+       -Dsonar.projectName='java-games' \
+       -Dsonar.exclusions=doc \
+       -Dsonar.host.url=http://localhost:9000 \
+       -Dsonar.token=sqp_0373d5cbb31d95200fa97cab4998315f14add870
+#+end_src
 
 * /Bad smells/
 https://openwebinars.net/blog/code-smells-y-deuda-tecnica/
