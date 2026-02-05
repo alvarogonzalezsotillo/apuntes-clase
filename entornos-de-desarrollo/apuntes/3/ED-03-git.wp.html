@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-01-30 vie 11:37 -->
+<!-- 2026-02-05 jue 10:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control de versiones (git)</title>
@@ -213,8 +213,8 @@
 <li><a href="#org0000053">7. Git desde Intellij</a></li>
 <li><a href="#org0000056">8. Ejercicio GIT (II)</a></li>
 <li><a href="#org0000059">9. ¿Qué es un <i>pull request</i> y un <i>fork</i>?</a></li>
-<li><a href="#org000005c">10. Si todo se complica&#x2026;</a></li>
-<li><a href="#org000005f">11. Para practicar</a></li>
+<li><a href="#org000005c">10. Codeberg en <i>selfhosting</i>: Forgejo</a></li>
+<li><a href="#org000005f">11. Si todo se complica&#x2026;</a></li>
 <li><a href="#org0000062">12. Referencias</a></li>
 </ul>
 </div>
@@ -787,25 +787,47 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 </div>
 </div>
 <div id="outline-container-org000005c" class="outline-2">
-<h2 id="org000005c"><span class="section-number-2">10.</span> Si todo se complica&#x2026;</h2>
+<h2 id="org000005c"><span class="section-number-2">10.</span> Codeberg en <i>selfhosting</i>: Forgejo</h2>
 <div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>Esta es una instalación no apta para producción, solo para pruebas
+<ul class="org-ul">
+<li>Basada en <a href="https://podman.io/">Podman</a></li>
+<li>Con la <a href="https://codeberg.org/forgejo/-/packages/container/forgejo/versions">imagen oficial</a></li>
+</ul></li>
+<li>En la página de instalación (<a href="http:/localhost:3000/">http:/localhost:3000/</a>)
+<ul class="org-ul">
+<li>seleccionar <code>SQLite3</code></li>
+<li>no deshabilitar autoregistro</li>
+</ul></li>
+<li>Entre otras cosas no tiene:
+<ul class="org-ul">
+<li>Una base de datos <i>seria</i></li>
+<li>Una forma de reiniciar el servidor</li>
+<li>Permisos adecuados para el acceso a los datos en <code>forgejo-data</code></li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-bash">podman run -d <span style="color: #8b2252;">\</span>
+  --replace <span style="color: #8b2252;">\</span>
+  --name=forgejo <span style="color: #8b2252;">\</span>
+  -v forgejo-data:/data <span style="color: #8b2252;">\</span>
+  -v /etc/localtime:/etc/localtime:ro <span style="color: #8b2252;">\</span>
+  -p 3000:3000 <span style="color: #8b2252;">\</span>
+  -p 2222:22 <span style="color: #8b2252;">\</span>
+  codeberg.org/forgejo/forgejo:14
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org000005f" class="outline-2">
+<h2 id="org000005f"><span class="section-number-2">11.</span> Si todo se complica&#x2026;</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 <a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a>
 <a href="https://www.explainxkcd.com/wiki/index.php/1597:_Git"><img src="./media/xkcd-git.png" alt="xkcd-git.png" /></a>
 </p>
-</div>
-</div>
-<div id="outline-container-org000005f" class="outline-2">
-<h2 id="org000005f"><span class="section-number-2">11.</span> Para practicar</h2>
-<div class="outline-text-2" id="text-11">
-<ul class="org-ul">
-<li><a href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></li>
-<li>Es interesante para funcionalidades que no hemos visto, como:
-<ul class="org-ul">
-<li><a href="https://git-scm.com/docs/git-cherry-pick">Comando <i>git cherry-pick</i></a></li>
-<li><a href="https://git-scm.com/docs/git-rebase">Comando <i>git rebase</i></a></li>
-</ul></li>
-</ul>
 </div>
 </div>
 <div id="outline-container-org0000062" class="outline-2">
@@ -819,12 +841,6 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 <li><a href="./ED-03-git.wp.html">Página web</a></li>
 <li><a href="./ED-03-git.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -832,7 +848,7 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-01-30 vie 11:37</p>
+<p class="date">Created: 2026-02-05 jue 10:19</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
