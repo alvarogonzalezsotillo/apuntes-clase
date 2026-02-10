@@ -41,7 +41,7 @@ Una empresa decide conectar varios departamentos en una sola red IP. Para ello, 
 \item Departamento de informática: 20 ordenadores.%  /27
 \end{itemize}
 
-Se desea que cada departamento tenga su propio domino de broadcast, pero tengan conectividad entre sí a nivel de red, por lo que estarán unidos mediante routers. Se decide que los routers formen parte de la red de servidores, la \texttt{172.N.48.0/23}, siendo los cuatro últimos de esta red. En la parte interna (hacia los departamentos), cada router será el último de la red.
+Se desea que cada departamento tenga su propio domino de broadcast, pero tengan conectividad entre sí a nivel de red, por lo que estarán unidos mediante routers. Se decide que los routers formen parte de otra subred de  \texttt{192.168.\textit{2*N}.0/23}, siendo los cuatro primeros de su subred. En la parte interna (hacia los departamentos), cada router será el último de la red.
 
 \section{Directrices para la creación de redes}
 \begin{itemize}
