@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-02-05 jue 10:19 -->
+<!-- 2026-02-04 mié 20:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Control de versiones (git)</title>
+<title>Optimización, refactorización y documentación</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -199,23 +199,18 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Control de versiones (git)</h1>
+<h1 class="title">Optimización, refactorización y documentación</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000000">1. Introducción</a></li>
-<li><a href="#org0000005">2. Trabajo en solitario</a></li>
-<li><a href="#org0000014">3. Trabajo colaborativo</a></li>
-<li><a href="#org0000026">4. GIT</a></li>
-<li><a href="#org000004c">5. Comandos de Git</a></li>
-<li><a href="#org000004f">6. Ejercicio GIT</a></li>
-<li><a href="#org0000053">7. Git desde Intellij</a></li>
-<li><a href="#org0000056">8. Ejercicio GIT (II)</a></li>
-<li><a href="#org0000059">9. ¿Qué es un <i>pull request</i> y un <i>fork</i>?</a></li>
-<li><a href="#org000005c">10. Codeberg en <i>selfhosting</i>: Forgejo</a></li>
-<li><a href="#org000005f">11. Si todo se complica&#x2026;</a></li>
-<li><a href="#org0000062">12. Referencias</a></li>
+<li><a href="#org0000004">1. Deuda técnica</a></li>
+<li><a href="#org0000016">2. Documentación</a></li>
+<li><a href="#org0000034">3. <i>Bad smells</i></a></li>
+<li><a href="#org0000042">4. Sonarqube</a></li>
+<li><a href="#org0000045">5. Refactorización</a></li>
+<li><a href="#org000004b">6. Diseño</a></li>
+<li><a href="#org000004e">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -265,581 +260,490 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000000" class="outline-2">
-<h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
+<div id="outline-container-org0000004" class="outline-2">
+<h2 id="org0000004"><span class="section-number-2">1.</span> Deuda técnica</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Problemas típicos en el desarrollo de aplicaciones
+<li>Esfuerzo que se va a tener que hacer adicionalmente, porque se ha elegido un desarrollo sencillo y rápido, en lugar de utilizar un mejor enfoque más lento inicialmente</li>
+<li>Metáfora: Es un un crédito de tiempo, ahora se <i>ahorra</i> en una implementación insuficiente, en el futuro se <i>paga</i> rehaciendo gran parte del código</li>
+</ul>
+
+
+<div id="org0000000" class="figure">
+<p><img src="media/clipboard-20260203T131100.png" alt="clipboard-20260203T131100.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org0000001" class="outline-3">
+<h3 id="org0000001"><span class="section-number-3">1.1.</span> Cómo evitar la deuda técnica</h3>
+<div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
-<li>¿Cómo trabajan varios desarrolladores sobre el mismo código?</li>
-<li>¿Qué cambios se han realizado?</li>
-<li>¿Quién ha realizado los cambios?</li>
-</ul></li>
+<li>Buen diseño</li>
+<li>Refactorizaciones cuando sea necesario</li>
+<li>Buena documentación</li>
+<li>Entre otros muchos factores: planificación, buena comunicación, gestión del proyecto&#x2026;</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000005" class="outline-2">
-<h2 id="org0000005"><span class="section-number-2">2.</span> Trabajo en solitario</h2>
+</div>
+<div id="outline-container-org0000016" class="outline-2">
+<h2 id="org0000016"><span class="section-number-2">2.</span> Documentación</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>Los IDE suelen tener <i>historia local</i></li>
-<li>Indica los cambios que ha tenido el código en la máquina local</li>
+<li>Documentación externa:
+<ul class="org-ul">
+<li>Manuales, sitios web, wikis&#x2026;</li>
+<li>Se desfasa con mayor facilidad</li>
+</ul></li>
+<li>Documentación interna
+<ul class="org-ul">
+<li>Incluida en el código</li>
+<li>Al estar más <i>cercana</i> al programa se suele actualizar más rápido</li>
+</ul></li>
 </ul>
+</div>
+<div id="outline-container-org0000007" class="outline-3">
+<h3 id="org0000007"><span class="section-number-3">2.1.</span> Javadoc</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Documentación sobre el código en el propio código</li>
+<li>Usando comentarios <code>/** */</code> con texto libre</li>
+<li>Pueden incluir HTML</li>
+<li>Las @etiquetas definen propiedades concretas del código</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000000a" class="outline-3">
+<h3 id="org000000a"><span class="section-number-3">2.2.</span> Etiquetas Javadoc</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<div id="org0000003" class="figure">
-<p><img src="media/local-history-en-intellij.png" alt="local-history-en-intellij.png" />    
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><code>@author</code></td>
+<td class="org-left">Autor o autores del bloque de código</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@code</code></td>
+<td class="org-left">Similar a &lt;pre&gt;&lt;/pre&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@deprecated</code></td>
+<td class="org-left">El método/clase se eliminará en un futuro</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@link</code></td>
+<td class="org-left">Enlace a página web</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@param</code></td>
+<td class="org-left">Argumento que recibe un método.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@return</code></td>
+<td class="org-left">Valor de retorno del método</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@see</code></td>
+<td class="org-left">Añade un comentario <i>See Also</i></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@since</code></td>
+<td class="org-left">Desde que versión está disponible</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@throws</code></td>
+<td class="org-left">Explicación de excepciones lanzadas</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>@version</code></td>
+<td class="org-left">Versión actual del bloque código</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org000000d" class="outline-3">
+<h3 id="org000000d"><span class="section-number-3">2.3.</span> Ejemplo: <code>java.util.Set.contains()</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Documentación del método <code>Set.contains()</code></label><pre class="src src-java">  <span style="color: #8b2252;">/**
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* Returns </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if this set contains the specified element.
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* More formally, returns </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if and only if this set
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* contains an element </span><span style="color: #008b8b;">{@code e}</span><span style="color: #8b2252;"> such that
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">{@code Objects.equals(o, e)}</span><span style="color: #8b2252;">.
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> o element whose presence in this set is to be tested
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if this set contains the specified element
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@throws</span><span style="color: #8b2252;"> ClassCastException if the type of the specified element
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         is incompatible with this set
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* (</span><span style="color: #008b8b;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #8b2252;">optional</span><span style="color: #008b8b;">&lt;/a&gt;</span><span style="color: #8b2252;">)
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@throws</span><span style="color: #8b2252;"> NullPointerException if the specified element is null and this
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         set does not permit null elements
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* (</span><span style="color: #008b8b;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #8b2252;">optional</span><span style="color: #008b8b;">&lt;/a&gt;</span><span style="color: #8b2252;">)
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span>
+    <span style="color: #228b22;">boolean</span> <span style="color: #0000ff;">contains</span>(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">o</span>);  
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000010" class="outline-3">
+<h3 id="org0000010"><span class="section-number-3">2.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>El código funente de Java es un gran ejemplo de uso</li>
+<li>Consulta la documentación de <code>java.util.Arrays</code>
+<ul class="org-ul">
+<li>En <a href="https://github.com/openjdk/jdk21/blob/master/src/java.base/share/classes/java/util/Arrays.java">su repositorio</a></li>
+<li>En la <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html">documentación oficial</a></li>
+<li>En el código fuente (usa IntelliJ, <code>CTRL-n ArrayList</code>)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000013" class="outline-3">
+<h3 id="org0000013"><span class="section-number-3">2.5.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Completa la documentación Javadoc de tus clases para crear el menú de <code>Java-games</code></li>
+<li><p>
+Genera la documentación
 </p>
-</div>
-
-
-<div id="org0000004" class="figure">
-<p><img src="media/meme-control-versiones.png" alt="meme-control-versiones.png" />
-</p>
-</div>
+<div class="org-src-container">
+<pre class="src src-bash">  javadoc -sourcepath src -d docs -subpackages &lt;paquetes&gt;
+</pre>
+</div></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org0000014" class="outline-2">
-<h2 id="org0000014"><span class="section-number-2">3.</span> Trabajo colaborativo</h2>
+</div>
+<div id="outline-container-org0000034" class="outline-2">
+<h2 id="org0000034"><span class="section-number-2">3.</span> <i>Bad smells</i></h2>
 <div class="outline-text-2" id="text-3">
+<p>
+<a href="https://openwebinars.net/blog/code-smells-y-deuda-tecnica/">https://openwebinars.net/blog/code-smells-y-deuda-tecnica/</a>
+</p>
+
+<ul class="org-ul">
+<li>No tienen por qué ser errores o bugs de programación, ya que pueden no ser técnicamente incorrectos y el programa funcione correctamente.</li>
+<li>Indican deficiencias en el diseño</li>
+<li>Pueden hacer que se realice un desarrollo más lento.</li>
+<li>Aumentan el riesgo de <i>bugs</i> en el futuro.</li>
+</ul>
 </div>
-<div id="outline-container-org0000008" class="outline-3">
-<h3 id="org0000008"><span class="section-number-3">3.1.</span> Integración de código</h3>
+<div id="outline-container-org0000019" class="outline-3">
+<h3 id="org0000019"><span class="section-number-3">3.1.</span> Algunos <i>bad smells</i></h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
-<li>Cada miembro del equipo realiza su parte del trabajo</li>
-<li>Si hay errores
-<ul class="org-ul">
-<li>¿Cómo se aislan los cambios que dieron lugar a un <i>bug</i>?</li>
-</ul></li>
-<li>Si hay más de una versión
-<ul class="org-ul">
-<li>¿Cómo se recupera una versión antigua?</li>
-<li>¿Cómo se fusionan dos versiones?</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000000b" class="outline-3">
-<h3 id="org000000b"><span class="section-number-3">3.2.</span> Control de versiones</h3>
-<div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>Un control de versiones (de código) mantiene una base de datos con todos los cambios producidos sobre el código fuente y otros ficheros necesarios para generar una aplicación</li>
-<li>Pueden ser
-<ul class="org-ul">
-<li>Centralizados/distribuidos</li>
-<li>Basados en ficheros/Basados en <i>changesets</i></li>
-<li>Bloqueantes/No bloqueantes</li>
-</ul></li>
-<li><p>
-Ejemplos
-</p>
-<ul class="org-ul">
-<li>GIT</li>
-<li>Subversion</li>
-<li>Mercurial</li>
+<li>Código duplicado (Duplicated code)</li>
+<li>Métodos muy largos (Long Method)</li>
+<li>Clases muy grandes (Large class)</li>
+<li>Lista de parámetros extensa (Long parameter list)</li>
+<li>Cambio divergente (Divergent change)</li>
+<li>Cirugía a tiros (Shotgun surgery)</li>
+<li>Envidia de funcionalidad (Feature Envy)</li>
+<li>Legado rechazado (Refused bequest)</li>
 </ul>
 
 <p>
-<a href="https://en.wikipedia.org/wiki/Version%5C_control">Control de versiones en Wikipedia</a>
-</p></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000000e" class="outline-3">
-<h3 id="org000000e"><span class="section-number-3">3.3.</span> Conceptos de control de versiones (I)</h3>
-<div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li><b>Repositorio</b>: Base de datos con las sucesivas versiones</li>
-<li><b>Copia de trabajo</b>: Ficheros sobre los que trabaja el programador</li>
-<li><b><i>Commit</i></b>: Confirmación de una nueva versión (de la copia de trabajo al repositorio)</li>
-<li><b><i>Checkout</i></b>: (Re)generación de la copia de trabajo a partir de la información del repositorio</li>
-<li><b><i>Changeset</i></b>: Conjunto de cambios en el repositorio, considerado atómico</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000011" class="outline-3">
-<h3 id="org0000011"><span class="section-number-3">3.4.</span> Conceptos de control de versiones (II)</h3>
-<div class="outline-text-3" id="text-3-4">
-<ul class="org-ul">
-<li><b>Rama (<i>Branch</i>)</b>: Versión paralela (ni anterior, ni posterior)</li>
-<li><b>Rama <code>master</code> o <code>main</code></b>: Rama principal del desarrollo</li>
-<li><b>Fusión (<i>Merge</i>)</b>: Acumular cambios en una misma versión
-<ul class="org-ul">
-<li>Tras un <i>checkout</i>, mezclando la copia de trabajo con la versión del repositorio</li>
-<li>Entre diferentes <i>branchs</i> del repositorio</li>
-</ul></li>
-
-<li><b>Comentario</b>: Cada <i>commit</i> debería documentar sus efectos y motivaciones.</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000026" class="outline-2">
-<h2 id="org0000026"><span class="section-number-2">4.</span> GIT</h2>
-<div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li>Gratis, de código abierto</li>
-<li>Muy popular, en múltiples plataformas</li>
-<li>Distribuido</li>
-<li>Basado en <i>changesets</i></li>
-<li>No bloqueante</li>
-</ul>
-</div>
-<div id="outline-container-org0000017" class="outline-3">
-<h3 id="org0000017"><span class="section-number-3">4.1.</span> GIT como cliente-servidor</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>Git tiene una arquitectura <a href="https://en.wikipedia.org/wiki/Peer-to-peer">peer-to-peer</a>
-<ul class="org-ul">
-<li>Todos los repositorios son igual de "<i>importantes</i>"</li>
-</ul></li>
-<li>Por convenio, suele haber un repositorio "<i>central</i>"
-<ul class="org-ul">
-<li>Como servicio: <a href="https://github.com/">github</a>, <a href="https://gitlab.com/users/sign_in">gitlab</a>, <a href="https://codeberg.org/">codeberg</a>&#x2026;</li>
-<li>Autoalojado: <a href="https://about.gitea.com/products/gitea/">gitea</a>, <a href="https://forgejo.org/">forjego</a></li>
-<li><a href="https://www.systutorials.com/set-up-git-server-through-ssh-connection/">O solo con Git y linux</a></li>
-</ul></li>
-</ul>
+Más en <a href="https://sourcemaking.com/refactoring">https://sourcemaking.com/refactoring</a>  
+</p>
 </div>
 </div>
 <div id="outline-container-org000001c" class="outline-3">
-<h3 id="org000001c"><span class="section-number-3">4.2.</span> Flujo de trabajo básico</h3>
-<div class="outline-text-3" id="text-4-2">
-
-<div id="org000001a" class="figure">
-<p><img src="./media/trabajo-normal-git.svg" alt="trabajo-normal-git.svg" class="org-svg" width="100%" />
+<h3 id="org000001c"><span class="section-number-3">3.2.</span> Duplicated code</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Si se detectan bloques de código iguales o muy parecidos en distintas partes del programa, se debe extraer creando un método para unificarlo.
 </p>
+<div class="org-src-container">
+<pre class="src src-java"> <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">leerCSV</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">filas</span>) {
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">String</span> <span style="color: #a0522d;">fila</span> : filas) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.isEmpty()) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   System.out.println(<span style="color: #8b2252;">"Aviso: fila vac&#237;a"</span>);
+    <span style="color: #acccacccffff;"> </span>   }
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.length() &lt; 3) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   System.out.println(<span style="color: #8b2252;">"Aviso: fila demasiado corta"</span>);
+    <span style="color: #acccacccffff;"> </span>   }
+    }
+} 
+</pre>
 </div>
 
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">leerCSV</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">filas</span>) {
+    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">String</span> <span style="color: #a0522d;">fila</span> : filas) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.isEmpty()) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   aviso(<span style="color: #8b2252;">"fila vac&#237;a"</span>);
+    <span style="color: #acccacccffff;"> </span>   }
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.length() &lt; 3) {
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   aviso(<span style="color: #8b2252;">"fila demasiado corta"</span>);
+    <span style="color: #acccacccffff;"> </span>   }
+    }
+}
 
-<div id="org000001b" class="figure">
-<p><img src="./media/resumen-git.svg" alt="resumen-git.svg" class="org-svg" width="100%" />
-</p>
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">aviso</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">msg</span>) {
+    System.out.println(<span style="color: #8b2252;">"Aviso: "</span> + msg);
+} 
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000023" class="outline-3">
-<h3 id="org0000023"><span class="section-number-3">4.3.</span> Ramas</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org000001f" class="outline-3">
+<h3 id="org000001f"><span class="section-number-3">3.3.</span> Long Method</h3>
+<div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
-<li>Cada <i>commit</i> genera una nueva versión del código</li>
-<li>Generalmente, una versión "<i>desciende</i>" de otra versión  
-<ul class="org-ul">
-<li>En un <i>merge</i>, se puede "<i>descender</i>" de más de una versión</li>
-</ul></li>
-<li>Las versiones se identifican por un <i>hash</i></li>
-<li>Una <b>rama</b> (<code>branch</code>) es un nombre que se da a un <i>hash</i>, y que va avanzando al hacer nuevas versiones</li>
-<li>Un <code>tag</code> es como un <code>branch</code>, pero no avanza al hacer nuevas versiones</li>
+<li>Los método de muchas lineas dificultan su comprensión.</li>
+<li>Un método largo probablemente está realizando distintas tareas, que se podrían dividir en otros métodos</li>
+<li>Las funciones deben ser los más pequeñas posibles (3 lineas mejor que 15).</li>
+<li>Cuanto más corto es un método, más fácil es reutilizarlo.</li>
+<li>Un método debe hacer solo una cosa, hacerla bien, y que sea la única que haga.</li>
 </ul>
 </div>
-<div id="outline-container-org0000020" class="outline-4">
-<h4 id="org0000020"><span class="section-number-4">4.3.1.</span> Ramas típicas</h4>
-<div class="outline-text-4" id="text-4-3-1">
+</div>
+<div id="outline-container-org0000022" class="outline-3">
+<h3 id="org0000022"><span class="section-number-3">3.4.</span> Large class</h3>
+<div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
-<li><code>master</code> o <code>main</code>: Versiones oficiales del código
+<li>Problema anterior aplicado a una clase.</li>
+<li>Una clase debe tener solo una finalidad.</li>
+<li>Si una clase se usa para distintos problemas tendremos clases con demasiados métodos, atributos e incluso instancias.</li>
+<li>Las clases deben el menor numero de responsabilidades y que esté bien delimitado.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">3.5.</span> Long parameter list</h3>
+<div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
-<li>Se garantiza que funcionan</li>
-<li>Se entregan al usuario final</li>
-</ul></li>
-<li><code>develop</code>: Trabajo para las siguientes versiones oficiales
-<ul class="org-ul">
-<li>Se acaban fusionando (<i>merge</i>) en <code>master</code></li>
-</ul></li>
-<li><code>feature</code>: Trabajo para una sola funcionalidad
-<ul class="org-ul">
-<li>Se acaban fusionando en <code>develop</code></li>
-<li>Pueden ser personales: solo las utiliza un desarrollador</li>
-</ul></li>
-<li><code>hotfix</code>: Un arreglo urgente en <code>master</code></li>
+<li>Las funciones deben tener el mínimo número de parámetros posible, siendo 0 lo perfecto.</li>
+<li>Si un método requiere muchos parámetros puede que sea necesario crear una clase con esa cantidad de datos y pasarle un objeto de la clase como parámetro.</li>
+<li>También ocurre con el valor de retorno, si necesito devolver más de un dato.</li>
 </ul>
 
+<div class="org-src-container">
+<pre class="src src-java">    <span style="color: #8b2252;">/** Encuentra los puntos de corte entre dos par&#225;bolas
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* y = a1x&#178; + b1x + c1
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* y = a2x&#178; + b2x + c2
+    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span> 
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span>[] <span style="color: #0000ff;">puntosCorte</span>(<span style="color: #228b22;">double</span> <span style="color: #a0522d;">a1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a2</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b2</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c2</span>) {
+    <span style="color: #acccacccffff;"> </span>   ....
+    }
+</pre>
+</div>
 
-<div id="org000001f" class="figure">
-<p><img src="media/git-branches-2.png" alt="git-branches-2.png" />
-</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Parabola</span> {
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c</span>;
+}
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span>[] <span style="color: #0000ff;">puntosCorte</span>(<span style="color: #228b22;">Parabola</span> <span style="color: #a0522d;">p1</span>, <span style="color: #228b22;">Parabola</span> <span style="color: #a0522d;">p2</span>) {
+    ....
+}
+</pre>
 </div>
 </div>
 </div>
+<div id="outline-container-org0000028" class="outline-3">
+<h3 id="org0000028"><span class="section-number-3">3.6.</span> Divergent change</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>Si una clase necesita ser modificada a menudo y por razones muy distintas, puede que la clase esté realizando demasiadas tareas.</li>
+<li>Podría ser eliminada y/o dividida.</li>
+</ul>
 </div>
-</div>
-<div id="outline-container-org000004c" class="outline-2">
-<h2 id="org000004c"><span class="section-number-2">5.</span> Comandos de Git</h2>
-<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org000002b" class="outline-3">
-<h3 id="org000002b"><span class="section-number-3">5.1.</span> <code>init</code></h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org000002b"><span class="section-number-3">3.7.</span> Shotgun surgery</h3>
+<div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
-<li>Crea un nuevo repositorio en el directorio</li>
-<li>Inicialmente vacío</li>
-<li>Se almacena en el directorio oculto <code>.git</code></li>
+<li>Si al modificar una clase, se necesitan modificar otras clases o elementos ajenos a ella para compatibilizar el cambio.</li>
+<li>Lo opuesto al smell anterior.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000002e" class="outline-3">
+<h3 id="org000002e"><span class="section-number-3">3.8.</span> Feature Envy</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>Ocurre cuando una clase usa más métodos de otra clase, o un método usa más datos de otra clase, que de la propia.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000031" class="outline-3">
+<h3 id="org0000031"><span class="section-number-3">3.9.</span> Refused bequest</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>Cuando una subclase extiende (hereda) de otra clase, y utiliza pocas características de la superclase, puede que haya un error en la jerarquía de clases.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000042" class="outline-2">
+<h2 id="org0000042"><span class="section-number-2">4.</span> Sonarqube</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Permite localizar <i>bad smells</i></li>
+<li>Se puede utilizar como <i>plugin</i></li>
+<li>Pero en entorno empresarial es preferible un servidor</li>
+</ul>
+
+
+<div id="org0000037" class="figure">
+<p><img src="media/clipboard-20260204T115646.png" alt="clipboard-20260204T115646.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org0000039" class="outline-3">
+<h3 id="org0000039"><span class="section-number-3">4.1.</span> <i>plugin</i> para Intellij</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Instala el <i>plugin</i> para Intellij</li>
+<li>Comprueba las recomendaciones que da para el fichero <code>FallDownComponent.java</code></li>
+</ul>
+
+<div id="org0000038" class="figure">
+<p><img src="media/clipboard-20260203T130947.png" alt="clipboard-20260203T130947.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">4.2.</span> Servidor Sonarqube</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Permite usarlo para proyectos completos
+<ul class="org-ul">
+<li>Compartido con otros desarrolladores</li>
+<li>Desde la línea de comandos (se puede poner en un <i>script</i>)</li>
+</ul></li>
+<li><p>
+Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qube-sonar-scanner-on-podman-4e647866ea6b">instalación simplificada</a>, no apta para trabajo <i>serio</i>
+</p>
+<ul class="org-ul">
+<li>Usuario <code>admin</code>, contraseña <code>admin</code> (se puede cambiar por <code>Contraseñacomplicada1</code>)</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">  podman run -p 9000:9000 --name sonarqube docker.io/sonarqube:community 
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000003f" class="outline-3">
+<h3 id="org000003f"><span class="section-number-3">4.3.</span> Cliente Sonarqube</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Cambiar <code>/home/alvaro/repos/Java-Games/FallDown</code> por el directorio del proyecto</li>
+<li>Cambiar el valor de <code>sonar.token</code> por el <i>token</i> que se genere en el servidor</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org0000029">alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git init
-Initialized emp
+<pre class="src src-sh">podman run --rm <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  --workdir /usr/src <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  --network=host <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  docker.io/sonarsource/sonar-scanner-cli <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.projectKey=java-games <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.java.binaries=bin <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.projectName=<span style="color: #8b2252;">'java-games'</span> <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.exclusions=doc <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.host.url=http://localhost:9000 <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span>  -Dsonar.token=sqp_0373d5cbb31d95200fa97cab4998315f14add870
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-clone" class="outline-3">
-<h3 id="clone"><span class="section-number-3">5.2.</span> <code>clone</code> <a id="org0000030"></a></h3>
-<div class="outline-text-3" id="text-clone">
+</div>
+<div id="outline-container-org0000045" class="outline-2">
+<h2 id="org0000045"><span class="section-number-2">5.</span> Refactorización</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
-<li>Crea un nuevo repositorio, copia de uno ya existente</li>
-<li>El repositorio puede ser local o remoto, dependiendo de la <a href="https://git-scm.com/docs/git-clone#_git_urls">URL</a></li>
-<li>La copia de trabajo será la de la rama <code>master</code></li>
-</ul>
-
-
-
-<div class="org-src-container">
-<pre class="src src-bash" id="org000002e">  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone https://github.com/alvarogonzalezsotillo/aplicacion-php.git
-  Cloning into <span style="color: #8b2252;">'aplicacion-php'</span>...
-  remote: Counting objects: 50, done.
-  remote: Compressing objects: 100%
-  ....
-</pre>
-</div>
-
-<p>
-<a href="https://git-scm.com/docs/git-clone">Comando <i>git clone</i></a>
-</p>
-</div>
-</div>
-<div id="outline-container-add" class="outline-3">
-<h3 id="add"><span class="section-number-3">5.3.</span> <code>add</code> <a id="org0000032"></a></h3>
-<div class="outline-text-3" id="text-add">
-<ul class="org-ul">
-<li>Git no incluye todos los ficheros de la copia de trabajo en el repositorio</li>
-<li>Si se desea un fichero en el repositorio, se debe incluir con <code>add</code></li>
-<li>Cada cambio posterior debe indicarse también con <code>add</code></li>
-<li>Se puede quitar con <code>rm</code> (las versiones antiguas siguen en el repositorio)</li>
-</ul>
-
-
-
-<p>
-<a href="https://git-scm.com/docs/git-add">Comando <i>git add</i></a>
-</p>
-</div>
-</div>
-<div id="outline-container-org0000035" class="outline-3">
-<h3 id="org0000035"><span class="section-number-3">5.4.</span> <code>status</code></h3>
-<div class="outline-text-3" id="text-5-4">
-<ul class="org-ul">
-<li>Imprime un resumen del estado de los ficheros de la copia de trabajo
-
-<ul class="org-ul">
-<li><b>Untracked</b>: No guardados en el repositorio. Git ignora el fichero</li>
-<li><b>Unmodified</b>: Igual que en la rama activa del repositorio</li>
-<li><b>Modified</b>: Con cambios respecto al repositorio, pero que no está previsto guardar</li>
-</ul></li>
-</ul>
-
-<p>
-<a href="https://git-scm.com/docs/git-status">Comando <i>git status</i></a>
-</p>
-
-
-<div id="org0000034" class="figure">
-<p><img src="./media/estados-fichero-git.svg" alt="estados-fichero-git.svg" class="org-svg" />
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000038" class="outline-3">
-<h3 id="org0000038"><span class="section-number-3">5.5.</span> <code>diff</code></h3>
-<div class="outline-text-3" id="text-5-5">
-<p>
-Muestra los cambios de los ficheros en estado <b>modified</b>
-</p>
-
-<ul class="org-ul">
-<li><code>@@ -lineO,nlinesO +lineD,nlinesD @@</code>    
-<ul class="org-ul">
-<li>Se muestra a partir de <code>lineO</code> del fichero antiguo y <code>lineD</code> del fichero actual</li>
-<li>Se muestran <code>nlinesO</code> líneas del fichero antiguo y <code>nlinesD</code> líneas del fichero actual</li>
-</ul></li>
-
-<li><code>-</code> Línea borrada</li>
-<li><code>+</code> Línea añadida</li>
-</ul>
-
-
-
-<p>
-<a href="https://git-scm.com/docs/git-diff">Comando <i>git diff</i></a>
-</p>
-</div>
-</div>
-<div id="outline-container-commit" class="outline-3">
-<h3 id="commit"><span class="section-number-3">5.6.</span> <code>commit</code> <a id="org000003d"></a></h3>
-<div class="outline-text-3" id="text-commit">
-<div class="org-src-container">
-<pre class="src src-bash" id="org000003b">[master 906fa20] Cambiados varios permisos de ejecuci&#243;n
- 5 files changed, 411 insertions(+), 2 deletions(-)
- create mode 100644 09/estados-fichero-git.svg
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 borrar-temporales-latex.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 generar-pdf.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 generar-pdfs.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 publicar-pdfs.sh
-</pre>
-</div>
-
-
-
-
-<p>
-<a href="https://git-scm.com/docs/git-commit">Comando <i>git commit</i></a>
-</p>
-</div>
-</div>
-<div id="outline-container-push" class="outline-3">
-<h3 id="push"><span class="section-number-3">5.7.</span> <code>push</code> <a id="org0000041"></a></h3>
-<div class="outline-text-3" id="text-push">
-<ul class="org-ul">
-<li>Sube las versiones del repositorio local a un repositorio remoto</li>
-<li>El repositorio remoto puede establecerse:
-<ul class="org-ul">
-<li>con <code>git clone</code> (en este caso se denomina <b>origin</b>)</li>
-<li>con <code>git remote add</code></li>
-</ul></li>
-<li>El repositorio debe tener todas las versiones del repositorio remoto
-<ul class="org-ul">
-<li>En otro caso, deberá realizarse un <code>git pull</code> previo</li>
-</ul></li>
-</ul>
-
-<p>
-<a href="https://git-scm.com/docs/git-push">Comando <i>git push</i></a>
-<a href="https://git-scm.com/docs/git-remote">Comando <i>git remote</i></a>
-</p>
-
-
-
-
-<div class="org-src-container">
-<pre class="src src-bash" id="org000003f">alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git push
-Password for <span style="color: #8b2252;">'https://alvarogonzalezsotillo@bitbucket.org'</span>: 
-To https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git
-! [rejected]        master -&gt; master (fetch first)
-error: failed to push some refs to 
-<span style="color: #8b2252;">'https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git'</span>
-hint: Updates were rejected because the remote contains work that you<span style="color: #a020f0;"> do</span>
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., <span style="color: #8b2252;">'git pull ...'</span>) before pushing again.
-hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><span style="color: #a020f0;"> in</span> <span style="color: #8b2252;">'git push --help'</span> for details.
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-pull" class="outline-3">
-<h3 id="pull"><span class="section-number-3">5.8.</span> <code>pull</code> <a id="org0000043"></a></h3>
-<div class="outline-text-3" id="text-pull">
-<ul class="org-ul">
-<li>Consigue la última versión de la rama actual</li>
+<li>Modificación del código sin cambiar su funcionamiento, para tener un código más claro y sencillo</li>
+<li>Los <i>bad smell</i> se eliminan mediante la refactorización</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-checkout" class="outline-3">
-<h3 id="checkout"><span class="section-number-3">5.9.</span> <code>checkout</code> <a id="org0000045"></a></h3>
-<div class="outline-text-3" id="text-checkout">
-<ul class="org-ul">
-<li>Extrae versiones del repositorio a la copia de trabajo
-
-<ul class="org-ul">
-<li><b>Un fichero</b>: <code>git checkout &lt;fichero&gt;</code></li>
-<li><b>Una versión</b>: <code>git checkout &lt;hashdeversión&gt;</code></li>
-<li><b>Un branch</b>: <code>git checkout &lt;branch&gt;</code></li>
-</ul></li>
-<li>También crea nuevas ramas, con <code>git checkout -b &lt;nombrerama&gt;</code></li>
-<li>Si coinciden una versión/nombre de fichero
-<ul class="org-ul">
-<li>Utilizar <a href="https://www.kernel.org/pub/software/scm/git/docs/gitrevisions.html#_specifying_revisions">Referencias a objetos en Git</a></li>
-<li>Es <b>mejor</b> evitar que coincidan</li>
-</ul></li>
-</ul>
-
-
-
-
-
-<p>
-<a href="https://git-scm.com/docs/git-checkout">Comando <i>git checkout</i></a>
-<a href="https://git-scm.com/docs/git-branch">Comando <i>git branch</i></a>
-</p>
-</div>
-</div>
-<div id="outline-container-merge" class="outline-3">
-<h3 id="merge"><span class="section-number-3">5.10.</span> <code>merge</code> <a id="org0000047"></a></h3>
-<div class="outline-text-3" id="text-merge">
-<ul class="org-ul">
-<li>Fusiona la rama actual con otra rama</li>
-<li>En el caso de que haya conflictos:
-<ul class="org-ul">
-<li>Los ficheros se quedan con <a href="https://www.kernel.org/pub/software/scm/git/docs/git-merge.html#_how_conflicts_are_presented">marcas de conflictos</a></li>
-<li>Para aceptar el fichero completo de la otra rama: <code>git checkout --theirs path/file</code></li>
-<li>Para aceptar el fichero completo de la rama actual: <code>git checkout --ours path/file</code></li>
-<li>Para casos más complicados, editar los ficheros y confirmarlos con <code>git add</code></li>
-</ul></li>
-<li>Recomendación: <code>git mergetool</code>, o usar el IDE</li>
-</ul>
-
-<p>
-<a href="https://git-scm.com/docs/git-merge">Comando <i>git merge</i></a>: Fusión de dos ramas
-</p>
-</div>
-</div>
-<div id="outline-container-org0000049" class="outline-3">
-<h3 id="org0000049"><span class="section-number-3">5.11.</span> Otros comandos</h3>
-<div class="outline-text-3" id="text-5-11">
-<ul class="org-ul">
-<li><a href="https://git-scm.com/docs/git-blame">Comando <i>git blame</i></a>: Lista un fichero con el autor de cada línea</li>
-<li><a href="https://git-scm.com/docs/git-log">Comando <i>git log</i></a>: Historia de cambios de un repositorio</li>
-<li><a href="https://git-scm.com/docs/git-gui">Comando <i>git gui</i></a>: Interfaz gráfica básica para utilizar git</li>
-<li><a href="https://git-scm.com/docs/git-switch">Comando <i>git switch</i></a>: Cambia rápidamente entre ramas</li>
-<li><a href="https://git-scm.com/docs/git-reset">Comando <i>git reset</i></a>: Deshace cambios (con precaución)</li>
-<li><a href="https://git-scm.com/docs/git-tag">Comando <i>git tag</i></a>: Da un nombre legible (no un <i>hash</i>) a una versión</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">6.</span> Ejercicio GIT</h2>
+<div id="outline-container-org000004b" class="outline-2">
+<h2 id="org000004b"><span class="section-number-2">6.</span> Diseño</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
-<li>Clona el repositorio <a href="https://codeberg.org/alvarogonzalezsotillo/Java-Games.git">https://codeberg.org/alvarogonzalezsotillo/Java-Games.git</a></li>
-<li>Crea la rama <code>translate</code> a partir de <code>master</code> (comando <code>checkout</code> o <code>branch</code>)</li>
-<li>Traduce a otro idioma las interfaces de los juegos:
+<li><b>POLA</b> = Principle Of Least Astonishment
 <ul class="org-ul">
-<li>Tetris</li>
-<li>MathHero</li>
-<li>FallDown</li>
+<li>El código no debería sorprender a quien tenga que entenderlo en un futuro</li>
+<li>Nombres de variables, parámetros con solo una función&#x2026;</li>
 </ul></li>
-<li>Incorpora los cambios a la rama <code>translate</code> (comando <code>add</code> y <code>commit</code>)</li>
-<li>Fusiona los cambios con la rama <code>master</code>
+<li><b>KISS</b> = Keep It Small and Simple
 <ul class="org-ul">
-<li><code>git checkout master</code></li>
-<li><code>git merge --no-ff translate</code></li>
+<li>Intentar no abarcar demasiado. Limitar el código a lo que se pide.</li>
+<li>Puede entrar en conflicto con planificar a largo plazo</li>
 </ul></li>
-<li>Enseña los resultados al profesor
+<li><b>YAGNI</b> = You Aren’t Gonna Need It
 <ul class="org-ul">
-<li><code>git log --graph --oneline</code></li>
+<li>Es muy problable que esa extensión de funcionalidad que no se pide acabe no haciendo falta</li>
+<li>Se parece mucho a <b>KISS</b></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000048" class="outline-3">
+<h3 id="org0000048"><span class="section-number-3">6.1.</span> SOLID</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>Responsabilidad única (<b>S</b> ingle responsibility)
+<ul class="org-ul">
+<li>Un objeto solo debería tener una única razón para cambiar.</li>
+<li>Cada parte del código (variable, método, clase) debe tener una única tarea</li>
+</ul></li>
+<li>Abierto/cerrado (<b>O</b> pen/closed)
+<ul class="org-ul">
+<li>Las entidades de software deben estar abiertas para su extensión, pero cerradas para su modificación.</li>
+<li>El código no se debería cambiar si aparecen nuevos requisitos, sino que se de debería añadir más código</li>
+</ul></li>
+<li>Sustitución de Liskov (<b>L</b> iskov substitution)
+<ul class="org-ul">
+<li>Los objetos de un programa deberían ser reemplazables por instancias de sus subtipos sin alterar el correcto funcionamiento del programa.</li>
+</ul></li>
+<li>Segregación de la interfaz (<b>I</b> nterface segregation)
+<ul class="org-ul">
+<li>Muchas interfaces cliente específicas son mejores que una interfaz de propósito general</li>
+</ul></li>
+<li>Inversión de la dependencia (<b>D</b> ependency inversion)
+<ul class="org-ul">
+<li>Se debe depender de abstracciones, no depender de implementaciones</li>
+<li>Una clase base no debería conocer a sus clases hijas</li>
+<li>Inyección de Dependencias</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000053" class="outline-2">
-<h2 id="org0000053"><span class="section-number-2">7.</span> Git desde Intellij</h2>
+</div>
+<div id="outline-container-org000004e" class="outline-2">
+<h2 id="org000004e"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
-
-<div id="org0000052" class="figure">
-<p><img src="media/git-en-intellij.png" alt="git-en-intellij.png" />
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000056" class="outline-2">
-<h2 id="org0000056"><span class="section-number-2">8.</span> Ejercicio GIT (II)</h2>
-<div class="outline-text-2" id="text-8">
-<ul class="org-ul">
-<li>Crea una cuenta en <a href="https://codeberg.org">Codeberg</a>
-<ul class="org-ul">
-<li>Usa tu cuenta de correo de educamadrid</li>
-</ul></li>
-<li>Clona el repositorio <a href="https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git">https://codeberg.org/alvarogonzalezsotillo/ejercicio-listado-alumnos.git</a>
-<ul class="org-ul">
-<li>Comando <a href="#clone"><code>clone</code></a></li>
-</ul></li>
-<li>Extrae la rama <code>curso-2025-2026</code>
-<ul class="org-ul">
-<li>Comando <a href="#checkout"><code>checkout</code></a></li>
-</ul></li>
-<li>Modifica el fichero <code>listado-alumnos.md</code> y añade tu nombre y apellidos en el orden correcto</li>
-<li>Confirma tus cambios en local (<a href="#add"><code>add</code></a>,<a href="#commit"><code>commit</code></a>)</li>
-<li>Sube tus cambios con <a href="#push"><code>push</code></a>
-<ul class="org-ul">
-<li>Si algún compañero ha cambiado el fichero antes que tú, consigue sus cambios con <a href="#pull"><code>pull</code></a>, y vuelve a intentar subir tus cambios</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000059" class="outline-2">
-<h2 id="org0000059"><span class="section-number-2">9.</span> ¿Qué es un <i>pull request</i> y un <i>fork</i>?</h2>
-<div class="outline-text-2" id="text-9">
-<ul class="org-ul">
-<li>Un PR es un concepto ajeno a Git
-<ul class="org-ul">
-<li>El equivalente de Git a un PR es un <i>push</i></li>
-</ul></li>
-<li>En servicios de Git (como GitHub)
-<ul class="org-ul">
-<li>A veces se quieren hacer cambios en un repositorio donde no tenemos permisos de escritura</li>
-<li>Se hace un <i>fork</i> (copia) de ese repositorio</li>
-<li>Se realizan los cambios que se considere en esa copia</li>
-<li>Finalmente, se pide que el dueño del repositorio original haga un <i>pull</i></li>
-</ul></li>
-<li><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world?source=post_page-----62dea67aa2eb--------------------------------">Guía de Github</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000005c" class="outline-2">
-<h2 id="org000005c"><span class="section-number-2">10.</span> Codeberg en <i>selfhosting</i>: Forgejo</h2>
-<div class="outline-text-2" id="text-10">
-<ul class="org-ul">
-<li>Esta es una instalación no apta para producción, solo para pruebas
-<ul class="org-ul">
-<li>Basada en <a href="https://podman.io/">Podman</a></li>
-<li>Con la <a href="https://codeberg.org/forgejo/-/packages/container/forgejo/versions">imagen oficial</a></li>
-</ul></li>
-<li>En la página de instalación (<a href="http:/localhost:3000/">http:/localhost:3000/</a>)
-<ul class="org-ul">
-<li>seleccionar <code>SQLite3</code></li>
-<li>no deshabilitar autoregistro</li>
-</ul></li>
-<li>Entre otras cosas no tiene:
-<ul class="org-ul">
-<li>Una base de datos <i>seria</i></li>
-<li>Una forma de reiniciar el servidor</li>
-<li>Permisos adecuados para el acceso a los datos en <code>forgejo-data</code></li>
-</ul></li>
-</ul>
-
-<div class="org-src-container">
-<pre class="src src-bash">podman run -d <span style="color: #8b2252;">\</span>
-  --replace <span style="color: #8b2252;">\</span>
-  --name=forgejo <span style="color: #8b2252;">\</span>
-  -v forgejo-data:/data <span style="color: #8b2252;">\</span>
-  -v /etc/localtime:/etc/localtime:ro <span style="color: #8b2252;">\</span>
-  -p 3000:3000 <span style="color: #8b2252;">\</span>
-  -p 2222:22 <span style="color: #8b2252;">\</span>
-  codeberg.org/forgejo/forgejo:14
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org000005f" class="outline-2">
-<h2 id="org000005f"><span class="section-number-2">11.</span> Si todo se complica&#x2026;</h2>
-<div class="outline-text-2" id="text-11">
-<p>
-<a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a>
-<a href="https://www.explainxkcd.com/wiki/index.php/1597:_Git"><img src="./media/xkcd-git.png" alt="xkcd-git.png" /></a>
-</p>
-</div>
-</div>
-<div id="outline-container-org0000062" class="outline-2">
-<h2 id="org0000062"><span class="section-number-2">12.</span> Referencias</h2>
-<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
-<li><a href="./ED-03-git.reveal.html">Transparencias</a></li>
-<li><a href="./ED-03-git.pdf">PDF</a></li>
-<li><a href="./ED-03-git.wp.html">Página web</a></li>
-<li><a href="./ED-03-git.epub">EPUB</a></li>
+<li><a href="./ED-04-cleancode.reveal.html">Transparencias</a></li>
+<li><a href="./ED-04-cleancode.pdf">PDF</a></li>
+<li><a href="./ED-04-cleancode.wp.html">Página web</a></li>
+<li><a href="./ED-04-cleancode.epub">EPUB</a></li>
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
@@ -848,7 +752,7 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-02-05 jue 10:19</p>
+<p class="date">Created: 2026-02-04 mié 20:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

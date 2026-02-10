@@ -43,6 +43,8 @@ Una empresa decide conectar varios departamentos en una sola red IP. Para ello, 
 
 Se desea que cada departamento tenga su propio domino de broadcast, pero tengan conectividad entre sí a nivel de red, por lo que estarán unidos mediante routers. Se decide que los routers formen parte de otra subred de  \texttt{192.168.\textit{2*N}.0/23}, siendo los cuatro primeros de su subred. En la parte interna (hacia los departamentos), cada router será el último de la red.
 
+El número \texttt{N} será el asignado a cada alumno en la columna \textbf{Número práctica PT} de \\ \href{https://docs.google.com/spreadsheets/d/1z1B07ee3VjmYwtd1i0wCBRPnjZS00oExbGXNDlNa93E}{https://docs.google.com/spreadsheets/d/1z1B07ee3VjmYwtd1i0wCBRPnjZS00oExbGXNDlNa93E}
+
 \section{Directrices para la creación de redes}
 \begin{itemize}
 \item Calcula las subredes que se asignarán a cada departamento.
@@ -52,7 +54,7 @@ Se desea que cada departamento tenga su propio domino de broadcast, pero tengan 
   \end{itemize}
 \item Crea las redes de cada departamento.
   \begin{itemize}
-  \item Cada una tendrá, a modo de ejemplo, el primer y último ordenador del departamento (por ejemplo, el departamento de administración tendrá el 1º y el 12º).
+  \item Cada una tendrá, para ilustrar el tamaño de la red, el primer y último ordenador del departamento (por ejemplo, el departamento de administración tendrá el 1º y el 12º).
   \item En la red de cada departamento, añade su router como el último de la red IP de ese departamento.
   \end{itemize}
 \item Une los routers entre sí dentro de la red de servidores.
@@ -63,6 +65,8 @@ Se desea que cada departamento tenga su propio domino de broadcast, pero tengan 
 
 \section{Normas de entrega}
 Crea la red descrita en Packet Tracer. Para entregar la práctica, sube el fichero \texttt{PKT} al aula virtual. El fichero \texttt{PKT} deberá tener notas de texto dónde se expliquen las subredes creadas y otras decisiones tomadas.
+
+La entrega es individual. Solo se permiten entregas por parejas si se debe compartir ordenador. En ese caso, se indicará en el fichero PKT con una etiqueta la autoría del trabajo.
 
 \section{Criterios de calificación}
 \begin{itemize}
