@@ -443,6 +443,26 @@ contador=$(($contador + 1))
   #+end_src
 - /Text User Interface/
   - =whiptail= o =dialog=
+
+** Avanzado: usar gmail de /smarthost/
+Esto no usa el servidor de correo local, pero hay que poner la contraseña en plano, y usar una [[https://www.systutorials.com/sending-email-from-mailx-command-in-linux-using-gmails-smtp/][App Password]]
+#+begin_src bash
+set smtp-use-starttls
+set ssl-verify=strict
+
+set smtp=smtp://smtp.gmail.com:587
+
+set smtp-auth=login
+set smtp-auth-user=XXXX@gmail.com
+set smtp-auth-password=<quitado>
+set from="XXXXX <XXXXXXXX@gmail.com>"
+#+end_src
+
+#+begin_src bash
+echo hola | mailx -S "config=/home/alumno/.mailrc" -s "asunto" direccion@gmail.com
+#+end_src
+
+
 ** Ejercicio
 - Usa =whiptail= / =dialog= para hacer un /script/ que muestre información del sistema, con opciones para:
   - Mostrar el nombre del ordenador (=hostname=)
