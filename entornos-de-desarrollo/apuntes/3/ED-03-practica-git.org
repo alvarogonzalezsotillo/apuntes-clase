@@ -77,5 +77,6 @@ Dependiendo del orden en que se fusionen las ramas, y de los /commits/ intermedi
   - La salida del comando =git log --all --graph=  
 
 * Qué se valorará
+- Las ramas y etiquetas siguen lo indicado en la práctica
 - Todos los integrantes del equipo han trabajado de forma equilibrada. Al menos han sido responsables de una rama.
 - El programa final funciona y hace lo pedido  

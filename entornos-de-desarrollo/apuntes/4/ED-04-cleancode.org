@@ -237,6 +237,24 @@ podman run --rm \
 - Modificación del código sin cambiar su funcionamiento, para tener un código más claro y sencillo
 - Los /bad smell/ se eliminan mediante la refactorización
 
+** Refactorización en intellij
+- Tecla rápida (con contexto): =CTRL-ALT-SHIFT-t=
+- Menú general: Botón derecho en editor ➡️ /Refactor/
+
+#+reveal: split
+[[file:clipboard-20260301T185634.png]]
+  
+** /Introduce value/
+- A veces hay cálculos complicados en una línea de código
+- Queda más claro si se utilizan variables intermedias
+- Ejemplo: =MathHero.java:36=
+
+
+** /Extract method/
+- Si un método es muy largo, es aconsejable dividirlo
+- Hay que tener en cuenta qué variables necesita (serán parámetros) y qué devuelve
+- Ejemplo:  =TetrisGrid.draw()=   
+    
 
 * Diseño
 - *POLA* = Principle Of Least Astonishment

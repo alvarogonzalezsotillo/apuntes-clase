@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-02-04 mié 20:07 -->
+<!-- 2026-03-01 dom 19:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimización, refactorización y documentación</title>
@@ -208,9 +208,9 @@
 <li><a href="#org0000016">2. Documentación</a></li>
 <li><a href="#org0000034">3. <i>Bad smells</i></a></li>
 <li><a href="#org0000042">4. Sonarqube</a></li>
-<li><a href="#org0000045">5. Refactorización</a></li>
-<li><a href="#org000004b">6. Diseño</a></li>
-<li><a href="#org000004e">7. Referencias</a></li>
+<li><a href="#org000004f">5. Refactorización</a></li>
+<li><a href="#org0000055">6. Diseño</a></li>
+<li><a href="#org0000058">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -672,17 +672,52 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 </div>
 </div>
-<div id="outline-container-org0000045" class="outline-2">
-<h2 id="org0000045"><span class="section-number-2">5.</span> Refactorización</h2>
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">5.</span> Refactorización</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Modificación del código sin cambiar su funcionamiento, para tener un código más claro y sencillo</li>
 <li>Los <i>bad smell</i> se eliminan mediante la refactorización</li>
 </ul>
 </div>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">5.1.</span> Refactorización en intellij</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Tecla rápida (con contexto): <code>CTRL-ALT-SHIFT-t</code></li>
+<li>Menú general: Botón derecho en editor ➡️ <i>Refactor</i></li>
+</ul>
+
+
+<div id="org0000045" class="figure">
+<p><img src="clipboard-20260301T185634.png" alt="clipboard-20260301T185634.png" />
+</p>
 </div>
-<div id="outline-container-org000004b" class="outline-2">
-<h2 id="org000004b"><span class="section-number-2">6.</span> Diseño</h2>
+</div>
+</div>
+<div id="outline-container-org0000049" class="outline-3">
+<h3 id="org0000049"><span class="section-number-3">5.2.</span> <i>Introduce value</i></h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>A veces hay cálculos complicados en una línea de código</li>
+<li>Queda más claro si se utilizan variables intermedias</li>
+<li>Ejemplo: <code>MathHero.java:36</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000004c" class="outline-3">
+<h3 id="org000004c"><span class="section-number-3">5.3.</span> <i>Extract method</i></h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>Si un método es muy largo, es aconsejable dividirlo</li>
+<li>Hay que tener en cuenta qué variables necesita (serán parámetros) y qué devuelve</li>
+<li>Ejemplo:  <code>TetrisGrid.draw()</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000055" class="outline-2">
+<h2 id="org0000055"><span class="section-number-2">6.</span> Diseño</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><b>POLA</b> = Principle Of Least Astonishment
@@ -702,8 +737,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000048" class="outline-3">
-<h3 id="org0000048"><span class="section-number-3">6.1.</span> SOLID</h3>
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">6.1.</span> SOLID</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Responsabilidad única (<b>S</b> ingle responsibility)
@@ -734,8 +769,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 </div>
 </div>
-<div id="outline-container-org000004e" class="outline-2">
-<h2 id="org000004e"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
@@ -752,7 +787,7 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-02-04 mié 20:07</p>
+<p class="date">Created: 2026-03-01 dom 19:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
