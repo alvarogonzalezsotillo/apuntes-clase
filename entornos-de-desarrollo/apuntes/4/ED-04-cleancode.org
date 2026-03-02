@@ -256,6 +256,39 @@ podman run --rm \
 - Ejemplo:  =TetrisGrid.draw()=   
     
 
+** /Encapsulate field/
+- No es aconsejable que se acceda directamente a propiedades de objetos
+  - Ni siquiera desde dentro de la clase
+- Ejemplo: =FallDownEngine.affectBall()= (solo cambiar =ball= al final)
+
+
+** /Introduce parameter object/
+- Si un método tiene demasiados parámetros, crea/reutiliza una clase para agruparlos
+- Ejemplo: constructor =GameComponent()=
+
+** /Pull up/
+- Un miembro de la clase podría estar definido más alto en la jerarquía
+- Ejemplo: =Division.problem= y =Division.solution=
+  - También es un ejemplo de /encapsulate field/  
+
+** /Invert if/
+- Cambia la rama /then/ y la rama /else/ de un /if/
+- Ejemplo: =TetrisGrid.setWorkingBlock()=  
+
+** /Refactor/ como solución a /bad smells/
+- Los ejemplos más evidentes son:
+  - Código duplicado (Duplicated code) ➡️ =Find and replace code duplicates=
+  - Métodos muy largos (Long Method) ➡️ =Extract method=
+  - Clases muy grandes (Large class) ➡️
+    - =Pull members up=
+    - =Extract superclass=  
+  - Lista de parámetros extensa (Long parameter list) ➡️ =Introduce parameter object=
+- Otros /bad smells/ tienen soluciones combinadas, o maś complejas que una refactorización automática
+#+begin_example
+Copilot:
+All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
+#+end_example      
+ 
 * Diseño
 - *POLA* = Principle Of Least Astonishment
   - El código no debería sorprender a quien tenga que entenderlo en un futuro

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-01 dom 19:08 -->
+<!-- 2026-03-02 lun 17:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimización, refactorización y documentación</title>
@@ -208,9 +208,9 @@
 <li><a href="#org0000016">2. Documentación</a></li>
 <li><a href="#org0000034">3. <i>Bad smells</i></a></li>
 <li><a href="#org0000042">4. Sonarqube</a></li>
-<li><a href="#org000004f">5. Refactorización</a></li>
-<li><a href="#org0000055">6. Diseño</a></li>
-<li><a href="#org0000058">7. Referencias</a></li>
+<li><a href="#org000005f">5. Refactorización</a></li>
+<li><a href="#org0000065">6. Diseño</a></li>
+<li><a href="#org0000068">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -672,8 +672,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 </div>
 </div>
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">5.</span> Refactorización</h2>
+<div id="outline-container-org000005f" class="outline-2">
+<h2 id="org000005f"><span class="section-number-2">5.</span> Refactorización</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Modificación del código sin cambiar su funcionamiento, para tener un código más claro y sencillo</li>
@@ -715,9 +715,74 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">5.4.</span> <i>Encapsulate field</i></h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>No es aconsejable que se acceda directamente a propiedades de objetos
+<ul class="org-ul">
+<li>Ni siquiera desde dentro de la clase</li>
+</ul></li>
+<li>Ejemplo: <code>FallDownEngine.affectBall()</code> (solo cambiar <code>ball</code> al final)</li>
+</ul>
 </div>
-<div id="outline-container-org0000055" class="outline-2">
-<h2 id="org0000055"><span class="section-number-2">6.</span> Diseño</h2>
+</div>
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">5.5.</span> <i>Introduce parameter object</i></h3>
+<div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li>Si un método tiene demasiados parámetros, crea/reutiliza una clase para agruparlos</li>
+<li>Ejemplo: constructor <code>GameComponent()</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">5.6.</span> <i>Pull up</i></h3>
+<div class="outline-text-3" id="text-5-6">
+<ul class="org-ul">
+<li>Un miembro de la clase podría estar definido más alto en la jerarquía</li>
+<li>Ejemplo: <code>Division.problem</code> y <code>Division.solution</code>
+<ul class="org-ul">
+<li>También es un ejemplo de <i>encapsulate field</i></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000058" class="outline-3">
+<h3 id="org0000058"><span class="section-number-3">5.7.</span> <i>Invert if</i></h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>Cambia la rama <i>then</i> y la rama <i>else</i> de un <i>if</i></li>
+<li>Ejemplo: <code>TetrisGrid.setWorkingBlock()</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000005c" class="outline-3">
+<h3 id="org000005c"><span class="section-number-3">5.8.</span> <i>Refactor</i> como solución a <i>bad smells</i></h3>
+<div class="outline-text-3" id="text-5-8">
+<ul class="org-ul">
+<li>Los ejemplos más evidentes son:
+<ul class="org-ul">
+<li>Código duplicado (Duplicated code) ➡️ <code>Find and replace code duplicates</code></li>
+<li>Métodos muy largos (Long Method) ➡️ <code>Extract method</code></li>
+<li>Clases muy grandes (Large class) ➡️
+<ul class="org-ul">
+<li><code>Pull members up</code></li>
+<li><code>Extract superclass</code></li>
+</ul></li>
+<li>Lista de parámetros extensa (Long parameter list) ➡️ <code>Introduce parameter object</code></li>
+</ul></li>
+<li>Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una refactorización automática</li>
+</ul>
+<pre class="example" id="org000005b">
+Copilot:
+All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000065" class="outline-2">
+<h2 id="org0000065"><span class="section-number-2">6.</span> Diseño</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><b>POLA</b> = Principle Of Least Astonishment
@@ -737,8 +802,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">6.1.</span> SOLID</h3>
+<div id="outline-container-org0000062" class="outline-3">
+<h3 id="org0000062"><span class="section-number-3">6.1.</span> SOLID</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Responsabilidad única (<b>S</b> ingle responsibility)
@@ -769,8 +834,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-2">
-<h2 id="org0000058"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org0000068" class="outline-2">
+<h2 id="org0000068"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
@@ -787,7 +852,7 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-01 dom 19:08</p>
+<p class="date">Created: 2026-03-02 lun 17:35</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
