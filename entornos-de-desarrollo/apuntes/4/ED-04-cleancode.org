@@ -240,6 +240,19 @@ podman run --rm \
 ** Refactorización en intellij
 - Tecla rápida (con contexto): =CTRL-ALT-SHIFT-t=
 - Menú general: Botón derecho en editor ➡️ /Refactor/
+  
+#+reveal: split  
+
+| Rename... — Shift+F6                                 | Change Signature... — Ctrl+6           | Introduce Variable... — Alt+Shift+V |
+| Introduce Constant... — Ctrl+Alt+C                   | Introduce Field... — Ctrl+Alt+F        | Introduce Parameter... — Ctrl+Alt+P |
+| Introduce Functional Parameter... — Ctrl+Alt+Shift+P | Introduce Functional Variable...       | Introduce Parameter Object...       |
+| Extract Method... — Ctrl+Alt+M                       | Replace Method With Method Object...   | Extract Delegate...                 |
+| Extract Interface...                                 | Extract Superclass...                  | Inline... — Ctrl+Alt+N              |
+| Find and Replace Code Duplicates...                  | Move Class... — F6                     | Copy Class... — F5                  |
+| Safe Delete... — Alt+Delete                          | Pull Members Up...                     | Push Members Down...                |
+| Type Migration... — Ctrl+Shift+F6                    | Make Static...                         | Convert To Instance Method...       |
+| Use Interface Where Possible...                      | Replace Inheritance with Delegation... | Encapsulate Fields...               |
+| Migrate Packages and Classes >                       | Invert Boolean...                      |                                     |
 
 #+reveal: split
 [[file:clipboard-20260301T185634.png]]
