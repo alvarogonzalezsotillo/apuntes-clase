@@ -1,0 +1,190 @@
+% Created 2026-03-03 mar 14:04
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Clean code}
+\rhead{Entornos de desarrollo}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 30.2 (Org mode 9.7.11)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/4/ED-04-practica-cleancode.org}{} \vspace{-1em}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+\section{Objetivo de la práctica}
+\label{sec:org0000000}
+En esta práctica el alumno seguirá trabajando indirectamente el control de versiones, además de:
+\begin{itemize}
+\item Uso básico de \emph{javadoc}
+\item Refactorización usando un IDE
+\item Seguimiento de guías de estilo y eliminación de \emph{bad smells}
+\end{itemize}
+
+Esta práctica será tenida en cuenta para el RA4.
+\section{Enunciado}
+\label{sec:org000000f}
+Este programa resuelve el problema del \href{http://es.wikipedia.org/wiki/Pentomin\%C3\%B3}{pentominó}. El código fuente está bastante bien, pero es necesario mejorarlo en algunos aspectos. En concreto, hay que mejorar ciertas partes internas del código y no está documentado adecuadamente. El código fuente inicial está en \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
+\subsection{Documentación (2 puntos)}
+\label{sec:org0000003}
+Hay clases, atributos y métodos sin documentar. Se debe completar la documentación (en español o en inglés, indistintamente)
+
+\begin{itemize}
+\item Todas las clases tendrán \texttt{@author} (usa tu nombre y apellido). Existen desde la versión 1.0.
+\item Todas las clases tendrán alguna referencia \texttt{@see} a otra que se use o por la que sea usada.
+\item En la clase \texttt{Pentominos}  
+\begin{itemize}
+\item Todos los métodos tendrán \texttt{@param} para todos sus atributos. Todos los métodos con retorno tendrán \texttt{@return}
+\item Cada método tendrá una referencia \texttt{@link} a algún método que sea llamado dentro de él. Si no llama a ningún método, tendrá una referencia a un método que lo llame.
+\end{itemize}
+\end{itemize}
+\subsection{Refactorización (4 puntos)}
+\label{sec:org0000006}
+Realiza estos cambios con las herramientas de refactorización de Intellij:
+\begin{itemize}
+\item Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo \texttt{m\_}. Todos los atributos de la clase \texttt{MosaicPanel} se modificarán.
+\item El \texttt{PentominosPanel.menuHandler} es demasiado largo. Cada acción se realizará en un método aparte, en vez de dentro del \texttt{if} encadenado.
+\item El método \texttt{PentominosPanel.doSaveImage} se dividirá en dos:
+\begin{itemize}
+\item Una parte pedirá un fichero y comprobará que no existe
+\item La otra parte utilizará ese fichero para grabar la imagen.
+\end{itemize}
+\item Los atributos \texttt{rows} y \texttt{columns} de \texttt{MosaicPanel} no se accederán directamente. Se utilizarán métodos \texttt{set} y \texttt{get} para ello.
+\item Las clases deberán formar parte del paquete \texttt{edu.hws.godel}.
+\end{itemize}
+\subsection{Clean code (3)}
+\label{sec:org0000009}
+\begin{itemize}
+\item Consigue que la clase MakeIcons no tenga ningún aviso de Sonarqube.
+\item Puedes ignorar el aviso \texttt{S106}
+\end{itemize}
+\subsection{Javadoc (1 punto)}
+\label{sec:org000000c}
+\begin{itemize}
+\item Genera la documentación \emph{javadoc} del proyecto
+\item Se dejará en el directorio \texttt{javadoc}
+\end{itemize}
+\section{Normas de entrega}
+\label{sec:org0000012}
+\begin{enumerate}
+\item Se creará un repositorio en Codeberg, siendo inicialmente un \emph{fork} de \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
+\item La práctica se realizará en la rama \texttt{2026-refactorizacion-documentacion}
+\item Se modificará el código sobre ese repositorio hasta ajustarse a lo pedido en la práctica.
+\item Se creará un \emph{tag} con la versión para entregar, de nombre \texttt{2026-entrega}
+\item En el aula virtual, se subirá:
+\begin{itemize}
+\item La URL del repositorio
+\item El identificador del \emph{commit} del \emph{tag} de la entrega.
+\end{itemize}
+\item Si la práctica se realiza por parejas, todos los integrantes subirán el resultado al aula virtual, y en la historia del repositorio podrá verse que el reparto de trabajo ha sido equilibrado
+\end{enumerate}
+\section{Qué se valorará}
+\label{sec:org0000015}
+\begin{itemize}
+\item Que haya un \emph{commit} por cada subapartado.
+\item Que el código final se ajuste a lo pedido
+\item Que el código funcione (clases Main: \texttt{Pentominos} y \texttt{MakeIcons})
+\end{itemize}
+\end{document}

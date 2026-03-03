@@ -255,7 +255,7 @@ podman run --rm \
 | Migrate Packages and Classes >                       | Invert Boolean...                      |                                     |
 
 #+reveal: split
-[[file:clipboard-20260301T185634.png]]
+[[file:media//clipboard-20260301T185634.png]]
   
 ** /Introduce value/
 - A veces hay cálculos complicados en una línea de código
@@ -297,10 +297,10 @@ podman run --rm \
     - =Extract superclass=  
   - Lista de parámetros extensa (Long parameter list) ➡️ =Introduce parameter object=
 - Otros /bad smells/ tienen soluciones combinadas, o maś complejas que una refactorización automática
-#+begin_example
-Copilot:
-All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
-#+end_example      
+  #+begin_example
+  Copilot:
+  All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
+  #+end_example      
  
 * Diseño
 - *POLA* = Principle Of Least Astonishment
