@@ -238,7 +238,7 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 
 * NDP
 - ARP es un protocolo para IPv4
-- IPv6 utiliza [[https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol][Network Discovery Protocol]]
+- IPv6 utiliza [[https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol][Neighbor Discovery Protocol]]
 - Linux: =ip -6 neigh show=
 - Windows: =netsh interface ipv6 show neighbors=
 
