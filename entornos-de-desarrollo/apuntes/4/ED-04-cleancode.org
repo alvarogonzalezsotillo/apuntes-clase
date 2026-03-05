@@ -202,7 +202,9 @@ public static double[] puntosCorte(Parabola p1, Parabola p2) {
 
 ** /plugin/ para Intellij  
 - Instala el /plugin/ para Intellij
-- Comprueba las recomendaciones que da para el fichero =FallDownComponent.java=  
+- Comprueba las recomendaciones que da para el fichero =FallDownComponent.java=
+- Para ignorar avisos: =@java.lang.SuppressWarnings("squid:S00112")=
+  
 [[file:media/clipboard-20260203T130947.png]]
 
 
