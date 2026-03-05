@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:07 -->
+<!-- 2026-03-03 Tue 11:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protocolo IPv6</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -252,6 +252,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -272,7 +283,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000016" class="outline-2">
 <h2 id="org0000016"><span class="section-number-2">2.</span> IPv6</h2>
 <div class="outline-text-2" id="text-2">
@@ -287,7 +297,6 @@ window.addEventListener("load",()=>{
 ¿Cuántas direcciones IPv6 hay por m<sup>2</sup>?</li>
 </ul>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">2.1.</span> Direcciones IPv6</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -305,8 +314,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">2.2.</span> Direcciones reservadas</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -386,10 +393,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
-
-
 <div id="outline-container-org000000d" class="outline-3">
 <h3 id="org000000d"><span class="section-number-3">2.4.</span> Tipos de comunicación</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -417,7 +420,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000010" class="outline-3">
 <h3 id="org0000010"><span class="section-number-3">2.5.</span> Subnetting en IPv6</h3>
 <div class="outline-text-3" id="text-2-5">
@@ -437,14 +439,13 @@ window.addEventListener("load",()=>{
 <pre class="src src-sh">This document provides recommendations to the addressing registries
 (APNIC, ARIN and RIPE-NCC) on policies for assigning IPv6 address
 blocks to end sites.  In particular, it recommends the assignment of
-/48<span style="color: #729fcf; font-weight: bold;"> in</span> the general case, /64 when it is known that one and only one
+/48<span style="color: #a020f0;"> in</span> the general case, /64 when it is known that one and only one
 subnet is needed and /128 when it is absolutely known that one and
 only one device is connecting.
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000013" class="outline-3">
 <h3 id="org0000013"><span class="section-number-3">2.6.</span> Ejercicio subnetting</h3>
 <div class="outline-text-3" id="text-2-6">
@@ -454,8 +455,6 @@ Dada la red <code>2001:0DB8:7200::/39</code>, se desea dividirla en 8 redes de i
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000023" class="outline-2">
 <h2 id="org0000023"><span class="section-number-2">3.</span> Configuración de IPv6</h2>
 <div class="outline-text-2" id="text-3">
@@ -487,7 +486,6 @@ Añadir una ruta
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001d" class="outline-3">
 <h3 id="org000001d"><span class="section-number-3">3.2.</span> Windows</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -501,8 +499,6 @@ Añadir una ruta
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000020" class="outline-3">
 <h3 id="org0000020"><span class="section-number-3">3.3.</span> IOS</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -519,23 +515,23 @@ Se puede utilizar el sufijo eui64, o indicar completamente la dirección
 <li><p>
 Para añadir rutas: En el ejemplo, se indica que para llegar a la red <code>2001:db8::/32</code> se va por el router <code>2001:db8:3000:1</code>.
 </p>
-<pre class="example">
-  ipv6 route 2001:DB8::/32 2001:DB8:3000:1
-</pre></li>
+<div class="org-src-container">
+<pre class="src src-nil">  ipv6 route 2001:DB8::/32 2001:DB8:3000:1
+</pre>
+</div></li>
 
 <li><p>
 Para activar el enrutamiento y consultar las rutas
 </p>
-<pre class="example">
-  ipv6 unicast-routing 
+<div class="org-src-container">
+<pre class="src src-nil">  ipv6 unicast-routing 
   show ipv6 route
-</pre></li>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000033" class="outline-2">
 <h2 id="org0000033"><span class="section-number-2">4.</span> Convivencia IPv4/IPv6</h2>
 <div class="outline-text-2" id="text-4">
@@ -552,7 +548,6 @@ Para activar el enrutamiento y consultar las rutas
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000030" class="outline-3">
 <h3 id="org0000030"><span class="section-number-3">4.1.</span> Interoperabilidad</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -592,7 +587,6 @@ Para activar el enrutamiento y consultar las rutas
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000028" class="outline-4">
 <h4 id="org0000028"><span class="section-number-4">4.1.1.</span> IPv4 mapeada a IPv6</h4>
 <div class="outline-text-4" id="text-4-1-1">
@@ -615,9 +609,6 @@ Fuente: <a href="http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm
 </p>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000002d" class="outline-4">
 <h4 id="org000002d"><span class="section-number-4">4.1.2.</span> IPv6 compatible con IPv4 (túnel dinámico)</h4>
 <div class="outline-text-4" id="text-4-1-2">
@@ -642,8 +633,6 @@ Fuente: <a href="http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000043" class="outline-2">
 <h2 id="org0000043"><span class="section-number-2">5.</span> Ejercicios</h2>
 <div class="outline-text-2" id="text-5">
@@ -667,7 +656,6 @@ Haz ping al resto de ordenadores de tus compañeros
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-3">
 <h3 id="org0000039"><span class="section-number-3">5.2.</span> Windows</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -689,7 +677,6 @@ Haz ping al resto de ordenadores de tus compañeros (<code>interfaz</code> hace 
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000003c" class="outline-3">
 <h3 id="org000003c"><span class="section-number-3">5.3.</span> Windows</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -700,7 +687,6 @@ Haz ping al resto de ordenadores de tus compañeros (<code>interfaz</code> hace 
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000040" class="outline-3">
 <h3 id="org0000040"><span class="section-number-3">5.4.</span> IOS</h3>
 <div class="outline-text-3" id="text-5-4">
@@ -723,13 +709,12 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000046" class="outline-2">
 <h2 id="org0000046"><span class="section-number-2">6.</span> NDP</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>ARP es un protocolo para IPv4</li>
-<li>IPv6 utiliza <a href="https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol">Network Discovery Protocol</a></li>
+<li>IPv6 utiliza <a href="https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol">Neighbor Discovery Protocol</a></li>
 <li>Linux: <code>ip -6 neigh show</code></li>
 <li>Windows: <code>netsh interface ipv6 show neighbors</code></li>
 </ul>
@@ -739,7 +724,6 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000049" class="outline-2">
 <h2 id="org0000049"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
@@ -751,12 +735,6 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 <li><a href="./par-4-protocolo-ipv6.wp.html">Página web</a></li>
 <li><a href="./par-4-protocolo-ipv6.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -764,7 +742,7 @@ Completa el ejercicio de packettracer, de forma que todos los ordenadores tengan
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:07</p>
+<p class="date">Created: 2026-03-03 Tue 11:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
