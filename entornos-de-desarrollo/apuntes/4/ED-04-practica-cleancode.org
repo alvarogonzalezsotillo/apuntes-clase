@@ -29,7 +29,7 @@ Hay clases, atributos y métodos sin documentar. Se debe completar la documentac
 
 ** Refactorización (4 puntos)
 Realiza estos cambios con las herramientas de refactorización de Intellij:
-- Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo ~m_~. Todos los atributos de la clase =MosaicPanel= se modificarán.
+- Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo ~m_~, pero se mantienen los métodos =getXX= y =setXX=. Todos los atributos de la clase =MosaicPanel= se modificarán.
 - El ~PentominosPanel.menuHandler~ es demasiado largo. Cada acción se realizará en un método aparte, en vez de dentro del =if= encadenado.
 - El método ~PentominosPanel.doSaveImage~ se dividirá en dos:
   - Una parte pedirá un fichero y comprobará que no existe

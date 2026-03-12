@@ -1,4 +1,4 @@
-% Created 2026-03-03 mar 14:04
+% Created 2026-03-12 jue 09:58
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -67,7 +67,7 @@
 
 \captionsetup{font=scriptsize}
 
-\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/4/ED-04-practica-cleancode.org}{} \vspace{-1em}
+\textattachfile{/home/alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/4/ED-04-practica-cleancode.org}{} \vspace{-1em}
 
 
 \setlength{\parindent}{0em}
@@ -144,7 +144,7 @@ Hay clases, atributos y métodos sin documentar. Se debe completar la documentac
 \label{sec:org0000006}
 Realiza estos cambios con las herramientas de refactorización de Intellij:
 \begin{itemize}
-\item Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo \texttt{m\_}. Todos los atributos de la clase \texttt{MosaicPanel} se modificarán.
+\item Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo \texttt{m\_}, pero se mantienen los métodos \texttt{getXX} y \texttt{setXX}. Todos los atributos de la clase \texttt{MosaicPanel} se modificarán.
 \item El \texttt{PentominosPanel.menuHandler} es demasiado largo. Cada acción se realizará en un método aparte, en vez de dentro del \texttt{if} encadenado.
 \item El método \texttt{PentominosPanel.doSaveImage} se dividirá en dos:
 \begin{itemize}
