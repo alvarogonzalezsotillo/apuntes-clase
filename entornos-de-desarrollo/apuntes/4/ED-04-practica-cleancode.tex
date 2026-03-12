@@ -1,4 +1,4 @@
-% Created 2026-03-05 jue 10:52
+% Created 2026-03-12 jue 15:55
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -151,7 +151,7 @@ Realiza estos cambios con las herramientas de refactorización de Intellij:
 \item Una parte pedirá un fichero y comprobará que no existe
 \item La otra parte utilizará ese fichero para grabar la imagen.
 \end{itemize}
-\item Los atributos \texttt{rows} y \texttt{columns} de \texttt{MosaicPanel} no se accederán directamente. Se utilizarán métodos \texttt{set} y \texttt{get} para ello.
+\item Los atributos \texttt{rows} y \texttt{columns} de \texttt{MosaicPanel} no se accederán directamente. Se utilizarán métodos \texttt{set} y \texttt{get} para ello, incluso dentro e la propia clase.
 \item Las clases deberán formar parte del paquete \texttt{edu.hws.godel}.
 \end{itemize}
 \subsection{Clean code (3)}
@@ -169,7 +169,10 @@ Realiza estos cambios con las herramientas de refactorización de Intellij:
 \section{Normas de entrega}
 \label{sec:org0000012}
 \begin{enumerate}
-\item Se creará un repositorio en Codeberg, siendo inicialmente un \emph{fork} de \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
+\item Se creará un repositorio en Codeberg
+\begin{itemize}
+\item Será un \emph{fork} de \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
+\end{itemize}
 \item La práctica se realizará en la rama \texttt{2026-refactorizacion-documentacion}
 \item Se modificará el código sobre ese repositorio hasta ajustarse a lo pedido en la práctica.
 \item Se creará un \emph{tag} con la versión para entregar, de nombre \texttt{2026-entrega}

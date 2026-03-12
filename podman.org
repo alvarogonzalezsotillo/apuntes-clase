@@ -5,18 +5,32 @@ No tiene demasiadas ventajas respecto de python http, pero es un ejemplo
   #+begin_src bash
   podrman run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
   #+end_src
-  
 
-* Sonarqube
+* Forjego (clon de github)
+
+#+begin_src bash
+podman run -d \
+  --replace \
+  --name=forgejo \
+  -v forgejo-data:/data \
+  -v /etc/localtime:/etc/localtime:ro \
+  -p 3000:3000 \
+  -p 2222:22 \
+  codeberg.org/forgejo/forgejo:14
+#+end_src
+
+
+* Sonarqube (Bad smells en código)
 - Servidor 
   #+begin_src sh
+    sudo setenforce false
     podman run -p 9000:9000 --name sonarqube docker.io/sonarqube:community 
   #+end_src
 
 - Cliente (cambiar /token/)
   #+begin_src sh
   podman run --rm \
-         --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro \
+         --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro,z \
          --workdir /usr/src \
          --network=host \
          docker.io/sonarsource/sonar-scanner-cli \
