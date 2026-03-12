@@ -39,7 +39,7 @@ Realiza estos cambios con las herramientas de refactorización de Intellij:
 
 ** Clean code (3)
 - Consigue que la clase MakeIcons no tenga ningún aviso de Sonarqube.
-- Puedes ignorar el aviso =S106=
+- Puedes [[https://stackoverflow.com/questions/10971968/turning-sonar-off-for-certain-code][ignorar el aviso]] =S106=
 
 ** Javadoc (1 punto)
 - Genera la documentación /javadoc/ del proyecto
