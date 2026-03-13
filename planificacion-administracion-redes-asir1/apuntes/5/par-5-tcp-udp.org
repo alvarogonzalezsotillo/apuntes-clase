@@ -163,7 +163,7 @@ Fuente:[[https://commons.wikimedia.org/w/index.php?curid=30810617][By Scil100]]
   - El sistema le asigna un puerto no utilizado cualquiera
   - Generalmente, un puerto dinámico
   - El cliente también puede solicitar un puerto, pero es poco frecuente
-
+[[https://www.ssh.com/academy/ssh/port][¿Cómo se puede registrar un puerto?]]
 ** Comando =netstat=
 - Informa de 
   - Las conexiones TCP y UDP activas

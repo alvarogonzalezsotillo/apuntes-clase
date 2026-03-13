@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:07 -->
+<!-- 2026-03-13 Fri 14:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TCP y UDP</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -254,6 +254,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000001" class="outline-2">
 <h2 id="org0000001"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -275,7 +286,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000b" class="outline-2">
 <h2 id="org000000b"><span class="section-number-2">2.</span> UDP</h2>
 <div class="outline-text-2" id="text-2">
@@ -288,7 +298,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000005" class="outline-3">
 <h3 id="org0000005"><span class="section-number-3">2.1.</span> Formato de trama UDP</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -299,7 +308,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000008" class="outline-3">
 <h3 id="org0000008"><span class="section-number-3">2.2.</span> Características de UDP</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -316,7 +324,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000014" class="outline-2">
 <h2 id="org0000014"><span class="section-number-2">3.</span> TCP</h2>
 <div class="outline-text-2" id="text-3">
@@ -334,8 +341,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
-
-
 <div id="outline-container-org0000011" class="outline-3">
 <h3 id="org0000011"><span class="section-number-3">3.1.</span> Ventana y corrección de errores</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -368,8 +373,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000021" class="outline-2">
 <h2 id="org0000021"><span class="section-number-2">4.</span> <i>Sequence number</i> y <i>Acknowledgment number</i></h2>
 <div class="outline-text-2" id="text-4">
@@ -386,7 +389,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">4.1.</span> Estado de la conexión</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -407,8 +409,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000001e" class="outline-3">
 <h3 id="org000001e"><span class="section-number-3">4.2.</span> Corrección de errores</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -472,7 +472,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000002a" class="outline-2">
 <h2 id="org000002a"><span class="section-number-2">5.</span> Mensajes TCP</h2>
 <div class="outline-text-2" id="text-5">
@@ -493,7 +492,6 @@ Fuente: <a href="https://commons.wikimedia.org/w/index.php?curid=11680600">By Sn
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000027" class="outline-3">
 <h3 id="org0000027"><span class="section-number-3">5.2.</span> Estados TCP</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -515,8 +513,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000042" class="outline-2">
 <h2 id="org0000042"><span class="section-number-2">6.</span> Puertos</h2>
 <div class="outline-text-2" id="text-6">
@@ -564,7 +560,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org000002d" class="outline-3">
 <h3 id="org000002d"><span class="section-number-3">6.1.</span> Asignación de puertos</h3>
 <div class="outline-text-3" id="text-6-1">
@@ -581,9 +576,11 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 <li>El cliente también puede solicitar un puerto, pero es poco frecuente</li>
 </ul></li>
 </ul>
+<p>
+<a href="https://www.ssh.com/academy/ssh/port">¿Cómo se puede registrar un puerto?</a>    
+</p>
 </div>
 </div>
-
 <div id="outline-container-org0000033" class="outline-3">
 <h3 id="org0000033"><span class="section-number-3">6.2.</span> Comando <code>netstat</code></h3>
 <div class="outline-text-3" id="text-6-2">
@@ -658,7 +655,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000030" class="outline-4">
 <h4 id="org0000030"><span class="section-number-4">6.2.1.</span> Ejercicio</h4>
 <div class="outline-text-4" id="text-6-2-1">
@@ -671,7 +667,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000003f" class="outline-3">
 <h3 id="org000003f"><span class="section-number-3">6.3.</span> Comando <code>nc</code></h3>
 <div class="outline-text-3" id="text-6-3">
@@ -696,8 +691,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000036" class="outline-4">
 <h4 id="org0000036"><span class="section-number-4">6.3.1.</span> Ejercicio</h4>
 <div class="outline-text-4" id="text-6-3-1">
@@ -708,7 +701,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-4">
 <h4 id="org0000039"><span class="section-number-4">6.3.2.</span> Youtube, 1990</h4>
 <div class="outline-text-4" id="text-6-3-2">
@@ -717,7 +709,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </p>
 </div>
 </div>
-
 <div id="outline-container-org000003c" class="outline-4">
 <h4 id="org000003c"><span class="section-number-4">6.3.3.</span> Gmail, 1990</h4>
 <div class="outline-text-4" id="text-6-3-3">
@@ -728,9 +719,6 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000004c" class="outline-2">
 <h2 id="org000004c"><span class="section-number-2">7.</span> Direcciones de escucha</h2>
 <div class="outline-text-2" id="text-7">
@@ -788,9 +776,6 @@ La dirección IP se puede utilizar como un <i>firewall</i> rudimentario
 </ul>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000049" class="outline-3">
 <h3 id="org0000049"><span class="section-number-3">7.2.</span> ¿Más de un proceso escuchando en el mismo puerto?</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -815,7 +800,6 @@ both TCP and UDP sockets.
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000055" class="outline-2">
 <h2 id="org0000055"><span class="section-number-2">8.</span> TCP vs UDP</h2>
 <div class="outline-text-2" id="text-8">
@@ -836,7 +820,6 @@ both TCP and UDP sockets.
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000004f" class="outline-3">
 <h3 id="org000004f"><span class="section-number-3">8.1.</span> TCP Joke</h3>
 <div class="outline-text-3" id="text-8-1">
@@ -853,7 +836,6 @@ both TCP and UDP sockets.
 </ol>
 </div>
 </div>
-
 <div id="outline-container-org0000052" class="outline-3">
 <h3 id="org0000052"><span class="section-number-3">8.2.</span> UDP Joke</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -863,8 +845,6 @@ both TCP and UDP sockets.
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000058" class="outline-2">
 <h2 id="org0000058"><span class="section-number-2">9.</span> Referencias</h2>
 <div class="outline-text-2" id="text-9">
@@ -876,12 +856,6 @@ both TCP and UDP sockets.
 <li><a href="./par-5-tcp-udp.wp.html">Página web</a></li>
 <li><a href="./par-5-tcp-udp.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -889,7 +863,7 @@ both TCP and UDP sockets.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:07</p>
+<p class="date">Created: 2026-03-13 Fri 14:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
