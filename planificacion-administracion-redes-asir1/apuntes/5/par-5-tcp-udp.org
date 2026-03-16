@@ -270,6 +270,11 @@ both TCP and UDP sockets.
   printf "GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n" \
       | openssl s_client -quiet -connect www.debian.org:443
   #+end_src
+- =netcat= también lo incluye
+  #+begin_src 
+  nc --ssl 
+  #+end_src
+
 
   
 
