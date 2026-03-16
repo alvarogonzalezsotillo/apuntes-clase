@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-13 Fri 14:11 -->
+<!-- 2026-03-16 Mon 09:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TCP y UDP</title>
@@ -214,8 +214,9 @@
 <li><a href="#org000002a">5. Mensajes TCP</a></li>
 <li><a href="#org0000042">6. Puertos</a></li>
 <li><a href="#org000004c">7. Direcciones de escucha</a></li>
-<li><a href="#org0000055">8. TCP vs UDP</a></li>
-<li><a href="#org0000058">9. Referencias</a></li>
+<li><a href="#org000004f">8. SSL</a></li>
+<li><a href="#org0000058">9. TCP vs UDP</a></li>
+<li><a href="#org000005b">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -577,7 +578,7 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 </ul></li>
 </ul>
 <p>
-<a href="https://www.ssh.com/academy/ssh/port">¿Cómo se puede registrar un puerto?</a>    
+<a href="https://www.ssh.com/academy/ssh/port">¿Cómo se puede registrar un puerto?</a>
 </p>
 </div>
 </div>
@@ -800,9 +801,37 @@ both TCP and UDP sockets.
 </div>
 </div>
 </div>
-<div id="outline-container-org0000055" class="outline-2">
-<h2 id="org0000055"><span class="section-number-2">8.</span> TCP vs UDP</h2>
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">8.</span> SSL</h2>
 <div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Muchos protocolos basados en TCP han añadido SSL
+<ul class="org-ul">
+<li><code>HTTP</code> ➔ <code>HTTPS</code></li>
+<li><code>IMAP</code> ➔ <code>IMAPS</code></li>
+</ul></li>
+<li>SSL aporta encriptación (sería parte de la capa de presentación)</li>
+<li><p>
+En ese caso, en vez de <code>netcat</code> usaremos <code>openssl</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">  openssl s_client -quiet -connect www.debian.org:443
+</pre>
+</div></li>
+<li><p>
+Ejemplo completo:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">  printf <span style="color: #8b2252;">"GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n"</span> <span style="color: #8b2252;">\</span>
+    <span style="color: #acccacccffff;"> </span> | openssl s_client -quiet -connect www.debian.org:443
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000058" class="outline-2">
+<h2 id="org0000058"><span class="section-number-2">9.</span> TCP vs UDP</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>TCP es un medio de transmisión asegurado
 <ul class="org-ul">
@@ -820,9 +849,9 @@ both TCP and UDP sockets.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org000004f" class="outline-3">
-<h3 id="org000004f"><span class="section-number-3">8.1.</span> TCP Joke</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">9.1.</span> TCP Joke</h3>
+<div class="outline-text-3" id="text-9-1">
 <ol class="org-ol">
 <li>Hello, would you like to hear a TCP joke?</li>
 <li>Yes, I'd like to hear a TCP joke.</li>
@@ -836,18 +865,18 @@ both TCP and UDP sockets.
 </ol>
 </div>
 </div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">8.2.</span> UDP Joke</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">9.2.</span> UDP Joke</h3>
+<div class="outline-text-3" id="text-9-2">
 <ul class="org-ul">
 <li>Lo anterior era una broma de TCP. No me importa si la pillas o no.</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-2">
-<h2 id="org0000058"><span class="section-number-2">9.</span> Referencias</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org000005b" class="outline-2">
+<h2 id="org000005b"><span class="section-number-2">10.</span> Referencias</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -863,7 +892,7 @@ both TCP and UDP sockets.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-13 Fri 14:11</p>
+<p class="date">Created: 2026-03-16 Mon 09:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

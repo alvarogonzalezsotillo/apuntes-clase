@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-03-13 Fri 14:11 -->
+<!-- Generated on 2026-03-16 Mon 09:33 -->
 <meta charset="utf-8"/>
 <title>TCP y UDP</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">TCP y UDP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-13 Fri 14:11</p>
+<h1 class="title">TCP y UDP</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-16 Mon 09:33</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -459,8 +459,9 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-5">5. Mensajes TCP</a></li>
 <li><a href="#/slide-6">6. Puertos</a></li>
 <li><a href="#/slide-7">7. Direcciones de escucha</a></li>
-<li><a href="#/slide-8">8. TCP vs UDP</a></li>
-<li><a href="#/slide-9">9. Referencias</a></li>
+<li><a href="#/slide-8">8. SSL</a></li>
+<li><a href="#/slide-9">9. TCP vs UDP</a></li>
+<li><a href="#/slide-10">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -6423,7 +6424,7 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 
 </ul>
 <p>
-<a href="https://www.ssh.com/academy/ssh/port">¿Cómo se puede registrar un puerto?</a>    
+<a href="https://www.ssh.com/academy/ssh/port">¿Cómo se puede registrar un puerto?</a>
 </p>
 <div class="slide-footer"></div>
 </section>
@@ -6655,7 +6656,40 @@ both TCP and UDP sockets.
 </section>
 <section>
 <section id="slide-8">
-<h2 id="8"><span class="section-number-2">8.</span> TCP vs UDP</h2>
+<h2 id="8"><span class="section-number-2">8.</span> SSL</h2>
+<ul>
+<li>Muchos protocolos basados en TCP han añadido SSL
+<ul>
+<li><code>HTTP</code> ➔ <code>HTTPS</code></li>
+<li><code>IMAP</code> ➔ <code>IMAPS</code></li>
+
+</ul></li>
+<li>SSL aporta encriptación (sería parte de la capa de presentación)</li>
+<li><p>
+En ese caso, en vez de <code>netcat</code> usaremos <code>openssl</code>
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  openssl s_client -quiet -connect www.debian.org:443
+</code></pre>
+</div></li>
+<li><p>
+Ejemplo completo:
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  printf "GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n" \
+      | openssl s_client -quiet -connect www.debian.org:443
+</code></pre>
+</div></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-9">
+<h2 id="9"><span class="section-number-2">9.</span> TCP vs UDP</h2>
 <ul>
 <li>TCP es un medio de transmisión asegurado
 <ul>
@@ -6677,8 +6711,8 @@ both TCP and UDP sockets.
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-1">
-<h3 id="8-1"><span class="section-number-3">8.1.</span> TCP Joke</h3>
+<section id="slide-9-1">
+<h3 id="9-1"><span class="section-number-3">9.1.</span> TCP Joke</h3>
 <ol>
 <li>Hello, would you like to hear a TCP joke?</li>
 <li>Yes, I'd like to hear a TCP joke.</li>
@@ -6693,8 +6727,8 @@ both TCP and UDP sockets.
 </ol>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-2">
-<h3 id="8-2"><span class="section-number-3">8.2.</span> UDP Joke</h3>
+<section id="slide-9-2">
+<h3 id="9-2"><span class="section-number-3">9.2.</span> UDP Joke</h3>
 <ul>
 <li>Lo anterior era una broma de TCP. No me importa si la pillas o no.</li>
 
@@ -6703,8 +6737,8 @@ both TCP and UDP sockets.
 </section>
 </section>
 <section>
-<section id="slide-9">
-<h2 id="9"><span class="section-number-2">9.</span> Referencias</h2>
+<section id="slide-10">
+<h2 id="10"><span class="section-number-2">10.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>
