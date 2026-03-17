@@ -81,7 +81,9 @@
   javadoc -sourcepath src -d docs -subpackages <paquetes>
   #+end_src
 
-    
+
+** Documentación vs Código
+[[file:clipboard-20260317T120444.png]]
 * /Bad smells/
 https://openwebinars.net/blog/code-smells-y-deuda-tecnica/
 

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700">
+<style>
+.box { fill:#f5f5dc; stroke:black; stroke-width:1; }
+.test { fill:#ffff66; stroke:black; stroke-width:1; }
+.arrow { stroke:black; stroke-width:2; marker-end:url(#arrowhead); }
+text { font-family: Arial, sans-serif; font-size:14px; }
+</style>
+
+<defs>
+<marker id="arrowhead" markerWidth="10" markerHeight="7" 
+refX="10" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" />
+</marker>
+</defs>
+
+<!-- Left side boxes -->
+<rect class="box" x="80" y="50" width="200" height="60"/>
+<text x="100" y="80">Necesidades de los usuarios</text>
+
+<rect class="box" x="80" y="140" width="200" height="60"/>
+<text x="100" y="170">Paso a producción</text>
+
+<rect class="box" x="80" y="230" width="200" height="60"/>
+<text x="100" y="260">Requisitos del sistema</text>
+
+<rect class="box" x="80" y="320" width="200" height="60"/>
+<text x="100" y="350">Interacción entre componentes</text>
+
+<rect class="box" x="80" y="410" width="200" height="60"/>
+<text x="100" y="440">Componentes aislados</text>
+
+<!-- Right side test boxes -->
+<rect class="test" x="900" y="50" width="200" height="60"/>
+<text x="920" y="80">Pruebas de aceptación</text>
+
+<rect class="test" x="900" y="140" width="200" height="60"/>
+<text x="920" y="170">Pruebas de implantación</text>
+
+<rect class="test" x="900" y="230" width="200" height="60"/>
+<text x="920" y="260">Pruebas de sistema</text>
+
+<rect class="test" x="900" y="320" width="200" height="60"/>
+<text x="920" y="350">Pruebas de integración</text>
+
+<rect class="test" x="900" y="410" width="200" height="60"/>
+<text x="920" y="440">Pruebas unitarias</text>
+
+<!-- Arrows connecting -->
+<line class="arrow" x1="280" y1="80" x2="900" y2="80"/>
+<line class="arrow" x1="280" y1="170" x2="900" y2="170"/>
+<line class="arrow" x1="280" y1="260" x2="900" y2="260"/>
+<line class="arrow" x1="280" y1="350" x2="900" y2="350"/>
+<line class="arrow" x1="280" y1="440" x2="900" y2="440"/>
+
+<!-- Bottom flow -->
+<rect class="box" x="150" y="550" width="150" height="50"/>
+<text x="170" y="580">Código fuente</text>
+
+<rect class="box" x="320" y="550" width="150" height="50"/>
+<text x="330" y="580">Ensamblado</text>
+
+<rect class="box" x="490" y="550" width="150" height="50"/>
+<text x="500" y="580">Sistema</text>
+
+<rect class="box" x="660" y="550" width="150" height="50"/>
+<text x="680" y="580">Producción</text>
+
+<rect class="box" x="830" y="550" width="150" height="50"/>
+<text x="850" y="580">Usuarios</text>
+
+<line class="arrow" x1="300" y1="575" x2="320" y2="575"/>
+<line class="arrow" x1="470" y1="575" x2="490" y2="575"/>
+<line class="arrow" x1="640" y1="575" x2="660" y2="575"/>
+<line class="arrow" x1="810" y1="575" x2="830" y2="575"/>
+
+</svg>
