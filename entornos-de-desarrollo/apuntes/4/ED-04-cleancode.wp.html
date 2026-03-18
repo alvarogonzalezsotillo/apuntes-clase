@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-05 jue 10:51 -->
+<!-- 2026-03-18 mié 11:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimización, refactorización y documentación</title>
@@ -204,13 +204,13 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0000004">1. Deuda técnica</a></li>
-<li><a href="#org0000016">2. Documentación</a></li>
-<li><a href="#org0000034">3. <i>Bad smells</i></a></li>
-<li><a href="#org0000042">4. Sonarqube</a></li>
-<li><a href="#org000005f">5. Refactorización</a></li>
-<li><a href="#org0000065">6. Diseño</a></li>
-<li><a href="#org0000068">7. Referencias</a></li>
+<li><a href="#org0000005">1. Deuda técnica</a></li>
+<li><a href="#org000001b">2. Documentación</a></li>
+<li><a href="#org0000039">3. <i>Bad smells</i></a></li>
+<li><a href="#org0000047">4. Sonarqube</a></li>
+<li><a href="#org0000064">5. Refactorización</a></li>
+<li><a href="#org000006a">6. Diseño</a></li>
+<li><a href="#org000006d">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -260,8 +260,8 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org0000004" class="outline-2">
-<h2 id="org0000004"><span class="section-number-2">1.</span> Deuda técnica</h2>
+<div id="outline-container-org0000005" class="outline-2">
+<h2 id="org0000005"><span class="section-number-2">1.</span> Deuda técnica</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Esfuerzo que se va a tener que hacer adicionalmente, porque se ha elegido un desarrollo sencillo y rápido, en lugar de utilizar un mejor enfoque más lento inicialmente</li>
@@ -274,8 +274,8 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
-<div id="outline-container-org0000001" class="outline-3">
-<h3 id="org0000001"><span class="section-number-3">1.1.</span> Cómo evitar la deuda técnica</h3>
+<div id="outline-container-org0000002" class="outline-3">
+<h3 id="org0000002"><span class="section-number-3">1.1.</span> Cómo evitar la deuda técnica</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Buen diseño</li>
@@ -283,11 +283,17 @@ window.addEventListener("load",()=>{
 <li>Buena documentación</li>
 <li>Entre otros muchos factores: planificación, buena comunicación, gestión del proyecto&#x2026;</li>
 </ul>
+
+
+<div id="org0000001" class="figure">
+<p><img src="clipboard-20260318T104510.png" alt="clipboard-20260318T104510.png" />
+</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000016" class="outline-2">
-<h2 id="org0000016"><span class="section-number-2">2.</span> Documentación</h2>
+</div>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">2.</span> Documentación</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Documentación externa:
@@ -302,8 +308,8 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000007" class="outline-3">
-<h3 id="org0000007"><span class="section-number-3">2.1.</span> Javadoc</h3>
+<div id="outline-container-org0000008" class="outline-3">
+<h3 id="org0000008"><span class="section-number-3">2.1.</span> Javadoc</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Documentación sobre el código en el propio código</li>
@@ -313,8 +319,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org000000a" class="outline-3">
-<h3 id="org000000a"><span class="section-number-3">2.2.</span> Etiquetas Javadoc</h3>
+<div id="outline-container-org000000b" class="outline-3">
+<h3 id="org000000b"><span class="section-number-3">2.2.</span> Etiquetas Javadoc</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -378,8 +384,8 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-<div id="outline-container-org000000d" class="outline-3">
-<h3 id="org000000d"><span class="section-number-3">2.3.</span> Ejemplo: <code>java.util.Set.contains()</code></h3>
+<div id="outline-container-org000000e" class="outline-3">
+<h3 id="org000000e"><span class="section-number-3">2.3.</span> Ejemplo: <code>java.util.Set.contains()</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Documentación del método <code>Set.contains()</code></label><pre class="src src-java">  <span style="color: #8b2252;">/**
@@ -402,8 +408,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000010" class="outline-3">
-<h3 id="org0000010"><span class="section-number-3">2.4.</span> Ejercicio</h3>
+<div id="outline-container-org0000011" class="outline-3">
+<h3 id="org0000011"><span class="section-number-3">2.4.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>El código funente de Java es un gran ejemplo de uso</li>
@@ -416,8 +422,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000013" class="outline-3">
-<h3 id="org0000013"><span class="section-number-3">2.5.</span> Ejercicio</h3>
+<div id="outline-container-org0000014" class="outline-3">
+<h3 id="org0000014"><span class="section-number-3">2.5.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>Completa la documentación Javadoc de tus clases para crear el menú de <code>Java-games</code></li>
@@ -431,9 +437,23 @@ Genera la documentación
 </ul>
 </div>
 </div>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">2.6.</span> Documentación vs Código</h3>
+<div class="outline-text-3" id="text-2-6">
+
+<div id="org0000017" class="figure">
+<p><img src="clipboard-20260317T120444.png" alt="clipboard-20260317T120444.png" />
+</p>
 </div>
-<div id="outline-container-org0000034" class="outline-2">
-<h2 id="org0000034"><span class="section-number-2">3.</span> <i>Bad smells</i></h2>
+
+<p>
+(Lo que tiene relación con el <a href="https://agilemanifesto.org/iso/es/manifesto.html">manifiesto ágil</a>: Software funcionando sobre documentación extensiva)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000039" class="outline-2">
+<h2 id="org0000039"><span class="section-number-2">3.</span> <i>Bad smells</i></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://openwebinars.net/blog/code-smells-y-deuda-tecnica/">https://openwebinars.net/blog/code-smells-y-deuda-tecnica/</a>
@@ -446,8 +466,8 @@ Genera la documentación
 <li>Aumentan el riesgo de <i>bugs</i> en el futuro.</li>
 </ul>
 </div>
-<div id="outline-container-org0000019" class="outline-3">
-<h3 id="org0000019"><span class="section-number-3">3.1.</span> Algunos <i>bad smells</i></h3>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.1.</span> Algunos <i>bad smells</i></h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Código duplicado (Duplicated code)</li>
@@ -465,8 +485,8 @@ Más en <a href="https://sourcemaking.com/refactoring">https://sourcemaking.com/
 </p>
 </div>
 </div>
-<div id="outline-container-org000001c" class="outline-3">
-<h3 id="org000001c"><span class="section-number-3">3.2.</span> Duplicated code</h3>
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">3.2.</span> Duplicated code</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Si se detectan bloques de código iguales o muy parecidos en distintas partes del programa, se debe extraer creando un método para unificarlo.
@@ -504,8 +524,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </div>
 </div>
 </div>
-<div id="outline-container-org000001f" class="outline-3">
-<h3 id="org000001f"><span class="section-number-3">3.3.</span> Long Method</h3>
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">3.3.</span> Long Method</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Los método de muchas lineas dificultan su comprensión.</li>
@@ -516,8 +536,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">3.4.</span> Large class</h3>
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">3.4.</span> Large class</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Problema anterior aplicado a una clase.</li>
@@ -527,8 +547,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000025" class="outline-3">
-<h3 id="org0000025"><span class="section-number-3">3.5.</span> Long parameter list</h3>
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">3.5.</span> Long parameter list</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Las funciones deben tener el mínimo número de parámetros posible, siendo 0 lo perfecto.</li>
@@ -561,8 +581,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </div>
 </div>
 </div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">3.6.</span> Divergent change</h3>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">3.6.</span> Divergent change</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>Si una clase necesita ser modificada a menudo y por razones muy distintas, puede que la clase esté realizando demasiadas tareas.</li>
@@ -570,8 +590,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 </div>
 </div>
-<div id="outline-container-org000002b" class="outline-3">
-<h3 id="org000002b"><span class="section-number-3">3.7.</span> Shotgun surgery</h3>
+<div id="outline-container-org0000030" class="outline-3">
+<h3 id="org0000030"><span class="section-number-3">3.7.</span> Shotgun surgery</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>Si al modificar una clase, se necesitan modificar otras clases o elementos ajenos a ella para compatibilizar el cambio.</li>
@@ -579,16 +599,16 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 </div>
 </div>
-<div id="outline-container-org000002e" class="outline-3">
-<h3 id="org000002e"><span class="section-number-3">3.8.</span> Feature Envy</h3>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">3.8.</span> Feature Envy</h3>
 <div class="outline-text-3" id="text-3-8">
 <ul class="org-ul">
 <li>Ocurre cuando una clase usa más métodos de otra clase, o un método usa más datos de otra clase, que de la propia.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000031" class="outline-3">
-<h3 id="org0000031"><span class="section-number-3">3.9.</span> Refused bequest</h3>
+<div id="outline-container-org0000036" class="outline-3">
+<h3 id="org0000036"><span class="section-number-3">3.9.</span> Refused bequest</h3>
 <div class="outline-text-3" id="text-3-9">
 <ul class="org-ul">
 <li>Cuando una subclase extiende (hereda) de otra clase, y utiliza pocas características de la superclase, puede que haya un error en la jerarquía de clases.</li>
@@ -596,8 +616,8 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </div>
 </div>
 </div>
-<div id="outline-container-org0000042" class="outline-2">
-<h2 id="org0000042"><span class="section-number-2">4.</span> Sonarqube</h2>
+<div id="outline-container-org0000047" class="outline-2">
+<h2 id="org0000047"><span class="section-number-2">4.</span> Sonarqube</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Permite localizar <i>bad smells</i></li>
@@ -606,13 +626,13 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 
 
-<div id="org0000037" class="figure">
+<div id="org000003c" class="figure">
 <p><img src="media/clipboard-20260204T115646.png" alt="clipboard-20260204T115646.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org0000039" class="outline-3">
-<h3 id="org0000039"><span class="section-number-3">4.1.</span> <i>plugin</i> para Intellij</h3>
+<div id="outline-container-org000003e" class="outline-3">
+<h3 id="org000003e"><span class="section-number-3">4.1.</span> <i>plugin</i> para Intellij</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Instala el <i>plugin</i> para Intellij</li>
@@ -621,14 +641,14 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 
 
-<div id="org0000038" class="figure">
+<div id="org000003d" class="figure">
 <p><img src="media/clipboard-20260203T130947.png" alt="clipboard-20260203T130947.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org000003c" class="outline-3">
-<h3 id="org000003c"><span class="section-number-3">4.2.</span> Servidor Sonarqube</h3>
+<div id="outline-container-org0000041" class="outline-3">
+<h3 id="org0000041"><span class="section-number-3">4.2.</span> Servidor Sonarqube</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Permite usarlo para proyectos completos
@@ -649,8 +669,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org000003f" class="outline-3">
-<h3 id="org000003f"><span class="section-number-3">4.3.</span> Cliente Sonarqube</h3>
+<div id="outline-container-org0000044" class="outline-3">
+<h3 id="org0000044"><span class="section-number-3">4.3.</span> Cliente Sonarqube</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>Cambiar <code>/home/alvaro/repos/Java-Games/FallDown</code> por el directorio del proyecto</li>
@@ -674,16 +694,16 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </div>
 </div>
 </div>
-<div id="outline-container-org000005f" class="outline-2">
-<h2 id="org000005f"><span class="section-number-2">5.</span> Refactorización</h2>
+<div id="outline-container-org0000064" class="outline-2">
+<h2 id="org0000064"><span class="section-number-2">5.</span> Refactorización</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Modificación del código sin cambiar su funcionamiento, para tener un código más claro y sencillo</li>
 <li>Los <i>bad smell</i> se eliminan mediante la refactorización</li>
 </ul>
 </div>
-<div id="outline-container-org0000046" class="outline-3">
-<h3 id="org0000046"><span class="section-number-3">5.1.</span> Refactorización en intellij</h3>
+<div id="outline-container-org000004b" class="outline-3">
+<h3 id="org000004b"><span class="section-number-3">5.1.</span> Refactorización en intellij</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Tecla rápida (con contexto): <code>CTRL-ALT-SHIFT-t</code></li>
@@ -764,14 +784,14 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </table>
 
 
-<div id="org0000045" class="figure">
+<div id="org000004a" class="figure">
 <p><img src="media//clipboard-20260301T185634.png" alt="clipboard-20260301T185634.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000049" class="outline-3">
-<h3 id="org0000049"><span class="section-number-3">5.2.</span> <i>Introduce value</i></h3>
+<div id="outline-container-org000004e" class="outline-3">
+<h3 id="org000004e"><span class="section-number-3">5.2.</span> <i>Introduce value</i></h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>A veces hay cálculos complicados en una línea de código</li>
@@ -780,8 +800,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org000004c" class="outline-3">
-<h3 id="org000004c"><span class="section-number-3">5.3.</span> <i>Extract method</i></h3>
+<div id="outline-container-org0000051" class="outline-3">
+<h3 id="org0000051"><span class="section-number-3">5.3.</span> <i>Extract method</i></h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Si un método es muy largo, es aconsejable dividirlo</li>
@@ -790,8 +810,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org000004f" class="outline-3">
-<h3 id="org000004f"><span class="section-number-3">5.4.</span> <i>Encapsulate field</i></h3>
+<div id="outline-container-org0000054" class="outline-3">
+<h3 id="org0000054"><span class="section-number-3">5.4.</span> <i>Encapsulate field</i></h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>No es aconsejable que se acceda directamente a propiedades de objetos
@@ -802,8 +822,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">5.5.</span> <i>Introduce parameter object</i></h3>
+<div id="outline-container-org0000057" class="outline-3">
+<h3 id="org0000057"><span class="section-number-3">5.5.</span> <i>Introduce parameter object</i></h3>
 <div class="outline-text-3" id="text-5-5">
 <ul class="org-ul">
 <li>Si un método tiene demasiados parámetros, crea/reutiliza una clase para agruparlos</li>
@@ -811,8 +831,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000055" class="outline-3">
-<h3 id="org0000055"><span class="section-number-3">5.6.</span> <i>Pull up</i></h3>
+<div id="outline-container-org000005a" class="outline-3">
+<h3 id="org000005a"><span class="section-number-3">5.6.</span> <i>Pull up</i></h3>
 <div class="outline-text-3" id="text-5-6">
 <ul class="org-ul">
 <li>Un miembro de la clase podría estar definido más alto en la jerarquía</li>
@@ -823,8 +843,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-3">
-<h3 id="org0000058"><span class="section-number-3">5.7.</span> <i>Invert if</i></h3>
+<div id="outline-container-org000005d" class="outline-3">
+<h3 id="org000005d"><span class="section-number-3">5.7.</span> <i>Invert if</i></h3>
 <div class="outline-text-3" id="text-5-7">
 <ul class="org-ul">
 <li>Cambia la rama <i>then</i> y la rama <i>else</i> de un <i>if</i></li>
@@ -832,8 +852,8 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 </div>
 </div>
-<div id="outline-container-org000005c" class="outline-3">
-<h3 id="org000005c"><span class="section-number-3">5.8.</span> <i>Refactor</i> como solución a <i>bad smells</i></h3>
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">5.8.</span> <i>Refactor</i> como solución a <i>bad smells</i></h3>
 <div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li>Los ejemplos más evidentes son:
@@ -850,7 +870,7 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 <li><p>
 Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una refactorización automática
 </p>
-<pre class="example" id="org000005b">
+<pre class="example" id="org0000060">
   Copilot:
   All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
 </pre></li>
@@ -858,14 +878,14 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 </div>
 </div>
-<div id="outline-container-org0000065" class="outline-2">
-<h2 id="org0000065"><span class="section-number-2">6.</span> Diseño</h2>
+<div id="outline-container-org000006a" class="outline-2">
+<h2 id="org000006a"><span class="section-number-2">6.</span> Diseño</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><b>POLA</b> = Principle Of Least Astonishment
 <ul class="org-ul">
 <li>El código no debería sorprender a quien tenga que entenderlo en un futuro</li>
-<li>Nombres de variables, parámetros con solo una función&#x2026;</li>
+<li>Nombres de variables y funciones,</li>
 </ul></li>
 <li><b>KISS</b> = Keep It Small and Simple
 <ul class="org-ul">
@@ -879,8 +899,8 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000062" class="outline-3">
-<h3 id="org0000062"><span class="section-number-3">6.1.</span> SOLID</h3>
+<div id="outline-container-org0000067" class="outline-3">
+<h3 id="org0000067"><span class="section-number-3">6.1.</span> SOLID</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Responsabilidad única (<b>S</b> ingle responsibility)
@@ -911,8 +931,8 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 </div>
 </div>
-<div id="outline-container-org0000068" class="outline-2">
-<h2 id="org0000068"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org000006d" class="outline-2">
+<h2 id="org000006d"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
@@ -929,7 +949,7 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-05 jue 10:51</p>
+<p class="date">Created: 2026-03-18 mié 11:00</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

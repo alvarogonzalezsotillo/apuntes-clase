@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-17 mar 12:37 -->
+<!-- 2026-03-18 mié 11:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pruebas</title>
@@ -204,8 +204,9 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org000000a">1. Pruebas del <i>software</i></a></li>
-<li><a href="#org000000d">2. Referencias</a></li>
+<li><a href="#org000001c">1. Pruebas del <i>software</i></a></li>
+<li><a href="#org000002a">2. Cobertura de código</a></li>
+<li><a href="#org000002d">3. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -255,8 +256,8 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org000000a" class="outline-2">
-<h2 id="org000000a"><span class="section-number-2">1.</span> Pruebas del <i>software</i></h2>
+<div id="outline-container-org000001c" class="outline-2">
+<h2 id="org000001c"><span class="section-number-2">1.</span> Pruebas del <i>software</i></h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>El desarrollo solo termina tras comprobar que el código funciona
@@ -325,8 +326,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000007" class="outline-3">
-<h3 id="org0000007"><span class="section-number-3">1.3.</span> nivel de las pruebas</h3>
+<div id="outline-container-org0000016" class="outline-3">
+<h3 id="org0000016"><span class="section-number-3">1.3.</span> Nivel de las pruebas</h3>
 <div class="outline-text-3" id="text-1-3">
 
 <div id="org0000006" class="figure">
@@ -334,11 +335,125 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
+<div id="outline-container-org0000007" class="outline-4">
+<h4 id="org0000007"><span class="section-number-4">1.3.1.</span> Pruebas unitarias</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>Prueban unidades de código</li>
+<li>En java, un método o una clase</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org000000d" class="outline-2">
-<h2 id="org000000d"><span class="section-number-2">2.</span> Referencias</h2>
+<div id="outline-container-org000000a" class="outline-4">
+<h4 id="org000000a"><span class="section-number-4">1.3.2.</span> Pruebas de integración</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ul class="org-ul">
+<li>Comprueban varias clases trabajando de forma conjunta</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000000d" class="outline-4">
+<h4 id="org000000d"><span class="section-number-4">1.3.3.</span> Pruebas de sistema</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ul class="org-ul">
+<li>Se verifica el sistema completo (aplicación o conjunto de aplicaciones)</li>
+<li>Se suelen realizar en sistemas no finales
+<ul class="org-ul">
+<li>Entorno de preproducción / entorno de pruebas</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000010" class="outline-4">
+<h4 id="org0000010"><span class="section-number-4">1.3.4.</span> Pruebas de implantación</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<ul class="org-ul">
+<li>Se verifica el sistema completo (como las pruebas de sistema)</li>
+<li>Pero el entorno es el definitivo
+<ul class="org-ul">
+<li>Entorno de producción</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000013" class="outline-4">
+<h4 id="org0000013"><span class="section-number-4">1.3.5.</span> Pruebas de aceptación</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<ul class="org-ul">
+<li>Se verifica el sistema completo (como las pruebas de implantación)</li>
+<li>Se realizan por el usuario final</li>
+<li>Suelen tener valor contractual: si las pruebas se aceptan, el proyecto está legalmente entregado y es funcional</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000019" class="outline-3">
+<h3 id="org0000019"><span class="section-number-3">1.4.</span> Cuánto probar</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>¿Cuántas pruebas se necesitan para asegurar que <code>Math.abs()</code> es correcto?</li>
+<li>Que funcione para <code>4</code>, <code>24</code>, <code>-2341</code>, <code>3113</code> no garantiza al 100% que funcione para <code>-54</code>.</li>
+<li>Pero tampoco es práctico probar para todos los números <code>int</code>, <code>log</code>, <code>float</code> y <code>double</code></li>
+<li>Es necesario definir un conjunto de pruebas
+<ul class="org-ul">
+<li>Factible: no demasiadas pruebas</li>
+<li>Completo: lo probado garantiza que los casos no probados también son correctos</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000002a" class="outline-2">
+<h2 id="org000002a"><span class="section-number-2">2.</span> Cobertura de código</h2>
 <div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Idea: el código no puede estar probado si no se pasa por todas las líneas de código</li>
+<li>Pruebas de cobertura: durante las pruebas, todas las líneas de código se deben ejecutar al menos una vez</li>
+</ul>
+</div>
+<div id="outline-container-org0000020" class="outline-3">
+<h3 id="org0000020"><span class="section-number-3">2.1.</span> Cobertura en Intellij</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>SHIFT SHIFT run with coverage</code></li>
+</ul>
+
+<div id="org000001f" class="figure">
+<p><img src="clipboard-20260318T111223.png" alt="clipboard-20260318T111223.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">2.2.</span> Condiciones y decisiones</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Cobertura de decisiones: cada salto (<code>if</code>, <code>while</code>, <code>for</code>) se ha ejecutado como cierto y falso</li>
+<li>Cobertura de condiciones: cada parte de una condición compuesta (<code>and</code>, <code>or</code>) se ha ejecutado como cierta y falso
+<ul class="org-ul">
+<li>Esta es más complicada de conseguir</li>
+</ul></li>
+</ul>
+
+<div id="org0000023" class="figure">
+<p><img src="clipboard-20260318T111335.png" alt="clipboard-20260318T111335.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">2.3.</span> Cobertura en proyectos grandes</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Por ejemplo, <a href="https://www.jacoco.org/jacoco/">Jacoco</a></li>
+<li>Se puede <a href="https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/test-coverage/java-test-coverage">integrar en SonarQube</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000002d" class="outline-2">
+<h2 id="org000002d"><span class="section-number-2">3.</span> Referencias</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -356,7 +471,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-17 mar 12:37</p>
+<p class="date">Created: 2026-03-18 mié 11:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
