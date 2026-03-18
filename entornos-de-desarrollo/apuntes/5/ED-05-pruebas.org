@@ -209,6 +209,16 @@ class MyFirstJUnitJupiterTests {
   fail(String message)
   #+end_src
 
+** Excepciones
+#+begin_src java
+    @Test(expected = EmailFormatException.class)
+    public void testEmaiVacio() throws EmailFormatException {
+        EmailSeparator.separaEmail("");
+    }
+ 
+#+end_src
+
+
 ** Más anotaciones
 | Anotacion    | Descripcion                                                                                                |
 |--------------+------------------------------------------------------------------------------------------------------------|
