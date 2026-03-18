@@ -161,6 +161,133 @@
 
 [[file:clipboard-20260318T120340.png]]
 
+* JUnit
+- JUnit permite automatizar pruebas unitarias y de integración
+- Origen de facto de la familia [[https://en.wikipedia.org/wiki/XUnit][XUnit]]: CCPUnit, NUnit, PyUnit...
+- Muy popular: integración con prácticamente todas las herramientas e IDEs
+
+** Añadir JUnit
+- Las clases de JUnit están en [[https://github.com/junit-team/junit4/wiki/Download-and-Install][su fichero jar]]. También necesita el jar de [[https://github.com/hamcrest/JavaHamcrest][Hamcrest]].
+  - Esto es para la versión 4.x
+  - La versión[[https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies][6 es bastante más complicad]]a (para este curso, no compensa)  
+- Intellij: añadir los ficheros jar como librerías del proyecto/módulo
+- En proyectos reales: aconsejable utilizar maven o [[https://github.com/junit-team/junit4/wiki/Use-with-Gradle][gradle]]  
+
+** Definir métodos de prueba
+- Una prueba es un método [[https://docs.oracle.com/javase/tutorial/java/annotations/basics.html][anotado]] con =@Test=
+  - El método no recibe parámetros
+  - Se realizan varias pruebas con =Assert.assertXXXX=  
+
+#+begin_src java
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import example.util.Calculator;
+
+class MyFirstJUnitJupiterTests {
+
+	private final Calculator calculator = new Calculator();
+
+	@Test
+	void addition() {
+		assertEquals(2, calculator.add(1, 1));
+	}
+}
+#+end_src
+
+** Aserciones
+- Todas en https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html
+  #+begin_src java
+  assertArrayEquals(expected, actual)
+  assertEquals(expected, actual)
+  assertFalse(boolean condition)
+  assertNotNull(Object object)
+  assertNotSame(Object unexpected, Object actual)
+  assertNull(Object object)
+  assertSame(Object expected, Object actual)
+  assertTrue(boolean condition)
+  fail(String message)
+  #+end_src
+
+** Más anotaciones
+| Anotacion    | Descripcion                                                                                                |
+|--------------+------------------------------------------------------------------------------------------------------------|
+| @Test        | Indica que el método es un test                                                                            |
+| @DisplayName | Indica un nombre para el test class o el test method                                                       |
+| @Tag         | Define etiquetas para filtrar por tests                                                                    |
+| @Before      | Se aplica a un método para indicar que se ejecute antes de cada método de prueba.                          |
+| @After       | Se aplica a un método para indicar que se ejecuta después de cada método de prueba.                        |
+| @BeforeClass | Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase. |
+| @AtterClass  | Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase. |
+| @Ignore      | Ese aplica a un método de prueba para evitar esa prueba                                                    |
+
+
+
+** Ejemplo: email
+
+#+begin_src java
+    /**
+     ,* Separa un correo electrónico en dos partes: nombre de usuario y dominio.
+     ,*
+     ,* @param email La dirección de correo electrónico a separar.
+     ,* @return Un array de cadenas donde el primer elemento 
+     ,*         es el nombre de usuario y el segundo es el dominio.
+     ,*         Devuelve null si el formato del correo no es correcto.
+     ,*/
+    public static String[] separaEmail(String email) {
+        ...
+    }
+#+end_src
+
+#+reveal: split
+
+#+begin_src java
+ public class EmailSeparator {
+    public static String[] separaEmail(String email) {
+
+        // Detectar la posición del símbolo '@'
+        int atIndex = -1;
+        for (int i = 0; i < email.length(); i++) {
+            if (email.charAt(i) == '@') {
+                atIndex = i;
+            }
+        }
+
+        // Si no se encontró '@' o está al principio o al final
+        if (atIndex <= 0 || atIndex >= email.length() - 1) {
+            return null;
+        }
+
+        // Separar el nombre de usuario y el dominio
+        String username = email.substring(0, atIndex);
+        String domain = email.substring(atIndex + 1);
+
+        // Verificar que el dominio no esté vacío
+        if (domain.isEmpty()) {
+            return null;
+        }
+
+        // Devolver el resultado en un array
+        return new String[]{username, domain};
+    }
+}
+#+end_src
+
+
+** Ejercicio
+- Pensar en casos de prueba: AVL, clases de equivalencia...
+- Implementar los casos de prueba
+- Y solucionar los problemas del método =separaEmail()=
+
+
+
+** Buenas prácticas
+- Cada caso de prueba debe:
+  - Probar una sola cosa
+  - Ser lo más pequeño posible
+  - Ser independiente: no debe depender de otros casos de prueba
+  - Poder ser repetido las veces necesarias (idempotente)
+
 * COSAS :noexport:
 
 * Referencias
