@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-19 jue 10:40 -->
+<!-- 2026-03-19 jue 10:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pruebas</title>
@@ -660,14 +660,14 @@ La complejidad final es el número de áreas:
 
 <span style="color: #729fcf; font-weight: bold;">import</span> <span style="color: #8ae234;">example</span>.<span style="color: #8ae234;">util</span>.<span style="color: #8ae234; font-weight: bold;">Calculator</span>;
 
-<span style="color: #729fcf; font-weight: bold;">class</span> <span style="color: #8ae234; font-weight: bold;">MyFirstJUnitJupiterTests</span> {
-     
-        <span style="color: #729fcf; font-weight: bold;">private</span> <span style="color: #729fcf; font-weight: bold;">final</span> <span style="color: #8ae234; font-weight: bold;">Calculator</span> <span style="color: #ff6347;">calculator</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Calculator</span>();
-     
-        <span style="color: #8ae234;">@Test</span>
-        <span style="color: #8ae234; font-weight: bold;">void</span> <span style="color: #edd400; font-weight: bold;">addition</span>() {
-                assertEquals(2, calculator.add(1, 1));
-        }
+<span style="color: #729fcf; font-weight: bold;">class</span> <span style="color: #8ae234; font-weight: bold;">CalculatorTest</span> {
+
+    <span style="color: #729fcf; font-weight: bold;">private</span> <span style="color: #729fcf; font-weight: bold;">final</span> <span style="color: #8ae234; font-weight: bold;">Calculator</span> <span style="color: #ff6347;">calculator</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">Calculator</span>();
+
+    <span style="color: #8ae234;">@Test</span>
+    <span style="color: #8ae234; font-weight: bold;">void</span> <span style="color: #edd400; font-weight: bold;">addition</span>() {
+    <span style="color: #6c7f6868233c;"> </span>   assertEquals(2, calculator.add(1, 1));
+    }
 }
 </pre>
 </div>
@@ -866,7 +866,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-19 jue 10:40</p>
+<p class="date">Created: 2026-03-19 jue 10:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
