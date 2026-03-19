@@ -136,7 +136,7 @@
 
 ** AVL
 - Los errores se acumulan en los límites de los algoritmos
-- Idea: probar los valores límite entre las clases de equivalencia  
+- Idea: probar los valores límite entre las clases de equivalencia
 - Ejercicios
   - =boolean esEdadLaboral(int edad)=
   - =boolean esEdadLaboral(int edad, int añoactual)=
@@ -145,10 +145,10 @@
 - La experiencia da una idea de qué puede fallar
   - ¿=0013462353= es un número de teléfono válido?
   - ¿=+33 341234522,2,2= es un número de teléfono válido?
-  - El número 1, ¿es primo?  
+  - El número 1, ¿es primo?
   - ¿Podemos tener ciudadanos rusos en la base de datos?
-  - ¿puedo leer un fichero con un emoji?  
-    
+  - ¿puedo leer un fichero con un emoji?
+
 * TDD
 - /Test Driven Development/
   - Se deciden las pruebas que el /software/ debe pasar
@@ -157,7 +157,7 @@
   - Se revisa el código para mejorar el diseño
 - Problemas
   - Es cortoplacista (se centra en solucionar pruebas)
-  - No favorece el diseño con vista a largo plazo     
+  - No favorece el diseño con vista a largo plazo 
 
 [[file:tdd.png]]
 
