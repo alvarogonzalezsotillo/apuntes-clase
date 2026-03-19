@@ -108,13 +108,13 @@
 
 ** Cobertura en Intellij
 - =SHIFT SHIFT run with coverage=
-[[file:clipboard-20260318T111223.png]]
+[[file:tabla-cobertura-intellij.png]]
 
 ** Condiciones y decisiones
 - Cobertura de decisiones: cada salto (=if=, =while=, =for=) se ha ejecutado como cierto y falso
 - Cobertura de condiciones: cada parte de una condición compuesta (=and=, =or=) se ha ejecutado como cierta y falso
   - Esta es más complicada de conseguir
-[[file:clipboard-20260318T111335.png]]
+[[file:popup-cobertura-por-linea-intellij.png]]
 
 ** Cobertura en proyectos grandes
 - Por ejemplo, [[https://www.jacoco.org/jacoco/][Jacoco]]
@@ -159,7 +159,7 @@
   - Es cortoplacista (se centra en solucionar pruebas)
   - No favorece el diseño con vista a largo plazo     
 
-[[file:clipboard-20260318T120340.png]]
+[[file:tdd.png]]
 
 * JUnit
 - JUnit permite automatizar pruebas unitarias y de integración
