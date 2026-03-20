@@ -157,18 +157,20 @@ watch -d ls -l
   \item Tras la conexión, introducir
     \begin{cuadrito}
       \texttt{GET /v1/create-qr-code/?data=\textit{eltextoquequeramosverenelqr} HTTP/1.1} \\
-      \texttt{Host:api.qrserver.com} \\
+      \texttt{Host: api.qrserver.com} \\
       \\
       \\
       (Aquí hay que darle al Enter dos veces)
     \end{cuadrito}
   \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.
-  \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 1} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
-  \item En la respuesta están las cabeceras y la imagen del código QR. Tendrás que quitar las cabeceras, por ejemplo con =tail=.
+  \item \textit{eltextoquequeramosverenelqr} tiene que estar en el formato \enlace{https://www.urlencoder.io/}{URLencode}
+  \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 2} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
+  \item En la respuesta están las cabeceras y la imagen del código QR. Tendrás que quitar las cabeceras, por ejemplo con \texttt{tail}.
       {\noindent\hspace{-100cm}es necesario compilar netcat desde los fuentes. Incluye los comandos para clonar el repositorio, la instalación de los paquetes necesarios para las herramientas de construcción, y los comandos para construir el programa. El programa se compilará con opciones avanzadas de optimización.}
 
   \end{itemize}
 
+Incluye el código QR generado en el trabajo, junto con los comandos o el procedimiento seguido para separar la imagen PNG de las cabeceras
 
 
   

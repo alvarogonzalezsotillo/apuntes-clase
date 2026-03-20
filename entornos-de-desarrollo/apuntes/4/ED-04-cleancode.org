@@ -16,6 +16,7 @@
 - Buena documentación
 - Entre otros muchos factores: planificación, buena comunicación, gestión del proyecto...  
 
+[[file:clipboard-20260318T104510.png]]
   
 * Documentación
 - Documentación externa:
@@ -81,7 +82,11 @@
   javadoc -sourcepath src -d docs -subpackages <paquetes>
   #+end_src
 
-    
+
+** Documentación vs Código
+[[file:clipboard-20260317T120444.png]]
+
+(Lo que tiene relación con el [[https://agilemanifesto.org/iso/es/manifesto.html][manifiesto ágil]]: Software funcionando sobre documentación extensiva)
 * /Bad smells/
 https://openwebinars.net/blog/code-smells-y-deuda-tecnica/
 
@@ -307,7 +312,7 @@ podman run --rm \
 * Diseño
 - *POLA* = Principle Of Least Astonishment
   - El código no debería sorprender a quien tenga que entenderlo en un futuro
-  - Nombres de variables, parámetros con solo una función...  
+  - Nombres de variables y funciones, 
 - *KISS* = Keep It Small and Simple
   - Intentar no abarcar demasiado. Limitar el código a lo que se pide.
   - Puede entrar en conflicto con planificar a largo plazo  
