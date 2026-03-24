@@ -29,26 +29,27 @@ Hay clases, atributos y métodos sin documentar. Se debe completar la documentac
 
 ** Refactorización (4 puntos)
 Realiza estos cambios con las herramientas de refactorización de Intellij:
-- Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo ~m_~, pero se mantienen los métodos =getXX= y =setXX=. Todos los atributos de la clase =MosaicPanel= se modificarán.
+- Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo ~m_~. Todos los atributos de la clase =MosaicPanel= se modificarán.
+  - Pero los métodos accessores (=getXXX, setXXX=) no cambian de nombre
 - El ~PentominosPanel.menuHandler~ es demasiado largo. Cada acción se realizará en un método aparte, en vez de dentro del =if= encadenado.
 - El método ~PentominosPanel.doSaveImage~ se dividirá en dos:
   - Una parte pedirá un fichero y comprobará que no existe
   - La otra parte utilizará ese fichero para grabar la imagen.
-- Los atributos =rows= y =columns= de ~MosaicPanel~ no se accederán directamente. Se utilizarán métodos =set= y =get= para ello, incluso dentro e la propia clase.
+- Los atributos =rows= y =columns= de ~MosaicPanel~ no se accederán directamente. Se utilizarán métodos =set= y =get= para ello.
 - Las clases deberán formar parte del paquete ~edu.hws.godel~.
 
 ** Clean code (3)
-- Consigue que la clase MakeIcons no tenga ningún aviso de Sonarqube.
-- Puedes [[https://stackoverflow.com/questions/10971968/turning-sonar-off-for-certain-code][ignorar el aviso]] =S106=
+- Consigue que la clase MakeIcons no tenga ningún aviso de Sonarqube, solucionando los problemas que indica.
+- Puedes [[https://stackoverflow.com/questions/10971968/turning-sonar-off-for-certain-code][ignorar el aviso]] =S106= con un comentario en vez de solucionarlo
 
 ** Javadoc (1 punto)
-- Genera la documentación /javadoc/ del proyecto
+- Genera la documentación /javadoc/ del proyecto, de forma que sean visibles los cambios introducidos en esta práctica.
+- Se mostrarán también los métodos privados.  
 - Se dejará en el directorio =javadoc=  
 
 
 * Normas de entrega
-1. Se creará un repositorio en Codeberg
-   - Será un /fork/ de https://codeberg.org/alvarogonzalezsotillo/pentominos
+1. Se creará un repositorio en Codeberg, siendo inicialmente un /fork/ de https://codeberg.org/alvarogonzalezsotillo/pentominos
 2. La práctica se realizará en la rama =2026-refactorizacion-documentacion=
 3. Se modificará el código sobre ese repositorio hasta ajustarse a lo pedido en la práctica.
 4. Se creará un /tag/ con la versión para entregar, de nombre =2026-entrega=
