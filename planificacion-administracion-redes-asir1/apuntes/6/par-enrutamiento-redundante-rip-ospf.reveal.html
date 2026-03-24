@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2026-03-24 Tue 11:29 -->
 <meta charset="utf-8"/>
 <title>RIP y OSPF</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">RIP y OSPF</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:08</p>
+<h1 class="title">RIP y OSPF</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-24 Tue 11:29</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -498,6 +499,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> Introducción</h2>
@@ -508,8 +520,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -537,7 +547,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1120,7 +1129,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Tabla de enrutamiento de <code>A</code></h3>
@@ -1196,8 +1204,6 @@ window.addEventListener("load",()=>{
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-3-2">
 <h3 id="3-2"><span class="section-number-3">3.2.</span> Tabla de enrutamiento de <code>B</code></h3>
@@ -1273,7 +1279,6 @@ window.addEventListener("load",()=>{
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-3">
 <h3 id="3-3"><span class="section-number-3">3.3.</span> Tablas de enrutamiento de <code>C</code> y <code>D</code></h3>
@@ -1282,7 +1287,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-4">
 <h3 id="3-4"><span class="section-number-3">3.4.</span> Resultado</h3>
@@ -1296,8 +1300,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-3-5">
 <h3 id="3-5"><span class="section-number-3">3.5.</span> Ejercicio</h3>
@@ -1311,8 +1313,6 @@ window.addEventListener("load",()=>{
 <a href="pkt/redundancia-routers-rip.pkt">Enlace a fichero PKT</a>
 </p>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1329,8 +1329,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1346,7 +1344,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1">
 <h3 id="5-1"><span class="section-number-3">5.1.</span> Ventajas de RIP</h3>
@@ -1356,7 +1353,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-2">
 <h3 id="5-2"><span class="section-number-3">5.2.</span> Desventajas de RIP</h3>
@@ -1367,7 +1363,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-3">
 <h3 id="5-3"><span class="section-number-3">5.3.</span> RIP en Cisco</h3>
@@ -1385,15 +1380,20 @@ Router(config-router)#network 200.200.1.0
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-4">
 <h3 id="5-4"><span class="section-number-3">5.4.</span> Interfaces pasivas</h3>
 <ul>
 <li>La información de RIP se envia por todas las interfaces que se anuncian</li>
-<li>Si no hay routers por una red anunciada, estos mensajes no tienen sentido</li>
+<li>Si no hay routers por una red anunciada, estos mensajes no tienen sentido
+<ul>
+<li>Sobrecarga el enlace</li>
+<li>Sobercarga los equipos en el enlace</li>
+<li>Seguridad: menor confidencialidad, y posibilidad de interferencia</li>
+
+</ul></li>
 <li><p>
-Una interfaz pasiva se anuncia por otras interfaces, pero no se envían anuncios por ellas
+Una interfaz pasiva se anuncia por otras interfaces, pero no se envían anuncios por ellas, ni se atiende a los anuncios que lleguen por ellas
 </p>
 
 <pre class="example" id="org0000003">
@@ -1403,7 +1403,6 @@ Router(config-router)#passive-interface FastEthernet 0/1
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-5">
 <h3 id="5-5"><span class="section-number-3">5.5.</span> Ejercicio</h3>
@@ -1413,7 +1412,6 @@ Router(config-router)#passive-interface FastEthernet 0/1
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1427,8 +1425,6 @@ Router(config-router)#passive-interface FastEthernet 0/1
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1517,7 +1513,6 @@ Router(config-router)#passive-interface FastEthernet 0/1
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1530,13 +1525,6 @@ Router(config-router)#passive-interface FastEthernet 0/1
 <li><a href="./par-enrutamiento-redundante-rip-ospf.pdf">PDF</a></li>
 <li><a href="./par-enrutamiento-redundante-rip-ospf.wp.html">Página web</a></li>
 <li><a href="./par-enrutamiento-redundante-rip-ospf.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2025-12-16 Tue 11:06 -->
+<!-- Generated on 2026-03-24 Tue 11:29 -->
 <meta charset="utf-8"/>
 <title>Comandos IOS</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-12-16 Tue 11:06</p>
+<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-24 Tue 11:29</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -459,9 +459,10 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-5">5. STP</a></li>
 <li><a href="#/slide-6">6. Link agregation</a></li>
 <li><a href="#/slide-7">7. RIP</a></li>
-<li><a href="#/slide-8">8. ACL</a></li>
-<li><a href="#/slide-9">9. NAT</a></li>
-<li><a href="#/slide-10">10. Referencias</a></li>
+<li><a href="#/slide-8">8. OSPF</a></li>
+<li><a href="#/slide-9">9. ACL</a></li>
+<li><a href="#/slide-10">10. NAT</a></li>
+<li><a href="#/slide-11">11. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -1002,7 +1003,109 @@ Router(config-router)# passive-interface g0/0
 </section>
 <section>
 <section id="slide-8">
-<h2 id="8"><span class="section-number-2">8.</span> ACL</h2>
+<h2 id="8"><span class="section-number-2">8.</span> OSPF</h2>
+<p>
+Poner el <code>router-id</code>
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >R1(config)# router ospf 10
+R1(config-router)# router-id 1.1.1.1
+</code></pre>
+</div>
+
+<p>
+Determinar la prioridad de un enlace
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >Router(config)# interface fa0/1
+Router(config-if)# ip ospf priority 255
+</code></pre>
+</div>
+
+
+<p>
+Incluir redes
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >R1(config)# router ospf 10
+R1(config-router)# network 10.1.0.0 255.255.0.0 area 0
+</code></pre>
+</div>
+
+
+<p>
+Incluir la red de un interfaz
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >Router(config)# interface fa0/1
+Router(config-if)# ip ospf 10 area 0
+</code></pre>
+</div>
+
+<p>
+Interfaz pasiva
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >R1(config)# router ospf 10
+R1(config-router)# passive-interface fa0/1 
+</code></pre>
+</div>
+
+
+<p>
+Información OSPF de una interfaz. Información del entorno OSPF
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >R1# show ip ospf interface fa0/1
+R1# show ip ospf neighbor
+</code></pre>
+</div>
+
+
+<p>
+Costo manual de una interfaz y costo de referencia 
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >Router(config)# router ospf 10
+Router(config-router)# auto-cost reference-bandwidth 10000
+Router(config-router)# exit
+Router(config)# interface fa0/1
+Router(config-if)# ip ospf cost 30
+</code></pre>
+</div>
+
+
+<p>
+Propagar una ruta por defecto
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lisp" >R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
+R1(config)# router ospf 10
+R1(config)# default-information originate
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-9">
+<h2 id="9"><span class="section-number-2">9.</span> ACL</h2>
 <p>
 Consultar ACLs definidas
 </p>
@@ -1033,29 +1136,25 @@ Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-1">
-<h3 id="8-1"><span class="section-number-3">8.1.</span> ACL estándar</h3>
+<section id="slide-9-1">
+<h3 id="9-1"><span class="section-number-3">9.1.</span> ACL estándar</h3>
 <p>
 Crear una ACL o añadir una regla
 </p>
 <div class="org-src-container">
 
 <pre><code class="lisp" >Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
-</code></pre>
-</div>
+#+end_srcª
 
-<p>
 Borrar una ACLs
-</p>
-<div class="org-src-container">
-
-<pre><code class="lisp" >Router(config)# no access-list &lt;numero&gt; 
+#+begin_src lisp
+Router(config)# no access-list &lt;numero&gt; 
 </code></pre>
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-2">
-<h3 id="8-2"><span class="section-number-3">8.2.</span> ACL extendidas</h3>
+<section id="slide-9-2">
+<h3 id="9-2"><span class="section-number-3">9.2.</span> ACL extendidas</h3>
 <p>
 Protocolo IP (hay más opciones, no explicadas aquí)
 </p>
@@ -1079,8 +1178,8 @@ Protocolo ICMP
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-3">
-<h3 id="8-3"><span class="section-number-3">8.3.</span> ACL extendidas TCP y UDP</h3>
+<section id="slide-9-3">
+<h3 id="9-3"><span class="section-number-3">9.3.</span> ACL extendidas TCP y UDP</h3>
 <p>
 Protocolo TCP
 </p>
@@ -1142,8 +1241,8 @@ Protocolo UDP
 </table>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-8-4">
-<h3 id="8-4"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
+<section id="slide-9-4">
+<h3 id="9-4"><span class="section-number-3">9.4.</span> ACL con nombre</h3>
 <div class="org-src-container">
 
 <pre><code class="lisp" >Router(config)# ip access-list standard NOMBRE
@@ -1153,8 +1252,8 @@ Protocolo UDP
 </section>
 </section>
 <section>
-<section id="slide-9">
-<h2 id="9"><span class="section-number-2">9.</span> NAT</h2>
+<section id="slide-10">
+<h2 id="10"><span class="section-number-2">10.</span> NAT</h2>
 <p>
 Información del estado de NAT
 </p>
@@ -1185,8 +1284,8 @@ Borrar todas las entradas de NAT estático
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-1">
-<h3 id="9-1"><span class="section-number-3">9.1.</span> PAT</h3>
+<section id="slide-10-1">
+<h3 id="10-1"><span class="section-number-3">10.1.</span> PAT</h3>
 <ul>
 <li>Defina el grupo de direcciones globales que se debe usar para la traducción de sobrecarga.
 <ul>
@@ -1219,8 +1318,8 @@ Borrar todas las entradas de NAT estático
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-2">
-<h3 id="9-2"><span class="section-number-3">9.2.</span> NAT dinámica</h3>
+<section id="slide-10-2">
+<h3 id="10-2"><span class="section-number-3">10.2.</span> NAT dinámica</h3>
 <ul>
 <li>Defina el conjunto de direcciones globales que se debe usar para la traducción.
 <ul>
@@ -1253,8 +1352,8 @@ Borrar todas las entradas de NAT estático
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-3">
-<h3 id="9-3"><span class="section-number-3">9.3.</span> NAT estática</h3>
+<section id="slide-10-3">
+<h3 id="10-3"><span class="section-number-3">10.3.</span> NAT estática</h3>
 <ul>
 <li>Se establece la traducción estática entre una dirección local interna y una dirección global interna.
 <ul>
@@ -1291,8 +1390,8 @@ Borrar todas las entradas de NAT estático
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-9-4">
-<h3 id="9-4"><span class="section-number-3">9.4.</span> Generales</h3>
+<section id="slide-10-4">
+<h3 id="10-4"><span class="section-number-3">10.4.</span> Generales</h3>
 <div class="org-src-container">
 
 <pre><code class="lisp" >show ip nat translations
@@ -1303,8 +1402,8 @@ debug ip nat
 </section>
 </section>
 <section>
-<section id="slide-10">
-<h2 id="10"><span class="section-number-2">10.</span> Referencias</h2>
+<section id="slide-11">
+<h2 id="11"><span class="section-number-2">11.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>
@@ -1312,13 +1411,6 @@ debug ip nat
 <li><a href="./par-4-comandos-ios.pdf">PDF</a></li>
 <li><a href="./par-4-comandos-ios.wp.html">Página web</a></li>
 <li><a href="./par-4-comandos-ios.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
