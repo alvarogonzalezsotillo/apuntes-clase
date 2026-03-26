@@ -131,6 +131,7 @@ digraph{
 
 ** Ejemplo de complejidad cilomática (II)
 - Ejemplo de cobertura de condiciones
+- Nota: Sonarqube no calcula la complejidad ciclomática, sino la [[https://www.c-sharpcorner.com/blogs/cognitive-complexity-vs-cyclomatic-complexity-an-example-with-c-sharp][complejidad cognitiva]]
 #+html: <table><tr><td>  
 [[file:complejidad-ciclomatica-sonarqube.png]]
 #+html: </td><td> 
