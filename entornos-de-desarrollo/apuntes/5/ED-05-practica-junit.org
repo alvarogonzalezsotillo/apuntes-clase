@@ -1,0 +1,39 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+
+#+OPTIONS: author:nil date:nil toc:nil title:nil
+
+#+LATEX_HEADER: \lhead{Pruebas automáticas}
+#+LATEX_HEADER: \rhead{Entornos de desarrollo}
+
+
+* Objetivo de la práctica
+En esta práctica el alumno seguirá trabajando indirectamente el control de versiones, además de:
+- Diseño de casos de prueba
+- Implementación de casos de prueba
+- Desarollo TDD
+
+Esta práctica será tenida en cuenta para el RA3.
+
+* Clase [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/IntervalosTest.java][=IntervalosTest=]] (5 puntos)
+- Se [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Intervalos.java][aporta una clase]] con un método =solapamiento= que puede utilizarse para calcular la longitud en la que coinciden dos segmentos.
+- Se pide crear una clase de test con JUnit (versión 4) que pruebe esta clase.
+  - Los casos de prueba se realizarán por análisis caja negra.
+  - Cada caso de prueba tendrá un único =assertXXXX=. El nombre del método de prueba dejará claro qué esta probando: un valor límite, qué clase de equivalencia prueba... (25%)
+  - Al ejecutar los test, se debe garantizar la covertura de todas las líneas del método =solapamiento= (ejecutar con /coverage/) (50%) 
+- El método =solapamiento= contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, ni cambiar la estructura: hay que corregir la lógica (25%)
+
+* Clase [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Rectangulador.java][=Rectangulador=]] (4 puntos)
+- Se [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/RectanguladorTest.java][aporta una clase de prueba]] (basada en JUnit 4) del método =rectangulosDiferentes=.
+- Se pide implementar dicho método de forma que funcione correctamente, y por tanto, que supere todas las pruebas
+
+* Números grandes para =Rectangulador= (1 punto)
+Algunos casos de prueba de =RectanguladorTest= son difíciles, porque tienen un límite de tiempo. El algoritmo debe optimizarse para responder en ese tiempo.
+Nota: para evitar el uso abusivo de generadores de código LLM, el profesor puede requerir al alumno que explique su algoritmo, para comprobar si es un trabajo propio.
+
+* Normas de entrega
+- Se creará un fork privado del repositorio
+  - https://codeberg.org/alvarogonzalezsotillo/template-practica-junit
+- Se corregirá la rama =practica-junit= del repositorio  
+- Se dará permiso al usuario del profesor en Codeberg para acceder a dicho repositorio
+- En el caso de realizar la práctica por parejas, ambos integrantes deberán tener un número similar de /commits/ y líneas de código.
+- En la entrega del aula virtual, se indicará la URL del repositorio
