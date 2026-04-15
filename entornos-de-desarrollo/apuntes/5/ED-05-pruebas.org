@@ -198,7 +198,7 @@ digraph{
   - =Math.abs()= puede recibir positivos, negativos, cero, [[https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NEGATIVE_INFINITY][Inf]] y [[https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NaN][NaN]].
 - Ejercicios:
   - =int[] ordenaTresEnterosDeMayorAMenor(int,int,int)= (sin usar [[https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-][sort]])
-  - Función que valida un número de teléfono, que puede ser local a España o internacional
+  - Función que valida un número de teléfono que puede ser [[https://www.consumoresponde.es/art%C3%ADculos/tipologia_de_los_numeros_de_telefono_existentes_en_espana][local a España]] o [[https://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-S.pdf#page=3][internacional]]
 
 ** AVL
 - Los errores se acumulan en los límites de los algoritmos
@@ -351,6 +351,7 @@ class CalculatorTest {
 
 
 ** Ejercicio
+- Comprender [[https://en.wikipedia.org/wiki/Email_address#Syntax][qué es una dirección de email]]
 - Pensar en casos de prueba: AVL, clases de equivalencia...
 - Implementar los casos de prueba
 - Y solucionar los problemas del método =separaEmail()=
