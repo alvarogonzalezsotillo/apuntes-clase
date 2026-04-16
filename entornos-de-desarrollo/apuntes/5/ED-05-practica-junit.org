@@ -20,7 +20,11 @@ Esta práctica será tenida en cuenta para el RA3.
   - Los casos de prueba se realizarán por análisis caja negra.
   - Cada caso de prueba tendrá un único =assertXXXX=. El nombre del método de prueba dejará claro qué esta probando: un valor límite, qué clase de equivalencia prueba... (25%)
   - Al ejecutar los test, se debe garantizar la covertura de todas las líneas del método =solapamiento= (ejecutar con /coverage/) (50%) 
-- El método =solapamiento= contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, ni cambiar la estructura: hay que corregir la lógica (25%)
+- El método =solapamiento= contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, hay que corregir la lógica (25%)
+  - Se puede añadir uno o varios =if=
+  - Se pueden cambiar comparaciones, por ejemplo un =>= por un =<=
+  - Se pueden añadir o quitar sumas, por ejemplo añadir un =+1=
+    
 
 * Clase [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Rectangulador.java][=Rectangulador=]] (4 puntos)
 - Se [[https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/RectanguladorTest.java][aporta una clase de prueba]] (basada en JUnit 4) del método =rectangulosDiferentes=.

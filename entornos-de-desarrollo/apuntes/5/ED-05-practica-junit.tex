@@ -1,4 +1,4 @@
-% Created 2026-04-09 jue 12:30
+% Created 2026-04-16 jue 13:23
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -134,7 +134,12 @@ Esta práctica será tenida en cuenta para el RA3.
 \item Cada caso de prueba tendrá un único \texttt{assertXXXX}. El nombre del método de prueba dejará claro qué esta probando: un valor límite, qué clase de equivalencia prueba\ldots{} (25\%)
 \item Al ejecutar los test, se debe garantizar la covertura de todas las líneas del método \texttt{solapamiento} (ejecutar con \emph{coverage}) (50\%)
 \end{itemize}
-\item El método \texttt{solapamiento} contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, ni cambiar la estructura: hay que corregir la lógica (25\%)
+\item El método \texttt{solapamiento} contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, hay que corregir la lógica (25\%)
+\begin{itemize}
+\item Se puede añadir uno o varios \texttt{if}
+\item Se pueden cambiar comparaciones, por ejemplo un \texttt{>} por un \texttt{<}
+\item Se pueden añadir o quitar sumas, por ejemplo añadir un \texttt{+1}
+\end{itemize}
 \end{itemize}
 \section{Clase \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Rectangulador.java}{\texttt{Rectangulador}} (4 puntos)}
 \label{sec:org0000006}
