@@ -1,4 +1,3 @@
-#+INCLUDE: "../../../common/header.org"
 #+INCLUDE: "../../../common/header-examen-practica.org"
 
 #+LATEX_HEADER: \lhead{NAT PAT (Packet Tracer)}
@@ -27,6 +26,6 @@ Se realizarán los ejercicios del curso de Netacad /CCNA: Redes Empresariales, S
 
 * Instrucciones
 - Se enviará el PKA al 100% de consecución
-- Se enviará también un pantallazo de la ventana de "assesment items", con el árbol visible
-  [[file:assesmentitems.jpg]]
+- Se enviará también un pantallazo de la ventana de "/Assesment items/", con el árbol visible
+[[file:media/ventana-assessment-items.jpg]]
 - El pantallazo será del escritorio completo, no solo de la ventana  
