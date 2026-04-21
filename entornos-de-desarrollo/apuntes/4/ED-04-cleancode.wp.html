@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-18 mié 11:00 -->
+<!-- 2026-03-24 mar 20:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimización, refactorización y documentación</title>
@@ -210,7 +210,8 @@
 <li><a href="#org0000047">4. Sonarqube</a></li>
 <li><a href="#org0000064">5. Refactorización</a></li>
 <li><a href="#org000006a">6. Diseño</a></li>
-<li><a href="#org000006d">7. Referencias</a></li>
+<li><a href="#org000007c">7. Buenas prácticas</a></li>
+<li><a href="#org000007f">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -270,7 +271,7 @@ window.addEventListener("load",()=>{
 
 
 <div id="org0000000" class="figure">
-<p><img src="media/clipboard-20260203T131100.png" alt="clipboard-20260203T131100.png" />
+<p><img src="media/cuadrante-deuda-tecnica.png" alt="cuadrante-deuda-tecnica.png" />
 </p>
 </div>
 </div>
@@ -286,7 +287,7 @@ window.addEventListener("load",()=>{
 
 
 <div id="org0000001" class="figure">
-<p><img src="clipboard-20260318T104510.png" alt="clipboard-20260318T104510.png" />
+<p><img src="grafico-productividad-tiempo.png" alt="grafico-productividad-tiempo.png" />
 </p>
 </div>
 </div>
@@ -412,7 +413,7 @@ window.addEventListener("load",()=>{
 <h3 id="org0000011"><span class="section-number-3">2.4.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
-<li>El código funente de Java es un gran ejemplo de uso</li>
+<li>El código fuente de Java es un gran ejemplo de uso</li>
 <li>Consulta la documentación de <code>java.util.Arrays</code>
 <ul class="org-ul">
 <li>En <a href="https://github.com/openjdk/jdk21/blob/master/src/java.base/share/classes/java/util/Arrays.java">su repositorio</a></li>
@@ -434,6 +435,13 @@ Genera la documentación
 <pre class="src src-bash">  javadoc -sourcepath src -d docs -subpackages &lt;paquetes&gt;
 </pre>
 </div></li>
+<li><p>
+Para clases sin paquete:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">  javadoc -d docs src/*.java
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
@@ -442,7 +450,7 @@ Genera la documentación
 <div class="outline-text-3" id="text-2-6">
 
 <div id="org0000017" class="figure">
-<p><img src="clipboard-20260317T120444.png" alt="clipboard-20260317T120444.png" />
+<p><img src="documentacion-vs-codigo.png" alt="documentacion-vs-codigo.png" />
 </p>
 </div>
 
@@ -627,7 +635,7 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 
 
 <div id="org000003c" class="figure">
-<p><img src="media/clipboard-20260204T115646.png" alt="clipboard-20260204T115646.png" />
+<p><img src="media/sonarqube.png" alt="sonarqube.png" />
 </p>
 </div>
 </div>
@@ -642,7 +650,7 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 
 
 <div id="org000003d" class="figure">
-<p><img src="media/clipboard-20260203T130947.png" alt="clipboard-20260203T130947.png" />
+<p><img src="media/plugin-sonarqube.png" alt="plugin-sonarqube.png" />
 </p>
 </div>
 </div>
@@ -785,7 +793,7 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 
 
 <div id="org000004a" class="figure">
-<p><img src="media//clipboard-20260301T185634.png" alt="clipboard-20260301T185634.png" />
+<p><img src="media/menu-refactor.png" alt="menu-refactor.png" />
 </p>
 </div>
 </div>
@@ -931,9 +939,77 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 </div>
 </div>
-<div id="outline-container-org000006d" class="outline-2">
-<h2 id="org000006d"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org000007c" class="outline-2">
+<h2 id="org000007c"><span class="section-number-2">7.</span> Buenas prácticas</h2>
 <div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org000006d" class="outline-3">
+<h3 id="org000006d"><span class="section-number-3">7.1.</span> Nivel de indentación</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>A partir de 3-4 niveles, el código se vuelve ilegible</li>
+<li>Mucha indentación suele  implicar métodos muy largos</li>
+<li>Solución:
+<ul class="org-ul">
+<li>dividir el método en varios métodos</li>
+<li>eliminar duplicados</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000070" class="outline-3">
+<h3 id="org0000070"><span class="section-number-3">7.2.</span> Identificadores adecuados</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>El nombre de un método
+<ul class="org-ul">
+<li>Debe ser descriptivo</li>
+<li>Debe indicar todo lo que hace</li>
+<li>Si es difícil encontrar un nombre, dividir el método</li>
+</ul></li>
+<li>El nombre de una variable
+<ul class="org-ul">
+<li>Debe ser descriptivo</li>
+</ul></li>
+</ul>
+
+<p>
+#+include ./P.java src java
+</p>
+</div>
+</div>
+<div id="outline-container-org0000073" class="outline-3">
+<h3 id="org0000073"><span class="section-number-3">7.3.</span> Visibilidad</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li><code>private</code> mejor que <code>protected</code></li>
+<li><code>protected</code> mejor que <code>public</code></li>
+<li>Si no sabes que existe, no puedes <i>romperlo</i> o usarlo mal</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000076" class="outline-3">
+<h3 id="org0000076"><span class="section-number-3">7.4.</span> Mutabilidad</h3>
+<div class="outline-text-3" id="text-7-4">
+<ul class="org-ul">
+<li><code>final</code> si es posible</li>
+<li>Evitar reasignación de variables (hacer nuevas variables)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000079" class="outline-3">
+<h3 id="org0000079"><span class="section-number-3">7.5.</span> Tiempo de vida limitado</h3>
+<div class="outline-text-3" id="text-7-5">
+<ul class="org-ul">
+<li>Una variable debe existir mientras haga falta</li>
+<li>Solo en el bloque <code>{</code> <code>}</code> más interno posible</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000007f" class="outline-2">
+<h2 id="org000007f"><span class="section-number-2">8.</span> Referencias</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -949,7 +1025,7 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-18 mié 11:00</p>
+<p class="date">Created: 2026-03-24 mar 20:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

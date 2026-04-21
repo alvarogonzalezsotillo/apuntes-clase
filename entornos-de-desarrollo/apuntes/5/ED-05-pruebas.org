@@ -1,5 +1,5 @@
 #+INCLUDE: "../../../common/header.org"
-#+TITLE:  Pruebas
+#+TITLE:  Diseño e implementación de pruebas
 #+REVEAL_HLEVEL: 1
 
 
@@ -86,6 +86,10 @@
 - Más complejo implica más difícil de probar (y de entender)
   
 ** Ejemplo de complejidad ciclomática
+- Miraremos la cobertura de decisiones
+
+  #+html: <table><tr><td>  
+
 #+begin_src java
     public int calcularMaximo(int a, int b, int c) {
         if (a > b && a > c) { // Camino 1
@@ -97,6 +101,68 @@
         }
     }
 #+end_src
+
+#+html: </td><td>
+
+#+begin_src dot :file ./media/calcular-maximo.svg :exports results :cmdline -Tsvg
+digraph{
+
+  "inicio" -> "a > b && a > c"
+
+  "a > b && a > c" -> "return a" [taillabel="T"]
+
+  "a > b && a > c" -> "b > c" [taillabel="F"]
+
+  "b > c" -> "return b" [taillabel="T"]
+
+  "b > c" -> "return c" [taillabel="F"]
+
+  "return a" -> "fin"
+  "return b" -> "fin"
+  "return c" -> "fin"
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/calcular-maximo.svg]]
+
+#+html: </td></tr></table>
+
+** Ejemplo de complejidad cilomática (II)
+- Ejemplo de cobertura de condiciones
+- Nota: Sonarqube no calcula la complejidad ciclomática, sino la [[https://www.c-sharpcorner.com/blogs/cognitive-complexity-vs-cyclomatic-complexity-an-example-with-c-sharp][complejidad cognitiva]]
+#+html: <table><tr><td>  
+[[file:complejidad-ciclomatica-sonarqube.png]]
+#+html: </td><td> 
+
+#+begin_src dot :file ./media/sort.svg :exports results :cmdline -Tsvg
+digraph{
+
+  "inicio" -> "++k < high"
+
+  "++k < high" -> "ai < a[i -1]" [taillabel="T"]
+  "++k < high" -> "fin" [taillabel="F"]
+
+  "ai < a[i -1]" -> "--i >= low" [taillabel="T"]
+  "ai < a[i -1]" -> "++k < high" [taillabel="F"]
+
+  "--i >= low" -> "ai < a[i]" [taillabel="T"]
+  "--i >= low" -> "a[i + 1] = ai" [taillabel="F"]
+
+  "ai < a[i]" -> "a[i + 1] = a[i]" [taillabel="T"]
+  "ai < a[i]" -> "a[i + 1] = ai" [taillabel="F"]
+
+  "a[i + 1] = a[i]" -> "--i >= low"
+
+  "a[i + 1] = ai" -> "++k < high"
+}
+#+end_src
+
+#+RESULTS:
+[[file:./media/sort.svg]]
+
+#+html: </td></tr></table>
 
 ** Reducir la complejidad ciclomática
 - Dividir funciones grandes: Extraer métodos pequeños para reducir la complejidad.
@@ -132,7 +198,7 @@
   - =Math.abs()= puede recibir positivos, negativos, cero, [[https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NEGATIVE_INFINITY][Inf]] y [[https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NaN][NaN]].
 - Ejercicios:
   - =int[] ordenaTresEnterosDeMayorAMenor(int,int,int)= (sin usar [[https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-][sort]])
-  - Función que valida un número de teléfono, que puede ser local a España o internacional
+  - Función que valida un número de teléfono que puede ser [[https://www.consumoresponde.es/art%C3%ADculos/tipologia_de_los_numeros_de_telefono_existentes_en_espana][local a España]] o [[https://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-S.pdf#page=3][internacional]]
 
 ** AVL
 - Los errores se acumulan en los límites de los algoritmos
@@ -143,8 +209,8 @@
 
 ** Conjetura de errores
 - La experiencia da una idea de qué puede fallar
-  - ¿=0013462353= es un número de teléfono válido?
-  - ¿=+33 341234522,2,2= es un número de teléfono válido?
+  - ¿ =0013462353= es un número de teléfono válido?
+  - ¿ =+33 341234522,2,2= es un número de teléfono válido?
   - El número 1, ¿es primo?
   - ¿Podemos tener ciudadanos rusos en la base de datos?
   - ¿puedo leer un fichero con un emoji?
@@ -285,6 +351,7 @@ class CalculatorTest {
 
 
 ** Ejercicio
+- Comprender [[https://en.wikipedia.org/wiki/Email_address#Syntax][qué es una dirección de email]]
 - Pensar en casos de prueba: AVL, clases de equivalencia...
 - Implementar los casos de prueba
 - Y solucionar los problemas del método =separaEmail()=

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-03-18 mié 11:00 -->
+<!-- Generated on 2026-03-24 mar 20:03 -->
 <meta charset="utf-8"/>
 <title>Optimización, refactorización y documentación</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Optimización, refactorización y documentación</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-18 mié 11:00</p>
+<h1 class="title">Optimización, refactorización y documentación</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-24 mar 20:03</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -457,7 +457,8 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-4">4. Sonarqube</a></li>
 <li><a href="#/slide-5">5. Refactorización</a></li>
 <li><a href="#/slide-6">6. Diseño</a></li>
-<li><a href="#/slide-7">7. Referencias</a></li>
+<li><a href="#/slide-7">7. Buenas prácticas</a></li>
+<li><a href="#/slide-8">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -664,7 +665,7 @@ window.addEventListener("load",()=>{
 <section id="slide-2-4">
 <h3 id="2-4"><span class="section-number-3">2.4.</span> Ejercicio</h3>
 <ul>
-<li>El código funente de Java es un gran ejemplo de uso</li>
+<li>El código fuente de Java es un gran ejemplo de uso</li>
 <li>Consulta la documentación de <code>java.util.Arrays</code>
 <ul>
 <li>En <a href="https://github.com/openjdk/jdk21/blob/master/src/java.base/share/classes/java/util/Arrays.java">su repositorio</a></li>
@@ -686,6 +687,14 @@ Genera la documentación
 <div class="org-src-container">
 
 <pre><code class="bash" >  javadoc -sourcepath src -d docs -subpackages &lt;paquetes&gt;
+</code></pre>
+</div></li>
+<li><p>
+Para clases sin paquete:
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  javadoc -d docs src/*.java
 </code></pre>
 </div></li>
 
@@ -1221,7 +1230,80 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </section>
 <section>
 <section id="slide-7">
-<h2 id="7"><span class="section-number-2">7.</span> Referencias</h2>
+<h2 id="7"><span class="section-number-2">7.</span> Buenas prácticas</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+</section>
+<section id="slide-7-1">
+<h3 id="7-1"><span class="section-number-3">7.1.</span> Nivel de indentación</h3>
+<ul>
+<li>A partir de 3-4 niveles, el código se vuelve ilegible</li>
+<li>Mucha indentación suele  implicar métodos muy largos</li>
+<li>Solución:
+<ul>
+<li>dividir el método en varios métodos</li>
+<li>eliminar duplicados</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-7-2">
+<h3 id="7-2"><span class="section-number-3">7.2.</span> Identificadores adecuados</h3>
+<ul>
+<li>El nombre de un método
+<ul>
+<li>Debe ser descriptivo</li>
+<li>Debe indicar todo lo que hace</li>
+<li>Si es difícil encontrar un nombre, dividir el método</li>
+
+</ul></li>
+<li>El nombre de una variable
+<ul>
+<li>Debe ser descriptivo</li>
+
+</ul></li>
+
+</ul>
+
+<p>
+#+include ./P.java src java
+</p>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-7-3">
+<h3 id="7-3"><span class="section-number-3">7.3.</span> Visibilidad</h3>
+<ul>
+<li><code>private</code> mejor que <code>protected</code></li>
+<li><code>protected</code> mejor que <code>public</code></li>
+<li>Si no sabes que existe, no puedes <i>romperlo</i> o usarlo mal</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-7-4">
+<h3 id="7-4"><span class="section-number-3">7.4.</span> Mutabilidad</h3>
+<ul>
+<li><code>final</code> si es posible</li>
+<li>Evitar reasignación de variables (hacer nuevas variables)</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-7-5">
+<h3 id="7-5"><span class="section-number-3">7.5.</span> Tiempo de vida limitado</h3>
+<ul>
+<li>Una variable debe existir mientras haga falta</li>
+<li>Solo en el bloque <code>{</code> <code>}</code> más interno posible</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="8"><span class="section-number-2">8.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>

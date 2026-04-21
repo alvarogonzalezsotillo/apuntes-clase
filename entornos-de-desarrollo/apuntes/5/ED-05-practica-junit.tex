@@ -1,4 +1,4 @@
-% Created 2026-03-24 mar 19:05
+% Created 2026-04-16 jue 13:23
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -44,7 +44,7 @@
 \usepackage{attachfile2}
 \lhead{Extraordinaria 2021 (es el \\lhead)}
 \rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
-\lhead{Clean code}
+\lhead{Pruebas automáticas}
 \rhead{Entornos de desarrollo}
 \usepackage{svg}
 \usepackage{letltxmacro}
@@ -67,7 +67,7 @@
 
 \captionsetup{font=scriptsize}
 
-\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/4/ED-04-practica-cleancode.org}{} \vspace{-1em}
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/5/ED-05-practica-junit.org}{} \vspace{-1em}
 
 
 \setlength{\parindent}{0em}
@@ -118,77 +118,49 @@
 \label{sec:org0000000}
 En esta práctica el alumno seguirá trabajando indirectamente el control de versiones, además de:
 \begin{itemize}
-\item Uso básico de \emph{javadoc}
-\item Refactorización usando un IDE
-\item Seguimiento de guías de estilo y eliminación de \emph{bad smells}
+\item Diseño de casos de prueba
+\item Implementación de casos de prueba
+\item Desarollo TDD
 \end{itemize}
 
-Esta práctica será tenida en cuenta para el RA4.
-\section{Enunciado}
-\label{sec:org000000f}
-Este programa resuelve el problema del \href{http://es.wikipedia.org/wiki/Pentomin\%C3\%B3}{pentominó}. El código fuente está bastante bien, pero es necesario mejorarlo en algunos aspectos. En concreto, hay que mejorar ciertas partes internas del código y no está documentado adecuadamente. El código fuente inicial está en \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
-\subsection{Documentación (2 puntos)}
+Esta práctica será tenida en cuenta para el RA3.
+\section{Clase \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/IntervalosTest.java}{\texttt{IntervalosTest}} (5 puntos)}
 \label{sec:org0000003}
-Hay clases, atributos y métodos sin documentar. Se debe completar la documentación (en español o en inglés, indistintamente)
-
 \begin{itemize}
-\item Todas las clases tendrán \texttt{@author} (usa tu nombre y apellido). Existen desde la versión 1.0.
-\item Todas las clases tendrán alguna referencia \texttt{@see} a otra que se use o por la que sea usada.
-\item En la clase \texttt{Pentominos}  
+\item Se \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Intervalos.java}{aporta una clase} con un método \texttt{solapamiento} que puede utilizarse para calcular la longitud en la que coinciden dos segmentos.
+\item Se pide crear una clase de test con JUnit (versión 4) que pruebe esta clase.
 \begin{itemize}
-\item Todos los métodos tendrán \texttt{@param} para todos sus atributos. Todos los métodos con retorno tendrán \texttt{@return}
-\item Cada método tendrá una referencia \texttt{@link} a algún método que sea llamado dentro de él. Si no llama a ningún método, tendrá una referencia a un método que lo llame.
+\item Los casos de prueba se realizarán por análisis caja negra.
+\item Cada caso de prueba tendrá un único \texttt{assertXXXX}. El nombre del método de prueba dejará claro qué esta probando: un valor límite, qué clase de equivalencia prueba\ldots{} (25\%)
+\item Al ejecutar los test, se debe garantizar la covertura de todas las líneas del método \texttt{solapamiento} (ejecutar con \emph{coverage}) (50\%)
+\end{itemize}
+\item El método \texttt{solapamiento} contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, hay que corregir la lógica (25\%)
+\begin{itemize}
+\item Se puede añadir uno o varios \texttt{if}
+\item Se pueden cambiar comparaciones, por ejemplo un \texttt{>} por un \texttt{<}
+\item Se pueden añadir o quitar sumas, por ejemplo añadir un \texttt{+1}
 \end{itemize}
 \end{itemize}
-\subsection{Refactorización (4 puntos)}
+\section{Clase \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Rectangulador.java}{\texttt{Rectangulador}} (4 puntos)}
 \label{sec:org0000006}
-Realiza estos cambios con las herramientas de refactorización de Intellij:
 \begin{itemize}
-\item Las normas de codificación de nuestra metodología indican que los atributos de las clases comienzan con el prefijo \texttt{m\_}. Todos los atributos de la clase \texttt{MosaicPanel} se modificarán.
-\begin{itemize}
-\item Pero los métodos accessores (\texttt{getXXX, setXXX}) no cambian de nombre
+\item Se \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/RectanguladorTest.java}{aporta una clase de prueba} (basada en JUnit 4) del método \texttt{rectangulosDiferentes}.
+\item Se pide implementar dicho método de forma que funcione correctamente, y por tanto, que supere todas las pruebas
 \end{itemize}
-\item El \texttt{PentominosPanel.menuHandler} es demasiado largo. Cada acción se realizará en un método aparte, en vez de dentro del \texttt{if} encadenado.
-\item El método \texttt{PentominosPanel.doSaveImage} se dividirá en dos:
-\begin{itemize}
-\item Una parte pedirá un fichero y comprobará que no existe
-\item La otra parte utilizará ese fichero para grabar la imagen.
-\end{itemize}
-\item Los atributos \texttt{rows} y \texttt{columns} de \texttt{MosaicPanel} no se accederán directamente. Se utilizarán métodos \texttt{set} y \texttt{get} para ello.
-\item Las clases deberán formar parte del paquete \texttt{edu.hws.godel}.
-\end{itemize}
-\subsection{Clean code (3)}
+\section{Números grandes para \texttt{Rectangulador} (1 punto)}
 \label{sec:org0000009}
-\begin{itemize}
-\item Consigue que la clase MakeIcons no tenga ningún aviso de Sonarqube, solucionando los problemas que indica.
-\item Puedes \href{https://stackoverflow.com/questions/10971968/turning-sonar-off-for-certain-code}{ignorar el aviso} \texttt{S106} con un comentario en vez de solucionarlo
-\end{itemize}
-\subsection{Javadoc (1 punto)}
+Algunos casos de prueba de \texttt{RectanguladorTest} son difíciles, porque tienen un límite de tiempo. El algoritmo debe optimizarse para responder en ese tiempo.
+Nota: para evitar el uso abusivo de generadores de código LLM, el profesor puede requerir al alumno que explique su algoritmo, para comprobar si es un trabajo propio.
+\section{Normas de entrega}
 \label{sec:org000000c}
 \begin{itemize}
-\item Genera la documentación \emph{javadoc} del proyecto, de forma que sean visibles los cambios introducidos en esta práctica.
-\item Se mostrarán también los métodos privados.
-\item Se dejará en el directorio \texttt{javadoc}
-\end{itemize}
-\section{Normas de entrega}
-\label{sec:org0000012}
-\begin{enumerate}
-\item Se creará un repositorio en Codeberg, siendo inicialmente un \emph{fork} de \url{https://codeberg.org/alvarogonzalezsotillo/pentominos}
-\item La práctica se realizará en la rama \texttt{2026-refactorizacion-documentacion}
-\item Se modificará el código sobre ese repositorio hasta ajustarse a lo pedido en la práctica.
-\item Se creará un \emph{tag} con la versión para entregar, de nombre \texttt{2026-entrega}
-\item En el aula virtual, se subirá:
+\item Se creará un fork privado del repositorio
 \begin{itemize}
-\item La URL del repositorio
-\item El identificador del \emph{commit} del \emph{tag} de la entrega.
+\item \url{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit}
 \end{itemize}
-\item Si la práctica se realiza por parejas, todos los integrantes subirán el resultado al aula virtual, y en la historia del repositorio podrá verse que el reparto de trabajo ha sido equilibrado
-\end{enumerate}
-\section{Qué se valorará}
-\label{sec:org0000015}
-\begin{itemize}
-\item Que haya un \emph{commit} por cada subapartado.
-\item Que el código final se ajuste a lo pedido
-\item Que el código funcione (clases Main: \texttt{Pentominos} y \texttt{MakeIcons})
+\item Se corregirá la rama \texttt{practica-junit} del repositorio
+\item Se dará permiso al usuario del profesor en Codeberg para acceder a dicho repositorio
+\item En el caso de realizar la práctica por parejas, ambos integrantes deberán tener un número similar de \emph{commits} y líneas de código.
+\item En la entrega del aula virtual, se indicará la URL del repositorio
 \end{itemize}
 \end{document}
