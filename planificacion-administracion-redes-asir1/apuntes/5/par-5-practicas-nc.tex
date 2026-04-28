@@ -89,7 +89,7 @@ nc -N ipdelservidor puertolibre < imagen
   Después, envía una máquina virtual (para que sea un fichero muy grande)
   \begin{itemize}
   \item Empaqueta una máquina virtual (fichero \texttt{OVA}, \texttt{ISO}, \texttt{ZIP}, \texttt{VMDK} o \texttt{DVI}).
-  \item Envía el fichero a un compañero usando \texttt{netcat}. Mide el tiempo total de transmisión con el comando \texttt{time}
+  \item Envía el fichero a un compañero usando \texttt{netcat}. Mide el tiempo total de transmisión con el comando \texttt{time}, y calcula la velocidad de transferencia.
 
 \begin{listadoshell}{Medir el tiempo de ejecución con  \texttt{time}}{lst:time}
 time nc ....
@@ -153,32 +153,39 @@ watch -d ls -l
   
   Utilizaremos el protocolo HTTP directamente para pedir un recurso a un servidor
   \begin{itemize}
-  \item Ejecuta NetCat conectándote al puerto 80 de \url{numbersapi.com}
+  \item Ejecuta NetCat conectándote al puerto 80 de \url{api.qrserver.com}
   \item Tras la conexión, introducir
     \begin{cuadrito}
-      \texttt{GET /random HTTP/1.1} \\
-      \texttt{Host:numbersapi.com} \\
+      \texttt{GET /v1/create-qr-code/?data=\textit{eltextoquequeramosverenelqr} HTTP/1.1} \\
+      \texttt{Host: api.qrserver.com} \\
       \\
       \\
       (Aquí hay que darle al Enter dos veces)
     \end{cuadrito}
   \item Importante: Las nuevas líneas deben ser con formato MSDOS (\texttt{\textbackslash r\textbackslash n}) en vez de formato UNIX (\texttt{\textbackslash n}). Lo mejor es un fichero que se redirije como entrada al comando \texttt{nc}.
-  \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 1} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
+  \item \textit{eltextoquequeramosverenelqr} tiene que estar en el formato \enlace{https://www.urlencoder.io/}{URLencode}
+  \item Fedora con \texttt{ncat}: Si no se consigue ninguna respuesta, puede ser que se corte la conexión antes de recibirla. Prueba con \texttt{--no-shutdown --idle-timeout 2} para que \texttt{ncat} siga esperando tras el fin de su entrada estándar.
+  \item En la respuesta están las cabeceras y la imagen del código QR. Tendrás que quitar las cabeceras, por ejemplo con \texttt{tail}.
       {\noindent\hspace{-100cm}es necesario compilar netcat desde los fuentes. Incluye los comandos para clonar el repositorio, la instalación de los paquetes necesarios para las herramientas de construcción, y los comandos para construir el programa. El programa se compilará con opciones avanzadas de optimización.}
 
   \end{itemize}
 
-Encuentra un número que te parezca curioso, e incluye su curiosidad en la memoria del trabajo.
+Incluye el código QR generado en el trabajo, junto con los comandos o el procedimiento seguido para separar la imagen PNG de las cabeceras
 
 
   
 \begin{comment}
 
+curl https://api.forismatic.com/api/1.0/\?method\=getQuote\&format\=json\&lang\=en
+{"quoteText":"Be faithful in small things because it is in them that your strength lies.  ", "quoteAuthor":"Mother Teresa ", "senderName":"", "senderLink":"", "quoteLink":"http://forismatic.com/en/bde669ecf1/"}%      
+
+  
 https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/
 
 
 nc --ssl official-joke-api.appspot.com 443 < kk.txt 
 
+https://forismatic.com/en/api/
 http://numbersapi.com/random
 http://calapi.inadiutorium.cz/api-doc
 https://apipheny.io/free-api/

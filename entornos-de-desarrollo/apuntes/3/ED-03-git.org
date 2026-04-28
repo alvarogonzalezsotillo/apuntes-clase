@@ -368,6 +368,30 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
   - Finalmente, se pide que el dueño del repositorio original haga un /pull/
 - [[https://docs.github.com/en/get-started/start-your-journey/hello-world?source=post_page-----62dea67aa2eb--------------------------------][Guía de Github]]       
 
+* Codeberg en /selfhosting/: Forgejo
+- Esta es una instalación no apta para producción, solo para pruebas
+  - Basada en [[https://podman.io/][Podman]]
+  - Con la [[https://codeberg.org/forgejo/-/packages/container/forgejo/versions][imagen oficial]]
+- En la página de instalación (http:/localhost:3000/)
+  - seleccionar =SQLite3=
+  - no deshabilitar autoregistro  
+- Entre otras cosas no tiene:
+  - Una base de datos /seria/
+  - Una forma de reiniciar el servidor
+  - Permisos adecuados para el acceso a los datos en =forgejo-data=
+
+#+reveal:split
+
+#+begin_src bash
+podman run -d \
+  --replace \
+  --name=forgejo \
+  -v forgejo-data:/data \
+  -v /etc/localtime:/etc/localtime:ro \
+  -p 3000:3000 \
+  -p 2222:22 \
+  codeberg.org/forgejo/forgejo:14
+#+end_src
 * Si todo se complica...
 [[https://training.github.com/downloads/github-git-cheat-sheet.pdf][Git cheat sheet]]
 [[https://www.explainxkcd.com/wiki/index.php/1597:_Git][file:./media/xkcd-git.png]]

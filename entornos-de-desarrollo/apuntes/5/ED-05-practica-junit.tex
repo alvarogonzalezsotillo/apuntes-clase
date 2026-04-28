@@ -1,0 +1,166 @@
+% Created 2026-04-16 jue 13:23
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Pruebas automáticas}
+\rhead{Entornos de desarrollo}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{}
+\hypersetup{
+ pdfauthor={Álvaro González Sotillo},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 30.2 (Org mode 9.7.11)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/entornos-de-desarrollo/apuntes/5/ED-05-practica-junit.org}{} \vspace{-1em}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+\section{Objetivo de la práctica}
+\label{sec:org0000000}
+En esta práctica el alumno seguirá trabajando indirectamente el control de versiones, además de:
+\begin{itemize}
+\item Diseño de casos de prueba
+\item Implementación de casos de prueba
+\item Desarollo TDD
+\end{itemize}
+
+Esta práctica será tenida en cuenta para el RA3.
+\section{Clase \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/IntervalosTest.java}{\texttt{IntervalosTest}} (5 puntos)}
+\label{sec:org0000003}
+\begin{itemize}
+\item Se \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Intervalos.java}{aporta una clase} con un método \texttt{solapamiento} que puede utilizarse para calcular la longitud en la que coinciden dos segmentos.
+\item Se pide crear una clase de test con JUnit (versión 4) que pruebe esta clase.
+\begin{itemize}
+\item Los casos de prueba se realizarán por análisis caja negra.
+\item Cada caso de prueba tendrá un único \texttt{assertXXXX}. El nombre del método de prueba dejará claro qué esta probando: un valor límite, qué clase de equivalencia prueba\ldots{} (25\%)
+\item Al ejecutar los test, se debe garantizar la covertura de todas las líneas del método \texttt{solapamiento} (ejecutar con \emph{coverage}) (50\%)
+\end{itemize}
+\item El método \texttt{solapamiento} contiene errores, será necesario corregirlos. No se permite usar funciones ni variables adicionales en este método, hay que corregir la lógica (25\%)
+\begin{itemize}
+\item Se puede añadir uno o varios \texttt{if}
+\item Se pueden cambiar comparaciones, por ejemplo un \texttt{>} por un \texttt{<}
+\item Se pueden añadir o quitar sumas, por ejemplo añadir un \texttt{+1}
+\end{itemize}
+\end{itemize}
+\section{Clase \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/implementaciones/Rectangulador.java}{\texttt{Rectangulador}} (4 puntos)}
+\label{sec:org0000006}
+\begin{itemize}
+\item Se \href{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit/src/branch/master/src/pruebas/RectanguladorTest.java}{aporta una clase de prueba} (basada en JUnit 4) del método \texttt{rectangulosDiferentes}.
+\item Se pide implementar dicho método de forma que funcione correctamente, y por tanto, que supere todas las pruebas
+\end{itemize}
+\section{Números grandes para \texttt{Rectangulador} (1 punto)}
+\label{sec:org0000009}
+Algunos casos de prueba de \texttt{RectanguladorTest} son difíciles, porque tienen un límite de tiempo. El algoritmo debe optimizarse para responder en ese tiempo.
+Nota: para evitar el uso abusivo de generadores de código LLM, el profesor puede requerir al alumno que explique su algoritmo, para comprobar si es un trabajo propio.
+\section{Normas de entrega}
+\label{sec:org000000c}
+\begin{itemize}
+\item Se creará un fork privado del repositorio
+\begin{itemize}
+\item \url{https://codeberg.org/alvarogonzalezsotillo/template-practica-junit}
+\end{itemize}
+\item Se corregirá la rama \texttt{practica-junit} del repositorio
+\item Se dará permiso al usuario del profesor en Codeberg para acceder a dicho repositorio
+\item En el caso de realizar la práctica por parejas, ambos integrantes deberán tener un número similar de \emph{commits} y líneas de código.
+\item En la entrega del aula virtual, se indicará la URL del repositorio
+\end{itemize}
+\end{document}

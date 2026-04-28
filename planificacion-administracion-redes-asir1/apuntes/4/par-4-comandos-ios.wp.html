@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-16 Tue 11:06 -->
+<!-- 2026-03-24 Tue 11:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Comandos IOS</title>
@@ -215,9 +215,10 @@
 <li><a href="#org0000043">5. STP</a></li>
 <li><a href="#org0000046">6. Link agregation</a></li>
 <li><a href="#org0000049">7. RIP</a></li>
-<li><a href="#org0000058">8. ACL</a></li>
-<li><a href="#org0000067">9. NAT</a></li>
-<li><a href="#org000006a">10. Referencias</a></li>
+<li><a href="#org000004c">8. OSPF</a></li>
+<li><a href="#org000005b">9. ACL</a></li>
+<li><a href="#org000006a">10. NAT</a></li>
+<li><a href="#org000006d">11. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -730,9 +731,102 @@ Router(config-router)# passive-interface g0/0
 </div>
 </div>
 </div>
-<div id="outline-container-org0000058" class="outline-2">
-<h2 id="org0000058"><span class="section-number-2">8.</span> ACL</h2>
+<div id="outline-container-org000004c" class="outline-2">
+<h2 id="org000004c"><span class="section-number-2">8.</span> OSPF</h2>
 <div class="outline-text-2" id="text-8">
+<p>
+Poner el <code>router-id</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">R1(config)# router ospf 10
+R1(config-router)# router-id 1.1.1.1
+</pre>
+</div>
+
+<p>
+Determinar la prioridad de un enlace
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# interface fa0/1
+Router(config-if)# ip ospf priority 255
+</pre>
+</div>
+
+
+<p>
+Incluir redes
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">R1(config)# router ospf 10
+R1(config-router)# network 10.1.0.0 255.255.0.0 area 0
+</pre>
+</div>
+
+
+<p>
+Incluir la red de un interfaz
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# interface fa0/1
+Router(config-if)# ip ospf 10 area 0
+</pre>
+</div>
+
+<p>
+Interfaz pasiva
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">R1(config)# router ospf 10
+R1(config-router)# passive-interface fa0/1 
+</pre>
+</div>
+
+
+<p>
+Información OSPF de una interfaz. Información del entorno OSPF
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">R1# show ip ospf interface fa0/1
+R1# show ip ospf neighbor
+</pre>
+</div>
+
+
+<p>
+Costo manual de una interfaz y costo de referencia 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# router ospf 10
+Router(config-router)# auto-cost reference-bandwidth 10000
+Router(config-router)# exit
+Router(config)# interface fa0/1
+Router(config-if)# ip ospf cost 30
+</pre>
+</div>
+
+
+<p>
+Propagar una ruta por defecto
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
+R1(config)# router ospf 10
+R1(config)# default-information originate
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org000005b" class="outline-2">
+<h2 id="org000005b"><span class="section-number-2">9.</span> ACL</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 Consultar ACLs definidas
 </p>
@@ -759,36 +853,33 @@ Router(config-if)# no ip access-group &lt;numero ACL&gt; &lt;out o in&gt;
 </pre>
 </div>
 </div>
-<div id="outline-container-org000004c" class="outline-3">
-<h3 id="org000004c"><span class="section-number-3">8.1.</span> ACL estándar</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org000004f" class="outline-3">
+<h3 id="org000004f"><span class="section-number-3">9.1.</span> ACL estándar</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 Crear una ACL o añadir una regla
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
-</pre>
-</div>
+#+end_src&#170;
 
-<p>
 Borrar una ACLs
-</p>
-<div class="org-src-container">
-<pre class="src src-lisp">Router(config)# no access-list &lt;numero&gt; 
+#+begin_src lisp
+Router(config)# no access-list &lt;numero&gt; 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org000004f" class="outline-3">
-<h3 id="org000004f"><span class="section-number-3">8.2.</span> ACL extendidas</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-org0000052" class="outline-3">
+<h3 id="org0000052"><span class="section-number-3">9.2.</span> ACL extendidas</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
 Protocolo IP (hay más opciones, no explicadas aquí)
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt;
+  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt;
+  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt;
 </pre>
 </div>
 
@@ -797,23 +888,23 @@ Protocolo ICMP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt;
+  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt;
+  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000052" class="outline-3">
-<h3 id="org0000052"><span class="section-number-3">8.3.</span> ACL extendidas TCP y UDP</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-org0000055" class="outline-3">
+<h3 id="org0000055"><span class="section-number-3">9.3.</span> ACL extendidas TCP y UDP</h3>
+<div class="outline-text-3" id="text-9-3">
 <p>
 Protocolo TCP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>[established]
+  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccffff;"> </span>[established]
 </pre>
 </div>
 
@@ -822,8 +913,8 @@ Protocolo UDP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #6c7f6868233c;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
 </pre>
 </div>
 
@@ -865,9 +956,9 @@ Protocolo UDP
 </table>
 </div>
 </div>
-<div id="outline-container-org0000055" class="outline-3">
-<h3 id="org0000055"><span class="section-number-3">8.4.</span> ACL con nombre</h3>
-<div class="outline-text-3" id="text-8-4">
+<div id="outline-container-org0000058" class="outline-3">
+<h3 id="org0000058"><span class="section-number-3">9.4.</span> ACL con nombre</h3>
+<div class="outline-text-3" id="text-9-4">
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# ip access-list standard NOMBRE
 </pre>
@@ -875,9 +966,9 @@ Protocolo UDP
 </div>
 </div>
 </div>
-<div id="outline-container-org0000067" class="outline-2">
-<h2 id="org0000067"><span class="section-number-2">9.</span> NAT</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org000006a" class="outline-2">
+<h2 id="org000006a"><span class="section-number-2">10.</span> NAT</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 Información del estado de NAT
 </p>
@@ -904,9 +995,9 @@ Borrar todas las entradas de NAT estático
 </pre>
 </div>
 </div>
-<div id="outline-container-org000005b" class="outline-3">
-<h3 id="org000005b"><span class="section-number-3">9.1.</span> PAT</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-org000005e" class="outline-3">
+<h3 id="org000005e"><span class="section-number-3">10.1.</span> PAT</h3>
+<div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li>Defina el grupo de direcciones globales que se debe usar para la traducción de sobrecarga.
 <ul class="org-ul">
@@ -933,9 +1024,9 @@ Borrar todas las entradas de NAT estático
 </ul>
 </div>
 </div>
-<div id="outline-container-org000005e" class="outline-3">
-<h3 id="org000005e"><span class="section-number-3">9.2.</span> NAT dinámica</h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">10.2.</span> NAT dinámica</h3>
+<div class="outline-text-3" id="text-10-2">
 <ul class="org-ul">
 <li>Defina el conjunto de direcciones globales que se debe usar para la traducción.
 <ul class="org-ul">
@@ -962,9 +1053,9 @@ Borrar todas las entradas de NAT estático
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000061" class="outline-3">
-<h3 id="org0000061"><span class="section-number-3">9.3.</span> NAT estática</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-org0000064" class="outline-3">
+<h3 id="org0000064"><span class="section-number-3">10.3.</span> NAT estática</h3>
+<div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li>Se establece la traducción estática entre una dirección local interna y una dirección global interna.
 <ul class="org-ul">
@@ -994,9 +1085,9 @@ Borrar todas las entradas de NAT estático
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000064" class="outline-3">
-<h3 id="org0000064"><span class="section-number-3">9.4.</span> Generales</h3>
-<div class="outline-text-3" id="text-9-4">
+<div id="outline-container-org0000067" class="outline-3">
+<h3 id="org0000067"><span class="section-number-3">10.4.</span> Generales</h3>
+<div class="outline-text-3" id="text-10-4">
 <div class="org-src-container">
 <pre class="src src-lisp">show ip nat translations
 debug ip nat
@@ -1005,9 +1096,9 @@ debug ip nat
 </div>
 </div>
 </div>
-<div id="outline-container-org000006a" class="outline-2">
-<h2 id="org000006a"><span class="section-number-2">10.</span> Referencias</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-org000006d" class="outline-2">
+<h2 id="org000006d"><span class="section-number-2">11.</span> Referencias</h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -1016,12 +1107,6 @@ debug ip nat
 <li><a href="./par-4-comandos-ios.wp.html">Página web</a></li>
 <li><a href="./par-4-comandos-ios.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -1029,7 +1114,7 @@ debug ip nat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-16 Tue 11:06</p>
+<p class="date">Created: 2026-03-24 Tue 11:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

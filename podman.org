@@ -1,0 +1,68 @@
+
+* Servidor web
+No tiene demasiadas ventajas respecto de python http, pero es un ejemplo
+
+  #+begin_src bash
+  podrman run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
+  #+end_src
+
+* Forjego (clon de github)
+
+#+begin_src bash
+podman run -d \
+  --replace \
+  --name=forgejo \
+  -v forgejo-data:/data \
+  -v /etc/localtime:/etc/localtime:ro \
+  -p 3000:3000 \
+  -p 2222:22 \
+  codeberg.org/forgejo/forgejo:14
+#+end_src
+
+
+* Sonarqube (Bad smells en código)
+- Servidor 
+  #+begin_src sh
+    sudo setenforce false
+    podman run -p 9000:9000 --name sonarqube docker.io/sonarqube:community 
+  #+end_src
+
+- Cliente (cambiar /token/)
+  #+begin_src sh
+  podman run --rm \
+         --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro,z \
+         --workdir /usr/src \
+         --network=host \
+         docker.io/sonarsource/sonar-scanner-cli \
+         -Dsonar.projectKey=java-games \
+         -Dsonar.java.binaries=bin \
+         -Dsonar.projectName='java-games' \
+         -Dsonar.exclusions=doc \
+         -Dsonar.host.url=http://localhost:9000 \
+         -Dsonar.token=sqp_0373d5cbb31d95200fa97cab4998315f14add870
+  #+end_src
+
+* Emulador Android
+No me ha funcionado
+#+begin_src bash
+podman run -d -p 6080:6080 \
+       -e EMULATOR_DEVICE="Samsung Galaxy S10" \
+       -e WEB_VNC=true \
+       --device /dev/kvm \
+       --name android-container \
+       budtmo/docker-android:emulator_11.0
+#+end_src
+
+* Servidor oracle
+#+begin_src bash
+podman login container-registry.oracle.com
+
+podman run -d --name oracle \
+ -p 1521:1521 -p 1521:5500 \
+ -e ORACLE_SID=SID_COMPOSE \
+ -e ORACLE_PDB=PDB_COMPOSE \
+ -e ORACLE_PWD=changemesecret \
+ -e ORACLE_EDITION=enterprise \
+ -v ./oradata:/opt/oracle/oradata \
+container-registry.oracle.com/database/enterprise:21.3.0.0
+#+end_src

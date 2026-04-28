@@ -12,9 +12,9 @@
 Tras la práctica, se espera que el alumno haya conseguido:
 - Familiarizarse con la interfaz de /Packet Tracer/
 - Dividir adecuadamente una red en varias subredes
+- RA asociado: RA  
     
 Está dispobile la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/4/par-4-practica-ip-packetracer.pdf][última versión de la práctica en este enlace]].
-
 
 
 * Descripción del problema
@@ -26,7 +26,7 @@ Una empresa tiene disponible la red =10.n.80.0/22=. La utilizará para dar servi
 - Red de routers: Cada planta tendrá un router. Los routers se unirán entre sí en otra subred de la red original, con capacidad para 25 routers.
 
 
-El número =n= de la red se corresponde con el asignado al alumno en  [[http://bit.ly/2sji9gQ][http://bit.ly/2sji9gQ]]
+El número =n= de la red se corresponde con el asignado al alumno en la columna *Número práctica PT* de https://docs.google.com/spreadsheets/d/1z1B07ee3VjmYwtd1i0wCBRPnjZS00oExbGXNDlNa93E/edit?gid=0#gid=0
  
 ** Características del /subnetting/
 - Las redes tendrán el tamaño mínimo posible dados los hosts que contienen

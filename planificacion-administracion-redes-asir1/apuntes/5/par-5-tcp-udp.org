@@ -163,7 +163,7 @@ Fuente:[[https://commons.wikimedia.org/w/index.php?curid=30810617][By Scil100]]
   - El sistema le asigna un puerto no utilizado cualquiera
   - Generalmente, un puerto dinámico
   - El cliente también puede solicitar un puerto, pero es poco frecuente
-
+[[https://www.ssh.com/academy/ssh/port][¿Cómo se puede registrar un puerto?]]
 ** Comando =netstat=
 - Informa de 
   - Las conexiones TCP y UDP activas
@@ -255,6 +255,28 @@ effective UID. This option can be employed with
 both TCP and UDP sockets.
 
 #+end_example
+
+* SSL
+- Muchos protocolos basados en TCP han añadido SSL
+  - =HTTP= ➔ =HTTPS=
+  - =IMAP= ➔ =IMAPS=
+- SSL aporta encriptación (sería parte de la capa de presentación)
+- En ese caso, en vez de =netcat= usaremos =openssl=
+  #+begin_src bash
+  openssl s_client -quiet -connect www.debian.org:443
+  #+end_src
+- Ejemplo completo:
+  #+begin_src bash
+  printf "GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n" \
+      | openssl s_client -quiet -connect www.debian.org:443
+  #+end_src
+- =netcat= también lo incluye
+  #+begin_src 
+  nc --ssl 
+  #+end_src
+
+
+  
 
 * TCP vs UDP
 - TCP es un medio de transmisión asegurado

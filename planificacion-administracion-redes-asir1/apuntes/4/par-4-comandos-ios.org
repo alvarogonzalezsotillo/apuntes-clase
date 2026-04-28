@@ -229,6 +229,76 @@ Router(config-router)# passive-interface g0/0
 #+end_src
 
 
+* OSPF
+Poner el =router-id=
+
+#+begin_src lisp
+R1(config)# router ospf 10
+R1(config-router)# router-id 1.1.1.1
+#+end_src
+
+Determinar la prioridad de un enlace
+
+#+begin_src lisp
+Router(config)# interface fa0/1
+Router(config-if)# ip ospf priority 255
+#+end_src
+
+
+Incluir redes
+
+#+begin_src lisp
+R1(config)# router ospf 10
+R1(config-router)# network 10.1.0.0 255.255.0.0 area 0
+#+end_src
+
+
+Incluir la red de un interfaz
+
+#+begin_src lisp
+Router(config)# interface fa0/1
+Router(config-if)# ip ospf 10 area 0
+#+end_src
+
+Interfaz pasiva
+
+#+begin_src lisp
+R1(config)# router ospf 10
+R1(config-router)# passive-interface fa0/1 
+#+end_src
+
+
+Información OSPF de una interfaz. Información del entorno OSPF
+
+#+begin_src lisp
+R1# show ip ospf interface fa0/1
+R1# show ip ospf neighbor
+#+end_src
+
+
+Costo manual de una interfaz y costo de referencia 
+
+#+begin_src lisp
+Router(config)# router ospf 10
+Router(config-router)# auto-cost reference-bandwidth 10000
+Router(config-router)# exit
+Router(config)# interface fa0/1
+Router(config-if)# ip ospf cost 30
+#+end_src
+
+
+Propagar una ruta por defecto
+
+#+begin_src lisp
+R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
+R1(config)# router ospf 10
+R1(config)# default-information originate
+#+end_src
+
+
+
+
+
 * ACL
 
 Consultar ACLs definidas
@@ -252,7 +322,7 @@ Router(config-if)# no ip access-group <numero ACL> <out o in>
 Crear una ACL o añadir una regla
 #+begin_src lisp
 Router(config)# access-list <numero> <permit o deny>  <host|source source-wildcard|any>
-#+end_src
+#+end_srcª
 
 Borrar una ACLs
 #+begin_src lisp
