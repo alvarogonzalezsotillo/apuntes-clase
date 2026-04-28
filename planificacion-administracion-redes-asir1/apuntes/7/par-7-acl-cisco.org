@@ -144,7 +144,12 @@ access-list 10 deny 192.168.1.0 0.0.0.255
          ip access-group 1 in
         #+END_SRC
 
-
+** Haz el ejercicio
+- Utiliza este [[file:pkt/ejercicio-acl-estandar-inicial.pkt][fichero pkt inicial]]
+- Consigue enrutamiento entre =192.168.0.0/24= y =172.16.0.0/24=
+- Consigue prohibir el acceso a =192.168.0.0/24= desde =10.0.0.0/15=
+  - Pero que el administrador y otras redes sigan accediendo  
+    
 
 * ACL AMPLIADAS
   Pueden hacer referencia a otras características del paquete: 
