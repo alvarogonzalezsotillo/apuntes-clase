@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-15 mié 17:25 -->
+<!-- 2026-04-30 jue 11:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diseño e implementación de pruebas</title>
@@ -209,8 +209,8 @@
 <li><a href="#org0000041">3. Herramientas para la cobertura de código</a></li>
 <li><a href="#org000004d">4. Pruebas de caja negra</a></li>
 <li><a href="#org0000051">5. TDD</a></li>
-<li><a href="#org000006c">6. JUnit</a></li>
-<li><a href="#org000006f">7. Referencias</a></li>
+<li><a href="#org0000075">6. JUnit</a></li>
+<li><a href="#org0000078">7. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -662,8 +662,8 @@ Miraremos la cobertura de decisiones
 </div>
 </div>
 </div>
-<div id="outline-container-org000006c" class="outline-2">
-<h2 id="org000006c"><span class="section-number-2">6.</span> JUnit</h2>
+<div id="outline-container-org0000075" class="outline-2">
+<h2 id="org0000075"><span class="section-number-2">6.</span> JUnit</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>JUnit permite automatizar pruebas unitarias y de integración</li>
@@ -864,7 +864,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 </div>
 <div id="outline-container-org0000066" class="outline-3">
-<h3 id="org0000066"><span class="section-number-3">6.7.</span> Ejercicio</h3>
+<h3 id="org0000066"><span class="section-number-3">6.7.</span> Ejercicio: emails</h3>
 <div class="outline-text-3" id="text-6-7">
 <ul class="org-ul">
 <li>Comprender <a href="https://en.wikipedia.org/wiki/Email_address#Syntax">qué es una dirección de email</a></li>
@@ -875,8 +875,102 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 </div>
 <div id="outline-container-org0000069" class="outline-3">
-<h3 id="org0000069"><span class="section-number-3">6.8.</span> Buenas prácticas</h3>
+<h3 id="org0000069"><span class="section-number-3">6.8.</span> Ejercicio: polígonos</h3>
 <div class="outline-text-3" id="text-6-8">
+<ul class="org-ul">
+<li>El método <code>String tipoDePolígono(int[] longitudLados)</code></li>
+<li>recibe la lista ordenada de la longitud de los lados de un polígono (el último se conecta con el primero)</li>
+<li>devuelve (en orden de prioridad)
+<ul class="org-ul">
+<li><code>"cuadrado"</code> si los lados pueden formar un cuadrado</li>
+<li><code>"rectángulo"</code> si los lados pueden formar un rectángulo</li>
+<li><code>"regular"</code> si los lados pueden forman un polígono regular</li>
+<li><code>"imposible"</code> si hay pocos lados para hacer un polígono, o algún otro problema</li>
+</ul></li>
+<li>Qué hacer:
+<ul class="org-ul">
+<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
+<li>Implementar los casos de prueba</li>
+<li>Implementar el método</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000006c" class="outline-3">
+<h3 id="org000006c"><span class="section-number-3">6.9.</span> Ejercicio: puntos</h3>
+<div class="outline-text-3" id="text-6-9">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Punto</span>{
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Punto</span>[][] <span style="color: #0000ff;">masCercanos</span>( <span style="color: #228b22;">Punto</span>[] <span style="color: #a0522d;">puntos</span> ){
+    }
+}
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recibe una lista de puntos</li>
+<li>Devuelve los pares de puntos más cercanos</li>
+<li>Por ejemplo <code>(1,2) (1,1) (2,11) (3,3) (4,3) (5,8) (100,0) (100,1)</code>
+<ul class="org-ul">
+<li>Devolvería un array de longitud 3. Cada posición es un array de dos puntos
+<ul class="org-ul">
+<li><code>(1,2) (1,1)</code></li>
+<li><code>(3,3) (4,3)</code></li>
+<li><code>(100,0) (100,1)</code></li>
+</ul></li>
+</ul></li>
+
+<li>Por ejemplo <code>(1,20) (18,1) (2,110) (3,3) (51,8) (100,0) (100,1) (4,5)</code>
+<ul class="org-ul">
+<li>Devolvería un array de longitud 1. Cada posición es un array de dos puntos
+<ul class="org-ul">
+<li><code>(3,3) (4,5)</code></li>
+</ul></li>
+</ul></li>
+<li>Qué hacer:
+<ul class="org-ul">
+<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
+<li>Implementar los casos de prueba</li>
+<li>Implementar el método</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000006f" class="outline-3">
+<h3 id="org000006f"><span class="section-number-3">6.10.</span> Ejercicio: matrículas</h3>
+<div class="outline-text-3" id="text-6-10">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #8b2252;">/**
+ * Decide si una matr&#237;cula de coche es anterior a otra.  
+ * No importan may&#250;sculas y min&#250;sculas.
+ * Tampoco importa si hay separaci&#243;n por espacios entre los n&#250;meros y las letras  
+ * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m1 Matr&#237;cula espa&#241;ola actual (9999ZZZ)
+ * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m2 Matr&#237;cula espa&#241;ola actual (9999ZZZ)
+ * </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> "iguales" si son iguales
+ *         "menor" si m1 es anterior a m2
+ *         "mayor" si m1 es posterior a m2
+ *         "error" si m1 o m2 no son matr&#237;culas v&#225;lidas
+ */</span>
+<span style="color: #228b22;">String</span> <span style="color: #0000ff;">comparaMatr&#237;cula</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">m1</span>, <span style="color: #228b22;">String</span> <span style="color: #a0522d;">m2</span>){
+    ....
+}  
+</pre>
+</div>
+<ul class="org-ul">
+<li>Qué hacer:
+<ul class="org-ul">
+<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
+<li>Implementar los casos de prueba</li>
+<li>Implementar el método</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000072" class="outline-3">
+<h3 id="org0000072"><span class="section-number-3">6.11.</span> Buenas prácticas</h3>
+<div class="outline-text-3" id="text-6-11">
 <ul class="org-ul">
 <li>Cada caso de prueba debe:
 <ul class="org-ul">
@@ -889,8 +983,8 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 </div>
 </div>
-<div id="outline-container-org000006f" class="outline-2">
-<h2 id="org000006f"><span class="section-number-2">7.</span> Referencias</h2>
+<div id="outline-container-org0000078" class="outline-2">
+<h2 id="org0000078"><span class="section-number-2">7.</span> Referencias</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
@@ -909,7 +1003,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-15 mié 17:25</p>
+<p class="date">Created: 2026-04-30 jue 11:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
