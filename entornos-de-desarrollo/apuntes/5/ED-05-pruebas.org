@@ -234,7 +234,7 @@ digraph{
 ** Añadir JUnit
 - Las clases de JUnit están en [[https://github.com/junit-team/junit4/wiki/Download-and-Install][su fichero jar]]. También necesita el jar de [[https://github.com/hamcrest/JavaHamcrest][Hamcrest]].
   - Esto es para la versión 4.x
-  - La versión[[https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies][6 es bastante más complicad]]a (para este curso, no compensa)  
+  - La versión [[https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies][6 es bastante más complicad]]a (para este curso, no compensa)  
 - Intellij: añadir los ficheros jar como librerías del proyecto/módulo
 - En proyectos reales: aconsejable utilizar maven o [[https://github.com/junit-team/junit4/wiki/Use-with-Gradle][gradle]]  
 
