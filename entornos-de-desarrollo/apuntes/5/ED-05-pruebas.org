@@ -365,7 +365,11 @@ class CalculatorTest {
   - ="cuadrado"= si los lados pueden formar un cuadrado 
   - ="rectángulo"= si los lados pueden formar un rectángulo
   - ="regular"= si los lados pueden forman un polígono regular  
+  - ="iregular"= si los lados pueden forman un polígono  
   - ="imposible"= si hay pocos lados para hacer un polígono, o algún otro problema
+- Por ejemplo
+  - =(2,2,2,2)= es un polígono regular y un cuadrado, pero es más prioritario ="cuadrado"=
+  - =(2,1,2,1)= es un polígono irregular y un rectángulo, pero es más prioritario ="rectangulo"= 
 - Qué hacer:
   - Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores...
   - Implementar los casos de prueba

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-30 jue 11:33 -->
+<!-- 2026-04-30 jue 11:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diseño e implementación de pruebas</title>
@@ -885,7 +885,13 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <li><code>"cuadrado"</code> si los lados pueden formar un cuadrado</li>
 <li><code>"rectángulo"</code> si los lados pueden formar un rectángulo</li>
 <li><code>"regular"</code> si los lados pueden forman un polígono regular</li>
+<li><code>"iregular"</code> si los lados pueden forman un polígono</li>
 <li><code>"imposible"</code> si hay pocos lados para hacer un polígono, o algún otro problema</li>
+</ul></li>
+<li>Por ejemplo
+<ul class="org-ul">
+<li><code>(2,2,2,2)</code> es un polígono regular y un cuadrado, pero es más prioritario <code>"cuadrado"</code></li>
+<li><code>(2,1,2,1)</code> es un polígono irregular y un rectángulo, pero es más prioritario <code>"rectangulo"</code></li>
 </ul></li>
 <li>Qué hacer:
 <ul class="org-ul">
@@ -995,7 +1001,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-30 jue 11:33</p>
+<p class="date">Created: 2026-04-30 jue 11:44</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
