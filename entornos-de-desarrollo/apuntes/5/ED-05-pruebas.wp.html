@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-30 jue 11:08 -->
+<!-- 2026-04-30 jue 11:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diseño e implementación de pruebas</title>
@@ -678,7 +678,7 @@ Miraremos la cobertura de decisiones
 <li>Las clases de JUnit están en <a href="https://github.com/junit-team/junit4/wiki/Download-and-Install">su fichero jar</a>. También necesita el jar de <a href="https://github.com/hamcrest/JavaHamcrest">Hamcrest</a>.
 <ul class="org-ul">
 <li>Esto es para la versión 4.x</li>
-<li>La versión<a href="https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies">6 es bastante más complicad</a>a (para este curso, no compensa)</li>
+<li>La versión <a href="https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies">6 es bastante más complicad</a>a (para este curso, no compensa)</li>
 </ul></li>
 <li>Intellij: añadir los ficheros jar como librerías del proyecto/módulo</li>
 <li>En proyectos reales: aconsejable utilizar maven o <a href="https://github.com/junit-team/junit4/wiki/Use-with-Gradle">gradle</a></li>
@@ -939,21 +939,24 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 </div>
 <div id="outline-container-org000006f" class="outline-3">
-<h3 id="org000006f"><span class="section-number-3">6.10.</span> Ejercicio: matrículas</h3>
+<h3 id="org000006f"><span class="section-number-3">6.10.</span> Ejercicio: [[<a href="https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional">https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional</a></h3>
 <div class="outline-text-3" id="text-6-10">
+<p>
+][matrículas]]
+</p>
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #8b2252;">/**
- * Decide si una matr&#237;cula de coche es anterior a otra.  
+ * Decide si una matr&#237;cula de coche (tipo 9999ZZZ) es anterior a otra.  
  * No importan may&#250;sculas y min&#250;sculas.
  * Tampoco importa si hay separaci&#243;n por espacios entre los n&#250;meros y las letras  
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m1 Matr&#237;cula espa&#241;ola actual (9999ZZZ)
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m2 Matr&#237;cula espa&#241;ola actual (9999ZZZ)
+ * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m1 Matr&#237;cula espa&#241;ola actual 
+ * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m2 Matr&#237;cula espa&#241;ola actual
  * </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> "iguales" si son iguales
  *         "menor" si m1 es anterior a m2
  *         "mayor" si m1 es posterior a m2
  *         "error" si m1 o m2 no son matr&#237;culas v&#225;lidas
  */</span>
-<span style="color: #228b22;">String</span> <span style="color: #0000ff;">comparaMatr&#237;cula</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">m1</span>, <span style="color: #228b22;">String</span> <span style="color: #a0522d;">m2</span>){
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">comparaMatr&#237;cula</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">m1</span>, <span style="color: #228b22;">String</span> <span style="color: #a0522d;">m2</span>){
     ....
 }  
 </pre>
@@ -1003,7 +1006,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-30 jue 11:08</p>
+<p class="date">Created: 2026-04-30 jue 11:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

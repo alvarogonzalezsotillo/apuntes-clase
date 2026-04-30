@@ -397,20 +397,21 @@ public class Punto{
   - Implementar los casos de prueba
   - Implementar el método        
 
-** Ejercicio: matrículas
+** Ejercicio: [[https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional
+][matrículas]]
 #+begin_src java
 /**
- ,* Decide si una matrícula de coche es anterior a otra.  
+ ,* Decide si una matrícula de coche (tipo 9999ZZZ) es anterior a otra.  
  ,* No importan mayúsculas y minúsculas.
  ,* Tampoco importa si hay separación por espacios entre los números y las letras  
- ,* @param m1 Matrícula española actual (9999ZZZ)
- ,* @param m2 Matrícula española actual (9999ZZZ)
+ ,* @param m1 Matrícula española actual 
+ ,* @param m2 Matrícula española actual
  ,* @return "iguales" si son iguales
  ,*         "menor" si m1 es anterior a m2
  ,*         "mayor" si m1 es posterior a m2
  ,*         "error" si m1 o m2 no son matrículas válidas
  ,*/
-String comparaMatrícula(String m1, String m2){
+public static String comparaMatrícula(String m1, String m2){
     ....
 }  
 #+end_src
