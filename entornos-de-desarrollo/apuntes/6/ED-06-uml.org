@@ -1,0 +1,277 @@
+#+INCLUDE: "../../../common/header.org"
+#+TITLE:  Unified Modeling Language (UML)
+#+REVEAL_HLEVEL: 1
+
+* UML
+- Lenguaje Unificado de Modelado
+- Conjunto de diagramas para modelar y documentar un sistema software
+  - Misma idea que los diagramas E-R de base de datos.
+- Es un estándar de facto
+- Su origen es la fusión de varios métodos orientación a objetos:
+  - OMT - Object Modeling Technique (Jim Rumbaugh et al.).
+  - Método-Booch (Grady Booch).
+  - OOSE - Object-Oriented Software Engineering (Ivar Jacobson) .
+
+** Por qué modelar
+- Mejor documentación
+  - Un diagrama es más rápido de entender que un texto largo
+  - Un diagrama suele ser menos ambiguo que un texto
+  - Permite la comunicación efectiva entre miembros del equipo
+- Desarrollo rápido
+  - Más rápido que la implementación en código
+  - Algunas herramientas permiten generar código a partir de los diagramas    
+
+** Cuándo modelar    
+- Ingeniería directa
+  - Se diseña el sistema usando (entre otros) diagramas UML
+  - Después se implementa
+- Ingeniería inversa
+  - Se estudia un sistema ya existente
+  - Se crean diagramas UML para mejorar la comprensión
+
+** Tipos de diagramas
+- Diagramas de clases
+- Diagramas de casos de uso
+- Diagramas de
+
+** Herramientas
+- Lápiz y papel
+- [[https://editor.plantuml.com/uml][Plantuml]] y [[https://www.umlet.com/][UMLet]]
+- Prácticamente cualquier herramienta de diagramas      
+
+* Diagramas de clases
+
+#+MACRO: src-to-dataurl (eval (let* ((name $1) (info (org-babel-get-src-block-info 'light)) (body (with-current-buffer (current-buffer) (org-babel-goto-named-src-block name) (nth 1 (org-babel-get-src-block-info 'light)))))   (concat "data:text/plain;base64," (base64-encode-string (string-as-unibyte body) t))))
+          
+- Rectángulo: una clase
+  - Cada línea es un método o atributo
+  - ~#~ para protegido, ~+~ para público, ~-~ para privado
+- Línea: relación entre clases (una referencia)
+  - Cardinalidad: como en E-R
+  - Con triángulo: herencia
+  - Con rombo hueco: agregación (tiene varias instancias)
+  - Con rombo lleno: composición (se compone de varias instancias, similar a una entidad débil E-R)  
+
+** Ejemplo con PlantUML    
+
+#+name: leyenda-clases    
+#+begin_src plantuml :file media/leyenda-clases.svg
+@startuml
+
+' === Clases e interfaces ===
+interface Vehiculo {
+  +mover()
+}
+
+class Coche {
+  +matricula: String
+  -atributoPrivado: Int
+  #metodoProtegido()
+  +mover()
+}
+
+class Motor
+class Rueda
+class Persona
+
+' === Herencia (generalización) ===
+Vehiculo <|-- Coche
+
+' === Composición (parte fuerte, ciclo de vida dependiente) ===
+Coche *-- Motor : composición
+
+' === Agregación (parte débil) ===
+Coche *-- Rueda : composición
+
+Coche o-- Viajes : Agregación
+
+
+' === Relación con cardinalidad ===
+Persona "1" -- "0..*" Coche : posee
+
+
+@enduml
+#+end_src
+
+** Ejemplo:
+
+- Un curso está compuesto por varias asignaturas.
+- Cada alumno pertenece a un único curso, aunque un curso puede tener muchos alumnos.
+- Un profesor puede impartir varias asignaturas, y una asignatura puede ser impartida por un único profesor.
+- Las asignaturas se dividen en dos tipos: teóricas y prácticas, utilizando herencia.
+- Un alumno se matricula en asignaturas mediante una matrícula.
+- La matrícula representa la relación entre un alumno y el conjunto de asignaturas en las que está inscrito.
+- Las calificaciones de un alumno en cada asignatura se almacenan en una clase llamada Nota.
+- Cada matrícula debe permitir:
+  - Registrar una calificación para una asignatura (setNota(asignatura, valor)).
+  - Consultar la calificación de una asignatura (getNota(asignatura)).
+
+#+reveal: split  
+
+#+begin_src plantuml :file media/profesores-y-asignaturas.svg
+@startuml
+
+class Profesor {
+}
+
+class Alumno {
+}
+
+class Curso {
+}
+
+class Asignatura {
+}
+
+class AsignaturaPractica {
+}
+
+class AsignaturaTeorica {
+}
+
+class Matricula {
+    +setNota(asignatura, valor)
+    +getNota(asignatura)
+}
+
+class Nota {
+    valor: float
+}
+
+' Herencia
+Asignatura <|-- AsignaturaPractica
+Asignatura <|-- AsignaturaTeorica
+
+' Relaciones curso-asignaturas
+Curso "1" *-- "1..*" Asignatura : compone
+
+' Alumno pertenece a un curso
+Curso "1" <-- "0..*" Alumno : pertenece
+
+' Profesor imparte asignaturas
+Profesor "1" -- "0..*" Asignatura : imparte
+
+' Matricula
+Alumno "1" -- "1" Matricula
+Matricula "1" *-- "1..*" Asignatura : incluye
+
+' Notas
+Matricula "1" *-- "0..*" Nota
+Nota "1" --> "1" Asignatura
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/profesores-y-asignaturas.svg]]
+
+
+* Vigencia de UML
+- UML es comparable a los diagramas E-R
+- No se usa mucho de forma "oficial" en las empresas
+- Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados
+      
+* Referencias
+#+include: "../../../common/footer.org"
+
+
+
+
+#+begin_src plantuml :file media/profesores-y-asignaturas-local.svg
+
+@startuml
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    FontColor Black
+    ArrowColor Black
+}
+
+' Definición de clases principales
+
+class Profesor {
+    - id: int
+    - nombre: string
+    - email: string
+    + impartir(asignatura: Asignatura)
+}
+
+class Asignatura  {
+    - id: int
+    - nombre: string
+    - credits: float
+    + getNombre()
+}
+
+class AsignaturaTeórica extends Asignatura {
+    - tipoEvaluacion: "Examen"
+    + getTipoEvaluacion()
+}
+
+class AsignaturaPractica extends Asignatura {
+    - tipoEvaluacion: "Prácticas"
+    + obtenerPracticas()
+}
+
+class Alumno {
+    - id: int
+    - nombre: string
+    - dni: string
+    + matricular(seleccion: Curso)
+}
+
+class Curso {
+    - id: int
+    - nombre: string
+    - anio: int
+    + getAsignaturas()
+}
+
+class Matrícula {
+    - id: int
+    - fechaInicio: date
+    - fechaFin: date
+    + setNota(asignatura: Asignatura, valor: float)
+    + getNota(asignatura: Asignatura)
+    + calcularPromedio()
+}
+
+class Nota {
+    - valor: float
+    - fechaEntrega: date
+    + getValor()
+    + getFecha()
+}
+
+' Relaciones y Asociaciones
+
+' 1. Un Profesor puede impartir varias asignaturas
+Profesor "1" --> "*" Asignatura : imparte
+
+' 2. Un Curso se compone de varias asignaturas
+Curso "1" --> "*" Asignatura : compone
+
+' 3. Un Alumno solo pertenece a un curso
+Alumno "1" --> "1" Curso : pertenece
+
+' 4. Una matrícula tiene un alumno
+Matrícula "1" --> "1" Alumno : tiene
+
+' 5. Una matrícula se compone de asignaturas (asignaturas en las que está matriculado el alumno en ese periodo)
+Matrícula "1" --> "*" Asignatura : contiene
+
+' 6. Las notas de los alumnos en asignaturas se guardan en la clase Nota
+Nota "1" --> "1" Asignatura : refiere
+
+' 7. La relación entre Nota y Alumno/Matrícula (implícita en la estructura de matrícula)
+' Normalmente una Nota se guarda dentro de la Matrícula, pero pertenece a una Asignatura
+Nota "1" --> "1" Matrícula : pertenece
+
+
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/profesores-y-asignaturas-local.svg]]
+

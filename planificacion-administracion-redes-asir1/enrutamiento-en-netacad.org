@@ -1,0 +1,42 @@
+(1ASIR 2025-2026) CCNA: Fundamentos de Conmutación, Enrutamiento y Redes Inalámbricas
+14.5
+
+
+
+(1ASIR 2025-2025) CCNA: Redes Empresariales, Seguridad y Automatización
+2.1.8
+2.2.3
+2.2.5 Syntax Checker- Configurar R2 y R3 mediante el comando network
+2.2.13 Packet Tracer - Configuración OSPFv2 de área única punto a punto
+2.3.11 Packet Tracer - Determine el DR y el BDR
+2.4.11 Packet Tracer - Modifique OSPFv2 Single-Area (no me encanta)
+2.5.3 Packet Tracer - Propague una ruta predeterminada en OSPFv2
+2.7.1 Packet Tracer - Configuración de OSPFv2 de área única
+
+
+
+
+
+R1(config)# router ospf 10
+R1(config-router)# network 10.10.1.0 0.0.0.255 area 0
+R1(config-router)# network 10.1.1.4 0.0.0.3 area 0
+R1(config-router)# network 10.1.1.12 0.0.0.3 area 0
+R1(config-router)#
+
+
+Router(config-router)# network network-address wildcard-mask area area-id
+
+
+
+* elección dr bdr
+
+¿Cómo se eligen el DR y el BDR? La decisión de elección del DR y el BDR OSPF se hace según los siguientes criterios, en orden secuencial:
+
+    Los routers en la red seleccionan como DR al router con la prioridad de interfaz más alta. El router con la segunda prioridad de interfaz más alta se elige como BDR. La prioridad puede configurarse para que sea cualquier número entre 0 y 255. Si el valor de prioridad de la interfaz se establece en 0, esa interfaz no se puede elegir como DR ni BDR. La prioridad predeterminada de las interfaces broadcast de acceso múltiple es 1. Por lo tanto, a menos que se configuren de otra manera, todos los routers tienen un mismo valor de prioridad y deben depender de otro método de diferenciación durante la elección del DR/BDR.
+    Si las prioridades de interfaz son iguales, se elige al router con la ID más alta como DR. El router con la segunda ID más alta es el BDR.
+
+Recuerde que el router ID se determina de una de las siguientes tres maneras:
+
+    El router ID se puede configurar manualmente.
+    Si no hay un router ID configurado, la dirección IPv4 de loopback más alta determina el router ID.
+    Si no hay interfaces de loopback configuradas, el router ID lo determina la dirección IPv4 activa más alta.
