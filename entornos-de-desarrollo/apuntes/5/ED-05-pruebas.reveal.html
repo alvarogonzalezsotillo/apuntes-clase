@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-04-30 jue 11:28 -->
+<!-- Generated on 2026-04-30 jue 11:33 -->
 <meta charset="utf-8"/>
 <title>Diseño e implementación de pruebas</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Diseño e implementación de pruebas</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-04-30 jue 11:28</p>
+<h1 class="title">Diseño e implementación de pruebas</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-04-30 jue 11:33</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1623,27 +1623,17 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </code></pre>
 </div>
 <ul>
-<li>Recibe una lista de puntos</li>
-<li>Devuelve los pares de puntos más cercanos</li>
-<li>Por ejemplo <code>(1,2) (1,1) (2,11) (3,3) (4,3) (5,8) (100,0) (100,1)</code>
-<ul>
-<li>Devolvería un array de longitud 3. Cada posición es un array de dos puntos
+<li>Devuelve los pares de puntos más cercanos (<a href="https://es.wikipedia.org/wiki/Distancia_euclidiana">distancia euclídea</a>)</li>
+<li>Por ejemplo <code>(1,2) (1,1) (2,11) (3,3) (4,3) (5,8) (100,0) (100,1)</code> devolvería un array de longitud 3. Cada posición es un array de dos puntos
 <ul>
 <li><code>(1,2) (1,1)</code></li>
 <li><code>(3,3) (4,3)</code></li>
 <li><code>(100,0) (100,1)</code></li>
 
 </ul></li>
-
-</ul></li>
-
-<li>Por ejemplo <code>(1,20) (18,1) (2,110) (3,3) (51,8) (100,0) (100,1) (4,5)</code>
-<ul>
-<li>Devolvería un array de longitud 1. Cada posición es un array de dos puntos
+<li>Por ejemplo <code>(1,20) (18,1) (2,110) (3,3) (51,8) (100,0) (100,1) (4,5)</code> devolvería un array de longitud 1. Cada posición es un array de dos puntos
 <ul>
 <li><code>(3,3) (4,5)</code></li>
-
-</ul></li>
 
 </ul></li>
 <li>Qué hacer:
@@ -1658,10 +1648,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <div class="slide-footer"></div>
 </section>
 <section id="slide-6-10">
-<h3 id="6-10"><span class="section-number-3">6.10.</span> Ejercicio: [[<a href="https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional">https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional</a></h3>
-<p>
-][matrículas]]
-</p>
+<h3 id="6-10"><span class="section-number-3">6.10.</span> Ejercicio: <a href="https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional">matrículas</a></h3>
 <div class="org-src-container">
 
 <pre><code class="java" >/**
