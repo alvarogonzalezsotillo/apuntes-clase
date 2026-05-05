@@ -134,9 +134,6 @@ class Matricula {
     +getNota(asignatura)
 }
 
-class Nota {
-    valor: float
-}
 
 ' Herencia
 Asignatura <|-- AsignaturaPractica
@@ -146,24 +143,85 @@ Asignatura <|-- AsignaturaTeorica
 Curso "1" *-- "1..*" Asignatura : compone
 
 ' Alumno pertenece a un curso
-Curso "1" <-- "0..*" Alumno : pertenece
+Curso "0..*" <-- "0..*" Alumno : pertenece
 
 ' Profesor imparte asignaturas
 Profesor "1" -- "0..*" Asignatura : imparte
 
 ' Matricula
-Alumno "1" -- "1" Matricula
+Alumno "1" -- "1..*" Matricula
 Matricula "1" *-- "1..*" Asignatura : incluye
-
-' Notas
-Matricula "1" *-- "0..*" Nota
-Nota "1" --> "1" Asignatura
 
 @enduml
 #+end_src
 
 #+RESULTS:
 [[file:media/profesores-y-asignaturas.svg]]
+
+** Ejercicio
+- Una empresa quiere manejar el stock de un almacén
+- Cada venta indica qué productos incluye, y la cantidad de cada uno, y a qué precio
+- Cada entrada en el almacén indica qué productos incluye, y la cantidad de cada uno
+- El gestor del almacén se encarga de que no haya ventas que sobrepasen el /stock/ de ningún producto
+- Se puede preguntar a una venta por su importe       
+
+#+begin_src plantuml :file media/stock-almacen.svg
+  @startuml
+
+class Producto {
+  - nombre : String
+  - stock : int
+  + getStock() : int
+  + aumentarStock(cantidad : int)
+  + disminuirStock(cantidad : int)
+}
+
+class Venta {
+  - fecha : Date
+  - lineas : List<LineaVenta>
+  + getImporte() : double
+}
+
+class LineaVenta {
+  - cantidad : int
+  - precio : double
+  + getSubtotal() : double
+}
+
+class Entrada {
+  - fecha : Date
+  - lineas : List<LineaEntrada>
+}
+
+class LineaEntrada {
+  - cantidad : int
+}
+
+class Almacen {
+  - cantidad : int
+  + getStock(Producto): int
+  + validaVenta(Venta): Boolean      
+}
+
+Almacen "1" o-- "0..*" Producto
+Almacen "1" o-- "0..*" Venta
+Almacen "1" o-- "0..*" Entrada
+
+
+
+Producto "1" -- "0..*" LineaVenta
+Producto "1" -- "0..*" LineaEntrada
+
+Venta "1" *-- "1..*" LineaVenta
+Entrada "1" *-- "1..*" LineaEntrada
+
+
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/stock-almacen.svg]]
 
 
 * Vigencia de UML
@@ -175,103 +233,4 @@ Nota "1" --> "1" Asignatura
 #+include: "../../../common/footer.org"
 
 
-
-
-#+begin_src plantuml :file media/profesores-y-asignaturas-local.svg
-
-@startuml
-skinparam class {
-    BackgroundColor White
-    BorderColor Black
-    FontColor Black
-    ArrowColor Black
-}
-
-' Definición de clases principales
-
-class Profesor {
-    - id: int
-    - nombre: string
-    - email: string
-    + impartir(asignatura: Asignatura)
-}
-
-class Asignatura  {
-    - id: int
-    - nombre: string
-    - credits: float
-    + getNombre()
-}
-
-class AsignaturaTeórica extends Asignatura {
-    - tipoEvaluacion: "Examen"
-    + getTipoEvaluacion()
-}
-
-class AsignaturaPractica extends Asignatura {
-    - tipoEvaluacion: "Prácticas"
-    + obtenerPracticas()
-}
-
-class Alumno {
-    - id: int
-    - nombre: string
-    - dni: string
-    + matricular(seleccion: Curso)
-}
-
-class Curso {
-    - id: int
-    - nombre: string
-    - anio: int
-    + getAsignaturas()
-}
-
-class Matrícula {
-    - id: int
-    - fechaInicio: date
-    - fechaFin: date
-    + setNota(asignatura: Asignatura, valor: float)
-    + getNota(asignatura: Asignatura)
-    + calcularPromedio()
-}
-
-class Nota {
-    - valor: float
-    - fechaEntrega: date
-    + getValor()
-    + getFecha()
-}
-
-' Relaciones y Asociaciones
-
-' 1. Un Profesor puede impartir varias asignaturas
-Profesor "1" --> "*" Asignatura : imparte
-
-' 2. Un Curso se compone de varias asignaturas
-Curso "1" --> "*" Asignatura : compone
-
-' 3. Un Alumno solo pertenece a un curso
-Alumno "1" --> "1" Curso : pertenece
-
-' 4. Una matrícula tiene un alumno
-Matrícula "1" --> "1" Alumno : tiene
-
-' 5. Una matrícula se compone de asignaturas (asignaturas en las que está matriculado el alumno en ese periodo)
-Matrícula "1" --> "*" Asignatura : contiene
-
-' 6. Las notas de los alumnos en asignaturas se guardan en la clase Nota
-Nota "1" --> "1" Asignatura : refiere
-
-' 7. La relación entre Nota y Alumno/Matrícula (implícita en la estructura de matrícula)
-' Normalmente una Nota se guarda dentro de la Matrícula, pero pertenece a una Asignatura
-Nota "1" --> "1" Matrícula : pertenece
-
-
-
-@enduml
-#+end_src
-
-#+RESULTS:
-[[file:media/profesores-y-asignaturas-local.svg]]
 
