@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-29 mié 19:02 -->
+<!-- 2026-05-05 mar 11:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unified Modeling Language (UML)</title>
@@ -205,9 +205,9 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org000000c">1. UML</a></li>
-<li><a href="#org0000019">2. Diagramas de clases</a></li>
-<li><a href="#org000001c">3. Vigencia de UML</a></li>
-<li><a href="#org000001f">4. Referencias</a></li>
+<li><a href="#org0000020">2. Diagramas de clases</a></li>
+<li><a href="#org0000023">3. Vigencia de UML</a></li>
+<li><a href="#org0000026">4. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -331,8 +331,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000019" class="outline-2">
-<h2 id="org0000019"><span class="section-number-2">2.</span> Diagramas de clases</h2>
+<div id="outline-container-org0000020" class="outline-2">
+<h2 id="org0000020"><span class="section-number-2">2.</span> Diagramas de clases</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Rectángulo: una clase
@@ -359,8 +359,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000016" class="outline-3">
-<h3 id="org0000016"><span class="section-number-3">2.2.</span> Ejemplo:</h3>
+<div id="outline-container-org0000014" class="outline-3">
+<h3 id="org0000014"><span class="section-number-3">2.2.</span> Ejemplo:</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Un curso está compuesto por varias asignaturas.</li>
@@ -376,17 +376,57 @@ window.addEventListener("load",()=>{
 <li>Consultar la calificación de una asignatura (getNota(asignatura)).</li>
 </ul></li>
 </ul>
-
-
-<div id="org0000014" class="figure">
-<p><img src="media/profesores-y-asignaturas.svg" alt="profesores-y-asignaturas.svg" class="org-svg" />
-</p>
+</div>
+</div>
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">2.3.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Una empresa quiere manejar el stock de un almacén</li>
+<li>Cada venta indica qué productos incluye, y la cantidad de cada uno, y a qué precio</li>
+<li>Cada entrada en el almacén indica qué productos incluye, y la cantidad de cada uno</li>
+<li>El gestor del almacén se encarga de que no haya ventas que sobrepasen el <i>stock</i> de ningún producto</li>
+<li>Se puede preguntar a una venta por su importe</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001a" class="outline-3">
+<h3 id="org000001a"><span class="section-number-3">2.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Un procesador de textos maneja documentos compuestos de párrafos.</li>
+<li>Un párrafo puede contener texto o ser una imagen.</li>
+<li>Un párrafo de texto contiene cadenas, que van una detrás de otra.</li>
+<li>Un párrafo puede tener alineación izquierda, derecha o centrada.</li>
+<li>Una cadena puede tener negrita, cursiva, subrayado.</li>
+<li>Cada cadena tiene un tipo de letra (arial, cursiva&#x2026;) y un tamaño. Si no se especifica, toman la de por defecto del documento.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001d" class="outline-3">
+<h3 id="org000001d"><span class="section-number-3">2.5.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Un sistema de ficheros tiene ficheros y carpetas</li>
+<li>Una carpeta puede contener otros ficheros y carpetas</li>
+<li>Tanto ficheros como carpetas tienen:
+<ul class="org-ul">
+<li>un nombre</li>
+<li><a href="https://www.jaimealberto.io/post/44_permisos/">permisos tipo linux</a> (rwxrwxr)</li>
+</ul></li>
+<li>Los ficheros y carpetas
+<ul class="org-ul">
+<li>Se pueden renombrar</li>
+<li>Se pueden copiar (las carpetas se copian recursivamente)</li>
+<li>Se pueden borrar</li>
+</ul></li>
+<li>Los ficheros tienen un contenido, que es una cadena de texto</li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org000001c" class="outline-2">
-<h2 id="org000001c"><span class="section-number-2">3.</span> Vigencia de UML</h2>
+<div id="outline-container-org0000023" class="outline-2">
+<h2 id="org0000023"><span class="section-number-2">3.</span> Vigencia de UML</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>UML es comparable a los diagramas E-R</li>
@@ -395,8 +435,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org000001f" class="outline-2">
-<h2 id="org000001f"><span class="section-number-2">4.</span> Referencias</h2>
+<div id="outline-container-org0000026" class="outline-2">
+<h2 id="org0000026"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Formatos:
@@ -413,7 +453,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-29 mié 19:02</p>
+<p class="date">Created: 2026-05-05 mar 11:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
