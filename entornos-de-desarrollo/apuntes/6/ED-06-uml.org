@@ -542,6 +542,47 @@ rectangle Sistema {
 [[file:media/soporte-tecnico.svg]]
 
 
+* Diagramas de actividad
+
+#+begin_src plantuml :file media/leyenda-actividad.svg
+  @startuml
+
+start
+
+repeat
+:Acción inicial;
+
+if (¿Decisión?) then (Sí)
+  :Acción rama Sí;
+else (No)
+  :Acción rama No;
+endif
+
+fork
+  :Acción paralela 1;
+fork again
+  :Acción paralela 2;
+end fork
+
+:Acción;
+
+repeat while (¿Decisión?) is (Si)
+->No;
+
+stop
+
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/leyenda-actividad.svg]]
+
+** Ejemplo
+[[file:media/arresto-cardiaco-pediatrico.jpg]]
+
+** Ejemplo
+[[file:media/insuficiencia-renal-aguda.png]]
 * Vigencia de UML
 - UML es comparable a los diagramas E-R
 - No se usa mucho de forma "oficial" en las empresas

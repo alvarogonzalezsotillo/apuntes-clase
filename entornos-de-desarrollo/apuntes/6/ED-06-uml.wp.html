@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-05-05 mar 11:17 -->
+<!-- 2026-05-05 mar 20:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unified Modeling Language (UML)</title>
@@ -206,8 +206,10 @@
 <ul>
 <li><a href="#org000000c">1. UML</a></li>
 <li><a href="#org0000020">2. Diagramas de clases</a></li>
-<li><a href="#org0000023">3. Vigencia de UML</a></li>
-<li><a href="#org0000026">4. Referencias</a></li>
+<li><a href="#org0000036">3. Diagramas de casos de uso</a></li>
+<li><a href="#org0000043">4. Diagramas de actividad</a></li>
+<li><a href="#org0000046">5. Vigencia de UML</a></li>
+<li><a href="#org0000049">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -425,9 +427,129 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000023" class="outline-2">
-<h2 id="org0000023"><span class="section-number-2">3.</span> Vigencia de UML</h2>
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">3.</span> Diagramas de casos de uso</h2>
 <div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Se representan
+<ul class="org-ul">
+<li>Actores: usuarios u otros sistemas externos que interaccionan con nuestro sistema</li>
+<li>Responsabilidades/acciones de nuestro sistema</li>
+</ul></li>
+<li>Sirven para
+<ul class="org-ul">
+<li>Saber qué tiene que hacer el sistema</li>
+<li>Saber quién es el responsable de iniciar una acción, o quién puede hacerla, o a quién hay que notificar resultados</li>
+</ul></li>
+<li>No suelen ser útiles para la codificación
+<ul class="org-ul">
+<li>Pero sí para delimitar el alcance de la aplicación</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">3.1.</span> Nomenclatura</h3>
+<div class="outline-text-3" id="text-3-1">
+
+<div id="org0000023" class="figure">
+<p><img src="media/nomemclatura-casos-de-uso.svg" alt="nomemclatura-casos-de-uso.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000028" class="outline-3">
+<h3 id="org0000028"><span class="section-number-3">3.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>La máquina de <i>vending</i> da productos a los clientes</li>
+<li>Los clientes pueden consultar el precio de los productos</li>
+<li>Los productos se pueden cobrar mediante tarjeta de crédito o con monedas</li>
+<li>Un empleado puede
+<ul class="org-ul">
+<li>Abrir la máquina para reponer productos</li>
+<li>Cambiar los precios de los productos</li>
+</ul></li>
+<li>Un empleado, como cualquier otra persona, puede comprar productos y consultar precios</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">3.3.</span> Refinamiento</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Los casos de uso se pueden refinar o <i>explotar</i></li>
+</ul>
+
+
+<div id="org000002b" class="figure">
+<p><img src="media\vending-refinado-reponedor.svg" alt="media\vending-refinado-reponedor.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000030" class="outline-3">
+<h3 id="org0000030"><span class="section-number-3">3.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos</li>
+<li>Un usuario puede ver los documentos de otros usuarios</li>
+<li>Un gestor también puede revisar los documentos de otros usuarios y sugerir cambios en forma de notas</li>
+<li>Un administrador puede hacer lo que un gestor, y además
+<ul class="org-ul">
+<li>dar de baja a cualquier usuario</li>
+<li>cambiar los datos de cualquier usuario</li>
+<li>Borrar documentos, tras revisar su contenido</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">3.5.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Si un usuario tiene problemas, puede abrir una incidencia</li>
+<li>El técnico puede decidir no gestionar la incidencia si está fuera del contrato de soporte, y cerrarla</li>
+<li>El técnico trabaja en la incidencia, y la cierra cuando está resuelta y el usuario está de acuerdo</li>
+<li>Si el usuario no está conforme, puede pedir una elevación (<i>escalation</i>) del problema. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El técnico puede elevar el problema a un especialista si no está formado para ello. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El especialista trata las incidencias elevadas como una incidencia normal (excepto que no puede elevarlas)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000043" class="outline-2">
+<h2 id="org0000043"><span class="section-number-2">4.</span> Diagramas de actividad</h2>
+<div class="outline-text-2" id="text-4">
+
+<div id="org0000039" class="figure">
+<p><img src="media/leyenda-actividad.svg" alt="leyenda-actividad.svg" class="org-svg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">4.1.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-4-1">
+
+<div id="org000003b" class="figure">
+<p><img src="media/arresto-cardiaco-pediatrico.jpg" alt="arresto-cardiaco-pediatrico.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">4.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-4-2">
+
+<div id="org000003f" class="figure">
+<p><img src="media/insuficiencia-renal-aguda.png" alt="insuficiencia-renal-aguda.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000046" class="outline-2">
+<h2 id="org0000046"><span class="section-number-2">5.</span> Vigencia de UML</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>UML es comparable a los diagramas E-R</li>
 <li>No se usa mucho de forma "oficial" en las empresas</li>
@@ -435,9 +557,9 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000026" class="outline-2">
-<h2 id="org0000026"><span class="section-number-2">4.</span> Referencias</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">6.</span> Referencias</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -453,7 +575,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-05-05 mar 11:17</p>
+<p class="date">Created: 2026-05-05 mar 20:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
