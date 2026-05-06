@@ -394,7 +394,7 @@ UC1 --> UC3 : <<include>>
 - Un empleado, como cualquier otra persona, puede comprar productos y consultar precios    
 
 *** solución :noexport:
-#+begin_src plantuml :file media\vending.svg
+#+begin_src plantuml :file media/vending.svg
 
 @startuml
 left to right direction
@@ -427,7 +427,7 @@ rectangle "Máquina Expendedora" {
 ** Refinamiento
 - Los casos de uso se pueden refinar o /explotar/
 
-#+begin_src plantuml :file media\vending-refinado-reponedor.svg
+#+begin_src plantuml :file media/vending-refinado-reponedor.svg
 
 @startuml
 left to right direction
