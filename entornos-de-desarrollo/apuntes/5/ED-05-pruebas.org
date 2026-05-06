@@ -392,6 +392,7 @@ public class Punto{
   - =(100,0) (100,1)=  
 - Por ejemplo =(1,20) (18,1) (2,110) (3,3) (51,8) (100,0) (100,1) (4,5)= devolvería un array de longitud 1. Cada posición es un array de dos puntos
   - =(3,3) (4,5)=
+- Pista: [[https://docs.google.com/spreadsheets/d/1m3LLt14JVIlu2p_0rq_d0kpMjnnxs6q1Yb3m9rz0-hg/edit?usp=sharing][dibuja los puntos de los ejemplos]] para entenderlo    
 - Qué hacer:
   - Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores...
   - Implementar los casos de prueba
