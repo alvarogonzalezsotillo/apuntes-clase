@@ -583,6 +583,131 @@ stop
 
 ** Ejemplo
 [[file:media/insuficiencia-renal-aguda.png]]
+
+** Ejercicio
+- Al llegar una orden de salida de productos del almacén, se separa en productos refrigerados y no refrigerados.
+- Los productos refrigerados y no refrigerados se localizan y empaquetan por separado.
+- Si durante el empaquetado falta algún producto, se crea una orden de reposición al proveedor, y se espera a que el producto llegue
+- Cuando estén todos los productos, se sacan del almacén
+
+*** solución :noexport:
+#+begin_src plantuml :file ./media/almacen-refrigerado-1.svg
+@startuml
+start
+
+:Recibir orden de salida;
+
+:Separar en productos refrigerados y no refrigerados;
+
+fork
+  :Localizar productos refrigerados;
+  :Empaquetar productos refrigerados;
+fork again
+  :Localizar productos no refrigerados;
+  :Empaquetar productos no refrigerados;
+end fork
+
+if (¿Falta algún producto?) then (Sí)
+  :Crear orden de reposición al proveedor;
+  :Esperar llegada del producto;
+endif
+
+:Sacar productos del almacén;
+
+stop
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:./media/almacen-refrigerado-1.svg]]
+
+#+begin_src plantuml :file ./media/almacen-refrigerado-2.svg
+@startuml
+start
+
+:Recibir orden de salida;
+
+:Separar en productos refrigerados y no refrigerados;
+
+fork
+  :Localizar productos refrigerados;
+  if (¿Falta algún producto?) then (Sí)
+    :Crear orden de reposición;
+    :Esperar llegada del producto;
+  endif
+  :Empaquetar productos refrigerados;
+fork again
+  :Localizar productos no refrigerados;
+  if (¿Falta algún producto?) then (Sí)
+    :Crear orden de reposición;
+    :Esperar llegada del producto;
+  endif
+  :Empaquetar productos no refrigerados;
+end fork
+
+:Sacar productos del almacén;
+
+stop
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:./media/almacen-refrigerado-2.svg]]
+
+** Ejercicio
+- Una agencia de viajes permite buscar por un vuelo entre dos aeropuertos
+- Tras especificar origen y destino, se busca simultáneamente en varios proveedores y mayoristas
+- Cuando acaba la búsqueda, se contacta con el cliente para comunicarle las ofertas
+- cuando el usuario elige una oferta, se contacta con el proveedor indicado para reservar el vuelo
+- si la oferta ya no está disponible, se ofrece la posibilidad al usuario de elegir otro vuelo o recomenzar la búsqueda
+
+*** solución :noexport:
+#+begin_src plantuml :file media/busqueda-de-vuelos.svg
+@startuml
+start
+
+repeat
+  :Buscar vuelo (origen y destino);
+
+  
+
+  fork
+    :Consultar Proveedor 1;
+  fork again
+    :Consultar Proveedor 2;
+  fork again
+    :Consultar Mayorista 1;
+  fork again
+    :Consultar Mayorista 2;
+  end fork
+
+  :Contactar con el cliente\npara comunicar ofertas;
+
+  repeat
+    if (¿Cliente elige oferta?) then (Sí)
+      :Contactar con proveedor\npara reservar vuelo;
+
+      if (¿Oferta disponible?) then (Sí)
+        :Confirmar reserva;
+        stop
+      else (No)
+---        :Informar indisponibilidad;
+      endif
+    else (No)
+      :Fin sin reserva;
+      stop
+    endif
+  repeat while (¿Elegir otra oferta?) is (Sí)
+
+repeat while (¿Reiniciar búsqueda?) is (Sí)
+stop
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/busqueda-de-vuelos.svg]]
+  
 * Vigencia de UML
 - UML es comparable a los diagramas E-R
 - No se usa mucho de forma "oficial" en las empresas
