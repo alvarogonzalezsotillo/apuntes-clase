@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-05-06 mié 11:36 -->
+<!-- 2026-05-10 dom 11:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Diseño e implementación de pruebas</title>
+<title>Unified Modeling Language (UML)</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -199,18 +199,17 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Diseño e implementación de pruebas</h1>
+<h1 class="title">Unified Modeling Language (UML)</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org000001f">1. Pruebas del <i>software</i></a></li>
-<li><a href="#org0000033">2. Pruebas de caja blanca</a></li>
-<li><a href="#org0000041">3. Herramientas para la cobertura de código</a></li>
-<li><a href="#org000004d">4. Pruebas de caja negra</a></li>
-<li><a href="#org0000051">5. TDD</a></li>
-<li><a href="#org0000075">6. JUnit</a></li>
-<li><a href="#org0000078">7. Referencias</a></li>
+<li><a href="#org000000c">1. UML</a></li>
+<li><a href="#org0000020">2. Diagramas de clases</a></li>
+<li><a href="#org0000036">3. Diagramas de casos de uso</a></li>
+<li><a href="#org0000049">4. Diagramas de actividad</a></li>
+<li><a href="#org000004c">5. Vigencia de UML</a></li>
+<li><a href="#org000004f">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -260,749 +259,346 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-<div id="outline-container-org000001f" class="outline-2">
-<h2 id="org000001f"><span class="section-number-2">1.</span> Pruebas del <i>software</i></h2>
+<div id="outline-container-org000000c" class="outline-2">
+<h2 id="org000000c"><span class="section-number-2">1.</span> UML</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>El desarrollo solo termina tras comprobar que el código funciona
+<li>Lenguaje Unificado de Modelado</li>
+<li>Conjunto de diagramas para modelar y documentar un sistema software
 <ul class="org-ul">
-<li>Un método</li>
-<li>Varias clases que colaboran</li>
-<li>Una aplicación</li>
-<li>Un conjunto de aplicaciones y servidores</li>
+<li>Misma idea que los diagramas E-R de base de datos.</li>
 </ul></li>
-<li>Se comprueba que funciona mediante <b>pruebas</b></li>
+<li>Es un estándar de facto</li>
+<li>Su origen es la fusión de varios métodos orientación a objetos:
+<ul class="org-ul">
+<li>OMT - Object Modeling Technique (Jim Rumbaugh et al.).</li>
+<li>Método-Booch (Grady Booch).</li>
+<li>OOSE - Object-Oriented Software Engineering (Ivar Jacobson) .</li>
+</ul></li>
 </ul>
 </div>
 <div id="outline-container-org0000000" class="outline-3">
-<h3 id="org0000000"><span class="section-number-3">1.1.</span> Ejemplos</h3>
+<h3 id="org0000000"><span class="section-number-3">1.1.</span> Por qué modelar</h3>
 <div class="outline-text-3" id="text-1-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Objeto de prueba</th>
-<th scope="col" class="org-left">Caso de prueba</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>Math.abs()</code> se corresponde con el valor absoluto</td>
-<td class="org-left">Se espera que <code>Math.abs(-10)</code> sea <code>10</code></td>
-</tr>
-
-<tr>
-<td class="org-left">Si Mario cae sobre un <i>goompa</i>, Mario rebota</td>
-<td class="org-left">Se espera que Mario rebote al saltar sobre el pimer <i>goompa</i> en el mundo 1-1</td>
-</tr>
-
-<tr>
-<td class="org-left">No se puede comprar a crédito</td>
-<td class="org-left">Se espera que el usuario <code>US9474</code>, con saldo <code>35</code>, no puede comprar el artículo <code>AR324</code>, con coste <code>40</code></td>
-</tr>
-</tbody>
-</table>
+<ul class="org-ul">
+<li>Mejor documentación
+<ul class="org-ul">
+<li>Un diagrama es más rápido de entender que un texto largo</li>
+<li>Un diagrama suele ser menos ambiguo que un texto</li>
+<li>Permite la comunicación efectiva entre miembros del equipo</li>
+</ul></li>
+<li>Desarrollo rápido
+<ul class="org-ul">
+<li>Más rápido que la implementación en código</li>
+<li>Algunas herramientas permiten generar código a partir de los diagramas</li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div id="outline-container-org0000003" class="outline-3">
-<h3 id="org0000003"><span class="section-number-3">1.2.</span> Qué es un caso de prueba</h3>
+<h3 id="org0000003"><span class="section-number-3">1.2.</span> Cuándo modelar</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Objeto de prueba:
+<li>Ingeniería directa
 <ul class="org-ul">
-<li>qué requisito se está comprobando</li>
+<li>Se diseña el sistema usando (entre otros) diagramas UML</li>
+<li>Después se implementa</li>
 </ul></li>
-<li>Condiciones de la prueba:
+<li>Ingeniería inversa
 <ul class="org-ul">
-<li>estado del sistema previo a la prueba: variables, base de datos, conexiones, ventanas abiertas, ficheros&#x2026;</li>
-<li>acciones sobre el sistema: invocar métodos, pulsar botones, lanzar comandos&#x2026;</li>
-</ul></li>
-<li>Resultado esperado
-<ul class="org-ul">
-<li>estado final del sistema: variables, base de datos, ventanas mostradas&#x2026;</li>
+<li>Se estudia un sistema ya existente</li>
+<li>Se crean diagramas UML para mejorar la comprensión</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000016" class="outline-3">
-<h3 id="org0000016"><span class="section-number-3">1.3.</span> Nivel de las pruebas</h3>
+<div id="outline-container-org0000006" class="outline-3">
+<h3 id="org0000006"><span class="section-number-3">1.3.</span> Tipos de diagramas</h3>
 <div class="outline-text-3" id="text-1-3">
-
-<div id="org0000006" class="figure">
-<p><img src="diagrama-pruebas.svg" alt="diagrama-pruebas.svg" class="org-svg" />
-</p>
-</div>
-</div>
-<div id="outline-container-org0000007" class="outline-4">
-<h4 id="org0000007"><span class="section-number-4">1.3.1.</span> Pruebas unitarias</h4>
-<div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
-<li>Prueban unidades de código</li>
-<li>En java, un método o una clase</li>
+<li>Diagramas de clases</li>
+<li>Diagramas de casos de uso</li>
+<li>Diagramas de</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000000a" class="outline-4">
-<h4 id="org000000a"><span class="section-number-4">1.3.2.</span> Pruebas de integración</h4>
-<div class="outline-text-4" id="text-1-3-2">
-<ul class="org-ul">
-<li>Comprueban varias clases trabajando de forma conjunta</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000000d" class="outline-4">
-<h4 id="org000000d"><span class="section-number-4">1.3.3.</span> Pruebas de sistema</h4>
-<div class="outline-text-4" id="text-1-3-3">
-<ul class="org-ul">
-<li>Se verifica el sistema completo (aplicación o conjunto de aplicaciones)</li>
-<li>Se suelen realizar en sistemas no finales
-<ul class="org-ul">
-<li>Entorno de preproducción / entorno de pruebas</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000010" class="outline-4">
-<h4 id="org0000010"><span class="section-number-4">1.3.4.</span> Pruebas de implantación</h4>
-<div class="outline-text-4" id="text-1-3-4">
-<ul class="org-ul">
-<li>Se verifica el sistema completo (como las pruebas de sistema)</li>
-<li>Pero el entorno es el definitivo
-<ul class="org-ul">
-<li>Entorno de producción</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000013" class="outline-4">
-<h4 id="org0000013"><span class="section-number-4">1.3.5.</span> Pruebas de aceptación</h4>
-<div class="outline-text-4" id="text-1-3-5">
-<ul class="org-ul">
-<li>Se verifica el sistema completo (como las pruebas de implantación)</li>
-<li>Se realizan por el usuario final</li>
-<li>Suelen tener valor contractual: si las pruebas se aceptan, el proyecto está legalmente entregado y es funcional</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000019" class="outline-3">
-<h3 id="org0000019"><span class="section-number-3">1.4.</span> Cuánto probar</h3>
+<div id="outline-container-org0000009" class="outline-3">
+<h3 id="org0000009"><span class="section-number-3">1.4.</span> Herramientas</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li>¿Cuántas pruebas se necesitan para asegurar que <code>Math.abs()</code> es correcto?</li>
-<li>Que funcione para <code>4</code>, <code>24</code>, <code>-2341</code>, <code>3113</code> no garantiza al 100% que funcione para <code>-54</code>.</li>
-<li>Pero tampoco es práctico probar para todos los números <code>int</code>, <code>log</code>, <code>float</code> y <code>double</code></li>
-<li>Es necesario definir un conjunto de pruebas
-<ul class="org-ul">
-<li>Factible: no demasiadas pruebas</li>
-<li>Completo: lo probado garantiza que los casos no probados también son correctos</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000001c" class="outline-3">
-<h3 id="org000001c"><span class="section-number-3">1.5.</span> Cómo decidir qué probar</h3>
-<div class="outline-text-3" id="text-1-5">
-<ul class="org-ul">
-<li>Caja blanca: decido qué probar mirando el código
-<ul class="org-ul">
-<li>Cobertura de decisiones</li>
-</ul></li>
-<li>Caja negra: decido qué probar en base a la funcionalidad
-<ul class="org-ul">
-<li>Particiones equivalentes</li>
-<li>Análisis de valores límite</li>
-<li>Conjetura de errores</li>
-</ul></li>
+<li>Lápiz y papel</li>
+<li><a href="https://editor.plantuml.com/uml">Plantuml</a> y <a href="https://www.umlet.com/">UMLet</a></li>
+<li>Prácticamente cualquier herramienta de diagramas</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000033" class="outline-2">
-<h2 id="org0000033"><span class="section-number-2">2.</span> Pruebas de caja blanca</h2>
+<div id="outline-container-org0000020" class="outline-2">
+<h2 id="org0000020"><span class="section-number-2">2.</span> Diagramas de clases</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>Se basan en la cobertura del código
+<li>Rectángulo: una clase
 <ul class="org-ul">
-<li>Cobertura de decisiones: cada salto (<code>if</code>, <code>while</code>, <code>for</code>) se ha ejecutado como cierto y falso</li>
-<li>Cobertura de condiciones: cada parte de una condición compuesta (<code>and</code>, <code>or</code>) se ha ejecutado como cierta y falso</li>
+<li>Cada línea es un método o atributo</li>
+<li><code>#</code> para protegido, <code>+</code> para público, <code>-</code> para privado</li>
 </ul></li>
-<li>Complejidad ciclomática
+<li>Línea: relación entre clases (una referencia)
 <ul class="org-ul">
-<li>Medida de cuántos caminos de ejecución son posibles</li>
-<li>Son un límite mínimo para conseguir la cobertura</li>
+<li>Cardinalidad: como en E-R</li>
+<li>Con triángulo: herencia</li>
+<li>Con rombo hueco: agregación (tiene varias instancias)</li>
+<li>Con rombo lleno: composición (se compone de varias instancias, similar a una entidad débil E-R)</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">2.1.</span> Complejidad ciclomática</h3>
+<div id="outline-container-org0000011" class="outline-3">
+<h3 id="org0000011"><span class="section-number-3">2.1.</span> Ejemplo con PlantUML</h3>
 <div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>Lo aplicaremos solo a funciones (métodos)</li>
-<li>Un método se representa como un grafo
-<ul class="org-ul">
-<li>Solo un nodo de entrada</li>
-<li>Un nodo final por cada <code>return</code></li>
-<li>Las operaciones son los nodos</li>
-<li>Un nodo puede tener varias salidas si es de decisión (<code>if</code>, <code>switch</code>, <code>for</code>)</li>
-</ul></li>
-<li><p>
-La complejidad final es el número de áreas:
+
+<div id="org000000f" class="figure">
+<p><img src="media/leyenda-clases.svg" alt="leyenda-clases.svg" class="org-svg" />
 </p>
-<div class="org-src-container">
-<pre class="src src-bash">  <span style="color: #a0522d;">Complejidad</span> = Aristas - Nodos + 2*NodosFinales
-</pre>
-</div></li>
-<li>Más complejo implica más difícil de probar (y de entender)</li>
-</ul>
 </div>
 </div>
-<div id="outline-container-org0000027" class="outline-3">
-<h3 id="org0000027"><span class="section-number-3">2.2.</span> Ejemplo de complejidad ciclomática</h3>
+</div>
+<div id="outline-container-org0000014" class="outline-3">
+<h3 id="org0000014"><span class="section-number-3">2.2.</span> Ejemplo:</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
-<li><p>
-Miraremos la cobertura de decisiones
-</p>
-
-<table><tr><td></li>
+<li>Un curso está compuesto por varias asignaturas.</li>
+<li>Cada alumno pertenece a un único curso, aunque un curso puede tener muchos alumnos.</li>
+<li>Un profesor puede impartir varias asignaturas, y una asignatura puede ser impartida por un único profesor.</li>
+<li>Las asignaturas se dividen en dos tipos: teóricas y prácticas, utilizando herencia.</li>
+<li>Un alumno se matricula en asignaturas mediante una matrícula.</li>
+<li>La matrícula representa la relación entre un alumno y el conjunto de asignaturas en las que está inscrito.</li>
+<li>Las calificaciones de un alumno en cada asignatura se almacenan en una clase llamada Nota.</li>
+<li>Cada matrícula debe permitir:
+<ul class="org-ul">
+<li>Registrar una calificación para una asignatura (setNota(asignatura, valor)).</li>
+<li>Consultar la calificación de una asignatura (getNota(asignatura)).</li>
+</ul></li>
 </ul>
-
-<div class="org-src-container">
-<pre class="src src-java">    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">calcularMaximo</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span>) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (a &gt; b &amp;&amp; a &gt; c) { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 1
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> a;
-    <span style="color: #acccacccffff;"> </span>   } <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (b &gt; c) { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 2
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> b;
-    <span style="color: #acccacccffff;"> </span>   } <span style="color: #a020f0;">else</span> { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 3
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> c;
-    <span style="color: #acccacccffff;"> </span>   }
-    }
-</pre>
 </div>
+</div>
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">2.3.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Una empresa quiere manejar el stock de un almacén</li>
+<li>Cada venta indica qué productos incluye, y la cantidad de cada uno, y a qué precio</li>
+<li>Cada entrada en el almacén indica qué productos incluye, y la cantidad de cada uno</li>
+<li>El gestor del almacén se encarga de que no haya ventas que sobrepasen el <i>stock</i> de ningún producto</li>
+<li>Se puede preguntar a una venta por su importe</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001a" class="outline-3">
+<h3 id="org000001a"><span class="section-number-3">2.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Un procesador de textos maneja documentos compuestos de párrafos.</li>
+<li>Un párrafo puede contener texto o ser una imagen.</li>
+<li>Un párrafo de texto contiene cadenas, que van una detrás de otra.</li>
+<li>Un párrafo puede tener alineación izquierda, derecha o centrada.</li>
+<li>Una cadena puede tener negrita, cursiva, subrayado.</li>
+<li>Cada cadena tiene un tipo de letra (arial, cursiva&#x2026;) y un tamaño. Si no se especifica, toman la de por defecto del documento.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001d" class="outline-3">
+<h3 id="org000001d"><span class="section-number-3">2.5.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Un sistema de ficheros tiene ficheros y carpetas</li>
+<li>Una carpeta puede contener otros ficheros y carpetas</li>
+<li>Tanto ficheros como carpetas tienen:
+<ul class="org-ul">
+<li>un nombre</li>
+<li><a href="https://www.jaimealberto.io/post/44_permisos/">permisos tipo linux</a> (rwxrwxr)</li>
+</ul></li>
+<li>Los ficheros y carpetas
+<ul class="org-ul">
+<li>Se pueden renombrar</li>
+<li>Se pueden copiar (las carpetas se copian recursivamente)</li>
+<li>Se pueden borrar</li>
+</ul></li>
+<li>Los ficheros tienen un contenido, que es una cadena de texto</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">3.</span> Diagramas de casos de uso</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Se representan
+<ul class="org-ul">
+<li>Actores: usuarios u otros sistemas externos que interaccionan con nuestro sistema</li>
+<li>Responsabilidades/acciones de nuestro sistema</li>
+</ul></li>
+<li>Sirven para
+<ul class="org-ul">
+<li>Saber qué tiene que hacer el sistema</li>
+<li>Saber quién es el responsable de iniciar una acción, o quién puede hacerla, o a quién hay que notificar resultados</li>
+</ul></li>
+<li>No suelen ser útiles para la codificación
+<ul class="org-ul">
+<li>Pero sí para delimitar el alcance de la aplicación</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">3.1.</span> Nomenclatura</h3>
+<div class="outline-text-3" id="text-3-1">
 
-</td><td>
-
-
-<div id="org0000025" class="figure">
-<p><img src="./media/calcular-maximo.svg" alt="calcular-maximo.svg" class="org-svg" />
+<div id="org0000023" class="figure">
+<p><img src="media/nomemclatura-casos-de-uso.svg" alt="nomemclatura-casos-de-uso.svg" class="org-svg" />
 </p>
 </div>
-
-</td></tr></table>
+</div>
+</div>
+<div id="outline-container-org0000028" class="outline-3">
+<h3 id="org0000028"><span class="section-number-3">3.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>La máquina de <i>vending</i> da productos a los clientes</li>
+<li>Los clientes pueden consultar el precio de los productos</li>
+<li>Los productos se pueden cobrar mediante tarjeta de crédito o con monedas</li>
+<li>Un empleado puede
+<ul class="org-ul">
+<li>Abrir la máquina para reponer productos</li>
+<li>Cambiar los precios de los productos</li>
+</ul></li>
+<li>Un empleado, como cualquier otra persona, puede comprar productos y consultar precios</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-org000002d" class="outline-3">
-<h3 id="org000002d"><span class="section-number-3">2.3.</span> Ejemplo de complejidad cilomática (II)</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org000002d"><span class="section-number-3">3.3.</span> Refinamiento</h3>
+<div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
-<li>Ejemplo de cobertura de condiciones</li>
-<li>Nota: Sonarqube no calcula la complejidad ciclomática, sino la <a href="https://www.c-sharpcorner.com/blogs/cognitive-complexity-vs-cyclomatic-complexity-an-example-with-c-sharp">complejidad cognitiva</a></li>
+<li>Los casos de uso se pueden refinar o <i>explotar</i></li>
 </ul>
-<table><tr><td>
-
-<div id="org000002a" class="figure">
-<p><img src="complejidad-ciclomatica-sonarqube.png" alt="complejidad-ciclomatica-sonarqube.png" />
-</p>
-</div>
-</td><td>
 
 
 <div id="org000002b" class="figure">
-<p><img src="./media/sort.svg" alt="sort.svg" class="org-svg" />
+<p><img src="media/vending-refinado-reponedor.svg" alt="vending-refinado-reponedor.svg" class="org-svg" />
 </p>
 </div>
-
-</td></tr></table>
 </div>
 </div>
 <div id="outline-container-org0000030" class="outline-3">
-<h3 id="org0000030"><span class="section-number-3">2.4.</span> Reducir la complejidad ciclomática</h3>
-<div class="outline-text-3" id="text-2-4">
+<h3 id="org0000030"><span class="section-number-3">3.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
-<li>Dividir funciones grandes: Extraer métodos pequeños para reducir la complejidad.</li>
-<li>Evitar estructuras de control anidadas: <i>fail fast</i> (<code>return</code> en cuanto se pueda)</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000041" class="outline-2">
-<h2 id="org0000041"><span class="section-number-2">3.</span> Herramientas para la cobertura de código</h2>
-<div class="outline-text-2" id="text-3">
+<li>Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos</li>
+<li>Un usuario puede ver los documentos de otros usuarios</li>
+<li>Un gestor también puede revisar los documentos de otros usuarios y sugerir cambios en forma de notas</li>
+<li>Un administrador puede hacer lo que un gestor, y además
 <ul class="org-ul">
-<li>Idea: el código no puede estar probado si no se pasa por todas las líneas de código</li>
-<li>Pruebas de cobertura: durante las pruebas, todas las líneas de código se deben ejecutar al menos una vez</li>
-</ul>
-</div>
-<div id="outline-container-org0000037" class="outline-3">
-<h3 id="org0000037"><span class="section-number-3">3.1.</span> Cobertura en Intellij</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li><code>SHIFT SHIFT run with coverage</code></li>
-</ul>
-
-<div id="org0000036" class="figure">
-<p><img src="tabla-cobertura-intellij.png" alt="tabla-cobertura-intellij.png" />
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org000003b" class="outline-3">
-<h3 id="org000003b"><span class="section-number-3">3.2.</span> Condiciones y decisiones</h3>
-<div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>Cobertura de decisiones: cada salto (<code>if</code>, <code>while</code>, <code>for</code>) se ha ejecutado como cierto y falso</li>
-<li>Cobertura de condiciones: cada parte de una condición compuesta (<code>and</code>, <code>or</code>) se ha ejecutado como cierta y falso
-<ul class="org-ul">
-<li>Esta es más complicada de conseguir</li>
+<li>dar de baja a cualquier usuario</li>
+<li>cambiar los datos de cualquier usuario</li>
+<li>Borrar documentos, tras revisar su contenido</li>
 </ul></li>
 </ul>
-
-<div id="org000003a" class="figure">
-<p><img src="popup-cobertura-por-linea-intellij.png" alt="popup-cobertura-por-linea-intellij.png" />
-</p>
 </div>
 </div>
-</div>
-<div id="outline-container-org000003e" class="outline-3">
-<h3 id="org000003e"><span class="section-number-3">3.3.</span> Cobertura en proyectos grandes</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">3.5.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
-<li>Por ejemplo, <a href="https://www.jacoco.org/jacoco/">Jacoco</a></li>
-<li>Se puede <a href="https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/test-coverage/java-test-coverage">integrar en SonarQube</a></li>
+<li>Si un usuario tiene problemas, puede abrir una incidencia</li>
+<li>El técnico puede decidir no gestionar la incidencia si está fuera del contrato de soporte, y cerrarla</li>
+<li>El técnico trabaja en la incidencia, y la cierra cuando está resuelta y el usuario está de acuerdo</li>
+<li>Si el usuario no está conforme, puede pedir una elevación (<i>escalation</i>) del problema. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El técnico puede elevar el problema a un especialista si no está formado para ello. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El especialista trata las incidencias elevadas como una incidencia normal (excepto que no puede elevarlas)</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org000004d" class="outline-2">
-<h2 id="org000004d"><span class="section-number-2">4.</span> Pruebas de caja negra</h2>
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">4.</span> Diagramas de actividad</h2>
 <div class="outline-text-2" id="text-4">
-<ul class="org-ul">
-<li>Clases de equivalencia</li>
-<li>Análisis de valores límite</li>
-<li>Conjetura de errores</li>
-</ul>
+
+<div id="org0000039" class="figure">
+<p><img src="media/leyenda-actividad.svg" alt="leyenda-actividad.svg" class="org-svg" />
+</p>
 </div>
-<div id="outline-container-org0000044" class="outline-3">
-<h3 id="org0000044"><span class="section-number-3">4.1.</span> Clases de equivalencia</h3>
+</div>
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">4.1.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>Los valores de entrada suelen se de varias <i>clases</i></li>
-<li>Hacemos una prueba por cada <i>clase</i></li>
-<li>Ejemplo:
-<ul class="org-ul">
-<li><code>Math.abs()</code> puede recibir positivos, negativos, cero, <a href="https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NEGATIVE_INFINITY">Inf</a> y <a href="https://docs.oracle.com/javase/8/docs/api///java/lang/Double.html#NaN">NaN</a>.</li>
-</ul></li>
-<li>Ejercicios:
-<ul class="org-ul">
-<li><code>int[] ordenaTresEnterosDeMayorAMenor(int,int,int)</code> (sin usar <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-">sort</a>)</li>
-<li>Función que valida un número de teléfono que puede ser <a href="https://www.consumoresponde.es/art%C3%ADculos/tipologia_de_los_numeros_de_telefono_existentes_en_espana">local a España</a> o <a href="https://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-S.pdf#page=3">internacional</a></li>
-</ul></li>
-</ul>
+
+<div id="org000003b" class="figure">
+<p><img src="media/arresto-cardiaco-pediatrico.jpg" alt="arresto-cardiaco-pediatrico.jpg" />
+</p>
 </div>
 </div>
-<div id="outline-container-org0000047" class="outline-3">
-<h3 id="org0000047"><span class="section-number-3">4.2.</span> AVL</h3>
+</div>
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">4.2.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li>Los errores se acumulan en los límites de los algoritmos</li>
-<li>Idea: probar los valores límite entre las clases de equivalencia</li>
-<li>Ejercicios
-<ul class="org-ul">
-<li><code>boolean esEdadLaboral(int edad)</code></li>
-<li><code>boolean esEdadLaboral(int edad, int añoactual)</code></li>
-</ul></li>
-</ul>
+
+<div id="org000003f" class="figure">
+<p><img src="media/insuficiencia-renal-aguda.png" alt="insuficiencia-renal-aguda.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-org000004a" class="outline-3">
-<h3 id="org000004a"><span class="section-number-3">4.3.</span> Conjetura de errores</h3>
+</div>
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">4.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
-<li>La experiencia da una idea de qué puede fallar
+<li>Al llegar una orden de salida de productos del almacén, se separa en productos refrigerados y no refrigerados.</li>
+<li>Los productos refrigerados y no refrigerados se localizan y empaquetan por separado.</li>
+<li>Si durante el empaquetado falta algún producto, se crea una orden de reposición al proveedor, y se espera a que el producto llegue</li>
+<li>Cuando estén todos los productos, se sacan del almacén</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">4.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
-<li>¿ <code>0013462353</code> es un número de teléfono válido?</li>
-<li>¿ <code>+33 341234522,2,2</code> es un número de teléfono válido?</li>
-<li>El número 1, ¿es primo?</li>
-<li>¿Podemos tener ciudadanos rusos en la base de datos?</li>
-<li>¿puedo leer un fichero con un emoji?</li>
-</ul></li>
+<li>Una agencia de viajes permite buscar por un vuelo entre dos aeropuertos</li>
+<li>Tras especificar origen y destino, se busca simultáneamente en varios proveedores y mayoristas</li>
+<li>Cuando acaba la búsqueda, se contacta con el cliente para comunicarle las ofertas</li>
+<li>cuando el usuario elige una oferta, se contacta con el proveedor indicado para reservar el vuelo</li>
+<li>si la oferta ya no está disponible, se ofrece la posibilidad al usuario de elegir otro vuelo o recomenzar la búsqueda</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000051" class="outline-2">
-<h2 id="org0000051"><span class="section-number-2">5.</span> TDD</h2>
+<div id="outline-container-org000004c" class="outline-2">
+<h2 id="org000004c"><span class="section-number-2">5.</span> Vigencia de UML</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
-<li><i>Test Driven Development</i>
-<ul class="org-ul">
-<li>Se deciden las pruebas que el <i>software</i> debe pasar</li>
-<li>Se implementan dichas pruebas (rojo, ninguna funciona)</li>
-<li>Se desarrolla el <i>software</i> hasta que se pasan las pruebas</li>
-<li>Se revisa el código para mejorar el diseño</li>
-</ul></li>
-<li>Problemas
-<ul class="org-ul">
-<li>Es cortoplacista (se centra en solucionar pruebas)</li>
-<li>No favorece el diseño con vista a largo plazo</li>
-</ul></li>
+<li>UML es comparable a los diagramas E-R</li>
+<li>No se usa mucho de forma "oficial" en las empresas</li>
+<li>Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados</li>
 </ul>
-
-
-<div id="org0000050" class="figure">
-<p><img src="tdd.png" alt="tdd.png" />
-</p>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000075" class="outline-2">
-<h2 id="org0000075"><span class="section-number-2">6.</span> JUnit</h2>
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li>JUnit permite automatizar pruebas unitarias y de integración</li>
-<li>Origen de facto de la familia <a href="https://en.wikipedia.org/wiki/XUnit">XUnit</a>: CCPUnit, NUnit, PyUnit&#x2026;</li>
-<li>Muy popular: integración con prácticamente todas las herramientas e IDEs</li>
-</ul>
-</div>
-<div id="outline-container-org0000054" class="outline-3">
-<h3 id="org0000054"><span class="section-number-3">6.1.</span> Añadir JUnit</h3>
-<div class="outline-text-3" id="text-6-1">
-<ul class="org-ul">
-<li>Las clases de JUnit están en <a href="https://github.com/junit-team/junit4/wiki/Download-and-Install">su fichero jar</a>. También necesita el jar de <a href="https://github.com/hamcrest/JavaHamcrest">Hamcrest</a>.
-<ul class="org-ul">
-<li>Esto es para la versión 4.x</li>
-<li>La versión <a href="https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies">6 es bastante más complicad</a>a (para este curso, no compensa)</li>
-</ul></li>
-<li>Intellij: añadir los ficheros jar como librerías del proyecto/módulo</li>
-<li>En proyectos reales: aconsejable utilizar maven o <a href="https://github.com/junit-team/junit4/wiki/Use-with-Gradle">gradle</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000057" class="outline-3">
-<h3 id="org0000057"><span class="section-number-3">6.2.</span> Definir métodos de prueba</h3>
-<div class="outline-text-3" id="text-6-2">
-<ul class="org-ul">
-<li>Una prueba es un método <a href="https://docs.oracle.com/javase/tutorial/java/annotations/basics.html">anotado</a> con <code>@Test</code>
-<ul class="org-ul">
-<li>El método no recibe parámetros</li>
-<li>Se realizan varias pruebas con <code>Assert.assertXXXX</code></li>
-</ul></li>
-</ul>
-
-<div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.*;
-<span style="color: #a020f0;">import</span> <span style="color: #a020f0;">static</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.<span style="color: #008b8b;">Assert</span>.*;
-
-<span style="color: #a020f0;">import</span> <span style="color: #008b8b;">example</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Calculator</span>;
-
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">CalculatorTest</span> {
-
-    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">final</span> <span style="color: #228b22;">Calculator</span> <span style="color: #a0522d;">calculator</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Calculator</span>();
-
-    <span style="color: #008b8b;">@Test</span>
-    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">addition</span>() {
-    <span style="color: #acccacccffff;"> </span>   assertEquals(2, calculator.add(1, 1));
-    }
-}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org000005a" class="outline-3">
-<h3 id="org000005a"><span class="section-number-3">6.3.</span> Aserciones</h3>
-<div class="outline-text-3" id="text-6-3">
-<ul class="org-ul">
-<li><p>
-Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html</a>
-</p>
-<div class="org-src-container">
-<pre class="src src-java">  assertArrayEquals(<span style="color: #228b22;">expected</span>, <span style="color: #228b22;">actual</span>)
-  assertEquals(expected, actual)
-  assertFalse(<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">condition</span>)
-  assertNotNull(Object object)
-  assertNotSame(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">unexpected</span>, Object actual)
-  assertNull(Object object)
-  assertSame(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">expected</span>, Object actual)
-  assertTrue(<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">condition</span>)
-  fail(String message)
-</pre>
-</div></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000005d" class="outline-3">
-<h3 id="org000005d"><span class="section-number-3">6.4.</span> Excepciones</h3>
-<div class="outline-text-3" id="text-6-4">
-<div class="org-src-container">
-<pre class="src src-java">    <span style="color: #008b8b;">@Test</span>(expected = EmailFormatException.<span style="color: #a020f0;">class</span>)
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">testEmaiVacio</span>() <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">EmailFormatException</span> {
-    <span style="color: #acccacccffff;"> </span>   EmailSeparator.separaEmail(<span style="color: #8b2252;">""</span>);
-    }
- 
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000060" class="outline-3">
-<h3 id="org0000060"><span class="section-number-3">6.5.</span> Más anotaciones</h3>
-<div class="outline-text-3" id="text-6-5">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Anotacion</th>
-<th scope="col" class="org-left">Descripcion</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">@Test</td>
-<td class="org-left">Indica que el método es un test</td>
-</tr>
-
-<tr>
-<td class="org-left">@DisplayName</td>
-<td class="org-left">Indica un nombre para el test class o el test method</td>
-</tr>
-
-<tr>
-<td class="org-left">@Tag</td>
-<td class="org-left">Define etiquetas para filtrar por tests</td>
-</tr>
-
-<tr>
-<td class="org-left">@Before</td>
-<td class="org-left">Se aplica a un método para indicar que se ejecute antes de cada método de prueba.</td>
-</tr>
-
-<tr>
-<td class="org-left">@After</td>
-<td class="org-left">Se aplica a un método para indicar que se ejecuta después de cada método de prueba.</td>
-</tr>
-
-<tr>
-<td class="org-left">@BeforeClass</td>
-<td class="org-left">Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase.</td>
-</tr>
-
-<tr>
-<td class="org-left">@AtterClass</td>
-<td class="org-left">Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase.</td>
-</tr>
-
-<tr>
-<td class="org-left">@Ignore</td>
-<td class="org-left">Ese aplica a un método de prueba para evitar esa prueba</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org0000063" class="outline-3">
-<h3 id="org0000063"><span class="section-number-3">6.6.</span> Ejemplo: email</h3>
-<div class="outline-text-3" id="text-6-6">
-<div class="org-src-container">
-<pre class="src src-java">    <span style="color: #8b2252;">/**
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* Separa un correo electr&#243;nico en dos partes: nombre de usuario y dominio.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> email La direcci&#243;n de correo electr&#243;nico a separar.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> Un array de cadenas donde el primer elemento 
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         es el nombre de usuario y el segundo es el dominio.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         Devuelve null si el formato del correo no es correcto.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span>[] <span style="color: #0000ff;">separaEmail</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">email</span>) {
-    <span style="color: #acccacccffff;"> </span>   ...
-    }
-</pre>
-</div>
-
-<div class="org-src-container">
-<pre class="src src-java"> <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">EmailSeparator</span> {
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span>[] <span style="color: #0000ff;">separaEmail</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">email</span>) {
-     
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Detectar la posici&#243;n del s&#237;mbolo '@'
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">int</span> <span style="color: #a0522d;">atIndex</span> = -1;
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; email.length(); i++) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">if</span> (email.charAt(i) == <span style="color: #8b2252;">'@'</span>) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   atIndex = i;
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   }
-    <span style="color: #acccacccffff;"> </span>   }
-     
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Si no se encontr&#243; '@' o est&#225; al principio o al final
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (atIndex &lt;= 0 || atIndex &gt;= email.length() - 1) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
-    <span style="color: #acccacccffff;"> </span>   }
-     
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Separar el nombre de usuario y el dominio
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">String</span> <span style="color: #a0522d;">username</span> = email.substring(0, atIndex);
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">String</span> <span style="color: #a0522d;">domain</span> = email.substring(atIndex + 1);
-     
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Verificar que el dominio no est&#233; vac&#237;o
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (domain.isEmpty()) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
-    <span style="color: #acccacccffff;"> </span>   }
-     
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Devolver el resultado en un array
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">String</span>[]{username, domain};
-    }
-}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000066" class="outline-3">
-<h3 id="org0000066"><span class="section-number-3">6.7.</span> Ejercicio: emails</h3>
-<div class="outline-text-3" id="text-6-7">
-<ul class="org-ul">
-<li>Comprender <a href="https://en.wikipedia.org/wiki/Email_address#Syntax">qué es una dirección de email</a></li>
-<li>Pensar en casos de prueba: AVL, clases de equivalencia&#x2026;</li>
-<li>Implementar los casos de prueba</li>
-<li>Y solucionar los problemas del método <code>separaEmail()</code></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000069" class="outline-3">
-<h3 id="org0000069"><span class="section-number-3">6.8.</span> Ejercicio: polígonos</h3>
-<div class="outline-text-3" id="text-6-8">
-<ul class="org-ul">
-<li>El método <code>String tipoDePolígono(int[] longitudLados)</code></li>
-<li>recibe la lista ordenada de la longitud de los lados de un polígono (el último se conecta con el primero)</li>
-<li>devuelve (en orden de prioridad)
-<ul class="org-ul">
-<li><code>"cuadrado"</code> si los lados pueden formar un cuadrado</li>
-<li><code>"rectángulo"</code> si los lados pueden formar un rectángulo</li>
-<li><code>"regular"</code> si los lados pueden forman un polígono regular</li>
-<li><code>"iregular"</code> si los lados pueden forman un polígono</li>
-<li><code>"imposible"</code> si hay pocos lados para hacer un polígono, o algún otro problema</li>
-</ul></li>
-<li>Por ejemplo
-<ul class="org-ul">
-<li><code>(2,2,2,2)</code> es un polígono regular y un cuadrado, pero es más prioritario <code>"cuadrado"</code></li>
-<li><code>(2,1,2,1)</code> es un polígono irregular y un rectángulo, pero es más prioritario <code>"rectangulo"</code></li>
-</ul></li>
-<li>Qué hacer:
-<ul class="org-ul">
-<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
-<li>Implementar los casos de prueba</li>
-<li>Implementar el método</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000006c" class="outline-3">
-<h3 id="org000006c"><span class="section-number-3">6.9.</span> Ejercicio: puntos</h3>
-<div class="outline-text-3" id="text-6-9">
-<div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Punto</span>{
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>;
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>;
-
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Punto</span>[][] <span style="color: #0000ff;">masCercanos</span>( <span style="color: #228b22;">Punto</span>[] <span style="color: #a0522d;">puntos</span> ){
-    }
-}
-</pre>
-</div>
-<ul class="org-ul">
-<li>Devuelve los pares de puntos más cercanos (<a href="https://es.wikipedia.org/wiki/Distancia_euclidiana">distancia euclídea</a>)</li>
-<li>Por ejemplo <code>(1,2) (1,1) (2,11) (3,3) (4,3) (5,8) (100,0) (100,1)</code> devolvería un array de longitud 3. Cada posición es un array de dos puntos
-<ul class="org-ul">
-<li><code>(1,2) (1,1)</code></li>
-<li><code>(3,3) (4,3)</code></li>
-<li><code>(100,0) (100,1)</code></li>
-</ul></li>
-<li>Por ejemplo <code>(1,20) (18,1) (2,110) (3,3) (51,8) (100,0) (100,1) (4,5)</code> devolvería un array de longitud 1. Cada posición es un array de dos puntos
-<ul class="org-ul">
-<li><code>(3,3) (4,5)</code></li>
-</ul></li>
-<li>Pista: <a href="https://docs.google.com/spreadsheets/d/1m3LLt14JVIlu2p_0rq_d0kpMjnnxs6q1Yb3m9rz0-hg/edit?usp=sharing">dibuja los puntos de los ejemplos</a> para entenderlo</li>
-<li>Qué hacer:
-<ul class="org-ul">
-<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
-<li>Implementar los casos de prueba</li>
-<li>Implementar el método</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org000006f" class="outline-3">
-<h3 id="org000006f"><span class="section-number-3">6.10.</span> Ejercicio: <a href="https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional">matrículas</a></h3>
-<div class="outline-text-3" id="text-6-10">
-<div class="org-src-container">
-<pre class="src src-java"><span style="color: #8b2252;">/**
- * Decide si una matr&#237;cula de coche (tipo 9999ZZZ) es anterior a otra.  
- * No importan may&#250;sculas y min&#250;sculas.
- * Tampoco importa si hay separaci&#243;n por espacios entre los n&#250;meros y las letras  
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m1 Matr&#237;cula espa&#241;ola actual 
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m2 Matr&#237;cula espa&#241;ola actual
- * </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> "iguales" si son iguales
- *         "menor" si m1 es anterior a m2
- *         "mayor" si m1 es posterior a m2
- *         "error" si m1 o m2 no son matr&#237;culas v&#225;lidas
- */</span>
-<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">comparaMatr&#237;cula</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">m1</span>, <span style="color: #228b22;">String</span> <span style="color: #a0522d;">m2</span>){
-    ....
-}  
-</pre>
-</div>
-<ul class="org-ul">
-<li>Qué hacer:
-<ul class="org-ul">
-<li>Definir casos de prueba: AVL, clases de equivalencia, conjetura de errores&#x2026;</li>
-<li>Implementar los casos de prueba</li>
-<li>Implementar el método</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000072" class="outline-3">
-<h3 id="org0000072"><span class="section-number-3">6.11.</span> Buenas prácticas</h3>
-<div class="outline-text-3" id="text-6-11">
-<ul class="org-ul">
-<li>Cada caso de prueba debe:
-<ul class="org-ul">
-<li>Probar una sola cosa</li>
-<li>Ser lo más pequeño posible</li>
-<li>Ser independiente: no debe depender de otros casos de prueba</li>
-<li>Poder ser repetido las veces necesarias (idempotente)</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0000078" class="outline-2">
-<h2 id="org0000078"><span class="section-number-2">7.</span> Referencias</h2>
-<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
-<li><a href="./ED-05-pruebas.reveal.html">Transparencias</a></li>
-<li><a href="./ED-05-pruebas.pdf">PDF</a></li>
-<li><a href="./ED-05-pruebas.wp.html">Página web</a></li>
-<li><a href="./ED-05-pruebas.epub">EPUB</a></li>
+<li><a href="./ED-06-uml.reveal.html">Transparencias</a></li>
+<li><a href="./ED-06-uml.pdf">PDF</a></li>
+<li><a href="./ED-06-uml.wp.html">Página web</a></li>
+<li><a href="./ED-06-uml.epub">EPUB</a></li>
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
-
-<li><a href="https://entornos.abrilcode.com/doku.php?id=apuntes:pruebas">https://entornos.abrilcode.com/doku.php?id=apuntes:pruebas</a></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-05-06 mié 11:36</p>
+<p class="date">Created: 2026-05-10 dom 11:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
