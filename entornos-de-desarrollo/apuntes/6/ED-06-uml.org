@@ -712,7 +712,18 @@ stop
 - UML es comparable a los diagramas E-R
 - No se usa mucho de forma "oficial" en las empresas
 - Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados
-      
+
+** ejemplos :noexport:
+busca ejemplos-uml-vida-real.org
+
+** Ejemplo
+[[file:media/insuficiencia-renal-aguda.png]]
+
+** Ejemplo
+[[file:media/arresto-cardiaco-pediatrico.jpg]]
+
+** Ejemplo
+[[https://www.madrid.org/bvirtual/BVCM016109.pdf][Manual de permisos y licencias]]
 * Referencias
 #+include: "../../../common/footer.org"
 
