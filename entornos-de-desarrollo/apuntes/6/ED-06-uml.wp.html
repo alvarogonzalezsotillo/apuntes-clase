@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-05-10 dom 11:41 -->
+<!-- 2026-05-14 jue 09:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unified Modeling Language (UML)</title>
@@ -206,10 +206,10 @@
 <ul>
 <li><a href="#org000000c">1. UML</a></li>
 <li><a href="#org0000020">2. Diagramas de clases</a></li>
-<li><a href="#org0000036">3. Diagramas de casos de uso</a></li>
-<li><a href="#org0000049">4. Diagramas de actividad</a></li>
-<li><a href="#org000004c">5. Vigencia de UML</a></li>
-<li><a href="#org000004f">6. Referencias</a></li>
+<li><a href="#org0000043">3. Diagramas de casos de uso</a></li>
+<li><a href="#org0000056">4. Diagramas de actividad</a></li>
+<li><a href="#org0000064">5. Vigencia de UML</a></li>
+<li><a href="#org0000067">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -427,8 +427,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000036" class="outline-2">
-<h2 id="org0000036"><span class="section-number-2">3.</span> Diagramas de casos de uso</h2>
+<div id="outline-container-org0000043" class="outline-2">
+<h2 id="org0000043"><span class="section-number-2">3.</span> Diagramas de casos de uso</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Se representan
@@ -457,8 +457,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000028" class="outline-3">
-<h3 id="org0000028"><span class="section-number-3">3.2.</span> Ejemplo</h3>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">3.2.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>La máquina de <i>vending</i> da productos a los clientes</li>
@@ -472,23 +472,33 @@ window.addEventListener("load",()=>{
 <li>Un empleado, como cualquier otra persona, puede comprar productos y consultar precios</li>
 </ul>
 </div>
+<div id="outline-container-org000002a" class="outline-4">
+<h4 id="org000002a"><span class="section-number-4">3.2.1.</span> solución</h4>
+<div class="outline-text-4" id="text-3-2-1">
+
+<div id="org0000028" class="figure">
+<p><img src="media/vending.svg" alt="vending.svg" class="org-svg" />
+</p>
 </div>
-<div id="outline-container-org000002d" class="outline-3">
-<h3 id="org000002d"><span class="section-number-3">3.3.</span> Refinamiento</h3>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000032" class="outline-3">
+<h3 id="org0000032"><span class="section-number-3">3.3.</span> Refinamiento</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Los casos de uso se pueden refinar o <i>explotar</i></li>
 </ul>
 
 
-<div id="org000002b" class="figure">
+<div id="org0000030" class="figure">
 <p><img src="media/vending-refinado-reponedor.svg" alt="vending-refinado-reponedor.svg" class="org-svg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000030" class="outline-3">
-<h3 id="org0000030"><span class="section-number-3">3.4.</span> Ejercicio</h3>
+<div id="outline-container-org0000035" class="outline-3">
+<h3 id="org0000035"><span class="section-number-3">3.4.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos</li>
@@ -503,8 +513,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000033" class="outline-3">
-<h3 id="org0000033"><span class="section-number-3">3.5.</span> Ejemplo</h3>
+<div id="outline-container-org0000038" class="outline-3">
+<h3 id="org0000038"><span class="section-number-3">3.5.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Si un usuario tiene problemas, puede abrir una incidencia</li>
@@ -516,38 +526,63 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">3.6.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>Foro
+<ul class="org-ul">
+<li>Los usuarios se registran. Para ello pueden validarse con SMS o con correo electrónico</li>
+<li>Un administrador revisa el registro, para darlo de alta</li>
+<li>Una vez registrados, pueden leer los hilos, pero no pueden escribir nuevos, solo responder a los ya escritos</li>
+<li>Si un usuario tiene suficientes aportaciones, se promueve a "Escritor", que ya puede crear hilos</li>
+<li>Un usuario puede ser "baneado" si no sigue las normas, por un administrador. Todos los usuarios pueden reportar a otros usuarios, para que el administrador decida si se "banea" o no</li>
+</ul></li>
+</ul>
 </div>
-<div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">4.</span> Diagramas de actividad</h2>
+<div id="outline-container-org000003d" class="outline-4">
+<h4 id="org000003d"><span class="section-number-4">3.6.1.</span> Solución</h4>
+<div class="outline-text-4" id="text-3-6-1">
+
+<div id="org000003b" class="figure">
+<p><img src="media/foro.svg" alt="foro.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000056" class="outline-2">
+<h2 id="org0000056"><span class="section-number-2">4.</span> Diagramas de actividad</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="org0000039" class="figure">
+<div id="org0000046" class="figure">
 <p><img src="media/leyenda-actividad.svg" alt="leyenda-actividad.svg" class="org-svg" />
 </p>
 </div>
 </div>
-<div id="outline-container-org000003c" class="outline-3">
-<h3 id="org000003c"><span class="section-number-3">4.1.</span> Ejemplo</h3>
+<div id="outline-container-org0000049" class="outline-3">
+<h3 id="org0000049"><span class="section-number-3">4.1.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-4-1">
 
-<div id="org000003b" class="figure">
+<div id="org0000048" class="figure">
 <p><img src="media/arresto-cardiaco-pediatrico.jpg" alt="arresto-cardiaco-pediatrico.jpg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000040" class="outline-3">
-<h3 id="org0000040"><span class="section-number-3">4.2.</span> Ejemplo</h3>
+<div id="outline-container-org000004d" class="outline-3">
+<h3 id="org000004d"><span class="section-number-3">4.2.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-4-2">
 
-<div id="org000003f" class="figure">
+<div id="org000004c" class="figure">
 <p><img src="media/insuficiencia-renal-aguda.png" alt="insuficiencia-renal-aguda.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">4.3.</span> Ejercicio</h3>
+<div id="outline-container-org0000050" class="outline-3">
+<h3 id="org0000050"><span class="section-number-3">4.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>Al llegar una orden de salida de productos del almacén, se separa en productos refrigerados y no refrigerados.</li>
@@ -557,8 +592,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000046" class="outline-3">
-<h3 id="org0000046"><span class="section-number-3">4.4.</span> Ejercicio</h3>
+<div id="outline-container-org0000053" class="outline-3">
+<h3 id="org0000053"><span class="section-number-3">4.4.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>Una agencia de viajes permite buscar por un vuelo entre dos aeropuertos</li>
@@ -570,8 +605,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org000004c" class="outline-2">
-<h2 id="org000004c"><span class="section-number-2">5.</span> Vigencia de UML</h2>
+<div id="outline-container-org0000064" class="outline-2">
+<h2 id="org0000064"><span class="section-number-2">5.</span> Vigencia de UML</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>UML es comparable a los diagramas E-R</li>
@@ -579,9 +614,37 @@ window.addEventListener("load",()=>{
 <li>Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados</li>
 </ul>
 </div>
+<div id="outline-container-org000005a" class="outline-3">
+<h3 id="org000005a"><span class="section-number-3">5.1.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-5-1">
+
+<div id="org0000059" class="figure">
+<p><img src="media/insuficiencia-renal-aguda.png" alt="insuficiencia-renal-aguda.png" />
+</p>
 </div>
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">6.</span> Referencias</h2>
+</div>
+</div>
+<div id="outline-container-org000005e" class="outline-3">
+<h3 id="org000005e"><span class="section-number-3">5.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-5-2">
+
+<div id="org000005d" class="figure">
+<p><img src="media/arresto-cardiaco-pediatrico.jpg" alt="arresto-cardiaco-pediatrico.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000061" class="outline-3">
+<h3 id="org0000061"><span class="section-number-3">5.3.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<a href="https://www.madrid.org/bvirtual/BVCM016109.pdf">Manual de permisos y licencias</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000067" class="outline-2">
+<h2 id="org0000067"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
@@ -598,7 +661,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-05-10 dom 11:41</p>
+<p class="date">Created: 2026-05-14 jue 09:31</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

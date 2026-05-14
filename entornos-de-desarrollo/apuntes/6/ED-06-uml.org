@@ -393,7 +393,7 @@ UC1 --> UC3 : <<include>>
   - Cambiar los precios de los productos
 - Un empleado, como cualquier otra persona, puede comprar productos y consultar precios    
 
-*** solución :noexport:
+*** solución
 #+begin_src plantuml :file media/vending.svg
 
 @startuml
@@ -541,6 +541,91 @@ rectangle Sistema {
 #+RESULTS:
 [[file:media/soporte-tecnico.svg]]
 
+
+** Ejemplo
+- Foro
+  - Los usuarios se registran. Para ello pueden validarse con SMS o con correo electrónico
+  - Un administrador revisa el registro, para darlo de alta
+  - Una vez registrados, pueden leer los hilos, pero no pueden escribir nuevos, solo responder a los ya escritos
+  - Si un usuario tiene suficientes aportaciones, se promueve a "Escritor", que ya puede crear hilos
+  - Un usuario puede ser "baneado" si no sigue las normas, por un administrador. Todos los usuarios pueden reportar a otros usuarios, para que el administrador decida si se "banea" o no
+
+*** Solución 1
+#+begin_src plantuml :file media/foro-1.svg
+@startuml
+left to right direction
+
+actor Usuario
+actor Administrador
+actor Escritor
+Escritor --|> Usuario
+Administrador --|> Escritor
+
+rectangle Foro {
+    Usuario -- (Registrarse)
+    (Registrarse) <-- (Validar con SMS) : <<extends>>
+    (Registrarse) <-- (Validar con email) : <<extends>>
+
+    Administrador -- (Promover a escritor)    
+
+    Usuario -- (Responder hilo)
+    Escritor  -- (Crear hilo)
+
+    Administrador  -- (Aceptar registro)
+        
+    Administrador  -- (Banear usuario)
+
+    Usuario  -- (Reportar usuario)                
+}
+
+
+
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:media/foro-1.svg]]
+
+*** Solución 2
+#+begin_src plantuml :file media/foro-2.svg
+@startuml
+left to right direction
+
+actor Usuario
+actor Administrador
+actor Escritor
+Escritor --|> Usuario
+Administrador --|> Escritor
+
+rectangle Foro {
+    Usuario -- (Registrarse)
+    (Registrarse) <-- (Validar con SMS) : <<extends>>
+    (Registrarse) <-- (Validar con email) : <<extends>>
+
+    Usuario -- (Responder hilo)
+    Escritor  -- (Crear hilo)
+
+    Administrador  -- (Gestionar usuarios)
+
+    (Banear usuario) --> (Gestionar usuarios) : <<extends>>
+    (Promover a escritor) --> (Gestionar usuarios) : <<extends>>
+    (Consultar datos) --> (Gestionar usuarios) : <<extends>>
+    (Aceptar registro) --> (Gestionar usuarios) : <<extends>>
+
+    (Banear usuario) --> (Consultar datos) : <<includes>>    
+    (Aceptar registro) --> (Consultar datos) : <<includes>>    
+    (Promover a escritor) --> (Consultar datos) : <<includes>>    
+
+    Usuario  -- (Reportar usuario)                
+}
+
+
+
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:media/foro-2.svg]]
 
 * Diagramas de actividad
 
