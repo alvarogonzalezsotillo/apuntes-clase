@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-30 jue 09:46 -->
+<!-- 2026-05-10 dom 11:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unified Modeling Language (UML)</title>
@@ -205,9 +205,11 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org000000c">1. UML</a></li>
-<li><a href="#org0000019">2. Diagramas de clases</a></li>
-<li><a href="#org000001c">3. Vigencia de UML</a></li>
-<li><a href="#org0000021">4. Referencias</a></li>
+<li><a href="#org0000020">2. Diagramas de clases</a></li>
+<li><a href="#org0000036">3. Diagramas de casos de uso</a></li>
+<li><a href="#org0000049">4. Diagramas de actividad</a></li>
+<li><a href="#org000004c">5. Vigencia de UML</a></li>
+<li><a href="#org000004f">6. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -331,8 +333,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000019" class="outline-2">
-<h2 id="org0000019"><span class="section-number-2">2.</span> Diagramas de clases</h2>
+<div id="outline-container-org0000020" class="outline-2">
+<h2 id="org0000020"><span class="section-number-2">2.</span> Diagramas de clases</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Rectángulo: una clase
@@ -359,8 +361,8 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-<div id="outline-container-org0000016" class="outline-3">
-<h3 id="org0000016"><span class="section-number-3">2.2.</span> Ejemplo:</h3>
+<div id="outline-container-org0000014" class="outline-3">
+<h3 id="org0000014"><span class="section-number-3">2.2.</span> Ejemplo:</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Un curso está compuesto por varias asignaturas.</li>
@@ -376,18 +378,201 @@ window.addEventListener("load",()=>{
 <li>Consultar la calificación de una asignatura (getNota(asignatura)).</li>
 </ul></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">2.3.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Una empresa quiere manejar el stock de un almacén</li>
+<li>Cada venta indica qué productos incluye, y la cantidad de cada uno, y a qué precio</li>
+<li>Cada entrada en el almacén indica qué productos incluye, y la cantidad de cada uno</li>
+<li>El gestor del almacén se encarga de que no haya ventas que sobrepasen el <i>stock</i> de ningún producto</li>
+<li>Se puede preguntar a una venta por su importe</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001a" class="outline-3">
+<h3 id="org000001a"><span class="section-number-3">2.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Un procesador de textos maneja documentos compuestos de párrafos.</li>
+<li>Un párrafo puede contener texto o ser una imagen.</li>
+<li>Un párrafo de texto contiene cadenas, que van una detrás de otra.</li>
+<li>Un párrafo puede tener alineación izquierda, derecha o centrada.</li>
+<li>Una cadena puede tener negrita, cursiva, subrayado.</li>
+<li>Cada cadena tiene un tipo de letra (arial, cursiva&#x2026;) y un tamaño. Si no se especifica, toman la de por defecto del documento.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000001d" class="outline-3">
+<h3 id="org000001d"><span class="section-number-3">2.5.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Un sistema de ficheros tiene ficheros y carpetas</li>
+<li>Una carpeta puede contener otros ficheros y carpetas</li>
+<li>Tanto ficheros como carpetas tienen:
+<ul class="org-ul">
+<li>un nombre</li>
+<li><a href="https://www.jaimealberto.io/post/44_permisos/">permisos tipo linux</a> (rwxrwxr)</li>
+</ul></li>
+<li>Los ficheros y carpetas
+<ul class="org-ul">
+<li>Se pueden renombrar</li>
+<li>Se pueden copiar (las carpetas se copian recursivamente)</li>
+<li>Se pueden borrar</li>
+</ul></li>
+<li>Los ficheros tienen un contenido, que es una cadena de texto</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">3.</span> Diagramas de casos de uso</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Se representan
+<ul class="org-ul">
+<li>Actores: usuarios u otros sistemas externos que interaccionan con nuestro sistema</li>
+<li>Responsabilidades/acciones de nuestro sistema</li>
+</ul></li>
+<li>Sirven para
+<ul class="org-ul">
+<li>Saber qué tiene que hacer el sistema</li>
+<li>Saber quién es el responsable de iniciar una acción, o quién puede hacerla, o a quién hay que notificar resultados</li>
+</ul></li>
+<li>No suelen ser útiles para la codificación
+<ul class="org-ul">
+<li>Pero sí para delimitar el alcance de la aplicación</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org0000025" class="outline-3">
+<h3 id="org0000025"><span class="section-number-3">3.1.</span> Nomenclatura</h3>
+<div class="outline-text-3" id="text-3-1">
 
-
-<div id="org0000014" class="figure">
-<p><img src="media/profesores-y-asignaturas.svg" alt="profesores-y-asignaturas.svg" class="org-svg" />
+<div id="org0000023" class="figure">
+<p><img src="media/nomemclatura-casos-de-uso.svg" alt="nomemclatura-casos-de-uso.svg" class="org-svg" />
 </p>
 </div>
 </div>
 </div>
+<div id="outline-container-org0000028" class="outline-3">
+<h3 id="org0000028"><span class="section-number-3">3.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>La máquina de <i>vending</i> da productos a los clientes</li>
+<li>Los clientes pueden consultar el precio de los productos</li>
+<li>Los productos se pueden cobrar mediante tarjeta de crédito o con monedas</li>
+<li>Un empleado puede
+<ul class="org-ul">
+<li>Abrir la máquina para reponer productos</li>
+<li>Cambiar los precios de los productos</li>
+</ul></li>
+<li>Un empleado, como cualquier otra persona, puede comprar productos y consultar precios</li>
+</ul>
 </div>
-<div id="outline-container-org000001c" class="outline-2">
-<h2 id="org000001c"><span class="section-number-2">3.</span> Vigencia de UML</h2>
-<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org000002d" class="outline-3">
+<h3 id="org000002d"><span class="section-number-3">3.3.</span> Refinamiento</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Los casos de uso se pueden refinar o <i>explotar</i></li>
+</ul>
+
+
+<div id="org000002b" class="figure">
+<p><img src="media/vending-refinado-reponedor.svg" alt="vending-refinado-reponedor.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000030" class="outline-3">
+<h3 id="org0000030"><span class="section-number-3">3.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos</li>
+<li>Un usuario puede ver los documentos de otros usuarios</li>
+<li>Un gestor también puede revisar los documentos de otros usuarios y sugerir cambios en forma de notas</li>
+<li>Un administrador puede hacer lo que un gestor, y además
+<ul class="org-ul">
+<li>dar de baja a cualquier usuario</li>
+<li>cambiar los datos de cualquier usuario</li>
+<li>Borrar documentos, tras revisar su contenido</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000033" class="outline-3">
+<h3 id="org0000033"><span class="section-number-3">3.5.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Si un usuario tiene problemas, puede abrir una incidencia</li>
+<li>El técnico puede decidir no gestionar la incidencia si está fuera del contrato de soporte, y cerrarla</li>
+<li>El técnico trabaja en la incidencia, y la cierra cuando está resuelta y el usuario está de acuerdo</li>
+<li>Si el usuario no está conforme, puede pedir una elevación (<i>escalation</i>) del problema. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El técnico puede elevar el problema a un especialista si no está formado para ello. Se crea una incidencia asociada a la indicencia original.</li>
+<li>El especialista trata las incidencias elevadas como una incidencia normal (excepto que no puede elevarlas)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000049" class="outline-2">
+<h2 id="org0000049"><span class="section-number-2">4.</span> Diagramas de actividad</h2>
+<div class="outline-text-2" id="text-4">
+
+<div id="org0000039" class="figure">
+<p><img src="media/leyenda-actividad.svg" alt="leyenda-actividad.svg" class="org-svg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org000003c" class="outline-3">
+<h3 id="org000003c"><span class="section-number-3">4.1.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-4-1">
+
+<div id="org000003b" class="figure">
+<p><img src="media/arresto-cardiaco-pediatrico.jpg" alt="arresto-cardiaco-pediatrico.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">4.2.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-4-2">
+
+<div id="org000003f" class="figure">
+<p><img src="media/insuficiencia-renal-aguda.png" alt="insuficiencia-renal-aguda.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">4.3.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Al llegar una orden de salida de productos del almacén, se separa en productos refrigerados y no refrigerados.</li>
+<li>Los productos refrigerados y no refrigerados se localizan y empaquetan por separado.</li>
+<li>Si durante el empaquetado falta algún producto, se crea una orden de reposición al proveedor, y se espera a que el producto llegue</li>
+<li>Cuando estén todos los productos, se sacan del almacén</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">4.4.</span> Ejercicio</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li>Una agencia de viajes permite buscar por un vuelo entre dos aeropuertos</li>
+<li>Tras especificar origen y destino, se busca simultáneamente en varios proveedores y mayoristas</li>
+<li>Cuando acaba la búsqueda, se contacta con el cliente para comunicarle las ofertas</li>
+<li>cuando el usuario elige una oferta, se contacta con el proveedor indicado para reservar el vuelo</li>
+<li>si la oferta ya no está disponible, se ofrece la posibilidad al usuario de elegir otro vuelo o recomenzar la búsqueda</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org000004c" class="outline-2">
+<h2 id="org000004c"><span class="section-number-2">5.</span> Vigencia de UML</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>UML es comparable a los diagramas E-R</li>
 <li>No se usa mucho de forma "oficial" en las empresas</li>
@@ -395,9 +580,9 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000021" class="outline-2">
-<h2 id="org0000021"><span class="section-number-2">4.</span> Referencias</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">6.</span> Referencias</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Formatos:
 <ul class="org-ul">
@@ -408,21 +593,12 @@ window.addEventListener("load",()=>{
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
-
-
-
-
-
-<div id="org000001f" class="figure">
-<p><img src="media/profesores-y-asignaturas-local.svg" alt="profesores-y-asignaturas-local.svg" class="org-svg" />
-</p>
-</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-30 jue 09:46</p>
+<p class="date">Created: 2026-05-10 dom 11:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

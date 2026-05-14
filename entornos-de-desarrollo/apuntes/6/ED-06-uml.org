@@ -63,6 +63,10 @@ interface Vehiculo {
   +mover()
 }
 
+class Helicoptero{
+        
+}
+
 class Coche {
   +matricula: String
   -atributoPrivado: Int
@@ -76,6 +80,7 @@ class Persona
 
 ' === Herencia (generalización) ===
 Vehiculo <|-- Coche
+Vehiculo <|-- Helicoptero
 
 ' === Composición (parte fuerte, ciclo de vida dependiente) ===
 Coche *-- Motor : composición
@@ -93,6 +98,9 @@ Persona "1" -- "0..*" Coche : posee
 @enduml
 #+end_src
 
+#+RESULTS: leyenda-clases
+[[file:media/leyenda-clases.svg]]
+
 ** Ejemplo:
 
 - Un curso está compuesto por varias asignaturas.
@@ -106,159 +114,115 @@ Persona "1" -- "0..*" Coche : posee
   - Registrar una calificación para una asignatura (setNota(asignatura, valor)).
   - Consultar la calificación de una asignatura (getNota(asignatura)).
 
-#+reveal: split  
-
+*** solución :noexport:
 #+begin_src plantuml :file media/profesores-y-asignaturas.svg
-  @startuml
+@startuml
 
-  class Profesor {
-  }
+class Profesor {
+}
 
-  class Alumno {
-  }
+class Alumno {
+}
 
-  class Curso {
-  }
+class Curso {
+}
 
-  class Asignatura {
-  }
+class Asignatura {
+}
 
-  class AsignaturaPractica {
-  }
+class AsignaturaPractica {
+}
 
-  class AsignaturaTeorica {
-  }
+class AsignaturaTeorica {
+}
 
-  class Matricula {
-      +setNota(asignatura, valor)
-      +getNota(asignatura)
-  }
-
-  ' Herencia
-  Asignatura <|-- AsignaturaPractica
-  Asignatura <|-- AsignaturaTeorica
-
-  ' Relaciones curso-asignaturas
-  Curso "1" *-- "1..*" Asignatura : compone
-
-  ' Alumno pertenece a un curso
-  Curso "1" <-- "0..*" Alumno : pertenece
-
-  ' Profesor imparte asignaturas
-  Profesor "1" -- "0..*" Asignatura : imparte
-
-  ' Matricula
-  Alumno "1" -- "1" Matricula
-  Matricula "1" *-- "1..*" Asignatura : incluye
+class Matricula {
+    +setNota(asignatura, valor)
+    +getNota(asignatura)
+}
 
 
-  @enduml
+' Herencia
+Asignatura <|-- AsignaturaPractica
+Asignatura <|-- AsignaturaTeorica
+
+' Relaciones curso-asignaturas
+Curso "1" *-- "1..*" Asignatura : compone
+
+' Alumno pertenece a un curso
+Curso "0..*" <-- "0..*" Alumno : pertenece
+
+' Profesor imparte asignaturas
+Profesor "1" -- "0..*" Asignatura : imparte
+
+' Matricula
+Alumno "1" -- "1..*" Matricula
+Matricula "1" *-- "1..*" Asignatura : incluye
+
+@enduml
 #+end_src
 
 #+RESULTS:
 [[file:media/profesores-y-asignaturas.svg]]
 
+** Ejercicio
+- Una empresa quiere manejar el stock de un almacén
+- Cada venta indica qué productos incluye, y la cantidad de cada uno, y a qué precio
+- Cada entrada en el almacén indica qué productos incluye, y la cantidad de cada uno
+- El gestor del almacén se encarga de que no haya ventas que sobrepasen el /stock/ de ningún producto
+- Se puede preguntar a una venta por su importe       
 
-* Vigencia de UML
-- UML es comparable a los diagramas E-R
-- No se usa mucho de forma "oficial" en las empresas
-- Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados
-      
-* Referencias
-#+include: "../../../common/footer.org"
+*** solución :noexport:
+  
+#+begin_src plantuml :file media/stock-almacen.svg
+  @startuml
 
-
-
-
-#+begin_src plantuml :file media/profesores-y-asignaturas-local.svg
-
-@startuml
-skinparam class {
-    BackgroundColor White
-    BorderColor Black
-    FontColor Black
-    ArrowColor Black
+class Producto {
+  - nombre : String
+  - stock : int
+  + getStock() : int
+  + aumentarStock(cantidad : int)
+  + disminuirStock(cantidad : int)
 }
 
-' Definición de clases principales
-
-class Profesor {
-    - id: int
-    - nombre: string
-    - email: string
-    + impartir(asignatura: Asignatura)
+class Venta {
+  - fecha : Date
+  - lineas : List<LineaVenta>
+  + getImporte() : double
 }
 
-class Asignatura  {
-    - id: int
-    - nombre: string
-    - credits: float
-    + getNombre()
+class LineaVenta {
+  - cantidad : int
+  - precio : double
+  + getSubtotal() : double
 }
 
-class AsignaturaTeórica extends Asignatura {
-    - tipoEvaluacion: "Examen"
-    + getTipoEvaluacion()
+class Entrada {
+  - fecha : Date
+  - lineas : List<LineaEntrada>
 }
 
-class AsignaturaPractica extends Asignatura {
-    - tipoEvaluacion: "Prácticas"
-    + obtenerPracticas()
+class LineaEntrada {
+  - cantidad : int
 }
 
-class Alumno {
-    - id: int
-    - nombre: string
-    - dni: string
-    + matricular(seleccion: Curso)
+class Almacen {
+  - cantidad : int
+  + getStock(Producto): int
+  + validaVenta(Venta): Boolean      
 }
 
-class Curso {
-    - id: int
-    - nombre: string
-    - anio: int
-    + getAsignaturas()
-}
+Almacen "1" o-- "0..*" Producto
+Almacen "1" o-- "0..*" Venta
+Almacen "1" o-- "0..*" Entrada
 
-class Matrícula {
-    - id: int
-    - fechaInicio: date
-    - fechaFin: date
-    + setNota(asignatura: Asignatura, valor: float)
-    + getNota(asignatura: Asignatura)
-    + calcularPromedio()
-}
 
-class Nota {
-    - valor: float
-    - fechaEntrega: date
-    + getValor()
-    + getFecha()
-}
 
-' Relaciones y Asociaciones
+Producto "1" -- "0..*" LineaVenta
+Producto "1" -- "0..*" LineaEntrada
 
-' 1. Un Profesor puede impartir varias asignaturas
-Profesor "1" --> "*" Asignatura : imparte
-
-' 2. Un Curso se compone de varias asignaturas
-Curso "1" --> "*" Asignatura : compone
-
-' 3. Un Alumno solo pertenece a un curso
-Alumno "1" --> "1" Curso : pertenece
-
-' 4. Una matrícula tiene un alumno
-Matrícula "1" --> "1" Alumno : tiene
-
-' 5. Una matrícula se compone de asignaturas (asignaturas en las que está matriculado el alumno en ese periodo)
-Matrícula "1" --> "*" Asignatura : contiene
-
-' 6. Las notas de los alumnos en asignaturas se guardan en la clase Nota
-Nota "1" --> "1" Asignatura : refiere
-
-' 7. La relación entre Nota y Alumno/Matrícula (implícita en la estructura de matrícula)
-' Normalmente una Nota se guarda dentro de la Matrícula, pero pertenece a una Asignatura
-Nota "1" --> "1" Matrícula : pertenece
+Venta "1" *-- "1..*" LineaVenta
+Entrada "1" *-- "1..*" LineaEntrada
 
 
 
@@ -266,5 +230,502 @@ Nota "1" --> "1" Matrícula : pertenece
 #+end_src
 
 #+RESULTS:
-[[file:media/profesores-y-asignaturas-local.svg]]
+[[file:media/stock-almacen.svg]]
+
+
+** Ejercicio
+- Un procesador de textos maneja documentos compuestos de párrafos.
+- Un párrafo puede contener texto o ser una imagen.
+- Un párrafo de texto contiene cadenas, que van una detrás de otra.
+- Un párrafo puede tener alineación izquierda, derecha o centrada.
+- Una cadena puede tener negrita, cursiva, subrayado.
+- Cada cadena tiene un tipo de letra (arial, cursiva...) y un tamaño. Si no se especifica, toman la de por defecto del documento.
+
+*** solución :noexport:
+#+begin_src plantuml :file media/procesador-de-texto.svg
+@startuml
+
+class Documento {
+  - parrafos: List<Parrafo>
+  - fuentePorDefecto: String
+  - tamanoPorDefecto: int
+}
+
+abstract class Parrafo {
+  - alineacion: Alineacion
+}
+
+class ParrafoTexto {
+  - cadenas: List<Cadena>
+}
+
+class ParrafoImagen {
+  - imagen: Imagen
+}
+
+class Cadena {
+  - contenido: String
+  - negrita: boolean
+  - cursiva: boolean
+  - subrayado: boolean
+  - fuente: String
+  - tamano: int
+}
+
+class Imagen
+
+enum Alineacion {
+  izquierda
+  derecha
+  centrada
+}
+
+Alineacion "1" -- "0..*" Parrafo
+
+Documento "1" *-- "0..*" Parrafo
+Parrafo <|-- ParrafoTexto
+Parrafo <|-- ParrafoImagen
+
+ParrafoTexto "1" *-- "1..*" Cadena
+ParrafoImagen --> Imagen
+
+@enduml
+  
+#+end_src
+
+#+RESULTS:
+[[file:media/procesador-de-texto.svg]]
+
+** Ejercicio
+- Un sistema de ficheros tiene ficheros y carpetas
+- Una carpeta puede contener otros ficheros y carpetas
+- Tanto ficheros como carpetas tienen:
+  - un nombre
+  - [[https://www.jaimealberto.io/post/44_permisos/][permisos tipo linux]] (rwxrwxr)
+- Los ficheros y carpetas
+  - Se pueden renombrar
+  - Se pueden copiar (las carpetas se copian recursivamente)
+  - Se pueden borrar
+- Los ficheros tienen un contenido, que es una cadena de texto
+
+*** solución :noexport:
+#+begin_src plantuml :file media/sistema-de-archivos.svg
+
+@startuml
+
+' Clase abstracta común
+abstract class Nodo {
+  - nombre : String
+  - permisos : String
+  + renombrar(nuevoNombre : String)
+  + copiar() : Nodo
+  + borrar()
+}
+
+class Fichero {
+  - contenido : String
+}
+
+class Carpeta {
+  - hijos : List<Nodo>
+  + agregar(n : Nodo)
+  + eliminar(n : Nodo)
+}
+
+' Herencia
+Nodo <|-- Fichero
+Nodo <|-- Carpeta
+
+' Composición (una carpeta contiene nodos)
+Carpeta "1" *-- "0..*" Nodo : contiene
+
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:media/sistema-de-archivos.svg]]
+
+* Diagramas de casos de uso
+- Se representan
+  - Actores: usuarios u otros sistemas externos que interaccionan con nuestro sistema
+  - Responsabilidades/acciones de nuestro sistema
+- Sirven para
+  - Saber qué tiene que hacer el sistema
+  - Saber quién es el responsable de iniciar una acción, o quién puede hacerla, o a quién hay que notificar resultados
+- No suelen ser útiles para la codificación
+  - Pero sí para delimitar el alcance de la aplicación  
+
+** Nomenclatura
+#+begin_src plantuml :file media/nomemclatura-casos-de-uso.svg
+  @startuml
+left to right direction
+
+' Actor
+actor Usuario
+
+' Sistema (límite del sistema)
+rectangle "Sistema" {
+
+  ' Casos de uso
+  usecase "Caso de uso" as UC1
+  usecase "Caso de uso extendido" as UC2
+  usecase "Caso de uso incluido"  as UC3     
+
+}
+
+' Relaciones
+Usuario --> UC1
+UC2 --> UC1 : <<extend>>
+UC1 --> UC3 : <<include>>
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/nomemclatura-casos-de-uso.svg]]
+
+** Ejemplo
+- La máquina de /vending/ da productos a los clientes
+- Los clientes pueden consultar el precio de los productos  
+- Los productos se pueden cobrar mediante tarjeta de crédito o con monedas
+- Un empleado puede
+  - Abrir la máquina para reponer productos
+  - Cambiar los precios de los productos
+- Un empleado, como cualquier otra persona, puede comprar productos y consultar precios    
+
+*** solución :noexport:
+#+begin_src plantuml :file media/vending.svg
+
+@startuml
+left to right direction
+
+actor Cliente
+actor Empleado
+
+Cliente <|-down- Empleado
+
+rectangle "Máquina Expendedora" {
+
+  Cliente -- (Comprar producto)
+  Cliente -- (Consultar precio)
+
+  (Pagar con tarjeta de crédito) --> (Comprar producto) : <<extend>>
+  (Pagar con monedas) --> (Comprar producto)  : <<extend>>
+  (Comprar producto) --> (Entregar producto) : <<include>>
+
+  Empleado -- (Reponer productos)
+  Empleado -- (Cambiar precios)
+}
+
+@enduml    
+  
+#+end_src
+
+#+RESULTS:
+[[file:media\vending.svg]]
+
+** Refinamiento
+- Los casos de uso se pueden refinar o /explotar/
+
+#+begin_src plantuml :file media/vending-refinado-reponedor.svg
+
+@startuml
+left to right direction
+
+actor Empleado
+
+rectangle "Máquina Expendedora" {
+
+
+
+  Empleado -- (Reponer productos)
+  Empleado -- (Cambiar precios)
+
+  (Reponer productos) --> (Abrir máquina) : <<include>>
+  (Reponer productos) --> (Actualizar inventario) : <<include>>
+  (Dar de alta producto) --> (Actualizar inventario) : <<extends>>
+  (Dar de baja producto) --> (Actualizar inventario) : <<extends>>
+  (Reponer productos) --> (Cerrar máquina) : <<include>>
+}
+
+@enduml    
+#+end_src  
+
+#+RESULTS:
+[[file:media\vending-refinado-reponedor.svg]]
+
+** Ejercicio
+- Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos
+- Un usuario puede ver los documentos de otros usuarios  
+- Un gestor también puede revisar los documentos de otros usuarios y sugerir cambios en forma de notas
+- Un administrador puede hacer lo que un gestor, y además
+  - dar de baja a cualquier usuario
+  - cambiar los datos de cualquier usuario
+  - Borrar documentos, tras revisar su contenido
+
+*** solución :noexport:
+#+begin_src plantuml :file media/documentos-web.svg
+@startuml
+left to right direction
+
+actor Usuario
+actor Gestor
+actor Administrador
+
+rectangle Sistema {
+
+  Usuario -- (Registrarse)
+  Usuario -- (Crear documento)
+  Usuario -- (Modificar sus documentos)
+  Usuario -- (Ver documentos de otros)
+
+  Gestor -- (Revisar documentos)
+  Gestor -- (Sugerir cambios)
+
+  Administrador -- (Dar de baja usuario)
+  Administrador -- (Modificar datos de usuario)
+  Administrador -- (Borrar documentos)
+
+  (Revisar documentos) .> (Ver documentos de otros) : <<include>>
+  (Sugerir cambios) .> (Revisar documentos) : <<extend>>
+  (Borrar documentos) .> (Revisar documentos) : <<include>>
+}
+
+Gestor --|> Usuario
+Administrador --|> Gestor
+
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:media/documentos-web.svg]]
+
+
+** Ejemplo
+- Si un usuario tiene problemas, puede abrir una incidencia
+- El técnico puede decidir no gestionar la incidencia si está fuera del contrato de soporte, y cerrarla
+- El técnico trabaja en la incidencia, y la cierra cuando está resuelta y el usuario está de acuerdo
+- Si el usuario no está conforme, puede pedir una elevación (/escalation/) del problema. Se crea una incidencia asociada a la indicencia original.
+- El técnico puede elevar el problema a un especialista si no está formado para ello. Se crea una incidencia asociada a la indicencia original.
+- El especialista trata las incidencias elevadas como una incidencia normal (excepto que no puede elevarlas)
+
+*** solución :noexport:
+#+begin_src plantuml :file media/soporte-tecnico.svg
+@startuml
+
+actor Usuario
+actor Técnico
+actor Especialista
+
+rectangle Sistema {
+    Usuario -- (Abrir incidencia)
+
+    Técnico -- (Resolver incidencia)
+
+    (Cerrar incidencia no cubierta) --> (Resolver incidencia) : <<extend>>
+    (Solucionar incidencia) --> (Resolver incidencia) : <<extend>>
+        
+    Usuario -- (Elevar incidencia)
+    Técnico -- (Elevar incidencia)
+        
+    (Elevar incidencia) --> (Abrir incidencia) : <<includes>>
+
+    Especialista -- (Resolver incidencia)    
+}
+
+
+
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:media/soporte-tecnico.svg]]
+
+
+* Diagramas de actividad
+
+#+begin_src plantuml :file media/leyenda-actividad.svg
+  @startuml
+
+start
+
+repeat
+:Acción inicial;
+
+if (¿Decisión?) then (Sí)
+  :Acción rama Sí;
+else (No)
+  :Acción rama No;
+endif
+
+fork
+  :Acción paralela 1;
+fork again
+  :Acción paralela 2;
+end fork
+
+:Acción;
+
+repeat while (¿Decisión?) is (Si)
+->No;
+
+stop
+
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/leyenda-actividad.svg]]
+
+** Ejemplo
+[[file:media/arresto-cardiaco-pediatrico.jpg]]
+
+** Ejemplo
+[[file:media/insuficiencia-renal-aguda.png]]
+
+** Ejercicio
+- Al llegar una orden de salida de productos del almacén, se separa en productos refrigerados y no refrigerados.
+- Los productos refrigerados y no refrigerados se localizan y empaquetan por separado.
+- Si durante el empaquetado falta algún producto, se crea una orden de reposición al proveedor, y se espera a que el producto llegue
+- Cuando estén todos los productos, se sacan del almacén
+
+*** solución :noexport:
+#+begin_src plantuml :file ./media/almacen-refrigerado-1.svg
+@startuml
+start
+
+:Recibir orden de salida;
+
+:Separar en productos refrigerados y no refrigerados;
+
+fork
+  :Localizar productos refrigerados;
+  :Empaquetar productos refrigerados;
+fork again
+  :Localizar productos no refrigerados;
+  :Empaquetar productos no refrigerados;
+end fork
+
+if (¿Falta algún producto?) then (Sí)
+  :Crear orden de reposición al proveedor;
+  :Esperar llegada del producto;
+endif
+
+:Sacar productos del almacén;
+
+stop
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:./media/almacen-refrigerado-1.svg]]
+
+#+begin_src plantuml :file ./media/almacen-refrigerado-2.svg
+@startuml
+start
+
+:Recibir orden de salida;
+
+:Separar en productos refrigerados y no refrigerados;
+
+fork
+  :Localizar productos refrigerados;
+  if (¿Falta algún producto?) then (Sí)
+    :Crear orden de reposición;
+    :Esperar llegada del producto;
+  endif
+  :Empaquetar productos refrigerados;
+fork again
+  :Localizar productos no refrigerados;
+  if (¿Falta algún producto?) then (Sí)
+    :Crear orden de reposición;
+    :Esperar llegada del producto;
+  endif
+  :Empaquetar productos no refrigerados;
+end fork
+
+:Sacar productos del almacén;
+
+stop
+@enduml  
+#+end_src
+
+#+RESULTS:
+[[file:./media/almacen-refrigerado-2.svg]]
+
+** Ejercicio
+- Una agencia de viajes permite buscar por un vuelo entre dos aeropuertos
+- Tras especificar origen y destino, se busca simultáneamente en varios proveedores y mayoristas
+- Cuando acaba la búsqueda, se contacta con el cliente para comunicarle las ofertas
+- cuando el usuario elige una oferta, se contacta con el proveedor indicado para reservar el vuelo
+- si la oferta ya no está disponible, se ofrece la posibilidad al usuario de elegir otro vuelo o recomenzar la búsqueda
+
+*** solución :noexport:
+#+begin_src plantuml :file media/busqueda-de-vuelos.svg
+@startuml
+start
+
+repeat
+  :Buscar vuelo (origen y destino);
+
+  
+
+  fork
+    :Consultar Proveedor 1;
+  fork again
+    :Consultar Proveedor 2;
+  fork again
+    :Consultar Mayorista 1;
+  fork again
+    :Consultar Mayorista 2;
+  end fork
+
+  :Contactar con el cliente\npara comunicar ofertas;
+
+  repeat
+    if (¿Cliente elige oferta?) then (Sí)
+      :Contactar con proveedor\npara reservar vuelo;
+
+      if (¿Oferta disponible?) then (Sí)
+        :Confirmar reserva;
+        stop
+      else (No)
+---        :Informar indisponibilidad;
+      endif
+    else (No)
+      :Fin sin reserva;
+      stop
+    endif
+  repeat while (¿Elegir otra oferta?) is (Sí)
+
+repeat while (¿Reiniciar búsqueda?) is (Sí)
+stop
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:media/busqueda-de-vuelos.svg]]
+  
+* Vigencia de UML
+- UML es comparable a los diagramas E-R
+- No se usa mucho de forma "oficial" en las empresas
+- Pero es muy útil para aclaraciones en reuniones y documentación de requisitos complicados
+
+** ejemplos :noexport:
+busca ejemplos-uml-vida-real.org
+
+** Ejemplo
+[[file:media/insuficiencia-renal-aguda.png]]
+
+** Ejemplo
+[[file:media/arresto-cardiaco-pediatrico.jpg]]
+
+** Ejemplo
+[[https://www.madrid.org/bvirtual/BVCM016109.pdf][Manual de permisos y licencias]]
+* Referencias
+#+include: "../../../common/footer.org"
+
+
 
