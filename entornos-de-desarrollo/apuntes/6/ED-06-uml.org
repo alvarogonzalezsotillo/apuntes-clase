@@ -109,57 +109,50 @@ Persona "1" -- "0..*" Coche : posee
 #+reveal: split  
 
 #+begin_src plantuml :file media/profesores-y-asignaturas.svg
-@startuml
+  @startuml
 
-class Profesor {
-}
+  class Profesor {
+  }
 
-class Alumno {
-}
+  class Alumno {
+  }
 
-class Curso {
-}
+  class Curso {
+  }
 
-class Asignatura {
-}
+  class Asignatura {
+  }
 
-class AsignaturaPractica {
-}
+  class AsignaturaPractica {
+  }
 
-class AsignaturaTeorica {
-}
+  class AsignaturaTeorica {
+  }
 
-class Matricula {
-    +setNota(asignatura, valor)
-    +getNota(asignatura)
-}
+  class Matricula {
+      +setNota(asignatura, valor)
+      +getNota(asignatura)
+  }
 
-class Nota {
-    valor: float
-}
+  ' Herencia
+  Asignatura <|-- AsignaturaPractica
+  Asignatura <|-- AsignaturaTeorica
 
-' Herencia
-Asignatura <|-- AsignaturaPractica
-Asignatura <|-- AsignaturaTeorica
+  ' Relaciones curso-asignaturas
+  Curso "1" *-- "1..*" Asignatura : compone
 
-' Relaciones curso-asignaturas
-Curso "1" *-- "1..*" Asignatura : compone
+  ' Alumno pertenece a un curso
+  Curso "1" <-- "0..*" Alumno : pertenece
 
-' Alumno pertenece a un curso
-Curso "1" <-- "0..*" Alumno : pertenece
+  ' Profesor imparte asignaturas
+  Profesor "1" -- "0..*" Asignatura : imparte
 
-' Profesor imparte asignaturas
-Profesor "1" -- "0..*" Asignatura : imparte
+  ' Matricula
+  Alumno "1" -- "1" Matricula
+  Matricula "1" *-- "1..*" Asignatura : incluye
 
-' Matricula
-Alumno "1" -- "1" Matricula
-Matricula "1" *-- "1..*" Asignatura : incluye
 
-' Notas
-Matricula "1" *-- "0..*" Nota
-Nota "1" --> "1" Asignatura
-
-@enduml
+  @enduml
 #+end_src
 
 #+RESULTS:
