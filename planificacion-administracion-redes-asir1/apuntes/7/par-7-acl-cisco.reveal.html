@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2026-04-28 Tue 10:14 -->
 <meta charset="utf-8"/>
 <title>Listas de control de acceso en routers CISCO</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Listas de control de acceso en routers CISCO</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:08</p>
+<h1 class="title">Listas de control de acceso en routers CISCO</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-04-28 Tue 10:14</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -499,9 +500,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
-
+</style>
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> LISTAS DE CONTROL DE ACCESO</h2>
@@ -516,8 +525,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-1-1">
 <h3 id="1-1"><span class="section-number-3">1.1.</span> Numeración</h3>
@@ -548,7 +555,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -972,7 +978,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -988,7 +993,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Borrar una ACL</h3>
@@ -1044,7 +1048,6 @@ Es necesario mirar el apartado Inbound y Outbound
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1101,7 +1104,6 @@ Ejemplo: No dejes pasar el tráfico con origen en la red <code>192.168.1.0/24</c
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-1">
 <h3 id="4-1"><span class="section-number-3">4.1.</span> Ejercicio</h3>
@@ -1109,7 +1111,6 @@ Ejemplo: No dejes pasar el tráfico con origen en la red <code>192.168.1.0/24</c
 Se desea que la red <code>10.0.0.0/15</code> no sea enrutada, excepto el equipo <code>10.0.1.1</code>, que es del administrador.
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-2">
 <h3 id="4-2"><span class="section-number-3">4.2.</span> Solución propuesta al ejercicio</h3>
@@ -1169,9 +1170,20 @@ Asociar esta ACL a la interfaz de entrada de la red <code>10.0.0.0/15</code>
 
 </ul>
 <div class="slide-footer"></div>
+</section>
+<section id="slide-4-3">
+<h3 id="4-3"><span class="section-number-3">4.3.</span> Haz el ejercicio</h3>
+<ul>
+<li>Utiliza este <a href="pkt/ejercicio-acl-estandar-inicial.pkt">fichero pkt inicial</a></li>
+<li>Consigue enrutamiento entre <code>192.168.0.0/24</code> y <code>172.16.0.0/24</code></li>
+<li>Consigue prohibir el acceso a <code>192.168.0.0/24</code> desde <code>10.0.0.0/15</code>
+<ul>
+<li>Pero que el administrador y otras redes sigan accediendo</li>
 
+</ul></li>
 
-
+</ul>
+<div class="slide-footer"></div>
 </section>
 </section>
 <section>
@@ -1188,7 +1200,6 @@ Pueden hacer referencia a otras características del paquete:
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1">
 <h3 id="5-1"><span class="section-number-3">5.1.</span> Operadores (para puertos TCP/UDP)</h3>
@@ -1229,7 +1240,6 @@ Pueden hacer referencia a otras características del paquete:
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-2">
 <h3 id="5-2"><span class="section-number-3">5.2.</span> IP</h3>
@@ -1252,8 +1262,6 @@ Ejemplo: Prohíbe el tráfico hacia la red <code>172.16.0.0/12</code>
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-3">
 <h3 id="5-3"><span class="section-number-3">5.3.</span> Protocolo de mensajes de control de Internet (ICMP)</h3>
@@ -1298,8 +1306,6 @@ Ejemplo: Permite la comunicación <b>TCP</b> hacia la red <code>10.0.0.0/8</code
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-5">
 <h3 id="5-5"><span class="section-number-3">5.5.</span> Protocolo de datagrama de usuario (UDP)</h3>
@@ -1314,7 +1320,6 @@ Ejemplo: Permite la comunicación <b>TCP</b> hacia la red <code>10.0.0.0/8</code
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1326,7 +1331,6 @@ Ejemplo: Permite la comunicación <b>TCP</b> hacia la red <code>10.0.0.0/8</code
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-6-1">
 <h3 id="6-1"><span class="section-number-3">6.1.</span> ACL con nombre</h3>
@@ -1348,7 +1352,6 @@ Facilita la comprensión de la configuración del firewall
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-6-2">
 <h3 id="6-2"><span class="section-number-3">6.2.</span> Modificación de ACL</h3>
@@ -1381,7 +1384,6 @@ Modificación en el firewall:
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1408,7 +1410,6 @@ Modificación en el firewall:
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-1">
 <h3 id="7-1"><span class="section-number-3">7.1.</span> Ejercicio</h3>
@@ -1436,7 +1437,6 @@ Modificación en el firewall:
 <a href="pkt/ACL-ejercicio.pkt">(Fichero PKT)</a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-2">
 <h3 id="7-2"><span class="section-number-3">7.2.</span> Planteamiento</h3>
@@ -1577,9 +1577,6 @@ Interfaz Fa0/1 (DMZ)
 
 </ul>
 <div class="slide-footer"></div>
-
-
-
 </section>
 <section id="slide-7-3">
 <h3 id="7-3"><span class="section-number-3">7.3.</span> Solución propuesta</h3>
@@ -1610,8 +1607,6 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1668,10 +1663,6 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 
 </ul>
 <div class="slide-footer"></div>
-
-
-
-
 </section>
 </section>
 <section>
@@ -1684,13 +1675,6 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 <li><a href="./par-7-acl-cisco.pdf">PDF</a></li>
 <li><a href="./par-7-acl-cisco.wp.html">Página web</a></li>
 <li><a href="./par-7-acl-cisco.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
