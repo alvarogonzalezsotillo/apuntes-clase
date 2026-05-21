@@ -244,7 +244,7 @@ Entrada "1" *-- "1..*" LineaEntrada
 - Un párrafo de texto contiene cadenas, que van una detrás de otra.
 - Un párrafo puede tener alineación izquierda, derecha o centrada.
 - Una cadena puede tener negrita, cursiva, subrayado.
-- Cada cadena tiene un tipo de letra (arial, cursiva...) y un tamaño. Si no se especifica, toman la de por defecto del documento.
+- Cada cadena tiene un tipo de letra (arial, cursiva...) y un tamaño. Si no se especifica, toman los valores por defecto del documento.
 
 *** solución
 #+begin_src plantuml :file media/procesador-de-texto.svg
