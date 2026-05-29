@@ -231,6 +231,57 @@ Databases and datafiles
 A database's data is collectively stored in the datafiles that constitute each tablespace of the database. For example, the simplest Oracle database would have one tablespace and one datafile. A more complicated database might have three tablespaces, each comprised of two datafiles (for a total of six datafiles).  
 #+END_NOTES
 
+** ¿Si se pierde un fichero?
+#+begin_example
+ORA-01157: cannot identify/lock data file 46 - see DBWR trace file
+ORA-01110: data file 46: '/home/students/usuario12/tablespaces/NUEVO_TB_2.dbf'
+#+end_example
+- Si se pierde un fichero
+  - Mejor opción: recuperar un backup
+  - Si no hay más remedio: borrarlo de la base de datos
+  - Es necesario saber de qué PDB  
+
+#+reveal: split
+- Buscar el fichero que falta en todas las PDB
+#+begin_src sql
+show pdbs;
+ALTER SESSION SET CONTAINER = <nombre de pdb>;
+
+SELECT 
+    df.file#,
+    df.name AS file_name,
+    ts.name AS tablespace_name,
+    df.status,
+    df.enabled,
+FROM v$datafile df
+JOIN v$tablespace ts ON df.ts# = ts.ts#
+where df.name like '%el fichero que se busca%'
+ORDER BY df.file#;
+#+end_src
+
+#+reveal: split
+- Borrar todos los ficheros necesarios
+#+begin_src sql
+ALTER SESSION SET CONTAINER = pdb_usuario12;
+
+ALTER DATABASE DATAFILE 46 OFFLINE DROP;
+ALTER DATABASE DATAFILE 50 OFFLINE DROP;
+ALTER DATABASE DATAFILE 55 OFFLINE DROP;
+ALTER DATABASE DATAFILE 57 OFFLINE DROP;
+ALTER DATABASE DATAFILE 59 OFFLINE DROP;
+ALTER DATABASE DATAFILE 61 OFFLINE DROP;
+ALTER DATABASE DATAFILE 63 OFFLINE DROP;
+ALTER DATABASE DATAFILE 65 OFFLINE DROP;
+ALTER DATABASE DATAFILE 66 OFFLINE DROP;
+ALTER DATABASE DATAFILE 67 OFFLINE DROP;
+ALTER DATABASE DATAFILE 69 OFFLINE DROP;
+ALTER DATABASE DATAFILE 70 OFFLINE DROP;
+ALTER DATABASE DATAFILE 71 OFFLINE DROP;
+alter session set container = cdb$root;
+shutdown immediate;
+startup open;
+#+end_src
+
 * Usuarios
 ¿Qué usuario hemos utilizado con =sqlplus= hasta ahora?
 
