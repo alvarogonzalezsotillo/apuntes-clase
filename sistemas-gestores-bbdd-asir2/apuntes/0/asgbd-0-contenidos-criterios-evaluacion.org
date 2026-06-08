@@ -335,7 +335,7 @@
 
 * Criterios de evaluación
 
-** Implanta sistemas gestores de bases de datos analizando sus características y ajustándose a los requerimientos del sistema.
+** RA1: Implanta sistemas gestores de bases de datos analizando sus características y ajustándose a los requerimientos del sistema.
 a. Se ha reconocido la utilidad y función de cada uno de los elementos de un sistema gestor de bases de datos.
 b. Se han analizado las características de los principales sistemas gestores de bases de datos.
 c. Se ha seleccionado el sistema gestor de bases de datos.
@@ -346,7 +346,7 @@ g. Se ha documentado el proceso de instalación.
 h. Se ha interpretado la información suministrada por los mensajes de error y ficheros de registro.
 i. Se han resuelto las incidencias de la instalación.
 j. Se ha verificado el funcionamiento del sistema gestor de bases de datos.
-** Configura el sistema gestor de bases de datos interpretando las especificaciones técnicas y los requisitos de explotación.
+** RA2: Configura el sistema gestor de bases de datos interpretando las especificaciones técnicas y los requisitos de explotación.
 a. Se han descrito las condiciones de inicio y parada del sistema gestor.
 b. Se ha seleccionado el motor de base de datos.
 c. Se han asegurado las cuentas de administración.
@@ -355,7 +355,7 @@ e. Se ha configurado la conectividad en red del sistema gestor.
 f. Se han definido las características por defecto de las bases de datos.
 g. Se han definido los parámetros relativos a las conexiones (tiempos de espera,número máximo de conexiones, entre otros).
 h. Se ha documentado el proceso de configuración.
-** Implanta métodos de control de acceso utilizando asistentes, herramientas gráficas y comandos del lenguaje del sistema gestor.
+** RA3: Implanta métodos de control de acceso utilizando asistentes, herramientas gráficas y comandos del lenguaje del sistema gestor.
 a. Se han creado vistas personalizadas para cada tipo de usuario.
 b. Se han creado sinónimos de tablas y vistas.
 c. Se han definido y eliminado cuentas de usuario.
@@ -364,7 +364,7 @@ e. Se han agrupado y desagrupado privilegios.
 f. Se han asignado y eliminado privilegios a usuarios.
 g. Se han asignado y eliminado grupos de privilegios a usuarios.
 h. Se ha garantizado el cumplimiento de los requisitos de seguridad.
-** Automatiza tareas de administración del gestor describiéndolas y utilizando guiones de sentencias.
+** RA4: Automatiza tareas de administración del gestor describiéndolas y utilizando guiones de sentencias.
 a. Se ha reconocido la importancia de automatizar tareas administrativas.
 b. Se han descrito los distintos métodos de ejecución de guiones.
 c. Se han identificado las herramientas disponibles para redactar guiones.
@@ -373,7 +373,7 @@ e. Se han identificado los eventos susceptibles de activar disparadores.
 f. Se han definido disparadores.
 g. Se han utilizado estructuras de control de flujo.
 h. Se han adoptado medidas para mantener la integridad y consistencia de la información.
-** Optimiza el rendimiento del sistema aplicando técnicas de monitorización y realizando adaptaciones.
+** RA5: Optimiza el rendimiento del sistema aplicando técnicas de monitorización y realizando adaptaciones.
 a. Se han identificado las herramientas de monitorización disponibles para el sistema gestor.
 b. Se han descrito las ventajas e inconvenientes de la creación de índices.
 c. Se han creado índices en tablas y vistas.
@@ -382,7 +382,7 @@ e. Se han optimizado los recursos del sistema gestor.
 f. Se ha obtenido información sobre el rendimiento de las consultas para su optimización.
 g. Se han programado alertas de rendimiento.
 h. Se han realizado modificaciones en la configuración del sistema operativo para mejorar el rendimiento del gestor.
-** Aplica criterios de disponibilidad analizándolos y ajustando la configuración del sistema gestor.
+** RA6: Aplica criterios de disponibilidad analizándolos y ajustando la configuración del sistema gestor.
 a. Se ha reconocido la utilidad de las bases de datos distribuidas.
 b. Se han descrito las distintas políticas de fragmentación de la información.
 c. Se ha implantado una base de datos distribuida homogénea.
