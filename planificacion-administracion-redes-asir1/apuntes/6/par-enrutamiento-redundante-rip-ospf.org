@@ -16,7 +16,7 @@
 - IP decide qué ruta aplicar de la siguiente forma
   - Calcula todas las rutas aplicables
   - Se queda con la de *menor* métrica
-  - En implementaciones reales, también se usan otros criterios
+  - En implementaciones reales, se miran otros criterios antes de la métrica:
     - /Flags/ de la ruta
     - Tipo de enlace (VPN, loopback...)
     - Distancia Administrativa (Cisco)  
