@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-06-08 lun 18:29 -->
+<!-- 2026-07-23 jue 14:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Usuarios, privilegios y roles de *Oracle*</title>
@@ -349,7 +349,7 @@ window.addEventListener("load",()=>{
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> tablespace_name, contents <span style="color: #a020f0;">from</span> dba_tablespaces;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> tablespace_name, contents <span style="color: #000090; font-weight: bold;">from</span> dba_tablespaces;
 </pre>
 </div>
 
@@ -369,17 +369,17 @@ Mas información en:
 <h3 id="org000000c"><span class="section-number-3">2.4.</span> Crear un <i>tablespace</i></h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> TABLESPACE ejemplo_tablespace
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> TABLESPACE ejemplo_tablespace
   DATAFILE
-  <span style="color: #8b2252;">'/tablespaces/ejemplo_1.dbf'</span>  <span style="color: #a020f0;">SIZE</span> 10M
-  AUTOEXTEND <span style="color: #a020f0;">ON</span>  <span style="color: #a020f0;">NEXT</span> 200k  MAXSIZE 14M,
-  <span style="color: #8b2252;">'/tablespaces/ejemplo_2.dbf'</span>  <span style="color: #a020f0;">SIZE</span> 10M
-  AUTOEXTEND <span style="color: #a020f0;">ON</span>  <span style="color: #a020f0;">NEXT</span> 200k  MAXSIZE 14M;
+  <span style="color: #008000; font-weight: bold;">'/tablespaces/ejemplo_1.dbf'</span>  <span style="color: #000090; font-weight: bold;">SIZE</span> 10M
+  AUTOEXTEND <span style="color: #000090; font-weight: bold;">ON</span>  <span style="color: #000090; font-weight: bold;">NEXT</span> 200k  MAXSIZE 14M,
+  <span style="color: #008000; font-weight: bold;">'/tablespaces/ejemplo_2.dbf'</span>  <span style="color: #000090; font-weight: bold;">SIZE</span> 10M
+  AUTOEXTEND <span style="color: #000090; font-weight: bold;">ON</span>  <span style="color: #000090; font-weight: bold;">NEXT</span> 200k  MAXSIZE 14M;
 </pre>
 </div>
 
 <p>
-Más en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7003.htm">docs.oracle.com</a>
+Más en <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-TABLESPACE.html">docs.oracle.com</a>
 </p>
 </div>
 </div>
@@ -536,18 +536,18 @@ ORA-01110: data file 46: '/home/students/usuario12/tablespaces/NUEVO_TB_2.dbf'
 </ul>
 <div class="org-src-container">
 <pre class="src src-sql">show pdbs;
-<span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">SESSION</span> <span style="color: #a020f0;">SET</span> CONTAINER = &lt;nombre de pdb&gt;;
+<span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #000090; font-weight: bold;">SET</span> CONTAINER = &lt;nombre de pdb&gt;;
 
-<span style="color: #a020f0;">SELECT</span> 
+<span style="color: #000090; font-weight: bold;">SELECT</span> 
     df.file#,
-    df.<span style="color: #a020f0;">name</span> <span style="color: #a020f0;">AS</span> file_name,
-    ts.<span style="color: #a020f0;">name</span> <span style="color: #a020f0;">AS</span> tablespace_name,
+    df.<span style="color: #000090; font-weight: bold;">name</span> <span style="color: #000090; font-weight: bold;">AS</span> file_name,
+    ts.<span style="color: #000090; font-weight: bold;">name</span> <span style="color: #000090; font-weight: bold;">AS</span> tablespace_name,
     df.status,
-    df.enabled,
-<span style="color: #a020f0;">FROM</span> v$datafile df
-<span style="color: #a020f0;">JOIN</span> v$tablespace ts <span style="color: #a020f0;">ON</span> df.ts# = ts.ts#
-<span style="color: #a020f0;">where</span> df.<span style="color: #a020f0;">name</span> <span style="color: #a020f0;">like</span> <span style="color: #8b2252;">'%el fichero que se busca%'</span>
-<span style="color: #a020f0;">ORDER</span> <span style="color: #a020f0;">BY</span> df.file#;
+    df.enabled
+<span style="color: #000090; font-weight: bold;">FROM</span> v$datafile df
+<span style="color: #000090; font-weight: bold;">JOIN</span> v$tablespace ts <span style="color: #000090; font-weight: bold;">ON</span> df.ts# = ts.ts#
+<span style="color: #000090; font-weight: bold;">where</span> df.<span style="color: #000090; font-weight: bold;">name</span> <span style="color: #000090; font-weight: bold;">like</span> <span style="color: #008000; font-weight: bold;">'%el fichero que se busca%'</span>
+<span style="color: #000090; font-weight: bold;">ORDER</span> <span style="color: #000090; font-weight: bold;">BY</span> df.file#;
 </pre>
 </div>
 
@@ -555,24 +555,24 @@ ORA-01110: data file 46: '/home/students/usuario12/tablespaces/NUEVO_TB_2.dbf'
 <li>Borrar todos los ficheros necesarios</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">SESSION</span> <span style="color: #a020f0;">SET</span> CONTAINER = pdb_usuario12;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #000090; font-weight: bold;">SET</span> CONTAINER = pdb_usuario12;
 
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 46 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 50 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 55 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 57 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 59 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 61 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 63 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 65 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 66 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 67 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 69 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 70 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">ALTER</span> DATABASE DATAFILE 71 OFFLINE <span style="color: #a020f0;">DROP</span>;
-<span style="color: #a020f0;">alter</span> <span style="color: #a020f0;">session</span> <span style="color: #a020f0;">set</span> container = cdb$root;
-shutdown <span style="color: #a020f0;">immediate</span>;
-startup <span style="color: #a020f0;">open</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 46 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 50 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 55 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 57 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 59 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 61 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 63 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 65 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 66 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 67 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 69 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 70 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">ALTER</span> DATABASE DATAFILE 71 OFFLINE <span style="color: #000090; font-weight: bold;">DROP</span>;
+<span style="color: #000090; font-weight: bold;">alter</span> <span style="color: #000090; font-weight: bold;">session</span> <span style="color: #000090; font-weight: bold;">set</span> container = cdb$root;
+shutdown <span style="color: #000090; font-weight: bold;">immediate</span>;
+startup <span style="color: #000090; font-weight: bold;">open</span>;
 </pre>
 </div>
 </div>
@@ -598,11 +598,11 @@ startup <span style="color: #a020f0;">open</span>;
 <h3 id="org0000028"><span class="section-number-3">3.1.</span> Creación de usuarios</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> <span style="color: #483d8b;">USER</span> usuario IDENTIFIED <span style="color: #a020f0;">BY</span> contrasena
-  <span style="color: #a020f0;">DEFAULT</span> TABLESPACE tablespace
-  <span style="color: #a020f0;">TEMPORARY</span> TABLESPACE tablespace
-  QUOTA UNLIMITED <span style="color: #a020f0;">ON</span> tablespace
-  QUOTA tamano <span style="color: #a020f0;">ON</span> tablespace
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> USER usuario IDENTIFIED <span style="color: #000090; font-weight: bold;">BY</span> contrasena
+  <span style="color: #000090; font-weight: bold;">DEFAULT</span> TABLESPACE tablespace
+  <span style="color: #000090; font-weight: bold;">TEMPORARY</span> TABLESPACE tablespace
+  QUOTA UNLIMITED <span style="color: #000090; font-weight: bold;">ON</span> tablespace
+  QUOTA tamano <span style="color: #000090; font-weight: bold;">ON</span> tablespace
   ACCOUNT LOCK
   ACCOUNT UNLOCK
 </pre>
@@ -617,8 +617,8 @@ startup <span style="color: #a020f0;">open</span>;
 Modificación de un usuario ya creado
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #a020f0;">ALTER</span> <span style="color: #483d8b;">USER</span> usuario
-    cualquier opcion valida al crear usuario
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">ALTER</span> USER usuario
+    cualquier opci&#243;n v&#225;lida al crear usuario
 </pre>
 </div></li>
 
@@ -626,7 +626,7 @@ Modificación de un usuario ya creado
 Borrado de usuario
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #a020f0;">DROP</span> <span style="color: #483d8b;">USER</span> usuario
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">DROP</span> USER usuario
 </pre>
 </div></li>
 </ul>
@@ -687,17 +687,17 @@ Borrado de usuario
 <h3 id="org0000034"><span class="section-number-3">4.2.</span> Sintaxis de <code>Grant</code></h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">grant</span> PRIVILEGIO1,PRIVILEGIO2,...,PRIVILEGION 
-<span style="color: #a020f0;">on</span> OBJETO
-<span style="color: #a020f0;">to</span> USUARIO
-<span style="color: #a020f0;">with</span> <span style="color: #a020f0;">grant</span> <span style="color: #a020f0;">option</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">grant</span> PRIVILEGIO1,PRIVILEGIO2,...,PRIVILEGION 
+<span style="color: #000090; font-weight: bold;">on</span> OBJETO
+<span style="color: #000090; font-weight: bold;">to</span> USUARIO
+<span style="color: #000090; font-weight: bold;">with</span> <span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">option</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">alumnos</span>(...);
-<span style="color: #a020f0;">create</span> <span style="color: #483d8b;">user</span> profesor ...;
-<span style="color: #a020f0;">grant</span> <span style="color: #a020f0;">select</span> <span style="color: #a020f0;">on</span> alumnos <span style="color: #a020f0;">to</span> profesor;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">alumnos</span>(...);
+<span style="color: #000090; font-weight: bold;">create</span> user profesor ...;
+<span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">select</span> <span style="color: #000090; font-weight: bold;">on</span> alumnos <span style="color: #000090; font-weight: bold;">to</span> profesor;
 </pre>
 </div>
 
@@ -783,7 +783,7 @@ ORA-01536: space quota exceeded for tablespace 'USERS'
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">connect</span> sys<span style="color: #b22222;">/*******
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">connect</span> sys<span style="color: #808080; font-style: italic;">/*******
 grant select on unatabla to unusuario with grant option;
 
 connect unusuario/*******
@@ -828,9 +828,9 @@ revoke select on unatabla from unusuario;
 <h3 id="org0000048"><span class="section-number-3">5.1.</span> Sintaxis de roles</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">role</span> NOMBREROL;
-<span style="color: #a020f0;">grant</span> PRIVILEGIOS <span style="color: #a020f0;">on</span> OBJETOS <span style="color: #a020f0;">to</span> NOMBREROL;
-<span style="color: #a020f0;">grant</span> NOMBREROL <span style="color: #a020f0;">to</span> USUARIO;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">role</span> NOMBREROL;
+<span style="color: #000090; font-weight: bold;">grant</span> PRIVILEGIOS <span style="color: #000090; font-weight: bold;">on</span> OBJETOS <span style="color: #000090; font-weight: bold;">to</span> NOMBREROL;
+<span style="color: #000090; font-weight: bold;">grant</span> NOMBREROL <span style="color: #000090; font-weight: bold;">to</span> USUARIO;
 </pre>
 </div>
 
@@ -904,8 +904,8 @@ grant ELROL to usuariodespues;
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> session_roles;
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> session_privs;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> session_roles;
+<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> session_privs;
 </pre>
 </div>
 </div>
@@ -923,17 +923,17 @@ grant ELROL to usuariodespues;
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> dba_role_privs <span style="color: #a020f0;">connect</span> <span style="color: #a020f0;">by</span> <span style="color: #a020f0;">prior</span> granted_role = grantee <span style="color: #a020f0;">start</span> <span style="color: #a020f0;">with</span> grantee = <span style="color: #8b2252;">'&amp;USER'</span> <span style="color: #a020f0;">order</span> <span style="color: #a020f0;">by</span> 1,2,3;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> dba_role_privs <span style="color: #000090; font-weight: bold;">connect</span> <span style="color: #000090; font-weight: bold;">by</span> <span style="color: #000090; font-weight: bold;">prior</span> granted_role = grantee <span style="color: #000090; font-weight: bold;">start</span> <span style="color: #000090; font-weight: bold;">with</span> grantee = <span style="color: #008000; font-weight: bold;">'&amp;USER'</span> <span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> 1,2,3;
 
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> dba_sys_privs  <span style="color: #a020f0;">where</span> grantee = <span style="color: #8b2252;">'&amp;USER'</span> <span style="color: #a020f0;">or</span> grantee <span style="color: #a020f0;">in</span> (
-  <span style="color: #a020f0;">select</span> granted_role <span style="color: #a020f0;">from</span> dba_role_privs <span style="color: #a020f0;">connect</span> <span style="color: #a020f0;">by</span> <span style="color: #a020f0;">prior</span> granted_role = grantee <span style="color: #a020f0;">start</span> <span style="color: #a020f0;">with</span> grantee = <span style="color: #8b2252;">'&amp;USER'</span>
+<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> dba_sys_privs  <span style="color: #000090; font-weight: bold;">where</span> grantee = <span style="color: #008000; font-weight: bold;">'&amp;USER'</span> <span style="color: #000090; font-weight: bold;">or</span> grantee <span style="color: #000090; font-weight: bold;">in</span> (
+  <span style="color: #000090; font-weight: bold;">select</span> granted_role <span style="color: #000090; font-weight: bold;">from</span> dba_role_privs <span style="color: #000090; font-weight: bold;">connect</span> <span style="color: #000090; font-weight: bold;">by</span> <span style="color: #000090; font-weight: bold;">prior</span> granted_role = grantee <span style="color: #000090; font-weight: bold;">start</span> <span style="color: #000090; font-weight: bold;">with</span> grantee = <span style="color: #008000; font-weight: bold;">'&amp;USER'</span>
 )
-<span style="color: #a020f0;">order</span> <span style="color: #a020f0;">by</span> 1,2,3;
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> 1,2,3;
 
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> dba_tab_privs  <span style="color: #a020f0;">where</span> grantee = <span style="color: #8b2252;">'&amp;USER'</span> <span style="color: #a020f0;">or</span> grantee <span style="color: #a020f0;">in</span> (
-  <span style="color: #a020f0;">select</span> granted_role <span style="color: #a020f0;">from</span> dba_role_privs <span style="color: #a020f0;">connect</span> <span style="color: #a020f0;">by</span> <span style="color: #a020f0;">prior</span> granted_role = grantee <span style="color: #a020f0;">start</span> <span style="color: #a020f0;">with</span> grantee = <span style="color: #8b2252;">'&amp;USER'</span>
+<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> dba_tab_privs  <span style="color: #000090; font-weight: bold;">where</span> grantee = <span style="color: #008000; font-weight: bold;">'&amp;USER'</span> <span style="color: #000090; font-weight: bold;">or</span> grantee <span style="color: #000090; font-weight: bold;">in</span> (
+  <span style="color: #000090; font-weight: bold;">select</span> granted_role <span style="color: #000090; font-weight: bold;">from</span> dba_role_privs <span style="color: #000090; font-weight: bold;">connect</span> <span style="color: #000090; font-weight: bold;">by</span> <span style="color: #000090; font-weight: bold;">prior</span> granted_role = grantee <span style="color: #000090; font-weight: bold;">start</span> <span style="color: #000090; font-weight: bold;">with</span> grantee = <span style="color: #008000; font-weight: bold;">'&amp;USER'</span>
 )
-<span style="color: #a020f0;">order</span> <span style="color: #a020f0;">by</span> 1,2,3,4;
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> 1,2,3,4;
 </pre>
 </div>
 
@@ -955,18 +955,18 @@ Ver <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf
 <h3 id="org000005b"><span class="section-number-3">6.1.</span> Creación de perfiles</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> PROFILE nombreperfil <span style="color: #a020f0;">LIMIT</span> 
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> PROFILE nombreperfil <span style="color: #000090; font-weight: bold;">LIMIT</span> 
    SESSIONS_PER_USER          UNLIMITED 
    CPU_PER_SESSION            UNLIMITED 
    CPU_PER_CALL               3000 
    CONNECT_TIME               45 
    IDLE_TIME                  1
-   LOGICAL_READS_PER_SESSION  <span style="color: #a020f0;">DEFAULT</span> 
+   LOGICAL_READS_PER_SESSION  <span style="color: #000090; font-weight: bold;">DEFAULT</span> 
    LOGICAL_READS_PER_CALL     1000 
    PRIVATE_SGA                15K
    COMPOSITE_LIMIT            5000000; 
 
-<span style="color: #a020f0;">ALTER</span> <span style="color: #a020f0;">SYSTEM</span> <span style="color: #a020f0;">SET</span> resource_limit = <span style="color: #a020f0;">TRUE</span> <span style="color: #228b22;">scope</span> = <span style="color: #a020f0;">BOTH</span> 
+<span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SYSTEM</span> <span style="color: #000090; font-weight: bold;">SET</span> resource_limit = <span style="color: #000090; font-weight: bold;">TRUE</span> <span style="color: #20999d;">scope</span> = <span style="color: #000090; font-weight: bold;">BOTH</span> 
 </pre>
 </div>
 
@@ -990,7 +990,7 @@ Ver <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf
 En la creación (<code>create user</code>), o posteriormente
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #a020f0;">alter</span> <span style="color: #483d8b;">user</span> USUARIO profile NOMBREDEPERFIL
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">alter</span> user USUARIO profile NOMBREDEPERFIL;
 </pre>
 </div></li>
 </ul>
@@ -1093,7 +1093,7 @@ CREATE PROFILE EJEMPLO LIMIT
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-06-08 lun 18:29</p>
+<p class="date">Created: 2026-07-23 jue 14:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

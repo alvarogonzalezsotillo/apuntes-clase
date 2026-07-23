@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-18 jue 10:19 -->
+<!-- 2026-07-23 jue 14:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación y uso de IDE's</title>
@@ -381,28 +381,28 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span style="color: #a0522d;">src</span>=src/*.java
-<span style="color: #a0522d;">pkg</span>=tetris.jar
-<span style="color: #a0522d;">main</span>=PlayTetris
+<pre class="src src-makefile">src=src/*.java
+pkg=tetris.jar
+main=PlayTetris
 
 
-<span style="color: #0000ff;">all</span>:
+<span style="color: #000000; font-weight: bold;">all</span>:
         mkdir -p bin
-        javac ${<span style="color: #a0522d;">src</span>} -d bin/
+        javac ${src} -d bin/
 
-<span style="color: #0000ff;">package</span>: all
-        ../package.sh ${<span style="color: #a0522d;">pkg</span>} ${<span style="color: #a0522d;">main</span>}
+<span style="color: #000000; font-weight: bold;">package</span>: all
+        ../package.sh ${pkg} ${main}
 
-<span style="color: #0000ff;">doc</span>:
-        javadoc ${<span style="color: #a0522d;">src</span>} -d doc/
+<span style="color: #000000; font-weight: bold;">doc</span>:
+        javadoc ${src} -d doc/
 
-<span style="color: #0000ff;">play</span>: all
-        java -cp bin/ ${<span style="color: #a0522d;">main</span>}
+<span style="color: #000000; font-weight: bold;">play</span>: all
+        java -cp bin/ ${main}
 
-<span style="color: #0000ff;">clean</span>:
+<span style="color: #000000; font-weight: bold;">clean</span>:
         rm -rf bin
         rm -rf doc
-        rm -f ${<span style="color: #a0522d;">pkg</span>}
+        rm -f ${pkg}
 </pre>
 </div>
 </div>
@@ -533,8 +533,8 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 <ul class="org-ul">
 <li>Como (casi) todos los IDE
 <ul class="org-ul">
-<li><a href="https://www.jetbrains.com/idea/download/?section=linux">Instalación CE (<i>comunitiy edition</i>)</a> o en el NAS</li>
-<li><b>Preferido</b>:  <a href="https://www.jetbrains.com/idea/download/?section=linux">Ultimate editio</a>n (<a href="https://www.jetbrains.com/shop/eform/students">tras conseguir licencia gratuita de estudiante</a>)</li>
+<li><a href="https://www.jetbrains.com/idea/download/?section=linux">Instalación CE (<i>community edition</i>)</a> o en el NAS</li>
+<li><b>Preferido</b>:  <a href="https://www.jetbrains.com/idea/download/?section=linux">Ultimate edition</a> (<a href="https://www.jetbrains.com/shop/eform/students">tras conseguir licencia gratuita de estudiante</a>)</li>
 <li>Descomprimir la instalación</li>
 <li>Ejecutar <code>bin/idea.sh</code></li>
 <li>Opcional: crear fichero <code>.desktop</code> para lanzarlo cómodamente</li>
@@ -592,7 +592,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </div>
 </div>
 <div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">6.3.</span> Libería</h3>
+<h3 id="org000003a"><span class="section-number-3">6.3.</span> Librería</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Código java ya compilado
@@ -629,7 +629,7 @@ Integración con IA generativa, que permite realizar funciones que antes se real
 </div>
 </div>
 <div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">6.6.</span> Ejercicio de liberías</h3>
+<h3 id="org0000043"><span class="section-number-3">6.6.</span> Ejercicio de librerías</h3>
 <div class="outline-text-3" id="text-6-6">
 <ul class="org-ul">
 <li>Crea un módulo nuevo de nombre <code>all</code></li>
@@ -823,7 +823,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li>Punto de ruptura (<i>breakpoint</i>)</li>
 <li><i>breakpoint</i> condicional</li>
 <li>Pila de llamadas (<i>call stack</i>)</li>
-<li>Visualizar variale (<i>watch</i>, <i>inspect</i>)</li>
+<li>Visualizar variable (<i>watch</i>, <i>inspect</i>)</li>
 </ul></li>
 </ul>
 </div>
@@ -975,12 +975,6 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 <li><a href="./ED-02-ides.wp.html">Página web</a></li>
 <li><a href="./ED-02-ides.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -988,7 +982,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-18 jue 10:19</p>
+<p class="date">Created: 2026-07-23 jue 14:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

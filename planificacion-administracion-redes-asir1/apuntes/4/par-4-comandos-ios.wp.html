@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-24 Tue 11:29 -->
+<!-- 2026-07-23 jue 14:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Comandos IOS</title>
@@ -819,7 +819,7 @@ Propagar una ruta por defecto
 <div class="org-src-container">
 <pre class="src src-lisp">R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
 R1(config)# router ospf 10
-R1(config)# default-information originate
+R1(config-router)# default-information originate
 </pre>
 </div>
 </div>
@@ -861,11 +861,14 @@ Crear una ACL o añadir una regla
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
-#+end_src&#170;
+</pre>
+</div>
 
+<p>
 Borrar una ACLs
-#+begin_src lisp
-Router(config)# no access-list &lt;numero&gt; 
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">Router(config)# no access-list &lt;numero&gt; 
 </pre>
 </div>
 </div>
@@ -878,8 +881,8 @@ Protocolo IP (hay más opciones, no explicadas aquí)
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; ip
-  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt;
+  <span style="color: #acccacccaccc;"> </span>&lt;host|source source-wildcard|any&gt;
+  <span style="color: #acccacccaccc;"> </span>&lt;host|destination destination-wildcard|any&gt;
 </pre>
 </div>
 
@@ -888,8 +891,8 @@ Protocolo ICMP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; icmp
-  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt;
-  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt;
+  <span style="color: #acccacccaccc;"> </span>&lt;host|source source-wildcard|any&gt;
+  <span style="color: #acccacccaccc;"> </span>&lt;host|destination destination-wildcard|any&gt;
 </pre>
 </div>
 </div>
@@ -902,9 +905,9 @@ Protocolo TCP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; TCP
-  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
-  <span style="color: #acccacccffff;"> </span>[established]
+  <span style="color: #acccacccaccc;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccaccc;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccaccc;"> </span>[established]
 </pre>
 </div>
 
@@ -913,8 +916,8 @@ Protocolo UDP
 </p>
 <div class="org-src-container">
 <pre class="src src-lisp">Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt; UDP
-  <span style="color: #acccacccffff;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
-  <span style="color: #acccacccffff;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccaccc;"> </span>&lt;host|source source-wildcard|any&gt; [puerto]
+  <span style="color: #acccacccaccc;"> </span>&lt;host|destination destination-wildcard|any&gt; [puerto]
 </pre>
 </div>
 
@@ -1114,7 +1117,7 @@ debug ip nat
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-24 Tue 11:29</p>
+<p class="date">Created: 2026-07-23 jue 14:14</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-06-08 lun 18:29 -->
+<!-- Generated on 2026-07-23 jue 14:17 -->
 <meta charset="utf-8"/>
 <title>Usuarios, privilegios y roles de <b>Oracle</b></title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-06-08 lun 18:29</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:17</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -647,7 +647,7 @@ Mas información en:
 </div>
 
 <p>
-Más en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7003.htm">docs.oracle.com</a>
+Más en <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-TABLESPACE.html">docs.oracle.com</a>
 </p>
 <div class="slide-footer"></div>
 </section>
@@ -899,7 +899,7 @@ SELECT
     df.name AS file_name,
     ts.name AS tablespace_name,
     df.status,
-    df.enabled,
+    df.enabled
 FROM v$datafile df
 JOIN v$tablespace ts ON df.ts# = ts.ts#
 where df.name like '%el fichero que se busca%'
@@ -985,7 +985,7 @@ Modificación de un usuario ya creado
 <div class="org-src-container">
 
 <pre><code class="sql" >  ALTER USER usuario
-    cualquier opcion valida al crear usuario
+    cualquier opción válida al crear usuario
 </code></pre>
 </div></li>
 
@@ -1379,7 +1379,7 @@ En la creación (<code>create user</code>), o posteriormente
 </p>
 <div class="org-src-container">
 
-<pre><code class="sql" >  alter user USUARIO profile NOMBREDEPERFIL
+<pre><code class="sql" >  alter user USUARIO profile NOMBREDEPERFIL;
 </code></pre>
 </div></li>
 

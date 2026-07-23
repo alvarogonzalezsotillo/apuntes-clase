@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-02-16 lun 19:59 -->
+<!-- Generated on 2026-07-23 jue 14:18 -->
 <meta charset="utf-8"/>
 <title>Scripts de shell para Oracle</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Scripts de shell para Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-02-16 lun 19:59</p>
+<h1 class="title">Scripts de shell para Oracle</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:18</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1174,8 +1174,8 @@ done
 <ul>
 <li><code>bash</code> procesa los siguientes ficheros:
 <ul>
-<li>Si es un nuevo <i>login</i>: <code>/etc/bash.bashrc</code> (Debian), <code>/etc/bashrc</code> (Centos), <code>~/.bash_login</code></li>
-<li>Siempre: <code>/etc/profile/</code> <code>~/.bashrc</code></li>
+<li>Si es un nuevo <i>login</i>: <code>/etc/profile</code> primero, luego el primero que exista de <code>~/.bash_profile</code>, <code>~/.bash_login</code> o <code>~/.profile</code></li>
+<li>Si es una <i>shell</i> interactiva (no <i>login</i>): <code>/etc/bash.bashrc</code> (Debian) o <code>/etc/bashrc</code> (CentOS/RHEL), luego <code>~/.bashrc</code></li>
 
 </ul></li>
 <li>Así, se puede conseguir que
@@ -1194,20 +1194,20 @@ done
 
 <div id="org0000000" class="figure">
 <p><svg width="756pt" height="383pt"
- viewBox="0.00 0.00 756.10 382.50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ viewBox="0.00 0.00 756.00 383.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 378.5)">
 <polygon fill="white" stroke="none" points="-4,4 -4,-378.5 752.1,-378.5 752.1,4 -4,4"/>
 <!-- ~/.bash_profile -->
 <g id="node1" class="node">
 <title>~/.bash_profile</title>
 <ellipse fill="none" stroke="black" cx="467" cy="-179.5" rx="95.37" ry="18"/>
-<text text-anchor="middle" x="467" y="-174.45" font-family="courier new" font-size="14.00">~/.bash_profile</text>
+<text xml:space="preserve" text-anchor="middle" x="467" y="-174.45" font-family="courier new" font-size="14.00">~/.bash_profile</text>
 </g>
 <!-- ~/.bashrc -->
 <g id="node6" class="node">
 <title>~/.bashrc</title>
 <ellipse fill="none" stroke="black" cx="374" cy="-91" rx="61.59" ry="18"/>
-<text text-anchor="middle" x="374" y="-85.95" font-family="courier new" font-size="14.00">~/.bashrc</text>
+<text xml:space="preserve" text-anchor="middle" x="374" y="-85.95" font-family="courier new" font-size="14.00">~/.bashrc</text>
 </g>
 <!-- ~/.bash_profile&#45;&gt;~/.bashrc -->
 <g id="edge11" class="edge">
@@ -1219,31 +1219,31 @@ done
 <g id="node2" class="node">
 <title>~/.bash_login</title>
 <ellipse fill="none" stroke="black" cx="664" cy="-179.5" rx="84.11" ry="18"/>
-<text text-anchor="middle" x="664" y="-174.45" font-family="courier new" font-size="14.00">~/.bash_login</text>
+<text xml:space="preserve" text-anchor="middle" x="664" y="-174.45" font-family="courier new" font-size="14.00">~/.bash_login</text>
 </g>
 <!-- ~/.profile -->
 <g id="node3" class="node">
 <title>~/.profile</title>
 <ellipse fill="none" stroke="black" cx="286" cy="-179.5" rx="67.22" ry="18"/>
-<text text-anchor="middle" x="286" y="-174.45" font-family="courier new" font-size="14.00">~/.profile</text>
+<text xml:space="preserve" text-anchor="middle" x="286" y="-174.45" font-family="courier new" font-size="14.00">~/.profile</text>
 </g>
 <!-- ~/.bash_logout -->
 <g id="node4" class="node">
 <title>~/.bash_logout</title>
 <ellipse fill="none" stroke="black" cx="443" cy="-268" rx="89.74" ry="18"/>
-<text text-anchor="middle" x="443" y="-262.95" font-family="courier new" font-size="14.00">~/.bash_logout</text>
+<text xml:space="preserve" text-anchor="middle" x="443" y="-262.95" font-family="courier new" font-size="14.00">~/.bash_logout</text>
 </g>
 <!-- /etc/bash.bashrc -->
 <g id="node5" class="node">
 <title>/etc/bash.bashrc</title>
 <ellipse fill="none" stroke="black" cx="101" cy="-91" rx="101" ry="18"/>
-<text text-anchor="middle" x="101" y="-85.95" font-family="courier new" font-size="14.00">/etc/bash.bashrc</text>
+<text xml:space="preserve" text-anchor="middle" x="101" y="-85.95" font-family="courier new" font-size="14.00">/etc/bash.bashrc</text>
 </g>
 <!-- /etc/bashrc -->
 <g id="node12" class="node">
 <title>/etc/bashrc</title>
 <ellipse fill="none" stroke="black" cx="374" cy="-18" rx="50.84" ry="18"/>
-<text text-anchor="middle" x="374" y="-12.95" font-family="Times,serif" font-size="14.00">/etc/bashrc</text>
+<text xml:space="preserve" text-anchor="middle" x="374" y="-12.95" font-family="Times,serif" font-size="14.00">/etc/bashrc</text>
 </g>
 <!-- ~/.bashrc&#45;&gt;/etc/bashrc -->
 <g id="edge12" class="edge">
@@ -1255,101 +1255,101 @@ done
 <g id="node7" class="node">
 <title>/etc/profile</title>
 <ellipse fill="none" stroke="black" cx="257" cy="-268" rx="78.48" ry="18"/>
-<text text-anchor="middle" x="257" y="-262.95" font-family="courier new" font-size="14.00">/etc/profile</text>
+<text xml:space="preserve" text-anchor="middle" x="257" y="-262.95" font-family="courier new" font-size="14.00">/etc/profile</text>
 </g>
 <!-- BASH LOGIN -->
 <g id="node8" class="node">
 <title>BASH LOGIN</title>
 <ellipse fill="none" stroke="black" cx="443" cy="-356.5" rx="66.71" ry="18"/>
-<text text-anchor="middle" x="443" y="-351.45" font-family="Times,serif" font-size="14.00">BASH LOGIN</text>
+<text xml:space="preserve" text-anchor="middle" x="443" y="-351.45" font-family="Times,serif" font-size="14.00">BASH LOGIN</text>
 </g>
 <!-- BASH LOGIN&#45;&gt;~/.bash_logout -->
 <g id="edge6" class="edge">
 <title>BASH LOGIN&#45;&gt;~/.bash_logout</title>
 <path fill="none" stroke="black" d="M443,-338.41C443,-326.76 443,-311.05 443,-297.52"/>
 <polygon fill="black" stroke="black" points="446.5,-297.86 443,-287.86 439.5,-297.86 446.5,-297.86"/>
-<text text-anchor="middle" x="453.12" y="-307.2" font-family="Times,serif" font-size="14.00">exit</text>
+<text xml:space="preserve" text-anchor="middle" x="453.12" y="-307.2" font-family="Times,serif" font-size="14.00">exit</text>
 </g>
 <!-- BASH LOGIN&#45;&gt;/etc/profile -->
 <g id="edge1" class="edge">
 <title>BASH LOGIN&#45;&gt;/etc/profile</title>
 <path fill="none" stroke="black" d="M410.6,-340.43C380.13,-326.26 334.3,-304.95 300.62,-289.29"/>
 <polygon fill="black" stroke="black" points="302.51,-286.31 291.96,-285.26 299.56,-292.65 302.51,-286.31"/>
-<text text-anchor="middle" x="372.28" y="-307.2" font-family="Times,serif" font-size="14.00">1º</text>
+<text xml:space="preserve" text-anchor="middle" x="372.28" y="-307.2" font-family="Times,serif" font-size="14.00">1º</text>
 </g>
 <!-- Primero de: -->
 <g id="node9" class="node">
 <title>Primero de:</title>
 <ellipse fill="none" stroke="black" cx="606" cy="-268" rx="54.93" ry="18"/>
-<text text-anchor="middle" x="606" y="-262.95" font-family="Times,serif" font-size="14.00">Primero de:</text>
+<text xml:space="preserve" text-anchor="middle" x="606" y="-262.95" font-family="Times,serif" font-size="14.00">Primero de:</text>
 </g>
 <!-- BASH LOGIN&#45;&gt;Primero de: -->
 <g id="edge2" class="edge">
 <title>BASH LOGIN&#45;&gt;Primero de:</title>
 <path fill="none" stroke="black" d="M472.14,-340.04C498.92,-325.82 538.79,-304.66 568.06,-289.13"/>
 <polygon fill="black" stroke="black" points="569.4,-292.39 576.59,-284.61 566.11,-286.2 569.4,-292.39"/>
-<text text-anchor="middle" x="544.72" y="-307.2" font-family="Times,serif" font-size="14.00">2º</text>
+<text xml:space="preserve" text-anchor="middle" x="544.72" y="-307.2" font-family="Times,serif" font-size="14.00">2º</text>
 </g>
 <!-- Primero de:&#45;&gt;~/.bash_profile -->
 <g id="edge3" class="edge">
 <title>Primero de:&#45;&gt;~/.bash_profile</title>
 <path fill="none" stroke="black" d="M581.15,-251.54C559.46,-238.04 527.71,-218.28 503.2,-203.03"/>
 <polygon fill="black" stroke="black" points="505.15,-200.12 494.81,-197.81 501.45,-206.06 505.15,-200.12"/>
-<text text-anchor="middle" x="554.57" y="-218.7" font-family="Times,serif" font-size="14.00">1º</text>
+<text xml:space="preserve" text-anchor="middle" x="554.57" y="-218.7" font-family="Times,serif" font-size="14.00">1º</text>
 </g>
 <!-- Primero de:&#45;&gt;~/.bash_login -->
 <g id="edge4" class="edge">
 <title>Primero de:&#45;&gt;~/.bash_login</title>
 <path fill="none" stroke="black" d="M617.46,-249.91C625.72,-237.59 637.02,-220.73 646.42,-206.71"/>
 <polygon fill="black" stroke="black" points="649.06,-209.07 651.72,-198.81 643.24,-205.17 649.06,-209.07"/>
-<text text-anchor="middle" x="645.82" y="-218.7" font-family="Times,serif" font-size="14.00">2º</text>
+<text xml:space="preserve" text-anchor="middle" x="645.82" y="-218.7" font-family="Times,serif" font-size="14.00">2º</text>
 </g>
 <!-- Primero de:&#45;&gt;~/.profile -->
 <g id="edge5" class="edge">
 <title>Primero de:&#45;&gt;~/.profile</title>
 <path fill="none" stroke="black" d="M564.49,-255.78C508.02,-240.51 406.73,-213.14 343.12,-195.94"/>
 <polygon fill="black" stroke="black" points="344.12,-192.58 333.55,-193.35 342.29,-199.34 344.12,-192.58"/>
-<text text-anchor="middle" x="480.28" y="-218.7" font-family="Times,serif" font-size="14.00">3º</text>
+<text xml:space="preserve" text-anchor="middle" x="480.28" y="-218.7" font-family="Times,serif" font-size="14.00">3º</text>
 </g>
 <!-- BASH INTERACTIVO -->
 <g id="node10" class="node">
 <title>BASH INTERACTIVO</title>
 <ellipse fill="none" stroke="black" cx="101" cy="-179.5" rx="99.97" ry="18"/>
-<text text-anchor="middle" x="101" y="-174.45" font-family="Times,serif" font-size="14.00">BASH INTERACTIVO</text>
+<text xml:space="preserve" text-anchor="middle" x="101" y="-174.45" font-family="Times,serif" font-size="14.00">BASH INTERACTIVO</text>
 </g>
 <!-- BASH INTERACTIVO&#45;&gt;/etc/bash.bashrc -->
 <g id="edge7" class="edge">
 <title>BASH INTERACTIVO&#45;&gt;/etc/bash.bashrc</title>
 <path fill="none" stroke="black" d="M101,-161.41C101,-149.76 101,-134.05 101,-120.52"/>
 <polygon fill="black" stroke="black" points="104.5,-120.86 101,-110.86 97.5,-120.86 104.5,-120.86"/>
-<text text-anchor="middle" x="106.62" y="-130.2" font-family="Times,serif" font-size="14.00">1º</text>
+<text xml:space="preserve" text-anchor="middle" x="106.62" y="-130.2" font-family="Times,serif" font-size="14.00">1º</text>
 </g>
 <!-- BASH INTERACTIVO&#45;&gt;~/.bashrc -->
 <g id="edge8" class="edge">
 <title>BASH INTERACTIVO&#45;&gt;~/.bashrc</title>
 <path fill="none" stroke="black" d="M148.86,-163.33C197.48,-147.93 272.54,-124.15 322.45,-108.33"/>
 <polygon fill="black" stroke="black" points="323.4,-111.7 331.87,-105.35 321.28,-105.03 323.4,-111.7"/>
-<text text-anchor="middle" x="267.57" y="-130.2" font-family="Times,serif" font-size="14.00">2º</text>
+<text xml:space="preserve" text-anchor="middle" x="267.57" y="-130.2" font-family="Times,serif" font-size="14.00">2º</text>
 </g>
 <!-- SH INTERACTIVO -->
 <g id="node11" class="node">
 <title>SH INTERACTIVO</title>
 <ellipse fill="none" stroke="black" cx="194" cy="-356.5" rx="87.18" ry="18"/>
-<text text-anchor="middle" x="194" y="-351.45" font-family="Times,serif" font-size="14.00">SH INTERACTIVO</text>
+<text xml:space="preserve" text-anchor="middle" x="194" y="-351.45" font-family="Times,serif" font-size="14.00">SH INTERACTIVO</text>
 </g>
 <!-- SH INTERACTIVO&#45;&gt;~/.profile -->
 <g id="edge10" class="edge">
 <title>SH INTERACTIVO&#45;&gt;~/.profile</title>
 <path fill="none" stroke="black" d="M179.91,-338.48C163.79,-316.81 141.7,-278.73 158.75,-250 173.99,-224.31 202.43,-207.51 228.57,-196.87"/>
 <polygon fill="black" stroke="black" points="229.7,-200.19 237.79,-193.35 227.2,-193.65 229.7,-200.19"/>
-<text text-anchor="middle" x="164.37" y="-262.95" font-family="Times,serif" font-size="14.00">2º</text>
+<text xml:space="preserve" text-anchor="middle" x="164.37" y="-262.95" font-family="Times,serif" font-size="14.00">2º</text>
 </g>
 <!-- SH INTERACTIVO&#45;&gt;/etc/profile -->
 <g id="edge9" class="edge">
 <title>SH INTERACTIVO&#45;&gt;/etc/profile</title>
 <path fill="none" stroke="black" d="M206.44,-338.41C215.42,-326.09 227.7,-309.23 237.9,-295.21"/>
 <polygon fill="black" stroke="black" points="240.63,-297.42 243.68,-287.28 234.97,-293.3 240.63,-297.42"/>
-<text text-anchor="middle" x="236.76" y="-307.2" font-family="Times,serif" font-size="14.00">1º</text>
+<text xml:space="preserve" text-anchor="middle" x="236.76" y="-307.2" font-family="Times,serif" font-size="14.00">1º</text>
 </g>
 </g>
 </svg>
@@ -1384,7 +1384,7 @@ done
 <div class="org-src-container">
 
 <pre><code class="sh" >#!/bin/sh 
-ORACLE_HOME=/var/oracle/product/12.1.0/asir_bbdd
+ORACLE_HOME=/opt/oracle-install
 ORACLE_SID=asir
 PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_HOME
@@ -1479,7 +1479,7 @@ sqlplus /
 <li>Situado en <code>$ORACLE_HOME/network/admin/</code></li>
 <li>Indica las formas de conexión a instancias de base de datos
 <ul>
-<li>Protoloco de conexión: TCP</li>
+<li>Protocolo de conexión: TCP</li>
 <li>Dirección IP</li>
 <li>Puerto</li>
 <li>SID</li>
@@ -1662,7 +1662,7 @@ HEREDOC
 # Multiple entries with the same $ORACLE_SID are not allowed.
 #
 #
-asir:/var/oracle/product/12.1.0/asir_bbdd:Y
+asir:/opt/oracle-install:Y
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -1867,11 +1867,7 @@ systemctl stop SERVICIO
 <li>Sus unidades están en <code>$HOME/.config/systemd/user/</code></li>
 
 </ul></li>
-<li>Es una opción que no existe en Centos.
-<ul>
-<li>Es posible que los quiten de todas las distribuciones linux</li>
-
-</ul></li>
+<li>Para que funcionen sin sesión activa, se necesita <code>loginctl enable-linger</code></li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -1997,6 +1993,9 @@ Description=Run date.service every 10 minutes
 
 [Timer]
 OnCalendar=*:0/10
+
+[Install]
+WantedBy=timers.target
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -2174,7 +2173,7 @@ overview: true,
 transition: 'linear',
 transitionSpeed: 'default',
 
-// Plugins with reveal.js 4.x
+// Plugins with reveal.js 4.x and later
 plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 
 // Optional libraries used to extend reveal.js

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-10-01 mié 13:20 -->
+<!-- 2026-07-23 jue 14:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Servidores web y servidores de aplicaciones</title>
@@ -264,11 +264,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -318,7 +313,7 @@ Pregunta: ¿es Firefox una aplicación web o de escritorio?
 </p>
 
 <p>
-Pregunta: ¿<a href="https://www.rollapp.com/">rollup</a> es web o escritorio?
+Pregunta: ¿<a href="https://www.rollapp.com/">rollapp</a> es web o escritorio?
 </p>
 
 <p>
@@ -519,7 +514,7 @@ sudo systemctl status apache2
 </ul>
 <ul class="org-ul">
 <li><code>mods-available</code>: Este directorio contiene los archivos de configuración de los módulos que se pueden utilizar para añadir nuevas funcionalidades al servidor.</li>
-<li><code>mods-enabled</code>: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio <code>mod-available</code> que están activos.</li>
+<li><code>mods-enabled</code>: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio <code>mods-available</code> que están activos.</li>
 </ul>
 <ul class="org-ul">
 <li><code>sites-available</code>: Este directorio contiene los archivos de configuración de los hosts virtuales.</li>
@@ -591,13 +586,13 @@ sudo systemctl status apache2
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #888a85;">#</span><span style="color: #888a85;">!/usr/bin/</span><span style="color: #729fcf; font-weight: bold;">bash</span><span style="color: #888a85;">
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/usr/bin/</span><span style="color: #000090; font-weight: bold;">bash</span><span style="color: #808080; font-style: italic;">
 </span>
-<span style="color: #729fcf;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Content-type: text/plain"</span>
-<span style="color: #729fcf;">echo</span>
-<span style="color: #729fcf;">echo</span>
+echo <span style="color: #008000; font-weight: bold;">"Content-type: text/plain"</span>
+echo
+echo
 
-<span style="color: #729fcf;">echo</span> $<span style="color: #ff6347;">*</span>
+echo $*
 env
 </pre>
 </div>
@@ -619,43 +614,42 @@ env
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #888a85;">#</span><span style="color: #888a85;">!/usr/bin/</span><span style="color: #729fcf; font-weight: bold;">bash</span><span style="color: #888a85;">
+<pre class="src src-bash"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/usr/bin/</span><span style="color: #000090; font-weight: bold;">bash</span><span style="color: #808080; font-style: italic;">
 </span>
-<span style="color: #729fcf;">echo</span> Content-Type: text/plain
-<span style="color: #729fcf;">echo</span>
-<span style="color: #729fcf;">echo</span>
-<span style="color: #729fcf;">echo</span> HOLA!!!
-<span style="color: #729fcf;">echo</span> la hora es $(date)
-<span style="color: #729fcf;">echo</span> Hasta luego!!!
+echo Content-Type: text/plain
+echo
+echo
+echo HOLA!!!
+echo la hora es $(date)
+echo Hasta luego!!!
 
-printf <span style="color: #ad7fa8; font-style: italic;">"Content-Length: ${#CONTENT}\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_REQUEST_METHOD: \"$REQUEST_METHOD\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_CONTENT_TYPE: \"$CONTENT_TYPE\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_CONTENT_LENGTH: \"$CONTENT_LENGTH\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_REQUEST_METHOD: \"$REQUEST_METHOD\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_CONTENT_TYPE: \"$CONTENT_TYPE\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_CONTENT_LENGTH: \"$CONTENT_LENGTH\"\r\n"</span>
 
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_REMOTE_ADDR: \"$REMOTE_ADDR\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_REMOTE_PORT: \"$REMOTE_PORT\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_SERVER_PORT: \"$SERVER_PORT\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_REMOTE_ADDR: \"$REMOTE_ADDR\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_REMOTE_PORT: \"$REMOTE_PORT\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_SERVER_PORT: \"$SERVER_PORT\"\r\n"</span>
 
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_REQUEST_URI: \"$REQUEST_URI\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_QUERY_STRING: \"$QUERY_STRING\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_REQUEST_URI: \"$REQUEST_URI\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_QUERY_STRING: \"$QUERY_STRING\"\r\n"</span>
 
-<span style="color: #888a85;"># </span><span style="color: #888a85;">all headers from request now available with the HTTP_ prefix
-</span>printf <span style="color: #ad7fa8; font-style: italic;">"ENV_HTTP_HOST: \"$HTTP_HOST\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_HTTP_USER_AGENT: \"$HTTP_USER_AGENT\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_HTTP_ACCEPT: \"$HTTP_ACCEPT\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_HTTP_REFERER: \"$HTTP_REFERER\"\r\n"</span>
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">all headers from request now available with the HTTP_ prefix
+</span>printf <span style="color: #008000; font-weight: bold;">"ENV_HTTP_HOST: \"$HTTP_HOST\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_HTTP_USER_AGENT: \"$HTTP_USER_AGENT\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_HTTP_ACCEPT: \"$HTTP_ACCEPT\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_HTTP_REFERER: \"$HTTP_REFERER\"\r\n"</span>
 
-<span style="color: #888a85;"># </span><span style="color: #888a85;">username from basic auth (e.g. without password)
-</span>printf <span style="color: #ad7fa8; font-style: italic;">"ENV_REMOTE_USER: \"$REMOTE_USER\"\r\n"</span>
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">username from basic auth (e.g. without password)
+</span>printf <span style="color: #008000; font-weight: bold;">"ENV_REMOTE_USER: \"$REMOTE_USER\"\r\n"</span>
 
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_SCRIPT_NAME: \"$SCRIPT_NAME\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_PATH_INFO: \"$PATH_INFO\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_PATH: \"$PATH\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_PWD: \"$PWD\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_SCRIPT_NAME: \"$SCRIPT_NAME\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_PATH_INFO: \"$PATH_INFO\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_PATH: \"$PATH\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_PWD: \"$PWD\"\r\n"</span>
 
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_SERVER_PROTOCOL: \"$SERVER_PROTOCOL\"\r\n"</span>
-printf <span style="color: #ad7fa8; font-style: italic;">"ENV_SERVER_SOFTWARE: \"$SERVER_SOFTWARE\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_SERVER_PROTOCOL: \"$SERVER_PROTOCOL\"\r\n"</span>
+printf <span style="color: #008000; font-weight: bold;">"ENV_SERVER_SOFTWARE: \"$SERVER_SOFTWARE\"\r\n"</span>
 
 </pre>
 </div>
@@ -666,7 +660,7 @@ printf <span style="color: #ad7fa8; font-style: italic;">"ENV_SERVER_SOFTWARE: \
 <h2 id="org000004a"><span class="section-number-2">11.</span> MariaDB/MySQL</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
-<pre class="src src-sh">apt install mariadb-server <span style="color: #888a85;"># </span><span style="color: #888a85;">o mysql-server</span>
+<pre class="src src-sh">apt install mariadb-server <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">o mysql-server</span>
 </pre>
 </div>
 </div>
@@ -698,7 +692,7 @@ Reload privilege tables now? [Y/n] Y
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf;">user</span> alumno identified <span style="color: #729fcf; font-weight: bold;">by</span> <span style="color: #ad7fa8; font-style: italic;">'XXXXXXXX'</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> user alumno identified <span style="color: #000090; font-weight: bold;">by</span> <span style="color: #008000; font-weight: bold;">'XXXXXXXX'</span>;
 </pre>
 </div>
 
@@ -713,11 +707,11 @@ Reload privilege tables now? [Y/n] Y
 <div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-sql">SHOW DATABASES;
-<span style="color: #729fcf; font-weight: bold;">CREATE</span> DATABASE &lt;database&gt;;
-<span style="color: #729fcf; font-weight: bold;">DROP</span> DATABASE &lt;database&gt;;
+<span style="color: #000090; font-weight: bold;">CREATE</span> DATABASE &lt;database&gt;;
+<span style="color: #000090; font-weight: bold;">DROP</span> DATABASE &lt;database&gt;;
 USE &lt;database&gt;;
 SHOW TABLES;
-<span style="color: #729fcf; font-weight: bold;">DESCRIBE</span> &lt;<span style="color: #729fcf; font-weight: bold;">table</span>&gt;;
+<span style="color: #000090; font-weight: bold;">DESCRIBE</span> &lt;<span style="color: #000090; font-weight: bold;">table</span>&gt;;
 </pre>
 </div>
 </div>
@@ -731,7 +725,7 @@ SHOW TABLES;
 Se puede dar permisos sobre todas las tablas de una base de datos
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">all</span> <span style="color: #729fcf; font-weight: bold;">privileges</span> <span style="color: #729fcf; font-weight: bold;">on</span> unabasededatos.* <span style="color: #729fcf; font-weight: bold;">to</span> <span style="color: #ad7fa8; font-style: italic;">'usuario'</span>;
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">all</span> <span style="color: #000090; font-weight: bold;">privileges</span> <span style="color: #000090; font-weight: bold;">on</span> unabasededatos.* <span style="color: #000090; font-weight: bold;">to</span> <span style="color: #008000; font-weight: bold;">'usuario'</span>;
 </pre>
 </div></li>
 <li>Se pueden dar permisos sobre todas las bases de datos</li>
@@ -739,7 +733,7 @@ Se puede dar permisos sobre todas las tablas de una base de datos
 Se pueden dar permisos a usuarios dependiendo del origen de la conexión  
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">GRANT</span> <span style="color: #729fcf; font-weight: bold;">ALL</span> <span style="color: #729fcf; font-weight: bold;">PRIVILEGES</span> <span style="color: #729fcf; font-weight: bold;">ON</span> *.* <span style="color: #729fcf; font-weight: bold;">TO</span> <span style="color: #ad7fa8; font-style: italic;">'nombre_usuario'</span>@<span style="color: #ad7fa8; font-style: italic;">'localhost'</span>;
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">GRANT</span> <span style="color: #000090; font-weight: bold;">ALL</span> <span style="color: #000090; font-weight: bold;">PRIVILEGES</span> <span style="color: #000090; font-weight: bold;">ON</span> *.* <span style="color: #000090; font-weight: bold;">TO</span> <span style="color: #008000; font-weight: bold;">'nombre_usuario'</span>@<span style="color: #008000; font-weight: bold;">'localhost'</span>;
 </pre>
 </div></li>
 </ul>
@@ -825,7 +819,7 @@ Se pueden dar permisos a usuarios dependiendo del origen de la conexión
 aws cli <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install">https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">$ curl <span style="color: #ad7fa8; font-style: italic;">"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"</span> -o <span style="color: #ad7fa8; font-style: italic;">"awscliv2.zip"</span>
+<pre class="src src-bash">$ curl <span style="color: #008000; font-weight: bold;">"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"</span> -o <span style="color: #008000; font-weight: bold;">"awscliv2.zip"</span>
 unzip awscliv2.zip
 sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
 </pre>
@@ -843,12 +837,6 @@ sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --u
 <li><a href="./UT01.wp.html">Página web</a></li>
 <li><a href="./UT01.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -856,7 +844,7 @@ sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --u
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-10-01 mié 13:20</p>
+<p class="date">Created: 2026-07-23 jue 14:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2026-07-23 jue 14:16 -->
 <meta charset="utf-8"/>
 <title>Arquitectura de <b>Oracle</b></title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -443,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Arquitectura de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:08</p>
+<h1 class="title">Arquitectura de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:16</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -494,10 +495,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
-
-
+</style>
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> Arquitectura</h2>
@@ -517,8 +525,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-1-1">
 <h3 id="1-1"><span class="section-number-3">1.1.</span> Algunos procesos</h3>
@@ -565,10 +571,14 @@ window.addEventListener("load",()=>{
 
 <hr />
 <p>
-Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm">https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm</a>
+Más información en
 </p>
-<div class="slide-footer"></div>
+<ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm">https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm</a></li>
+<li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/background-processes.html">https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/background-processes.html</a></li>
 
+</ul>
+<div class="slide-footer"></div>
 </section>
 <section id="slide-1-2">
 <h3 id="1-2"><span class="section-number-3">1.2.</span> SGA y PGA</h3>
@@ -592,7 +602,6 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/memory.htm#i8451">Fuente: Oracle</a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-1-3">
 <h3 id="1-3"><span class="section-number-3">1.3.</span> Procesos de usuario y procesos de sistema</h3>
@@ -608,8 +617,6 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 </p>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -634,97 +641,95 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 
 
 <div id="org0000002" class="figure">
-<p><svg width="343pt" height="260pt"
- viewBox="0.00 0.00 343.00 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
-<title>%3</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 339,-256 339,4 -4,4"/>
+<p><svg width="309pt" height="261pt"
+ viewBox="0.00 0.00 309.00 261.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 257.3)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-257.3 304.5,-257.3 304.5,4 -4,4"/>
 <!-- Shutdown -->
 <g id="node1" class="node">
 <title>Shutdown</title>
-<polygon fill="none" stroke="black" points="89,-144 0,-144 0,-108 89,-108 89,-144"/>
-<text text-anchor="middle" x="44.5" y="-122.3" font-family="Times,serif" font-size="14.00">Shutdown</text>
+<polygon fill="none" stroke="black" points="70.75,-144 0,-144 0,-108 70.75,-108 70.75,-144"/>
+<text xml:space="preserve" text-anchor="middle" x="35.38" y="-120.95" font-family="Times,serif" font-size="14.00">Shutdown</text>
 </g>
 <!-- Nomount -->
 <g id="node2" class="node">
 <title>Nomount</title>
-<polygon fill="none" stroke="black" points="335,-252 252,-252 252,-216 335,-216 335,-252"/>
-<text text-anchor="middle" x="293.5" y="-230.3" font-family="Times,serif" font-size="14.00">Nomount</text>
+<polygon fill="none" stroke="black" points="300.5,-252 232.75,-252 232.75,-216 300.5,-216 300.5,-252"/>
+<text xml:space="preserve" text-anchor="middle" x="266.62" y="-228.95" font-family="Times,serif" font-size="14.00">Nomount</text>
 </g>
 <!-- Shutdown&#45;&gt;Nomount -->
 <g id="edge1" class="edge">
 <title>Shutdown&#45;&gt;Nomount</title>
-<path fill="none" stroke="black" d="M55.73,-144.14C68.79,-165.38 93.52,-199.72 125,-216 160.91,-234.56 206.86,-238.33 241.55,-237.87"/>
-<polygon fill="black" stroke="black" points="242.02,-241.35 251.93,-237.6 241.84,-234.36 242.02,-241.35"/>
-<text text-anchor="middle" x="170.5" y="-240" font-family="Courier,monospace" font-size="10.00">startup nomount</text>
+<path fill="none" stroke="black" d="M44.17,-144.43C54.73,-166.86 75.89,-203.84 106.75,-221 141.58,-240.37 187.51,-242.06 221.02,-239.83"/>
+<polygon fill="black" stroke="black" points="221.13,-243.33 230.81,-239.03 220.55,-236.36 221.13,-243.33"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-243.8" font-family="Courier,monospace" font-size="10.00">startup nomount</text>
 </g>
 <!-- Mount -->
 <g id="node3" class="node">
 <title>Mount</title>
-<polygon fill="none" stroke="black" points="325,-144 262,-144 262,-108 325,-108 325,-144"/>
-<text text-anchor="middle" x="293.5" y="-122.3" font-family="Times,serif" font-size="14.00">Mount</text>
+<polygon fill="none" stroke="black" points="293.62,-144 239.62,-144 239.62,-108 293.62,-108 293.62,-144"/>
+<text xml:space="preserve" text-anchor="middle" x="266.62" y="-120.95" font-family="Times,serif" font-size="14.00">Mount</text>
 </g>
 <!-- Shutdown&#45;&gt;Mount -->
 <g id="edge2" class="edge">
 <title>Shutdown&#45;&gt;Mount</title>
-<path fill="none" stroke="black" d="M89.09,-126C134.99,-126 206.7,-126 251.57,-126"/>
-<polygon fill="black" stroke="black" points="251.82,-129.5 261.82,-126 251.82,-122.5 251.82,-129.5"/>
-<text text-anchor="middle" x="170.5" y="-129" font-family="Courier,monospace" font-size="10.00">startup mount</text>
+<path fill="none" stroke="black" d="M71.19,-126C113.44,-126 184.4,-126 227.92,-126"/>
+<polygon fill="black" stroke="black" points="227.9,-129.5 237.9,-126 227.9,-122.5 227.9,-129.5"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-129.25" font-family="Courier,monospace" font-size="10.00">startup mount</text>
 </g>
 <!-- Open -->
 <g id="node4" class="node">
 <title>Open</title>
-<polygon fill="none" stroke="black" points="320.5,-36 266.5,-36 266.5,0 320.5,0 320.5,-36"/>
-<text text-anchor="middle" x="293.5" y="-14.3" font-family="Times,serif" font-size="14.00">Open</text>
+<polygon fill="none" stroke="black" points="293.62,-36 239.62,-36 239.62,0 293.62,0 293.62,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="266.62" y="-12.95" font-family="Times,serif" font-size="14.00">Open</text>
 </g>
 <!-- Shutdown&#45;&gt;Open -->
 <g id="edge3" class="edge">
 <title>Shutdown&#45;&gt;Open</title>
-<path fill="none" stroke="black" d="M75.94,-107.84C90.53,-99.47 108.41,-89.72 125,-82 169.45,-61.33 222.58,-41.88 256.91,-29.96"/>
-<polygon fill="black" stroke="black" points="258.18,-33.23 266.5,-26.66 255.9,-26.61 258.18,-33.23"/>
-<text text-anchor="middle" x="170.5" y="-85" font-family="Courier,monospace" font-size="10.00">startup open</text>
+<path fill="none" stroke="black" d="M60.57,-107.51C73.76,-97.98 90.64,-86.63 106.75,-78.25 146.67,-57.5 195.42,-40.09 228.3,-29.4"/>
+<polygon fill="black" stroke="black" points="229.33,-32.75 237.79,-26.37 227.2,-26.08 229.33,-32.75"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-81.5" font-family="Courier,monospace" font-size="10.00">startup open</text>
 </g>
 <!-- Nomount&#45;&gt;Shutdown -->
 <g id="edge6" class="edge">
 <title>Nomount&#45;&gt;Shutdown</title>
-<path fill="none" stroke="black" d="M251.84,-216.22C209.19,-197.57 142.08,-168.23 96.04,-148.1"/>
-<polygon fill="black" stroke="black" points="97.41,-144.88 86.84,-144.08 94.6,-151.29 97.41,-144.88"/>
-<text text-anchor="middle" x="170.5" y="-202" font-family="Courier,monospace" font-size="10.00">shutdown</text>
+<path fill="none" stroke="black" d="M232.35,-218.32C192.56,-199.58 125.79,-168.12 81.41,-147.22"/>
+<polygon fill="black" stroke="black" points="83.1,-144.14 72.56,-143.05 80.12,-150.48 83.1,-144.14"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-202.32" font-family="Courier,monospace" font-size="10.00">shutdown</text>
 </g>
 <!-- Nomount&#45;&gt;Mount -->
 <g id="edge4" class="edge">
 <title>Nomount&#45;&gt;Mount</title>
-<path fill="none" stroke="black" d="M293.5,-215.95C293.5,-199.18 293.5,-173.94 293.5,-154.46"/>
-<polygon fill="black" stroke="black" points="297,-154.32 293.5,-144.32 290,-154.32 297,-154.32"/>
-<text text-anchor="middle" x="285" y="-177.5" font-family="Courier,monospace" font-size="10.00">alter database mount &#160;&#160;&#160;&#160;&#160;</text>
+<path fill="none" stroke="black" d="M266.62,-215.59C266.62,-199.19 266.62,-174.9 266.62,-155.75"/>
+<polygon fill="black" stroke="black" points="270.13,-155.83 266.63,-145.83 263.13,-155.83 270.13,-155.83"/>
+<text xml:space="preserve" text-anchor="middle" x="257.25" y="-176.88" font-family="Courier,monospace" font-size="10.00">alter database mount &#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <!-- Mount&#45;&gt;Shutdown -->
 <g id="edge7" class="edge">
 <title>Mount&#45;&gt;Shutdown</title>
-<path fill="none" stroke="black" d="M261.96,-116.1C248.09,-112.11 231.39,-107.98 216,-106 175.89,-100.84 165.14,-101.03 125,-106 116.57,-107.04 107.76,-108.69 99.19,-110.59"/>
-<polygon fill="black" stroke="black" points="98.21,-107.23 89.29,-112.93 99.82,-114.04 98.21,-107.23"/>
-<text text-anchor="middle" x="170.5" y="-109" font-family="Courier,monospace" font-size="10.00">shutdown</text>
+<path fill="none" stroke="black" d="M239.26,-115.59C226.62,-111.14 211.13,-106.47 196.75,-104.25 157.22,-98.16 146.3,-98.28 106.75,-104.25 98.58,-105.48 90.05,-107.48 81.86,-109.78"/>
+<polygon fill="black" stroke="black" points="80.99,-106.38 72.42,-112.61 83.01,-113.09 80.99,-106.38"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-107.5" font-family="Courier,monospace" font-size="10.00">shutdown</text>
 </g>
 <!-- Mount&#45;&gt;Open -->
 <g id="edge5" class="edge">
 <title>Mount&#45;&gt;Open</title>
-<path fill="none" stroke="black" d="M293.5,-107.95C293.5,-91.18 293.5,-65.94 293.5,-46.46"/>
-<polygon fill="black" stroke="black" points="297,-46.32 293.5,-36.32 290,-46.32 297,-46.32"/>
-<text text-anchor="middle" x="285" y="-69.5" font-family="Courier,monospace" font-size="10.00">alter database open &#160;&#160;&#160;&#160;</text>
+<path fill="none" stroke="black" d="M266.62,-107.59C266.62,-91.19 266.62,-66.9 266.62,-47.75"/>
+<polygon fill="black" stroke="black" points="270.13,-47.83 266.63,-37.83 263.13,-47.83 270.13,-47.83"/>
+<text xml:space="preserve" text-anchor="middle" x="257.25" y="-68.88" font-family="Courier,monospace" font-size="10.00">alter database open &#160;&#160;&#160;&#160;</text>
 </g>
 <!-- Open&#45;&gt;Shutdown -->
 <g id="edge8" class="edge">
 <title>Open&#45;&gt;Shutdown</title>
-<path fill="none" stroke="black" d="M266.42,-12.69C231.97,-7.05 170.35,-1.8 125,-25 94.13,-40.79 71.45,-74.62 58.39,-98.77"/>
-<polygon fill="black" stroke="black" points="55.19,-97.33 53.7,-107.82 61.41,-100.55 55.19,-97.33"/>
-<text text-anchor="middle" x="170.5" y="-28" font-family="Courier,monospace" font-size="10.00">shutdown</text>
+<path fill="none" stroke="black" d="M239.29,-11.06C206.16,-3.86 148.55,3.47 106.75,-19.25 76.51,-35.69 57.08,-71.37 46.47,-96.96"/>
+<polygon fill="black" stroke="black" points="43.25,-95.57 42.88,-106.15 49.78,-98.11 43.25,-95.57"/>
+<text xml:space="preserve" text-anchor="middle" x="151.75" y="-22.5" font-family="Courier,monospace" font-size="10.00">shutdown</text>
 </g>
 </g>
 </svg>
 </p>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-2-1">
 <h3 id="2-1"><span class="section-number-3">2.1.</span> ¿Por qué tantos modos?</h3>
@@ -746,8 +751,6 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -765,7 +768,6 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Vistas de <b>Oracle</b></h3>
@@ -784,8 +786,6 @@ Más información en <a href="https://docs.oracle.com/cd/B19306_01/server.102/b1
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-3-2">
 <h3 id="3-2"><span class="section-number-3">3.2.</span> Tipos de vistas de <b>Oracle</b></h3>
@@ -880,8 +880,6 @@ column comments format a150
 
 </aside>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-3-3">
 <h3 id="3-3"><span class="section-number-3">3.3.</span> Ejemplo de vistas: ficheros</h3>
@@ -932,7 +930,6 @@ column comments format a150
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-4">
 <h3 id="3-4"><span class="section-number-3">3.4.</span> Ejercicios de vistas</h3>
@@ -946,7 +943,6 @@ column comments format a150
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-5">
 <h3 id="3-5"><span class="section-number-3">3.5.</span> Archivos</h3>
@@ -987,8 +983,6 @@ column comments format a150
 ¿Cómo encontrarlos?
 </p>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -1000,7 +994,6 @@ column comments format a150
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -1013,13 +1006,6 @@ column comments format a150
 <li><a href="./asgbd-1-arquitectura-oracle.pdf">PDF</a></li>
 <li><a href="./asgbd-1-arquitectura-oracle.wp.html">Página web</a></li>
 <li><a href="./asgbd-1-arquitectura-oracle.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
@@ -1079,7 +1065,7 @@ overview: true,
 transition: 'linear',
 transitionSpeed: 'default',
 
-// Plugins with reveal.js 4.x
+// Plugins with reveal.js 4.x and later
 plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 
 // Optional libraries used to extend reveal.js

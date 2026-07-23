@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2026-07-23 jue 14:11 -->
 <meta charset="utf-8"/>
 <title>PLSQL</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -443,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">PLSQL</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:05</p>
+<h1 class="title">PLSQL</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:11</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -498,9 +499,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
-
+</style>
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> Introducción</h2>
@@ -519,7 +528,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-1-1">
 <h3 id="1-1"><span class="section-number-3">1.1.</span> Palabras reservadas</h3>
@@ -530,8 +538,6 @@ window.addEventListener("load",()=>{
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-1-2">
 <h3 id="1-2"><span class="section-number-3">1.2.</span> Identificadores</h3>
@@ -542,13 +548,12 @@ window.addEventListener("load",()=>{
 <li>Constante, variable, excepción, paquete, función, procedimiento, tabla, cursor&#x2026;</li>
 <li>Hasta 30 caracteres</li>
 <li>Comienza por una letra.</li>
-<li>Puede contener <code>$</code>, <code>#</code>, pero no puede contener operadores <code>+­%=/*</code></li>
+<li>Puede contener <code>$</code>, <code>#</code>, pero no puede contener operadores <code>+-%=/*</code></li>
 
 </ul></li>
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -568,7 +573,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -594,7 +598,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Tipos de variable</h3>
@@ -616,7 +619,6 @@ END;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-2">
 <h3 id="3-2"><span class="section-number-3">3.2.</span> Tipos referidos</h3>
@@ -642,7 +644,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -670,7 +671,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-2">
 <h3 id="4-2"><span class="section-number-3">4.2.</span> Condicional múltiple (I)</h3>
@@ -691,7 +691,6 @@ end case;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-3">
 <h3 id="4-3"><span class="section-number-3">4.3.</span> Condicional múltiple (II)</h3>
@@ -710,7 +709,6 @@ end case;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-4">
 <h3 id="4-4"><span class="section-number-3">4.4.</span> Ejemplos de <code>case</code></h3>
@@ -718,8 +716,6 @@ end case;
 Queremos implementar un servicio de traducción de español a inglés. El servicio no está disponible los lunes
 </p>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-4-4-1">
 <h4 id="4-4-1"><span class="section-number-4">4.4.1.</span> <code>case</code> como sentencia con un valor</h4>
@@ -746,7 +742,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-4-2">
 <h4 id="4-4-2"><span class="section-number-4">4.4.2.</span> <code>case</code> como sentencia con múltiples comparaciones</h4>
@@ -770,8 +765,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-4-4-3">
 <h4 id="4-4-3"><span class="section-number-4">4.4.3.</span> <code>case</code> como expresión con múltiples comparaciones</h4>
@@ -797,8 +790,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-4-4-4">
 <h4 id="4-4-4"><span class="section-number-4">4.4.4.</span> <code>case</code> como expresión con un valor</h4>
@@ -826,7 +817,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-4-5">
 <h4 id="4-4-5"><span class="section-number-4">4.4.5.</span> Case usado en sentencias <code>sql</code></h4>
@@ -854,8 +844,6 @@ where precioventa &lt; 10;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-4-5">
 <h3 id="4-5"><span class="section-number-3">4.5.</span> Bucle <code>loop</code></h3>
@@ -871,7 +859,6 @@ END LOOP;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-6">
 <h3 id="4-6"><span class="section-number-3">4.6.</span> Bucle <code>while</code></h3>
@@ -883,7 +870,6 @@ END LOOP;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-7">
 <h3 id="4-7"><span class="section-number-3">4.7.</span> Bucle <code>for</code></h3>
@@ -899,7 +885,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-8">
 <h3 id="4-8"><span class="section-number-3">4.8.</span> Ejercicios</h3>
@@ -915,8 +900,6 @@ END;
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-4-9">
 <h3 id="4-9"><span class="section-number-3">4.9.</span> Ejercicios</h3>
@@ -946,9 +929,6 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 
 </ul>
 <div class="slide-footer"></div>
-
-
-
 </section>
 </section>
 <section>
@@ -970,7 +950,6 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 (<a href="https://www.youtube.com/watch?v=etfuyJgq6-E&amp;list=PLPYjb2UQXp7RWDkSfbEkSAmyQmLcYYTs1&amp;index=3&amp;t=0s">youtube</a>)
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1">
 <h3 id="5-1"><span class="section-number-3">5.1.</span> Funciones</h3>
@@ -986,7 +965,6 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-1">
 <h4 id="5-1-1"><span class="section-number-4">5.1.1.</span> Ya hemos usado funciones</h4>
@@ -999,7 +977,6 @@ sqrt, upper, substr, len, nvl...
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-2">
 <h4 id="5-1-2"><span class="section-number-4">5.1.2.</span> Funciones propias</h4>
@@ -1026,7 +1003,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-3">
 <h4 id="5-1-3"><span class="section-number-4">5.1.3.</span> Invocar una función</h4>
@@ -1065,7 +1041,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-4">
 <h4 id="5-1-4"><span class="section-number-4">5.1.4.</span> Funciones en SQL</h4>
@@ -1091,7 +1066,6 @@ ORA-00902: tipo de dato no válido
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-5">
 <h4 id="5-1-5"><span class="section-number-4">5.1.5.</span> Funciones predefinidas</h4>
@@ -1153,7 +1127,6 @@ ORA-00902: tipo de dato no válido
 <a href="https://ss64.com/ora/syntax-fmt.html">Formatos de <code>to_date</code></a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-6">
 <h4 id="5-1-6"><span class="section-number-4">5.1.6.</span> Ejemplos de <code>to_date</code> y  <code>to_char</code></h4>
@@ -1179,7 +1152,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-7">
 <h4 id="5-1-7"><span class="section-number-4">5.1.7.</span> Ejercicios</h4>
@@ -1197,7 +1169,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-8">
 <h4 id="5-1-8"><span class="section-number-4">5.1.8.</span> Ejercicios</h4>
@@ -1216,7 +1187,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-1-9">
 <h4 id="5-1-9"><span class="section-number-4">5.1.9.</span> Ejercicio resuelto: <code>capitalizar</code></h4>
@@ -1233,13 +1203,11 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-2">
 <h3 id="5-2"><span class="section-number-3">5.2.</span> Procedimientos</h3>
 <ul>
-<li>Los procedimentos no devuelven un valor
+<li>Los procedimientos no devuelven un valor
 <ul>
 <li>Pero pueden tener parámetros <code>out</code></li>
 
@@ -1259,7 +1227,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-5-3">
 <h3 id="5-3"><span class="section-number-3">5.3.</span> Parámetros <code>in</code></h3>
@@ -1290,8 +1257,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-5-4">
 <h3 id="5-4"><span class="section-number-3">5.4.</span> Parámetros <code>out</code></h3>
@@ -1320,9 +1285,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
-
 </section>
 </section>
 <section>
@@ -1377,7 +1339,6 @@ end;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-6-2">
 <h3 id="6-2"><span class="section-number-3">6.2.</span> Ventaja de los tipos <code>%type</code></h3>
@@ -1399,8 +1360,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-6-3">
 <h3 id="6-3"><span class="section-number-3">6.3.</span> Ventaja de los tipos <code>%rowtype</code></h3>
@@ -1448,7 +1407,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-6-4">
 <h3 id="6-4"><span class="section-number-3">6.4.</span> Variables en <code>insert</code>, <code>update</code>, <code>delete</code></h3>
@@ -1473,8 +1431,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-6-5">
 <h3 id="6-5"><span class="section-number-3">6.5.</span> Ventaja de los tipos <code>%rowtype</code> en <code>insert</code></h3>
@@ -1497,8 +1453,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-6-6">
 <h3 id="6-6"><span class="section-number-3">6.6.</span> Recorrer consultas</h3>
@@ -1529,9 +1483,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
-
 </section>
 </section>
 <section>
@@ -1564,7 +1515,6 @@ END;
 (<a href="https://youtu.be/jQfWrMDQKvY">youtube</a>)
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-1">
 <h3 id="7-1"><span class="section-number-3">7.1.</span> Sección <i>exception</i></h3>
@@ -1590,7 +1540,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-2">
 <h3 id="7-2"><span class="section-number-3">7.2.</span> Ejemplo</h3>
@@ -1615,8 +1564,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-7-3">
 <h3 id="7-3"><span class="section-number-3">7.3.</span> Excepciones predefinidas</h3>
@@ -1643,7 +1590,7 @@ END;
 
 <tr>
 <td class="org-left"><code>INVALID_NUMBER</code></td>
-<td class="org-left"><code>NO_DATA_FOUND</code></td>
+<td class="org-left"><code>CURSOR_ALREADY_OPEN</code></td>
 <td class="org-left"><code>VALUE_ERROR</code></td>
 </tr>
 
@@ -1659,7 +1606,6 @@ END;
 <a href="https://www.techonthenet.com/oracle/exceptions/named_system.php">https://www.techonthenet.com/oracle/exceptions/named_system.php</a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-4">
 <h3 id="7-4"><span class="section-number-3">7.4.</span> <code>SQLCODE</code> y <code>SQLERRM</code></h3>
@@ -1689,7 +1635,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-5">
 <h3 id="7-5"><span class="section-number-3">7.5.</span> ¿Qué excepciones hay que atrapar?</h3>
@@ -1698,7 +1643,7 @@ END;
 <li>El flujo normal de programa debe evitarlas
 <ul>
 <li>Un <code>select into</code> debe estar hecho para devolver como mucho una fila</li>
-<li>Antes se debería hacer <code>select count()</code> con un <code>if</code> para comprobar que devuelve una fila</li>
+<li>Antes se debería hacer <code>select count(*)</code> con un <code>if</code> para comprobar que devuelve una fila</li>
 
 </ul></li>
 <li>Solo se atrapa si se puede solucionar el error, si no se deja pasar
@@ -1710,13 +1655,12 @@ END;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-7-6">
 <h3 id="7-6"><span class="section-number-3">7.6.</span> Excepciones de usuario</h3>
 <ul>
 <li>En ocasiones queremos enviar un mensaje de error personalizado</li>
-<li>Están disponibles los números de error entre <code>-20001</code> y <code>­20999</code></li>
+<li>Están disponibles los números de error entre <code>-20001</code> y <code>-20999</code></li>
 <li>Se pueden atrapar con <code>when others</code> y comprobarse con <code>SQLCODE</code></li>
 
 </ul>
@@ -1739,10 +1683,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
-
-
 </section>
 </section>
 <section>
@@ -1761,7 +1701,6 @@ END;
 (<a href="https://youtu.be/WXqkI5Jnsmo">youtube 1</a>) (<a href="https://youtu.be/pt7jJehGlU0">youtube 2</a>) (<a href="https://youtu.be/eAAU1kbCvbs">youtube 3</a>)
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-1">
 <h3 id="8-1"><span class="section-number-3">8.1.</span> Sintaxis (casi) completa</h3>
@@ -1783,7 +1722,6 @@ END;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-2">
 <h3 id="8-2"><span class="section-number-3">8.2.</span> Ejemplo: Al menos 10 empleados</h3>
@@ -1803,7 +1741,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-3">
 <h3 id="8-3"><span class="section-number-3">8.3.</span> Eventos DML</h3>
@@ -1829,7 +1766,7 @@ end;
 
 <tr>
 <td class="org-left"><code>insert</code></td>
-<td class="org-left">Insercción de una fila</td>
+<td class="org-left">Inserción de una fila</td>
 </tr>
 
 <tr>
@@ -1858,8 +1795,6 @@ end;
 
 </ul>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-8-3-1">
 <h4 id="8-3-1"><span class="section-number-4">8.3.1.</span> Ejemplo de <i>trigger</i> en varios eventos DML</h4>
@@ -1883,7 +1818,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-4">
 <h3 id="8-4"><span class="section-number-3">8.4.</span> Eventos DDL</h3>
@@ -1949,9 +1883,6 @@ end;
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
-
-
 </section>
 <section id="slide-8-5">
 <h3 id="8-5"><span class="section-number-3">8.5.</span> Eventos de sistema</h3>
@@ -2032,8 +1963,6 @@ end;
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-8-6">
 <h3 id="8-6"><span class="section-number-3">8.6.</span> <code>for each row</code></h3>
@@ -2043,7 +1972,6 @@ end;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-7">
 <h3 id="8-7"><span class="section-number-3">8.7.</span> Momentos del evento</h3>
@@ -2064,7 +1992,6 @@ end;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-7-1">
 <h4 id="8-7-1"><span class="section-number-4">8.7.1.</span> Resumen de momentos y variables</h4>
@@ -2133,8 +2060,6 @@ end;
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-8-8">
 <h3 id="8-8"><span class="section-number-3">8.8.</span> Ejemplo típico: Autonuméricos</h3>
@@ -2146,15 +2071,13 @@ BEFORE INSERT ON empleados
 for each row
 begin
   if :new.empno is null then
-    :new.empno = empleado_empno_seq.nextval;
+    :new.empno := empleado_empno_seq.nextval;
   end if;
 end;
 /
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-8-9">
 <h3 id="8-9"><span class="section-number-3">8.9.</span> Ejemplo típico: auditoría</h3>
@@ -2179,7 +2102,6 @@ alter table empleados add (
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-9-1">
 <h4 id="8-9-1"><span class="section-number-4">8.9.1.</span> Actualizar campos <code>createdXXXX</code></h4>
@@ -2198,7 +2120,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-9-2">
 <h4 id="8-9-2"><span class="section-number-4">8.9.2.</span> Actualizar campos <code>modifiedXXXX</code></h4>
@@ -2217,8 +2138,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-8-10">
 <h3 id="8-10"><span class="section-number-3">8.10.</span> Ejemplo típico: desnormalización</h3>
@@ -2240,12 +2159,11 @@ end;
 </div>
 
 <ul>
-<li>Ventajas: simple, rendimiento es escritura</li>
+<li>Ventajas: simple, rendimiento en escritura</li>
 <li>Desventajas: rendimiento en lectura, se consulta cada vez</li>
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-10-1">
 <h4 id="8-10-1"><span class="section-number-4">8.10.1.</span> Con triggers</h4>
@@ -2279,7 +2197,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-10-2">
 <h4 id="8-10-2"><span class="section-number-4">8.10.2.</span> Ventajas de la desnormalización</h4>
@@ -2295,7 +2212,6 @@ end;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-8-10-3">
 <h4 id="8-10-3"><span class="section-number-4">8.10.3.</span> Prueba de rendimiento</h4>
@@ -2330,11 +2246,6 @@ end;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
-
-
-
 </section>
 </section>
 <section>
@@ -2352,13 +2263,6 @@ end;
 <li><a href="./gbd-6-plsql.pdf">PDF</a></li>
 <li><a href="./gbd-6-plsql.wp.html">Página web</a></li>
 <li><a href="./gbd-6-plsql.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
@@ -2418,7 +2322,7 @@ overview: true,
 transition: 'linear',
 transitionSpeed: 'default',
 
-// Plugins with reveal.js 4.x
+// Plugins with reveal.js 4.x and later
 plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 
 // Optional libraries used to extend reveal.js

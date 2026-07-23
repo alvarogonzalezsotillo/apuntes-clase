@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-02-05 jue 10:19 -->
+<!-- 2026-07-23 jue 14:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control de versiones (git)</title>
@@ -396,7 +396,7 @@ Ejemplos
 <li>Por convenio, suele haber un repositorio "<i>central</i>"
 <ul class="org-ul">
 <li>Como servicio: <a href="https://github.com/">github</a>, <a href="https://gitlab.com/users/sign_in">gitlab</a>, <a href="https://codeberg.org/">codeberg</a>&#x2026;</li>
-<li>Autoalojado: <a href="https://about.gitea.com/products/gitea/">gitea</a>, <a href="https://forgejo.org/">forjego</a></li>
+<li>Autoalojado: <a href="https://about.gitea.com/products/gitea/">gitea</a>, <a href="https://forgejo.org/">forgejo</a></li>
 <li><a href="https://www.systutorials.com/set-up-git-server-through-ssh-connection/">O solo con Git y linux</a></li>
 </ul></li>
 </ul>
@@ -488,14 +488,14 @@ Initialized emp
 <ul class="org-ul">
 <li>Crea un nuevo repositorio, copia de uno ya existente</li>
 <li>El repositorio puede ser local o remoto, dependiendo de la <a href="https://git-scm.com/docs/git-clone#_git_urls">URL</a></li>
-<li>La copia de trabajo será la de la rama <code>master</code></li>
+<li>La copia de trabajo será la de la rama por defecto (<code>main</code> o <code>master</code>)</li>
 </ul>
 
 
 
 <div class="org-src-container">
 <pre class="src src-bash" id="org000002e">  alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git clone https://github.com/alvarogonzalezsotillo/aplicacion-php.git
-  Cloning into <span style="color: #8b2252;">'aplicacion-php'</span>...
+  Cloning into <span style="color: #008000; font-weight: bold;">'aplicacion-php'</span>...
   remote: Counting objects: 50, done.
   remote: Compressing objects: 100%
   ....
@@ -580,10 +580,10 @@ Muestra los cambios de los ficheros en estado <b>modified</b>
 <pre class="src src-bash" id="org000003b">[master 906fa20] Cambiados varios permisos de ejecuci&#243;n
  5 files changed, 411 insertions(+), 2 deletions(-)
  create mode 100644 09/estados-fichero-git.svg
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 borrar-temporales-latex.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 generar-pdf.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 generar-pdfs.sh
- mode change <span style="color: #a0522d;">100755</span> =&gt; 100644 publicar-pdfs.sh
+ mode change 100755 =&gt; 100644 borrar-temporales-latex.sh
+ mode change 100755 =&gt; 100644 generar-pdf.sh
+ mode change 100755 =&gt; 100644 generar-pdfs.sh
+ mode change 100755 =&gt; 100644 publicar-pdfs.sh
 </pre>
 </div>
 
@@ -621,16 +621,16 @@ Muestra los cambios de los ficheros en estado <b>modified</b>
 
 <div class="org-src-container">
 <pre class="src src-bash" id="org000003f">alvaro@debian8-64-alvarogonzalez:~/aplicacion-web$ git push
-Password for <span style="color: #8b2252;">'https://alvarogonzalezsotillo@bitbucket.org'</span>: 
+Password for <span style="color: #008000; font-weight: bold;">'https://alvarogonzalezsotillo@bitbucket.org'</span>: 
 To https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git
-! [rejected]        master -&gt; master (fetch first)
+<span style="text-decoration: underline;">!</span> [rejected]        master -&gt; master (fetch first)
 error: failed to push some refs to 
-<span style="color: #8b2252;">'https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git'</span>
-hint: Updates were rejected because the remote contains work that you<span style="color: #a020f0;"> do</span>
+<span style="color: #008000; font-weight: bold;">'https://alvarogonzalezsotillo@bitbucket.org/alvarogonzalezsotillo/aplicacion-web.git'</span>
+hint: Updates were rejected because the remote contains work that you<span style="color: #000090; font-weight: bold;"> do</span>
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., <span style="color: #8b2252;">'git pull ...'</span>) before pushing again.
-hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><span style="color: #a020f0;"> in</span> <span style="color: #8b2252;">'git push --help'</span> for details.
+hint: (e.g., <span style="color: #008000; font-weight: bold;">'git pull ...'</span>) before pushing again.
+hint: See the <span style="color: #008000; font-weight: bold;">'Note about fast-forwards'</span><span style="color: #000090; font-weight: bold;"> in</span> <span style="color: #008000; font-weight: bold;">'git push --help'</span> for details.
 
 </pre>
 </div>
@@ -809,14 +809,14 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">podman run -d <span style="color: #8b2252;">\</span>
-  --replace <span style="color: #8b2252;">\</span>
-  --name=forgejo <span style="color: #8b2252;">\</span>
-  -v forgejo-data:/data <span style="color: #8b2252;">\</span>
-  -v /etc/localtime:/etc/localtime:ro <span style="color: #8b2252;">\</span>
-  -p 3000:3000 <span style="color: #8b2252;">\</span>
-  -p 2222:22 <span style="color: #8b2252;">\</span>
-  codeberg.org/forgejo/forgejo:14
+<pre class="src src-bash">podman run -d <span style="color: #008000; font-weight: bold;">\</span>
+  --replace <span style="color: #008000; font-weight: bold;">\</span>
+  --name=forgejo <span style="color: #008000; font-weight: bold;">\</span>
+  -v forgejo-data:/data <span style="color: #008000; font-weight: bold;">\</span>
+  -v /etc/localtime:/etc/localtime:ro <span style="color: #008000; font-weight: bold;">\</span>
+  -p 3000:3000 <span style="color: #008000; font-weight: bold;">\</span>
+  -p 2222:22 <span style="color: #008000; font-weight: bold;">\</span>
+  codeberg.org/forgejo/forgejo:9
 </pre>
 </div>
 </div>
@@ -848,7 +848,7 @@ hint: See the <span style="color: #8b2252;">'Note about fast-forwards'</span><sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-02-05 jue 10:19</p>
+<p class="date">Created: 2026-07-23 jue 14:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-03-24 Tue 11:29 -->
+<!-- Generated on 2026-07-23 jue 14:14 -->
 <meta charset="utf-8"/>
 <title>Comandos IOS</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-03-24 Tue 11:29</p>
+<h1 class="title">Comandos IOS</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:14</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -1097,7 +1097,7 @@ Propagar una ruta por defecto
 
 <pre><code class="lisp" >R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
 R1(config)# router ospf 10
-R1(config)# default-information originate
+R1(config-router)# default-information originate
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -1144,11 +1144,15 @@ Crear una ACL o añadir una regla
 <div class="org-src-container">
 
 <pre><code class="lisp" >Router(config)# access-list &lt;numero&gt; &lt;permit o deny&gt;  &lt;host|source source-wildcard|any&gt;
-#+end_srcª
+</code></pre>
+</div>
 
+<p>
 Borrar una ACLs
-#+begin_src lisp
-Router(config)# no access-list &lt;numero&gt; 
+</p>
+<div class="org-src-container">
+
+<pre><code class="lisp" >Router(config)# no access-list &lt;numero&gt; 
 </code></pre>
 </div>
 <div class="slide-footer"></div>
@@ -1470,7 +1474,7 @@ overview: true,
 transition: 'linear',
 transitionSpeed: 'default',
 
-// Plugins with reveal.js 4.x
+// Plugins with reveal.js 4.x and later
 plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 
 // Optional libraries used to extend reveal.js

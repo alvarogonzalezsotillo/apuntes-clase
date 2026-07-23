@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-02-03 lun 18:10 -->
+<!-- 2026-07-23 jue 14:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -248,7 +248,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -264,7 +274,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-2">
 <h2 id="org000000f"><span class="section-number-2">2.</span> Propiedades <b>ACID</b></h2>
 <div class="outline-text-2" id="text-2">
@@ -299,7 +308,6 @@ window.addEventListener("load",()=>{
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">2.1.</span> Atomicidad</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -321,7 +329,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">2.2.</span> Consistencia</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -342,8 +349,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">2.3.</span> Aislamiento (<i>isolation</i>)</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -362,8 +367,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">2.4.</span> Durabilidad</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -377,7 +380,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001e" class="outline-2">
 <h2 id="org000001e"><span class="section-number-2">3.</span> Problemas del uso concurrente</h2>
 <div class="outline-text-2" id="text-3">
@@ -406,18 +408,17 @@ window.addEventListener("load",()=>{
 <tr>
 <td class="org-left">Lectura no repetible</td>
 <td class="org-left"><i>Repeatable read</i></td>
-<td class="org-left">Un usuario lee menos filas (o filas cambiadas) en <code>select</code> sucesivas dentro de la misma transaccción</td>
+<td class="org-left">Un usuario lee menos filas (o filas cambiadas) en <code>select</code> sucesivas dentro de la misma transacción</td>
 </tr>
 
 <tr>
 <td class="org-left">Fila fantasma</td>
-<td class="org-left"><i>Phanton read</i></td>
+<td class="org-left"><i>Phantom read</i></td>
 <td class="org-left">Un usuario lee más filas en <code>select</code> sucesivas  dentro de la misma transacción</td>
 </tr>
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org0000012" class="outline-3">
 <h3 id="org0000012"><span class="section-number-3">3.1.</span> Nivel de aislamiento/concurrencia</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -474,22 +475,18 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
 <div id="outline-container-org0000015" class="outline-3">
 <h3 id="org0000015"><span class="section-number-3">3.2.</span> Datos para pruebas</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">ALUMNOS</span>( DNI <span style="color: #8ae234; font-weight: bold;">varchar</span>(10), NOMBRE <span style="color: #8ae234; font-weight: bold;">varchar</span>(10));
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'1'</span>,<span style="color: #ad7fa8; font-style: italic;">'Pepe'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'2'</span>,<span style="color: #ad7fa8; font-style: italic;">'Juan'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> ALUMNOS <span style="color: #729fcf; font-weight: bold;">values</span> (<span style="color: #ad7fa8; font-style: italic;">'3'</span>,<span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">ALUMNOS</span>( DNI <span style="color: #20999d;">varchar</span>(10), NOMBRE <span style="color: #20999d;">varchar</span>(10));
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'1'</span>,<span style="color: #008000; font-weight: bold;">'Pepe'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'2'</span>,<span style="color: #008000; font-weight: bold;">'Juan'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'3'</span>,<span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>);
 </pre>
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">3.3.</span> Lectura no repetible</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -556,9 +553,6 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000001b" class="outline-3">
 <h3 id="org000001b"><span class="section-number-3">3.4.</span> Fila fantasma</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -616,8 +610,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000002d" class="outline-2">
 <h2 id="org000002d"><span class="section-number-2">4.</span> Bloqueos y versiones</h2>
 <div class="outline-text-2" id="text-4">
@@ -639,8 +631,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000021" class="outline-3">
 <h3 id="org0000021"><span class="section-number-3">4.1.</span> Lectura no repetible evitada</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -712,8 +702,6 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org0000024" class="outline-3">
 <h3 id="org0000024"><span class="section-number-3">4.2.</span> Fila fantasma evitada</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -765,8 +753,6 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org0000027" class="outline-3">
 <h3 id="org0000027"><span class="section-number-3">4.3.</span> Bloqueos no automáticos</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -781,13 +767,12 @@ window.addEventListener("load",()=>{
 <li>Bloqueo de algunas filas:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
-<span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">update</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
+<span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">update</span>
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000002a" class="outline-3">
 <h3 id="org000002a"><span class="section-number-3">4.4.</span> Bloqueos mutuos</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -802,9 +787,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000051" class="outline-2">
 <h2 id="org0000051"><span class="section-number-2">5.</span> Detección y solución de sesiones bloqueadas</h2>
 <div class="outline-text-2" id="text-5">
@@ -818,7 +800,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000030" class="outline-3">
 <h3 id="org0000030"><span class="section-number-3">5.1.</span> Vistas de sesiones</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -859,84 +840,78 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org0000033" class="outline-3">
 <h3 id="org0000033"><span class="section-number-3">5.2.</span> Usuarios conectados (1)</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span>
   username,
   osuser,
   terminal
-<span style="color: #729fcf; font-weight: bold;">from</span>
-  sys.v_$<span style="color: #729fcf; font-weight: bold;">session</span>
-<span style="color: #729fcf; font-weight: bold;">where</span>
-  username <span style="color: #729fcf; font-weight: bold;">is</span> <span style="color: #729fcf; font-weight: bold;">not</span> <span style="color: #729fcf; font-weight: bold;">null</span>
-<span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span>
+<span style="color: #000090; font-weight: bold;">from</span>
+  sys.v_$<span style="color: #000090; font-weight: bold;">session</span>
+<span style="color: #000090; font-weight: bold;">where</span>
+  username <span style="color: #000090; font-weight: bold;">is</span> <span style="color: #000090; font-weight: bold;">not</span> <span style="color: #000090; font-weight: bold;">null</span>
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span>
   username,
   osuser;
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000036" class="outline-3">
 <h3 id="org0000036"><span class="section-number-3">5.3.</span> Usuarios conectados (2)</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SELECT</span> s.username, s.program, s.logon_time
-<span style="color: #729fcf; font-weight: bold;">FROM</span> sys.v_$<span style="color: #729fcf; font-weight: bold;">session</span> s, sys.v_$process p, sys.v_$sess_io si
-<span style="color: #729fcf; font-weight: bold;">WHERE</span> s.paddr = p.addr(+)
-<span style="color: #729fcf; font-weight: bold;">AND</span> si.sid(+) = s.sid
-<span style="color: #729fcf; font-weight: bold;">AND</span> s.<span style="color: #729fcf; font-weight: bold;">type</span> = <span style="color: #ad7fa8; font-style: italic;">'USER'</span>; 
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">SELECT</span> s.username, s.program, s.logon_time
+<span style="color: #000090; font-weight: bold;">FROM</span> sys.v_$<span style="color: #000090; font-weight: bold;">session</span> s, sys.v_$process p, sys.v_$sess_io si
+<span style="color: #000090; font-weight: bold;">WHERE</span> s.paddr = p.addr(+)
+<span style="color: #000090; font-weight: bold;">AND</span> si.sid(+) = s.sid
+<span style="color: #000090; font-weight: bold;">AND</span> s.<span style="color: #000090; font-weight: bold;">type</span> = <span style="color: #008000; font-weight: bold;">'USER'</span>; 
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-3">
 <h3 id="org0000039"><span class="section-number-3">5.4.</span> Bloqueos de la base de datos</h3>
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> session_id "sid",SERIAL#  "Serial",
-  substr(object_name,1,20) "<span style="color: #8ae234; font-weight: bold;">Object</span>",
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> session_id "sid",SERIAL#  "Serial",
+  substr(object_name,1,20) "<span style="color: #20999d;">Object</span>",
   substr(os_user_name,1,10) "Terminal",
   substr(oracle_username,1,10) "Locker",
-  nvl(lockwait,<span style="color: #ad7fa8; font-style: italic;">'active'</span>) "Wait",
+  nvl(lockwait,<span style="color: #008000; font-weight: bold;">'active'</span>) "Wait",
   decode(locked_mode,
-    2, <span style="color: #ad7fa8; font-style: italic;">'row share'</span>,
-    3, <span style="color: #ad7fa8; font-style: italic;">'row exclusive'</span>,
-    4, <span style="color: #ad7fa8; font-style: italic;">'share'</span>,
-    5, <span style="color: #ad7fa8; font-style: italic;">'share row exclusive'</span>,
-    6, <span style="color: #ad7fa8; font-style: italic;">'exclusive'</span>,  <span style="color: #ad7fa8; font-style: italic;">'unknown'</span>) "Lockmode",
-  OBJECT_TYPE "<span style="color: #729fcf; font-weight: bold;">Type</span>"
-<span style="color: #729fcf; font-weight: bold;">FROM</span>
+    2, <span style="color: #008000; font-weight: bold;">'row share'</span>,
+    3, <span style="color: #008000; font-weight: bold;">'row exclusive'</span>,
+    4, <span style="color: #008000; font-weight: bold;">'share'</span>,
+    5, <span style="color: #008000; font-weight: bold;">'share row exclusive'</span>,
+    6, <span style="color: #008000; font-weight: bold;">'exclusive'</span>,  <span style="color: #008000; font-weight: bold;">'unknown'</span>) "Lockmode",
+  OBJECT_TYPE "<span style="color: #000090; font-weight: bold;">Type</span>"
+<span style="color: #000090; font-weight: bold;">FROM</span>
   SYS.V_$LOCKED_OBJECT A,
   SYS.ALL_OBJECTS B,
-  SYS.V_$<span style="color: #729fcf; font-weight: bold;">SESSION</span> c
-<span style="color: #729fcf; font-weight: bold;">WHERE</span>
-  A.OBJECT_ID = B.OBJECT_ID <span style="color: #729fcf; font-weight: bold;">AND</span>
+  SYS.V_$<span style="color: #000090; font-weight: bold;">SESSION</span> c
+<span style="color: #000090; font-weight: bold;">WHERE</span>
+  A.OBJECT_ID = B.OBJECT_ID <span style="color: #000090; font-weight: bold;">AND</span>
   C.SID = A.SESSION_ID
-<span style="color: #729fcf; font-weight: bold;">ORDER</span> <span style="color: #729fcf; font-weight: bold;">BY</span> 1 <span style="color: #729fcf; font-weight: bold;">ASC</span>, 5 <span style="color: #729fcf; font-weight: bold;">Desc</span>;
+<span style="color: #000090; font-weight: bold;">ORDER</span> <span style="color: #000090; font-weight: bold;">BY</span> 1 <span style="color: #000090; font-weight: bold;">ASC</span>, 5 <span style="color: #000090; font-weight: bold;">Desc</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000003c" class="outline-3">
 <h3 id="org000003c"><span class="section-number-3">5.5.</span> Descripción de usuarios bloqueados y bloqueantes</h3>
 <div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> s1.username || <span style="color: #ad7fa8; font-style: italic;">'@'</span> || s1.machine
-  || <span style="color: #ad7fa8; font-style: italic;">' ( SID='</span> || s1.sid || <span style="color: #ad7fa8; font-style: italic;">' )  is blocking '</span>
-  || s2.username || <span style="color: #ad7fa8; font-style: italic;">'@'</span> || s2.machine || <span style="color: #ad7fa8; font-style: italic;">' ( SID='</span> || s2.sid || <span style="color: #ad7fa8; font-style: italic;">' ) '</span> <span style="color: #729fcf; font-weight: bold;">AS</span> blocking_status
-  <span style="color: #729fcf; font-weight: bold;">from</span> v_$lock l1, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s1, v_$lock l2, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s2
-  <span style="color: #729fcf; font-weight: bold;">where</span> s1.sid=l1.sid <span style="color: #729fcf; font-weight: bold;">and</span> s2.sid=l2.sid
-  <span style="color: #729fcf; font-weight: bold;">and</span> l1.BLOCK=1 <span style="color: #729fcf; font-weight: bold;">and</span> l2.request &gt; 0
-  <span style="color: #729fcf; font-weight: bold;">and</span> l1.id1 = l2.id1
-  <span style="color: #729fcf; font-weight: bold;">and</span> l1.id2 = l2.id2 ;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> s1.username || <span style="color: #008000; font-weight: bold;">'@'</span> || s1.machine
+  || <span style="color: #008000; font-weight: bold;">' ( SID='</span> || s1.sid || <span style="color: #008000; font-weight: bold;">' )  is blocking '</span>
+  || s2.username || <span style="color: #008000; font-weight: bold;">'@'</span> || s2.machine || <span style="color: #008000; font-weight: bold;">' ( SID='</span> || s2.sid || <span style="color: #008000; font-weight: bold;">' ) '</span> <span style="color: #000090; font-weight: bold;">AS</span> blocking_status
+  <span style="color: #000090; font-weight: bold;">from</span> v_$lock l1, v_$<span style="color: #000090; font-weight: bold;">session</span> s1, v_$lock l2, v_$<span style="color: #000090; font-weight: bold;">session</span> s2
+  <span style="color: #000090; font-weight: bold;">where</span> s1.sid=l1.sid <span style="color: #000090; font-weight: bold;">and</span> s2.sid=l2.sid
+  <span style="color: #000090; font-weight: bold;">and</span> l1.BLOCK=1 <span style="color: #000090; font-weight: bold;">and</span> l2.request &gt; 0
+  <span style="color: #000090; font-weight: bold;">and</span> l1.id1 = l2.id1
+  <span style="color: #000090; font-weight: bold;">and</span> l1.id2 = l2.id2 ;
 </pre>
 </div>
 
@@ -945,40 +920,37 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </p>
 </div>
 </div>
-
 <div id="outline-container-org000003f" class="outline-3">
 <h3 id="org000003f"><span class="section-number-3">5.6.</span> Sentencia <code>SQL</code> bloqueada (de un <code>SID</code>)</h3>
 <div class="outline-text-3" id="text-5-6">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> s.sid, q.sql_text <span style="color: #729fcf; font-weight: bold;">from</span> v_$sqltext q, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s
-<span style="color: #729fcf; font-weight: bold;">where</span> q.address = s.sql_address
-<span style="color: #729fcf; font-weight: bold;">and</span> s.sid = *ELSIDBLOQUEADO*
-<span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span> piece;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> s.sid, q.sql_text <span style="color: #000090; font-weight: bold;">from</span> v_$sqltext q, v_$<span style="color: #000090; font-weight: bold;">session</span> s
+<span style="color: #000090; font-weight: bold;">where</span> q.address = s.sql_address
+<span style="color: #000090; font-weight: bold;">and</span> s.sid = EL_SID_DEL_BLOQUEADO
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> piece;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000042" class="outline-3">
 <h3 id="org0000042"><span class="section-number-3">5.7.</span> Sentencias <code>SQL</code> bloqueadas</h3>
 <div class="outline-text-3" id="text-5-7">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> s.sid, q.sql_text <span style="color: #729fcf; font-weight: bold;">from</span> v_$sqltext q, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s
-<span style="color: #729fcf; font-weight: bold;">where</span> q.address = s.sql_address
-<span style="color: #729fcf; font-weight: bold;">and</span> s.sid <span style="color: #729fcf; font-weight: bold;">in</span> (
-  <span style="color: #729fcf; font-weight: bold;">select</span> s2.sid
-  <span style="color: #729fcf; font-weight: bold;">from</span> v_$lock l1, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s1, v_$lock l2, v_$<span style="color: #729fcf; font-weight: bold;">session</span> s2
-  <span style="color: #729fcf; font-weight: bold;">where</span> s1.sid=l1.sid <span style="color: #729fcf; font-weight: bold;">and</span> s2.sid=l2.sid
-  <span style="color: #729fcf; font-weight: bold;">and</span> l1.BLOCK=1 <span style="color: #729fcf; font-weight: bold;">and</span> l2.request &gt; 0
-  <span style="color: #729fcf; font-weight: bold;">and</span> l1.id1 = l2.id1
-  <span style="color: #729fcf; font-weight: bold;">and</span> l2.id2 = l2.id2 
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> s.sid, q.sql_text <span style="color: #000090; font-weight: bold;">from</span> v_$sqltext q, v_$<span style="color: #000090; font-weight: bold;">session</span> s
+<span style="color: #000090; font-weight: bold;">where</span> q.address = s.sql_address
+<span style="color: #000090; font-weight: bold;">and</span> s.sid <span style="color: #000090; font-weight: bold;">in</span> (
+  <span style="color: #000090; font-weight: bold;">select</span> s2.sid
+  <span style="color: #000090; font-weight: bold;">from</span> v_$lock l1, v_$<span style="color: #000090; font-weight: bold;">session</span> s1, v_$lock l2, v_$<span style="color: #000090; font-weight: bold;">session</span> s2
+  <span style="color: #000090; font-weight: bold;">where</span> s1.sid=l1.sid <span style="color: #000090; font-weight: bold;">and</span> s2.sid=l2.sid
+  <span style="color: #000090; font-weight: bold;">and</span> l1.BLOCK=1 <span style="color: #000090; font-weight: bold;">and</span> l2.request &gt; 0
+  <span style="color: #000090; font-weight: bold;">and</span> l1.id1 = l2.id1
+  <span style="color: #000090; font-weight: bold;">and</span> l2.id2 = l2.id2 
 )
-<span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span> piece;
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> piece;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000047" class="outline-3">
 <h3 id="org0000047"><span class="section-number-3">5.8.</span> Tablas involucradas</h3>
 <div class="outline-text-3" id="text-5-8">
@@ -989,31 +961,28 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000004a" class="outline-3">
 <h3 id="org000004a"><span class="section-number-3">5.9.</span> Terminar una sesión</h3>
 <div class="outline-text-3" id="text-5-9">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SELECT</span> s.inst_id,
-    <span style="color: #6c7f6868233c;"> </span>  s.sid,
-    <span style="color: #6c7f6868233c;"> </span>  s.serial#,
-    <span style="color: #6c7f6868233c;"> </span>  p.spid,
-    <span style="color: #6c7f6868233c;"> </span>  s.username,
-    <span style="color: #6c7f6868233c;"> </span>  s.program
-<span style="color: #729fcf; font-weight: bold;">FROM</span>   gv_$<span style="color: #729fcf; font-weight: bold;">session</span> s
-    <span style="color: #6c7f6868233c;"> </span>  <span style="color: #729fcf; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #729fcf; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #729fcf; font-weight: bold;">AND</span> p.inst_id = s.inst_id
-<span style="color: #729fcf; font-weight: bold;">WHERE</span>  s.<span style="color: #729fcf; font-weight: bold;">type</span> != <span style="color: #ad7fa8; font-style: italic;">'BACKGROUND'</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">SELECT</span> s.inst_id,
+    <span style="color: #acccacccaccc;"> </span>  s.sid,
+    <span style="color: #acccacccaccc;"> </span>  s.serial#,
+    <span style="color: #acccacccaccc;"> </span>  p.spid,
+    <span style="color: #acccacccaccc;"> </span>  s.username,
+    <span style="color: #acccacccaccc;"> </span>  s.program
+<span style="color: #000090; font-weight: bold;">FROM</span>   gv_$<span style="color: #000090; font-weight: bold;">session</span> s
+    <span style="color: #acccacccaccc;"> </span>  <span style="color: #000090; font-weight: bold;">JOIN</span> gv_$process p <span style="color: #000090; font-weight: bold;">ON</span> p.addr = s.paddr <span style="color: #000090; font-weight: bold;">AND</span> p.inst_id = s.inst_id
+<span style="color: #000090; font-weight: bold;">WHERE</span>  s.<span style="color: #000090; font-weight: bold;">type</span> != <span style="color: #008000; font-weight: bold;">'BACKGROUND'</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SYSTEM</span> KILL <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #ad7fa8; font-style: italic;">'sid,serial#'</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SYSTEM</span> KILL <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #008000; font-weight: bold;">'sid,serial#'</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000004e" class="outline-3">
 <h3 id="org000004e"><span class="section-number-3">5.10.</span> Terminar una sesión (sistema operativo)</h3>
 <div class="outline-text-3" id="text-5-10">
@@ -1023,7 +992,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 <li>Importante:
 <ul class="org-ul">
 <li>La columna <code>v$process.spid</code> es del proceso intermedio entre el cliente (<i>application code</i>) y el servidor (<i>system global area</i>)</li>
-<li>La columna <code>v$sessoin.process</code> es del proceso cliente, que está en la máquina cliente, no el el servidor</li>
+<li>La columna <code>v$session.process</code> es del proceso cliente, que está en la máquina cliente, no en el servidor</li>
 <li>Por tanto, el proceso a matar se encuentra en el mismo host que el servidor de base de datos</li>
 </ul></li>
 </ul>
@@ -1036,8 +1005,6 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000054" class="outline-2">
 <h2 id="org0000054"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
@@ -1049,12 +1016,6 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 <li><a href="./asgbd-4-bloqueos-oracle.wp.html">Página web</a></li>
 <li><a href="./asgbd-4-bloqueos-oracle.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -1062,7 +1023,7 @@ Fuente: <a href="http://www.oracle-ckpt.com/scripts-for-locks-and-blocking-sessi
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-02-03 lun 18:10</p>
+<p class="date">Created: 2026-07-23 jue 14:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

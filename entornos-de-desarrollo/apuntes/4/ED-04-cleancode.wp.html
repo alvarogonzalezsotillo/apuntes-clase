@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-24 mar 20:03 -->
+<!-- 2026-07-23 jue 14:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimización, refactorización y documentación</title>
@@ -266,7 +266,7 @@ window.addEventListener("load",()=>{
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Esfuerzo que se va a tener que hacer adicionalmente, porque se ha elegido un desarrollo sencillo y rápido, en lugar de utilizar un mejor enfoque más lento inicialmente</li>
-<li>Metáfora: Es un un crédito de tiempo, ahora se <i>ahorra</i> en una implementación insuficiente, en el futuro se <i>paga</i> rehaciendo gran parte del código</li>
+<li>Metáfora: Es un crédito de tiempo, ahora se <i>ahorra</i> en una implementación insuficiente, en el futuro se <i>paga</i> rehaciendo gran parte del código</li>
 </ul>
 
 
@@ -389,22 +389,22 @@ window.addEventListener("load",()=>{
 <h3 id="org000000e"><span class="section-number-3">2.3.</span> Ejemplo: <code>java.util.Set.contains()</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Documentación del método <code>Set.contains()</code></label><pre class="src src-java">  <span style="color: #8b2252;">/**
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* Returns </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if this set contains the specified element.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* More formally, returns </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if and only if this set
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* contains an element </span><span style="color: #008b8b;">{@code e}</span><span style="color: #8b2252;"> such that
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">{@code Objects.equals(o, e)}</span><span style="color: #8b2252;">.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> o element whose presence in this set is to be tested
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> </span><span style="color: #008b8b;">{@code true}</span><span style="color: #8b2252;"> if this set contains the specified element
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@throws</span><span style="color: #8b2252;"> ClassCastException if the type of the specified element
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         is incompatible with this set
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* (</span><span style="color: #008b8b;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #8b2252;">optional</span><span style="color: #008b8b;">&lt;/a&gt;</span><span style="color: #8b2252;">)
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@throws</span><span style="color: #8b2252;"> NullPointerException if the specified element is null and this
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         set does not permit null elements
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* (</span><span style="color: #008b8b;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #8b2252;">optional</span><span style="color: #008b8b;">&lt;/a&gt;</span><span style="color: #8b2252;">)
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span>
-    <span style="color: #228b22;">boolean</span> <span style="color: #0000ff;">contains</span>(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">o</span>);  
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Documentación del método <code>Set.contains()</code></label><pre class="src src-java">  <span style="color: #808080;">/**
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* Returns </span><span style="color: #5974ab; font-weight: bold;">{@code true}</span><span style="color: #808080;"> if this set contains the specified element.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* More formally, returns </span><span style="color: #5974ab; font-weight: bold;">{@code true}</span><span style="color: #808080;"> if and only if this set
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* contains an element </span><span style="color: #5974ab; font-weight: bold;">{@code e}</span><span style="color: #808080;"> such that
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">{@code Objects.equals(o, e)}</span><span style="color: #808080;">.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@param</span><span style="color: #808080;"> o element whose presence in this set is to be tested
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@return</span><span style="color: #808080;"> </span><span style="color: #5974ab; font-weight: bold;">{@code true}</span><span style="color: #808080;"> if this set contains the specified element
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@throws</span><span style="color: #808080;"> ClassCastException if the type of the specified element
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*         is incompatible with this set
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* (</span><span style="color: #5974ab; font-weight: bold;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #808080;">optional</span><span style="color: #5974ab; font-weight: bold;">&lt;/a&gt;</span><span style="color: #808080;">)
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@throws</span><span style="color: #808080;"> NullPointerException if the specified element is null and this
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*         set does not permit null elements
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* (</span><span style="color: #5974ab; font-weight: bold;">&lt;a href="Collection.html#optional-restrictions"&gt;</span><span style="color: #808080;">optional</span><span style="color: #5974ab; font-weight: bold;">&lt;/a&gt;</span><span style="color: #808080;">)
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*/</span>
+    <span style="color: #20999d;">boolean</span> <span style="color: #000000; font-weight: bold;">contains</span>(<span style="color: #20999d;">Object</span> o);  
 </pre>
 </div>
 </div>
@@ -500,33 +500,33 @@ Más en <a href="https://sourcemaking.com/refactoring">https://sourcemaking.com/
 Si se detectan bloques de código iguales o muy parecidos en distintas partes del programa, se debe extraer creando un método para unificarlo.
 </p>
 <div class="org-src-container">
-<pre class="src src-java"> <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">leerCSV</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">filas</span>) {
-    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">String</span> <span style="color: #a0522d;">fila</span> : filas) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.isEmpty()) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   System.out.println(<span style="color: #8b2252;">"Aviso: fila vac&#237;a"</span>);
-    <span style="color: #acccacccffff;"> </span>   }
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.length() &lt; 3) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   System.out.println(<span style="color: #8b2252;">"Aviso: fila demasiado corta"</span>);
-    <span style="color: #acccacccffff;"> </span>   }
+<pre class="src src-java"> <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">void</span> <span style="color: #000000; font-weight: bold;">leerCSV</span>(<span style="color: #20999d;">String</span>[] filas) {
+    <span style="color: #000090; font-weight: bold;">for</span> (<span style="color: #20999d;">String</span> fila : filas) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (fila.isEmpty()) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   System.out.println(<span style="color: #008000; font-weight: bold;">"Aviso: fila vac&#237;a"</span>);
+    <span style="color: #acccacccaccc;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (fila.length() &lt; 3) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   System.out.println(<span style="color: #008000; font-weight: bold;">"Aviso: fila demasiado corta"</span>);
+    <span style="color: #acccacccaccc;"> </span>   }
     }
 } 
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">leerCSV</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">filas</span>) {
-    <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">String</span> <span style="color: #a0522d;">fila</span> : filas) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.isEmpty()) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   aviso(<span style="color: #8b2252;">"fila vac&#237;a"</span>);
-    <span style="color: #acccacccffff;"> </span>   }
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (fila.length() &lt; 3) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   aviso(<span style="color: #8b2252;">"fila demasiado corta"</span>);
-    <span style="color: #acccacccffff;"> </span>   }
+<pre class="src src-java"><span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">void</span> <span style="color: #000000; font-weight: bold;">leerCSV</span>(<span style="color: #20999d;">String</span>[] filas) {
+    <span style="color: #000090; font-weight: bold;">for</span> (<span style="color: #20999d;">String</span> fila : filas) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (fila.isEmpty()) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   aviso(<span style="color: #008000; font-weight: bold;">"fila vac&#237;a"</span>);
+    <span style="color: #acccacccaccc;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (fila.length() &lt; 3) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   aviso(<span style="color: #008000; font-weight: bold;">"fila demasiado corta"</span>);
+    <span style="color: #acccacccaccc;"> </span>   }
     }
 }
 
-<span style="color: #a020f0;">private</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">aviso</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">msg</span>) {
-    System.out.println(<span style="color: #8b2252;">"Aviso: "</span> + msg);
+<span style="color: #000090; font-weight: bold;">private</span> <span style="color: #20999d;">void</span> <span style="color: #000000; font-weight: bold;">aviso</span>(<span style="color: #20999d;">String</span> msg) {
+    System.out.println(<span style="color: #008000; font-weight: bold;">"Aviso: "</span> + msg);
 } 
 </pre>
 </div>
@@ -536,9 +536,9 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 <h3 id="org0000024"><span class="section-number-3">3.3.</span> Long Method</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
-<li>Los método de muchas lineas dificultan su comprensión.</li>
+<li>Los métodos de muchas líneas dificultan su comprensión.</li>
 <li>Un método largo probablemente está realizando distintas tareas, que se podrían dividir en otros métodos</li>
-<li>Las funciones deben ser los más pequeñas posibles (3 lineas mejor que 15).</li>
+<li>Las funciones deben ser los más pequeñas posibles (3 líneas mejor que 15).</li>
 <li>Cuanto más corto es un método, más fácil es reutilizarlo.</li>
 <li>Un método debe hacer solo una cosa, hacerla bien, y que sea la única que haga.</li>
 </ul>
@@ -565,24 +565,24 @@ Si se detectan bloques de código iguales o muy parecidos en distintas partes de
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-java">    <span style="color: #8b2252;">/** Encuentra los puntos de corte entre dos par&#225;bolas
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* y = a1x&#178; + b1x + c1
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* y = a2x&#178; + b2x + c2
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span> 
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span>[] <span style="color: #0000ff;">puntosCorte</span>(<span style="color: #228b22;">double</span> <span style="color: #a0522d;">a1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c1</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a2</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b2</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c2</span>) {
-    <span style="color: #acccacccffff;"> </span>   ....
+<pre class="src src-java">    <span style="color: #808080;">/** Encuentra los puntos de corte entre dos par&#225;bolas
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* y = a1x&#178; + b1x + c1
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* y = a2x&#178; + b2x + c2
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*/</span> 
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">double</span>[] <span style="color: #000000; font-weight: bold;">puntosCorte</span>(<span style="color: #20999d;">double</span> a1, <span style="color: #20999d;">double</span> b1, <span style="color: #20999d;">double</span> c1, <span style="color: #20999d;">double</span> a2, <span style="color: #20999d;">double</span> b2, <span style="color: #20999d;">double</span> c2) {
+    <span style="color: #acccacccaccc;"> </span>   ....
     }
 </pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Parabola</span> {
-    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span>;
-    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span>;
-    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c</span>;
+<pre class="src src-java"><span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">class</span> <span style="color: #20999d;">Parabola</span> {
+    <span style="color: #20999d;">double</span> a;
+    <span style="color: #20999d;">double</span> b;
+    <span style="color: #20999d;">double</span> c;
 }
-<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span>[] <span style="color: #0000ff;">puntosCorte</span>(<span style="color: #228b22;">Parabola</span> <span style="color: #a0522d;">p1</span>, <span style="color: #228b22;">Parabola</span> <span style="color: #a0522d;">p2</span>) {
+<span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">double</span>[] <span style="color: #000000; font-weight: bold;">puntosCorte</span>(<span style="color: #20999d;">Parabola</span> p1, <span style="color: #20999d;">Parabola</span> p2) {
     ....
 }
 </pre>
@@ -686,17 +686,17 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh">podman run --rm <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  --workdir /usr/src <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  --network=host <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  docker.io/sonarsource/sonar-scanner-cli <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.projectKey=java-games <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.java.binaries=bin <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.projectName=<span style="color: #8b2252;">'java-games'</span> <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.exclusions=doc <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.host.url=http://localhost:9000 <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span>  -Dsonar.token=sqp_0373d5cbb31d95200fa97cab4998315f14add870
+<pre class="src src-sh">podman run --rm <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  --volume /home/alvaro/repos/Java-Games/FallDown:/usr/src:ro <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  --workdir /usr/src <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  --network=host <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  docker.io/sonarsource/sonar-scanner-cli <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.projectKey=java-games <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.java.binaries=bin <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.projectName=<span style="color: #008000; font-weight: bold;">'java-games'</span> <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.exclusions=doc <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.host.url=http://localhost:9000 <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>  -Dsonar.token=sqp_0373d5cbb31d95200fa97cab4998315f14add870
 </pre>
 </div>
 </div>
@@ -876,7 +876,7 @@ Ejemplo de <a href="https://medium.com/@akashlomas/code-evaluation-with-sonar-qu
 <li>Lista de parámetros extensa (Long parameter list) ➡️ <code>Introduce parameter object</code></li>
 </ul></li>
 <li><p>
-Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una refactorización automática
+Otros <i>bad smells</i> tienen soluciones combinadas, o más complejas que una refactorización automática
 </p>
 <pre class="example" id="org0000060">
   Copilot:
@@ -902,7 +902,7 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </ul></li>
 <li><b>YAGNI</b> = You Aren’t Gonna Need It
 <ul class="org-ul">
-<li>Es muy problable que esa extensión de funcionalidad que no se pide acabe no haciendo falta</li>
+<li>Es muy probable que esa extensión de funcionalidad que no se pide acabe no haciendo falta</li>
 <li>Se parece mucho a <b>KISS</b></li>
 </ul></li>
 </ul>
@@ -1025,7 +1025,7 @@ Otros <i>bad smells</i> tienen soluciones combinadas, o maś complejas que una r
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-24 mar 20:03</p>
+<p class="date">Created: 2026-07-23 jue 14:09</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

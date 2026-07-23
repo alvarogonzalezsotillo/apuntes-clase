@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-12-01 lun 10:29 -->
+<!-- 2026-07-23 jue 14:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instalación de Oracle</title>
@@ -277,7 +277,7 @@ window.addEventListener("load",()=>{
 </ul></li>
 <li>El fichero <code>OVA</code> del profesor ya tiene:
 <ul class="org-ul">
-<li><b>Oracle Linux 9 instalado</b> instalado (inglés)</li>
+<li><b>Oracle Linux 9 instalado</b> (inglés)</li>
 </ul></li>
 <li>Se debe bajar también el ZIP de instalación: <a href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html"><code>LINUX.X64.213000_db_home.zip</code></a></li>
 <li>Se necesita <code>java</code>
@@ -484,7 +484,7 @@ Dejamos los directorios por defecto:
 
 <div class="NOTES" id="org0000020">
 <p>
-sudo yum install sudo yum install sysstat ksh make glibc-devel   
+sudo yum install sysstat ksh make glibc-devel   
 </p>
 
 </div>
@@ -509,33 +509,33 @@ sudo yum install sudo yum install sysstat ksh make glibc-devel
 <h4 id="org0000028"><span class="section-number-4">1.4.8.</span> <i>scripts</i> de configuración</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <ul class="org-ul">
-<li>/opt/home/alumno//oraInventory/orainstRoot.sh</li>
+<li>/opt/app/oraInventory/orainstRoot.sh</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh">[alumno@centos7 oraInventory]$ sudo ./orainstRoot.sh 
+<pre class="src src-sh">[alumno@oraclelinux8 oraInventory]$ sudo ./orainstRoot.sh 
 [sudo] password for alumno: 
-Changing permissions of /home/alumno/oraInventory.
+Changing permissions of /opt/app/oraInventory.
 Adding read,write permissions for group.
 Removing read,write,execute permissions for world.
 
-Changing groupname of /home/alumno/oraInventory to alumno.
+Changing groupname of /opt/app/oraInventory to alumno.
 The execution of the script is complete.
 </pre>
 </div>
 
 
 <ul class="org-ul">
-<li>/home/alumno/oracle-install/root.sh</li>
+<li>/opt/oracle-install/root.sh</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh">[alumno@centos7 oracle-install-18c]$ sudo ./root.sh
+<pre class="src src-sh">[alumno@oraclelinux8 oracle-install]$ sudo ./root.sh
 Performing root user operation.
 
 The following environment variables are set as:
-    <span style="color: #ff6347;">ORACLE_OWNER</span>= alumno
-    <span style="color: #ff6347;">ORACLE_HOME</span>=  /opt/oracle-install
+    ORACLE_OWNER= alumno
+    ORACLE_HOME=  /opt/oracle-install
 
 Enter the full pathname of the local bin directory: [/usr/local/bin]: 
    Copying dbhome to /usr/local/bin ...
@@ -554,7 +554,7 @@ Oracle Trace File Analyzer (TFA - Non Daemon Mode) is available at :
     /opt//oracle-install/suptools/tfa/release/tfa_home/bin/tfactl
 
 Note :
-1. tfactl will use TFA Daemon Mode if TFA already running<span style="color: #729fcf; font-weight: bold;"> in</span> Daemon Mode and user has access to TFA
+1. tfactl will use TFA Daemon Mode if TFA already running<span style="color: #000090; font-weight: bold;"> in</span> Daemon Mode and user has access to TFA
 2. tfactl will configure TFA Non Daemon Mode only if user has no access to TFA Daemon mode or TFA Daemon mode is not installed
 
 OR
@@ -681,12 +681,12 @@ Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this 
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">[alumno@oraclelinux-r8 ~]$ <span style="color: #ff6347;">ORACLE_SID</span>=asir sqlplus / as sysdba                            
+<pre class="src src-bash">[alumno@oraclelinux-r8 ~]$ ORACLE_SID=asir sqlplus / as sysdba                            
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Sep 7 13:48:47 2023                                       
 Version 21.3.0.0.0
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2021, Oracle.  All rights reserved.                                                    
+<span style="color: #000000; font-weight: bold;">Copyright</span> (c) 1982, 2021, Oracle.  All rights reserved.                                                    
 
 
 Connected to:
@@ -697,9 +697,9 @@ SQL&gt; show pdbs;
 
     CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                            
 ---------- ------------------------------ ---------- ----------                                            
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>2 PDB$<span style="color: #ff6347;">SEED</span>                       READ ONLY  NO                                                    
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>3 PDASIR                         READ WRITE NO                                                    
-SQL&gt; alter session set <span style="color: #ff6347;">container</span>=PDASIR
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>2 PDB$SEED                       READ ONLY  NO                                                    
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>3 PDASIR                         READ WRITE NO                                                    
+SQL&gt; alter session set container=PDASIR
   2  ;
 
 Session altered.
@@ -804,8 +804,8 @@ SQL&gt;
 <h3 id="org0000059"><span class="section-number-3">3.5.</span> Cambiar de <i>pluggable database</i></h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=CDB$ROOT;
-<span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">SET</span> container=NOMBREDEPLUGGABLEDATABASE;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #000090; font-weight: bold;">SET</span> container=CDB$ROOT;
+<span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #000090; font-weight: bold;">SET</span> container=NOMBREDEPLUGGABLEDATABASE;
 </pre>
 </div>
 </div>
@@ -916,7 +916,7 @@ Se puede usar también una cadena de conexión
 
     sqlplus sys/alumno@centosprofe.local/asir as sysdba
 
-    sqlplus sys@<span style="color: #ad7fa8; font-style: italic;">\"</span>host:port/service<span style="color: #ad7fa8; font-style: italic;">\"</span> as sysdba
+    sqlplus sys@<span style="color: #008000; font-weight: bold;">\"</span>host:port/service<span style="color: #008000; font-weight: bold;">\"</span> as sysdba
 </pre>
 </div></li>
 </ul>
@@ -936,9 +936,9 @@ Se puede usar también una cadena de conexión
 </ul></li>
 <li>Tras descomprimir, hay que definir la variable <code>LD_LIBRARY_PATH</code> al directorio de instalación
 <ul class="org-ul">
-<li>Otros años ha echo falta también <code>ORACLE_HOME</code></li>
+<li>Otros años ha hecho falta también <code>ORACLE_HOME</code></li>
 </ul></li>
-<li>Puede ser necesaria la libería <code>libaio</code> o <code>libnsl</code></li>
+<li>Puede ser necesaria la librería <code>libaio</code> o <code>libnsl</code></li>
 </ul>
 
 
@@ -956,24 +956,24 @@ See the Instant Client Home Page for more information.
 Unzip the packages into a single directory such as /opt/oracle/instantclient<sub>12</sub><sub>2</sub> that is accessible to your application. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle                     
-    <span style="color: #6c7f6868233c;"> </span>unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
+<pre class="src src-bash">    <span style="color: #acccacccaccc;"> </span>cd /opt/oracle                     
+    <span style="color: #acccacccaccc;"> </span>unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
 </pre>
 </div></li>
 <li><p>
 Create the appropriate libclntsh.so and libocci.so links for the version of Instant Client. For example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">cd</span> /opt/oracle/instantclient_12_2
-    <span style="color: #6c7f6868233c;"> </span>ln -s libclntsh.so.12.1 libclntsh.so
-    <span style="color: #6c7f6868233c;"> </span>ln -s libocci.so.12.1 libocci.so
+<pre class="src src-bash">    <span style="color: #acccacccaccc;"> </span>cd /opt/oracle/instantclient_12_2
+    <span style="color: #acccacccaccc;"> </span>ln -s libclntsh.so.12.1 libclntsh.so
+    <span style="color: #acccacccaccc;"> </span>ln -s libocci.so.12.1 libocci.so
 </pre>
 </div></li>
 <li><p>
 Install the libaio package, for example on Oracle Linux, run this as the root user:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span>yum install libaio
+<pre class="src src-bash">    <span style="color: #acccacccaccc;"> </span>yum install libaio
 </pre>
 </div>
 <p>
@@ -983,7 +983,7 @@ On some Linux distributions the package is called libaio1.
 Set the environment variable LD<sub>LIBRARY</sub><sub>PATH</sub> to the directory created in Step 2, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">LD_LIBRARY_PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">LD_LIBRARY_PATH</span>
+<pre class="src src-bash">    <span style="color: #acccacccaccc;"> </span>export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
 </pre>
 </div>
 <p>
@@ -993,7 +993,7 @@ Alternatively, add this path to an ldconfig configuration file if there is no ot
 To use supplied binaries such as SQL*Plus, update your PATH environment variable, for example:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf;">export</span> <span style="color: #ff6347;">PATH</span>=/opt/oracle/instantclient_12_2:$<span style="color: #ff6347;">PATH</span>
+<pre class="src src-bash">    <span style="color: #acccacccaccc;"> </span>export PATH=/opt/oracle/instantclient_12_2:$PATH
 </pre>
 </div></li>
 <li>Start your application.</li>
@@ -1011,12 +1011,12 @@ To use supplied binaries such as SQL*Plus, update your PATH environment variable
 <li>Pondremos IP estática
 <ul class="org-ul">
 <li><p>
-<code>etc/sysconfig/network-scripts/ifcfg-enp0s3</code>
+<code>/etc/sysconfig/network-scripts/ifcfg-enp0s3</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #ff6347;">BOOTPROTO</span>=none
-    <span style="color: #ff6347;">PREFIX</span>=16
-    <span style="color: #ff6347;">IPADDR</span>=10.1.35.xxx
+<pre class="src src-sh">    BOOTPROTO=none
+    PREFIX=16
+    IPADDR=10.1.35.xxx
 </pre>
 </div></li>
 <li><a href="https://docs.google.com/spreadsheets/d/1onVe6zpdLe_MWj4k5iQ7bGc5K43kVZ9fhMONyG9whMU/edit#">Lista de direcciones</a></li>
@@ -1036,15 +1036,15 @@ Se necesitan las variables <code>ORACLE_HOME</code>, <code>ORACLE_SID</code>, <c
 <li>Se definen <b>manualmente</b> con ayuda del script <code>oraenv</code>:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">  <span style="color: #729fcf;">source</span> oraenv
+<pre class="src src-sh">  source oraenv
 </pre>
 </div></li>
 <li><p>
 Arrancar y parar la base de datos
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">  dbstart $<span style="color: #ff6347;">ORACLE_HOME</span>
-  dbshut $<span style="color: #ff6347;">ORACLE_HOME</span>
+<pre class="src src-sh">  dbstart $ORACLE_HOME
+  dbshut $ORACLE_HOME
 </pre>
 </div></li>
 <li><p>
@@ -1066,23 +1066,23 @@ Se puede hacer <i>a mano</i>. Lo veremos en el próximo tema.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">[alumno@centos7 ~]$ export <span style="color: #ff6347;">ORACLE_SID</span>=asir
-[alumno@centos7 ~]$ sqlplus / as sysdba
+<pre class="src src-sh">[alumno@oraclelinux8 ~]$ export ORACLE_SID=asir
+[alumno@oraclelinux8 ~]$ sqlplus / as sysdba
 
-SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Sep 7 13:48:47 2023
 
-<span style="color: #edd400; font-weight: bold;">Copyright</span> (c) 1982, 2014, Oracle.  All rights reserved.
+<span style="color: #000000; font-weight: bold;">Copyright</span> (c) 1982, 2021, Oracle.  All rights reserved.
 
 Connected to an idle instance.
 
 SQL&gt; startup open
 ORACLE instance started.
 
-Total System Global Area 1207959552 bytes
-Fixed Size                  2923776 bytes
-Variable Size             822084352 bytes
-Database Buffers          369098752 bytes
-Redo Buffers               13852672 bytes
+Total System Global Area 2147483648 bytes
+Fixed Size                  9535776 bytes
+Variable Size             536870912 bytes
+Database Buffers         1577058304 bytes
+Redo Buffers               23887872 bytes
 Database mounted.
 Database opened.
 SQL&gt; 
@@ -1277,12 +1277,6 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 <li><a href="./asgbd-1-instalar-oracle.wp.html">Página web</a></li>
 <li><a href="./asgbd-1-instalar-oracle.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -1290,7 +1284,7 @@ Nada de esto es <i>directamente</i> bases de datos&#x2026;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-12-01 lun 10:29</p>
+<p class="date">Created: 2026-07-23 jue 14:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

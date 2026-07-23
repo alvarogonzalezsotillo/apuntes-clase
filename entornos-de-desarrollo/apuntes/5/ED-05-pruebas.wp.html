@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-05-06 mié 11:36 -->
+<!-- 2026-07-23 jue 14:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diseño e implementación de pruebas</title>
@@ -456,7 +456,7 @@ window.addEventListener("load",()=>{
 La complejidad final es el número de áreas:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  <span style="color: #a0522d;">Complejidad</span> = Aristas - Nodos + 2*NodosFinales
+<pre class="src src-bash">  Complejidad = Aristas - Nodos + 2*NodosFinales
 </pre>
 </div></li>
 <li>Más complejo implica más difícil de probar (y de entender)</li>
@@ -475,14 +475,14 @@ Miraremos la cobertura de decisiones
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-java">    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">calcularMaximo</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span>) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (a &gt; b &amp;&amp; a &gt; c) { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 1
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> a;
-    <span style="color: #acccacccffff;"> </span>   } <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (b &gt; c) { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 2
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> b;
-    <span style="color: #acccacccffff;"> </span>   } <span style="color: #a020f0;">else</span> { <span style="color: #b22222;">// </span><span style="color: #b22222;">Camino 3
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> c;
-    <span style="color: #acccacccffff;"> </span>   }
+<pre class="src src-java">    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">int</span> <span style="color: #000000; font-weight: bold;">calcularMaximo</span>(<span style="color: #20999d;">int</span> a, <span style="color: #20999d;">int</span> b, <span style="color: #20999d;">int</span> c) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (a &gt; b &amp;&amp; a &gt; c) { <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Camino 1
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> a;
+    <span style="color: #acccacccaccc;"> </span>   } <span style="color: #000090; font-weight: bold;">else</span> <span style="color: #000090; font-weight: bold;">if</span> (b &gt; c) { <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Camino 2
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> b;
+    <span style="color: #acccacccaccc;"> </span>   } <span style="color: #000090; font-weight: bold;">else</span> { <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Camino 3
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> c;
+    <span style="color: #acccacccaccc;"> </span>   }
     }
 </pre>
 </div>
@@ -593,7 +593,7 @@ Miraremos la cobertura de decisiones
 <h3 id="org0000044"><span class="section-number-3">4.1.</span> Clases de equivalencia</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
-<li>Los valores de entrada suelen se de varias <i>clases</i></li>
+<li>Los valores de entrada suelen ser de varias <i>clases</i></li>
 <li>Hacemos una prueba por cada <i>clase</i></li>
 <li>Ejemplo:
 <ul class="org-ul">
@@ -678,7 +678,7 @@ Miraremos la cobertura de decisiones
 <li>Las clases de JUnit están en <a href="https://github.com/junit-team/junit4/wiki/Download-and-Install">su fichero jar</a>. También necesita el jar de <a href="https://github.com/hamcrest/JavaHamcrest">Hamcrest</a>.
 <ul class="org-ul">
 <li>Esto es para la versión 4.x</li>
-<li>La versión <a href="https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies">6 es bastante más complicad</a>a (para este curso, no compensa)</li>
+<li>La versión <a href="https://docs.junit.org/6.0.3/appendix.html#dependency-metadata-dependencies">6 es bastante más complicada</a> (para este curso, no compensa)</li>
 </ul></li>
 <li>Intellij: añadir los ficheros jar como librerías del proyecto/módulo</li>
 <li>En proyectos reales: aconsejable utilizar maven o <a href="https://github.com/junit-team/junit4/wiki/Use-with-Gradle">gradle</a></li>
@@ -697,18 +697,18 @@ Miraremos la cobertura de decisiones
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.*;
-<span style="color: #a020f0;">import</span> <span style="color: #a020f0;">static</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.<span style="color: #008b8b;">Assert</span>.*;
+<pre class="src src-java"><span style="color: #000090; font-weight: bold;">import</span> <span style="color: #5974ab; font-weight: bold;">org</span>.<span style="color: #5974ab; font-weight: bold;">junit</span>.*;
+<span style="color: #000090; font-weight: bold;">import</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #5974ab; font-weight: bold;">org</span>.<span style="color: #5974ab; font-weight: bold;">junit</span>.<span style="color: #5974ab; font-weight: bold;">Assert</span>.*;
 
-<span style="color: #a020f0;">import</span> <span style="color: #008b8b;">example</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Calculator</span>;
+<span style="color: #000090; font-weight: bold;">import</span> <span style="color: #5974ab; font-weight: bold;">example</span>.<span style="color: #5974ab; font-weight: bold;">util</span>.<span style="color: #20999d;">Calculator</span>;
 
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">CalculatorTest</span> {
+<span style="color: #000090; font-weight: bold;">class</span> <span style="color: #20999d;">CalculatorTest</span> {
 
-    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">final</span> <span style="color: #228b22;">Calculator</span> <span style="color: #a0522d;">calculator</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Calculator</span>();
+    <span style="color: #000090; font-weight: bold;">private</span> <span style="color: #000090; font-weight: bold;">final</span> <span style="color: #20999d;">Calculator</span> calculator = <span style="color: #000090; font-weight: bold;">new</span> <span style="color: #20999d;">Calculator</span>();
 
-    <span style="color: #008b8b;">@Test</span>
-    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">addition</span>() {
-    <span style="color: #acccacccffff;"> </span>   assertEquals(2, calculator.add(1, 1));
+    <span style="color: #5974ab; font-weight: bold;">@Test</span>
+    <span style="color: #20999d;">void</span> <span style="color: #000000; font-weight: bold;">addition</span>() {
+    <span style="color: #acccacccaccc;"> </span>   assertEquals(2, calculator.add(1, 1));
     }
 }
 </pre>
@@ -723,14 +723,14 @@ Miraremos la cobertura de decisiones
 Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-java">  assertArrayEquals(<span style="color: #228b22;">expected</span>, <span style="color: #228b22;">actual</span>)
+<pre class="src src-java">  assertArrayEquals(<span style="color: #20999d;">expected</span>, <span style="color: #20999d;">actual</span>)
   assertEquals(expected, actual)
-  assertFalse(<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">condition</span>)
+  assertFalse(<span style="color: #20999d;">boolean</span> condition)
   assertNotNull(Object object)
-  assertNotSame(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">unexpected</span>, Object actual)
+  assertNotSame(<span style="color: #20999d;">Object</span> unexpected, Object actual)
   assertNull(Object object)
-  assertSame(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">expected</span>, Object actual)
-  assertTrue(<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">condition</span>)
+  assertSame(<span style="color: #20999d;">Object</span> expected, Object actual)
+  assertTrue(<span style="color: #20999d;">boolean</span> condition)
   fail(String message)
 </pre>
 </div></li>
@@ -741,9 +741,9 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <h3 id="org000005d"><span class="section-number-3">6.4.</span> Excepciones</h3>
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
-<pre class="src src-java">    <span style="color: #008b8b;">@Test</span>(expected = EmailFormatException.<span style="color: #a020f0;">class</span>)
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">testEmaiVacio</span>() <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">EmailFormatException</span> {
-    <span style="color: #acccacccffff;"> </span>   EmailSeparator.separaEmail(<span style="color: #8b2252;">""</span>);
+<pre class="src src-java">    <span style="color: #5974ab; font-weight: bold;">@Test</span>(expected = EmailFormatException.<span style="color: #000090; font-weight: bold;">class</span>)
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">void</span> <span style="color: #000000; font-weight: bold;">testEmaiVacio</span>() <span style="color: #000090; font-weight: bold;">throws</span> <span style="color: #20999d;">EmailFormatException</span> {
+    <span style="color: #acccacccaccc;"> </span>   EmailSeparator.separaEmail(<span style="color: #008000; font-weight: bold;">""</span>);
     }
  
 </pre>
@@ -795,17 +795,17 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 
 <tr>
 <td class="org-left">@BeforeClass</td>
-<td class="org-left">Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase.</td>
+<td class="org-left">Se aplica a un método static para indicar que se ejecuta antes que todos los métodos de prueba de la clase.</td>
 </tr>
 
 <tr>
-<td class="org-left">@AtterClass</td>
-<td class="org-left">Se aplica a un método static para indicar que se ejecuta antes que todos lo métodos de prueba de la clase.</td>
+<td class="org-left">@AfterClass</td>
+<td class="org-left">Se aplica a un método static para indicar que se ejecuta después de todos los métodos de prueba de la clase.</td>
 </tr>
 
 <tr>
 <td class="org-left">@Ignore</td>
-<td class="org-left">Ese aplica a un método de prueba para evitar esa prueba</td>
+<td class="org-left">Se aplica a un método de prueba para evitar esa prueba</td>
 </tr>
 </tbody>
 </table>
@@ -815,48 +815,48 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <h3 id="org0000063"><span class="section-number-3">6.6.</span> Ejemplo: email</h3>
 <div class="outline-text-3" id="text-6-6">
 <div class="org-src-container">
-<pre class="src src-java">    <span style="color: #8b2252;">/**
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* Separa un correo electr&#243;nico en dos partes: nombre de usuario y dominio.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> email La direcci&#243;n de correo electr&#243;nico a separar.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">* </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> Un array de cadenas donde el primer elemento 
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         es el nombre de usuario y el segundo es el dominio.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*         Devuelve null si el formato del correo no es correcto.
-    </span><span style="color: #acccacccffff;"> </span><span style="color: #8b2252;">*/</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span>[] <span style="color: #0000ff;">separaEmail</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">email</span>) {
-    <span style="color: #acccacccffff;"> </span>   ...
+<pre class="src src-java">    <span style="color: #808080;">/**
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* Separa un correo electr&#243;nico en dos partes: nombre de usuario y dominio.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@param</span><span style="color: #808080;"> email La direcci&#243;n de correo electr&#243;nico a separar.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">* </span><span style="color: #5974ab; font-weight: bold;">@return</span><span style="color: #808080;"> Un array de cadenas donde el primer elemento 
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*         es el nombre de usuario y el segundo es el dominio.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*         Devuelve null si el formato del correo no es correcto.
+    </span><span style="color: #acccacccaccc;"> </span><span style="color: #808080;">*/</span>
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">String</span>[] <span style="color: #000000; font-weight: bold;">separaEmail</span>(<span style="color: #20999d;">String</span> email) {
+    <span style="color: #acccacccaccc;"> </span>   ...
     }
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-java"> <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">EmailSeparator</span> {
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span>[] <span style="color: #0000ff;">separaEmail</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">email</span>) {
+<pre class="src src-java"> <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">class</span> <span style="color: #20999d;">EmailSeparator</span> {
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">String</span>[] <span style="color: #000000; font-weight: bold;">separaEmail</span>(<span style="color: #20999d;">String</span> email) {
      
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Detectar la posici&#243;n del s&#237;mbolo '@'
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">int</span> <span style="color: #a0522d;">atIndex</span> = -1;
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; email.length(); i++) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">if</span> (email.charAt(i) == <span style="color: #8b2252;">'@'</span>) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   atIndex = i;
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   }
-    <span style="color: #acccacccffff;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Detectar la posici&#243;n del s&#237;mbolo '@'
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #20999d;">int</span> atIndex = -1;
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">for</span> (<span style="color: #20999d;">int</span> i = 0; i &lt; email.length(); i++) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (email.charAt(i) == <span style="color: #008000; font-weight: bold;">'@'</span>) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   atIndex = i;
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   }
      
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Si no se encontr&#243; '@' o est&#225; al principio o al final
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (atIndex &lt;= 0 || atIndex &gt;= email.length() - 1) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
-    <span style="color: #acccacccffff;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Si no se encontr&#243; '@' o est&#225; al principio o al final
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (atIndex &lt;= 0 || atIndex &gt;= email.length() - 1) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #5974ab; font-weight: bold;">null</span>;
+    <span style="color: #acccacccaccc;"> </span>   }
      
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Separar el nombre de usuario y el dominio
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">String</span> <span style="color: #a0522d;">username</span> = email.substring(0, atIndex);
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #228b22;">String</span> <span style="color: #a0522d;">domain</span> = email.substring(atIndex + 1);
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Separar el nombre de usuario y el dominio
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #20999d;">String</span> username = email.substring(0, atIndex);
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #20999d;">String</span> domain = email.substring(atIndex + 1);
      
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Verificar que el dominio no est&#233; vac&#237;o
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">if</span> (domain.isEmpty()) {
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
-    <span style="color: #acccacccffff;"> </span>   }
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Verificar que el dominio no est&#233; vac&#237;o
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">if</span> (domain.isEmpty()) {
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #5974ab; font-weight: bold;">null</span>;
+    <span style="color: #acccacccaccc;"> </span>   }
      
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">Devolver el resultado en un array
-</span>    <span style="color: #acccacccffff;"> </span>   <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">String</span>[]{username, domain};
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">Devolver el resultado en un array
+</span>    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #000090; font-weight: bold;">new</span> <span style="color: #20999d;">String</span>[]{username, domain};
     }
 }
 </pre>
@@ -906,11 +906,11 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <h3 id="org000006c"><span class="section-number-3">6.9.</span> Ejercicio: puntos</h3>
 <div class="outline-text-3" id="text-6-9">
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Punto</span>{
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>;
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span>;
+<pre class="src src-java"><span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">class</span> <span style="color: #20999d;">Punto</span>{
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">int</span> x;
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #20999d;">int</span> y;
 
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Punto</span>[][] <span style="color: #0000ff;">masCercanos</span>( <span style="color: #228b22;">Punto</span>[] <span style="color: #a0522d;">puntos</span> ){
+    <span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">Punto</span>[][] <span style="color: #000000; font-weight: bold;">masCercanos</span>( <span style="color: #20999d;">Punto</span>[] puntos ){
     }
 }
 </pre>
@@ -941,18 +941,18 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 <h3 id="org000006f"><span class="section-number-3">6.10.</span> Ejercicio: <a href="https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a#Sistema_nacional">matrículas</a></h3>
 <div class="outline-text-3" id="text-6-10">
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #8b2252;">/**
+<pre class="src src-java"><span style="color: #808080;">/**
  * Decide si una matr&#237;cula de coche (tipo 9999ZZZ) es anterior a otra.  
  * No importan may&#250;sculas y min&#250;sculas.
  * Tampoco importa si hay separaci&#243;n por espacios entre los n&#250;meros y las letras  
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m1 Matr&#237;cula espa&#241;ola actual 
- * </span><span style="color: #008b8b;">@param</span><span style="color: #8b2252;"> m2 Matr&#237;cula espa&#241;ola actual
- * </span><span style="color: #008b8b;">@return</span><span style="color: #8b2252;"> "iguales" si son iguales
+ * </span><span style="color: #5974ab; font-weight: bold;">@param</span><span style="color: #808080;"> m1 Matr&#237;cula espa&#241;ola actual 
+ * </span><span style="color: #5974ab; font-weight: bold;">@param</span><span style="color: #808080;"> m2 Matr&#237;cula espa&#241;ola actual
+ * </span><span style="color: #5974ab; font-weight: bold;">@return</span><span style="color: #808080;"> "iguales" si son iguales
  *         "menor" si m1 es anterior a m2
  *         "mayor" si m1 es posterior a m2
  *         "error" si m1 o m2 no son matr&#237;culas v&#225;lidas
  */</span>
-<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">comparaMatr&#237;cula</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">m1</span>, <span style="color: #228b22;">String</span> <span style="color: #a0522d;">m2</span>){
+<span style="color: #000090; font-weight: bold;">public</span> <span style="color: #000090; font-weight: bold;">static</span> <span style="color: #20999d;">String</span> <span style="color: #000000; font-weight: bold;">comparaMatr&#237;cula</span>(<span style="color: #20999d;">String</span> m1, <span style="color: #20999d;">String</span> m2){
     ....
 }  
 </pre>
@@ -1002,7 +1002,7 @@ Todas en <a href="https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html">ht
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-05-06 mié 11:36</p>
+<p class="date">Created: 2026-07-23 jue 14:09</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:05 -->
+<!-- 2026-07-23 jue 14:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y SQL</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -254,8 +254,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
+</style>
 <div id="outline-container-org0000002" class="outline-2">
 <h2 id="org0000002"><span class="section-number-2">1.</span> API, <i>driver</i> y PDO</h2>
 <div class="outline-text-2" id="text-1">
@@ -275,8 +284,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000005" class="outline-2">
 <h2 id="org0000005"><span class="section-number-2">2.</span> <code>mysqli</code>: API orientada a objetos o procedimental</h2>
 <div class="outline-text-2" id="text-2">
@@ -287,23 +294,22 @@ window.addEventListener("load",()=>{
 <li>Como funciones que reciben una conexión</li>
 </ul></li>
 <li><p>
-No se recomiena mezlarlas
+No se recomienda mezclarlas
 </p>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #888a85;">// </span><span style="color: #888a85;">ORIENTADO A OBJETOS</span>
-$<span style="color: #ff6347;">conexion</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">mysqli</span>(<span style="color: #ad7fa8; font-style: italic;">"ejemplo.com"</span>, <span style="color: #ad7fa8; font-style: italic;">"usuario"</span>, <span style="color: #ad7fa8; font-style: italic;">"contrase&#241;a"</span>, <span style="color: #ad7fa8; font-style: italic;">"basedatos"</span>);
-$<span style="color: #ff6347;">conexion</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"DROP TABLE IF EXISTS test"</span>);
+<pre class="src src-php">// ORIENTADO A OBJETOS
+$conexion = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$conexion-&gt;query("DROP TABLE IF EXISTS test");
 
-<span style="color: #888a85;">// </span><span style="color: #888a85;">PROCEDIMENTAL</span>
-$<span style="color: #ff6347;">conexion</span> = mysqli_connect(<span style="color: #ad7fa8; font-style: italic;">"ejemplo.com"</span>, <span style="color: #ad7fa8; font-style: italic;">"usuario"</span>, <span style="color: #ad7fa8; font-style: italic;">"contrase&#241;a"</span>, <span style="color: #ad7fa8; font-style: italic;">"basedatos"</span>);
-mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: #ad7fa8; font-style: italic;">"DROP TABLE IF EXISTS test"</span>);
+// PROCEDIMENTAL
+$conexion = mysqli_connect("ejemplo.com", "usuario", "contraseña", "basedatos");
+mysqli_query($conexion,"DROP TABLE IF EXISTS test");
 </pre>
 </div></li>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000b" class="outline-2">
 <h2 id="org000000b"><span class="section-number-2">3.</span> <a href="https://www.php.net/manual/es/mysqli.quickstart.connections.php">Conexión</a></h2>
 <div class="outline-text-2" id="text-3">
@@ -320,7 +326,6 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 <li>Al finalizar, <code>mysqli_close</code></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000008" class="outline-3">
 <h3 id="org0000008"><span class="section-number-3">3.1.</span> Conexiones persistentes</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -335,8 +340,6 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000011" class="outline-2">
 <h2 id="org0000011"><span class="section-number-2">4.</span> Sentencias DDL</h2>
 <div class="outline-text-2" id="text-4">
@@ -344,17 +347,16 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 <li>Con el método <code>query</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">conn</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">'</span>
-<span style="color: #ad7fa8; font-style: italic;">    create table clientes(</span>
-<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> id int auto_increment primary key,</span>
-<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> nombre varchar(255),</span>
-<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;"> apellidos varchar(255)</span>
-<span style="color: #ad7fa8; font-style: italic;">    );</span>
-<span style="color: #ad7fa8; font-style: italic;">'</span>);
+<pre class="src src-php">$conn-&gt;query('
+    create table clientes(
+      id int auto_increment primary key,
+      nombre varchar(255),
+      apellidos varchar(255)
+    );
+');
 </pre>
 </div>
 </div>
-
 <div id="outline-container-org000000e" class="outline-3">
 <h3 id="org000000e"><span class="section-number-3">4.1.</span> Ejercicios</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -365,7 +367,6 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000023" class="outline-2">
 <h2 id="org0000023"><span class="section-number-2">5.</span> Sentencias DML</h2>
 <div class="outline-text-2" id="text-5">
@@ -386,80 +387,74 @@ mysqli_query($<span style="color: #ff6347;">conexion</span>,<span style="color: 
 </ol></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000014" class="outline-3">
 <h3 id="org0000014"><span class="section-number-3">5.1.</span> Todo en memoria del cliente</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"SELECT id FROM test ORDER BY id ASC"</span>);
+<pre class="src src-php">$resultado = $mysqli-&gt;query("SELECT id FROM test ORDER BY id ASC");
 
-$<span style="color: #ff6347;">resultado</span>-&gt;data_seek(0);
-<span style="color: #729fcf; font-weight: bold;">while</span> ($<span style="color: #ff6347;">fila</span> = $<span style="color: #ff6347;">resultado</span>-&gt;fetch_assoc()) {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">" id = "</span> . $<span style="color: #ff6347;">fila</span>[<span style="color: #ad7fa8; font-style: italic;">'id'</span>] . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+$resultado-&gt;data_seek(0);
+while ($fila = $resultado-&gt;fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
 }
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000017" class="outline-3">
 <h3 id="org0000017"><span class="section-number-3">5.2.</span> Todo en memoria del cliente, en un array</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"SELECT id FROM test ORDER BY id ASC"</span>);
+<pre class="src src-php">$resultado = $mysqli-&gt;query("SELECT id FROM test ORDER BY id ASC");
 
-$<span style="color: #ff6347;">filas</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;fetch_all(<span style="color: #8ae234;">MYSQLI_ASSOC</span>);
-<span style="color: #729fcf; font-weight: bold;">foreach</span> ($<span style="color: #ff6347;">filas</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">fila</span>) {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">" id = "</span> . $<span style="color: #ff6347;">fila</span>[<span style="color: #ad7fa8; font-style: italic;">'id'</span>] . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+$filas = $resultado-&gt;fetch_all(MYSQLI_ASSOC);
+foreach ($filas as $fila) {
+    echo " id = " . $fila['id'] . "\n";
 }
 
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001a" class="outline-3">
 <h3 id="org000001a"><span class="section-number-3">5.3.</span> Como <i>stream</i>, sin liberar al servidor</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">mysqli</span>-&gt;real_query(<span style="color: #ad7fa8; font-style: italic;">"SELECT id FROM test ORDER BY id ASC"</span>);
-$<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;">mysqli</span>-&gt;use_result();
+<pre class="src src-php">$mysqli-&gt;real_query("SELECT id FROM test ORDER BY id ASC");
+$resultado = $mysqli-&gt;use_result();
 
-<span style="color: #729fcf; font-weight: bold;">while</span> ($<span style="color: #ff6347;">fila</span> = $<span style="color: #ff6347;">resultado</span>-&gt;fetch_assoc()) {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">" id = "</span> . $<span style="color: #ff6347;">fila</span>[<span style="color: #ad7fa8; font-style: italic;">'id'</span>] . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+while ($fila = $resultado-&gt;fetch_assoc()) {
+    echo " id = " . $fila['id'] . "\n";
 }
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000001d" class="outline-3">
 <h3 id="org000001d"><span class="section-number-3">5.4.</span> Control de errores</h3>
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">result</span> = $<span style="color: #ff6347;">sql</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"select ..."</span>);
-<span style="color: #729fcf; font-weight: bold;">if</span>($<span style="color: #ff6347;">result</span>) {
-    <span style="color: #888a85;">// </span><span style="color: #888a85;">HA FUNCIONADO</span>
+<pre class="src src-php">$result = $conexion-&gt;query("select ...");
+if($result) {
+    // HA FUNCIONADO
 }
-<span style="color: #729fcf; font-weight: bold;">else</span> {
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"C&#243;digo de error mysql: </span><span style="color: #ff6347;">$sql</span><span style="color: #ad7fa8; font-style: italic;">-&gt;errno"</span>;
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Mensaje de error mysql: </span><span style="color: #ff6347;">$sql</span><span style="color: #ad7fa8; font-style: italic;">-&gt;error"</span>;
+else {
+    echo "Código de error mysql: $conexion-&gt;errno";
+    echo "Mensaje de error mysql: $conexion-&gt;error";
 }
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #729fcf; font-weight: bold;">try</span>{
-    $<span style="color: #ff6347;">sql</span>-&gt;query( <span style="color: #ad7fa8; font-style: italic;">"create ..."</span>);
-    <span style="color: #888a85;">// </span><span style="color: #888a85;">HA FUNCIONADO</span>
+<pre class="src src-php">try{
+    $conexion-&gt;query( "create ...");
+    // HA FUNCIONADO
 }
-<span style="color: #729fcf; font-weight: bold;">catch</span>(<span style="color: #8ae234; font-weight: bold;">Exception</span> $<span style="color: #ff6347;">error</span>){
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Error SQL con try-catch:"</span> . htmlspecialchars( $<span style="color: #ff6347;">error</span>-&gt;getMessage() ) . <span style="color: #ad7fa8; font-style: italic;">"&lt;br&gt;\n"</span>;
-    <span style="color: #729fcf; font-weight: bold;">echo</span> <span style="color: #ad7fa8; font-style: italic;">"Error num&#233;rico SQL:"</span> . $<span style="color: #ff6347;">conexion</span>-&gt;<span style="color: #ff6347;">errno</span> . <span style="color: #ad7fa8; font-style: italic;">"&lt;br&gt;\n"</span>;
-    <span style="color: #729fcf; font-weight: bold;">foreach</span>( $<span style="color: #ff6347;">conexion</span>-&gt;<span style="color: #ff6347;">error_list</span> <span style="color: #729fcf; font-weight: bold;">as</span> $<span style="color: #ff6347;">error_description</span> ){
-    <span style="color: #6c7f6868233c;"> </span>   var_dump($<span style="color: #ff6347;">error_description</span> );
+catch(Exception $error){
+    echo "Error SQL con try-catch:" . htmlspecialchars( $error-&gt;getMessage() ) . "&lt;br&gt;\n";
+    echo "Error numérico SQL:" . $conexion-&gt;errno . "&lt;br&gt;\n";
+    foreach( $conexion-&gt;error_list as $error_description ){
+        var_dump($error_description );
     }
 }
 </pre>
@@ -471,7 +466,6 @@ $<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;"
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000020" class="outline-3">
 <h3 id="org0000020"><span class="section-number-3">5.5.</span> Ejercicios</h3>
 <div class="outline-text-3" id="text-5-5">
@@ -482,8 +476,6 @@ $<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;"
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000033" class="outline-2">
 <h2 id="org0000033"><span class="section-number-2">6.</span> Sentencias preparadas</h2>
 <div class="outline-text-2" id="text-6">
@@ -492,11 +484,11 @@ $<span style="color: #ff6347;">resultado</span> = $<span style="color: #ff6347;"
 <ul class="org-ul">
 <li>Los datos a seleccionar/borrar/actualizar dependen de parámetros</li>
 </ul></li>
-<li>Existen la tentación de constuir <i>strings</i> con las sentencias</li>
+<li>Existe la tentación de construir <i>strings</i> con las sentencias</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">id</span> = $<span style="color: #ff6347;">_GET</span>[<span style="color: #ad7fa8; font-style: italic;">"id"</span>];
-$<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"delete from USUARIOS where id='</span><span style="color: #ff6347;">$id</span><span style="color: #ad7fa8; font-style: italic;">'"</span>);
+<pre class="src src-php">$id = $_GET["id"];
+$mysqli-&gt;query("delete from USUARIOS where id='$id'");
 </pre>
 </div>
 
@@ -522,7 +514,6 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7f
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000027" class="outline-3">
 <h3 id="org0000027"><span class="section-number-3">6.1.</span> <code>prepare</code>, <code>bind</code></h3>
 <div class="outline-text-3" id="text-6-1">
@@ -545,37 +536,36 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7f
 
 
 <div class="org-src-container">
-<pre class="src src-php"> <span style="color: #888a85;">// </span><span style="color: #888a85;">prepare sql and bind parameters</span>
-  $<span style="color: #ff6347;">stmt</span> = $<span style="color: #ff6347;">conn</span>-&gt;prepare(<span style="color: #ad7fa8; font-style: italic;">"</span>
-<span style="color: #ad7fa8; font-style: italic;">    INSERT INTO MyGuests (firstname, lastname, email)</span>
-<span style="color: #ad7fa8; font-style: italic;">    VALUES (?, ?, ?)"</span>
+<pre class="src src-php"> // prepare sql and bind parameters
+  $stmt = $conn-&gt;prepare("
+    INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES (?, ?, ?)"
   );
 
-  $<span style="color: #ff6347;">firstname</span> = <span style="color: #ad7fa8; font-style: italic;">"John"</span>;
-  $<span style="color: #ff6347;">lastname</span> = <span style="color: #ad7fa8; font-style: italic;">"Doe"</span>;
-  $<span style="color: #ff6347;">email</span> = <span style="color: #ad7fa8; font-style: italic;">"john@example.com"</span>;
-  stmt-&gt;bind_param(<span style="color: #ad7fa8; font-style: italic;">"sss"</span>, $<span style="color: #ff6347;">firstname</span>, $<span style="color: #ff6347;">lastname</span>, $<span style="color: #ff6347;">email</span>);
-  $<span style="color: #ff6347;">stmt</span>-&gt;execute();
+  $firstname = "John";
+  $lastname = "Doe";
+  $email = "john@example.com";
+  $stmt-&gt;bind_param("sss", $firstname, $lastname, $email);
+  $stmt-&gt;execute();
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-php">    $<span style="color: #ff6347;">stmt</span> = $<span style="color: #ff6347;">conexion</span>-&gt;prepare(<span style="color: #ad7fa8; font-style: italic;">"select firstname, lastname, email</span>
-<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;">                           from MyGuests</span>
-<span style="color: #ad7fa8; font-style: italic;">    </span><span style="color: #6c7f6868233c;"> </span><span style="color: #ad7fa8; font-style: italic;">                           where email like ?"</span>);
-    $<span style="color: #ff6347;">stmt</span>-&gt;bind_param(<span style="color: #ad7fa8; font-style: italic;">"s"</span>,$<span style="color: #ff6347;">filtro_email</span>);
-    $<span style="color: #ff6347;">stmt</span>-&gt;execute();
-    $<span style="color: #ff6347;">result</span> = $<span style="color: #ff6347;">stmt</span>-&gt;get_result();
+<pre class="src src-php">    $stmt = $conexion-&gt;prepare("select firstname, lastname, email
+                                from MyGuests
+                                where email like ?");
+    $stmt-&gt;bind_param("s",$filtro_email);
+    $stmt-&gt;execute();
+    $result = $stmt-&gt;get_result();
 
-    <span style="color: #729fcf; font-weight: bold;">while</span> ($<span style="color: #ff6347;">row</span> = $<span style="color: #ff6347;">result</span>-&gt;fetch_assoc()) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #888a85;">// </span><span style="color: #888a85;">Igual que con conexion-&gt;query()</span>
-    <span style="color: #6c7f6868233c;"> </span>   ...
+    while ($row = $result-&gt;fetch_assoc()) {
+        // Igual que con conexion-&gt;query()
+        ...
     }
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000002a" class="outline-3">
 <h3 id="org000002a"><span class="section-number-3">6.2.</span> Tipos de datos</h3>
 <div class="outline-text-3" id="text-6-2">
@@ -611,7 +601,6 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7f
 </table>
 </div>
 </div>
-
 <div id="outline-container-org000002d" class="outline-3">
 <h3 id="org000002d"><span class="section-number-3">6.3.</span> ¿Y las fechas?</h3>
 <div class="outline-text-3" id="text-6-3">
@@ -626,17 +615,16 @@ $<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7f
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">fecha</span> = date(<span style="color: #ad7fa8; font-style: italic;">'Y-m-d H:i:s'</span>);
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">fecha</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
-$<span style="color: #ff6347;">unix_time</span> = time();
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">unix_time</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
-$<span style="color: #ff6347;">str</span> = strtotime(<span style="color: #ad7fa8; font-style: italic;">'2024-12-06 19:14:40'</span>);
-<span style="color: #729fcf; font-weight: bold;">echo</span> $<span style="color: #ff6347;">str</span> . <span style="color: #ad7fa8; font-style: italic;">"\n"</span>;
+<pre class="src src-php">$fecha = date('Y-m-d H:i:s');
+echo $fecha . "\n";
+$unix_time = time();
+echo $unix_time . "\n";
+$str = strtotime('2024-12-06 19:14:40');
+echo $str . "\n";
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000030" class="outline-3">
 <h3 id="org0000030"><span class="section-number-3">6.4.</span> Ejercicios</h3>
 <div class="outline-text-3" id="text-6-4">
@@ -647,24 +635,22 @@ $<span style="color: #ff6347;">str</span> = strtotime(<span style="color: #ad7fa
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000036" class="outline-2">
 <h2 id="org0000036"><span class="section-number-2">7.</span> Transacciones</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #ff6347;">mysqli</span> = <span style="color: #729fcf; font-weight: bold;">new</span> <span style="color: #8ae234; font-weight: bold;">mysqli</span>(<span style="color: #ad7fa8; font-style: italic;">"ejemplo.com"</span>, <span style="color: #ad7fa8; font-style: italic;">"usuario"</span>, <span style="color: #ad7fa8; font-style: italic;">"contrase&#241;a"</span>, <span style="color: #ad7fa8; font-style: italic;">"basedatos"</span>);
-$<span style="color: #ff6347;">mysqli</span>-&gt;autocommit(<span style="color: #8ae234;">false</span>);
+<pre class="src src-php">$mysqli = new mysqli("ejemplo.com", "usuario", "contraseña", "basedatos");
+$mysqli-&gt;autocommit(false);
 
-$<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"INSERT INTO test(id) VALUES (1)"</span>);
-$<span style="color: #ff6347;">mysqli</span>-&gt;rollback();
+$mysqli-&gt;query("INSERT INTO test(id) VALUES (1)");
+$mysqli-&gt;rollback();
 
-$<span style="color: #ff6347;">mysqli</span>-&gt;query(<span style="color: #ad7fa8; font-style: italic;">"INSERT INTO test(id) VALUES (2)"</span>);
-$<span style="color: #ff6347;">mysqli</span>-&gt;commit();
+$mysqli-&gt;query("INSERT INTO test(id) VALUES (2)");
+$mysqli-&gt;commit();
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-2">
 <h2 id="org0000039"><span class="section-number-2">8.</span> Sobre todo&#x2026;</h2>
 <div class="outline-text-2" id="text-8">
@@ -674,7 +660,6 @@ No hay que desesperar
 </p>
 </div>
 </div>
-
 <div id="outline-container-org000003c" class="outline-2">
 <h2 id="org000003c"><span class="section-number-2">9.</span> Referencias</h2>
 <div class="outline-text-2" id="text-9">
@@ -686,12 +671,6 @@ No hay que desesperar
 <li><a href="./UT05.wp.html">Página web</a></li>
 <li><a href="./UT05.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -699,7 +678,7 @@ No hay que desesperar
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:05</p>
+<p class="date">Created: 2026-07-23 jue 14:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

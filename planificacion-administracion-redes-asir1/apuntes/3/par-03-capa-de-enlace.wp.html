@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-02-04 mié 09:33 -->
+<!-- 2026-07-23 jue 14:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Capa de enlace</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -296,8 +296,6 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-
-
 <div id="outline-container-org0000009" class="outline-2">
 <h2 id="org0000009"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -314,13 +312,12 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Funciones de la capa de enlace</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Sincronización a nivel de trama.</li>
-<li>Control de flujo: las estaciones deben ponerse de acuerdo en el ritmo de trasmisión de datos.</li>
+<li>Control de flujo: las estaciones deben ponerse de acuerdo en el ritmo de transmisión de datos.</li>
 <li>Control de errores: los enlaces no son perfectos. Hay que controlar que no haya errores en la transmisión.</li>
 <li>Direccionamiento: si hay varios posibles destinos, es necesario identificar a quien va dirigida la trama.</li>
 <li>Gestión del enlace:
@@ -332,8 +329,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">1.3.</span> MAC y LLC</h3>
 <div class="outline-text-3" id="text-1-3">
@@ -352,9 +347,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000000c" class="outline-2">
 <h2 id="org000000c"><span class="section-number-2">2.</span> Tramas</h2>
 <div class="outline-text-2" id="text-2">
@@ -375,7 +367,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-2">
 <h2 id="org000000f"><span class="section-number-2">3.</span> Control de flujo</h2>
 <div class="outline-text-2" id="text-3">
@@ -385,7 +376,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000026" class="outline-2">
 <h2 id="org0000026"><span class="section-number-2">4.</span> Acceso al medio</h2>
 <div class="outline-text-2" id="text-4">
@@ -418,7 +408,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000015" class="outline-3">
 <h3 id="org0000015"><span class="section-number-3">4.2.</span> <a href="https://en.wikipedia.org/wiki/Frequency-division_multiplexing">FDM</a></h3>
 <div class="outline-text-3" id="text-4-2">
@@ -434,7 +423,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">4.3.</span> <a href="https://en.wikipedia.org/wiki/Time-division_multiplexing">TDM</a></h3>
 <div class="outline-text-3" id="text-4-3">
@@ -449,7 +437,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000001b" class="outline-3">
 <h3 id="org000001b"><span class="section-number-3">4.4.</span> Paso de testigo</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -467,7 +454,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000001f" class="outline-3">
 <h3 id="org000001f"><span class="section-number-3">4.5.</span> <a href="https://en.wikipedia.org/wiki/Carrier-sense_multiple_access_with_collision_detection">CSMA/CD</a></h3>
 <div class="outline-text-3" id="text-4-5">
@@ -491,7 +477,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000023" class="outline-3">
 <h3 id="org0000023"><span class="section-number-3">4.6.</span> <a href="https://en.wikipedia.org/wiki/Carrier-sense_multiple_access_with_collision_avoidance">CSMA/CA</a></h3>
 <div class="outline-text-3" id="text-4-6">
@@ -502,7 +487,7 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Antes de emitir los datos se envía un <b>RTS</b> (<i>request to send</i>)
 <ul class="org-ul">
-<li>Es un mensaje pequeño, con poca probalibilidad de colisión</li>
+<li>Es un mensaje pequeño, con poca probabilidad de colisión</li>
 </ul></li>
 <li>Un nodo central recibe los RTS y determina quién recibe un <b>CTS</b> (<i>clear to send</i>)</li>
 <li>El que recibe el CTS puede enviar sus datos sin problemas</li>
@@ -518,7 +503,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000003e" class="outline-2">
 <h2 id="org000003e"><span class="section-number-2">5.</span> Control de errores</h2>
 <div class="outline-text-2" id="text-5">
@@ -533,7 +517,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000029" class="outline-3">
 <h3 id="org0000029"><span class="section-number-3">5.1.</span> Errores</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -551,8 +534,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000002f" class="outline-3">
 <h3 id="org000002f"><span class="section-number-3">5.2.</span> Detección de errores</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -570,7 +551,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000002c" class="outline-4">
 <h4 id="org000002c"><span class="section-number-4">5.2.1.</span> Paridad de bloque</h4>
 <div class="outline-text-4" id="text-5-2-1">
@@ -802,8 +782,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000032" class="outline-3">
 <h3 id="org0000032"><span class="section-number-3">5.3.</span> Actividad</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -815,8 +793,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000035" class="outline-3">
 <h3 id="org0000035"><span class="section-number-3">5.4.</span> Distancia de Hamming</h3>
 <div class="outline-text-3" id="text-5-4">
@@ -837,7 +813,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000003b" class="outline-3">
 <h3 id="org000003b"><span class="section-number-3">5.5.</span> <a href="https://es.wikipedia.org/wiki/Verificaci%25C3%25B3n_de_redundancia_c%25C3%25ADclica">CRC</a></h3>
 <div class="outline-text-3" id="text-5-5">
@@ -848,8 +823,6 @@ window.addEventListener("load",()=>{
 <li>Finalmente se descartan los bits añadidos en el transmisor para quedarnos con el mensaje original.</li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000038" class="outline-4">
 <h4 id="org0000038"><span class="section-number-4">5.5.1.</span> ¿Por qué CRC?</h4>
 <div class="outline-text-4" id="text-5-5-1">
@@ -898,7 +871,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000005d" class="outline-2">
 <h2 id="org000005d"><span class="section-number-2">6.</span> Corrección de errores</h2>
 <div class="outline-text-2" id="text-6">
@@ -912,7 +884,6 @@ window.addEventListener("load",()=>{
 <li>Ethernet no corrige errores, pero veremos algunas técnicas que pueden usar otras capas 2</li>
 </ul>
 </div>
-
 <div id="outline-container-org0000041" class="outline-3">
 <h3 id="org0000041"><span class="section-number-3">6.1.</span> Retransmisión</h3>
 <div class="outline-text-3" id="text-6-1">
@@ -923,7 +894,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000054" class="outline-3">
 <h3 id="org0000054"><span class="section-number-3">6.2.</span> Corrección: <a href="https://es.wikipedia.org/wiki/C%25C3%25B3digo_Hamming">Código Hamming</a></h3>
 <div class="outline-text-3" id="text-6-2">
@@ -932,7 +902,7 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li>Tienen distancia 3</li>
 </ul></li>
-<li>Se inluyen bits de paridad de la siguiente forma:
+<li>Se incluyen bits de paridad de la siguiente forma:
 <ul class="org-ul">
 <li>Los bits de las posiciones \(s=2^{p-1}\) son de paridad: 1, 2, 4, 8&#x2026;</li>
 <li>El resto son de datos</li>
@@ -1062,7 +1032,6 @@ window.addEventListener("load",()=>{
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org0000044" class="outline-4">
 <h4 id="org0000044"><span class="section-number-4">6.2.1.</span> Clasificación de códigos de Hamming</h4>
 <div class="outline-text-4" id="text-6-2-1">
@@ -1170,7 +1139,6 @@ window.addEventListener("load",()=>{
 </table>
 </div>
 </div>
-
 <div id="outline-container-org0000047" class="outline-4">
 <h4 id="org0000047"><span class="section-number-4">6.2.2.</span> Ejemplo Hamming(11,7)</h4>
 <div class="outline-text-4" id="text-6-2-2">
@@ -1478,8 +1446,6 @@ Se transmite <code>10001100101</code>
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000004a" class="outline-4">
 <h4 id="org000004a"><span class="section-number-4">6.2.3.</span> Detección de un error con Hamming</h4>
 <div class="outline-text-4" id="text-6-2-3">
@@ -1638,7 +1604,6 @@ Se transmite <code>10001100101</code>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000004e" class="outline-4">
 <h4 id="org000004e"><span class="section-number-4">6.2.4.</span> Ejercicio</h4>
 <div class="outline-text-4" id="text-6-2-4">
@@ -1659,7 +1624,6 @@ Se transmite <code>10001100101</code>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000051" class="outline-4">
 <h4 id="org0000051"><span class="section-number-4">6.2.5.</span> ¿Y si hay más de 1 error?</h4>
 <div class="outline-text-4" id="text-6-2-5">
@@ -1673,8 +1637,6 @@ Se transmite <code>10001100101</code>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000057" class="outline-3">
 <h3 id="org0000057"><span class="section-number-3">6.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-6-3">
@@ -1692,7 +1654,6 @@ Se transmite <code>10001100101</code>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000005a" class="outline-3">
 <h3 id="org000005a"><span class="section-number-3">6.4.</span> Códigos Reed Solomon</h3>
 <div class="outline-text-3" id="text-6-4">
@@ -1709,7 +1670,6 @@ Se transmite <code>10001100101</code>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000062" class="outline-2">
 <h2 id="org0000062"><span class="section-number-2">7.</span> Ejemplo: <a href="https://en.wikipedia.org/wiki/RS-232">RS232</a></h2>
 <div class="outline-text-2" id="text-7">
@@ -1761,7 +1721,7 @@ Ejemplo: <a href="https://xdaforums.com/t/howto-linux-on-xiaomi-mi-box-s-mdz-22-
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-02-04 mié 09:33</p>
+<p class="date">Created: 2026-07-23 jue 14:14</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-04-24 Thu 10:22 -->
+<!-- 2026-07-23 jue 14:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrencia y bloqueos en Oracle</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -249,11 +249,6 @@ window.addEventListener("load",()=>{
 </script>
 
 <style type="text/css">
-@font-face {
-    font-family: Bobbli;
-    src: url("../../../common/bobbli.otf") format("opentype");
-}
-
 // SE USA EN ESTILO BEIGE
 @font-face {
     font-family: 'League Gothic';
@@ -264,10 +259,6 @@ window.addEventListener("load",()=>{
 }
 
 </style>
-
-
-
-
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -278,8 +269,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000000f" class="outline-2">
 <h2 id="org000000f"><span class="section-number-2">2.</span> Propiedades <b>ACID</b></h2>
 <div class="outline-text-2" id="text-2">
@@ -314,7 +303,6 @@ window.addEventListener("load",()=>{
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">2.1.</span> Atomicidad</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -336,7 +324,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">2.2.</span> Consistencia</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -358,8 +345,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">2.3.</span> Aislamiento (<i>isolation</i>)</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -378,8 +363,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">2.4.</span> Durabilidad</h3>
 <div class="outline-text-3" id="text-2-4">
@@ -393,7 +376,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001e" class="outline-2">
 <h2 id="org000001e"><span class="section-number-2">3.</span> Problemas del uso concurrente</h2>
 <div class="outline-text-2" id="text-3">
@@ -422,18 +404,17 @@ window.addEventListener("load",()=>{
 <tr>
 <td class="org-left">Lectura no repetible</td>
 <td class="org-left"><i>Repeatable read</i></td>
-<td class="org-left">Un usuario lee menos filas (o filas cambiadas) en <code>select</code> sucesivas dentro de la misma transaccción</td>
+<td class="org-left">Un usuario lee menos filas (o filas cambiadas) en <code>select</code> sucesivas dentro de la misma transacción</td>
 </tr>
 
 <tr>
 <td class="org-left">Fila fantasma</td>
-<td class="org-left"><i>Phanton read</i></td>
+<td class="org-left"><i>Phantom read</i></td>
 <td class="org-left">Un usuario lee más filas en <code>select</code> sucesivas  dentro de la misma transacción</td>
 </tr>
 </tbody>
 </table>
 </div>
-
 <div id="outline-container-org0000012" class="outline-3">
 <h3 id="org0000012"><span class="section-number-3">3.1.</span> Nivel de aislamiento/concurrencia</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -494,22 +475,18 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000015" class="outline-3">
 <h3 id="org0000015"><span class="section-number-3">3.2.</span> Datos para pruebas de bloqueos</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">ALUMNOS</span>( DNI <span style="color: #228b22;">varchar</span>(10), NOMBRE <span style="color: #228b22;">varchar</span>(10));
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'1'</span>,<span style="color: #8b2252;">'Pepe'</span>);
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'2'</span>,<span style="color: #8b2252;">'Juan'</span>);
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> ALUMNOS <span style="color: #a020f0;">values</span> (<span style="color: #8b2252;">'3'</span>,<span style="color: #8b2252;">'Mar&#237;a'</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">ALUMNOS</span>( DNI <span style="color: #20999d;">varchar</span>(10), NOMBRE <span style="color: #20999d;">varchar</span>(10));
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'1'</span>,<span style="color: #008000; font-weight: bold;">'Pepe'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'2'</span>,<span style="color: #008000; font-weight: bold;">'Juan'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> ALUMNOS <span style="color: #000090; font-weight: bold;">values</span> (<span style="color: #008000; font-weight: bold;">'3'</span>,<span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>);
 </pre>
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">3.3.</span> Lectura no repetible</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -576,9 +553,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </table>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000001b" class="outline-3">
 <h3 id="org000001b"><span class="section-number-3">3.4.</span> Fila fantasma</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -636,8 +610,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000002a" class="outline-2">
 <h2 id="org000002a"><span class="section-number-2">4.</span> Bloqueos</h2>
 <div class="outline-text-2" id="text-4">
@@ -655,8 +627,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000021" class="outline-3">
 <h3 id="org0000021"><span class="section-number-3">4.1.</span> Lectura no repetible bloqueada</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -728,8 +698,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org0000024" class="outline-3">
 <h3 id="org0000024"><span class="section-number-3">4.2.</span> Fila fantasma bloqueada</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -791,8 +759,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org0000027" class="outline-3">
 <h3 id="org0000027"><span class="section-number-3">4.3.</span> Bloqueos no automáticos</h3>
 <div class="outline-text-3" id="text-4-3">
@@ -807,15 +773,13 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <li>Bloqueo de algunas filas:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
-<span style="color: #a020f0;">for</span> <span style="color: #a020f0;">update</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> &lt;una consulta que devuelva algunas filas de una tabla&gt;
+<span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">update</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000002d" class="outline-2">
 <h2 id="org000002d"><span class="section-number-2">5.</span> Ejercicio</h2>
 <div class="outline-text-2" id="text-5">
@@ -825,6 +789,7 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <li>Con <code>for update</code></li>
 <li>Con <code>lock table</code></li>
 <li>Con <code>insert</code></li>
+<li>Con <code>delete</code></li>
 </ul></li>
 <li>Termina esa espera
 <ul class="org-ul">
@@ -834,7 +799,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000030" class="outline-2">
 <h2 id="org0000030"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
@@ -846,12 +810,6 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 <li><a href="./gbd-5-bloqueos-oracle.wp.html">Página web</a></li>
 <li><a href="./gbd-5-bloqueos-oracle.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -859,7 +817,7 @@ Nota: Un nivel de aislamiento soluciona todos los problemas que quedan por encim
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-04-24 Thu 10:22</p>
+<p class="date">Created: 2026-07-23 jue 14:10</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

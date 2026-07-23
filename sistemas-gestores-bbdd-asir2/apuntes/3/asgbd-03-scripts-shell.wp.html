@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-02-16 lun 19:59 -->
+<!-- 2026-07-23 jue 14:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scripts de shell para Oracle</title>
@@ -322,17 +322,17 @@ window.addEventListener("load",()=>{
 <li>Los scripts empiezan con una línea indicando el intérprete que los ejecutará, con un comentario <code>#!</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/bin/</span><span style="color: #000090; font-weight: bold;">sh</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">php</span>
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/usr/bin/</span><span style="color: #000090; font-weight: bold;">php</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">python</span>
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/usr/bin/</span><span style="color: #000090; font-weight: bold;">python</span>
 </pre>
 </div>
 </div>
@@ -341,14 +341,14 @@ window.addEventListener("load",()=>{
 <h3 id="org0000006"><span class="section-number-3">2.2.</span> Variables</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Variable local a esta shell
-</span><span style="color: #a0522d;">variable</span>=valor
+<pre class="src src-sh"><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Variable local a esta shell
+</span>variable=valor
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Variable exportada a los hijos de esta shell
-</span><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">variable_exportada</span>=valor
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Variable exportada a los hijos de esta shell
+</span>export variable_exportada=valor
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Variable definida solo para un comando
-</span><span style="color: #a0522d;">variable_para_un_comando</span>=valor comando
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Variable definida solo para un comando
+</span>variable_para_un_comando=valor comando
 
 </pre>
 </div>
@@ -371,16 +371,16 @@ window.addEventListener("load",()=>{
 <h4 id="org0000009"><span class="section-number-4">2.3.1.</span> Redirigir entrada/salida a fichero</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">La entrada sale de un fichero en vez del teclado
+<pre class="src src-sh"><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">La entrada sale de un fichero en vez del teclado
 </span>sort &lt; fichero
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">La entrada sale de un fichero, y la salida va a otro fichero
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">La entrada sale de un fichero, y la salida va a otro fichero
 </span>sort &lt; fichero &gt; fichero_ordenado
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">La entrada sale de un fichero, y la salida se agrega al final de un fichero
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">La entrada sale de un fichero, y la salida se agrega al final de un fichero
 </span>sort &lt; otro_fichero &gt;&gt; fichero_ordenado
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">La salida del primer comando es la entrada del segudo
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">La salida del primer comando es la entrada del segudo
 </span>sort &lt; fichero | less
 
 </pre>
@@ -392,7 +392,7 @@ window.addEventListener("load",()=>{
 <div class="outline-text-4" id="text-2-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #b22222;"># </span><span style="color: #b22222;">La entrada se especifica en el propio script
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">La entrada se especifica en el propio script
 </span>sort &lt;&lt;FINDEFICHERO<span style="color: #ffa54f;">
 Maria
 Pepe
@@ -415,8 +415,8 @@ FINDEFICHERO
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Defino una variable con los ficheros del directorio
-</span><span style="color: #a0522d;">variable</span>=$(ls)
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Defino una variable con los ficheros del directorio
+</span>variable=$(ls)
 
 </pre>
 </div>
@@ -445,13 +445,13 @@ FINDEFICHERO
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #0000ff;">importante</span>(){
-  <span style="color: #483d8b;">echo</span> --------------------------
-  <span style="color: #483d8b;">echo</span> Aviso: $<span style="color: #a0522d;">*</span>
-  <span style="color: #483d8b;">echo</span> --------------------------
+<span style="color: #000000; font-weight: bold;">importante</span>(){
+  echo --------------------------
+  echo Aviso: $*
+  echo --------------------------
 }
 
-importante <span style="color: #8b2252;">"Asi se define una funcion en bash"</span>
+importante <span style="color: #008000; font-weight: bold;">"Asi se define una funcion en bash"</span>
 
 </pre>
 </div>
@@ -465,16 +465,16 @@ importante <span style="color: #8b2252;">"Asi se define una funcion en bash"</sp
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #0000ff;">condicion</span>(){
-  <span style="color: #b22222;"># </span><span style="color: #b22222;">AQU&#205; SE PODR&#205;A DECIDIR EL RETORNO CON OTROS COMANDOS
-</span>  <span style="color: #b22222;"># </span><span style="color: #b22222;">O CON IF's ENCADENADOS, PERO COMO EJEMPLO DEVOLVEMOS TRUE
-</span>  <span style="color: #a020f0;">return</span> 0
+<pre class="src src-sh"><span style="color: #000000; font-weight: bold;">condicion</span>(){
+  <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">AQU&#205; SE PODR&#205;A DECIDIR EL RETORNO CON OTROS COMANDOS
+</span>  <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">O CON IF's ENCADENADOS, PERO COMO EJEMPLO DEVOLVEMOS TRUE
+</span>  <span style="color: #000090; font-weight: bold;">return</span> 0
 }
 
-<span style="color: #a020f0;">while</span> condicion
-<span style="color: #a020f0;">do</span>
-  <span style="color: #483d8b;">echo</span> Esto es un bucle infinito
-<span style="color: #a020f0;">done</span>
+<span style="color: #000090; font-weight: bold;">while</span> condicion
+<span style="color: #000090; font-weight: bold;">do</span>
+  echo Esto es un bucle infinito
+<span style="color: #000090; font-weight: bold;">done</span>
 </pre>
 </div>
 </div>
@@ -510,8 +510,8 @@ importante <span style="color: #8b2252;">"Asi se define una funcion en bash"</sp
 
 <div class="org-src-container">
 <pre class="src src-sh">grep cadena *
-<span style="color: #a0522d;">exit_code_del_grep</span>=$<span style="color: #a0522d;">?</span>
-<span style="color: #483d8b;">echo</span> grep ha devuelto: $<span style="color: #a0522d;">exit_code_del_grep</span>
+exit_code_del_grep=$?
+echo grep ha devuelto: $exit_code_del_grep
 </pre>
 </div>
 </div>
@@ -528,12 +528,12 @@ importante <span style="color: #8b2252;">"Asi se define una funcion en bash"</sp
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a020f0;">if</span> grep cadena *
-<span style="color: #a020f0;">then</span>
-  <span style="color: #483d8b;">echo</span> grep ha encontrado algo sin errores
-<span style="color: #a020f0;">else</span>
-  <span style="color: #483d8b;">echo</span> grep no lo ha encontrado, o ha habido errores
-<span style="color: #a020f0;">fi</span>
+<pre class="src src-sh"><span style="color: #000090; font-weight: bold;">if</span> grep cadena *
+<span style="color: #000090; font-weight: bold;">then</span>
+  echo grep ha encontrado algo sin errores
+<span style="color: #000090; font-weight: bold;">else</span>
+  echo grep no lo ha encontrado, o ha habido errores
+<span style="color: #000090; font-weight: bold;">fi</span>
 </pre>
 </div>
 </div>
@@ -550,139 +550,139 @@ importante <span style="color: #8b2252;">"Asi se define una funcion en bash"</sp
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #0000ff;">TEST</span>(1)                      User Commands                     TEST(1)
+<pre class="src src-sh"><span style="color: #000000; font-weight: bold;">TEST</span>(1)                      User Commands                     TEST(1)
 
 NAME
-    <span style="color: #6c7f6868233c;"> </span>  test - check file types and compare values
+    <span style="color: #acccacccaccc;"> </span>  test - check file types and compare values
      
 SYNOPSIS
-    <span style="color: #6c7f6868233c;"> </span>  test EXPRESSION
-    <span style="color: #6c7f6868233c;"> </span>  test
+    <span style="color: #acccacccaccc;"> </span>  test EXPRESSION
+    <span style="color: #acccacccaccc;"> </span>  test
      
-    <span style="color: #6c7f6868233c;"> </span>  [ EXPRESSION ]
-    <span style="color: #6c7f6868233c;"> </span>  [ ]
-    <span style="color: #6c7f6868233c;"> </span>  [ OPTION
+    <span style="color: #acccacccaccc;"> </span>  [ EXPRESSION ]
+    <span style="color: #acccacccaccc;"> </span>  [ ]
+    <span style="color: #acccacccaccc;"> </span>  [ OPTION
      
 DESCRIPTION
-    <span style="color: #6c7f6868233c;"> </span>  Exit with the status determined by EXPRESSION.
+    <span style="color: #acccacccaccc;"> </span>  Exit with the status determined by EXPRESSION.
      
-    <span style="color: #6c7f6868233c;"> </span>  --help display this help and exit
+    <span style="color: #acccacccaccc;"> </span>  --help display this help and exit
      
-    <span style="color: #6c7f6868233c;"> </span>  --version
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> output version information and exit
+    <span style="color: #acccacccaccc;"> </span>  --version
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> output version information and exit
              
-    <span style="color: #6c7f6868233c;"> </span>  An omitted EXPRESSION defaults to false.  Otherwise, EXPRESSION
-    <span style="color: #6c7f6868233c;"> </span>  is true or false and sets exit status.  It is one of:
+    <span style="color: #acccacccaccc;"> </span>  An omitted EXPRESSION defaults to false.  Otherwise, EXPRESSION
+    <span style="color: #acccacccaccc;"> </span>  is true or false and sets exit status.  It is one of:
      
-    <span style="color: #6c7f6868233c;"> </span>  ( EXPRESSION )
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> EXPRESSION is true
+    <span style="color: #acccacccaccc;"> </span>  ( EXPRESSION )
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> EXPRESSION is true
              
-    <span style="color: #6c7f6868233c;"> </span>  ! EXPRESSION
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> EXPRESSION is false
+    <span style="color: #acccacccaccc;"> </span>  <span style="text-decoration: underline;">!</span> EXPRESSION
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> EXPRESSION is false
              
-    <span style="color: #6c7f6868233c;"> </span>  EXPRESSION1 -a EXPRESSION2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> both EXPRESSION1 and EXPRESSION2 are true
+    <span style="color: #acccacccaccc;"> </span>  EXPRESSION1 -a EXPRESSION2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> both EXPRESSION1 and EXPRESSION2 are true
              
-    <span style="color: #6c7f6868233c;"> </span>  EXPRESSION1 -o EXPRESSION2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> either EXPRESSION1 or EXPRESSION2 is true
+    <span style="color: #acccacccaccc;"> </span>  EXPRESSION1 -o EXPRESSION2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> either EXPRESSION1 or EXPRESSION2 is true
              
-    <span style="color: #6c7f6868233c;"> </span>  -n STRING
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> the length of STRING is nonzero
+    <span style="color: #acccacccaccc;"> </span>  -n STRING
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> the length of STRING is nonzero
              
-    <span style="color: #6c7f6868233c;"> </span>  STRING equivalent to -n STRING
+    <span style="color: #acccacccaccc;"> </span>  STRING equivalent to -n STRING
      
-    <span style="color: #6c7f6868233c;"> </span>  -z STRING
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> the length of STRING is zero
+    <span style="color: #acccacccaccc;"> </span>  -z STRING
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> the length of STRING is zero
              
-    <span style="color: #6c7f6868233c;"> </span>  <span style="color: #a0522d;">STRING1</span> = STRING2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> the strings are equal
+    <span style="color: #acccacccaccc;"> </span>  STRING1 = STRING2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> the strings are equal
              
-    <span style="color: #6c7f6868233c;"> </span>  STRING1 != STRING2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> the strings are not equal
+    <span style="color: #acccacccaccc;"> </span>  STRING1 != STRING2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> the strings are not equal
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -eq INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is equal to INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -eq INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is equal to INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -ge INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is greater than or equal to INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -ge INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is greater than or equal to INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -gt INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is greater than INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -gt INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is greater than INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -le INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is less than or equal to INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -le INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is less than or equal to INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -lt INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is less than INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -lt INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is less than INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  INTEGER1 -ne INTEGER2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> INTEGER1 is not equal to INTEGER2
+    <span style="color: #acccacccaccc;"> </span>  INTEGER1 -ne INTEGER2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> INTEGER1 is not equal to INTEGER2
              
-    <span style="color: #6c7f6868233c;"> </span>  FILE1 -ef FILE2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE1 and FILE2 have the same device and inode numbers
+    <span style="color: #acccacccaccc;"> </span>  FILE1 -ef FILE2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE1 and FILE2 have the same device and inode numbers
              
-    <span style="color: #6c7f6868233c;"> </span>  FILE1 -nt FILE2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE1 is newer (modification date) than FILE2
+    <span style="color: #acccacccaccc;"> </span>  FILE1 -nt FILE2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE1 is newer (modification date) than FILE2
              
-    <span style="color: #6c7f6868233c;"> </span>  FILE1 -ot FILE2
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE1 is older than FILE2
+    <span style="color: #acccacccaccc;"> </span>  FILE1 -ot FILE2
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE1 is older than FILE2
              
-    <span style="color: #6c7f6868233c;"> </span>  -b FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is block special
+    <span style="color: #acccacccaccc;"> </span>  -b FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is block special
              
-    <span style="color: #6c7f6868233c;"> </span>  -c FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is character special
+    <span style="color: #acccacccaccc;"> </span>  -c FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is character special
              
-    <span style="color: #6c7f6868233c;"> </span>  -d FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a directory
+    <span style="color: #acccacccaccc;"> </span>  -d FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a directory
              
-    <span style="color: #6c7f6868233c;"> </span>  -e FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists
+    <span style="color: #acccacccaccc;"> </span>  -e FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists
              
-    <span style="color: #6c7f6868233c;"> </span>  -f FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a regular file
+    <span style="color: #acccacccaccc;"> </span>  -f FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a regular file
              
-    <span style="color: #6c7f6868233c;"> </span>  -g FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is set-group-ID
+    <span style="color: #acccacccaccc;"> </span>  -g FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is set-group-ID
              
-    <span style="color: #6c7f6868233c;"> </span>  -G FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is owned by the effective group ID
+    <span style="color: #acccacccaccc;"> </span>  -G FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is owned by the effective group ID
              
-    <span style="color: #6c7f6868233c;"> </span>  -h FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a symbolic link (same as -L)
+    <span style="color: #acccacccaccc;"> </span>  -h FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a symbolic link (same as -L)
              
-    <span style="color: #6c7f6868233c;"> </span>  -k FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and has its sticky bit set
+    <span style="color: #acccacccaccc;"> </span>  -k FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and has its sticky bit set
              
-    <span style="color: #6c7f6868233c;"> </span>  -L FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a symbolic link (same as -h)
+    <span style="color: #acccacccaccc;"> </span>  -L FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a symbolic link (same as -h)
              
-    <span style="color: #6c7f6868233c;"> </span>  -O FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is owned by the effective user ID
+    <span style="color: #acccacccaccc;"> </span>  -O FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is owned by the effective user ID
              
-    <span style="color: #6c7f6868233c;"> </span>  -p FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a named pipe
+    <span style="color: #acccacccaccc;"> </span>  -p FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a named pipe
              
-    <span style="color: #6c7f6868233c;"> </span>  -r FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and read permission is granted
+    <span style="color: #acccacccaccc;"> </span>  -r FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and read permission is granted
              
-    <span style="color: #6c7f6868233c;"> </span>  -s FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and has a size greater than zero
+    <span style="color: #acccacccaccc;"> </span>  -s FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and has a size greater than zero
              
-    <span style="color: #6c7f6868233c;"> </span>  -S FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and is a socket
+    <span style="color: #acccacccaccc;"> </span>  -S FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and is a socket
              
-    <span style="color: #6c7f6868233c;"> </span>  -t FD  file descriptor FD is opened on a terminal
+    <span style="color: #acccacccaccc;"> </span>  -t FD  file descriptor FD is opened on a terminal
      
-    <span style="color: #6c7f6868233c;"> </span>  -u FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and its set-user-ID bit is set
+    <span style="color: #acccacccaccc;"> </span>  -u FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and its set-user-ID bit is set
              
-    <span style="color: #6c7f6868233c;"> </span>  -w FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE exists and write permission is granted
+    <span style="color: #acccacccaccc;"> </span>  -w FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE exists and write permission is granted
              
-    <span style="color: #6c7f6868233c;"> </span>  -x FILE
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> FILE  exists  and  execute  (or  search)  permission  is
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span> granted
+    <span style="color: #acccacccaccc;"> </span>  -x FILE
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> FILE  exists  and  execute  (or  search)  permission  is
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span> granted
 </pre>
 </div>
 </div>
@@ -708,16 +708,16 @@ DESCRIPTION
 <li>Para bucles numéricos se puede usar el comando <code>seq</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a020f0;">for</span> nombre<span style="color: #a020f0;"> in</span> Maria Juan Pepe Susana Manolo
-<span style="color: #a020f0;">do</span>
-   <span style="color: #483d8b;">echo</span> Realizando una vuelta de bucle sobre $<span style="color: #a0522d;">nombre</span>
-<span style="color: #a020f0;">done</span>
+<pre class="src src-sh"><span style="color: #000090; font-weight: bold;">for</span> nombre<span style="color: #000090; font-weight: bold;"> in</span> Maria Juan Pepe Susana Manolo
+<span style="color: #000090; font-weight: bold;">do</span>
+   echo Realizando una vuelta de bucle sobre $nombre
+<span style="color: #000090; font-weight: bold;">done</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">CUIDADO CON LOS NOMBRES DE FICHERO CON ESPACIOS
-</span><span style="color: #a020f0;">for</span> fichero<span style="color: #a020f0;"> in</span> $(ls)
-<span style="color: #a020f0;">do</span>
-   <span style="color: #483d8b;">echo</span> El siguiente fichero es $<span style="color: #a0522d;">fichero</span>
-<span style="color: #a020f0;">done</span>
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">CUIDADO CON LOS NOMBRES DE FICHERO CON ESPACIOS
+</span><span style="color: #000090; font-weight: bold;">for</span> fichero<span style="color: #000090; font-weight: bold;"> in</span> $(ls)
+<span style="color: #000090; font-weight: bold;">do</span>
+   echo El siguiente fichero es $fichero
+<span style="color: #000090; font-weight: bold;">done</span>
 
 </pre>
 </div>
@@ -731,26 +731,26 @@ DESCRIPTION
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">bash</span><span style="color: #b22222;">
-</span><span style="color: #a0522d;">ELEMENTOS</span>=<span style="color: #8b2252;">"
+<pre class="src src-bash"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/bin/</span><span style="color: #000090; font-weight: bold;">bash</span><span style="color: #808080; font-style: italic;">
+</span>ELEMENTOS=<span style="color: #008000; font-weight: bold;">"
 elemento1
 elemento 2
 elemento 3
 elemento4
 "</span>
 
-<span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"valor actual de IFS (en hexadecimal):"</span> $(printf <span style="color: #8b2252;">"%s"</span> <span style="color: #8b2252;">"$IFS"</span> | xxd -p)
-<span style="color: #a020f0;">for</span> ELE<span style="color: #a020f0;"> in</span> $<span style="color: #a0522d;">ELEMENTOS</span>
-<span style="color: #a020f0;">do</span>
-    <span style="color: #483d8b;">echo</span> BUCLE: $<span style="color: #a0522d;">ELE</span>
-<span style="color: #a020f0;">done</span> 
+echo <span style="color: #008000; font-weight: bold;">"valor actual de IFS (en hexadecimal):"</span> $(printf <span style="color: #008000; font-weight: bold;">"%s"</span> <span style="color: #008000; font-weight: bold;">"$IFS"</span> | xxd -p)
+<span style="color: #000090; font-weight: bold;">for</span> ELE<span style="color: #000090; font-weight: bold;"> in</span> $ELEMENTOS
+<span style="color: #000090; font-weight: bold;">do</span>
+    echo BUCLE: $ELE
+<span style="color: #000090; font-weight: bold;">done</span> 
 
-<span style="color: #a0522d;">IFS</span>=$<span style="color: #8b2252;">'\n'</span>
-<span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"valor actual de IFS (en hexadecimal):"</span> $(printf <span style="color: #8b2252;">"%s"</span> <span style="color: #8b2252;">"$IFS"</span> | xxd -p)
-<span style="color: #a020f0;">for</span> ELE<span style="color: #a020f0;"> in</span> $<span style="color: #a0522d;">ELEMENTOS</span>
-<span style="color: #a020f0;">do</span>
-    <span style="color: #483d8b;">echo</span> BUCLE: $<span style="color: #a0522d;">ELE</span>
-<span style="color: #a020f0;">done</span> 
+IFS=$<span style="color: #008000; font-weight: bold;">'\n'</span>
+echo <span style="color: #008000; font-weight: bold;">"valor actual de IFS (en hexadecimal):"</span> $(printf <span style="color: #008000; font-weight: bold;">"%s"</span> <span style="color: #008000; font-weight: bold;">"$IFS"</span> | xxd -p)
+<span style="color: #000090; font-weight: bold;">for</span> ELE<span style="color: #000090; font-weight: bold;"> in</span> $ELEMENTOS
+<span style="color: #000090; font-weight: bold;">do</span>
+    echo BUCLE: $ELE
+<span style="color: #000090; font-weight: bold;">done</span> 
 </pre>
 </div>
 </div>
@@ -763,12 +763,12 @@ elemento4
 Los nombres de fichero pueden contener caracteres de todo tipo (emojis, \n, espacios&#x2026;)
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  touch <span style="color: #8b2252;">"antes"</span>$<span style="color: #8b2252;">'\n'"despu&#233;s&#128169;"</span>
-  <span style="color: #483d8b;">echo</span> LS NORMAL
+<pre class="src src-bash">  touch <span style="color: #008000; font-weight: bold;">"antes"</span>$<span style="color: #008000; font-weight: bold;">'\n'"despu&#233;s&#128169;"</span>
+  echo LS NORMAL
   ls
-  <span style="color: #483d8b;">echo</span> LS LITERAL
+  echo LS LITERAL
   ls --literal --show-control-chars
-  <span style="color: #483d8b;">echo</span> LS SIN CONTROLCHARS
+  echo LS SIN CONTROLCHARS
   ls --literal --hide-control-chars
 </pre>
 </div></li>
@@ -776,10 +776,10 @@ Los nombres de fichero pueden contener caracteres de todo tipo (emojis, \n, espa
 La única forma segura es separar los ficheros por <code>$'\0'</code>, que no puede aparecer en la mayoría de sistemas de ficheros
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  find . -maxdepth 1 -print0 | <span style="color: #a020f0;">while </span><span style="color: #483d8b;">read</span> -d $<span style="color: #8b2252;">'\0'</span> FILE
-  <span style="color: #a020f0;">do</span>
-    <span style="color: #6c7f6868233c;"> </span> <span style="color: #483d8b;">echo</span> FICHERO: $<span style="color: #a0522d;">FILE</span>
-  <span style="color: #a020f0;">done</span>    
+<pre class="src src-bash">  find . -maxdepth 1 -print0 | <span style="color: #000090; font-weight: bold;">while </span>read -d $<span style="color: #008000; font-weight: bold;">'\0'</span> FILE
+  <span style="color: #000090; font-weight: bold;">do</span>
+    <span style="color: #acccacccaccc;"> </span> echo FICHERO: $FILE
+  <span style="color: #000090; font-weight: bold;">done</span>    
 </pre>
 </div></li>
 </ul>
@@ -793,8 +793,8 @@ La única forma segura es separar los ficheros por <code>$'\0'</code>, que no pu
 <li>Se utiliza <code>$((expresión))</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">INCREMENTAR LA VARIABLE contador
-</span><span style="color: #a0522d;">contador</span>=$(($<span style="color: #a0522d;">contador</span> + 1))
+<pre class="src src-sh"><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">INCREMENTAR LA VARIABLE contador
+</span>contador=$(($contador + 1))
 </pre>
 </div>
 </div>
@@ -807,14 +807,14 @@ La única forma segura es separar los ficheros por <code>$'\0'</code>, que no pu
 Enviar un email
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">  <span style="color: #483d8b;">echo</span> Cuerpo del mensaje | mail -s <span style="color: #8b2252;">"Asunto del mensaje"</span> -a ficheroadjunto alvarogonzalezprofesor@gmail.com
+<pre class="src src-sh">  echo Cuerpo del mensaje | mail -s <span style="color: #008000; font-weight: bold;">"Asunto del mensaje"</span> -a ficheroadjunto alvarogonzalezprofesor@gmail.com
 </pre>
 </div></li>
 <li><p>
 Operaciones matemáticas, si no se dispone de <i>bash</i>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">  <span style="color: #483d8b;">echo</span> 2+2 | bc
+<pre class="src src-sh">  echo 2+2 | bc
 </pre>
 </div></li>
 <li><i>Text User Interface</i>
@@ -831,20 +831,20 @@ Operaciones matemáticas, si no se dispone de <i>bash</i>
 Esto no usa el servidor de correo local, pero hay que poner la contraseña en plano, y usar una <a href="https://www.systutorials.com/sending-email-from-mailx-command-in-linux-using-gmails-smtp/">App Password</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #483d8b;">set</span> smtp-use-starttls
-<span style="color: #483d8b;">set</span> ssl-verify=strict
+<pre class="src src-bash">set smtp-use-starttls
+set ssl-verify=strict
 
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">smtp</span>=smtp://smtp.gmail.com:587
+set smtp=smtp://smtp.gmail.com:587
 
-<span style="color: #483d8b;">set</span> smtp-auth=login
-<span style="color: #483d8b;">set</span> smtp-auth-user=XXXX@gmail.com
-<span style="color: #483d8b;">set</span> smtp-auth-password=&lt;quitado&gt;
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">from</span>=<span style="color: #8b2252;">"XXXXX <a href="mailto:XXXXXXXX%40gmail.com">&lt;XXXXXXXX@gmail.com&gt;</a>"</span>
+set smtp-auth=login
+set smtp-auth-user=XXXX@gmail.com
+set smtp-auth-password=&lt;quitado&gt;
+set from=<span style="color: #008000; font-weight: bold;">"XXXXX <a href="mailto:XXXXXXXX%40gmail.com">&lt;XXXXXXXX@gmail.com&gt;</a>"</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #483d8b;">echo</span> hola | mailx -S <span style="color: #8b2252;">"config=/home/alumno/.mailrc"</span> -s <span style="color: #8b2252;">"asunto"</span> direccion@gmail.com
+<pre class="src src-bash">echo hola | mailx -S <span style="color: #008000; font-weight: bold;">"config=/home/alumno/.mailrc"</span> -s <span style="color: #008000; font-weight: bold;">"asunto"</span> direccion@gmail.com
 </pre>
 </div>
 </div>
@@ -868,55 +868,55 @@ Esto no usa el servidor de correo local, pero hay que poner la contraseña en pl
 <h3 id="org0000042"><span class="section-number-3">2.15.</span> Solución</h3>
 <div class="outline-text-3" id="text-2-15">
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">bash</span><span style="color: #b22222;">
+<pre class="src src-bash"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/bin/</span><span style="color: #000090; font-weight: bold;">bash</span><span style="color: #808080; font-style: italic;">
 </span>
-<span style="color: #0000ff;">dialogo</span>(){
-    whiptail --title <span style="color: #8b2252;">"Menu"</span> --menu <span style="color: #8b2252;">"Elige una opci&#243;n"</span> 12 50 5 <span style="color: #8b2252;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>1 <span style="color: #8b2252;">"Mostrar el nombre del ordenador"</span><span style="color: #8b2252;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>2 <span style="color: #8b2252;">"Mostrar las direcciones IP asignadas"</span><span style="color: #8b2252;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>3 <span style="color: #8b2252;">"Mostrar espacio libre en los discos"</span><span style="color: #8b2252;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>4 <span style="color: #8b2252;">"Mostrar usuarios con sesi&#243;n abierta"</span><span style="color: #8b2252;">\</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>5 <span style="color: #8b2252;">"Salir"</span>
+<span style="color: #000000; font-weight: bold;">dialogo</span>(){
+    whiptail --title <span style="color: #008000; font-weight: bold;">"Menu"</span> --menu <span style="color: #008000; font-weight: bold;">"Elige una opci&#243;n"</span> 12 50 5 <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>1 <span style="color: #008000; font-weight: bold;">"Mostrar el nombre del ordenador"</span><span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>2 <span style="color: #008000; font-weight: bold;">"Mostrar las direcciones IP asignadas"</span><span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>3 <span style="color: #008000; font-weight: bold;">"Mostrar espacio libre en los discos"</span><span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>4 <span style="color: #008000; font-weight: bold;">"Mostrar usuarios con sesi&#243;n abierta"</span><span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>5 <span style="color: #008000; font-weight: bold;">"Salir"</span>
 }
 
-<span style="color: #0000ff;">resultado_de_dialogo</span>(){
+<span style="color: #000000; font-weight: bold;">resultado_de_dialogo</span>(){
     dialogo 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3
 }
 
-<span style="color: #0000ff;">casi_pantalla_completa</span>(){
-    stty size | awk <span style="color: #8b2252;">'{$1-=4;$2-=4}1'</span>
+<span style="color: #000000; font-weight: bold;">casi_pantalla_completa</span>(){
+    stty size | awk <span style="color: #008000; font-weight: bold;">'{$1-=4;$2-=4}1'</span>
 }
 
-<span style="color: #0000ff;">casi_ancho_completo</span>(){
-    <span style="color: #483d8b;">echo</span> $(stty size | cut -d <span style="color: #8b2252;">' '</span> -f 2) - 4 | bc
+<span style="color: #000000; font-weight: bold;">casi_ancho_completo</span>(){
+    echo $(stty size | cut -d <span style="color: #008000; font-weight: bold;">' '</span> -f 2) - 4 | bc
 }
 
-<span style="color: #0000ff;">ejecuta_opcion</span>(){
-    <span style="color: #a020f0;">case</span> $<span style="color: #a0522d;">1</span><span style="color: #a020f0;"> in</span>
-    <span style="color: #6c7f6868233c;"> </span>   1)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   whiptail --title <span style="color: #8b2252;">"Host name"</span> --msgbox <span style="color: #8b2252;">"$(hostname)"</span> 9 $(casi_ancho_completo)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   ;;
-    <span style="color: #6c7f6868233c;"> </span>   2)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   whiptail --title <span style="color: #8b2252;">"Direcciones IP"</span> --msgbox <span style="color: #8b2252;">"$(hostname -I)"</span> 9 $(casi_ancho_completo)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   ;;
-    <span style="color: #6c7f6868233c;"> </span>   3)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   whiptail --title <span style="color: #8b2252;">"Uso de disco"</span> --msgbox <span style="color: #8b2252;">"$(df | grep /dev | grep -v tmpfs)"</span> $(casi_pantalla_completa)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   ;;
-    <span style="color: #6c7f6868233c;"> </span>   4)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   whiptail --title <span style="color: #8b2252;">"Usuarios con sesi&#243;n"</span> --msgbox <span style="color: #8b2252;">"$(who)"</span> $(casi_pantalla_completa)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   ;;
-    <span style="color: #6c7f6868233c;"> </span>   5)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"Saliendo"</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   ;;
-    <span style="color: #a020f0;">esac</span>
+<span style="color: #000000; font-weight: bold;">ejecuta_opcion</span>(){
+    <span style="color: #000090; font-weight: bold;">case</span> $1<span style="color: #000090; font-weight: bold;"> in</span>
+    <span style="color: #acccacccaccc;"> </span>   1)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   whiptail --title <span style="color: #008000; font-weight: bold;">"Host name"</span> --msgbox <span style="color: #008000; font-weight: bold;">"$(hostname)"</span> 9 $(casi_ancho_completo)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   ;;
+    <span style="color: #acccacccaccc;"> </span>   2)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   whiptail --title <span style="color: #008000; font-weight: bold;">"Direcciones IP"</span> --msgbox <span style="color: #008000; font-weight: bold;">"$(hostname -I)"</span> 9 $(casi_ancho_completo)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   ;;
+    <span style="color: #acccacccaccc;"> </span>   3)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   whiptail --title <span style="color: #008000; font-weight: bold;">"Uso de disco"</span> --msgbox <span style="color: #008000; font-weight: bold;">"$(df | grep /dev | grep -v tmpfs)"</span> $(casi_pantalla_completa)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   ;;
+    <span style="color: #acccacccaccc;"> </span>   4)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   whiptail --title <span style="color: #008000; font-weight: bold;">"Usuarios con sesi&#243;n"</span> --msgbox <span style="color: #008000; font-weight: bold;">"$(who)"</span> $(casi_pantalla_completa)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   ;;
+    <span style="color: #acccacccaccc;"> </span>   5)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   echo <span style="color: #008000; font-weight: bold;">"Saliendo"</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   ;;
+    <span style="color: #000090; font-weight: bold;">esac</span>
 }
 
-<span style="color: #a0522d;">respuesta</span>=$(resultado_de_dialogo)
-<span style="color: #a020f0;">while</span> [ <span style="color: #8b2252;">"$respuesta"</span> ] &amp;&amp; [ <span style="color: #8b2252;">"$respuesta"</span> -ne 5 ]
-<span style="color: #a020f0;">do</span>
-    ejecuta_opcion $<span style="color: #a0522d;">respuesta</span>
-    <span style="color: #a0522d;">respuesta</span>=$(resultado_de_dialogo)
-<span style="color: #a020f0;">done</span>
+respuesta=$(resultado_de_dialogo)
+<span style="color: #000090; font-weight: bold;">while</span> [ <span style="color: #008000; font-weight: bold;">"$respuesta"</span> ] &amp;&amp; [ <span style="color: #008000; font-weight: bold;">"$respuesta"</span> -ne 5 ]
+<span style="color: #000090; font-weight: bold;">do</span>
+    ejecuta_opcion $respuesta
+    respuesta=$(resultado_de_dialogo)
+<span style="color: #000090; font-weight: bold;">done</span>
 </pre>
 </div>
 </div>
@@ -928,8 +928,8 @@ Esto no usa el servidor de correo local, pero hay que poner la contraseña en pl
 <ul class="org-ul">
 <li><code>bash</code> procesa los siguientes ficheros:
 <ul class="org-ul">
-<li>Si es un nuevo <i>login</i>: <code>/etc/bash.bashrc</code> (Debian), <code>/etc/bashrc</code> (Centos), <code>~/.bash_login</code></li>
-<li>Siempre: <code>/etc/profile/</code> <code>~/.bashrc</code></li>
+<li>Si es un nuevo <i>login</i>: <code>/etc/profile</code> primero, luego el primero que exista de <code>~/.bash_profile</code>, <code>~/.bash_login</code> o <code>~/.profile</code></li>
+<li>Si es una <i>shell</i> interactiva (no <i>login</i>): <code>/etc/bash.bashrc</code> (Debian) o <code>/etc/bashrc</code> (CentOS/RHEL), luego <code>~/.bashrc</code></li>
 </ul></li>
 <li>Así, se puede conseguir que
 <ul class="org-ul">
@@ -973,13 +973,13 @@ Esto no usa el servidor de correo local, pero hay que poner la contraseña en pl
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span><span style="color: #b22222;"> 
-</span><span style="color: #a0522d;">ORACLE_HOME</span>=/var/oracle/product/12.1.0/asir_bbdd
-<span style="color: #a0522d;">ORACLE_SID</span>=asir
-<span style="color: #a0522d;">PATH</span>=$<span style="color: #a0522d;">ORACLE_HOME</span>/bin:$<span style="color: #a0522d;">PATH</span>
-<span style="color: #483d8b;">export</span> ORACLE_HOME
-<span style="color: #483d8b;">export</span> PATH
-<span style="color: #483d8b;">export</span> ORACLE_SID
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/bin/</span><span style="color: #000090; font-weight: bold;">sh</span><span style="color: #808080; font-style: italic;"> 
+</span>ORACLE_HOME=/opt/oracle-install
+ORACLE_SID=asir
+PATH=$ORACLE_HOME/bin:$PATH
+export ORACLE_HOME
+export PATH
+export ORACLE_SID
 </pre>
 </div>
 </div>
@@ -998,8 +998,8 @@ Esto no usa el servidor de correo local, pero hay que poner la contraseña en pl
 <b>SQLPlus</b> con autenticación de sistema operativo
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">SHOW <span style="color: #a020f0;">PARAMETER</span> os_authent_prefix; <span style="color: #b22222;">-- </span><span style="color: #b22222;">Por defecto es 'ops$'
-</span><span style="color: #a020f0;">CREATE</span> <span style="color: #483d8b;">USER</span> ops$usuario IDENTIFIED EXTERNALLY;
+<pre class="src src-sql">SHOW <span style="color: #000090; font-weight: bold;">PARAMETER</span> os_authent_prefix; <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Por defecto es 'ops$'
+</span><span style="color: #000090; font-weight: bold;">CREATE</span> USER ops$usuario IDENTIFIED EXTERNALLY;
 </pre>
 </div>
 
@@ -1045,12 +1045,12 @@ sqlplus /
 <div class="org-src-container">
 <pre class="src src-lisp">MYSID=
   (DESCRIPTION =
-  <span style="color: #6c7f6868233c;"> </span> (ADDRESS_LIST =
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = mydnshostname)(PORT = 1521))
-  <span style="color: #6c7f6868233c;"> </span> )
-  <span style="color: #6c7f6868233c;"> </span> (CONNECT_DATA =
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVICE_NAME = MYSID)
-  <span style="color: #6c7f6868233c;"> </span> )
+  <span style="color: #acccacccaccc;"> </span> (ADDRESS_LIST =
+  <span style="color: #acccacccaccc;"> </span> <span style="color: #acccacccaccc;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = mydnshostname)(PORT = 1521))
+  <span style="color: #acccacccaccc;"> </span> )
+  <span style="color: #acccacccaccc;"> </span> (CONNECT_DATA =
+  <span style="color: #acccacccaccc;"> </span> <span style="color: #acccacccaccc;"> </span> (SERVICE_NAME = MYSID)
+  <span style="color: #acccacccaccc;"> </span> )
   )
 </pre>
 </div>
@@ -1058,7 +1058,7 @@ sqlplus /
 <li>Situado en <code>$ORACLE_HOME/network/admin/</code></li>
 <li>Indica las formas de conexión a instancias de base de datos
 <ul class="org-ul">
-<li>Protoloco de conexión: TCP</li>
+<li>Protocolo de conexión: TCP</li>
 <li>Dirección IP</li>
 <li>Puerto</li>
 <li>SID</li>
@@ -1208,25 +1208,25 @@ HEREDOC
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">This file is used by ORACLE utilities.  It is created by root.sh
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">and updated by either Database Configuration Assistant while creating
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">a database or ASM Configuration Assistant while creating ASM instance.
+<pre class="src src-sh"><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">This file is used by ORACLE utilities.  It is created by root.sh
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">and updated by either Database Configuration Assistant while creating
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">a database or ASM Configuration Assistant while creating ASM instance.
 </span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">A colon, ':', is used as the field terminator.  A new line terminates
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">the entry.  Lines beginning with a pound sign, '#', are comments.
-</span><span style="color: #b22222;">#</span><span style="color: #b22222;">
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">Entries are of the form:
-</span><span style="color: #b22222;">#   </span><span style="color: #b22222;">$ORACLE_SID:$ORACLE_HOME:&lt;N|Y&gt;:
-</span><span style="color: #b22222;">#</span><span style="color: #b22222;">
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">The first and second fields are the system identifier and home
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">directory of the database respectively.  The third field indicates
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">to the dbstart utility that the database should , "Y", or should not,
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">"N", be brought up at system boot time.
-</span><span style="color: #b22222;">#</span><span style="color: #b22222;">
-</span><span style="color: #b22222;"># </span><span style="color: #b22222;">Multiple entries with the same $ORACLE_SID are not allowed.
-</span><span style="color: #b22222;">#</span><span style="color: #b22222;">
-</span><span style="color: #b22222;">#</span><span style="color: #b22222;">
-</span>asir:/var/oracle/product/12.1.0/asir_bbdd:Y
+<span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">A colon, ':', is used as the field terminator.  A new line terminates
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">the entry.  Lines beginning with a pound sign, '#', are comments.
+</span><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Entries are of the form:
+</span><span style="color: #808080;">#   </span><span style="color: #808080; font-style: italic;">$ORACLE_SID:$ORACLE_HOME:&lt;N|Y&gt;:
+</span><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">The first and second fields are the system identifier and home
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">directory of the database respectively.  The third field indicates
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">to the dbstart utility that the database should , "Y", or should not,
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">"N", be brought up at system boot time.
+</span><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">
+</span><span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">Multiple entries with the same $ORACLE_SID are not allowed.
+</span><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">
+</span><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">
+</span>asir:/opt/oracle-install:Y
 </pre>
 </div>
 </div>
@@ -1261,18 +1261,18 @@ HEREDOC
 
 <div class="org-src-container">
 <pre class="src src-sh">[Unit]
-<span style="color: #a0522d;">Description</span>=Oracle
-<span style="color: #a0522d;">After</span>=network.target
+Description=Oracle
+After=network.target
 
 [Service]
-<span style="color: #a0522d;">Type</span>=forking
-<span style="color: #a0522d;">User</span>=alumno
-<span style="color: #a0522d;">ExecStart</span>=/home/alumno/oracle-al-inicio.sh
-<span style="color: #a0522d;">ExecStop</span>=/home/alumno/oracle-al-final.sh
+Type=forking
+User=alumno
+ExecStart=/home/alumno/oracle-al-inicio.sh
+ExecStop=/home/alumno/oracle-al-final.sh
 
 
 [Install]
-<span style="color: #a0522d;">WantedBy</span>=multi-user.target
+WantedBy=multi-user.target
 </pre>
 </div>
 
@@ -1424,10 +1424,7 @@ systemctl stop SERVICIO
 <ul class="org-ul">
 <li>Sus unidades están en <code>$HOME/.config/systemd/user/</code></li>
 </ul></li>
-<li>Es una opción que no existe en Centos.
-<ul class="org-ul">
-<li>Es posible que los quiten de todas las distribuciones linux</li>
-</ul></li>
+<li>Para que funcionen sin sesión activa, se necesita <code>loginctl enable-linger</code></li>
 </ul>
 </div>
 </div>
@@ -1534,20 +1531,23 @@ Más información en <code>man systemd.timer</code> y <code>man systemd.time</co
 </p>
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>/etc/systemd/system/date.service</label><pre class="src src-sh">[Unit]
-<span style="color: #a0522d;">Description</span>=Prints date into /tmp/date file
+Description=Prints date into /tmp/date file
 
 [Service]
-<span style="color: #a0522d;">Type</span>=oneshot
-<span style="color: #a0522d;">ExecStart</span>=/usr/bin/sh -c <span style="color: #8b2252;">'/usr/bin/date &gt;&gt; /tmp/date'</span>
+Type=oneshot
+ExecStart=/usr/bin/sh -c <span style="color: #008000; font-weight: bold;">'/usr/bin/date &gt;&gt; /tmp/date'</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listado de programa 2 </span>/etc/systemd/system/date.timer</label><pre class="src src-sh">[Unit]
-<span style="color: #a0522d;">Description</span>=Run date.service every 10 minutes
+Description=Run date.service every 10 minutes
 
 [Timer]
-<span style="color: #a0522d;">OnCalendar</span>=*:0/10
+OnCalendar=*:0/10
+
+[Install]
+WantedBy=timers.target
 </pre>
 </div>
 </div>
@@ -1564,25 +1564,25 @@ Más información en <code>man systemd.timer</code> y <code>man systemd.time</co
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">bash</span><span style="color: #b22222;">
+<pre class="src src-sh"><span style="color: #808080;">#</span><span style="color: #808080; font-style: italic;">!/bin/</span><span style="color: #000090; font-weight: bold;">bash</span><span style="color: #808080; font-style: italic;">
 </span>
-rm $<span style="color: #a0522d;">HOME</span>/elbucledebeparar
-<span style="color: #0000ff;">hay_que_seguir</span>(){
-    <span style="color: #a020f0;">if</span> [ -e $<span style="color: #a0522d;">HOME</span>/elbucledebeparar ]
-    <span style="color: #a020f0;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">return</span> 1
-    <span style="color: #a020f0;">else</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">return</span> 0
-    <span style="color: #a020f0;">fi</span>
+rm $HOME/elbucledebeparar
+<span style="color: #000000; font-weight: bold;">hay_que_seguir</span>(){
+    <span style="color: #000090; font-weight: bold;">if</span> [ -e $HOME/elbucledebeparar ]
+    <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> 1
+    <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">return</span> 0
+    <span style="color: #000090; font-weight: bold;">fi</span>
 }
 
-<span style="color: #a0522d;">SEGUNDOS</span>=3
-sleep $<span style="color: #a0522d;">SEGUNDOS</span>
-<span style="color: #a020f0;">while</span> hay_que_seguir
-<span style="color: #a020f0;">do</span>      
-    <span style="color: #483d8b;">echo</span> han pasado $<span style="color: #a0522d;">SEGUNDOS</span> segundos
-    sleep $<span style="color: #a0522d;">SEGUNDOS</span>
-<span style="color: #a020f0;">done</span>
+SEGUNDOS=3
+sleep $SEGUNDOS
+<span style="color: #000090; font-weight: bold;">while</span> hay_que_seguir
+<span style="color: #000090; font-weight: bold;">do</span>      
+    echo han pasado $SEGUNDOS segundos
+    sleep $SEGUNDOS
+<span style="color: #000090; font-weight: bold;">done</span>
 </pre>
 </div>
 </div>
@@ -1606,7 +1606,7 @@ sleep $<span style="color: #a0522d;">SEGUNDOS</span>
 <a href="http://www.tldp.org/LDP/abs/html/process-sub.html">Process substitutions</a>: Trata una orden como un fichero temporal
 </p>
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 3 </span>Compara los contenidos de un directorio con otro</label><pre class="src src-sh">  diff &lt;(ls $<span style="color: #a0522d;">first_directory</span>) &lt;(ls $<span style="color: #a0522d;">second_directory</span>)
+<label class="org-src-name"><span class="listing-number">Listado de programa 3 </span>Compara los contenidos de un directorio con otro</label><pre class="src src-sh">  diff &lt;(ls $first_directory) &lt;(ls $second_directory)
 </pre>
 </div></li>
 <li><code>mktemp</code> para ficheros temporales</li>
@@ -1624,21 +1624,21 @@ sleep $<span style="color: #a0522d;">SEGUNDOS</span>
 <li>Solo he conseguido escribir ficheros en <code>$ORACLE_HOME</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">begin</span>
-   <span style="color: #b22222;">-- </span><span style="color: #b22222;">BORRAR EL TRABAJO, POR SI YA EXISTE
-</span>   dbms_scheduler.drop_job( job_name =&gt; <span style="color: #8b2252;">'myjob'</span> );
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">begin</span>
+   <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">BORRAR EL TRABAJO, POR SI YA EXISTE
+</span>   dbms_scheduler.drop_job( job_name =&gt; <span style="color: #008000; font-weight: bold;">'myjob'</span> );
 
-   <span style="color: #b22222;">-- </span><span style="color: #b22222;">CREAR TRABAJO Y PONER ARGUMENTOS
-</span>   dbms_scheduler.create_job (job_name    =&gt; <span style="color: #8b2252;">'myjob'</span>,
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #4b8b50434ea1;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #445d571d66c6;"> </span> job_type    =&gt; <span style="color: #8b2252;">'executable'</span>,
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #4b8b50434ea1;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #445d571d66c6;"> </span> job_action  =&gt; <span style="color: #8b2252;">'/bin/touch'</span>,
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #4b8b50434ea1;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #445d571d66c6;"> </span> number_of_arguments =&gt; 1,
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #4b8b50434ea1;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #4c326cf93434;"> </span>   <span style="color: #445d571d66c6;"> </span> auto_drop   =&gt; <span style="color: #a020f0;">true</span>);
-   dbms_scheduler.set_job_argument_value (<span style="color: #8b2252;">'myjob'</span>, 1, <span style="color: #8b2252;">'/opt/oracle/product/18c/dbhomeXE/fichero.nuevo'</span>);
+   <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">CREAR TRABAJO Y PONER ARGUMENTOS
+</span>   dbms_scheduler.create_job (job_name    =&gt; <span style="color: #008000; font-weight: bold;">'myjob'</span>,
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #d68fd68fd68f;"> </span>   <span style="color: #b73cdeb7e005;"> </span>   <span style="color: #c9d5d2a5e496;"> </span>   <span style="color: #acccacccaccc;"> </span> job_type    =&gt; <span style="color: #008000; font-weight: bold;">'executable'</span>,
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #d68fd68fd68f;"> </span>   <span style="color: #b73cdeb7e005;"> </span>   <span style="color: #c9d5d2a5e496;"> </span>   <span style="color: #acccacccaccc;"> </span> job_action  =&gt; <span style="color: #008000; font-weight: bold;">'/bin/touch'</span>,
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #d68fd68fd68f;"> </span>   <span style="color: #b73cdeb7e005;"> </span>   <span style="color: #c9d5d2a5e496;"> </span>   <span style="color: #acccacccaccc;"> </span> number_of_arguments =&gt; 1,
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #d68fd68fd68f;"> </span>   <span style="color: #b73cdeb7e005;"> </span>   <span style="color: #c9d5d2a5e496;"> </span>   <span style="color: #acccacccaccc;"> </span> auto_drop   =&gt; <span style="color: #000090; font-weight: bold;">true</span>);
+   dbms_scheduler.set_job_argument_value (<span style="color: #008000; font-weight: bold;">'myjob'</span>, 1, <span style="color: #008000; font-weight: bold;">'/opt/oracle/product/18c/dbhomeXE/fichero.nuevo'</span>);
 
-   <span style="color: #b22222;">-- </span><span style="color: #b22222;">EJECUTAR TRABAJO
-</span>   dbms_scheduler.run_job (<span style="color: #8b2252;">'myjob'</span>);
-<span style="color: #a020f0;">end</span>;
+   <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">EJECUTAR TRABAJO
+</span>   dbms_scheduler.run_job (<span style="color: #008000; font-weight: bold;">'myjob'</span>);
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
@@ -1664,7 +1664,7 @@ sleep $<span style="color: #a0522d;">SEGUNDOS</span>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-02-16 lun 19:59</p>
+<p class="date">Created: 2026-07-23 jue 14:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

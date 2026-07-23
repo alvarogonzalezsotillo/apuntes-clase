@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:05 -->
+<!-- 2026-07-23 jue 14:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bases de datos distribuidas (dblinks)</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -246,7 +246,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000006" class="outline-2">
 <h2 id="org0000006"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -259,7 +269,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000000" class="outline-3">
 <h3 id="org0000000"><span class="section-number-3">1.1.</span> Ventajas de la distribución</h3>
 <div class="outline-text-3" id="text-1-1">
@@ -274,7 +283,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Desventajas</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -290,7 +298,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-2">
 <h2 id="org000000f"><span class="section-number-2">2.</span> Particiones de los datos</h2>
 <div class="outline-text-2" id="text-2">
@@ -309,7 +316,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">2.1.</span> Partición horizontal</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -452,8 +458,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">2.2.</span> Partición vertical</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -513,7 +517,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000021" class="outline-2">
 <h2 id="org0000021"><span class="section-number-2">3.</span> <i>DBLink</i></h2>
 <div class="outline-text-2" id="text-3">
@@ -526,7 +529,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000012" class="outline-3">
 <h3 id="org0000012"><span class="section-number-3">3.1.</span> Fichero <code>tnsnames.ora</code></h3>
 <div class="outline-text-3" id="text-3-1">
@@ -545,17 +547,16 @@ window.addEventListener("load",()=>{
 <div class="org-src-container">
 <pre class="src src-lisp">XE =
   (DESCRIPTION =
-  <span style="color: #6c7f6868233c;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = profebd.local)(PORT = 1521))
-  <span style="color: #6c7f6868233c;"> </span> (CONNECT_DATA =
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVER = DEDICATED)
-  <span style="color: #6c7f6868233c;"> </span> <span style="color: #725e43893a66;"> </span> (SERVICE_NAME = XE)
-  <span style="color: #6c7f6868233c;"> </span> )
+  <span style="color: #acccacccaccc;"> </span> (ADDRESS = (PROTOCOL = TCP)(HOST = profebd.local)(PORT = 1521))
+  <span style="color: #acccacccaccc;"> </span> (CONNECT_DATA =
+  <span style="color: #acccacccaccc;"> </span> <span style="color: #acccacccaccc;"> </span> (SERVER = DEDICATED)
+  <span style="color: #acccacccaccc;"> </span> <span style="color: #acccacccaccc;"> </span> (SERVICE_NAME = XE)
+  <span style="color: #acccacccaccc;"> </span> )
   )
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000015" class="outline-3">
 <h3 id="org0000015"><span class="section-number-3">3.2.</span> Creación de <i>dblink</i></h3>
 <div class="outline-text-3" id="text-3-2">
@@ -563,10 +564,10 @@ window.addEventListener("load",()=>{
 <li>Suponiendo una conexión de nombre <code>B</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">Create</span> database link LNK_DE_A_a_B 
-  <span style="color: #729fcf; font-weight: bold;">connect</span> <span style="color: #729fcf; font-weight: bold;">to</span> USUARIO 
-  identified <span style="color: #729fcf; font-weight: bold;">by</span> CONTRASE&#209;A 
-  <span style="color: #729fcf; font-weight: bold;">USING</span> <span style="color: #ad7fa8; font-style: italic;">'B'</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">Create</span> database link LNK_DE_A_a_B 
+  <span style="color: #000090; font-weight: bold;">connect</span> <span style="color: #000090; font-weight: bold;">to</span> USUARIO 
+  identified <span style="color: #000090; font-weight: bold;">by</span> CONTRASE&#209;A 
+  <span style="color: #000090; font-weight: bold;">USING</span> <span style="color: #008000; font-weight: bold;">'B'</span>;
 </pre>
 </div>
 
@@ -574,7 +575,7 @@ window.addEventListener("load",()=>{
 <li>Referencia a tablas remotas:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span> TABLA@LNK_DE_A_a_B; 
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> TABLA@LNK_DE_A_a_B; 
 </pre>
 </div>
 
@@ -587,7 +588,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">3.3.</span> Cadena de conexión</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -603,16 +603,14 @@ window.addEventListener("load",()=>{
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">Create</span> database link LNK_DE_A_a_B 
-  <span style="color: #729fcf; font-weight: bold;">connect</span> <span style="color: #729fcf; font-weight: bold;">to</span> USUARIO 
-  identified <span style="color: #729fcf; font-weight: bold;">by</span> CONTRASE&#209;A 
-  <span style="color: #729fcf; font-weight: bold;">USING</span> <span style="color: #ad7fa8; font-style: italic;">'servidorB.com/XE'</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">Create</span> database link LNK_DE_A_a_B 
+  <span style="color: #000090; font-weight: bold;">connect</span> <span style="color: #000090; font-weight: bold;">to</span> USUARIO 
+  identified <span style="color: #000090; font-weight: bold;">by</span> CONTRASE&#209;A 
+  <span style="color: #000090; font-weight: bold;">USING</span> <span style="color: #008000; font-weight: bold;">'servidorB.com/XE'</span>;
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000001b" class="outline-3">
 <h3 id="org000001b"><span class="section-number-3">3.4.</span> Cerrar conexiones</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -622,12 +620,11 @@ window.addEventListener("load",()=>{
 <li>Se puede forzar el cierre con</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf; font-weight: bold;">SESSION</span> <span style="color: #729fcf; font-weight: bold;">CLOSE</span> DATABASE LINK linkname;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">ALTER</span> <span style="color: #000090; font-weight: bold;">SESSION</span> <span style="color: #000090; font-weight: bold;">CLOSE</span> DATABASE LINK linkname;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001e" class="outline-3">
 <h3 id="org000001e"><span class="section-number-3">3.5.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -679,7 +676,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000024" class="outline-2">
 <h2 id="org0000024"><span class="section-number-2">4.</span> Referencias</h2>
 <div class="outline-text-2" id="text-4">
@@ -691,12 +687,6 @@ window.addEventListener("load",()=>{
 <li><a href="./BD-7-dblinks.wp.html">Página web</a></li>
 <li><a href="./BD-7-dblinks.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -704,7 +694,7 @@ window.addEventListener("load",()=>{
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:05</p>
+<p class="date">Created: 2026-07-23 jue 14:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

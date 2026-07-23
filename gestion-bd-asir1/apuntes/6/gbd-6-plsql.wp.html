@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:05 -->
+<!-- 2026-07-23 jue 14:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PLSQL</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -251,9 +251,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
-
+</style>
 <div id="outline-container-org0000006" class="outline-2">
 <h2 id="org0000006"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -269,7 +277,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000000" class="outline-3">
 <h3 id="org0000000"><span class="section-number-3">1.1.</span> Palabras reservadas</h3>
 <div class="outline-text-3" id="text-1-1">
@@ -280,8 +287,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">1.2.</span> Identificadores</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -292,31 +297,29 @@ window.addEventListener("load",()=>{
 <li>Constante, variable, excepción, paquete, función, procedimiento, tabla, cursor&#x2026;</li>
 <li>Hasta 30 caracteres</li>
 <li>Comienza por una letra.</li>
-<li>Puede contener <code>$</code>, <code>#</code>, pero no puede contener operadores <code>+­%=/*</code></li>
+<li>Puede contener <code>$</code>, <code>#</code>, pero no puede contener operadores <code>+-%=/*</code></li>
 </ul></li>
 </ul>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000009" class="outline-2">
 <h2 id="org0000009"><span class="section-number-2">2.</span> Bloques anónimos</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Bloque anónimo</label><pre class="src src-sql">
-<span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span> pepe <span style="color: #729fcf; font-weight: bold;">where</span> nombre=<span style="color: #ad7fa8; font-style: italic;">'a'</span>;
+<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> pepe <span style="color: #000090; font-weight: bold;">where</span> nombre=<span style="color: #008000; font-weight: bold;">'a'</span>;
 
-<span style="color: #729fcf; font-weight: bold;">SET</span> SERVEROUTPUT <span style="color: #729fcf; font-weight: bold;">ON</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hola'</span>);
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<span style="color: #000090; font-weight: bold;">SET</span> SERVEROUTPUT <span style="color: #000090; font-weight: bold;">ON</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Hola'</span>);
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">3.</span> Variables</h2>
 <div class="outline-text-2" id="text-3">
@@ -326,19 +329,18 @@ window.addEventListener("load",()=>{
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">SET</span> SERVEROUTPUT <span style="color: #729fcf; font-weight: bold;">ON</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">SET</span> SERVEROUTPUT <span style="color: #000090; font-weight: bold;">ON</span>;
 
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  msg <span style="color: #8ae234; font-weight: bold;">varchar</span>(255);
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  msg := <span style="color: #ad7fa8; font-style: italic;">'Hola'</span>;
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
+  msg <span style="color: #20999d;">varchar</span>(255);
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  msg := <span style="color: #008000; font-weight: bold;">'Hola'</span>;
   dbms_output.put_line(msg);
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 </pre>
 </div>
 </div>
-
 <div id="outline-container-org000000c" class="outline-3">
 <h3 id="org000000c"><span class="section-number-3">3.1.</span> Tipos de variable</h3>
 <div class="outline-text-3" id="text-3-1">
@@ -358,7 +360,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-3">
 <h3 id="org000000f"><span class="section-number-3">3.2.</span> Tipos referidos</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -369,22 +370,21 @@ window.addEventListener("load",()=>{
 
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">cliente</span>( id <span style="color: #8ae234; font-weight: bold;">integer</span>, nombre <span style="color: #8ae234; font-weight: bold;">varchar</span>(255) );
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">cliente</span>( id <span style="color: #20999d;">integer</span>, nombre <span style="color: #20999d;">varchar</span>(255) );
 
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
   filacliente cliente%rowtype;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
   filacliente.id := 1;
-  filacliente.nombre := <span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>;
-  <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> cliente <span style="color: #729fcf; font-weight: bold;">values</span> filacliente;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+  filacliente.nombre := <span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>;
+  <span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> cliente <span style="color: #000090; font-weight: bold;">values</span> filacliente;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 </pre>
 </div>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000041" class="outline-2">
 <h2 id="org0000041"><span class="section-number-2">4.</span> Control de flujo</h2>
 <div class="outline-text-2" id="text-4">
@@ -393,63 +393,60 @@ window.addEventListener("load",()=>{
 <h3 id="org0000015"><span class="section-number-3">4.1.</span> Condicional</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  numero <span style="color: #8ae234; font-weight: bold;">integer</span> := 1;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  if( numero &lt; 0 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Menor que cero'</span>);
-  elsif( numero &gt; 0 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Mayor que cero'</span>);
-  <span style="color: #729fcf; font-weight: bold;">else</span>
-    dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Igual que cero'</span>);
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  numero <span style="color: #20999d;">integer</span> := 1;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  if( numero &lt; 0 ) <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'Menor que cero'</span>);
+  elsif( numero &gt; 0 ) <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'Mayor que cero'</span>);
+  <span style="color: #000090; font-weight: bold;">else</span>
+    dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'Igual que cero'</span>);
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000018" class="outline-3">
 <h3 id="org0000018"><span class="section-number-3">4.2.</span> Condicional múltiple (I)</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">case</span>
-  <span style="color: #729fcf; font-weight: bold;">when</span> vsalario&lt;0 <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Incorrecto'</span>);
-  <span style="color: #729fcf; font-weight: bold;">when</span> vsalario=0 <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Gratis!'</span>);  
-  <span style="color: #729fcf; font-weight: bold;">when</span> vsalario&lt;10000 <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Salado!'</span>);
-  <span style="color: #729fcf; font-weight: bold;">when</span> vsalario&lt;90000 <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Mas o menos'</span>);
-  <span style="color: #729fcf; font-weight: bold;">else</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Correcto'</span>);
-<span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">case</span>
+  <span style="color: #000090; font-weight: bold;">when</span> vsalario&lt;0 <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Incorrecto'</span>);
+  <span style="color: #000090; font-weight: bold;">when</span> vsalario=0 <span style="color: #000090; font-weight: bold;">THEN</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Gratis!'</span>);  
+  <span style="color: #000090; font-weight: bold;">when</span> vsalario&lt;10000 <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Salado!'</span>);
+  <span style="color: #000090; font-weight: bold;">when</span> vsalario&lt;90000 <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Mas o menos'</span>);
+  <span style="color: #000090; font-weight: bold;">else</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Correcto'</span>);
+<span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">case</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000001b" class="outline-3">
 <h3 id="org000001b"><span class="section-number-3">4.3.</span> Condicional múltiple (II)</h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">case</span> v_job_grade
-  <span style="color: #729fcf; font-weight: bold;">when</span> 1 <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Jefe!'</span>);
-  <span style="color: #729fcf; font-weight: bold;">when</span> 2 <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Jefecito'</span>);
-  <span style="color: #729fcf; font-weight: bold;">when</span> 3 <span style="color: #729fcf; font-weight: bold;">then</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Empleado regular'</span>);
-  <span style="color: #729fcf; font-weight: bold;">ELSE</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'CEO'</span>);
-<span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">case</span> v_job_grade
+  <span style="color: #000090; font-weight: bold;">when</span> 1 <span style="color: #000090; font-weight: bold;">THEN</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Jefe!'</span>);
+  <span style="color: #000090; font-weight: bold;">when</span> 2 <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Jefecito'</span>);
+  <span style="color: #000090; font-weight: bold;">when</span> 3 <span style="color: #000090; font-weight: bold;">then</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Empleado regular'</span>);
+  <span style="color: #000090; font-weight: bold;">ELSE</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'CEO'</span>);
+<span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">case</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000002d" class="outline-3">
 <h3 id="org000002d"><span class="section-number-3">4.4.</span> Ejemplos de <code>case</code></h3>
 <div class="outline-text-3" id="text-4-4">
@@ -457,188 +454,175 @@ window.addEventListener("load",()=>{
 Queremos implementar un servicio de traducción de español a inglés. El servicio no está disponible los lunes
 </p>
 </div>
-
-
 <div id="outline-container-org000001e" class="outline-4">
 <h4 id="org000001e"><span class="section-number-4">4.4.1.</span> <code>case</code> como sentencia con un valor</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-    v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hasta luego'</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-    if to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
-    <span style="color: #729fcf; font-weight: bold;">else</span>    
-    <span style="color: #6c7f6868233c;"> </span>      
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">case</span> v
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;        
-    <span style="color: #729fcf; font-weight: bold;">end</span> if;    
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+    v <span style="color: #20999d;">varchar</span>(100) := <span style="color: #008000; font-weight: bold;">'Hasta luego'</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+    if to_char(sysdate,<span style="color: #008000; font-weight: bold;">'D'</span>)=1 <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'es mi d&#237;a libre'</span> );
+    <span style="color: #000090; font-weight: bold;">else</span>    
+    <span style="color: #acccacccaccc;"> </span>      
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">case</span> v
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> <span style="color: #008000; font-weight: bold;">'Hola'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Hello'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> <span style="color: #008000; font-weight: bold;">'Adi&#243;s'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Bye'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'No traduction'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">case</span>;        
+    <span style="color: #000090; font-weight: bold;">end</span> if;    
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000021" class="outline-4">
 <h4 id="org0000021"><span class="section-number-4">4.4.2.</span> <code>case</code> como sentencia con múltiples comparaciones</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-    v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hola'</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-    <span style="color: #729fcf; font-weight: bold;">case</span> 
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Hello'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Bye'</span> );
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'No traduction'</span> );
-    <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;        
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+    v <span style="color: #20999d;">varchar</span>(100) := <span style="color: #008000; font-weight: bold;">'Hola'</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+    <span style="color: #000090; font-weight: bold;">case</span> 
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #008000; font-weight: bold;">'D'</span>)=1 <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'es mi d&#237;a libre'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> v=<span style="color: #008000; font-weight: bold;">'Hola'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Hello'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> v=<span style="color: #008000; font-weight: bold;">'Adi&#243;s'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Bye'</span> );
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'No traduction'</span> );
+    <span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">case</span>;        
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000024" class="outline-4">
 <h4 id="org0000024"><span class="section-number-4">4.4.3.</span> <code>case</code> como expresión con múltiples comparaciones</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-    v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hola'</span>;
-    traduccion <span style="color: #8ae234; font-weight: bold;">varchar</span>(100);
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-    traduccion := <span style="color: #729fcf; font-weight: bold;">case</span> 
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1 <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> v=<span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
-    <span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+    v <span style="color: #20999d;">varchar</span>(100) := <span style="color: #008000; font-weight: bold;">'Hola'</span>;
+    traduccion <span style="color: #20999d;">varchar</span>(100);
+<span style="color: #000090; font-weight: bold;">begin</span>
+    traduccion := <span style="color: #000090; font-weight: bold;">case</span> 
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> to_char(sysdate,<span style="color: #008000; font-weight: bold;">'D'</span>)=1 <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #008000; font-weight: bold;">'es mi d&#237;a libre'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> v=<span style="color: #008000; font-weight: bold;">'Hola'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #008000; font-weight: bold;">'Hello'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> v=<span style="color: #008000; font-weight: bold;">'Adi&#243;s'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #008000; font-weight: bold;">'Bye'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #008000; font-weight: bold;">'No traduction'</span>
+    <span style="color: #000090; font-weight: bold;">end</span>;
     dbms_output.put_line(traduccion);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000027" class="outline-4">
 <h4 id="org0000027"><span class="section-number-4">4.4.4.</span> <code>case</code> como expresión con un valor</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-    v <span style="color: #8ae234; font-weight: bold;">varchar</span>(100) := <span style="color: #ad7fa8; font-style: italic;">'Hola'</span>;
-    traduccion <span style="color: #8ae234; font-weight: bold;">varchar</span>(100);
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-    if to_char(sysdate,<span style="color: #ad7fa8; font-style: italic;">'D'</span>)=1  <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   traduccion := <span style="color: #ad7fa8; font-style: italic;">'es mi d&#237;a libre'</span>;
-    <span style="color: #729fcf; font-weight: bold;">else</span>  
-    <span style="color: #6c7f6868233c;"> </span>   traduccion := <span style="color: #729fcf; font-weight: bold;">case</span> v
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Hola'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Hello'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">when</span> <span style="color: #ad7fa8; font-style: italic;">'Adi&#243;s'</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'Bye'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span>   <span style="color: #445d571d66c6;"> </span>   <span style="color: #ad7fa8; font-style: italic;">'No traduction'</span>
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #729fcf; font-weight: bold;">end</span>;
-    <span style="color: #729fcf; font-weight: bold;">end</span> if;   
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+    v <span style="color: #20999d;">varchar</span>(100) := <span style="color: #008000; font-weight: bold;">'Hola'</span>;
+    traduccion <span style="color: #20999d;">varchar</span>(100);
+<span style="color: #000090; font-weight: bold;">begin</span>
+    if to_char(sysdate,<span style="color: #008000; font-weight: bold;">'D'</span>)=1  <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   traduccion := <span style="color: #008000; font-weight: bold;">'es mi d&#237;a libre'</span>;
+    <span style="color: #000090; font-weight: bold;">else</span>  
+    <span style="color: #acccacccaccc;"> </span>   traduccion := <span style="color: #000090; font-weight: bold;">case</span> v
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> <span style="color: #008000; font-weight: bold;">'Hola'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #008000; font-weight: bold;">'Hello'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">when</span> <span style="color: #008000; font-weight: bold;">'Adi&#243;s'</span> <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #008000; font-weight: bold;">'Bye'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccdbc7;"> </span>   <span style="color: #008000; font-weight: bold;">'No traduction'</span>
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #000090; font-weight: bold;">end</span>;
+    <span style="color: #000090; font-weight: bold;">end</span> if;   
     dbms_output.put_line(traduccion);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000002a" class="outline-4">
 <h4 id="org000002a"><span class="section-number-4">4.4.5.</span> Case usado en sentencias <code>sql</code></h4>
 <div class="outline-text-4" id="text-4-4-5">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> nombre, precioventa, <span style="color: #729fcf; font-weight: bold;">case</span> 
-  <span style="color: #729fcf; font-weight: bold;">when</span> precioventa &gt;= 100 <span style="color: #729fcf; font-weight: bold;">then</span> <span style="color: #ad7fa8; font-style: italic;">'car&#237;simo'</span>
-  <span style="color: #729fcf; font-weight: bold;">when</span> precioventa &gt;= 10 <span style="color: #729fcf; font-weight: bold;">then</span> <span style="color: #ad7fa8; font-style: italic;">'caro'</span>
-  <span style="color: #729fcf; font-weight: bold;">else</span> <span style="color: #ad7fa8; font-style: italic;">'barato'</span> <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">as</span> rango
-<span style="color: #729fcf; font-weight: bold;">from</span> productos
-<span style="color: #729fcf; font-weight: bold;">order</span> <span style="color: #729fcf; font-weight: bold;">by</span> 3;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> nombre, precioventa, <span style="color: #000090; font-weight: bold;">case</span> 
+  <span style="color: #000090; font-weight: bold;">when</span> precioventa &gt;= 100 <span style="color: #000090; font-weight: bold;">then</span> <span style="color: #008000; font-weight: bold;">'car&#237;simo'</span>
+  <span style="color: #000090; font-weight: bold;">when</span> precioventa &gt;= 10 <span style="color: #000090; font-weight: bold;">then</span> <span style="color: #008000; font-weight: bold;">'caro'</span>
+  <span style="color: #000090; font-weight: bold;">else</span> <span style="color: #008000; font-weight: bold;">'barato'</span> <span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">as</span> rango
+<span style="color: #000090; font-weight: bold;">from</span> productos
+<span style="color: #000090; font-weight: bold;">order</span> <span style="color: #000090; font-weight: bold;">by</span> 3;
 </pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> nombre,precioventa, <span style="color: #ad7fa8; font-style: italic;">'caro'</span>
-<span style="color: #729fcf; font-weight: bold;">from</span> productos
-<span style="color: #729fcf; font-weight: bold;">where</span> precioventa &gt;= 10
-<span style="color: #729fcf; font-weight: bold;">union</span>
-<span style="color: #729fcf; font-weight: bold;">select</span> nombre,precioventa, <span style="color: #ad7fa8; font-style: italic;">'barato'</span>
-<span style="color: #729fcf; font-weight: bold;">from</span> productos
-<span style="color: #729fcf; font-weight: bold;">where</span> precioventa &lt; 10;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> nombre,precioventa, <span style="color: #008000; font-weight: bold;">'caro'</span>
+<span style="color: #000090; font-weight: bold;">from</span> productos
+<span style="color: #000090; font-weight: bold;">where</span> precioventa &gt;= 10
+<span style="color: #000090; font-weight: bold;">union</span>
+<span style="color: #000090; font-weight: bold;">select</span> nombre,precioventa, <span style="color: #008000; font-weight: bold;">'barato'</span>
+<span style="color: #000090; font-weight: bold;">from</span> productos
+<span style="color: #000090; font-weight: bold;">where</span> precioventa &lt; 10;
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000030" class="outline-3">
 <h3 id="org0000030"><span class="section-number-3">4.5.</span> Bucle <code>loop</code></h3>
 <div class="outline-text-3" id="text-4-5">
 <div class="org-src-container">
 <pre class="src src-sql">LOOP
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
-    IF (expresion) <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    <span style="color: #6c7f6868233c;"> </span> <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
-    <span style="color: #6c7f6868233c;"> </span> EXIT;
-    <span style="color: #729fcf; font-weight: bold;">END</span> IF;
-<span style="color: #729fcf; font-weight: bold;">END</span> LOOP;
+    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Instrucciones
+</span>    IF (expresion) <span style="color: #000090; font-weight: bold;">THEN</span>
+    <span style="color: #acccacccaccc;"> </span> <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Instrucciones
+</span>    <span style="color: #acccacccaccc;"> </span> EXIT;
+    <span style="color: #000090; font-weight: bold;">END</span> IF;
+<span style="color: #000090; font-weight: bold;">END</span> LOOP;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000033" class="outline-3">
 <h3 id="org0000033"><span class="section-number-3">4.6.</span> Bucle <code>while</code></h3>
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 <pre class="src src-sql">WHILE (expresion) LOOP
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">Instrucciones</span>
-<span style="color: #729fcf; font-weight: bold;">END</span> LOOP;
+    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Instrucciones
+</span><span style="color: #000090; font-weight: bold;">END</span> LOOP;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000036" class="outline-3">
 <h3 id="org0000036"><span class="section-number-3">4.7.</span> Bucle <code>for</code></h3>
 <div class="outline-text-3" id="text-4-7">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  c PLS_INTEGER <span style="color: #729fcf; font-weight: bold;">DEFAULT</span> 0;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">FOR</span> c <span style="color: #729fcf; font-weight: bold;">IN</span> REVERSE 1..10 LOOP
-    dbms_output.put_line (<span style="color: #ad7fa8; font-style: italic;">'Contador = '</span>||c);
-  <span style="color: #729fcf; font-weight: bold;">END</span> LOOP;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  c PLS_INTEGER <span style="color: #000090; font-weight: bold;">DEFAULT</span> 0;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">FOR</span> c <span style="color: #000090; font-weight: bold;">IN</span> REVERSE 1..10 LOOP
+    dbms_output.put_line (<span style="color: #008000; font-weight: bold;">'Contador = '</span>||c);
+  <span style="color: #000090; font-weight: bold;">END</span> LOOP;
+<span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000039" class="outline-3">
 <h3 id="org0000039"><span class="section-number-3">4.8.</span> Ejercicios</h3>
 <div class="outline-text-3" id="text-4-8">
@@ -654,8 +638,6 @@ Queremos implementar un servicio de traducción de español a inglés. El servic
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000003e" class="outline-3">
 <h3 id="org000003e"><span class="section-number-3">4.9.</span> Ejercicios</h3>
 <div class="outline-text-3" id="text-4-9">
@@ -686,9 +668,6 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000006c" class="outline-2">
 <h2 id="org000006c"><span class="section-number-2">5.</span> Funciones y procedimientos</h2>
 <div class="outline-text-2" id="text-5">
@@ -706,7 +685,6 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 (<a href="https://www.youtube.com/watch?v=etfuyJgq6-E&amp;list=PLPYjb2UQXp7RWDkSfbEkSAmyQmLcYYTs1&amp;index=3&amp;t=0s">youtube</a>)
 </p>
 </div>
-
 <div id="outline-container-org0000060" class="outline-3">
 <h3 id="org0000060"><span class="section-number-3">5.1.</span> Funciones</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -720,20 +698,18 @@ Imprime un tablero de ajedrez de tamaño NxM (con la función <code>MOD</code>)
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000044" class="outline-4">
 <h4 id="org0000044"><span class="section-number-4">5.1.1.</span> Ya hemos usado funciones</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> to_date(<span style="color: #ad7fa8; font-style: italic;">'01-01-01'</span>,<span style="color: #ad7fa8; font-style: italic;">'dd-MM-yyyy'</span>) <span style="color: #729fcf; font-weight: bold;">from</span> dual;
-<span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span> student <span style="color: #729fcf; font-weight: bold;">where</span> <span style="color: #729fcf;">mod</span>(studentid,2)=0;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> to_date(<span style="color: #008000; font-weight: bold;">'01-01-01'</span>,<span style="color: #008000; font-weight: bold;">'dd-MM-yyyy'</span>) <span style="color: #000090; font-weight: bold;">from</span> dual;
+<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> student <span style="color: #000090; font-weight: bold;">where</span> mod(studentid,2)=0;
 
-sqrt, <span style="color: #729fcf;">upper</span>, substr, len, nvl...
+sqrt, upper, substr, len, nvl...
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000047" class="outline-4">
 <h4 id="org0000047"><span class="section-number-4">5.1.2.</span> Funciones propias</h4>
 <div class="outline-text-4" id="text-5-1-2">
@@ -742,24 +718,23 @@ sqrt, <span style="color: #729fcf;">upper</span>, substr, len, nvl...
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">OR</span> REPLACE <span style="color: #729fcf; font-weight: bold;">FUNCTION</span> <span style="color: #edd400; font-weight: bold;">es_par</span>(numero <span style="color: #729fcf; font-weight: bold;">IN</span> <span style="color: #729fcf; font-weight: bold;">number</span>)
-<span style="color: #729fcf; font-weight: bold;">RETURN</span> <span style="color: #8ae234; font-weight: bold;">boolean</span>
-<span style="color: #729fcf; font-weight: bold;">IS</span>
-  resto <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  resto := <span style="color: #729fcf;">mod</span>(numero,2);
-  if( resto = 0 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #729fcf; font-weight: bold;">true</span>;
-  <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #729fcf; font-weight: bold;">false</span>;
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">OR</span> REPLACE <span style="color: #000090; font-weight: bold;">FUNCTION</span> <span style="color: #000000; font-weight: bold;">es_par</span>(numero <span style="color: #000090; font-weight: bold;">IN</span> <span style="color: #000090; font-weight: bold;">number</span>)
+<span style="color: #000090; font-weight: bold;">RETURN</span> <span style="color: #20999d;">boolean</span>
+<span style="color: #000090; font-weight: bold;">IS</span>
+  resto <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  resto := mod(numero,2);
+  if( resto = 0 ) <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #000090; font-weight: bold;">true</span>;
+  <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #000090; font-weight: bold;">false</span>;
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000004a" class="outline-4">
 <h4 id="org000004a"><span class="section-number-4">5.1.3.</span> Invocar una función</h4>
 <div class="outline-text-4" id="text-5-1-3">
@@ -773,31 +748,30 @@ Las funciones pueden invocarse:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">OR</span> REPLACE <span style="color: #729fcf; font-weight: bold;">FUNCTION</span> <span style="color: #edd400; font-weight: bold;">es_par_varchar</span>(numero <span style="color: #729fcf; font-weight: bold;">IN</span> <span style="color: #729fcf; font-weight: bold;">number</span>)
-<span style="color: #729fcf; font-weight: bold;">RETURN</span> <span style="color: #8ae234; font-weight: bold;">varchar</span>
-<span style="color: #729fcf; font-weight: bold;">IS</span>
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">AQU&#205; SE INVOCA LA FUNCI&#211;N DEL APARTADO ANTERIOR</span>
-  if( es_par(numero) ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #ad7fa8; font-style: italic;">'S&#237; es par'</span>;
-  <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #ad7fa8; font-style: italic;">'No es par'</span>;
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">OR</span> REPLACE <span style="color: #000090; font-weight: bold;">FUNCTION</span> <span style="color: #000000; font-weight: bold;">es_par_varchar</span>(numero <span style="color: #000090; font-weight: bold;">IN</span> <span style="color: #000090; font-weight: bold;">number</span>)
+<span style="color: #000090; font-weight: bold;">RETURN</span> <span style="color: #20999d;">varchar</span>
+<span style="color: #000090; font-weight: bold;">IS</span>
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">AQU&#205; SE INVOCA LA FUNCI&#211;N DEL APARTADO ANTERIOR
+</span>  if( es_par(numero) ) <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #008000; font-weight: bold;">'S&#237; es par'</span>;
+  <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #008000; font-weight: bold;">'No es par'</span>;
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  n <span style="color: #729fcf; font-weight: bold;">number</span> := 32;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'El n&#250;mero '</span> || n || <span style="color: #ad7fa8; font-style: italic;">' '</span> || es_par_varchar(n) );
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
+  n <span style="color: #000090; font-weight: bold;">number</span> := 32;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'El n&#250;mero '</span> || n || <span style="color: #008000; font-weight: bold;">' '</span> || es_par_varchar(n) );
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000004d" class="outline-4">
 <h4 id="org000004d"><span class="section-number-4">5.1.4.</span> Funciones en SQL</h4>
 <div class="outline-text-4" id="text-5-1-4">
@@ -805,22 +779,21 @@ Las funciones pueden invocarse:
 <li>Una función puede utilizarse en SQL</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> empno, es_par_varchar(empno) <span style="color: #729fcf; font-weight: bold;">from</span> empleados;
-<span style="color: #729fcf; font-weight: bold;">select</span> es_par_varchar(89) <span style="color: #729fcf; font-weight: bold;">from</span> dual;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> empno, es_par_varchar(empno) <span style="color: #000090; font-weight: bold;">from</span> empleados;
+<span style="color: #000090; font-weight: bold;">select</span> es_par_varchar(89) <span style="color: #000090; font-weight: bold;">from</span> dual;
 </pre>
 </div>
 <ul class="org-ul">
 <li>Una función que devuelve un tipo que no existe en SQL no se puede usar</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">select</span> es_par(89) <span style="color: #729fcf; font-weight: bold;">from</span> dual;
-ORA-00902: tipo de dato <span style="color: #729fcf; font-weight: bold;">no</span> v&#225;lido
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">select</span> es_par(89) <span style="color: #000090; font-weight: bold;">from</span> dual;
+ORA-00902: tipo de dato <span style="color: #000090; font-weight: bold;">no</span> v&#225;lido
 00902. 00000 -  "invalid datatype"
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000050" class="outline-4">
 <h4 id="org0000050"><span class="section-number-4">5.1.5.</span> Funciones predefinidas</h4>
 <div class="outline-text-4" id="text-5-1-5">
@@ -883,33 +856,31 @@ ORA-00902: tipo de dato <span style="color: #729fcf; font-weight: bold;">no</spa
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000053" class="outline-4">
 <h4 id="org0000053"><span class="section-number-4">5.1.6.</span> Ejemplos de <code>to_date</code> y  <code>to_char</code></h4>
 <div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-  fechaentexto <span style="color: #8ae234; font-weight: bold;">varchar</span>(255);
-  fecha <span style="color: #8ae234; font-weight: bold;">date</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  fechaentexto := <span style="color: #ad7fa8; font-style: italic;">'11/may/18'</span>;
-  fecha := to_date(fechaentexto,<span style="color: #ad7fa8; font-style: italic;">'DD/MON/YY'</span>);
-  dbms_output.put_line( to_char(fecha,<span style="color: #ad7fa8; font-style: italic;">'DD "de" MONTH "de" YYYY'</span>));
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+  fechaentexto <span style="color: #20999d;">varchar</span>(255);
+  fecha <span style="color: #20999d;">date</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  fechaentexto := <span style="color: #008000; font-weight: bold;">'11/may/18'</span>;
+  fecha := to_date(fechaentexto,<span style="color: #008000; font-weight: bold;">'DD/MON/YY'</span>);
+  dbms_output.put_line( to_char(fecha,<span style="color: #008000; font-weight: bold;">'DD "de" MONTH "de" YYYY'</span>));
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 
 
-<span style="color: #729fcf; font-weight: bold;">declare</span>
-    pi <span style="color: #729fcf; font-weight: bold;">number</span>(20,10) := 3.141597265;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-    dbms_output.put_line( to_char(pi, <span style="color: #ad7fa8; font-style: italic;">'B9999'</span> ) );
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">declare</span>
+    pi <span style="color: #000090; font-weight: bold;">number</span>(20,10) := 3.141597265;
+<span style="color: #000090; font-weight: bold;">begin</span>
+    dbms_output.put_line( to_char(pi, <span style="color: #008000; font-weight: bold;">'B9999'</span> ) );
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000057" class="outline-4">
 <h4 id="org0000057"><span class="section-number-4">5.1.7.</span> Ejercicios</h4>
 <div class="outline-text-4" id="text-5-1-7">
@@ -927,7 +898,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000005a" class="outline-4">
 <h4 id="org000005a"><span class="section-number-4">5.1.8.</span> Ejercicios</h4>
 <div class="outline-text-4" id="text-5-1-8">
@@ -944,49 +914,45 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000005d" class="outline-4">
 <h4 id="org000005d"><span class="section-number-4">5.1.9.</span> Ejercicio resuelto: <code>capitalizar</code></h4>
 <div class="outline-text-4" id="text-5-1-9">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">capitalizar</span>( palabra <span style="color: #8ae234; font-weight: bold;">varchar</span> ) <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #8ae234; font-weight: bold;">varchar</span> <span style="color: #729fcf; font-weight: bold;">as</span>
-  inicial <span style="color: #8ae234; font-weight: bold;">char</span>(1);
-  resto <span style="color: #8ae234; font-weight: bold;">varchar</span>(1024);
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">function</span> <span style="color: #000000; font-weight: bold;">capitalizar</span>( palabra <span style="color: #20999d;">varchar</span> ) <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #20999d;">varchar</span> <span style="color: #000090; font-weight: bold;">as</span>
+  inicial <span style="color: #20999d;">char</span>(1);
+  resto <span style="color: #20999d;">varchar</span>(1024);
+<span style="color: #000090; font-weight: bold;">begin</span>
   inicial := substr(palabra,1,1);
-  resto := substr(palabra,2,<span style="color: #729fcf; font-weight: bold;">length</span>(palabra)-1);
-  <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #729fcf;">upper</span>(inicial) || <span style="color: #729fcf;">lower</span>(resto);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+  resto := substr(palabra,2,<span style="color: #000090; font-weight: bold;">length</span>(palabra)-1);
+  <span style="color: #000090; font-weight: bold;">return</span> upper(inicial) || lower(resto);
+<span style="color: #000090; font-weight: bold;">end</span>;
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000063" class="outline-3">
 <h3 id="org0000063"><span class="section-number-3">5.2.</span> Procedimientos</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
-<li>Los procedimentos no devuelven un valor
+<li>Los procedimientos no devuelven un valor
 <ul class="org-ul">
 <li>Pero pueden tener parámetros <code>out</code></li>
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">OR</span> REPLACE <span style="color: #729fcf; font-weight: bold;">PROCEDURE</span> <span style="color: #edd400; font-weight: bold;">aumenta_salario</span>(vempno <span style="color: #729fcf; font-weight: bold;">IN</span> <span style="color: #729fcf; font-weight: bold;">number</span>)
-<span style="color: #729fcf; font-weight: bold;">IS</span>
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">update</span> empleados 
-    <span style="color: #729fcf; font-weight: bold;">set</span> salario=salario+100
-    <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">OR</span> REPLACE <span style="color: #000090; font-weight: bold;">PROCEDURE</span> <span style="color: #000000; font-weight: bold;">aumenta_salario</span>(vempno <span style="color: #000090; font-weight: bold;">IN</span> <span style="color: #000090; font-weight: bold;">number</span>)
+<span style="color: #000090; font-weight: bold;">IS</span>
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">update</span> empleados 
+    <span style="color: #000090; font-weight: bold;">set</span> salario=salario+100
+    <span style="color: #000090; font-weight: bold;">where</span> empno = vempno;
+<span style="color: #000090; font-weight: bold;">END</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000066" class="outline-3">
 <h3 id="org0000066"><span class="section-number-3">5.3.</span> Parámetros <code>in</code></h3>
 <div class="outline-text-3" id="text-5-3">
@@ -998,26 +964,24 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">procedure</span> <span style="color: #edd400; font-weight: bold;">suma_uno</span>(n <span style="color: #729fcf; font-weight: bold;">in</span> <span style="color: #8ae234; font-weight: bold;">numeric</span>) <span style="color: #729fcf; font-weight: bold;">is</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">procedure</span> <span style="color: #000000; font-weight: bold;">suma_uno</span>(n <span style="color: #000090; font-weight: bold;">in</span> <span style="color: #20999d;">numeric</span>) <span style="color: #000090; font-weight: bold;">is</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
   n := n +1;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 
-<span style="color: #729fcf; font-weight: bold;">declare</span>
-  numero <span style="color: #8ae234; font-weight: bold;">numeric</span>(10,0);
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<span style="color: #000090; font-weight: bold;">declare</span>
+  numero <span style="color: #20999d;">numeric</span>(10,0);
+<span style="color: #000090; font-weight: bold;">begin</span>
   numero := 3;
   sumauno(numero);
   dbms_output.put_line(numero);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000069" class="outline-3">
 <h3 id="org0000069"><span class="section-number-3">5.4.</span> Parámetros <code>out</code></h3>
 <div class="outline-text-3" id="text-5-4">
@@ -1027,28 +991,25 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">procedure</span> <span style="color: #edd400; font-weight: bold;">suma_uno</span>(n <span style="color: #729fcf; font-weight: bold;">in</span> <span style="color: #729fcf; font-weight: bold;">out</span> <span style="color: #8ae234; font-weight: bold;">numeric</span>) <span style="color: #729fcf; font-weight: bold;">is</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">procedure</span> <span style="color: #000000; font-weight: bold;">suma_uno</span>(n <span style="color: #000090; font-weight: bold;">in</span> <span style="color: #000090; font-weight: bold;">out</span> <span style="color: #20999d;">numeric</span>) <span style="color: #000090; font-weight: bold;">is</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
   n := n +1;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 
-<span style="color: #729fcf; font-weight: bold;">declare</span>
-  numero <span style="color: #8ae234; font-weight: bold;">numeric</span>(10,0);
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<span style="color: #000090; font-weight: bold;">declare</span>
+  numero <span style="color: #20999d;">numeric</span>(10,0);
+<span style="color: #000090; font-weight: bold;">begin</span>
   numero := 3;
   sumauno(numero);
   dbms_output.put_line(numero);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000081" class="outline-2">
 <h2 id="org0000081"><span class="section-number-2">6.</span> Sentencias SQL en PLSQL</h2>
 <div class="outline-text-2" id="text-6">
@@ -1076,17 +1037,17 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">empleados</span>( empno <span style="color: #729fcf; font-weight: bold;">number</span>(20), salario <span style="color: #729fcf; font-weight: bold;">number</span>(8,2), nombre <span style="color: #8ae234; font-weight: bold;">varchar</span>(255));
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (1,2000,<span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (2,1000,<span style="color: #ad7fa8; font-style: italic;">'Juan'</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">empleados</span>( empno <span style="color: #000090; font-weight: bold;">number</span>(20), salario <span style="color: #000090; font-weight: bold;">number</span>(8,2), nombre <span style="color: #20999d;">varchar</span>(255));
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (1,2000,<span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (2,1000,<span style="color: #008000; font-weight: bold;">'Juan'</span>);
 
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  vempno <span style="color: #729fcf; font-weight: bold;">NUMBER</span> := 2;
-  vsalario <span style="color: #729fcf; font-weight: bold;">NUMBER</span>;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">SELECT</span> salario <span style="color: #729fcf; font-weight: bold;">INTO</span> vsalario <span style="color: #729fcf; font-weight: bold;">FROM</span> empleados <span style="color: #729fcf; font-weight: bold;">WHERE</span> empno=vempno;
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'El empleado '</span> || vempno || <span style="color: #ad7fa8; font-style: italic;">' tiene un sueldo de '</span>||vsalario||<span style="color: #ad7fa8; font-style: italic;">'&#8364;'</span>);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
+  vempno <span style="color: #000090; font-weight: bold;">NUMBER</span> := 2;
+  vsalario <span style="color: #000090; font-weight: bold;">NUMBER</span>;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">SELECT</span> salario <span style="color: #000090; font-weight: bold;">INTO</span> vsalario <span style="color: #000090; font-weight: bold;">FROM</span> empleados <span style="color: #000090; font-weight: bold;">WHERE</span> empno=vempno;
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'El empleado '</span> || vempno || <span style="color: #008000; font-weight: bold;">' tiene un sueldo de '</span>||vsalario||<span style="color: #008000; font-weight: bold;">'&#8364;'</span>);
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
@@ -1097,7 +1058,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000072" class="outline-3">
 <h3 id="org0000072"><span class="section-number-3">6.2.</span> Ventaja de los tipos <code>%type</code></h3>
 <div class="outline-text-3" id="text-6-2">
@@ -1106,20 +1066,18 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Así, si cambia la definición de la tabla (con un <code>alter table</code>), el PLSQL sigue siendo válido</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  vempno empleados.empno%<span style="color: #729fcf; font-weight: bold;">TYPE</span> := 2;
-  vsalario empleados.salario%<span style="color: #729fcf; font-weight: bold;">TYPE</span>;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">SELECT</span> salario <span style="color: #729fcf; font-weight: bold;">INTO</span> vsalario <span style="color: #729fcf; font-weight: bold;">FROM</span> empleados <span style="color: #729fcf; font-weight: bold;">WHERE</span> empno=vempno;
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'El empleado '</span> || vempno || <span style="color: #ad7fa8; font-style: italic;">' tiene un sueldo de '</span>||vsalario||<span style="color: #ad7fa8; font-style: italic;">'&#8364;'</span>);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  vempno empleados.empno%<span style="color: #000090; font-weight: bold;">TYPE</span> := 2;
+  vsalario empleados.salario%<span style="color: #000090; font-weight: bold;">TYPE</span>;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">SELECT</span> salario <span style="color: #000090; font-weight: bold;">INTO</span> vsalario <span style="color: #000090; font-weight: bold;">FROM</span> empleados <span style="color: #000090; font-weight: bold;">WHERE</span> empno=vempno;
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'El empleado '</span> || vempno || <span style="color: #008000; font-weight: bold;">' tiene un sueldo de '</span>||vsalario||<span style="color: #008000; font-weight: bold;">'&#8364;'</span>);
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000075" class="outline-3">
 <h3 id="org0000075"><span class="section-number-3">6.3.</span> Ventaja de los tipos <code>%rowtype</code></h3>
 <div class="outline-text-3" id="text-6-3">
@@ -1128,40 +1086,39 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Si cambia la definición de la tabla (con un <code>alter table</code>), el PLSQL sigue siendo válido</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  vempno empleados.empno%<span style="color: #729fcf; font-weight: bold;">TYPE</span> := 2;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  vempno empleados.empno%<span style="color: #000090; font-weight: bold;">TYPE</span> := 2;
   vempleado empleados%ROWTYPE;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">SELECT</span> * <span style="color: #729fcf; font-weight: bold;">INTO</span> vempleado <span style="color: #729fcf; font-weight: bold;">FROM</span> empleados <span style="color: #729fcf; font-weight: bold;">WHERE</span> empno=vempno;
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'El empleado '</span> || vempno || <span style="color: #ad7fa8; font-style: italic;">' tiene un sueldo de '</span>|| vempleado.salario ||<span style="color: #ad7fa8; font-style: italic;">'&#8364;'</span>);
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'El empleado '</span> || vempno || <span style="color: #ad7fa8; font-style: italic;">' se llama '</span>|| vempleado.nombre ||<span style="color: #ad7fa8; font-style: italic;">'&#8364;'</span>);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">SELECT</span> * <span style="color: #000090; font-weight: bold;">INTO</span> vempleado <span style="color: #000090; font-weight: bold;">FROM</span> empleados <span style="color: #000090; font-weight: bold;">WHERE</span> empno=vempno;
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'El empleado '</span> || vempno || <span style="color: #008000; font-weight: bold;">' tiene un sueldo de '</span>|| vempleado.salario ||<span style="color: #008000; font-weight: bold;">'&#8364;'</span>);
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'El empleado '</span> || vempno || <span style="color: #008000; font-weight: bold;">' se llama '</span>|| vempleado.nombre ||<span style="color: #008000; font-weight: bold;">'&#8364;'</span>);
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">empleado_con_id</span>(
-  p_empno empleados.empno%<span style="color: #729fcf; font-weight: bold;">TYPE</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">function</span> <span style="color: #000000; font-weight: bold;">empleado_con_id</span>(
+  p_empno empleados.empno%<span style="color: #000090; font-weight: bold;">TYPE</span>
 )
-<span style="color: #729fcf; font-weight: bold;">return</span> empleados%rowtype
-<span style="color: #729fcf; font-weight: bold;">as</span>
+<span style="color: #000090; font-weight: bold;">return</span> empleados%rowtype
+<span style="color: #000090; font-weight: bold;">as</span>
     empleado empleados%rowtype;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
    
-    <span style="color: #729fcf; font-weight: bold;">select</span> * 
-    <span style="color: #729fcf; font-weight: bold;">into</span> empleado
-    <span style="color: #729fcf; font-weight: bold;">from</span> empleados 
-    <span style="color: #729fcf; font-weight: bold;">where</span> empno=p_empno;
+    <span style="color: #000090; font-weight: bold;">select</span> * 
+    <span style="color: #000090; font-weight: bold;">into</span> empleado
+    <span style="color: #000090; font-weight: bold;">from</span> empleados 
+    <span style="color: #000090; font-weight: bold;">where</span> empno=p_empno;
     
-    <span style="color: #729fcf; font-weight: bold;">return</span> empleado;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+    <span style="color: #000090; font-weight: bold;">return</span> empleado;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000078" class="outline-3">
 <h3 id="org0000078"><span class="section-number-3">6.4.</span> Variables en <code>insert</code>, <code>update</code>, <code>delete</code></h3>
 <div class="outline-text-3" id="text-6-4">
@@ -1169,24 +1126,22 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Se utilizan como un valor inmediato</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-  vempno <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+  vempno <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
   vempno := 100;
-  <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno, salario, nombre)
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span><span style="color: #729fcf; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #ad7fa8; font-style: italic;">'Manolo'</span>);
-  <span style="color: #729fcf; font-weight: bold;">update</span> empleados 
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span><span style="color: #729fcf; font-weight: bold;">set</span> salario = salario + 100
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #725e43893a66;"> </span><span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
-  <span style="color: #729fcf; font-weight: bold;">delete</span> <span style="color: #729fcf; font-weight: bold;">from</span> empleados <span style="color: #729fcf; font-weight: bold;">where</span> empno = vempno;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+  <span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno, salario, nombre)
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span><span style="color: #000090; font-weight: bold;">values</span>( vempno, 1000, <span style="color: #008000; font-weight: bold;">'Manolo'</span>);
+  <span style="color: #000090; font-weight: bold;">update</span> empleados 
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span><span style="color: #000090; font-weight: bold;">set</span> salario = salario + 100
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span><span style="color: #000090; font-weight: bold;">where</span> empno = vempno;
+  <span style="color: #000090; font-weight: bold;">delete</span> <span style="color: #000090; font-weight: bold;">from</span> empleados <span style="color: #000090; font-weight: bold;">where</span> empno = vempno;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000007b" class="outline-3">
 <h3 id="org000007b"><span class="section-number-3">6.5.</span> Ventaja de los tipos <code>%rowtype</code> en <code>insert</code></h3>
 <div class="outline-text-3" id="text-6-5">
@@ -1195,21 +1150,19 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>El resultado puede ser más limpio</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
   vempleado empleados%ROWTYPE;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
   vempleado.empno := 4;
   vempleado.salario := 3000;
-  vempleado.nombre := <span style="color: #ad7fa8; font-style: italic;">'Susana'</span>;
-  <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados <span style="color: #729fcf; font-weight: bold;">values</span> vempleado;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+  vempleado.nombre := <span style="color: #008000; font-weight: bold;">'Susana'</span>;
+  <span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados <span style="color: #000090; font-weight: bold;">values</span> vempleado;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000007e" class="outline-3">
 <h3 id="org000007e"><span class="section-number-3">6.6.</span> Recorrer consultas</h3>
 <div class="outline-text-3" id="text-6-6">
@@ -1218,31 +1171,28 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>En cada vuelta, la variable del <code>for</code> tiene el <code>%ROWTYPE</code> de la consulta</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  salariototal <span style="color: #729fcf; font-weight: bold;">number</span> := 0;
-  numeroempleados <span style="color: #729fcf; font-weight: bold;">number</span> := 0;
-  mediasalario <span style="color: #729fcf; font-weight: bold;">number</span> := 0;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">for</span> empleado <span style="color: #729fcf; font-weight: bold;">in</span> (<span style="color: #729fcf; font-weight: bold;">select</span> * <span style="color: #729fcf; font-weight: bold;">from</span> empleados) loop
-    dbms_output.put_line(empleado.nombre || <span style="color: #ad7fa8; font-style: italic;">' con salario '</span> || empleado.salario );
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  salariototal <span style="color: #000090; font-weight: bold;">number</span> := 0;
+  numeroempleados <span style="color: #000090; font-weight: bold;">number</span> := 0;
+  mediasalario <span style="color: #000090; font-weight: bold;">number</span> := 0;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">for</span> empleado <span style="color: #000090; font-weight: bold;">in</span> (<span style="color: #000090; font-weight: bold;">select</span> * <span style="color: #000090; font-weight: bold;">from</span> empleados) loop
+    dbms_output.put_line(empleado.nombre || <span style="color: #008000; font-weight: bold;">' con salario '</span> || empleado.salario );
     numeroempleados := numeroempleados + 1;
     salariototal := salariototal +empleado.salario;
-  <span style="color: #729fcf; font-weight: bold;">end</span> loop;
-  dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Hay '</span> || numeroempleados || <span style="color: #ad7fa8; font-style: italic;">' empleados '</span>);
-  dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'Sus sueldos suman '</span> || salariototal );
+  <span style="color: #000090; font-weight: bold;">end</span> loop;
+  dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'Hay '</span> || numeroempleados || <span style="color: #008000; font-weight: bold;">' empleados '</span>);
+  dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'Sus sueldos suman '</span> || salariototal );
 
   mediasalario := salariototal / numeroempleados;
-  dbms_output.put_line( <span style="color: #ad7fa8; font-style: italic;">'La media de los sueldos es '</span> || mediasalario);
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+  dbms_output.put_line( <span style="color: #008000; font-weight: bold;">'La media de los sueldos es '</span> || mediasalario);
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000096" class="outline-2">
 <h2 id="org0000096"><span class="section-number-2">7.</span> Control de errores</h2>
 <div class="outline-text-2" id="text-7">
@@ -1256,13 +1206,13 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Declaraciones</span>
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Ejecucion</span>
-<span style="color: #729fcf; font-weight: bold;">EXCEPTION</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Excepcion</span>
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Declaraciones
+</span><span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Ejecucion
+</span><span style="color: #000090; font-weight: bold;">EXCEPTION</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Excepcion
+</span><span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 
@@ -1270,7 +1220,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 (<a href="https://youtu.be/jQfWrMDQKvY">youtube</a>)
 </p>
 </div>
-
 <div id="outline-container-org0000084" class="outline-3">
 <h3 id="org0000084"><span class="section-number-3">7.1.</span> Sección <i>exception</i></h3>
 <div class="outline-text-3" id="text-7-1">
@@ -1278,50 +1227,47 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Se especifican varios tipos de excepción que se esperan</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Declaraciones</span>
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Ejecucion</span>
-<span style="color: #729fcf; font-weight: bold;">EXCEPTION</span>
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> NO_DATA_FOUND <span style="color: #729fcf; font-weight: bold;">THEN</span> 
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">Se ejecuta cuando ocurre una excepcion de tipo NO_DATA_FOUND</span>
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> ZERO_DIVIDE <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">Se ejecuta cuando ocurre una excepcion de tipo ZERO_DIVIDE</span>
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> OTHERS <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">Se ejecuta cuando ocurre una excepcion de un tipo no tratado</span>
-    <span style="color: #888a85;">-- </span><span style="color: #888a85;">en los bloques anteriores</span>
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Declaraciones
+</span><span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Ejecucion
+</span><span style="color: #000090; font-weight: bold;">EXCEPTION</span>
+  <span style="color: #000090; font-weight: bold;">WHEN</span> NO_DATA_FOUND <span style="color: #000090; font-weight: bold;">THEN</span> 
+    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Se ejecuta cuando ocurre una excepcion de tipo NO_DATA_FOUND
+</span>  <span style="color: #000090; font-weight: bold;">WHEN</span> ZERO_DIVIDE <span style="color: #000090; font-weight: bold;">THEN</span>
+    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Se ejecuta cuando ocurre una excepcion de tipo ZERO_DIVIDE
+</span>  <span style="color: #000090; font-weight: bold;">WHEN</span> OTHERS <span style="color: #000090; font-weight: bold;">THEN</span>
+    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Se ejecuta cuando ocurre una excepcion de un tipo no tratado
+</span>    <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">en los bloques anteriores
+</span><span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000087" class="outline-3">
 <h3 id="org0000087"><span class="section-number-3">7.2.</span> Ejemplo</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">empleados</span>( empno <span style="color: #729fcf; font-weight: bold;">number</span>(20), salario <span style="color: #729fcf; font-weight: bold;">number</span>(8,2), nombre <span style="color: #8ae234; font-weight: bold;">varchar</span>(255));
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (1,2000,<span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (2,1000,<span style="color: #ad7fa8; font-style: italic;">'Juan'</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">empleados</span>( empno <span style="color: #000090; font-weight: bold;">number</span>(20), salario <span style="color: #000090; font-weight: bold;">number</span>(8,2), nombre <span style="color: #20999d;">varchar</span>(255));
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (1,2000,<span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (2,1000,<span style="color: #008000; font-weight: bold;">'Juan'</span>);
 
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  unavariable <span style="color: #8ae234; font-weight: bold;">varchar</span>(255);
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">select</span> nombre <span style="color: #729fcf; font-weight: bold;">into</span> unavariable <span style="color: #729fcf; font-weight: bold;">from</span> empleados;
-<span style="color: #729fcf; font-weight: bold;">EXCEPTION</span>
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> TOO_MANY_ROWS <span style="color: #729fcf; font-weight: bold;">THEN</span> 
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'select...into ha devuelto m&#225;s de una fila!'</span>);
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> NO_DATA_FOUND <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'select...into no ha devuelto ninguna fila!'</span>);
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> OTHERS <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Error no previsto:'</span> || sqlcode || <span style="color: #ad7fa8; font-style: italic;">': '</span> || sqlerrm );
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
+  unavariable <span style="color: #20999d;">varchar</span>(255);
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">select</span> nombre <span style="color: #000090; font-weight: bold;">into</span> unavariable <span style="color: #000090; font-weight: bold;">from</span> empleados;
+<span style="color: #000090; font-weight: bold;">EXCEPTION</span>
+  <span style="color: #000090; font-weight: bold;">WHEN</span> TOO_MANY_ROWS <span style="color: #000090; font-weight: bold;">THEN</span> 
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'select...into ha devuelto m&#225;s de una fila!'</span>);
+  <span style="color: #000090; font-weight: bold;">WHEN</span> NO_DATA_FOUND <span style="color: #000090; font-weight: bold;">THEN</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'select...into no ha devuelto ninguna fila!'</span>);
+  <span style="color: #000090; font-weight: bold;">WHEN</span> OTHERS <span style="color: #000090; font-weight: bold;">THEN</span>
+    dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Error no previsto:'</span> || sqlcode || <span style="color: #008000; font-weight: bold;">': '</span> || sqlerrm );
+<span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000008a" class="outline-3">
 <h3 id="org000008a"><span class="section-number-3">7.3.</span> Excepciones predefinidas</h3>
 <div class="outline-text-3" id="text-7-3">
@@ -1347,7 +1293,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 
 <tr>
 <td class="org-left"><code>INVALID_NUMBER</code></td>
-<td class="org-left"><code>NO_DATA_FOUND</code></td>
+<td class="org-left"><code>CURSOR_ALREADY_OPEN</code></td>
 <td class="org-left"><code>VALUE_ERROR</code></td>
 </tr>
 
@@ -1364,7 +1310,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </p>
 </div>
 </div>
-
 <div id="outline-container-org000008d" class="outline-3">
 <h3 id="org000008d"><span class="section-number-3">7.4.</span> <code>SQLCODE</code> y <code>SQLERRM</code></h3>
 <div class="outline-text-3" id="text-7-4">
@@ -1379,20 +1324,19 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  <span style="color: #729fcf; font-weight: bold;">result</span> <span style="color: #729fcf; font-weight: bold;">NUMBER</span>;
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #729fcf; font-weight: bold;">SELECT</span> 1/0 <span style="color: #729fcf; font-weight: bold;">INTO</span> <span style="color: #729fcf; font-weight: bold;">result</span> <span style="color: #729fcf; font-weight: bold;">FROM</span> DUAL;
-<span style="color: #729fcf; font-weight: bold;">EXCEPTION</span>
-  <span style="color: #729fcf; font-weight: bold;">WHEN</span> OTHERS <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    DBMS_OUTPUT.put_line(<span style="color: #ad7fa8; font-style: italic;">'Error:'</span>||TO_CHAR(SQLCODE));
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">DECLARE</span>
+  <span style="color: #000090; font-weight: bold;">result</span> <span style="color: #000090; font-weight: bold;">NUMBER</span>;
+<span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #000090; font-weight: bold;">SELECT</span> 1/0 <span style="color: #000090; font-weight: bold;">INTO</span> <span style="color: #000090; font-weight: bold;">result</span> <span style="color: #000090; font-weight: bold;">FROM</span> DUAL;
+<span style="color: #000090; font-weight: bold;">EXCEPTION</span>
+  <span style="color: #000090; font-weight: bold;">WHEN</span> OTHERS <span style="color: #000090; font-weight: bold;">THEN</span>
+    DBMS_OUTPUT.put_line(<span style="color: #008000; font-weight: bold;">'Error:'</span>||TO_CHAR(SQLCODE));
     DBMS_OUTPUT.put_line(SQLERRM);
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000090" class="outline-3">
 <h3 id="org0000090"><span class="section-number-3">7.5.</span> ¿Qué excepciones hay que atrapar?</h3>
 <div class="outline-text-3" id="text-7-5">
@@ -1401,7 +1345,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>El flujo normal de programa debe evitarlas
 <ul class="org-ul">
 <li>Un <code>select into</code> debe estar hecho para devolver como mucho una fila</li>
-<li>Antes se debería hacer <code>select count()</code> con un <code>if</code> para comprobar que devuelve una fila</li>
+<li>Antes se debería hacer <code>select count(*)</code> con un <code>if</code> para comprobar que devuelve una fila</li>
 </ul></li>
 <li>Solo se atrapa si se puede solucionar el error, si no se deja pasar
 <ul class="org-ul">
@@ -1411,39 +1355,34 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000093" class="outline-3">
 <h3 id="org0000093"><span class="section-number-3">7.6.</span> Excepciones de usuario</h3>
 <div class="outline-text-3" id="text-7-6">
 <ul class="org-ul">
 <li>En ocasiones queremos enviar un mensaje de error personalizado</li>
-<li>Están disponibles los números de error entre <code>-20001</code> y <code>­20999</code></li>
+<li>Están disponibles los números de error entre <code>-20001</code> y <code>-20999</code></li>
 <li>Se pueden atrapar con <code>when others</code> y comprobarse con <code>SQLCODE</code></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-    n <span style="color: #729fcf; font-weight: bold;">number</span>;
-  <span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-    <span style="color: #729fcf; font-weight: bold;">SELECT</span> <span style="color: #729fcf;">count</span>(*) <span style="color: #729fcf; font-weight: bold;">into</span> n <span style="color: #729fcf; font-weight: bold;">from</span> empleados
-    if( n &lt; 10 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span> RAISE_APPLICATION_ERROR(-20001,<span style="color: #ad7fa8; font-style: italic;">'La empresa necesita al menos 10 empleados'</span>);
-    <span style="color: #729fcf; font-weight: bold;">end</span> if;
-  <span style="color: #729fcf; font-weight: bold;">EXCEPTION</span> 
-    <span style="color: #729fcf; font-weight: bold;">WHEN</span> OTHERS <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    <span style="color: #6c7f6868233c;"> </span> if( sqlcode = -20001) <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span>   dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Pocos empleados'</span>);
-    <span style="color: #6c7f6868233c;"> </span> <span style="color: #729fcf; font-weight: bold;">end</span> if;
-  <span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">DECLARE</span>
+    n <span style="color: #000090; font-weight: bold;">number</span>;
+  <span style="color: #000090; font-weight: bold;">BEGIN</span>
+    <span style="color: #000090; font-weight: bold;">SELECT</span> count(*) <span style="color: #000090; font-weight: bold;">into</span> n <span style="color: #000090; font-weight: bold;">from</span> empleados
+    if( n &lt; 10 ) <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span> RAISE_APPLICATION_ERROR(-20001,<span style="color: #008000; font-weight: bold;">'La empresa necesita al menos 10 empleados'</span>);
+    <span style="color: #000090; font-weight: bold;">end</span> if;
+  <span style="color: #000090; font-weight: bold;">EXCEPTION</span> 
+    <span style="color: #000090; font-weight: bold;">WHEN</span> OTHERS <span style="color: #000090; font-weight: bold;">THEN</span>
+    <span style="color: #acccacccaccc;"> </span> if( sqlcode = -20001) <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span>   dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Pocos empleados'</span>);
+    <span style="color: #acccacccaccc;"> </span> <span style="color: #000090; font-weight: bold;">end</span> if;
+  <span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
-
-
 <div id="outline-container-org00000cc" class="outline-2">
 <h2 id="org00000cc"><span class="section-number-2">8.</span> <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7004.htm">Disparadores</a> (<i>triggers</i>)</h2>
 <div class="outline-text-2" id="text-8">
@@ -1459,49 +1398,46 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 (<a href="https://youtu.be/WXqkI5Jnsmo">youtube 1</a>) (<a href="https://youtu.be/pt7jJehGlU0">youtube 2</a>) (<a href="https://youtu.be/eAAU1kbCvbs">youtube 3</a>)
 </p>
 </div>
-
 <div id="outline-container-org0000099" class="outline-3">
 <h3 id="org0000099"><span class="section-number-3">8.1.</span> Sintaxis (casi) completa</h3>
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> [<span style="color: #729fcf; font-weight: bold;">OR</span> REPLACE] <span style="color: #729fcf; font-weight: bold;">TRIGGER</span> &lt;nombre_trigger&gt;
-  {<span style="color: #729fcf; font-weight: bold;">BEFORE</span>|<span style="color: #729fcf; font-weight: bold;">AFTER</span>}
-  {<span style="color: #729fcf; font-weight: bold;">DELETE</span>|<span style="color: #729fcf; font-weight: bold;">INSERT</span>|<span style="color: #729fcf; font-weight: bold;">UPDATE</span> [<span style="color: #729fcf; font-weight: bold;">OF</span> col1, col2, ..., colN]
-  [<span style="color: #729fcf; font-weight: bold;">OR</span> {<span style="color: #729fcf; font-weight: bold;">DELETE</span>|<span style="color: #729fcf; font-weight: bold;">INSERT</span>|<span style="color: #729fcf; font-weight: bold;">UPDATE</span> [<span style="color: #729fcf; font-weight: bold;">OF</span> col1, col2, ..., colN]...]}
-  <span style="color: #729fcf; font-weight: bold;">ON</span> &lt;nombre_tabla&gt;
-  [<span style="color: #729fcf; font-weight: bold;">FOR</span> <span style="color: #729fcf; font-weight: bold;">EACH</span> <span style="color: #8ae234; font-weight: bold;">ROW</span> [<span style="color: #729fcf; font-weight: bold;">WHEN</span> (&lt;condicion&gt;)]]
-<span style="color: #729fcf; font-weight: bold;">DECLARE</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">variables locales</span>
-<span style="color: #729fcf; font-weight: bold;">BEGIN</span>
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Sentencias</span>
-[<span style="color: #729fcf; font-weight: bold;">EXCEPTION</span>]
-  <span style="color: #888a85;">-- </span><span style="color: #888a85;">Sentencias control de excepcion</span>
-<span style="color: #729fcf; font-weight: bold;">END</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> [<span style="color: #000090; font-weight: bold;">OR</span> REPLACE] <span style="color: #000090; font-weight: bold;">TRIGGER</span> &lt;nombre_trigger&gt;
+  {<span style="color: #000090; font-weight: bold;">BEFORE</span>|<span style="color: #000090; font-weight: bold;">AFTER</span>}
+  {<span style="color: #000090; font-weight: bold;">DELETE</span>|<span style="color: #000090; font-weight: bold;">INSERT</span>|<span style="color: #000090; font-weight: bold;">UPDATE</span> [<span style="color: #000090; font-weight: bold;">OF</span> col1, col2, ..., colN]
+  [<span style="color: #000090; font-weight: bold;">OR</span> {<span style="color: #000090; font-weight: bold;">DELETE</span>|<span style="color: #000090; font-weight: bold;">INSERT</span>|<span style="color: #000090; font-weight: bold;">UPDATE</span> [<span style="color: #000090; font-weight: bold;">OF</span> col1, col2, ..., colN]...]}
+  <span style="color: #000090; font-weight: bold;">ON</span> &lt;nombre_tabla&gt;
+  [<span style="color: #000090; font-weight: bold;">FOR</span> <span style="color: #000090; font-weight: bold;">EACH</span> <span style="color: #20999d;">ROW</span> [<span style="color: #000090; font-weight: bold;">WHEN</span> (&lt;condicion&gt;)]]
+<span style="color: #000090; font-weight: bold;">DECLARE</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">variables locales
+</span><span style="color: #000090; font-weight: bold;">BEGIN</span>
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Sentencias
+</span>[<span style="color: #000090; font-weight: bold;">EXCEPTION</span>]
+  <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">Sentencias control de excepcion
+</span><span style="color: #000090; font-weight: bold;">END</span>;
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000009c" class="outline-3">
 <h3 id="org000009c"><span class="section-number-3">8.2.</span> Ejemplo: Al menos 10 empleados</h3>
 <div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">TRIGGER</span> <span style="color: #edd400; font-weight: bold;">personal_minimo</span>
-<span style="color: #729fcf; font-weight: bold;">BEFORE</span> <span style="color: #729fcf; font-weight: bold;">DELETE</span> <span style="color: #729fcf; font-weight: bold;">ON</span> empleados
-<span style="color: #729fcf; font-weight: bold;">declare</span>
-  n <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">SELECT</span> <span style="color: #729fcf;">count</span>(*) <span style="color: #729fcf; font-weight: bold;">into</span> n <span style="color: #729fcf; font-weight: bold;">from</span> empleados;
-  if( n &lt; 10 ) <span style="color: #729fcf; font-weight: bold;">then</span>
-    RAISE_APPLICATION_ERROR(-20001,<span style="color: #ad7fa8; font-style: italic;">'La empresa necesita al menos 10 empleados'</span>);
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">TRIGGER</span> <span style="color: #000000; font-weight: bold;">personal_minimo</span>
+<span style="color: #000090; font-weight: bold;">BEFORE</span> <span style="color: #000090; font-weight: bold;">DELETE</span> <span style="color: #000090; font-weight: bold;">ON</span> empleados
+<span style="color: #000090; font-weight: bold;">declare</span>
+  n <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">SELECT</span> count(*) <span style="color: #000090; font-weight: bold;">into</span> n <span style="color: #000090; font-weight: bold;">from</span> empleados;
+  if( n &lt; 10 ) <span style="color: #000090; font-weight: bold;">then</span>
+    RAISE_APPLICATION_ERROR(-20001,<span style="color: #008000; font-weight: bold;">'La empresa necesita al menos 10 empleados'</span>);
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org00000a2" class="outline-3">
 <h3 id="org00000a2"><span class="section-number-3">8.3.</span> Eventos DML</h3>
 <div class="outline-text-3" id="text-8-3">
@@ -1527,7 +1463,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 
 <tr>
 <td class="org-left"><code>insert</code></td>
-<td class="org-left">Insercción de una fila</td>
+<td class="org-left">Inserción de una fila</td>
 </tr>
 
 <tr>
@@ -1554,33 +1490,30 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org000009f" class="outline-4">
 <h4 id="org000009f"><span class="section-number-4">8.3.1.</span> Ejemplo de <i>trigger</i> en varios eventos DML</h4>
 <div class="outline-text-4" id="text-8-3-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">TRIGGER</span> <span style="color: #edd400; font-weight: bold;">ejemplo_or</span>
-<span style="color: #729fcf; font-weight: bold;">BEFORE</span> <span style="color: #729fcf; font-weight: bold;">DELETE</span> <span style="color: #729fcf; font-weight: bold;">OR</span> <span style="color: #729fcf; font-weight: bold;">UPDATE</span> <span style="color: #729fcf; font-weight: bold;">OR</span> <span style="color: #729fcf; font-weight: bold;">INSERT</span> <span style="color: #729fcf; font-weight: bold;">ON</span> empleados
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">case</span> 
-    <span style="color: #729fcf; font-weight: bold;">when</span> inserting <span style="color: #729fcf; font-weight: bold;">THEN</span>
-    <span style="color: #6c7f6868233c;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Insertando empleados'</span>);
-    <span style="color: #729fcf; font-weight: bold;">when</span> updating <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Actualizando empleados'</span>);
-    <span style="color: #729fcf; font-weight: bold;">when</span> deleting <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #6c7f6868233c;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Borrando empleados'</span>);
-    <span style="color: #729fcf; font-weight: bold;">else</span>
-    <span style="color: #6c7f6868233c;"> </span> dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Inesperado'</span>);
-  <span style="color: #729fcf; font-weight: bold;">end</span> <span style="color: #729fcf; font-weight: bold;">case</span>;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">TRIGGER</span> <span style="color: #000000; font-weight: bold;">ejemplo_or</span>
+<span style="color: #000090; font-weight: bold;">BEFORE</span> <span style="color: #000090; font-weight: bold;">DELETE</span> <span style="color: #000090; font-weight: bold;">OR</span> <span style="color: #000090; font-weight: bold;">UPDATE</span> <span style="color: #000090; font-weight: bold;">OR</span> <span style="color: #000090; font-weight: bold;">INSERT</span> <span style="color: #000090; font-weight: bold;">ON</span> empleados
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">case</span> 
+    <span style="color: #000090; font-weight: bold;">when</span> inserting <span style="color: #000090; font-weight: bold;">THEN</span>
+    <span style="color: #acccacccaccc;"> </span> dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Insertando empleados'</span>);
+    <span style="color: #000090; font-weight: bold;">when</span> updating <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span> dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Actualizando empleados'</span>);
+    <span style="color: #000090; font-weight: bold;">when</span> deleting <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #acccacccaccc;"> </span> dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Borrando empleados'</span>);
+    <span style="color: #000090; font-weight: bold;">else</span>
+    <span style="color: #acccacccaccc;"> </span> dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Inesperado'</span>);
+  <span style="color: #000090; font-weight: bold;">end</span> <span style="color: #000090; font-weight: bold;">case</span>;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org00000a5" class="outline-3">
 <h3 id="org00000a5"><span class="section-number-3">8.4.</span> Eventos DDL</h3>
 <div class="outline-text-3" id="text-8-4">
@@ -1647,9 +1580,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </table>
 </div>
 </div>
-
-
-
 <div id="outline-container-org00000a8" class="outline-3">
 <h3 id="org00000a8"><span class="section-number-3">8.5.</span> Eventos de sistema</h3>
 <div class="outline-text-3" id="text-8-5">
@@ -1731,8 +1661,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-org00000ab" class="outline-3">
 <h3 id="org00000ab"><span class="section-number-3">8.6.</span> <code>for each row</code></h3>
 <div class="outline-text-3" id="text-8-6">
@@ -1742,7 +1670,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org00000b1" class="outline-3">
 <h3 id="org00000b1"><span class="section-number-3">8.7.</span> Momentos del evento</h3>
 <div class="outline-text-3" id="text-8-7">
@@ -1760,7 +1687,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org00000ae" class="outline-4">
 <h4 id="org00000ae"><span class="section-number-4">8.7.1.</span> Resumen de momentos y variables</h4>
 <div class="outline-text-4" id="text-8-7-1">
@@ -1831,28 +1757,24 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org00000b4" class="outline-3">
 <h3 id="org00000b4"><span class="section-number-3">8.8.</span> Ejemplo típico: Autonuméricos</h3>
 <div class="outline-text-3" id="text-8-8">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">sequence</span> <span style="color: #edd400; font-weight: bold;">empleado_empno_seq</span>;
-<span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">TRIGGER</span> <span style="color: #edd400; font-weight: bold;">asignar_empleado_empno</span>
-<span style="color: #729fcf; font-weight: bold;">BEFORE</span> <span style="color: #729fcf; font-weight: bold;">INSERT</span> <span style="color: #729fcf; font-weight: bold;">ON</span> empleados
-<span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">each</span> <span style="color: #8ae234; font-weight: bold;">row</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  if :<span style="color: #729fcf; font-weight: bold;">new</span>.empno <span style="color: #729fcf; font-weight: bold;">is</span> <span style="color: #729fcf; font-weight: bold;">null</span> <span style="color: #729fcf; font-weight: bold;">then</span>
-    :<span style="color: #729fcf; font-weight: bold;">new</span>.empno = empleado_empno_seq.nextval;
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">sequence</span> <span style="color: #000000; font-weight: bold;">empleado_empno_seq</span>;
+<span style="color: #000090; font-weight: bold;">CREATE</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">TRIGGER</span> <span style="color: #000000; font-weight: bold;">asignar_empleado_empno</span>
+<span style="color: #000090; font-weight: bold;">BEFORE</span> <span style="color: #000090; font-weight: bold;">INSERT</span> <span style="color: #000090; font-weight: bold;">ON</span> empleados
+<span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">each</span> <span style="color: #20999d;">row</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
+  if :<span style="color: #000090; font-weight: bold;">new</span>.empno <span style="color: #000090; font-weight: bold;">is</span> <span style="color: #000090; font-weight: bold;">null</span> <span style="color: #000090; font-weight: bold;">then</span>
+    :<span style="color: #000090; font-weight: bold;">new</span>.empno := empleado_empno_seq.nextval;
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org00000bd" class="outline-3">
 <h3 id="org00000bd"><span class="section-number-3">8.9.</span> Ejemplo típico: auditoría</h3>
 <div class="outline-text-3" id="text-8-9">
@@ -1861,61 +1783,57 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">empleados</span>( empno <span style="color: #729fcf; font-weight: bold;">number</span>(20), salario <span style="color: #729fcf; font-weight: bold;">number</span>(8,2), nombre <span style="color: #8ae234; font-weight: bold;">varchar</span>(255));
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (1,2000,<span style="color: #ad7fa8; font-style: italic;">'Mar&#237;a'</span>);
-<span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #729fcf; font-weight: bold;">values</span> (2,1000,<span style="color: #ad7fa8; font-style: italic;">'Juan'</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">empleados</span>( empno <span style="color: #000090; font-weight: bold;">number</span>(20), salario <span style="color: #000090; font-weight: bold;">number</span>(8,2), nombre <span style="color: #20999d;">varchar</span>(255));
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (1,2000,<span style="color: #008000; font-weight: bold;">'Mar&#237;a'</span>);
+<span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre) <span style="color: #000090; font-weight: bold;">values</span> (2,1000,<span style="color: #008000; font-weight: bold;">'Juan'</span>);
 
 
-<span style="color: #729fcf; font-weight: bold;">alter</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">empleados</span> <span style="color: #729fcf; font-weight: bold;">add</span> (
-  createdby <span style="color: #8ae234; font-weight: bold;">varchar</span>(255),
-  createddate <span style="color: #8ae234; font-weight: bold;">timestamp</span>,
-  modifiedby <span style="color: #8ae234; font-weight: bold;">varchar</span>(255),
-  modifieddate <span style="color: #8ae234; font-weight: bold;">timestamp</span> 
+<span style="color: #000090; font-weight: bold;">alter</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">empleados</span> <span style="color: #000090; font-weight: bold;">add</span> (
+  createdby <span style="color: #20999d;">varchar</span>(255),
+  createddate <span style="color: #20999d;">timestamp</span>,
+  modifiedby <span style="color: #20999d;">varchar</span>(255),
+  modifieddate <span style="color: #20999d;">timestamp</span> 
 );
 </pre>
 </div>
 </div>
-
 <div id="outline-container-org00000b7" class="outline-4">
 <h4 id="org00000b7"><span class="section-number-4">8.9.1.</span> Actualizar campos <code>createdXXXX</code></h4>
 <div class="outline-text-4" id="text-8-9-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">trigger</span> <span style="color: #edd400; font-weight: bold;">audit_creacion_empleados</span>
-  <span style="color: #729fcf; font-weight: bold;">before</span> <span style="color: #729fcf; font-weight: bold;">insert</span> 
-  <span style="color: #729fcf; font-weight: bold;">on</span> empleados
-  <span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">each</span> <span style="color: #8ae234; font-weight: bold;">row</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Empleado '</span> || :<span style="color: #729fcf; font-weight: bold;">new</span>.nombre || <span style="color: #ad7fa8; font-style: italic;">' creado por:'</span> || <span style="color: #729fcf;">user</span> );
-  :<span style="color: #729fcf; font-weight: bold;">new</span>.createdby := <span style="color: #729fcf;">user</span>;
-  :<span style="color: #729fcf; font-weight: bold;">new</span>.createddate := systimestamp;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">trigger</span> <span style="color: #000000; font-weight: bold;">audit_creacion_empleados</span>
+  <span style="color: #000090; font-weight: bold;">before</span> <span style="color: #000090; font-weight: bold;">insert</span> 
+  <span style="color: #000090; font-weight: bold;">on</span> empleados
+  <span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">each</span> <span style="color: #20999d;">row</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Empleado '</span> || :<span style="color: #000090; font-weight: bold;">new</span>.nombre || <span style="color: #008000; font-weight: bold;">' creado por:'</span> || user );
+  :<span style="color: #000090; font-weight: bold;">new</span>.createdby := user;
+  :<span style="color: #000090; font-weight: bold;">new</span>.createddate := systimestamp;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org00000ba" class="outline-4">
 <h4 id="org00000ba"><span class="section-number-4">8.9.2.</span> Actualizar campos <code>modifiedXXXX</code></h4>
 <div class="outline-text-4" id="text-8-9-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">trigger</span> <span style="color: #edd400; font-weight: bold;">audit__modificacion_empleados</span>
-  <span style="color: #729fcf; font-weight: bold;">before</span> <span style="color: #729fcf; font-weight: bold;">update</span> 
-  <span style="color: #729fcf; font-weight: bold;">on</span> empleados
-  <span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">each</span> <span style="color: #8ae234; font-weight: bold;">row</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  dbms_output.put_line(<span style="color: #ad7fa8; font-style: italic;">'Empleado '</span> || :<span style="color: #729fcf; font-weight: bold;">new</span>.nombre || <span style="color: #ad7fa8; font-style: italic;">' modificado por:'</span> || <span style="color: #729fcf;">user</span> );
-  :<span style="color: #729fcf; font-weight: bold;">new</span>.modifiedby := <span style="color: #729fcf;">user</span>;
-  :<span style="color: #729fcf; font-weight: bold;">new</span>.modifieddate := systimestamp;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">trigger</span> <span style="color: #000000; font-weight: bold;">audit__modificacion_empleados</span>
+  <span style="color: #000090; font-weight: bold;">before</span> <span style="color: #000090; font-weight: bold;">update</span> 
+  <span style="color: #000090; font-weight: bold;">on</span> empleados
+  <span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">each</span> <span style="color: #20999d;">row</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
+  dbms_output.put_line(<span style="color: #008000; font-weight: bold;">'Empleado '</span> || :<span style="color: #000090; font-weight: bold;">new</span>.nombre || <span style="color: #008000; font-weight: bold;">' modificado por:'</span> || user );
+  :<span style="color: #000090; font-weight: bold;">new</span>.modifiedby := user;
+  :<span style="color: #000090; font-weight: bold;">new</span>.modifieddate := systimestamp;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org00000c9" class="outline-3">
 <h3 id="org00000c9"><span class="section-number-3">8.10.</span> Ejemplo típico: desnormalización</h3>
 <div class="outline-text-3" id="text-8-10">
@@ -1923,57 +1841,55 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Imaginemos que necesitamos saber la masa salarial total</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">MASA_SALARIAL</span> <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #729fcf; font-weight: bold;">number</span> 
-<span style="color: #729fcf; font-weight: bold;">as</span>
-  total <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #729fcf;">sum</span>(salario) <span style="color: #729fcf; font-weight: bold;">into</span> total <span style="color: #729fcf; font-weight: bold;">from</span> empleados;
-  <span style="color: #729fcf; font-weight: bold;">return</span> total;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">function</span> <span style="color: #000000; font-weight: bold;">MASA_SALARIAL</span> <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #000090; font-weight: bold;">number</span> 
+<span style="color: #000090; font-weight: bold;">as</span>
+  total <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">select</span> sum(salario) <span style="color: #000090; font-weight: bold;">into</span> total <span style="color: #000090; font-weight: bold;">from</span> empleados;
+  <span style="color: #000090; font-weight: bold;">return</span> total;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 
 <ul class="org-ul">
-<li>Ventajas: simple, rendimiento es escritura</li>
+<li>Ventajas: simple, rendimiento en escritura</li>
 <li>Desventajas: rendimiento en lectura, se consulta cada vez</li>
 </ul>
 </div>
-
 <div id="outline-container-org00000c0" class="outline-4">
 <h4 id="org00000c0"><span class="section-number-4">8.10.1.</span> Con triggers</h4>
 <div class="outline-text-4" id="text-8-10-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">cantidadesprecalculadas</span>(nombre <span style="color: #8ae234; font-weight: bold;">varchar</span>(255), valor <span style="color: #729fcf; font-weight: bold;">number</span>(20,2));
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">cantidadesprecalculadas</span>(nombre <span style="color: #20999d;">varchar</span>(255), valor <span style="color: #000090; font-weight: bold;">number</span>(20,2));
 
-<span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">trigger</span> <span style="color: #edd400; font-weight: bold;">mantener_masa_salarial</span>
-<span style="color: #729fcf; font-weight: bold;">after</span> <span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">or</span> <span style="color: #729fcf; font-weight: bold;">update</span> <span style="color: #729fcf; font-weight: bold;">or</span> <span style="color: #729fcf; font-weight: bold;">delete</span>
-<span style="color: #729fcf; font-weight: bold;">on</span> empleados
-<span style="color: #729fcf; font-weight: bold;">for</span> <span style="color: #729fcf; font-weight: bold;">each</span> <span style="color: #8ae234; font-weight: bold;">row</span>
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  if inserting <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #729fcf; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #729fcf; font-weight: bold;">set</span> valor=valor + :<span style="color: #729fcf; font-weight: bold;">new</span>.salario <span style="color: #729fcf; font-weight: bold;">where</span> nombre = <span style="color: #ad7fa8; font-style: italic;">'masasalarial'</span>;
-  elsif deleting <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #729fcf; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #729fcf; font-weight: bold;">set</span> valor=valor - :<span style="color: #729fcf; font-weight: bold;">old</span>.salario <span style="color: #729fcf; font-weight: bold;">where</span> nombre = <span style="color: #ad7fa8; font-style: italic;">'masasalarial'</span>;
-  elsif updating <span style="color: #729fcf; font-weight: bold;">then</span>
-    <span style="color: #729fcf; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #729fcf; font-weight: bold;">set</span> valor=valor - :<span style="color: #729fcf; font-weight: bold;">old</span>.salario + :<span style="color: #729fcf; font-weight: bold;">new</span>.salario <span style="color: #729fcf; font-weight: bold;">where</span> nombre = <span style="color: #ad7fa8; font-style: italic;">'masasalarial'</span>;
-  <span style="color: #729fcf; font-weight: bold;">end</span> if;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">trigger</span> <span style="color: #000000; font-weight: bold;">mantener_masa_salarial</span>
+<span style="color: #000090; font-weight: bold;">after</span> <span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">or</span> <span style="color: #000090; font-weight: bold;">update</span> <span style="color: #000090; font-weight: bold;">or</span> <span style="color: #000090; font-weight: bold;">delete</span>
+<span style="color: #000090; font-weight: bold;">on</span> empleados
+<span style="color: #000090; font-weight: bold;">for</span> <span style="color: #000090; font-weight: bold;">each</span> <span style="color: #20999d;">row</span>
+<span style="color: #000090; font-weight: bold;">begin</span>
+  if inserting <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #000090; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #000090; font-weight: bold;">set</span> valor=valor + :<span style="color: #000090; font-weight: bold;">new</span>.salario <span style="color: #000090; font-weight: bold;">where</span> nombre = <span style="color: #008000; font-weight: bold;">'masasalarial'</span>;
+  elsif deleting <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #000090; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #000090; font-weight: bold;">set</span> valor=valor - :<span style="color: #000090; font-weight: bold;">old</span>.salario <span style="color: #000090; font-weight: bold;">where</span> nombre = <span style="color: #008000; font-weight: bold;">'masasalarial'</span>;
+  elsif updating <span style="color: #000090; font-weight: bold;">then</span>
+    <span style="color: #000090; font-weight: bold;">update</span> cantidadesprecalculadas <span style="color: #000090; font-weight: bold;">set</span> valor=valor - :<span style="color: #000090; font-weight: bold;">old</span>.salario + :<span style="color: #000090; font-weight: bold;">new</span>.salario <span style="color: #000090; font-weight: bold;">where</span> nombre = <span style="color: #008000; font-weight: bold;">'masasalarial'</span>;
+  <span style="color: #000090; font-weight: bold;">end</span> if;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 
-<span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">or</span> replace <span style="color: #729fcf; font-weight: bold;">function</span> <span style="color: #edd400; font-weight: bold;">MASA_SALARIAL_PRECALCULADA</span> <span style="color: #729fcf; font-weight: bold;">return</span> <span style="color: #729fcf; font-weight: bold;">number</span> 
-<span style="color: #729fcf; font-weight: bold;">as</span>
-  total <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">select</span> valor <span style="color: #729fcf; font-weight: bold;">into</span> total <span style="color: #729fcf; font-weight: bold;">from</span> cantidadesprecalculadas <span style="color: #729fcf; font-weight: bold;">where</span> nombre=<span style="color: #ad7fa8; font-style: italic;">'masasalarial'</span>;
-  <span style="color: #729fcf; font-weight: bold;">return</span> total;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">or</span> replace <span style="color: #000090; font-weight: bold;">function</span> <span style="color: #000000; font-weight: bold;">MASA_SALARIAL_PRECALCULADA</span> <span style="color: #000090; font-weight: bold;">return</span> <span style="color: #000090; font-weight: bold;">number</span> 
+<span style="color: #000090; font-weight: bold;">as</span>
+  total <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">select</span> valor <span style="color: #000090; font-weight: bold;">into</span> total <span style="color: #000090; font-weight: bold;">from</span> cantidadesprecalculadas <span style="color: #000090; font-weight: bold;">where</span> nombre=<span style="color: #008000; font-weight: bold;">'masasalarial'</span>;
+  <span style="color: #000090; font-weight: bold;">return</span> total;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org00000c3" class="outline-4">
 <h4 id="org00000c3"><span class="section-number-4">8.10.2.</span> Ventajas de la desnormalización</h4>
 <div class="outline-text-4" id="text-8-10-2">
@@ -1988,7 +1904,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org00000c6" class="outline-4">
 <h4 id="org00000c6"><span class="section-number-4">8.10.3.</span> Prueba de rendimiento</h4>
 <div class="outline-text-4" id="text-8-10-3">
@@ -1996,26 +1911,26 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li>Estas consultas simples suelen <a href="https://docs.oracle.com/database/121/TGDBA/tune_result_cache.htm#TGDBA618">estar ya optimizadas</a> por el gestor de base de datos</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">set</span> serveroutput <span style="color: #729fcf; font-weight: bold;">off</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">for</span> i <span style="color: #729fcf; font-weight: bold;">in</span> 1 .. 10000 loop
-    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf; font-weight: bold;">insert</span> <span style="color: #729fcf; font-weight: bold;">into</span> empleados(empno,salario,nombre)
-    <span style="color: #6c7f6868233c;"> </span><span style="color: #729fcf; font-weight: bold;">values</span>(100+i, i, <span style="color: #ad7fa8; font-style: italic;">'Nombre Inventado'</span>);
-  <span style="color: #729fcf; font-weight: bold;">end</span> loop;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">set</span> serveroutput <span style="color: #000090; font-weight: bold;">off</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">for</span> i <span style="color: #000090; font-weight: bold;">in</span> 1 .. 10000 loop
+    <span style="color: #acccacccaccc;"> </span><span style="color: #000090; font-weight: bold;">insert</span> <span style="color: #000090; font-weight: bold;">into</span> empleados(empno,salario,nombre)
+    <span style="color: #acccacccaccc;"> </span><span style="color: #000090; font-weight: bold;">values</span>(100+i, i, <span style="color: #008000; font-weight: bold;">'Nombre Inventado'</span>);
+  <span style="color: #000090; font-weight: bold;">end</span> loop;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
-<span style="color: #729fcf; font-weight: bold;">set</span> serveroutput <span style="color: #729fcf; font-weight: bold;">on</span>;
+<span style="color: #000090; font-weight: bold;">set</span> serveroutput <span style="color: #000090; font-weight: bold;">on</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">declare</span>
-  numero <span style="color: #729fcf; font-weight: bold;">number</span>;
-<span style="color: #729fcf; font-weight: bold;">begin</span>
-  <span style="color: #729fcf; font-weight: bold;">for</span> i <span style="color: #729fcf; font-weight: bold;">in</span> 1 .. 1000 loop
-    <span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #888a85;">/*+ NO_RESULT_CACHE */</span> masa_salarial_precalculada <span style="color: #729fcf; font-weight: bold;">into</span> numero <span style="color: #729fcf; font-weight: bold;">from</span> dual;
-  <span style="color: #729fcf; font-weight: bold;">end</span> loop;
-<span style="color: #729fcf; font-weight: bold;">end</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">declare</span>
+  numero <span style="color: #000090; font-weight: bold;">number</span>;
+<span style="color: #000090; font-weight: bold;">begin</span>
+  <span style="color: #000090; font-weight: bold;">for</span> i <span style="color: #000090; font-weight: bold;">in</span> 1 .. 1000 loop
+    <span style="color: #000090; font-weight: bold;">select</span> <span style="color: #808080; font-style: italic;">/*+ NO_RESULT_CACHE */</span> masa_salarial_precalculada <span style="color: #000090; font-weight: bold;">into</span> numero <span style="color: #000090; font-weight: bold;">from</span> dual;
+  <span style="color: #000090; font-weight: bold;">end</span> loop;
+<span style="color: #000090; font-weight: bold;">end</span>;
 /
 </pre>
 </div>
@@ -2023,11 +1938,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </div>
 </div>
 </div>
-
-
-
-
-
 <div id="outline-container-org00000cf" class="outline-2">
 <h2 id="org00000cf"><span class="section-number-2">9.</span> Referencias</h2>
 <div class="outline-text-2" id="text-9">
@@ -2043,12 +1953,6 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 <li><a href="./gbd-6-plsql.wp.html">Página web</a></li>
 <li><a href="./gbd-6-plsql.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -2056,7 +1960,7 @@ Imprime un listado con la inicial de los empleados y sus apellidos
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:05</p>
+<p class="date">Created: 2026-07-23 jue 14:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

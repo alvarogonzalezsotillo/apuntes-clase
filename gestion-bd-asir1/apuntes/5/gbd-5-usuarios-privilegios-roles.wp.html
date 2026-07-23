@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-01-30 jue 19:05 -->
+<!-- 2026-07-23 jue 14:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Usuarios, privilegios y roles de *Oracle*</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -247,8 +247,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
+</style>
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -268,7 +277,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000003" class="outline-2">
 <h2 id="org0000003"><span class="section-number-2">2.</span> Usuarios</h2>
 <div class="outline-text-2" id="text-2">
@@ -277,8 +285,8 @@ window.addEventListener("load",()=>{
 Creación de usuarios
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">CREATE</span> <span style="color: #729fcf;">USER</span> usuario 
-    IDENTIFIED <span style="color: #729fcf; font-weight: bold;">BY</span> contrase&#241;a
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">CREATE</span> USER usuario 
+    IDENTIFIED <span style="color: #000090; font-weight: bold;">BY</span> contrase&#241;a
     ACCOUNT UNLOCK
 </pre>
 </div></li>
@@ -286,7 +294,7 @@ Creación de usuarios
 Modificación de un usuario ya creado
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">ALTER</span> <span style="color: #729fcf;">USER</span> usuario
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">ALTER</span> USER usuario
     cualquier opci&#243;n v&#225;lida al crear usuario
 </pre>
 </div></li>
@@ -294,13 +302,12 @@ Modificación de un usuario ya creado
 Borrado de usuario
 </p>
 <div class="org-src-container">
-<pre class="src src-sql">  <span style="color: #729fcf; font-weight: bold;">DROP</span> <span style="color: #729fcf;">USER</span> usuario
+<pre class="src src-sql">  <span style="color: #000090; font-weight: bold;">DROP</span> USER usuario
 </pre>
 </div></li>
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000016" class="outline-2">
 <h2 id="org0000016"><span class="section-number-2">3.</span> Privilegios</h2>
 <div class="outline-text-2" id="text-3">
@@ -316,7 +323,6 @@ Borrado de usuario
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">3.1.</span> Privilegios de <b>Oracle</b></h3>
 <div class="outline-text-3" id="text-3-1">
@@ -350,24 +356,21 @@ Borrado de usuario
 </table>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000009" class="outline-3">
 <h3 id="org0000009"><span class="section-number-3">3.2.</span> Sintaxis de <code>Grant</code></h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">grant</span> PRIVILEGIO1,PRIVILEGIO2,...,PRIVILEGION 
-<span style="color: #729fcf; font-weight: bold;">on</span> OBJETO
-<span style="color: #729fcf; font-weight: bold;">to</span> USUARIO
-<span style="color: #729fcf; font-weight: bold;">with</span> <span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">option</span>;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">grant</span> PRIVILEGIO1,PRIVILEGIO2,...,PRIVILEGION 
+<span style="color: #000090; font-weight: bold;">on</span> OBJETO
+<span style="color: #000090; font-weight: bold;">to</span> USUARIO
+<span style="color: #000090; font-weight: bold;">with</span> <span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">option</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">alumnos</span>(...);
-<span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf;">user</span> profesor ...;
-<span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #729fcf; font-weight: bold;">on</span> alumnos <span style="color: #729fcf; font-weight: bold;">to</span> profesor;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">alumnos</span>(...);
+<span style="color: #000090; font-weight: bold;">create</span> user profesor ...;
+<span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">select</span> <span style="color: #000090; font-weight: bold;">on</span> alumnos <span style="color: #000090; font-weight: bold;">to</span> profesor;
 </pre>
 </div>
 
@@ -376,9 +379,6 @@ Borrado de usuario
 </p>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000000d" class="outline-3">
 <h3 id="org000000d"><span class="section-number-3">3.3.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -404,11 +404,6 @@ grant update(column-name) on table-name to user-name
 </div>
 </div>
 </div>
-
-
-
-
-
 <div id="outline-container-org0000010" class="outline-3">
 <h3 id="org0000010"><span class="section-number-3">3.4.</span> Quitar privilegios</h3>
 <div class="outline-text-3" id="text-3-4">
@@ -421,22 +416,20 @@ grant update(column-name) on table-name to user-name
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">connect</span> sys<span style="color: #888a85;">/*******</span>
-<span style="color: #888a85;">grant select on unatabla to unusuario with grant option;</span>
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">connect</span> sys<span style="color: #808080; font-style: italic;">/*******
+grant select on unatabla to unusuario with grant option;
 
-<span style="color: #888a85;">connect unusuario/*******</span>
-<span style="color: #888a85;">grant select on unatabla to otrousuario;</span>
+connect unusuario/*******
+grant select on unatabla to otrousuario;
 
-<span style="color: #888a85;">connect sys/*******</span>
-<span style="color: #888a85;">revoke select on unatabla from unusuario;</span>
+connect sys/*******
+revoke select on unatabla from unusuario;
 
-<span style="color: #888a85;">-- AQUI NI unusuario NI otrousuario TIENEN PRIVILEGIO SOBRE unatabla</span>
+-- AQUI NI unusuario NI otrousuario TIENEN PRIVILEGIO SOBRE unatabla</span>
 </pre>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000013" class="outline-3">
 <h3 id="org0000013"><span class="section-number-3">3.5.</span> Caso especial: <code>Select</code> sobre columnas</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -446,19 +439,17 @@ grant update(column-name) on table-name to user-name
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">table</span> <span style="color: #edd400; font-weight: bold;">datos</span>(texto varchar2(255,numero <span style="color: #8ae234; font-weight: bold;">integer</span>);
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">table</span> <span style="color: #000000; font-weight: bold;">datos</span>(texto varchar2(255),numero <span style="color: #20999d;">integer</span>);
 
-<span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">select</span>(texto) <span style="color: #729fcf; font-weight: bold;">on</span> datos <span style="color: #729fcf; font-weight: bold;">to</span> usuario; <span style="color: #888a85;">-- </span><span style="color: #888a85;">NO FUNCIONA EN ORACLE</span>
-
-<span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">view</span> <span style="color: #edd400; font-weight: bold;">DATOSPARAUSUARIO</span> <span style="color: #729fcf; font-weight: bold;">as</span> <span style="color: #729fcf; font-weight: bold;">select</span> texto <span style="color: #729fcf; font-weight: bold;">from</span> datos;
-<span style="color: #729fcf; font-weight: bold;">grant</span> <span style="color: #729fcf; font-weight: bold;">select</span> <span style="color: #729fcf; font-weight: bold;">on</span> datosparausuario <span style="color: #729fcf; font-weight: bold;">to</span> usuario;
+<span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">select</span>(texto) <span style="color: #000090; font-weight: bold;">on</span> datos <span style="color: #000090; font-weight: bold;">to</span> usuario; <span style="color: #808080;">-- </span><span style="color: #808080; font-style: italic;">NO FUNCIONA EN ORACLE
+</span>
+<span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">view</span> <span style="color: #000000; font-weight: bold;">DATOSPARAUSUARIO</span> <span style="color: #000090; font-weight: bold;">as</span> <span style="color: #000090; font-weight: bold;">select</span> texto <span style="color: #000090; font-weight: bold;">from</span> datos;
+<span style="color: #000090; font-weight: bold;">grant</span> <span style="color: #000090; font-weight: bold;">select</span> <span style="color: #000090; font-weight: bold;">on</span> datosparausuario <span style="color: #000090; font-weight: bold;">to</span> usuario;
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000020" class="outline-2">
 <h2 id="org0000020"><span class="section-number-2">4.</span> Roles</h2>
 <div class="outline-text-2" id="text-4">
@@ -472,14 +463,13 @@ grant update(column-name) on table-name to user-name
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000019" class="outline-3">
 <h3 id="org0000019"><span class="section-number-3">4.1.</span> Sintaxis de roles</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #729fcf; font-weight: bold;">create</span> <span style="color: #729fcf; font-weight: bold;">role</span> NOMBREROL;
-<span style="color: #729fcf; font-weight: bold;">grant</span> PRIVILEGIOS <span style="color: #729fcf; font-weight: bold;">on</span> OBJETOS <span style="color: #729fcf; font-weight: bold;">to</span> NOMBREROL;
-<span style="color: #729fcf; font-weight: bold;">grant</span> NOMBREROL <span style="color: #729fcf; font-weight: bold;">to</span> USUARIO;
+<pre class="src src-sql"><span style="color: #000090; font-weight: bold;">create</span> <span style="color: #000090; font-weight: bold;">role</span> NOMBREROL;
+<span style="color: #000090; font-weight: bold;">grant</span> PRIVILEGIOS <span style="color: #000090; font-weight: bold;">on</span> OBJETOS <span style="color: #000090; font-weight: bold;">to</span> NOMBREROL;
+<span style="color: #000090; font-weight: bold;">grant</span> NOMBREROL <span style="color: #000090; font-weight: bold;">to</span> USUARIO;
 </pre>
 </div>
 
@@ -488,7 +478,6 @@ grant update(column-name) on table-name to user-name
 </p>
 </div>
 </div>
-
 <div id="outline-container-org000001d" class="outline-3">
 <h3 id="org000001d"><span class="section-number-3">4.2.</span> Ejercicio</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -542,8 +531,6 @@ grant ELROL to usuariodespues;
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000023" class="outline-2">
 <h2 id="org0000023"><span class="section-number-2">5.</span> Referencias</h2>
 <div class="outline-text-2" id="text-5">
@@ -555,12 +542,6 @@ grant ELROL to usuariodespues;
 <li><a href="./gbd-5-usuarios-privilegios-roles.wp.html">Página web</a></li>
 <li><a href="./gbd-5-usuarios-privilegios-roles.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -568,7 +549,7 @@ grant ELROL to usuariodespues;
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:05</p>
+<p class="date">Created: 2026-07-23 jue 14:10</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

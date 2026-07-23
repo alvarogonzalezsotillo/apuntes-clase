@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ES" xml:lang="ES">
 <head>
-<!-- 2025-01-30 jue 19:07 -->
+<!-- 2026-07-23 jue 14:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ethernet. Switchs y Hubs</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -253,7 +253,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -268,8 +278,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000009" class="outline-2">
 <h2 id="org0000009"><span class="section-number-2">2.</span> Dominios de colisión</h2>
 <div class="outline-text-2" id="text-2">
@@ -282,8 +290,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
-
 <div id="outline-container-org0000003" class="outline-3">
 <h3 id="org0000003"><span class="section-number-3">2.1.</span> Compartición del medio</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -298,8 +304,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000006" class="outline-3">
 <h3 id="org0000006"><span class="section-number-3">2.2.</span> Gestión de un dominio de colisión</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -310,8 +314,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">3.</span> Precedente de Ethernet (802.3)</h2>
 <div class="outline-text-2" id="text-3">
@@ -336,8 +338,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000000f" class="outline-3">
 <h3 id="org000000f"><span class="section-number-3">3.2.</span> CSMA.</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -361,9 +361,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000031" class="outline-2">
 <h2 id="org0000031"><span class="section-number-2">4.</span> Ethernet (802.3)</h2>
 <div class="outline-text-2" id="text-4">
@@ -373,7 +370,7 @@ window.addEventListener("load",()=>{
 <ul class="org-ul">
 <li><a href="https://es.wikipedia.org/wiki/100Base-TX">100 Base TX</a>
 <ul class="org-ul">
-<li>Usa codificación 4B/5B <a href="https://en.wikipedia.org/wiki/MLT-3_encoding">MTL-3</a></li>
+<li>Usa codificación 4B/5B <a href="https://en.wikipedia.org/wiki/MLT-3_encoding">MLT-3</a></li>
 </ul></li>
 <li>1000 Base T
 <ul class="org-ul">
@@ -386,7 +383,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000016" class="outline-3">
 <h3 id="org0000016"><span class="section-number-3">4.1.</span> Tramas</h3>
 <div class="outline-text-3" id="text-4-1">
@@ -608,7 +604,6 @@ Nota: <a href="https://www.iana.org/assignments/ieee-802-numbers/ieee-802-number
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000028" class="outline-3">
 <h3 id="org0000028"><span class="section-number-3">4.4.</span> ¿Se usa LLC, SNAP?</h3>
 <div class="outline-text-3" id="text-4-4">
@@ -620,8 +615,6 @@ Nota: <a href="https://www.iana.org/assignments/ieee-802-numbers/ieee-802-number
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000002e" class="outline-3">
 <h3 id="org000002e"><span class="section-number-3">4.5.</span> Tamaño</h3>
 <div class="outline-text-3" id="text-4-5">
@@ -641,7 +634,6 @@ Nota: <a href="https://www.iana.org/assignments/ieee-802-numbers/ieee-802-number
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000002b" class="outline-4">
 <h4 id="org000002b"><span class="section-number-4">4.5.1.</span> MTU</h4>
 <div class="outline-text-4" id="text-4-5-1">
@@ -711,8 +703,6 @@ El sistema operativo puede permitir configurarlo para
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000003e" class="outline-2">
 <h2 id="org000003e"><span class="section-number-2">5.</span> Direcciones MAC</h2>
 <div class="outline-text-2" id="text-5">
@@ -750,7 +740,6 @@ grep $OUI lynx -dump <a href="http://standards.ieee.org/regauth/oui/oui.txt">htt
 
 </div>
 </div>
-
 <div id="outline-container-org0000035" class="outline-3">
 <h3 id="org0000035"><span class="section-number-3">5.1.</span> Consultar la propia MAC</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -766,7 +755,6 @@ grep $OUI lynx -dump <a href="http://standards.ieee.org/regauth/oui/oui.txt">htt
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000038" class="outline-3">
 <h3 id="org0000038"><span class="section-number-3">5.2.</span> ¿Puedo cambiar mi MAC?</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -788,8 +776,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000003b" class="outline-3">
 <h3 id="org000003b"><span class="section-number-3">5.3.</span> Broadcast</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -805,7 +791,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000005f" class="outline-2">
 <h2 id="org000005f"><span class="section-number-2">6.</span> Equipos de interconexión</h2>
 <div class="outline-text-2" id="text-6">
@@ -824,7 +809,6 @@ ifconfig eth0 up
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000044" class="outline-3">
 <h3 id="org0000044"><span class="section-number-3">6.2.</span> Corte o almacenamiento y reenvío</h3>
 <div class="outline-text-3" id="text-6-2">
@@ -842,7 +826,6 @@ ifconfig eth0 up
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000047" class="outline-3">
 <h3 id="org0000047"><span class="section-number-3">6.3.</span> Componentes de red: Puente</h3>
 <div class="outline-text-3" id="text-6-3">
@@ -856,7 +839,6 @@ ifconfig eth0 up
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000004b" class="outline-3">
 <h3 id="org000004b"><span class="section-number-3">6.4.</span> Hub VS switch</h3>
 <div class="outline-text-3" id="text-6-4">
@@ -872,7 +854,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000004f" class="outline-3">
 <h3 id="org000004f"><span class="section-number-3">6.5.</span> Hub VS switch</h3>
 <div class="outline-text-3" id="text-6-5">
@@ -889,9 +870,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000052" class="outline-3">
 <h3 id="org0000052"><span class="section-number-3">6.6.</span> ¿Direcciones MAC?</h3>
 <div class="outline-text-3" id="text-6-6">
@@ -904,7 +882,6 @@ ifconfig eth0 up
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000055" class="outline-3">
 <h3 id="org0000055"><span class="section-number-3">6.7.</span> Switch ¿Configuración?</h3>
 <div class="outline-text-3" id="text-6-7">
@@ -922,7 +899,6 @@ ifconfig eth0 up
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000059" class="outline-3">
 <h3 id="org0000059"><span class="section-number-3">6.8.</span> Switch: aprendizaje inicial</h3>
 <div class="outline-text-3" id="text-6-8">
@@ -946,7 +922,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000005c" class="outline-3">
 <h3 id="org000005c"><span class="section-number-3">6.9.</span> Actividades Cisco</h3>
 <div class="outline-text-3" id="text-6-9">
@@ -959,7 +934,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000006b" class="outline-2">
 <h2 id="org000006b"><span class="section-number-2">7.</span> ARP</h2>
 <div class="outline-text-2" id="text-7">
@@ -969,7 +943,6 @@ ifconfig eth0 up
 <li>Suele realizarlo el sistema operativo</li>
 </ul>
 </div>
-
 <div id="outline-container-org0000062" class="outline-3">
 <h3 id="org0000062"><span class="section-number-3">7.1.</span> Comando ARP (Linux)</h3>
 <div class="outline-text-3" id="text-7-1">
@@ -997,7 +970,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000065" class="outline-3">
 <h3 id="org0000065"><span class="section-number-3">7.2.</span> Comando ARP (Windows)</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -1031,7 +1003,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000068" class="outline-3">
 <h3 id="org0000068"><span class="section-number-3">7.3.</span> <i>Unicast Poll</i></h3>
 <div class="outline-text-3" id="text-7-3">
@@ -1046,9 +1017,6 @@ ifconfig eth0 up
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org000006e" class="outline-2">
 <h2 id="org000006e"><span class="section-number-2">8.</span> Referencias</h2>
 <div class="outline-text-2" id="text-8">
@@ -1060,12 +1028,6 @@ ifconfig eth0 up
 <li><a href="./par-03-ethernet.wp.html">Página web</a></li>
 <li><a href="./par-03-ethernet.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -1073,7 +1035,7 @@ ifconfig eth0 up
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-01-30 jue 19:07</p>
+<p class="date">Created: 2026-07-23 jue 14:14</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

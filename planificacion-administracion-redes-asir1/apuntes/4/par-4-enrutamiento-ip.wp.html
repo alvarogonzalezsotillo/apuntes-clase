@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2025-02-15 sáb 19:06 -->
+<!-- 2026-07-23 jue 14:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Enrutamiento IP</title>
 <meta name="author" content="Álvaro González Sotillo" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -251,6 +251,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <div id="outline-container-org0000008" class="outline-2">
 <h2 id="org0000008"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -263,7 +274,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000001" class="outline-3">
 <h3 id="org0000001"><span class="section-number-3">1.1.</span> <code>pathping</code> en Windows</h3>
 <div class="outline-text-3" id="text-1-1">
@@ -274,7 +284,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
 <div id="outline-container-org0000005" class="outline-3">
 <h3 id="org0000005"><span class="section-number-3">1.2.</span> <code>mtr</code> en Linux</h3>
 <div class="outline-text-3" id="text-1-2">
@@ -286,8 +295,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000012" class="outline-2">
 <h2 id="org0000012"><span class="section-number-2">2.</span> Cómo enruta IP</h2>
 <div class="outline-text-2" id="text-2">
@@ -301,7 +308,6 @@ window.addEventListener("load",()=>{
 </ul></li>
 </ul>
 </div>
-
 <div id="outline-container-org000000b" class="outline-3">
 <h3 id="org000000b"><span class="section-number-3">2.1.</span> IP vs MAC</h3>
 <div class="outline-text-3" id="text-2-1">
@@ -320,7 +326,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000000f" class="outline-3">
 <h3 id="org000000f"><span class="section-number-3">2.2.</span> Red IP vs Red Ethernet</h3>
 <div class="outline-text-3" id="text-2-2">
@@ -344,8 +349,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000019" class="outline-2">
 <h2 id="org0000019"><span class="section-number-2">3.</span> Ejemplo de enrutamiento</h2>
 <div class="outline-text-2" id="text-3">
@@ -405,8 +408,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org000001d" class="outline-2">
 <h2 id="org000001d"><span class="section-number-2">4.</span> <i>Router on a stick</i></h2>
 <div class="outline-text-2" id="text-4">
@@ -425,8 +426,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org000003f" class="outline-2">
 <h2 id="org000003f"><span class="section-number-2">5.</span> Tablas de enrutamiento</h2>
 <div class="outline-text-2" id="text-5">
@@ -440,7 +439,6 @@ window.addEventListener("load",()=>{
 <li>Se manejan con el comando <code>route</code> o <code>ip route</code></li>
 </ul>
 </div>
-
 <div id="outline-container-org0000020" class="outline-3">
 <h3 id="org0000020"><span class="section-number-3">5.1.</span> Filas y columnas</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -456,7 +454,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org0000023" class="outline-3">
 <h3 id="org0000023"><span class="section-number-3">5.2.</span> Descripción de columnas</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -472,7 +469,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000002d" class="outline-3">
 <h3 id="org000002d"><span class="section-number-3">5.3.</span> Windows</h3>
 <div class="outline-text-3" id="text-5-3">
@@ -485,7 +481,6 @@ window.addEventListener("load",()=>{
 </p>
 </div>
 </div>
-
 <div id="outline-container-org0000027" class="outline-4">
 <h4 id="org0000027"><span class="section-number-4">5.3.1.</span> Modificar las tablas en Windows</h4>
 <div class="outline-text-4" id="text-5-3-1">
@@ -502,7 +497,6 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-
 <div id="outline-container-org000002a" class="outline-4">
 <h4 id="org000002a"><span class="section-number-4">5.3.2.</span> Activar el enrutamiento</h4>
 <div class="outline-text-4" id="text-5-3-2">
@@ -516,8 +510,6 @@ window.addEventListener("load",()=>{
 </div>
 </div>
 </div>
-
-
 <div id="outline-container-org0000030" class="outline-3">
 <h3 id="org0000030"><span class="section-number-3">5.4.</span> Linux</h3>
 <div class="outline-text-3" id="text-5-4">
@@ -536,7 +528,6 @@ link-local      *               255.255.0.0     U     1000   0        0 wlan0
 </div>
 </div>
 </div>
-
 <div id="outline-container-org000003c" class="outline-3">
 <h3 id="org000003c"><span class="section-number-3">5.5.</span> Linux</h3>
 <div class="outline-text-3" id="text-5-5">
@@ -552,7 +543,6 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 </pre>
 </div>
 </div>
-
 <div id="outline-container-org0000033" class="outline-4">
 <h4 id="org0000033"><span class="section-number-4">5.5.1.</span> Modificar las tablas en Linux (<code>route</code>)</h4>
 <div class="outline-text-4" id="text-5-5-1">
@@ -569,9 +559,6 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 </ul>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000036" class="outline-4">
 <h4 id="org0000036"><span class="section-number-4">5.5.2.</span> Modificar las tablas en Linux (<code>ip</code>)</h4>
 <div class="outline-text-4" id="text-5-5-2">
@@ -579,7 +566,7 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 <li>Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz <code>eth0</code>, con métrica 3. Se envía al router 157.55.80.1</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">sudo ip route add 157.0.0.0/8 via 157.55.80.1 dev eth0 weigth 3
+<pre class="src src-sh">sudo ip route add 157.0.0.0/8 via 157.55.80.1 dev eth0 metric 3
 </pre>
 </div>
 <ul class="org-ul">
@@ -588,8 +575,6 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-org0000039" class="outline-4">
 <h4 id="org0000039"><span class="section-number-4">5.5.3.</span> <a href="http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/">Activar el enrutamiento</a></h4>
 <div class="outline-text-4" id="text-5-5-3">
@@ -612,9 +597,6 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 </div>
 </div>
 </div>
-
-
-
 <div id="outline-container-org0000042" class="outline-2">
 <h2 id="org0000042"><span class="section-number-2">6.</span> Referencias</h2>
 <div class="outline-text-2" id="text-6">
@@ -626,12 +608,6 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 <li><a href="./par-4-enrutamiento-ip.wp.html">Página web</a></li>
 <li><a href="./par-4-enrutamiento-ip.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -639,7 +615,7 @@ default via 192.168.1.1 dev wlp0s20f3 proto dhcp metric 600
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2025-02-15 sáb 19:06</p>
+<p class="date">Created: 2026-07-23 jue 14:15</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

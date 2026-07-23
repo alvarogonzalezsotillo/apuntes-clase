@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Generated on 2026-07-23 jue 14:10 -->
 <meta charset="utf-8"/>
 <title>Usuarios, privilegios y roles de <b>Oracle</b></title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -443,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2025-01-30 jue 19:05</p>
+<h1 class="title">Usuarios, privilegios y roles de <b>Oracle</b></h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:10</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -494,8 +495,17 @@ window.addEventListener("load",()=>{
 
 </script>
 
+<style type="text/css">
+// SE USA EN ESTILO BEIGE
+@font-face {
+    font-family: 'League Gothic';
+    src: url("../../../common/bobbli.otf") format("opentype");
 
+    font-weight: normal;
+    font-style: normal;
+}
 
+</style>
 <section>
 <section id="slide-1">
 <h2 id="1"><span class="section-number-2">1.</span> Introducción</h2>
@@ -517,7 +527,6 @@ window.addEventListener("load",()=>{
 (<a href="https://youtu.be/Ure7h5andLU">Vídeo en YouTube</a>)
 </p>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -554,7 +563,6 @@ Borrado de usuario
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 </section>
 <section>
@@ -575,7 +583,6 @@ Borrado de usuario
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-3-1">
 <h3 id="3-1"><span class="section-number-3">3.1.</span> Privilegios de <b>Oracle</b></h3>
@@ -608,9 +615,6 @@ Borrado de usuario
 </tbody>
 </table>
 <div class="slide-footer"></div>
-
-
-
 </section>
 <section id="slide-3-2">
 <h3 id="3-2"><span class="section-number-3">3.2.</span> Sintaxis de <code>Grant</code></h3>
@@ -635,9 +639,6 @@ grant select on alumnos to profesor;
 <a href="https://docs.oracle.com/database/121/TTSQL/privileges.htm#TTSQL339">Fuente: docs.oracle.com</a>
 </p>
 <div class="slide-footer"></div>
-
-
-
 </section>
 <section id="slide-3-3">
 <h3 id="3-3"><span class="section-number-3">3.3.</span> Ejercicio</h3>
@@ -665,11 +666,6 @@ grant update(column-name) on table-name to user-name
 
 </aside>
 <div class="slide-footer"></div>
-
-
-
-
-
 </section>
 <section id="slide-3-4">
 <h3 id="3-4"><span class="section-number-3">3.4.</span> Quitar privilegios</h3>
@@ -698,8 +694,6 @@ revoke select on unatabla from unusuario;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 <section id="slide-3-5">
 <h3 id="3-5"><span class="section-number-3">3.5.</span> Caso especial: <code>Select</code> sobre columnas</h3>
@@ -711,7 +705,7 @@ revoke select on unatabla from unusuario;
 
 <div class="org-src-container">
 
-<pre><code class="sql" >create table datos(texto varchar2(255,numero integer);
+<pre><code class="sql" >create table datos(texto varchar2(255),numero integer);
 
 grant select(texto) on datos to usuario; -- NO FUNCIONA EN ORACLE
 
@@ -720,8 +714,6 @@ grant select on datosparausuario to usuario;
 </code></pre>
 </div>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -739,7 +731,6 @@ grant select on datosparausuario to usuario;
 
 </ul>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-1">
 <h3 id="4-1"><span class="section-number-3">4.1.</span> Sintaxis de roles</h3>
@@ -755,7 +746,6 @@ grant NOMBREROL to USUARIO;
 <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96521/privs.htm">Fuente: docs.oracle.com</a>
 </p>
 <div class="slide-footer"></div>
-
 </section>
 <section id="slide-4-2">
 <h3 id="4-2"><span class="section-number-3">4.2.</span> Ejercicio</h3>
@@ -810,8 +800,6 @@ grant ELROL to usuariodespues;
 
 </aside>
 <div class="slide-footer"></div>
-
-
 </section>
 </section>
 <section>
@@ -824,13 +812,6 @@ grant ELROL to usuariodespues;
 <li><a href="./gbd-5-usuarios-privilegios-roles.pdf">PDF</a></li>
 <li><a href="./gbd-5-usuarios-privilegios-roles.wp.html">Página web</a></li>
 <li><a href="./gbd-5-usuarios-privilegios-roles.epub">EPUB</a></li>
-
-</ul></li>
-<li>Creado con:
-<ul>
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
 
 </ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
@@ -890,7 +871,7 @@ overview: true,
 transition: 'linear',
 transitionSpeed: 'default',
 
-// Plugins with reveal.js 4.x
+// Plugins with reveal.js 4.x and later
 plugins: [ RevealHighlight, RevealNotes, RevealMenu ],
 
 // Optional libraries used to extend reveal.js

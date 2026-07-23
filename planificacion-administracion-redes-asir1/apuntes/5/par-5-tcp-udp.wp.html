@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-03-16 Mon 09:33 -->
+<!-- 2026-07-23 jue 14:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TCP y UDP</title>
@@ -523,7 +523,7 @@ Fuente:<a href="https://commons.wikimedia.org/w/index.php?curid=30810617">By Sci
 <li>TCP</li>
 <li>UDP</li>
 </ul></li>
-<li>La asignación de puertos se realiza según el <a href="http://www.ietf.org/rfc/rfc1700.txt?number=1700">RFC 1700</a></li>
+<li>La asignación de puertos se realizaba según el <a href="http://www.ietf.org/rfc/rfc1700.txt?number=1700">RFC 1700</a>. Ahora es un <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">registro de la IANA</a></li>
 </ul>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -822,8 +822,15 @@ En ese caso, en vez de <code>netcat</code> usaremos <code>openssl</code>
 Ejemplo completo:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  printf <span style="color: #8b2252;">"GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n"</span> <span style="color: #8b2252;">\</span>
-    <span style="color: #acccacccffff;"> </span> | openssl s_client -quiet -connect www.debian.org:443
+<pre class="src src-bash">  printf <span style="color: #008000; font-weight: bold;">"GET / HTTP/1.1\r\nHost: www.debian.org\r\n\r\n"</span> <span style="color: #008000; font-weight: bold;">\</span>
+    <span style="color: #acccacccaccc;"> </span> | openssl s_client -quiet -connect www.debian.org:443
+</pre>
+</div></li>
+<li><p>
+<code>netcat</code> también lo incluye
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">  nc --ssl 
 </pre>
 </div></li>
 </ul>
@@ -892,7 +899,7 @@ Ejemplo completo:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-03-16 Mon 09:33</p>
+<p class="date">Created: 2026-07-23 jue 14:15</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

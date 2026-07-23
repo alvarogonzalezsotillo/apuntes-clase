@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-04-28 Tue 10:14 -->
+<!-- 2026-07-23 jue 14:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Listas de control de acceso en routers CISCO</title>
@@ -393,7 +393,7 @@ Es necesario mirar el apartado Inbound y Outbound
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-sh">   interface &lt;interfaz&gt;
-   ip access-group &lt;numero ACL&gt; &lt;out o<span style="color: #a020f0;"> in</span>&gt;
+   ip access-group &lt;numero ACL&gt; &lt;out o<span style="color: #000090; font-weight: bold;"> in</span>&gt;
 </pre>
 </div>
 </div>
@@ -414,7 +414,7 @@ Es necesario mirar el apartado Inbound y Outbound
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-sh">  access-list access-list-number {permit|deny} 
-  {host|<span style="color: #483d8b;">source</span> source-wildcard|any}.
+  {host|source source-wildcard|any}.
 </pre>
 </div>
 
@@ -472,36 +472,36 @@ Se desea que la red <code>10.0.0.0/15</code> no sea enrutada, excepto el equipo 
 Permitir el host <code>10.0.1.1</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>access-list 1 permit host 10.0.1.1
+<pre class="src src-sh">    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>access-list 1 permit host 10.0.1.1
 </pre>
 </div></li>
 <li><p>
 Prohibir la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>access-list 1 deny 10.0.0.0 0.1.255.255
+<pre class="src src-sh">    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>access-list 1 deny 10.0.0.0 0.1.255.255
 </pre>
 </div></li>
 <li><p>
 Permitir el resto de redes
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>access-list 1 permit any
+<pre class="src src-sh">    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>access-list 1 permit any
 </pre>
 </div></li>
 <li><p>
 Explicitar la regla final de denegación (va a estar de todas formas, pero ayuda a no olvidarse de ella)
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>access-list 1 deny any
+<pre class="src src-sh">    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>access-list 1 deny any
 </pre>
 </div></li>
 <li><p>
 Asociar esta ACL a la interfaz de entrada de la red <code>10.0.0.0/15</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>interface Fa0/0
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>ip access-group 1<span style="color: #a020f0;"> in</span>
+<pre class="src src-sh">    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>interface Fa0/0
+    <span style="color: #acccacccaccc;"> </span>   <span style="color: #acccacccaccc;"> </span>ip access-group 1<span style="color: #000090; font-weight: bold;"> in</span>
 </pre>
 </div></li>
 </ul>
@@ -581,7 +581,7 @@ Pueden hacer referencia a otras características del paquete:
 <div class="org-src-container">
 <pre class="src src-sh">   access-list access-list-number [dynamic dynamic-name [timeout minutes]]
    {deny | permit} protocol 
-   <span style="color: #483d8b;">source</span> source-wildcard destination   destination-wildcard
+   source source-wildcard destination   destination-wildcard
    [precedence precedence] [tos tos] [log | log-input]  
    [time-range time-range-name][fragments]
 </pre>
@@ -614,7 +614,7 @@ Ejemplo: Prohíbe el tráfico hacia la red <code>172.16.0.0/12</code>
 <div class="org-src-container">
 <pre class="src src-sh">   access-list access-list-number [dynamic dynamic-name [timeout minutes]]  
    {deny | permit} tcp   
-   <span style="color: #483d8b;">source</span> source-wildcard [operator [port]] 
+   source source-wildcard [operator [port]] 
    destination destination-wildcard   [operator [port]] [established] 
    [precedence precedence] [tos tos] [log |   log-input] 
    [time-range time-range-name][fragments]
@@ -644,7 +644,7 @@ Ejemplo: Permite la comunicación <b>TCP</b> hacia la red <code>10.0.0.0/8</code
 <div class="org-src-container">
 <pre class="src src-sh">   access-list access-list-number [dynamic dynamic-name [timeout minutes]]   
    {deny | permit} udp   
-   <span style="color: #483d8b;">source</span> source-wildcard [operator [port]] 
+   source source-wildcard [operator [port]] 
    destination destination-wildcard   [operator [port]]
    [precedence precedence] [tos tos] [log | log-input] 
    [time-range time-range-name][fragments]
@@ -696,8 +696,8 @@ Modificación en el firewall:
 <div class="org-src-container">
 <pre class="src src-sh">  R1# show access-lists 1
   Standard IP access list 1
-    <span style="color: #acccacccffff;"> </span>10 deny   192.168.10.99
-    <span style="color: #acccacccffff;"> </span>20 permit 192.168.0.0, wildcard bits 0.0.255.255
+    <span style="color: #acccacccaccc;"> </span>10 deny   192.168.10.99
+    <span style="color: #acccacccaccc;"> </span>20 permit 192.168.0.0, wildcard bits 0.0.255.255
   R1#
 
   R1# configure terminal      
@@ -902,7 +902,7 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido inbound.
    access-list 100 permit tcp any any
    access-list 100 deny ip any any
    interface Fa0/0
-   ip access-group 100<span style="color: #a020f0;"> in</span>
+   ip access-group 100<span style="color: #000090; font-weight: bold;"> in</span>
 </pre>
 </div>
 
@@ -981,7 +981,7 @@ Esta ACL debe colocarse en la tarjeta de la LAN, sentido outbound
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-04-28 Tue 10:14</p>
+<p class="date">Created: 2026-07-23 jue 14:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

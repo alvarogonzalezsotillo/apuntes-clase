@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-01-12 lun 19:43 -->
+<!-- 2026-07-23 jue 14:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PHP y HTTP</title>
@@ -423,20 +423,20 @@ window.addEventListener("load",()=>{
 
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span><i>heredoc</i></label><pre class="src src-php">$<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Mar&#237;a"</span>;
-<span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">&lt;&lt;&lt;EOT
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span><i>heredoc</i></label><pre class="src src-php">$nombre = "María";
+echo &lt;&lt;&lt;EOT
 Mi nombre es "$nombre".
-Esto deber&#237;a mostrar una 'A' may&#250;scula: \x41
-EOT</span>;
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
 </pre>
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span><i>nowdoc</i></label><pre class="src src-php">$<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Mar&#237;a"</span>;
-<span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">&lt;&lt;&lt;'EOT'
+<label class="org-src-name"><span class="listing-number">Listado de programa 2 </span><i>nowdoc</i></label><pre class="src src-php">$nombre = "María";
+echo &lt;&lt;&lt;'EOT'
 Mi nombre es "$nombre".
-Esto deber&#237;a mostrar una 'A' may&#250;scula: \x41
-EOT</span>;
+Esto debería mostrar una 'A' mayúscula: \x41
+EOT;
 </pre>
 </div>
 </div>
@@ -473,11 +473,11 @@ EOT</span>;
 <h3 id="org000000e"><span class="section-number-3">3.1.</span> If</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">if</span>( <span style="color: #008b8b;">CONDICION</span> ){
-    <span style="color: #008b8b;">SI</span> <span style="color: #008b8b;">ES</span> <span style="color: #008b8b;">CIERTO</span>
+<pre class="src src-php">if( CONDICION ){
+    SI ES CIERTO
 }
-<span style="color: #a020f0;">else</span>{
-    <span style="color: #008b8b;">SI</span> <span style="color: #008b8b;">ES</span> <span style="color: #008b8b;">FALSO</span>
+else{
+    SI ES FALSO
 }
 </pre>
 </div>
@@ -491,9 +491,9 @@ Ejercicio: si la multiplicación de dos variables es mayor de 50, muestra el res
 <h3 id="org0000011"><span class="section-number-3">3.2.</span> While</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">while</span>(<span style="color: #008b8b;">CONDICION</span>){
-    <span style="color: #008b8b;">SENTENCIAS</span> <span style="color: #008b8b;">QUE</span> <span style="color: #008b8b;">SE</span> <span style="color: #008b8b;">REPITEN</span>
-    <span style="color: #008b8b;">DEBERIA</span> <span style="color: #008b8b;">CAMBIARSE</span> <span style="color: #008b8b;">LA</span> <span style="color: #008b8b;">CONDICION</span>    
+<pre class="src src-php">while(CONDICION){
+    SENTENCIAS QUE SE REPITEN
+    DEBERIA CAMBIARSE LA CONDICION    
 }
 </pre>
 </div>
@@ -506,8 +506,8 @@ Ejercicio: muestra un tablero de ajedrez, con tantas filas y columnas como se di
 <h3 id="org0000014"><span class="section-number-3">3.3.</span> for</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">for</span> (<span style="color: #008b8b;">EXPR1</span>; <span style="color: #008b8b;">EXPR2</span>; <span style="color: #008b8b;">EXPR3</span>){
-    <span style="color: #008b8b;">SENTENCIA</span>
+<pre class="src src-php">for (EXPR1; EXPR2; EXPR3){
+    SENTENCIA
 }
 </pre>
 </div>
@@ -517,10 +517,10 @@ Es equivalente a un bucle <code>while</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #008b8b;">EXPR1</span>;
-<span style="color: #a020f0;">while</span> (<span style="color: #008b8b;">EXPR2</span>){
-    <span style="color: #008b8b;">SENTENCIA</span>
-    <span style="color: #008b8b;">EXPR3</span>
+<pre class="src src-php">EXPR1;
+while (EXPR2){
+    SENTENCIA
+    EXPR3
 }
 </pre>
 </div>
@@ -549,15 +549,15 @@ Ejercicio: Muestra todas las imágenes de <a href="https://jareksastro.org/astro
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #a0522d;">array</span> = [
-    <span style="color: #8b2252;">"foo"</span> =&gt; <span style="color: #8b2252;">"bar"</span>,
-    <span style="color: #8b2252;">"bar"</span> =&gt; <span style="color: #8b2252;">"foo"</span>,
+<pre class="src src-php">$array = [
+    "foo" =&gt; "bar",
+    "bar" =&gt; "foo",
 ];
-$<span style="color: #a0522d;">alumnos</span> = [
-    <span style="color: #8b2252;">"Pepe"</span>,
-    <span style="color: #8b2252;">"Mar&#237;a"</span>,
-    <span style="color: #8b2252;">"Juan"</span>,
-    <span style="color: #8b2252;">"Susana"</span>
+$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
 ];
 </pre>
 </div>
@@ -571,17 +571,17 @@ $<span style="color: #a0522d;">alumnos</span> = [
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #a0522d;">alumnos</span> = [
-    <span style="color: #8b2252;">"Pepe"</span>,
-    <span style="color: #8b2252;">"Mar&#237;a"</span>,
-    <span style="color: #8b2252;">"Juan"</span>,
-    <span style="color: #8b2252;">"Susana"</span>
+<pre class="src src-php">$alumnos = [
+    "Pepe",
+    "María",
+    "Juan",
+    "Susana"
 ];
-<span style="color: #a020f0;">foreach</span>($<span style="color: #a0522d;">alumnos</span> <span style="color: #a020f0;">as</span> $<span style="color: #a0522d;">alumno</span>){
-    <span style="color: #a020f0;">print</span>( <span style="color: #8b2252;">"Alumno: </span><span style="color: #a0522d;">$alumno</span><span style="color: #8b2252;">"</span> )
+foreach($alumnos as $alumno){
+    print( "Alumno: $alumno" );
 }
-<span style="color: #a020f0;">foreach</span>($<span style="color: #a0522d;">alumnos</span> <span style="color: #a020f0;">as</span> $<span style="color: #a0522d;">posicion</span> =&gt; $<span style="color: #a0522d;">alumno</span>){
-    <span style="color: #a020f0;">print</span>( <span style="color: #8b2252;">"Alumno </span><span style="color: #a0522d;">$posicion</span><span style="color: #8b2252;">: </span><span style="color: #a0522d;">$alumno</span><span style="color: #8b2252;">"</span> )
+foreach($alumnos as $posicion =&gt; $alumno){
+    print( "Alumno $posicion: $alumno" );
 }
 </pre>
 </div>
@@ -662,11 +662,11 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">for</span>( $<span style="color: #a0522d;">i</span> = 0 ; $<span style="color: #a0522d;">i</span> &lt; 10 ; $<span style="color: #a0522d;">i</span> += 1 ){
-    <span style="color: #a020f0;">if</span>( $<span style="color: #a0522d;">i</span> % 3 != 0 ){
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">continue</span>;
+<pre class="src src-php">for( $i = 0 ; $i &lt; 10 ; $i += 1 ){
+    if( $i % 3 != 0 ){
+        continue;
     }
-    <span style="color: #a020f0;">echo</span>( <span style="color: #8b2252;">"</span><span style="color: #a0522d;">$i</span><span style="color: #8b2252;"> es m&#250;ltiplo de 3\n"</span>);
+    echo( "$i es múltiplo de 3\n");
 }
 </pre>
 </div>
@@ -699,23 +699,23 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 <li>Intentaremos no usarlo, excepto con <code>mysqli</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #483d8b;">&lt;?php</span>
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">inverso</span>($<span style="color: #a0522d;">x</span>) {
-    <span style="color: #a020f0;">if</span> (!$<span style="color: #a0522d;">x</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Exception</span>(<span style="color: #8b2252;">'Divisi&#243;n por cero.'</span>);
+<pre class="src src-php">&lt;?php
+function inverso($x) {
+    if (!$x) {
+        throw new Exception('División por cero.');
     }
-    <span style="color: #a020f0;">return</span> 1/$<span style="color: #a0522d;">x</span>;
+    return 1/$x;
 }
 
-<span style="color: #a020f0;">try</span> {
-    <span style="color: #a020f0;">echo</span> inverso(5) . <span style="color: #8b2252;">"\n"</span>;
-    <span style="color: #a020f0;">echo</span> inverso(0) . <span style="color: #8b2252;">"\n"</span>;
+try {
+    echo inverso(5) . "\n";
+    echo inverso(0) . "\n";
 }
-<span style="color: #a020f0;">catch</span> (<span style="color: #228b22;">Exception</span> $<span style="color: #a0522d;">e</span>) {
-    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">'Excepci&#243;n capturada: '</span>,  $<span style="color: #a0522d;">e</span>-&gt;getMessage(), <span style="color: #8b2252;">"\n"</span>;
+catch (Exception $e) {
+    echo 'Excepción capturada: ',  $e-&gt;getMessage(), "\n";
 }
-<span style="color: #a020f0;">finally</span>{
-    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">'Esto ocurre haya o no haya pasado por catch\n'</span>;
+finally{
+    echo 'Esto ocurre haya o no haya pasado por catch\n';
 }
 
 </pre>
@@ -736,13 +736,13 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 
 <div class="org-src-container">
 <pre class="src src-php">
-<span style="color: #483d8b;">&lt;?php</span>
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">foo</span>($<span style="color: #a0522d;">arg_1</span>, $<span style="color: #a0522d;">arg_2</span>, <span style="color: #b22222;">/* </span><span style="color: #b22222;">...,</span><span style="color: #b22222;"> */</span> $<span style="color: #a0522d;">arg_n</span>)
+&lt;?php
+function foo($arg_1, $arg_2, /* ..., */ $arg_n)
 {
-    <span style="color: #a020f0;">echo</span> <span style="color: #8b2252;">"Funci&#243;n de ejemplo.\n"</span>;
-    <span style="color: #a020f0;">return</span> $<span style="color: #a0522d;">valor_devuelto</span>;
+    echo "Función de ejemplo.\n";
+    return $valor_devuelto;
 }
-<span style="color: #483d8b;">?&gt;</span>
+?&gt;
 </pre>
 </div>
 </div>
@@ -760,22 +760,22 @@ Ejercicio: muestra las siguientes imágenes de <a href="https://astro.uni-bonn.d
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php">$<span style="color: #a0522d;">a</span> = 3; <span style="color: #b22222;">// </span><span style="color: #b22222;">GLOBAL
-</span>
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun1</span>(){
-    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">ERROR, VARIABLE NO DEFINIDA
-</span>}
+<pre class="src src-php">$a = 3; // GLOBAL
 
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun2</span>(){
-    <span style="color: #a020f0;">global</span> $<span style="color: #a0522d;">a</span>;
-    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 3
-</span>}
+function fun1(){
+    echo $a; // ERROR, VARIABLE NO DEFINIDA
+}
 
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">fun3</span>(){
-    $<span style="color: #a0522d;">a</span> = 4
-    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">a</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 4
-</span>    <span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">GLOBALS</span>[<span style="color: #8b2252;">"a""]; // IMPRIME 3
-}</span>
+function fun2(){
+    global $a;
+    echo $a; // IMPRIME 3
+}
+
+function fun3(){
+    $a = 4;
+    echo $a; // IMPRIME 4
+    echo $GLOBALS["a"]; // IMPRIME 3
+}
 </pre>
 </div>
 
@@ -812,24 +812,24 @@ Nota: para <code>$GLOBALS</code> ver <a href="#variablespredefinidas">Variables 
 
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">incrementa</span>($<span style="color: #a0522d;">variable</span>, $<span style="color: #a0522d;">valor</span>){
-    $<span style="color: #a0522d;">variable</span> += $<span style="color: #a0522d;">valor</span>;
+<pre class="src src-php">function incrementa($variable, $valor){
+    $variable += $valor;
 }
 
-$<span style="color: #a0522d;">unavariable</span> = 3;
-incrementa($<span style="color: #a0522d;">unavariable</span>, 4);
-<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">unavariable</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 3</span>
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 3
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">incrementa</span>(&amp;$<span style="color: #a0522d;">variable</span>, $<span style="color: #a0522d;">valor</span>){
-    $<span style="color: #a0522d;">variable</span> += $<span style="color: #a0522d;">valor</span>;
+<pre class="src src-php">function incrementa(&amp;$variable, $valor){
+    $variable += $valor;
 }
 
-$<span style="color: #a0522d;">unavariable</span> = 3;
-incrementa($<span style="color: #a0522d;">unavariable</span>, 4);
-<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">unavariable</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">IMPRIME 7</span>
+$unavariable = 3;
+incrementa($unavariable, 4);
+echo $unavariable; // IMPRIME 7
 </pre>
 </div>
 </div>
@@ -840,22 +840,22 @@ incrementa($<span style="color: #a0522d;">unavariable</span>, 4);
 <li>Los objetos se pasan siempre por referencia</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Persona</span> {
-    <span style="color: #a020f0;">public</span> $<span style="color: #a0522d;">nombre</span>;
+<pre class="src src-php">class Persona {
+    public $nombre;
 
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">function</span> <span style="color: #0000ff;">__construct</span>($<span style="color: #a0522d;">nombre</span>) {
-    <span style="color: #6c7f6868233c;"> </span>   <span style="color: #008b8b;">$</span><span style="color: #008b8b;">this</span>-&gt;<span style="color: #a0522d;">nombre</span> = $<span style="color: #a0522d;">nombre</span>;
+    public function __construct($nombre) {
+        $this-&gt;nombre = $nombre;
     }
 }
 
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">cambiarNombre</span>($<span style="color: #a0522d;">persona</span>) {
-    $<span style="color: #a0522d;">persona</span>-&gt;<span style="color: #a0522d;">nombre</span> = <span style="color: #8b2252;">"Carlos"</span>;
+function cambiarNombre($persona) {
+    $persona-&gt;nombre = "Carlos";
 }
 
-$<span style="color: #a0522d;">persona1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Persona</span>(<span style="color: #8b2252;">"Ana"</span>);
-cambiarNombre($<span style="color: #a0522d;">persona1</span>);
+$persona1 = new Persona("Ana");
+cambiarNombre($persona1);
 
-<span style="color: #a020f0;">echo</span> $<span style="color: #a0522d;">persona1</span>-&gt;<span style="color: #a0522d;">nombre</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Imprime "Carlos", no "Ana"</span>
+echo $persona1-&gt;nombre; // Imprime "Carlos", no "Ana"
 </pre>
 </div>
 </div>
@@ -950,19 +950,19 @@ cambiarNombre($<span style="color: #a0522d;">persona1</span>);
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-php">
-<span style="color: #483d8b;">&lt;?php</span>
-$<span style="color: #a0522d;">url</span> = <span style="color: #8b2252;">'http://username:password@hostname:9090/path?arg=value#anchor'</span>;
+&lt;?php
+$url = 'http://username:password@hostname:9090/path?arg=value#anchor';
 
-var_dump(parse_url($<span style="color: #a0522d;">url</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_SCHEME</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_USER</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PASS</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_HOST</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PORT</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_PATH</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_QUERY</span>));
-var_dump(parse_url($<span style="color: #a0522d;">url</span>, <span style="color: #008b8b;">PHP_URL_FRAGMENT</span>));
-<span style="color: #483d8b;">?&gt;</span>
+var_dump(parse_url($url));
+var_dump(parse_url($url, PHP_URL_SCHEME));
+var_dump(parse_url($url, PHP_URL_USER));
+var_dump(parse_url($url, PHP_URL_PASS));
+var_dump(parse_url($url, PHP_URL_HOST));
+var_dump(parse_url($url, PHP_URL_PORT));
+var_dump(parse_url($url, PHP_URL_PATH));
+var_dump(parse_url($url, PHP_URL_QUERY));
+var_dump(parse_url($url, PHP_URL_FRAGMENT));
+?&gt;
 </pre>
 </div>
 </div>
@@ -1083,7 +1083,7 @@ $_COOKIE — Cookies HTTP
 Añadir al final de un <i>array</i> con claves numéricas:
 </p>
 <div class="org-src-container">
-<pre class="src src-php">  $<span style="color: #a0522d;">elarray</span>[] = <span style="color: #8b2252;">"ultimo"</span>;
+<pre class="src src-php">  $elarray[] = "ultimo";
 </pre>
 </div></li>
 
@@ -1196,23 +1196,23 @@ Añadir al final de un <i>array</i> con claves numéricas:
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-<span style="color: #a020f0;">if</span> (!<span style="color: #a020f0;">isset</span>($<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>])) {
-  $<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>] = 0;
-} <span style="color: #a020f0;">else</span> {
-  $<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>]++;
+if (!isset($_SESSION['count'])) {
+  $_SESSION['count'] = 0;
+} else {
+  $_SESSION['count']++;
 }
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-<span style="color: #a020f0;">unset</span>($<span style="color: #a0522d;">_SESSION</span>[<span style="color: #8b2252;">'count'</span>]);
+unset($_SESSION['count']);
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-php">session_start();
-session_destroy(); <span style="color: #b22222;">// </span><span style="color: #b22222;">esto no destruye $_SESSION</span>
+session_destroy(); // esto no destruye $_SESSION
 </pre>
 </div>
 </div>
@@ -1272,14 +1272,14 @@ session_destroy(); <span style="color: #b22222;">// </span><span style="color: #
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">response</span> = <span style="color: #a020f0;">await</span> fetch(<span style="color: #8b2252;">"https://example.org/post"</span>, {
-  method: <span style="color: #8b2252;">"POST"</span>,
+<pre class="src src-javascript"><span style="color: #000090; font-weight: bold;">const</span> response = <span style="color: #000090; font-weight: bold;">await</span> fetch(<span style="color: #008000; font-weight: bold;">"https://example.org/post"</span>, {
+  method: <span style="color: #008000; font-weight: bold;">"POST"</span>,
   headers: {
-    <span style="color: #8b2252;">"Content-Type"</span>: <span style="color: #8b2252;">"application/json"</span>,
+    <span style="color: #008000; font-weight: bold;">"Content-Type"</span>: <span style="color: #008000; font-weight: bold;">"application/json"</span>,
   },    
-  body: JSON.stringify({ username: <span style="color: #8b2252;">"example"</span> }),  
+  body: JSON.stringify({ username: <span style="color: #008000; font-weight: bold;">"example"</span> }),  
 });
-<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">json</span> = <span style="color: #a020f0;">await</span> response.json();
+<span style="color: #000090; font-weight: bold;">const</span> json = <span style="color: #000090; font-weight: bold;">await</span> response.json();
 </pre>
 </div>
 </div>
@@ -1287,10 +1287,10 @@ session_destroy(); <span style="color: #b22222;">// </span><span style="color: #
 <h4 id="org000007c"><span class="section-number-4">12.2.1.</span> Enviar un formulario</h4>
 <div class="outline-text-4" id="text-12-2-1">
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">form</span> = document.getElementById(<span style="color: #8b2252;">"formulario"</span>);
-<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">formData</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span>(form);
-<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">response</span> = fetch( <span style="color: #8b2252;">"./api.php"</span>, {
-    method: <span style="color: #8b2252;">"POST"</span>,
+<pre class="src src-javascript"><span style="color: #000090; font-weight: bold;">const</span> form = document.getElementById(<span style="color: #008000; font-weight: bold;">"formulario"</span>);
+<span style="color: #000090; font-weight: bold;">const</span> formData = <span style="color: #000090; font-weight: bold;">new</span> <span style="color: #20999d;">FormData</span>(form);
+<span style="color: #000090; font-weight: bold;">const</span> response = fetch( <span style="color: #008000; font-weight: bold;">"./api.php"</span>, {
+    method: <span style="color: #008000; font-weight: bold;">"POST"</span>,
     body: formData
 })
 </pre>
@@ -1301,17 +1301,17 @@ session_destroy(); <span style="color: #b22222;">// </span><span style="color: #
 <h4 id="org000007f"><span class="section-number-4">12.2.2.</span> Promesas</h4>
 <div class="outline-text-4" id="text-12-2-2">
 <div class="org-src-container">
-<pre class="src src-javascript">fetch( <span style="color: #8b2252;">"./api/endpoint"</span>, {
-    method: <span style="color: #8b2252;">"POST"</span>,
-    body: JSON.stringify({ username:<span style="color: #8b2252;">"example"</span>, action:<span style="color: #8b2252;">"create"</span>} )
+<pre class="src src-javascript">fetch( <span style="color: #008000; font-weight: bold;">"./api/endpoint"</span>, {
+    method: <span style="color: #008000; font-weight: bold;">"POST"</span>,
+    body: JSON.stringify({ username:<span style="color: #008000; font-weight: bold;">"example"</span>, action:<span style="color: #008000; font-weight: bold;">"create"</span>} )
 }).
-then( <span style="color: #a020f0;">async</span> (response) =&gt;{
-    <span style="color: #a020f0;">const</span> <span style="color: #a0522d;">json</span> = <span style="color: #a020f0;">await</span> response.json();
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">PROCESAR EL JSON DE RESPUESTA
+then( <span style="color: #000090; font-weight: bold;">async</span> (response) =&gt;{
+    <span style="color: #000090; font-weight: bold;">const</span> json = <span style="color: #000090; font-weight: bold;">await</span> response.json();
+    <span style="color: #808080;">// </span><span style="color: #808080; font-style: italic;">PROCESAR EL JSON DE RESPUESTA
 </span>}).
-<span style="color: #a020f0;">catch</span>( err =&gt; {
-    alert(<span style="color: #8b2252;">"Error:"</span> + err );
-    console.err(err);
+<span style="color: #000090; font-weight: bold;">catch</span>( err =&gt; {
+    alert(<span style="color: #008000; font-weight: bold;">"Error:"</span> + err );
+    console.error(err);
 });
 </pre>
 </div>
@@ -1327,15 +1327,15 @@ then( <span style="color: #a020f0;">async</span> (response) =&gt;{
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-php"><span style="color: #483d8b;">&lt;?php</span>
-$<span style="color: #a0522d;">json</span> = file_get_contents(<span style="color: #8b2252;">'php://input'</span>);
-$<span style="color: #a0522d;">request</span> = json_decode($<span style="color: #a0522d;">json</span>, <span style="color: #008b8b;">true</span>);
+<pre class="src src-php">&lt;?php
+$json = file_get_contents('php://input');
+$request = json_decode($json, true);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
-</span>
-header(<span style="color: #8b2252;">'Content-Type: application/json'</span>);
-<span style="color: #a020f0;">echo</span> json_encode($<span style="color: #a0522d;">response</span>);
-<span style="color: #483d8b;">?&gt;</span>
+// PROCESAR $request Y CREAR EL ARRAY DE RESPUESTA EN $response
+
+header('Content-Type: application/json');
+echo json_encode($response);
+?&gt;
 
 </pre>
 </div>
@@ -1361,12 +1361,6 @@ header(<span style="color: #8b2252;">'Content-Type: application/json'</span>);
 <li><a href="./UT04.wp.html">Página web</a></li>
 <li><a href="./UT04.epub">EPUB</a></li>
 </ul></li>
-<li>Creado con:
-<ul class="org-ul">
-<li><a href="https://www.gnu.org/s/emacs/">Emacs</a></li>
-<li><a href="https://gitlab.com/oer/org-re-reveal">org-re-reveal</a></li>
-<li><a href="https://www.latex-project.org/">Latex</a></li>
-</ul></li>
 <li>Alojado en <a href="https://alvarogonzalezsotillo.github.io/apuntes-clase">Github</a></li>
 </ul>
 </div>
@@ -1374,7 +1368,7 @@ header(<span style="color: #8b2252;">'Content-Type: application/json'</span>);
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-01-12 lun 19:43</p>
+<p class="date">Created: 2026-07-23 jue 14:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
