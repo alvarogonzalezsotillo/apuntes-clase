@@ -25,7 +25,9 @@
 | ~RECO~ (RECOverer Process)       | Necesario ante fallos en transacciones distribuidas.                                                                                 |
 
 -----
-Más información en [[https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm]]
+Más información en
+- [[https://docs.oracle.com/cd/B19306_01/server.102/b14220/process.htm]]
+- https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/background-processes.html  
 
 ** SGA y PGA
 - *PGA*: /Program Global Area/

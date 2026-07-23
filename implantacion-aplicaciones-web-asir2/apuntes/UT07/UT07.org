@@ -99,6 +99,7 @@ function miplugin_agrega_una_pagina_al_menu_admin(){
          plugin_dir_path(__FILE__) . 'pagina-admin.php' // se añade a /wp-admin
     );
 
+}
 
 add_action( 'admin_menu', 'miplugin_agrega_una_pagina_al_menu_admin' );
 #+end_src

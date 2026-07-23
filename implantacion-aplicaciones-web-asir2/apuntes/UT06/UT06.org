@@ -26,7 +26,7 @@
 - Otros (=secrets=, =configs=)
 
 ** [[https://docs.docker.com/reference/compose-file/services/][Servicios]]
-- Nombre del servcio
+- Nombre del servicio
   - =image=: Imagen Docker
   - =volumes=: Volúmenes montados en este /container/
   - =ports=: mapeo de puertos TCP/UDP
@@ -72,7 +72,7 @@
 * Instalar Nextcloud
 
 - Containers:
-  - Nexcloud:
+  - Nextcloud:
   - Base de datos Mariadb
   - Redis: cache en memoria para rendimiento (opcional)
   - Opcional: proxy inverso apache/nginx para mejorar la seguridad

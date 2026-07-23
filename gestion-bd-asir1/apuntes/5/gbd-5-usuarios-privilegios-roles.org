@@ -105,7 +105,7 @@ revoke select on unatabla from unusuario;
 - Se puede simular creando una vista sobre la tabla, y otorgando =select= sobre la vista
 
 #+begin_src sql
-create table datos(texto varchar2(255,numero integer);
+create table datos(texto varchar2(255),numero integer);
 
 grant select(texto) on datos to usuario; -- NO FUNCIONA EN ORACLE
 

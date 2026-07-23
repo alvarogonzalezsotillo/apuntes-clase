@@ -135,7 +135,7 @@
 - =sql=, =java=, =php=, =c=, =bat=, =sh=: instrucciones de programas informáticos
 
 Variantes:
-- Encodig: ASCII, UNICODE (utf-8, utf-16, utf-32), ISO-8859,...
+- Encoding: ASCII, UNICODE (utf-8, utf-16, utf-32), ISO-8859,...
 - Fin de línea: Unix, Windows
 
 *** Texto ¿plano?
@@ -216,7 +216,7 @@ Variantes:
   - Por ejemplo, código postal en un fichero de alumnos
 - Si hay un /conflicto/, los datos se almacenan en un área de /overflow/
 
-#+attr_latex: :width 0.6\textwidt
+#+attr_latex: :width 0.6\textwidth
 [[file:fichero-indexado-overflow.png]]
 
 [[http://kpvxy.blogspot.com.es/2011/10/ficheros-con-organizacion-secuencial.html][Créditos: kpvxy.blogspot.com.es]]

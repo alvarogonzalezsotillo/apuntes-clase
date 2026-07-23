@@ -73,7 +73,7 @@ DriverPDOORACLE --> APIORACLE
 - [[https://www.php.net/manual/es/book.mysqli.php][=mysqli=]] puede usarse de dos formas
   - Como métodos de un objeto conexión
   - Como funciones que reciben una conexión  
-- No se recomiena mezlarlas
+- No se recomienda mezclarlas
 
   #+begin_src php
 // ORIENTADO A OBJETOS
@@ -141,7 +141,7 @@ while ($fila = $resultado->fetch_assoc()) {
 #+begin_src php
 $resultado = $mysqli->query("SELECT id FROM test ORDER BY id ASC");
 
-$filas = $mysqli->fetch_all(MYSQLI_ASSOC);
+$filas = $resultado->fetch_all(MYSQLI_ASSOC);
 foreach ($filas as $fila) {
     echo " id = " . $fila['id'] . "\n";
 }
@@ -161,19 +161,19 @@ while ($fila = $resultado->fetch_assoc()) {
 
 ** Control de errores
 #+begin_src php
-$result = $sql->query("select ...");
+$result = $conexion->query("select ...");
 if($result) {
     // HA FUNCIONADO
 }
 else {
-    echo "Código de error mysql: $sql->errno";
-    echo "Mensaje de error mysql: $sql->error";
+    echo "Código de error mysql: $conexion->errno";
+    echo "Mensaje de error mysql: $conexion->error";
 }
 #+end_src
 
 #+begin_src php
 try{
-    $sql->query( "create ...");
+    $conexion->query( "create ...");
     // HA FUNCIONADO
 }
 catch(Exception $error){
@@ -196,7 +196,7 @@ catch(Exception $error){
 * Sentencias preparadas
 - Las sentencias suelen ser cadenas dinámicas
   - Los datos a seleccionar/borrar/actualizar dependen de parámetros
-- Existen la tentación de constuir /strings/ con las sentencias
+- Existe la tentación de construir /strings/ con las sentencias
 #+begin_src php
 $id = $_GET["id"];
 $mysqli->query("delete from USUARIOS where id='$id'");
@@ -235,7 +235,7 @@ https://www.w3schools.com/php/php_mysql_prepared_statements.asp
   $firstname = "John";
   $lastname = "Doe";
   $email = "john@example.com";
-  stmt->bind_param("sss", $firstname, $lastname, $email);
+  $stmt->bind_param("sss", $firstname, $lastname, $email);
   $stmt->execute();
 #+end_src
 

@@ -183,7 +183,7 @@ declare
 begin
   CREA_MATERIA('Materia popular');
   CREA_PROFESOR('Un profesor', profesorid);
-  CREA_CURSO('Materia popular',cursoid);
+  CREA_CURSO('Materia popular', profesorid, cursoid);
   for i in 1..11 loop
     CREA_ALUMNO('Alumno' || i, alumnoid );
     dbms_output.put_line( i || ': Voy a matricular al alumno ' || alumnoid || ' en el curso ' || cursoid );

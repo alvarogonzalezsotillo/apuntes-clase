@@ -263,7 +263,7 @@ Nota: [[https://htwins.net/scale2/][tamaños de ondas]]
 * Fibra óptica 
 - La información se transmite en forma de pulsos de luz.  
 - En cada instante se hay presencia o ausencia de señal luminosa.
-  - Se pueden usar diferentes colores para una multiplexación por fecuencia
+  - Se pueden usar diferentes colores para una multiplexación por frecuencia
 - En un extremo se coloca un LED emisor de luz o un láser
 - En el extremo opuesto se sitúa un detector de luz.
 
@@ -364,7 +364,7 @@ Nota: [[https://htwins.net/scale2/][tamaños de ondas]]
 ** Wifi
 - IEEE 802.11
 - Destinada a LAN
-- Microondas y radiofrecencia
+- Microondas y radiofrecuencia
 [[file:media/wifi.png]]
 
 #+reveal: split

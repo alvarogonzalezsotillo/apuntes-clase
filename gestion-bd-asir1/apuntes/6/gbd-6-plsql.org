@@ -25,7 +25,7 @@
   - Constante, variable, excepción, paquete, función, procedimiento, tabla, cursor...
   - Hasta 30 caracteres
   - Comienza por una letra. 
-  - Puede contener =$=, =#=, pero no puede contener operadores =+­%=/*= 
+  - Puede contener =$=, =#=, pero no puede contener operadores =+-%=/*= 
 
 * Bloques anónimos
 
@@ -497,7 +497,7 @@ end;
 
 
 ** Procedimientos
-- Los procedimentos no devuelven un valor
+- Los procedimientos no devuelven un valor
   - Pero pueden tener parámetros =out=
 #+BEGIN_SRC sql
 CREATE OR REPLACE PROCEDURE aumenta_salario(vempno IN number)
@@ -760,7 +760,7 @@ END;
 ** Excepciones predefinidas
 - Estas son algunas (hay muchas)
 | ~NO_DATA_FOUND~    | ~TOO_MANY_ROWS~ | ~ACCESS_INTO_NULL~ |
-| ~INVALID_NUMBER~   | ~NO_DATA_FOUND~ | ~VALUE_ERROR~      |
+| ~INVALID_NUMBER~   | ~CURSOR_ALREADY_OPEN~ | ~VALUE_ERROR~      |
 | ~ROWTYPE_MISMATCH~ | ~ZERO_DIVIDE~   |                    |
 
 https://www.techonthenet.com/oracle/exceptions/named_system.php
@@ -788,14 +788,14 @@ END;
 - Una excepción debe ser /excepcional/
 - El flujo normal de programa debe evitarlas
   - Un ~select into~ debe estar hecho para devolver como mucho una fila
-  - Antes se debería hacer ~select count()~ con un ~if~ para comprobar que devuelve una fila
+  - Antes se debería hacer ~select count(*)~ con un ~if~ para comprobar que devuelve una fila
 - Solo se atrapa si se puede solucionar el error, si no se deja pasar
   - No tiene sentido que imprimamos /Ha habido un error/, pero que la función/procedimiento que nos llamó no lo sepa
   - Si nadie lo atrapa, llega hasta el usuario, que es el que tiene que enterarse y el que lo podrá arreglar
 
 ** Excepciones de usuario
 - En ocasiones queremos enviar un mensaje de error personalizado
-- Están disponibles los números de error entre =-20001= y =­20999=
+- Están disponibles los números de error entre =-20001= y =-20999=
 - Se pueden atrapar con =when others= y comprobarse con =SQLCODE=
 
 #+BEGIN_SRC sql
@@ -863,7 +863,7 @@ end;
 | Evento DML   |                                          |
 |--------------+------------------------------------------|
 | ~delete~     | Borrado de una fila                      |
-| ~insert~     | Insercción de una fila                   |
+| ~insert~     | Inserción de una fila                   |
 | ~update~     | Modificación de fila                     |
 | ~update of~  | Modificación de un campo de una fila     |
 | ~instead of~ | Anula la orden, pero no provoca un error |
@@ -957,7 +957,7 @@ BEFORE INSERT ON empleados
 for each row
 begin
   if :new.empno is null then
-    :new.empno = empleado_empno_seq.nextval;
+    :new.empno := empleado_empno_seq.nextval;
   end if;
 end;
 /
@@ -1025,7 +1025,7 @@ end;
 /
 #+end_src
 
-- Ventajas: simple, rendimiento es escritura
+- Ventajas: simple, rendimiento en escritura
 - Desventajas: rendimiento en lectura, se consulta cada vez
 
 *** Con triggers

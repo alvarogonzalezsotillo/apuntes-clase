@@ -146,7 +146,7 @@ Fuente:[[https://commons.wikimedia.org/w/index.php?curid=30810617][By Scil100]]
 - Se llama puerto a la dirección de nivel de transporte en
   - TCP
   - UDP
-- La asignación de puertos se realiza según el [[http://www.ietf.org/rfc/rfc1700.txt?number=1700][RFC 1700]]
+- La asignación de puertos se realizaba según el [[http://www.ietf.org/rfc/rfc1700.txt?number=1700][RFC 1700]]. Ahora es un [[https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml][registro de la IANA]]
 
 |---+--------------------+----------------+----------------------------------------|
 | / | <>                 | <>             | <>                                     |

@@ -211,7 +211,7 @@ done
 #+end_src
 
 ** Windows
-- Configura una máquina virtual Windows 7 en modo bridged con ipv6
+- Configura una máquina virtual Windows en modo bridged con ipv6
   - Dirección =fe80::xx00/112= 
   - =xx= es tu número de ordenador (1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, 10, 11, …)
 - Haz ping al resto de ordenadores de tus compañeros (=interfaz= hace falta si hay más de una interfaz)

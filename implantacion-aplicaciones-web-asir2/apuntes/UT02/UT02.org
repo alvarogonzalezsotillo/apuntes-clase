@@ -135,9 +135,9 @@ Un plugin puede incluir:
 Todos las aplicaciones LAMP comparten un patrón común:
 - El código PHP debe estar accessible por Apache
 - En algún fichero, información sobre como conectar a MySQL
-  - Usuario, contraseña, /dabatase/, dirección IP, puerto
+  - Usuario, contraseña, /database/, dirección IP, puerto
 - Dependiendo de la aplicación:
-  - Directorios de adicionales
+  - Directorios adicionales
   - [[https://www.php.net/manual/en/extensions.alphabetical.php][Módulos PHP]] adicionales
   - [[https://httpd.apache.org/docs/current/mod/][Módulos de Apache]] adicionales  
   - [[https://www.php.net/manual/es/ini.php][Opciones de PHP]] adicionales

@@ -24,7 +24,7 @@
 
 ** Comunicación por niveles
 
-- Pronto se vió que la arquitectura /monolítica/ no era funcional y se pasó al modelo /por capas/ o niveles.
+- Pronto se vio que la arquitectura /monolítica/ no era funcional y se pasó al modelo /por capas/ o niveles.
 - Para hacer más sencilla la comunicación, se divide en varias capas o niveles.
 - Cada capa proporciona servicios que las capas superiores pueden utilizar.
 
@@ -309,7 +309,7 @@ Data processing by two communicating OSI-compatible devices proceeds as follows:
 - El modelo OSI es un gran modelo /teórico/
 - Se desarrolló con fines comerciales, pero
   - Era caro
-  - Tenía bastanes errores
+  - Tenía bastantes errores
   - Demasiado /corporativo/
 - No pudo competir con TCP/IP porque
   - Era más barato (gratis)
@@ -398,10 +398,10 @@ Data processing by two communicating OSI-compatible devices proceeds as follows:
 - Este tipo de red no es compatible con terminales analógicos.
 
 
-** DSL (Digital Subcriber Line)
+** DSL (Digital Subscriber Line)
 - Permite alta velocidad en cableado de baja calidad.
 - Utiliza frecuencias que no se utilizan en la comunicación vocal
-  - ADSL (Asymetric): el canal de bajada es mayor del canal de subida
+  - ADSL (Asymmetric): el canal de bajada es mayor que el canal de subida
   - SDSL (Symetric): los canales tienen el mismo ancho de banda
 
 

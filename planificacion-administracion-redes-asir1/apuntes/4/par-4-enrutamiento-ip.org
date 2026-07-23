@@ -161,7 +161,7 @@ sudo route add -net 157.0.0.0 netmask 255.0.0.0 gw 157.55.80.1 metric 3 dev eth0
 *** Modificar las tablas en Linux (=ip=)
 - Añadir una ruta para la red 157.0.0.0/8: se va por la interfaz =eth0=, con métrica 3. Se envía al router 157.55.80.1
 #+begin_src sh
-sudo ip route add 157.0.0.0/8 via 157.55.80.1 dev eth0 weigth 3
+sudo ip route add 157.0.0.0/8 via 157.55.80.1 dev eth0 metric 3
 #+end_src
 - La métrica y la interfaz son opcionales
 - Internet se puede especificar como =0.0.0.0/0= o como =default=

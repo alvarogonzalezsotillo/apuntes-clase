@@ -111,7 +111,7 @@ digraph {
                 CodigoTienda -> DireccionTienda
                 DireccionTienda -> CodigoTienda 
                 
-}n
+}
 #+end_src
 
 #+RESULTS:

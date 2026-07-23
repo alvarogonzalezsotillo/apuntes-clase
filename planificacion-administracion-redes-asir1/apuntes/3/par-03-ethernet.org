@@ -64,7 +64,7 @@
 - Ethernet se basa sobre el CSMA/CD persistente. 
 - Utilizan cable UTP de cat. 5e o 6.
   - [[https://es.wikipedia.org/wiki/100Base-TX][100 Base TX]]
-    - Usa codificación 4B/5B [[https://en.wikipedia.org/wiki/MLT-3_encoding][MTL-3]]
+    - Usa codificación 4B/5B [[https://en.wikipedia.org/wiki/MLT-3_encoding][MLT-3]]
   - 1000 Base T
     - [[https://en.wikipedia.org/wiki/Pulse-amplitude_modulation][PAM]]-5
 - 1000 Base X (SX, LX...) 

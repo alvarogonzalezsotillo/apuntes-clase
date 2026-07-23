@@ -51,8 +51,8 @@ select sysdate - interval '1' month + interval '1' day from dual;
 
 * Funciones sobre grupos
 - =avg=: media
-- =max=: mínimo
-- =min=: máximo
+- =max=: máximo
+- =min=: mínimo
 - =sum=: suma   
 - =count=: cuenta valores de columnas
 - =count(distict )=: cuenta valores distintos

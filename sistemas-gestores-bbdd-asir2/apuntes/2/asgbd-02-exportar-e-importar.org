@@ -6,7 +6,7 @@
   - Ayuda con =expdp help=yes=
   - Es necesario crear antes el =directory= de *Oracle*
 
-#+begin_src C
+#+begin_src text
 Export: Release 12.1.0.2.0 - Production on Fri Dec 16 13:32:15 2016
 
 Copyright (c) 1982, 2015, Oracle and/or its affiliates.  All rights reserved.
@@ -373,7 +373,7 @@ Job "ALUMNO"."SYS_EXPORT_SCHEMA_01" successfully completed at Fri Dec 16 13:08:0
 - Se utiliza el comando =impdp=
   - Ayuda con =impdp help=yes=
 
-#+begin_src C
+#+begin_src text
 
 Import: Release 12.1.0.2.0 - Production on Fri Dec 16 13:31:18 2016
 

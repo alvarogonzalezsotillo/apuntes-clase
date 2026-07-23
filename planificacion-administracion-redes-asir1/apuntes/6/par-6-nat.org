@@ -31,16 +31,16 @@ En un enrutamiento normal IP los paquetes siempre conservan su IP origen y desti
 
 * NAT
 
-- NATP cambia la dirección IP de origen
+- NAT cambia la dirección IP de origen
   - El origen está en una red privada interna
   - La reemplaza por la IP externa del /router/
-  - También puede cambiar el puerto de origen
+  - También puede cambiar el puerto de origen (NATP)
 - Deja anotados estos cambios en una tabla de correspondencias
   - Al recibir un paquete de respuesta, deshace el cambio antes de enrutar
 
 #+reveal: split
 #+caption: Se envía un paquete de la red interna a Internet
-[[file:media/nat-1.svg]]
+0[[file:media/nat-1.svg]]
 #+reveal: split
 #+caption: El /router/ recibe el paquete
 [[file:media/nat-2.svg]]
@@ -79,7 +79,7 @@ En un enrutamiento normal IP los paquetes siempre conservan su IP origen y desti
 - Puede ser interesante que haya entradas NAT permanentes en la tabla de correspondencias
   - Un servidor web en nuestra red local debería recibir todo el tráfico que tenga como destino la IP del router y el puerto 80
   - Programas P2P pueden funcionar mejor redireccionando directamente el tráfico al programa, para que otros /peers/ puedan encontrarnos
-- El puerto internto expuesto no tiene por qué coincidir con el externo
+- El puerto interno expuesto no tiene por qué coincidir con el externo
 #+reveal: split
 #+caption: Servidor Web en 192.168.1.1 expuesto a Internet
 [[file:media/nat-abrir-puerto-80.svg]]

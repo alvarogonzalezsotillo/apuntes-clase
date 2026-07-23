@@ -67,7 +67,7 @@ end;
 
 
 ** Compilar para depurar
-- Para poder depurar, debe compilare para depurar
+- Para poder depurar, debe compilarse para depurar
 - Si no, los /breakpoints/ no funcionarán
 
 [[file:media/sqldeveloper-compilar-para-debug.png]]

@@ -135,12 +135,11 @@
 - Borrado y modificación de registros con relaciones 
 - Transacciones 
 - Acceso concurrente a los datos 
-- 
 ** Construcción de Guiones
  
 - ¿Por qué PL/SQL?
 - Otros lenguajes de programación 
-- Bloques de Código Anóonimos en PL/SQL 
+- Bloques de Código Anónimos en PL/SQL 
 - Tipos de datos en PL/SQL
 - Operadores y expresiones 
 - Entrada y salida para la depuración
@@ -306,7 +305,7 @@ e) Se han diseñado guiones de sentencias para llevar a cabo tareas complejas.
 f) Se ha reconocido el funcionamiento de las transacciones.
 g) Se han anulado parcial o totalmente los cambios producidos por una transacción.
 h) Se han identificado los efectos de las distintas políticas de bloqueo de registros.
-** Ejecuta tareas de aseguramiento de la información, analizándolas y aplicandomecanismos de salvaguarda y transferencia.
+** Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia.
 Criterios de evaluación:
 a) Se han identificado herramientas gráficas y en línea de comandos para la administración de copias de seguridad.
 b) Se han realizado copias de seguridad.
@@ -341,7 +340,7 @@ h) Se ha transferido información entre sistemas gestores.
 - Creación, modificación y eliminación de tablas. Tipos de datos.  
 - Implementación de restricciones.  
 ** Realización de consultas:
-- Herramientas gráficas proporcionadas por el sistema gestor para la realización deconsultas.
+- Herramientas gráficas proporcionadas por el sistema gestor para la realización de consultas.
 - La sentencia SELECT.
 - Selección y ordenación de registros. Tratamiento de valores nulos.
 - Consultas de resumen. Agrupamiento de registros.

@@ -26,7 +26,7 @@
 
 Pregunta: ¿es Firefox una aplicación web o de escritorio?
 
-Pregunta: ¿[[https://www.rollapp.com/][rollup]] es web o escritorio?
+Pregunta: ¿[[https://www.rollapp.com/][rollapp]] es web o escritorio?
 
 Pregunta: ¿qué es más rápido? ¿qué es más seguro?
 
@@ -155,7 +155,7 @@ sudo systemctl status apache2
 - =conf-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =conf-available= que están activos.
 #+reveal: split
 - =mods-available=: Este directorio contiene los archivos de configuración de los módulos que se pueden utilizar para añadir nuevas funcionalidades al servidor.
-- =mods-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =mod-available= que están activos.
+- =mods-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =mods-available= que están activos.
 #+reveal: split
 - =sites-available=: Este directorio contiene los archivos de configuración de los hosts virtuales.
 - =sites-enabled=: Este directorio contiene enlaces simbólicos a los archivos de configuración del directorio =sites-available= que están activos.
@@ -233,7 +233,6 @@ echo HOLA!!!
 echo la hora es $(date)
 echo Hasta luego!!!
 
-printf "Content-Length: ${#CONTENT}\r\n"
 printf "ENV_REQUEST_METHOD: \"$REQUEST_METHOD\"\r\n"
 printf "ENV_CONTENT_TYPE: \"$CONTENT_TYPE\"\r\n"
 printf "ENV_CONTENT_LENGTH: \"$CONTENT_LENGTH\"\r\n"

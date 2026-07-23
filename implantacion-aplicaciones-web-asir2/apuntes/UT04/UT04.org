@@ -231,10 +231,10 @@ $alumnos = [
     "Susana"
 ];
 foreach($alumnos as $alumno){
-    print( "Alumno: $alumno" )
+    print( "Alumno: $alumno" );
 }
 foreach($alumnos as $posicion => $alumno){
-    print( "Alumno $posicion: $alumno" )
+    print( "Alumno $posicion: $alumno" );
 }
 #+end_src
 
@@ -334,9 +334,9 @@ function fun2(){
 }
 
 function fun3(){
-    $a = 4
+    $a = 4;
     echo $a; // IMPRIME 4
-    echo $GLOBALS["a""]; // IMPRIME 3
+    echo $GLOBALS["a"]; // IMPRIME 3
 }
 #+end_src
 
@@ -663,7 +663,7 @@ then( async (response) =>{
 }).
 catch( err => {
     alert("Error:" + err );
-    console.err(err);
+    console.error(err);
 });
 #+end_src
 

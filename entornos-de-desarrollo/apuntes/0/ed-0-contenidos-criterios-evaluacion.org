@@ -34,7 +34,7 @@
   + El curso es accesible incluso sin usuario, inicialmente
 - Se utilizará Microsoft Office (, *DOCX*, *PPTX*)
   + Opcionalmente, *PDF* o LibreOffice (*ODT*, *ODP*)
-  + También es desable entregas /online/ (Canvas, Figlet...)  
+  + También es deseable entregas /online/ (Canvas, Figlet...)  
 - Se tendrá en cuenta
   + La corrección técnica de los trabajos
   + La fecha de entrega
@@ -160,7 +160,7 @@ Optimización y documentación:
 
 - Documentación:
     - Uso de comentarios.
-    - Herramientas integradas en el entorno de desarrollo para generar documentación automáticas de clases.
+    - Herramientas integradas en el entorno de desarrollo para generar documentación automática de clases.
     - Alternativas.
 
 #+reveal:split  
@@ -188,7 +188,7 @@ Elaboración de diagramas de clases:
 #+reveal:split  
 Elaboración de diagramas de comportamiento:
 - Tipos. Campo de aplicación.
-- Diagramas de casos de uso. Actores, casos de uso, escenario, asociaciones (rela ción de comunicación entre actores y casos de uso), relaciones entre casos de uso.
+- Diagramas de casos de uso. Actores, casos de uso, escenario, asociaciones (relación de comunicación entre actores y casos de uso), relaciones entre casos de uso.
 - Diagramas de secuencia. Línea de vida de un objeto/actor, activación, envío de mensajes.
 - Diagramas de colaboración. Objetos/actores, mensajes.
 - Otros diagramas:

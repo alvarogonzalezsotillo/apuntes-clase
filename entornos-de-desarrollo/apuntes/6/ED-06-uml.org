@@ -32,7 +32,7 @@
 ** Tipos de diagramas
 - Diagramas de clases
 - Diagramas de casos de uso
-- Diagramas de
+- Diagramas de comportamiento (secuencia, actividad, estados)
 
 ** Herramientas
 - Lápiz y papel
@@ -432,7 +432,7 @@ rectangle "Máquina Expendedora" {
 #+end_src
 
 #+RESULTS:
-[[file:media\vending.svg]]
+[[file:media/vending.svg]]
 
 ** Refinamiento
 - Los casos de uso se pueden refinar o /explotar/
@@ -453,8 +453,8 @@ rectangle "Máquina Expendedora" {
 
   (Reponer productos) --> (Abrir máquina) : <<include>>
   (Reponer productos) --> (Actualizar inventario) : <<include>>
-  (Dar de alta producto) --> (Actualizar inventario) : <<extends>>
-  (Dar de baja producto) --> (Actualizar inventario) : <<extends>>
+  (Dar de alta producto) --> (Actualizar inventario) : <<extend>>
+  (Dar de baja producto) --> (Actualizar inventario) : <<extend>>
   (Reponer productos) --> (Cerrar máquina) : <<include>>
 }
 
@@ -462,7 +462,7 @@ rectangle "Máquina Expendedora" {
 #+end_src  
 
 #+RESULTS:
-[[file:media\vending-refinado-reponedor.svg]]
+[[file:media/vending-refinado-reponedor.svg]]
 
 ** Ejercicio
 - Un usuario puede darse de alta y crear documentos en la web, y modificar sus propios documentos
@@ -541,7 +541,7 @@ rectangle Sistema {
     Usuario -- (Elevar incidencia)
     Técnico -- (Elevar incidencia)
         
-    (Elevar incidencia) --> (Abrir incidencia) : <<includes>>
+    (Elevar incidencia) --> (Abrir incidencia) : <<include>>
 
     Especialista -- (Resolver incidencia)    
 }

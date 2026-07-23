@@ -526,8 +526,8 @@ done
   
 * Entorno inicial
 - =bash= procesa los siguientes ficheros:
-  - Si es un nuevo /login/: =/etc/bash.bashrc= (Debian), =/etc/bashrc= (Centos), =~/.bash_login=
-  - Siempre: =/etc/profile/= =~/.bashrc=
+  - Si es un nuevo /login/: =/etc/profile= primero, luego el primero que exista de =~/.bash_profile=, =~/.bash_login= o =~/.profile=
+  - Si es una /shell/ interactiva (no /login/): =/etc/bash.bashrc= (Debian) o =/etc/bashrc= (CentOS/RHEL), luego =~/.bashrc=
 - Así, se puede conseguir que
   - Se ejecuten comandos al entrar a un sistema
   - Se ejecuten comandos en cada nueva /shell/
@@ -552,7 +552,7 @@ done
 
 #+begin_src sh
 #!/bin/sh 
-ORACLE_HOME=/var/oracle/product/12.1.0/asir_bbdd
+ORACLE_HOME=/opt/oracle-install
 ORACLE_SID=asir
 PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_HOME
@@ -608,7 +608,7 @@ MYSID=
 #+end_src
 - Situado en =$ORACLE_HOME/network/admin/=
 - Indica las formas de conexión a instancias de base de datos
-  - Protoloco de conexión: TCP
+  - Protocolo de conexión: TCP
   - Dirección IP
   - Puerto
   - SID
@@ -730,7 +730,7 @@ HEREDOC
 # Multiple entries with the same $ORACLE_SID are not allowed.
 #
 #
-asir:/var/oracle/product/12.1.0/asir_bbdd:Y
+asir:/opt/oracle-install:Y
 #+end_src
 
 
@@ -813,8 +813,7 @@ systemctl stop SERVICIO
   - Servicios de sistema
 - Si se ejecuta con =--user= se utilizan los servicios del usuario llamante
   - Sus unidades están en =$HOME/.config/systemd/user/=
-- Es una opción que no existe en Centos.
-  - Es posible que los quiten de todas las distribuciones linux    
+- Para que funcionen sin sesión activa, se necesita =loginctl enable-linger=
 
 
 *** /Runlevels/ y /targets/
@@ -871,6 +870,9 @@ Description=Run date.service every 10 minutes
 
 [Timer]
 OnCalendar=*:0/10
+
+[Install]
+WantedBy=timers.target
 #+end_src
 
 

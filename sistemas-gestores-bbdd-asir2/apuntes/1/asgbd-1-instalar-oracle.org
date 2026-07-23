@@ -1,62 +1,6 @@
 #+INCLUDE: "../../../common/header.org"
 #+TITLE:  Instalación de Oracle
 
-* Problemas kernel 5.4 en ubuntu 18 :noexport:
-
-https://askubuntu.com/questions/912011/fatal-module-vboxdrv-not-found-in-directory-lib-modules-4-10-0-20-generic
-#+begin_src sh
-sudo apt-get install build-essential linux-headers-`uname -r`
-sudo apt-get install autoconf automake bc bison build-essential flex gcc g++ make python -y
-sudo apt-get purge virtualbox
-s://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install virtualbox-6.0
-#+end_src
-
-
-Da errores de compilación, voy a probar con actualizar el compilador
-Actualizar compilador
-#+begin_src sh
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt update
-sudo apt install gcc-9
-#+end_src
-
-Poner como versión la 9
-https://stackoverflow.com/questions/7832892/how-to-change-the-default-gcc-compiler-in-ubuntu
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-3.3 50
-
-
-* problemas ova 52 en 50 :noexport:
-Problema con Virtualbox
-- El 5.2 hace ova que no se descomprime con 5.0 ni con tar
-- Instalo 5.2 -> instalo ova -> instalo 5.0
-- Hago ova y lo paso
-
-Si no arranca la máquina virtual:
-- Hace falta =build-essentials= para que poner y quitar módulos de kernel funcione.
-- Hay que quitar el virtualbox viejo. =virtualbox-dkms= se quita a mano, y así se ve si se quitan los módulos de kernel.
-
-
-#+begin_src sh
-
-sudo apt remove --purge virtualbox-*
-sudo apt remove --purge virtualbox
-sudo apt remove --purge virtualbox-5.2
-sudo apt install build-essentials
-sudo dpkg -P virtualbox-dkms
-sudo apt install virtualbox-5.2
-
-
-#+end_src
-
-
-
-
-
-
-
 * Instalar oraclelinux8 :noexport:
 tmux, avahi, , git, sshfs, epel, mdns4
 sudo yum install tmux avahi git 
@@ -71,7 +15,7 @@ yum whatprovides <fichero>
 - Será una máquina virtual de VirtualBox
   - En clase puede bajarse desde el [[http://nasavellaneda.local/alvaro/maquinas-virtuales][NAS]] (más rápido)
 - El fichero =OVA= del profesor ya tiene:
-  - *Oracle Linux 9 instalado* instalado (inglés)
+  - *Oracle Linux 9 instalado* (inglés)
 - Se debe bajar también el ZIP de instalación: [[https://www.oracle.com/database/technologies/oracle-database-software-downloads.html][=LINUX.X64.213000_db_home.zip=]]
 - Se necesita =java=
   - =sudo yum install java-11-openjdk=  
@@ -182,7 +126,7 @@ yum whatprovides <fichero>
      
 
  #+BEGIN_NOTES
-sudo yum install sudo yum install sysstat ksh make glibc-devel   
+sudo yum install sysstat ksh make glibc-devel   
  #+END_NOTES
 
 
@@ -195,24 +139,24 @@ sudo yum install sudo yum install sysstat ksh make glibc-devel
    
 
 *** /scripts/ de configuración
-- /opt/home/alumno//oraInventory/orainstRoot.sh
+- /opt/app/oraInventory/orainstRoot.sh
 
 #+begin_src sh
-[alumno@centos7 oraInventory]$ sudo ./orainstRoot.sh 
+[alumno@oraclelinux8 oraInventory]$ sudo ./orainstRoot.sh 
 [sudo] password for alumno: 
-Changing permissions of /home/alumno/oraInventory.
+Changing permissions of /opt/app/oraInventory.
 Adding read,write permissions for group.
 Removing read,write,execute permissions for world.
 
-Changing groupname of /home/alumno/oraInventory to alumno.
+Changing groupname of /opt/app/oraInventory to alumno.
 The execution of the script is complete.
 #+end_src
 
 
-- /home/alumno/oracle-install/root.sh
+- /opt/oracle-install/root.sh
 
 #+begin_src sh
-[alumno@centos7 oracle-install-18c]$ sudo ./root.sh
+[alumno@oraclelinux8 oracle-install]$ sudo ./root.sh
 Performing root user operation.
 
 The following environment variables are set as:
@@ -507,8 +451,8 @@ ALTER SESSION SET container=NOMBREDEPLUGGABLEDATABASE;
   - https://download.oracle.com/otn_software/linux/instantclient/2120000/instantclient-sqlplus-linux.x64-21.20.0.0.0dbru.zip
   - https://download.oracle.com/otn_software/linux/instantclient/2120000/instantclient-tools-linux.x64-21.20.0.0.0dbru.zip
 - Tras descomprimir, hay que definir la variable =LD_LIBRARY_PATH= al directorio de instalación
-  - Otros años ha echo falta también =ORACLE_HOME=
-- Puede ser necesaria la libería =libaio= o =libnsl=
+  - Otros años ha hecho falta también =ORACLE_HOME=
+- Puede ser necesaria la librería =libaio= o =libnsl=
 
 
 
@@ -556,7 +500,7 @@ See the Instant Client Home Page for more information.
 
 * Dirección IP
 - Pondremos IP estática
-  - =etc/sysconfig/network-scripts/ifcfg-enp0s3=
+  - =/etc/sysconfig/network-scripts/ifcfg-enp0s3=
     #+begin_src sh
     BOOTPROTO=none
     PREFIX=16
@@ -589,23 +533,23 @@ See the Instant Client Home Page for more information.
 Se puede hacer /a mano/. Lo veremos en el próximo tema.
 
 #+begin_src sh
-[alumno@centos7 ~]$ export ORACLE_SID=asir
-[alumno@centos7 ~]$ sqlplus / as sysdba
+[alumno@oraclelinux8 ~]$ export ORACLE_SID=asir
+[alumno@oraclelinux8 ~]$ sqlplus / as sysdba
 
-SQL*Plus: Release 12.1.0.2.0 Production on Tue Sep 19 10:40:54 2017
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Sep 7 13:48:47 2023
 
-Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
 
 Connected to an idle instance.
 
 SQL> startup open
 ORACLE instance started.
 
-Total System Global Area 1207959552 bytes
-Fixed Size                  2923776 bytes
-Variable Size             822084352 bytes
-Database Buffers          369098752 bytes
-Redo Buffers               13852672 bytes
+Total System Global Area 2147483648 bytes
+Fixed Size                  9535776 bytes
+Variable Size             536870912 bytes
+Database Buffers         1577058304 bytes
+Redo Buffers               23887872 bytes
 Database mounted.
 Database opened.
 SQL> 

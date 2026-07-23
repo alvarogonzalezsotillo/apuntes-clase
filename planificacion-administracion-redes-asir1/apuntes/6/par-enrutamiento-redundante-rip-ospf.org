@@ -109,10 +109,10 @@ Router(config-router)#network 200.200.1.0
     #+end_example
 
 ** Interfaces pasivas
-- La información de RIP se envia por todas las interfaces que se anuncian
+- La información de RIP se envía por todas las interfaces que se anuncian
 - Si no hay routers por una red anunciada, estos mensajes no tienen sentido
   - Sobrecarga el enlace
-  - Sobercarga los equipos en el enlace
+  - Sobrecarga los equipos en el enlace
   - Seguridad: menor confidencialidad, y posibilidad de interferencia
 - Una interfaz pasiva se anuncia por otras interfaces, pero no se envían anuncios por ellas, ni se atiende a los anuncios que lleguen por ellas
 
@@ -144,7 +144,7 @@ Router(config-router)#passive-interface FastEthernet 0/1
 - No todos las vías son igual de confiables:
   - Las redes directamente conectadas /seguro/ que funcionan
   - Las rutas estáticas las determina un administrador, que /seguro/ que está en lo cierto
-  - OSFP es más fiable que RIP
+  - OSPF es más fiable que RIP
   - Hay más formas ([[https://en.wikipedia.org/wiki/Border_Gateway_Protocol][BGP]], [[https://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol][EIGRP]]...)
 ** Distancia administrativa
 - Un router CISCO determina cuál es la menor *distancia administrativa* entre sus rutas

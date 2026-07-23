@@ -160,7 +160,7 @@ access-list 10 deny 192.168.1.0 0.0.0.255
 
 ** Operadores (para puertos TCP/UDP)
 | Operador | Significa    |
-|----------+--------------+
+|----------+--------------|
 | eq       | ~=~ igual    |
 | lt       | ~<~ Menor    |
 | ne       | ~≠~ No igual |

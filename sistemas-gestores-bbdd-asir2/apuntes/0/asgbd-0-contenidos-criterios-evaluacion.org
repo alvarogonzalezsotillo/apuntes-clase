@@ -149,7 +149,7 @@
    - El planificador. Análisis de consultas
      - Las consultas lentas. SLOW QUERY LOG
    - Los índices
-     - El script mysqlisxchk 
+     - El script mysqlidxchk/mysqlcheck 
      - El comando ANALYZE TABLE
    - La fragmentación de la tablas
      - El comando OPTIMIZE TABLE
@@ -408,17 +408,6 @@ g. Se ha comprobado el efecto de la parada de determinados nodos sobre los siste
 | UT6 Bases de datos distribuidas |         |        |        |         |         | 100.00% |
 
 
-
-* Orientaciones pedagógicas.                   :noexport:
-
-
-Este módulo profesional contiene la formación necesaria para desempeñar la función de conectar ordenadores, dispositivos y electrónica de red en una red de área local. La definición de estas funciones incluye aspectos como:
-−  El diseño de la estructura de una red local, identificando los elementos que deben integrarla.
-−  El conexionado y configuración de los elementos de la red local.
-−  La monitorización de la red local.
-−  La resolución de incidencias físicas y lógicas de la red local.
-−  La creación de redes virtuales.
-−  La conexión de la red local a una red de área extensa.
 
 
 * Referencias

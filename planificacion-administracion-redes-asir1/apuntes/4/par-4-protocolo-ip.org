@@ -213,7 +213,7 @@ Intenta hacer =ping= a Google con un TTL de 10. ¿es suficiente? ¿y con 20?
 - Últimamente (desde 1985) las direcciones IP ya no se dividen en clases, utilizándose CIDR (/Classless Internet Domain Routing/)
 
 * CIDR
-- /Classles Internet Domain Routing/
+- /Classless Internet Domain Routing/
 - La dirección IP ya no da información acerca de los bits reservados para red y para host
 - Las redes se identifican por la dirección de la red y el número de bits destinado a la misma
    - ~172.16.0.0/12~

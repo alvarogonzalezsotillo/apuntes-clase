@@ -60,8 +60,8 @@
 
 #+ATTR_LATEX: :align l|l|p{9cm}
 | Lectura sucia        | /Dirty read/      | Un usuario lee datos aún no confirmados                                                              |
-| Lectura no repetible | /Repeatable read/ | Un usuario lee menos filas (o filas cambiadas) en =select= sucesivas dentro de la misma transaccción |
-| Fila fantasma        | /Phanton read/    | Un usuario lee más filas en =select= sucesivas  dentro de la misma transacción                       |
+| Lectura no repetible | /Repeatable read/ | Un usuario lee menos filas (o filas cambiadas) en =select= sucesivas dentro de la misma transacción |
+| Fila fantasma        | /Phantom read/    | Un usuario lee más filas en =select= sucesivas  dentro de la misma transacción                       |
 
 ** Nivel de aislamiento/concurrencia
 

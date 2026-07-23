@@ -73,7 +73,7 @@ CREATE TABLESPACE ejemplo_tablespace
   AUTOEXTEND ON  NEXT 200k  MAXSIZE 14M;
 #+end_src
 
-Más en [[https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_7003.htm][docs.oracle.com]]
+Más en [[https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-TABLESPACE.html][docs.oracle.com]]
 
 ** ¿Por qué es tan complicado?
 - Esta flexibilidad permite:
@@ -149,7 +149,7 @@ alter session set current_schema=prueba1;
 
 BEGIN
   LOOP
-     insert into misdatos values('hola);
+     insert into misdatos values('hola');
      commit;
   end loop;
 
@@ -252,7 +252,7 @@ SELECT
     df.name AS file_name,
     ts.name AS tablespace_name,
     df.status,
-    df.enabled,
+    df.enabled
 FROM v$datafile df
 JOIN v$tablespace ts ON df.ts# = ts.ts#
 where df.name like '%el fichero que se busca%'
@@ -285,8 +285,8 @@ startup open;
 ** listar todos los ficheros de todas las pdb :noexport:
 #+begin_src bash :dir /ssh:oracle@oraclelinux-r8.local: :results raw drawer
 #!/bin/bash
-export PATH=/opt/oracle-install
-export PATH=$PATH:$ORACLE_HOME/bin
+export ORACLE_HOME=/opt/oracle-install
+export PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_SID="asir"
 
 # Get PDB list into bash array
@@ -697,7 +697,7 @@ CREATE USER usuario IDENTIFIED BY contrasena
 - Modificación de un usuario ya creado
   #+begin_src sql
   ALTER USER usuario
-    cualquier opcion valida al crear usuario
+    cualquier opción válida al crear usuario
   #+end_src
 
 - Borrado de usuario
@@ -915,7 +915,7 @@ ALTER SYSTEM SET resource_limit = TRUE scope = BOTH
 ** Asignación de perfil a un usuario
 - En la creación (=create user=), o posteriormente
   #+begin_src sql
-  alter user USUARIO profile NOMBREDEPERFIL
+  alter user USUARIO profile NOMBREDEPERFIL;
   #+end_src
 
 ** Ejercicio

@@ -16,7 +16,7 @@
 
 ** Funciones de la capa de enlace
 - Sincronización a nivel de trama.
-- Control de flujo: las estaciones deben ponerse de acuerdo en el ritmo de trasmisión de datos.
+- Control de flujo: las estaciones deben ponerse de acuerdo en el ritmo de transmisión de datos.
 - Control de errores: los enlaces no son perfectos. Hay que controlar que no haya errores en la transmisión.
 - Direccionamiento: si hay varios posibles destinos, es necesario identificar a quien va dirigida la trama.
 - Gestión del enlace:
@@ -107,7 +107,7 @@
 - Similar a CSMA/CD
 - Collision avoidance para evitar los [[https://en.wikipedia.org/wiki/Hidden_node_problem][nodos ocultos]]:
   - Antes de emitir los datos se envía un *RTS* (/request to send/)
-    - Es un mensaje pequeño, con poca probalibilidad de colisión
+    - Es un mensaje pequeño, con poca probabilidad de colisión
   - Un nodo central recibe los RTS y determina quién recibe un *CTS* (/clear to send/)
   - El que recibe el CTS puede enviar sus datos sin problemas
 
@@ -246,7 +246,7 @@
 ** Corrección: [[https://es.wikipedia.org/wiki/C%25C3%25B3digo_Hamming][Código Hamming]]
 - Codificación que permite la detección y la corrección de un bit
   - Tienen distancia 3
-- Se inluyen bits de paridad de la siguiente forma:
+- Se incluyen bits de paridad de la siguiente forma:
   - Los bits de las posiciones $s=2^{p-1}$ son de paridad: 1, 2, 4, 8...
   - El resto son de datos
   - El bit de la posición $s$ se incluye en el bit de paridad $p$ si la expresión de $s$ en binario tiene a 1 el bit $p$

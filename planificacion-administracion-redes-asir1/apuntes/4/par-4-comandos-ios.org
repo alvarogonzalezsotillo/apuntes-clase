@@ -292,7 +292,7 @@ Propagar una ruta por defecto
 #+begin_src lisp
 R1(config)# ip route 0.0.0.0 0.0.0.0 1.2.3.4
 R1(config)# router ospf 10
-R1(config)# default-information originate
+R1(config-router)# default-information originate
 #+end_src
 
 
@@ -322,7 +322,7 @@ Router(config-if)# no ip access-group <numero ACL> <out o in>
 Crear una ACL o añadir una regla
 #+begin_src lisp
 Router(config)# access-list <numero> <permit o deny>  <host|source source-wildcard|any>
-#+end_srcª
+#+end_src
 
 Borrar una ACLs
 #+begin_src lisp

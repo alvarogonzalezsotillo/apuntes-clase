@@ -54,11 +54,10 @@
 
 * Portabilidad de Docker
 - ¿Hay Docker para Windows?
-  - Respuesta corta: No
+  - Respuesta corta: No (el /daemon/ Docker solo funciona en Linux)
   - Respuesta larga:
-    - Hay un /cliente/ Docker para Windows
-    - Se instala una máquina virtual con Linux
-    - El cliente Docker se conecta al servidor Docker de la máquina virtual
+    - Hay /Docker Desktop/ para Windows, que usa [[https://learn.microsoft.com/en-us/windows/wsl/compare-versions][WSL2]] (básicamente, una máquina virtual)
+    - El cliente Docker se conecta al servidor Docker dentro de WSL2
     - También hay [[https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/][/containers/ para Windows]], solo instalables en Windows, que el cliente Docker sabe manejar
 
 * Instalación de Docker
@@ -130,7 +129,7 @@ curl https://get.docker.com/ | sh
   #+begin_src bash
   docker run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
   #+end_src
-  - =-dit= : *i* nteractive, *t* ty, *d* etached
+  - =-dit= : *d* etached, *i* nteractive, *t* ty
   - =-p 8080:80= : El puerto =8080= de la dirección =0.0.0.0= se conecta a la /ip/ del /container/, puerto =80=
   - =-v= : El volumen =/usr/local/apache2/htdocs= será el directorio /home/  
   - Resultado: Apache corriendo en el puerto 8080 sirviendo los ficheros del directorio /home/
@@ -282,7 +281,7 @@ Parameters:
 
 #+begin_src bash
 docker run -d --name oracle \
- -p 1521:1521 -p 1521:5500 \
+ -p 1521:1521 -p 5500:5500 \
  -e ORACLE_SID=SID_COMPOSE \
  -e ORACLE_PDB=PDB_COMPOSE \
  -e ORACLE_PWD=changemesecret \
@@ -298,7 +297,7 @@ services:
         container_name: oracle
         ports:
             - 1521:1521
-            - 1521:5500
+            - 5500:5500
         environment:
             - ORACLE_SID=SID_COMPOSE
             - ORACLE_PDB=PDB_COMPOSE

@@ -6,7 +6,7 @@
 
 * Deuda técnica
 - Esfuerzo que se va a tener que hacer adicionalmente, porque se ha elegido un desarrollo sencillo y rápido, en lugar de utilizar un mejor enfoque más lento inicialmente
-- Metáfora: Es un un crédito de tiempo, ahora se /ahorra/ en una implementación insuficiente, en el futuro se /paga/ rehaciendo gran parte del código
+- Metáfora: Es un crédito de tiempo, ahora se /ahorra/ en una implementación insuficiente, en el futuro se /paga/ rehaciendo gran parte del código
 
 [[file:media/cuadrante-deuda-tecnica.png]]
 
@@ -146,9 +146,9 @@ private void aviso(String msg) {
 
 
 ** Long Method
-- Los método de muchas lineas dificultan su comprensión.
+- Los métodos de muchas líneas dificultan su comprensión.
 - Un método largo probablemente está realizando distintas tareas, que se podrían dividir en otros métodos
-- Las funciones deben ser los más pequeñas posibles (3 lineas mejor que 15).
+- Las funciones deben ser los más pequeñas posibles (3 líneas mejor que 15).
 - Cuanto más corto es un método, más fácil es reutilizarlo.
 - Un método debe hacer solo una cosa, hacerla bien, y que sea la única que haga.
 
@@ -308,7 +308,7 @@ podman run --rm \
     - =Pull members up=
     - =Extract superclass=  
   - Lista de parámetros extensa (Long parameter list) ➡️ =Introduce parameter object=
-- Otros /bad smells/ tienen soluciones combinadas, o maś complejas que una refactorización automática
+- Otros /bad smells/ tienen soluciones combinadas, o más complejas que una refactorización automática
   #+begin_example
   Copilot:
   All subclasses of Enemy must use setSolution() and setProblem() if possible, instead of using their own fields.
@@ -322,7 +322,7 @@ podman run --rm \
   - Intentar no abarcar demasiado. Limitar el código a lo que se pide.
   - Puede entrar en conflicto con planificar a largo plazo  
 - *YAGNI* = You Aren’t Gonna Need It
-  - Es muy problable que esa extensión de funcionalidad que no se pide acabe no haciendo falta
+  - Es muy probable que esa extensión de funcionalidad que no se pide acabe no haciendo falta
   - Se parece mucho a *KISS*  
 
 ** SOLID

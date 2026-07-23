@@ -118,8 +118,8 @@ clean:
 
 * Instalación Intellij
 - Como (casi) todos los IDE
-  - [[https://www.jetbrains.com/idea/download/?section=linux][Instalación CE (/comunitiy edition/)]] o en el NAS
-  - *Preferido*:  [[https://www.jetbrains.com/idea/download/?section=linux][Ultimate editio]]n ([[https://www.jetbrains.com/shop/eform/students][tras conseguir licencia gratuita de estudiante]])
+  - [[https://www.jetbrains.com/idea/download/?section=linux][Instalación CE (/community edition/)]] o en el NAS
+  - *Preferido*:  [[https://www.jetbrains.com/idea/download/?section=linux][Ultimate edition]] ([[https://www.jetbrains.com/shop/eform/students][tras conseguir licencia gratuita de estudiante]])
   - Descomprimir la instalación
   - Ejecutar =bin/idea.sh=
   - Opcional: crear fichero =.desktop= para lanzarlo cómodamente    
@@ -151,7 +151,7 @@ clean:
 - Varios ficheros fuente y recursos en una unidad compilable
 - Un módulo se compila completo o no puede ejecutarse
 
-** Libería
+** Librería
 - Código java ya compilado
   - Un fichero =jar= ya generado
   - Otro módulo del proyecto
@@ -168,7 +168,7 @@ clean:
   - y al =mathhero=
   - Opcional: juega con otro compañero al =pongserver=    
 
-** Ejercicio de liberías
+** Ejercicio de librerías
 - Crea un módulo nuevo de nombre =all=
 - Mostrará un menú modo texto para elegir el juego a lanzar
 - Lanzará el juego y al acabar el juego se acabará el programa
@@ -236,7 +236,7 @@ Rellena la siguiente tabla con las teclas rápidas de cada entorno
   - Punto de ruptura (/breakpoint/)
   - /breakpoint/ condicional
   - Pila de llamadas (/call stack/)  
-  - Visualizar variale (/watch/, /inspect/)
+  - Visualizar variable (/watch/, /inspect/)
 
 ** /breakpoint/
 - Parar la ejecución al llegar a cierta instrucción

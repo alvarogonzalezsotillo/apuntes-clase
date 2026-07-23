@@ -308,8 +308,8 @@
   - Protocolo ICMP (Internet Control Message Protocol). Características y mensajes ICMP.
   - Encaminamiento IP. Proceso de reenvió/encaminamiento. Tablas de encaminamiento. Introducción a los protocolos de encaminamiento.
   - Clases de direcciones IP.
-  - La subdivisión de redes y el uso de máscaras de longitud variable VLMs (Variable Length Subnet Mask).
-  - Superredes y CIRD (Classless Inter-Domain Routing).
+  - La subdivisión de redes y el uso de máscaras de longitud variable VLSM (Variable Length Subnet Mask).
+  - Superredes y CIDR (Classless Inter-Domain Routing).
   - Fragmentación IP.
   - IPv6. Características básicas.
 - Nivel de transporte (TCP/IP)
@@ -334,13 +334,13 @@
   - Dominios de colisión y de «broadcast».
   - Modos de funcionamiento (half-duplex/full-duplex). Autonegociación.
   - Normas Ethernet (IEEE 802.3).
-  - Agregación de enlaces (Etherchanel).
+  - Agregación de enlaces (EtherChannel).
   - Adaptadores alámbricos: instalación y configuración.
 - Redes de área local inalámbricas (IEEE 802.11)
   - Los espectros de onda de microondas y radio.
   - Formato de trama.
   - La conexión inalámbrica. . Asociación y autenticación en la WLAN (Wireless Local Area Network).
-  - Topologías. Arquitectura celular BSS (Basic Service Set). Ad-hoc (Peer-to-Perr). Modo infraestructura. SSID. Canales. Interconexión de BSSs ESS (Extended Service).
+  - Topologías. Arquitectura celular BSS (Basic Service Set). Ad-hoc (Peer-to-Peer). Modo infraestructura. SSID. Canales. Interconexión de BSSs ESS (Extended Service).
   - Dispositivos de interconexión: Repetidores, Puentes inalámbricos, Puntos de acceso, Routers inalámbricos
   - Normas IEEE 802.11.
   - Amenazas de seguridad y mecanismos de seguridad básicos (filtrado de MAC, WEP, WPA…).

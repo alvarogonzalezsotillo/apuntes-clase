@@ -52,7 +52,7 @@
   - No todos esos ordenadores se exponen al usuario final
     - El usuario final no puede modificar los programas  
 
-** Arquitectura de Von neuman
+** Arquitectura de Von Neumann
 - La [[https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing#Descripci%C3%B3n_informal][máquina de Turing]] distinguía entre datos y programa
 - Pero los programas son también datos. Esto posibilita:
   - Emuladores
@@ -61,7 +61,7 @@
 
 
 #+comment: [[https://cdn1.byjus.com/wp-content/uploads/2022/05/word-image200.png]]
-#+caption: Arquitectura de Von Neuman (Fuente cdn1.byjus.com)
+#+caption: Arquitectura de Von Neumann (Fuente cdn1.byjus.com)
 [[./media/word-image200.png]]
 
 
@@ -188,9 +188,9 @@ Disciplina que estudia los principios y metodologías para el desarrollo y mante
 :END:
 - Se escribe el código fuente de cada componente.
 - Pueden utilizarse distintos lenguajes informáticos y plataformas:
-  - Aplicación web: javascript, HTML, PHP, JSP, ASP...
-  - Escritorio: C++, python, java, C#
-  - Móvil: flutter, kotlin...
+  - Aplicación web: JavaScript, HTML, PHP, JSP, ASP...
+  - Escritorio: C++, Python, Java, C#
+  - Móvil: Flutter, Kotlin...
 
 *** PRUEBAS
 :PROPERTIES:
@@ -518,10 +518,11 @@ Pizarra kanban
 - =gcc -c=: Preprocess, compile, and assemble, but don't link
 
 #+begin_src cpp
-#include <stdio>
+#include <cstdio>
 
-void main(){
-  std::printf( "Resultado:%d", 5*7 );
+int main(){
+  printf( "Resultado:%d", 5*7 );
+  return 0;
 }
 #+end_src
   

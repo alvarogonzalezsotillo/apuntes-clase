@@ -60,8 +60,8 @@
 
 #+ATTR_LATEX: :align l|l|p{9cm}
 | Lectura sucia        | /Dirty read/      | Un usuario lee datos aún no confirmados                                                              |
-| Lectura no repetible | /Repeatable read/ | Un usuario lee menos filas (o filas cambiadas) en =select= sucesivas dentro de la misma transaccción |
-| Fila fantasma        | /Phanton read/    | Un usuario lee más filas en =select= sucesivas  dentro de la misma transacción                       |
+| Lectura no repetible | /Repeatable read/ | Un usuario lee menos filas (o filas cambiadas) en =select= sucesivas dentro de la misma transacción |
+| Fila fantasma        | /Phantom read/    | Un usuario lee más filas en =select= sucesivas  dentro de la misma transacción                       |
 
 ** Nivel de aislamiento/concurrencia
 
@@ -281,14 +281,14 @@ select s1.username  as blocking_user , s1.machine as blocking_machine
 #+begin_comment
 SET PAGESIZE 0 FEEDBACK OFF VERIFY OFF HEADING OFF ECHO OFF
 SELECT sid, serial#, blocking_session
-FROM v$session WHERE blocking_session IS NOT NULL;;
+FROM v$session WHERE blocking_session IS NOT NULL;
 #+end_comment
 
 ** Sentencia =SQL= bloqueada (de un =SID=)
 #+begin_src sql
 select s.sid, q.sql_text from v_$sqltext q, v_$session s
 where q.address = s.sql_address
-and s.sid = *ELSIDBLOQUEADO*
+and s.sid = EL_SID_DEL_BLOQUEADO
 order by piece;
 #+end_src
 
@@ -366,7 +366,7 @@ ALTER SYSTEM KILL SESSION 'sid,serial#';
 - Se debe matar el proceso identificado en el =spid= (/system process identifier/)
 - Importante:
   - La columna ~v$process.spid~ es del proceso intermedio entre el cliente (/application code/) y el servidor (/system global area/)
-  - La columna ~v$sessoin.process~ es del proceso cliente, que está en la máquina cliente, no el el servidor
+  - La columna ~v$session.process~ es del proceso cliente, que está en la máquina cliente, no en el servidor
   - Por tanto, el proceso a matar se encuentra en el mismo host que el servidor de base de datos
 
 [[file:./media/procesos-usuario-sistema.png]]
