@@ -1,0 +1,153 @@
+#+include: "../../../common/header.org"
+#+Title: SEGURIDAD Y ALTA DISPONIBILIDAD
+#+SUBTITLE: CÓDIGO: 0378
+#+KEYWORDS: 
+
+* Cómo serán las clases
++ Teoría
+  - Basada en apuntes
+  - Con un libro de referencia
++ Ejercicios
+  - Se realizan en clase o en casa
+  - Se ponen en común al día siguiente
++ Práctica
+  - Máquinas virtuales
++ Trabajos
+
+* Materiales 
++ Memoria USB
++ Correo electrónico
++ Acceso a Internet fuera del aula
+
+** Libro de referencia
++ Seguridad Informática
++ Editorial: MacMillan
++ Autor: Gema Escrivá Gascó
++ ISBN: 978-84-15656-64-7 
+[[file:portada-libro.png]]
+
+* Entrega de Trabajos
+- Via *Moodle*
+  + Nuestro curso es https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/course/view.php?id=400
+  + El curso es accesible incluso sin usuario
+- Formato *DOCX*, *PDF*, *ODT*
+  + Opcionalmente, *PDF* o LibreOffice (*ODT*)
+- Se tendrá en cuenta
+  + La corrección técnica de los trabajos
+  + La fecha de entrega
+  + Expresión, sintaxis, ortografía
+  + La apariencia profesional
+
+* Normas
+- Retrasos y faltas
+- Uso de los ordenadores
+  - No pueden utilizarse para tareas distintas de las encargadas por el profesor
+  - Se respetará a otros alumnos
+- Móviles
+  - No.
+  - Un /smartwatch/ se considera un móvil.
+
+** Averías de los ordenadores
+- Los problemas se comunican al profesor en cuanto se detectan
+- Se deben hacer copias de seguridad para no perder los datos de los discos
+  - Pen Drive
+  - Disco Externo
+  - Correos enviados a uno mismo
+  - Copias en los ordenadores de otros compañeros
+- Norma fundamental: 
+*Si se pierde porque no hay copia, es que no era importante*
+
+
+
+
+* Criterios de evaluación
+
+Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de Técnico Superior en Administración de Sistemas Informáticos en Red y se fijan sus enseñanzas mínimas.
+
+
+** RA1: Adopta pautas y prácticas de tratamiento seguro de la información, reconociendo las vulnerabilidades de un sistema informático y la necesidad de asegurarlo.
+a) Se ha valorado la importancia de asegurar la privacidad, coherencia y disponibilidad de la información en los sistemas informáticos.
+b) Se han descrito las diferencias entre seguridad física y lógica.
+c) Se han clasificado las principales vulnerabilidades de un sistema informático, según su tipología y origen.
+d) Se ha contrastado la incidencia de las técnicas de ingeniería social en los fraudes informáticos.
+e) Se han adoptado políticas de contraseñas.
+f) Se han valorado las ventajas que supone la utilización de sistemas biométricos.
+g) Se han aplicado técnicas criptográficas en el almacenamiento y transmisión de la información.
+h) Se ha reconocido la necesidad de establecer un plan integral de protección perimetral, especialmente en sistemas conectados a redes públicas.
+i) Se han identificado las fases del análisis forense ante ataques a un sistema.
+
+** RA2: Implanta mecanismos de seguridad activa, seleccionando y ejecutando contramedidas ante amenazas o ataques al sistema.
+a) Se han clasificado los principales tipos de amenazas lógicas contra un sistema informático.
+b) Se ha verificado el origen y la autenticidad de las aplicaciones instaladas en un equipo, así como el estado de actualización del sistema operativo.
+c) Se han identificado la anatomía de los ataques más habituales, así como las medidas preventivas y paliativas disponibles.
+d) Se han analizado diversos tipos de amenazas, ataques y software malicioso, en entornos de ejecución controlados.
+e) Se han implantado aplicaciones específicas para la detección de amenazas y la eliminación de software malicioso.
+f) Se han utilizado técnicas de cifrado, firmas y certificados digitales en un entorno de trabajo basado en el uso de redes públicas.
+g) Se han evaluado las medidas de seguridad de los protocolos usados en redes inalámbricas.
+h) Se ha reconocido la necesidad de inventariar y controlar los servicios de red que se ejecutan en un sistema.
+i) Se han descrito los tipos y características de los sistemas de detección de intrusiones.
+
+** RA3: Implanta técnicas seguras de acceso remoto a un sistema informático, interpretando y aplicando el plan de seguridad.
+a) Se han descrito escenarios típicos de sistemas con conexión a redes públicas en los que se precisa fortificar la red interna.
+b) Se han clasificado las zonas de riesgo de un sistema, según criterios de seguridad perimetral.
+c) Se han identificado los protocolos seguros de comunicación y sus ámbitos de utilización.
+d) Se han configurado redes privadas virtuales mediante protocolos seguros a distintos niveles.
+e) Se ha implantado un servidor como pasarela de acceso a la red interna desde ubicaciones remotas.
+f) Se han identificado y configurado los posibles métodos de autenticación en el acceso de usuarios remotos a través de la pasarela.
+g) Se ha instalado, configurado e integrado en la pasarela un servidor remoto de autenticación.
+
+** RA4: Implanta cortafuegos para asegurar un sistema informático, analizando sus prestaciones y controlando el tráfico hacia la red interna.
+a) Se han descrito las características, tipos y funciones de los cortafuegos.
+b) Se han clasificado los niveles en los que se realiza el filtrado de tráfico.
+c) Se ha planificado la instalación de cortafuegos para limitar los accesos a determinadas zonas de la red.
+d) Se han configurado filtros en un cortafuegos a partir de un listado de reglas de filtrado.
+e) Se han revisado los registros de sucesos de cortafuegos, para verificar que las reglas se aplican correctamente.
+f) Se han probado distintas opciones para implementar cortafuegos, tanto software como hardware.
+g) Se han diagnosticado problemas de conectividad en los clientes provocados por los cortafuegos.
+h) Se ha elaborado documentación relativa a la instalación, configuración y uso de cortafuegos.
+
+** RA5: Implanta servidores «proxy», aplicando criterios de configuración que garanticen el funcionamiento seguro del servicio.
+a) Se han identificado los tipos de «proxy», sus características y funciones principales.
+b) Se ha instalado y configurado un servidor «proxy-cache».
+c) Se han configurado los métodos de autenticación en el «proxy».
+d) Se ha configurado un «proxy» en modo transparente.
+e) Se ha utilizado el servidor «proxy» para establecer restricciones de acceso Web.
+f) Se han solucionado problemas de acceso desde los clientes al «proxy».
+g) Se han realizado pruebas de funcionamiento del «proxy», monitorizando su actividad con herramientas gráficas.
+h) Se ha configurado un servidor «proxy» en modo inverso.
+i) Se ha elaborado documentación relativa a la instalación, configuración y uso de servidores «proxy».
+
+** RA6: Implanta soluciones de alta disponibilidad empleando técnicas de virtualización y configurando los entornos de prueba.
+a) Se han analizado supuestos y situaciones en las que se hace necesario implementar soluciones de alta disponibilidad.
+b) Se han identificado soluciones hardware para asegurar la continuidad en el funcionamiento de un sistema.
+c) Se han evaluado las posibilidades de la virtualización de sistemas para implementar soluciones de alta disponibilidad.
+d) Se ha implantado un servidor redundante que garantice la continuidad de servicios en casos de caída del servidor principal.
+e) Se ha implantado un balanceador de carga a la entrada de la red interna.
+f) Se han implantado sistemas de almacenamiento redundante sobre servidores y dispositivos específicos.
+g) Se ha evaluado la utilidad de los sistemas de «clusters» para aumentar la fiabilidad y productividad del sistema.
+h) Se han analizado soluciones de futuro para un sistema con demanda creciente.
+i) Se han esquematizado y documentado soluciones para diferentes supuestos con necesidades de alta disponibilidad.
+
+** RA7: Reconoce la legislación y normativa sobre seguridad y protección de datos valorando su importancia.
+a) Se ha descrito la legislación sobre protección de datos de carácter personal.
+b) Se ha determinado la necesidad de controlar el acceso a la información personal almacenada.
+c) Se han identificado las figuras legales que intervienen en el tratamiento y mantenimiento de los ficheros de datos.
+d) Se ha contrastado el deber de poner a disposición de las personas los datos personales que les conciernen.
+e) Se ha descrito la legislación actual sobre los servicios de la sociedad de la información y comercio electrónico.
+f) Se han contrastado las normas sobre gestión de seguridad de la información.
+g) Se ha comprendido la necesidad de conocer y respetar la normativa legal aplicable.
+
+
+* Distribución de RA en unidades de trabajo
+
+| Peso en la calificación final de cada RA |   5% |  5% |  10% |  20% |  15% |  40% |  5% |     |
+|------------------------------------------+------+-----+------+------+------+------+-----+-----|
+|                                          |  RA1 | RA2 |  RA3 |  RA4 |  RA5 |  RA6 | RA7 | FFE |
+|------------------------------------------+------+-----+------+------+------+------+-----+-----|
+| UT1 Pautas en seguridad informática      | 100% |     |      |      |      |      |     |     |
+| UT2 Seguridad activa del sistema         |      | 50% |      |      |      |      |     | 50% |
+| UT3 Acceso remoto                        |      |     | 100% |      |      |      |     |     |
+| UT4 /Firewall/                           |      |     |      | 100% |      |      |     |     |
+| UT5 /Proxy/ y /Proxy/ inverso            |      |     |      |      | 100% |      |     |     |
+| UT6 Alta disponibilidad                  |      |     |      |      |      | 100% |     |     |
+| UT7 Legislación                          |      |     |      |      |      |      | 50% | 50% |

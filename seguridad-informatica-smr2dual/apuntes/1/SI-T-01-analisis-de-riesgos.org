@@ -37,6 +37,27 @@ Se entiende por amenaza la presencia de uno o más factores de diversa índole q
 
 Hay muchos tipos de amenazas... cortes eléctricos, fallos en hardware, riesgos ambientales, acciones intencionadas, software malicioso, robo, destrucción de información, modificación de información... seguro que se te ocurren un montón.
 
+- Personal de la organización: A veces amenaza de forma accidental, pero si lo hace de forma intencionada es muy dañino, pues es quien mejor conoce lo que es valioso para la empresa y quien mejor puede conocer la infraestructura y el equipamiento. 
+- Ex-empleados: En numerosas ocasiones aprovechan la falta de mantenimiento de las organizaciones, que no siempre mantienes actualizados los perfiles de acceso a sus sistemas. Un ex-empleado tiene una motivación extra al amenazar un sistema. 
+- Curiosos: Personas que, en general, realizan ataques pasivos (Obtener información sin destruir o modificar la original). 
+- Hackers: Aunque no siempre lo hacen con un objetivo perjudicial, los hackers son expertos informáticos en acceder a sistemas protegidos. Muchos de ellos acaban convirtiéndose en analistas de seguridad. 
+- Crackers: Son hackers con objetivos perjudiciales, En numerosas ocaciones, contratados para realizar espionaje empresarial. 
+- Ciberterrorista: Expertos en informática e intrusiones en la red que trabajan para países y organizaciones como espías y saboteadores informáticos. 
+- Sniffers: Expertos en redes que analizan el tráfico para obtener información extrayéndola de los paquetes que se transmiten por la red. 
+- Carders: Personas que se dedican al ataque de los sistemas de tarjetas, como los cajeros automáticos. 
+- Virus: Un virus informático es un programa malicioso que se introduce en un ordenador, sin permiso o sin conocimiento de su usuario, para alterar su funcionamiento y, particularmente, con la finalidad de modificar o dañar el sistema. Por norma general, se asocian a un archivo ejecutable, quedando el equipo infectado cuando se abre dicho archivo. 
+- Worms (gusanos): parecidos a los virus, pero con la capacidad de autopropagarse a través de las redes, normalmente mediante correo basura o spam 
+- Caballos de Troya o Troyanos: Es un malware que se presenta al usuario como un programa aparentemente legítimo e inofensivo, pero que, al ejecutarlo, le brinda a un atacante acceso remoto al equipo infectado. 
+- Rootkits: Es un conjunto de software que permite un acceso de privilegio continuo a un ordenador pero que mantiene su presencia activamente oculta al control de los administradores al corromper el funcionamiento normal del sistema operativo o de otras aplicaciones. 
+- Backdoors (puertas traseras): es un programa malicioso usado para proporcionar al atacante un acceso remoto al ordenador comprometido no autorizado explotando las vulnerabilidades del sistema. Un backdoor funciona en el segundo plano del sistema y se esconde del usuario. 
+- Spyware (software espía): Es un malware que recopila información de un ordenador y se transmite a un equipo remoto sin el conocimiento o el consentimiento del propietario del ordenador. Habitualmente se confunde con el Adware.  
+- Hijackers (secuestro): Hace referencia a toda técnica ilegal que lleve consigo el adueñamiento o robo de algo (generalmente información) por parte de un atacante, es por tanto un concepto muy abierto y que puede aplicarse a varios ámbitos, de esta manera podemos encontramos con el adueñamiento o secuestro de conexiones de red, sesiones de terminal, servicios, navegador, etc. 
+- Bombas lógicas: partes de código de ciertos programas que permanecen sin realizar ninguna función hasta que son activadas (ausencia o presencia de ciertos ficheros o la llegada de una fecha/hora concreta 
+- Desastres del entorno y averías del hardware: Dentro de este grupo estarían incluidos sucesos que, sin llegar a la categoría de desastres naturales, pueden tener un impacto igual de importante si no se habilitan las medidas de protección adecuadas: hablamos, por ejemplo, de picos de sobretensión que puedan quemar componentes, apagones que afecten a los servidores, incendios, apagones y similares. 
+- Radiaciones electromagnéticas: Sabemos que cualquier aparato eléctrico emite radiaciones y que dichas radiaciones se pueden capturar y reproducir si se dispone del equipamiento adecuado. 
+- Desastres naturales: Aquí englobamos gotas frías, las inundaciones por riadas o las lluvias torrenciales puntuales, terremotos, etc. 
+
+
 Pero en función del daño o manipulación que puedan hacer sobre la información, suelen caer en uno de éstos grupos:
 
 -  De *interrupción*: se deshabilita el acceso a la información, se cortan comunicaciones o accesos.
@@ -86,6 +107,8 @@ Ante la detección de un riesgo, se puede optar por tres alternativas:
 - *Prevenirlo*: Aplicar medidas de seguridad activa para disminuirlo o anularlo.
 
 -  *Transferirlo*. Traspasar a un tercero la gestión de ese riesgo: típicamente, *contratar un seguro* para ese riesgo. Tiene sentido cuando el coste de la prevención es elevado, también el de la reparación... pero el riesgo de que ocurra es bajo.
+
+[[file:impacto-probabilidad.png]]
 
 *** ATAQUE:
 
