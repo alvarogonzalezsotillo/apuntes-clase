@@ -1,0 +1,846 @@
+% Created 2026-09-14 lun 21:08
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\author{alvaro}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={alvaro},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Descripción general}
+\label{sec:org000000f}
+
+\subsection{Arquitectura final}
+\label{sec:org0000000}
+
+\begin{center}
+\includesvg[width=.9\linewidth]{./media/arquitectura}
+\label{}
+\end{center}
+\subsection{Redes Docker}
+\label{sec:org0000003}
+\begin{itemize}
+\item \texttt{red-publica} (bridge) con subred \texttt{172.21.0.0/24}: contiene los servicios expuestos al exterior: \texttt{dns}, \texttt{proxy} y \texttt{vpn}.
+\item \texttt{red-interna} (bridge) con subred \texttt{172.22.0.0/24}: contiene los servicios \emph{backend}: \texttt{apache}, \texttt{db} y \texttt{phpmyadmin}. \texttt{proxy} y \texttt{vpn} también se conectan a esta red para alcanzar el backend.
+\item Dentro de una misma red Docker los contenedores se resuelven entre sí por su \textbf{nombre de servicio} (\texttt{db}, \texttt{apache}\ldots{}). Los nombres públicos del dominio \texttt{asir.test} los resuelve el servidor DNS del proyecto.
+\end{itemize}
+\subsection{Contenedores e IPs}
+\label{sec:org0000006}
+
+\begin{center}
+\begin{tabular}{lllrl}
+Contenedor & Imagen & IP red-publica & IP red-interna & Funciones principales\\
+\hline
+\texttt{dns} & bind9 & 172.21.0.53 & — & Autoritativo de \texttt{asir.test} y recursivo para el resto\\
+\texttt{proxy} & nginx & 172.21.0.10 & 172.22.0.10 & Proxy inverso a Apache y a PHPMyAdmin\\
+\texttt{apache} & php:8.2-apache & — & 172.22.0.11 & Apache + PHP con WordPress, SSH (fase 5)\\
+\texttt{db} & mysql:8.4 & — & 172.22.0.12 & MySQL con la base de datos de WordPress, SSH (fase 5)\\
+\texttt{phpmyadmin} & phpmyadmin & — & 172.22.0.13 & Gestión web de \texttt{db}, accesible solo por proxy o por VPN\\
+\texttt{vpn} & wireguard (wg-easy) & 172.21.0.20 & 172.22.0.20 & Servidor WireGuard con panel web de gestión\\
+\end{tabular}
+\end{center}
+\subsection{Puertos expuestos en el host}
+\label{sec:org0000009}
+
+\begin{center}
+\begin{tabular}{lll}
+Puerto & Servicio & Uso\\
+\hline
+53 (TCP+UDP) & \texttt{dns} & Consultas DNS de clientes externos y de clientes VPN\\
+80 y 443 & \texttt{proxy} & WordPress (\texttt{www.asir.test}) y PHPMyAdmin (\texttt{pma.asir.test})\\
+51820/udp & \texttt{vpn} & Túnel WireGuard para los clientes VPN\\
+51821/tcp & \texttt{vpn} & Panel web de gestión de clientes VPN (solo administrador)\\
+\end{tabular}
+\end{center}
+\subsection{Dominio}
+\label{sec:org000000c}
+Se emplea el dominio reservado para pruebas \texttt{asir.test} (RFC 6761). Registros requeridos:
+\begin{itemize}
+\item \texttt{dns.asir.test}
+\item \texttt{proxy.asir.test}
+\item \texttt{vpn.asir.test}
+\item \texttt{apache.asir.test}
+\item \texttt{db.asir.test}
+\item \texttt{pma.asir.test},
+\item alias \texttt{phpmyadmin.asir.test} (CNAME de \texttt{pma})
+\item Alias \texttt{www.asir.test} (CNAME de \texttt{proxy}).
+\end{itemize}
+\section{Fase 1 — Servidor LAMP}
+\label{sec:org0000021}
+
+\subsection{Enunciado}
+\label{sec:org0000012}
+\begin{itemize}
+\item Desplegar un servidor LAMP (Linux + Apache + MySQL + PHP) en \emph{tres contenedores}:
+\texttt{apache} (Apache con PHP), \texttt{db} (MySQL) y \texttt{phpmyadmin} (gestión de \texttt{db}).
+\item Los tres contenedores deben formar parte de una red Docker propia (\texttt{red-interna})
+y comunicarse entre sí por sus nombres de servicio.
+\item Debe probarse una página PHP que muestre el resultado de una consulta a MySQL.
+\end{itemize}
+\subsection{Objetivos}
+\label{sec:org0000015}
+\begin{itemize}
+\item Crear y administrar redes Docker (driver \texttt{bridge}, subred propia, IPs fijas).
+\item Conocer las variables de entorno de las imágenes MySQL y PHPMyAdmin.
+\item Conectar un contenedor PHP a la base de datos usando únicamente el nombre \texttt{db}.
+\end{itemize}
+\subsection{Tareas}
+\label{sec:org0000018}
+\begin{enumerate}
+\item Crear el fichero \texttt{docker-compose.yml} con los servicios \texttt{db}, \texttt{apache} y
+\texttt{phpmyadmin} y la red \texttt{red-interna} (172.22.0.0/24) con IPs fijas.
+\item Configurar \texttt{db} con: volumen persistente (\texttt{./db/data}), base de datos
+\texttt{wordpress}, usuario \texttt{wp\_user} y contraseñas.
+\item Configurar \texttt{apache} con la imagen \texttt{php:8.2-apache} y montar el volumen
+\texttt{./apache/www} en \texttt{/var/www/html}.
+\item Configurar \texttt{phpmyadmin} apuntando a \texttt{PMA\_HOST=db}.
+\item Añadir temporalmente \texttt{8080:80} (apache) y \texttt{8081:80} (phpmyadmin) para poder
+probarlos desde el host. Se retirarán en la fase 4.
+\item Crear en \texttt{apache/www} los ficheros \texttt{index.php} (bienvenida del LAMP) y
+\texttt{test-db.php} (consulta a MySQL con \texttt{mysqli}).
+\end{enumerate}
+\subsection{Comprobaciones}
+\label{sec:org000001b}
+\begin{itemize}
+\item \texttt{docker compose ps} muestra los tres contenedores arriba.
+\item Acceder a \texttt{http://localhost:8080/index.php} y \texttt{http://localhost:8080/test-db.php}.
+\item \texttt{http://localhost:8081} muestra el login de PHPMyAdmin; se entra con
+\texttt{root} / \texttt{asir\_root} y la base \texttt{wordpress} debe existir.
+\item Desde \texttt{apache} debe resolverse el nombre \texttt{db}:
+\texttt{docker compose exec apache getent hosts db}.
+\end{itemize}
+
+\begin{lstlisting}[language=bash,numbers=none]
+curl http://localhost:8080/test-db.php
+curl -u root:asir_root http://localhost:8081/
+\end{lstlisting}
+\subsection{Entrega}
+\label{sec:org000001e}
+\begin{itemize}
+\item \texttt{docker-compose.yml}, \texttt{index.php} y \texttt{test-db.php}.
+\item Capturas de la resolución de \texttt{db} y de las dos páginas web funcionando.
+\end{itemize}
+\section{Fase 2 — Servidor DNS}
+\label{sec:org0000033}
+
+\subsection{Enunciado}
+\label{sec:org0000024}
+\begin{itemize}
+\item Desplegar un contenedor \texttt{dns} con BIND9 que sea \textbf{autoritativo} para el dominio
+\texttt{asir.test} y \textbf{recursivo} para el resto de nombres.
+\item Debe almacenar un registro de nombre por cada contenedor del proyecto y los
+registros de resolución inversa (PTR).
+\item Los clientes externos deben poder utilizarlo: desde el host se apunta el
+\emph{resolver} a \texttt{172.21.0.53}.
+\end{itemize}
+\subsection{Objetivos}
+\label{sec:org0000027}
+\begin{itemize}
+\item Montar BIND9 en un contenedor con ficheros de configuración propios.
+\item Crear zona directa e inversas con registros A, CNAME y PTR.
+\item Configurar la recursividad y comprobar con \texttt{dig} / \texttt{nslookup}.
+\end{itemize}
+\subsection{Tareas}
+\label{sec:org000002a}
+\begin{enumerate}
+\item Añadir el servicio \texttt{dns} con la imagen \texttt{internetsystemsconsortium/bind9} y
+publicar los puertos \texttt{53} (TCP y UDP).
+\item Crear la red \texttt{red-publica} (172.21.0.0/24) y asignar a \texttt{dns} la IP fija
+172.21.0.53.
+\item Montar en el contenedor \texttt{named.conf}, \texttt{named.conf.options}, \texttt{named.conf.local}
+y el directorio \texttt{zones/}.
+\item Definir la zona directa \texttt{asir.test} con un A por contenedor (\texttt{dns}, \texttt{proxy},
+\texttt{vpn}, \texttt{apache}, \texttt{db}, \texttt{pma}) y los CNAME \texttt{phpmyadmin} → \texttt{pma} y \texttt{www} → \texttt{proxy}.
+\item Definir las zonas inversas \texttt{21.172.in-addr.arpa} y \texttt{22.172.in-addr.arpa} con
+los PTR de todas las IPs del proyecto.
+\item Configurar la recursividad con \texttt{forwarders} (p. ej. 1.1.1.1 y 8.8.8.8).
+\end{enumerate}
+\subsection{Comprobaciones}
+\label{sec:org000002d}
+\begin{itemize}
+\item Desde el host, apuntando el \emph{resolver} a 172.21.0.53:
+\end{itemize}
+
+\begin{lstlisting}[language=bash,numbers=none]
+dig @172.21.0.53 www.asir.test A
+dig @172.21.0.53 apache.asir.test A
+dig @172.21.0.53 -x 172.22.0.12
+dig @172.21.0.53 -x 172.21.0.53
+dig @172.21.0.53 google.es A    # recursividad hacia el exterior
+\end{lstlisting}
+\begin{itemize}
+\item Todos los nombres devuelven el registro esperado; las inversas devuelven el
+nombre correspondiente.
+\end{itemize}
+\subsection{Entrega}
+\label{sec:org0000030}
+\begin{itemize}
+\item Configuración de BIND9 y ficheros de zona.
+\item Salida de \texttt{dig} de al menos 4 nombres directos, 2 inversos y 1 recursivo.
+\end{itemize}
+\section{Fase 3 — WordPress instalado en LAMP}
+\label{sec:org0000045}
+
+\subsection{Enunciado}
+\label{sec:org0000036}
+\begin{itemize}
+\item Instalar WordPress sobre el LAMP de la fase 1, de modo que use la base de datos
+\texttt{db} y el servidor web \texttt{apache}.
+\item Completar la instalación por web y crear al menos una entrada (página o artículo).
+\end{itemize}
+\subsection{Objetivos}
+\label{sec:org0000039}
+\begin{itemize}
+\item Automatizar la descarga de WordPress mediante un \emph{script} (\texttt{scripts/install.sh}).
+\item Generar \texttt{wp-config.php} con las credenciales de \texttt{db} y las \textbf{salts}.
+\item Comprobar que una aplicación PHP real persiste sus datos en MySQL.
+\end{itemize}
+\subsection{Tareas}
+\label{sec:org000003c}
+\begin{enumerate}
+\item En \texttt{scripts/install.sh}: descargar \texttt{https://wordpress.org/latest.tar.gz} y
+extraerlo en \texttt{apache/www}. No sobrescribir si ya existe \texttt{wp-config.php}.
+\item Generar \texttt{wp-config.php} con \texttt{DB\_NAME=wordpress}, \texttt{DB\_USER=wp\_user},
+\texttt{DB\_PASSWORD=wp\_pass\_2026}, \texttt{DB\_HOST=db} y las 8 \emph{salts} generadas con
+\texttt{openssl rand -base64 48}.
+\item Levantar el escenario y completar el asistente web apuntando el navegador a
+\texttt{http://localhost:8080} (en esta fase todavía sin proxy).
+\item Crear un artículo de prueba y comprobar que tras
+\texttt{docker compose restart db} el artículo sigue existiendo (persistencia en
+\texttt{db/data}).
+\end{enumerate}
+\subsection{Comprobaciones}
+\label{sec:org000003f}
+\begin{itemize}
+\item \#+begin\textsubscript{src} bash
+docker compose exec db mysql -u wp\textsubscript{user} -pwp\textsubscript{pass}\textsubscript{2026} wordpress -e "show tables;"
+\#+end\textsubscript{src}
+muestra las tablas de WordPress.
+\item \texttt{/wp-admin/} permite iniciar sesión con el usuario creado en el asistente.
+\end{itemize}
+\subsection{Entrega}
+\label{sec:org0000042}
+\begin{itemize}
+\item Fragmento relevante de \texttt{install.sh}, \texttt{wp-config.php} y captura del sitio ya
+instalado.
+\end{itemize}
+\section{Fase 4 — Proxy inverso}
+\label{sec:org0000057}
+
+\subsection{Enunciado}
+\label{sec:org0000048}
+\begin{itemize}
+\item Colocar un contenedor \texttt{proxy} (nginx) como puerta de entrada única al servidor
+Apache y al servidor PHPMyAdmin.
+\item El proxy usará dos nombres virtuales: \texttt{www.asir.test} → \texttt{apache:80} y
+\texttt{pma.asir.test} → \texttt{phpmyadmin:80}.
+\item A partir de esta fase los clientes acceden únicamente a través del proxy; se
+retiran las publicaciones \texttt{8080} y \texttt{8081}.
+\end{itemize}
+\subsection{Objetivos}
+\label{sec:org000004b}
+\begin{itemize}
+\item Comprender el patrón de proxy inverso y la directiva \texttt{proxy\_pass}.
+\item Aplicar enrutamiento por \texttt{server\_name}.
+\item Ocultar los servidores backend de la red exterior.
+\end{itemize}
+\subsection{Tareas}
+\label{sec:org000004e}
+\begin{enumerate}
+\item Añadir el servicio \texttt{proxy} (imagen \texttt{nginx:1.27-alpine}) a \texttt{red-publica}
+(172.21.0.10) y a \texttt{red-interna} (172.22.0.10).
+\item Montar \texttt{./proxy/conf.d/proxy.conf} en \texttt{/etc/nginx/conf.d}.
+\item Publicar solo los puertos \texttt{80} y \texttt{443} de \texttt{proxy} en el host.
+\item Retirar las publicaciones \texttt{8080} y \texttt{8081} de \texttt{apache} y \texttt{phpmyadmin}.
+\item Definir los dos bloques \texttt{server\{\}:} para \texttt{www.asir.test} y \texttt{pma.asir.test} con
+\texttt{proxy\_pass http://apache:80} y \texttt{proxy\_pass http://phpmyadmin:80}
+respectivamente, propagando \texttt{Host} y \texttt{X-Forwarded-For}.
+\item Comprobar desde el host añadiendo una entrada estática al DNS del sistema
+(o usando \texttt{-{}-{}resolve} con \texttt{curl}) y después mediante el DNS de la fase 2.
+\end{enumerate}
+\subsection{Comprobaciones}
+\label{sec:org0000051}
+\begin{itemize}
+\item \#+begin\textsubscript{src} bash
+curl -s -o \emph{dev/null -w "\%\{http\textsubscript{code}\}\n" -H "Host: www.asir.test" \url{http://127.0.0.1}}
+curl -s -o \emph{dev/null -w "\%\{http\textsubscript{code}\}\n" -H "Host: pma.asir.test" \url{http://127.0.0.1}}
+\#+end\textsubscript{src}
+\item Abriendo \texttt{http://www.asir.test} y \texttt{http://pma.asir.test} en el navegador (con
+DNS del sistema apuntando a 172.21.0.53) se ven WordPress y PHPMyAdmin.
+\end{itemize}
+\subsection{Entrega}
+\label{sec:org0000054}
+\begin{itemize}
+\item \texttt{proxy.conf} completo y capturas de ambos sitios funcionando a través del proxy.
+\end{itemize}
+\section{Fase 5 — Acceso por VPN WireGuard}
+\label{sec:org0000069}
+
+\subsection{Enunciado}
+\label{sec:org000005a}
+\begin{itemize}
+\item Desplegar un servidor VPN WireGuard (\texttt{vpn}).
+\item Los clientes conectados a la VPN deben:
+\begin{itemize}
+\item usar el servidor DNS del proyecto (172.21.0.53) para resolver \texttt{asir.test};
+\item acceder al \emph{backend} PHPMyAdmin (\texttt{pma.asir.test}) directamente, sin pasar por
+el proxy;
+\item conectarse por SSH a los contenedores \texttt{apache} y \texttt{db}.
+\end{itemize}
+\end{itemize}
+\subsection{Objetivos}
+\label{sec:org000005d}
+\begin{itemize}
+\item Instalar y administrar WireGuard con wg-easy (panel web para clientes).
+\item Encaminar el tráfico de la VPN hacia las subredes de Docker.
+\item Publicar servicios del backend de forma segura a través del túnel.
+\end{itemize}
+\subsection{Tareas}
+\label{sec:org0000060}
+\begin{enumerate}
+\item Añadir el servicio \texttt{vpn} con la imagen \texttt{weejewel/wg-easy}, \texttt{cap\_add NET\_ADMIN},
+\texttt{net.ipv4.ip\_forward} y \texttt{net.ipv4.conf.all.src\_valid\_mark=1}.
+\item Publicar \texttt{51820/udp} (túnel) y \texttt{51821/tcp} (panel web de gestión).
+\item Conectar \texttt{vpn} a \texttt{red-publica} (172.21.0.20) y a \texttt{red-interna} (172.22.0.20)
+para alcanzar el backend.
+\item Configurar las variables del entorno: \texttt{WG\_HOST} (IP del host o del servidor),
+\texttt{PASSWORD}, \texttt{WG\_DEFAULT\_DNS=172.21.0.53} y \texttt{WG\_ALLOWED\_IPS} con las subredes
+públicas, interna y la del túnel (172.21.0.0/24, 172.22.0.0/24 y 10.9.0.0/24).
+\item Instalar \texttt{openssh-server} en \texttt{apache} y \texttt{db} (permitiendo login de root con
+contraseña) e iniciarlo junto con el servicio principal.
+\item Crear un cliente VPN desde el panel \texttt{http://IP\_HOST:51821} y descargar su
+configuración.
+\end{enumerate}
+\subsection{Comprobaciones (desde el cliente VPN conectado)}
+\label{sec:org0000063}
+\begin{itemize}
+\item \#+begin\textsubscript{src} bash
+ip addr show wg0                     \# IP 10.9.0.x asignada
+ping -c 3 172.22.0.12                \# alcanza MySQL por la VPN
+dig apache.asir.test @172.21.0.53    \# usa el DNS del proyecto
+curl \url{http://pma.asir.test/}           \# backend PHPMyAdmin por la VPN
+ssh root@apache.asir.test            \# shell en el contenedor apache
+ssh root@db.asir.test                \# shell en el contenedor db
+\#+end\textsubscript{src}
+\item En el host se comprueba que el puerto 8081 (PHPMyAdmin) NO está publicado:
+solo se alcanza dentro de la VPN o a través de \texttt{pma.asir.test} (proxy).
+\end{itemize}
+\subsection{Entrega}
+\label{sec:org0000066}
+\begin{itemize}
+\item Configuración del servicio \texttt{vpn} y capturas del cliente VPN con todos los
+apartados anteriores funcionando.
+\end{itemize}
+\section{Evaluación}
+\label{sec:org000006c}
+
+\begin{center}
+\begin{tabular}{ll}
+Criterio & Peso\\
+\hline
+Fase 1: LAMP operativo y explicación de sus componentes & 15\%\\
+Fase 2: resolución directa e inversa de todos los contenedores & 20\%\\
+Fase 3: WordPress instalado y con persistencia en MySQL & 15\%\\
+Fase 4: proxy inverso con doble nombre virtual y backend oculto & 20\%\\
+Fase 5: cliente VPN con DNS + accesso al backend y SSH a apache/db & 20\%\\
+Despliegue automático con un solo \texttt{docker compose} y los scripts & 10\%\\
+\end{tabular}
+\end{center}
+\section{Solución}
+\label{sec:org00000a5}
+
+\subsection{Estructura definitiva del repositorio}
+\label{sec:org000006f}
+
+\begin{lstlisting}[language=text,numbers=none]
+proyecto-asir/
+├── docker-compose.yml
+├── .env.example
+├── apache/
+│   ├── Dockerfile
+│   ├── entrypoint.sh
+│   └── www/                 # WordPress (lo descarga scripts/install.sh)
+├── db/
+│   ├── Dockerfile
+│   ├── entrypoint-ssh.sh
+│   └── data/
+├── proxy/
+│   └── conf.d/proxy.conf
+├── dns/
+│   ├── named.conf
+│   ├── named.conf.options
+│   ├── named.conf.local
+│   └── zones/
+│       ├── db.asir.test
+│       ├── db.172.21
+│       └── db.172.22
+└── scripts/
+    ├── install.sh
+    └── comprobaciones.sh
+\end{lstlisting}
+\subsection{docker-compose.yml}
+\label{sec:org0000072}
+
+\begin{lstlisting}[language=yaml,numbers=none]
+name: proyecto-asir
+
+services:
+
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./proxy/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - apache
+      - phpmyadmin
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.10
+      red-interna:
+        ipv4_address: 172.22.0.10
+
+  apache:
+    build: ./apache
+    container_name: apache
+    restart: unless-stopped
+    volumes:
+      - ./apache/www:/var/www/html
+    depends_on:
+      - db
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.11
+
+  db:
+    build: ./db
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: asir_root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_pass_2026
+    volumes:
+      - ./db/data:/var/lib/mysql
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.12
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: asir_root
+      PMA_ABSOLUTE_URI: "http://pma.asir.test"
+    depends_on:
+      - db
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.13
+
+  dns:
+    image: internetsystemsconsortium/bind9:9.19
+    container_name: dns
+    restart: unless-stopped
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./dns/named.conf:/etc/bind/named.conf:ro
+      - ./dns/named.conf.options:/etc/bind/named.conf.options:ro
+      - ./dns/named.conf.local:/etc/bind/named.conf.local:ro
+      - ./dns/zones:/etc/bind/zones:ro
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.53
+
+  vpn:
+    image: weejewel/wg-easy
+    container_name: vpn
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    environment:
+      WG_HOST: "${WG_HOST:-127.0.0.1}"
+      PASSWORD: "${WG_PASSWORD:-asir-vpn-2026}"
+      WG_DEFAULT_ADDRESS: "10.9.0.x"
+      WG_DEFAULT_DNS: "172.21.0.53"
+      WG_ALLOWED_IPS: "172.21.0.0/24, 172.22.0.0/24, 10.9.0.0/24"
+      WG_PERSISTENT_KEEPALIVE: "25"
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.20
+      red-interna:
+        ipv4_address: 172.22.0.20
+
+networks:
+  red-publica:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+  red-interna:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+\end{lstlisting}
+\subsection{.env.example}
+\label{sec:org0000075}
+
+\begin{lstlisting}[language=text,numbers=none]
+# IP/dominio que usan los clientes VPN para conectarse (IP del host o publica)
+WG_HOST=192.168.1.10
+# Contrasena del panel web de WireGuard (http://IP_HOST:51821)
+WG_PASSWORD=asir-vpn-2026
+\end{lstlisting}
+\subsection{apache/Dockerfile}
+\label{sec:org0000078}
+
+\begin{lstlisting}[language=dockerfile,numbers=none]
+FROM php:8.2-apache
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends vim openssh-server \
+    && docker-php-ext-install mysqli pdo_mysql \
+    && a2enmod rewrite \
+    && sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && mkdir -p /run/sshd \
+    && echo 'root:asir' | chpasswd
+
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+EXPOSE 80 22
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+\end{lstlisting}
+\subsection{apache/entrypoint.sh}
+\label{sec:org000007b}
+
+\begin{lstlisting}[language=bash,numbers=none]
+#!/bin/bash
+/usr/sbin/sshd
+exec apache2-foreground
+\end{lstlisting}
+\subsection{db/Dockerfile}
+\label{sec:org000007e}
+
+\begin{lstlisting}[language=dockerfile,numbers=none]
+FROM mysql:8.4
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssh-server vim \
+    && sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && mkdir -p /run/sshd \
+    && echo 'root:asir' | chpasswd
+
+COPY entrypoint-ssh.sh /usr/local/bin/entrypoint-ssh.sh
+RUN chmod +x /usr/local/bin/entrypoint-ssh.sh
+
+EXPOSE 3306 22
+ENTRYPOINT ["/usr/local/bin/entrypoint-ssh.sh"]
+CMD ["mysqld"]
+\end{lstlisting}
+\subsection{db/entrypoint-ssh.sh}
+\label{sec:org0000081}
+
+\begin{lstlisting}[language=bash,numbers=none]
+#!/bin/bash
+/usr/sbin/sshd
+exec docker-entrypoint.sh "$@"
+\end{lstlisting}
+\subsection{proxy/conf.d/proxy.conf}
+\label{sec:org0000084}
+
+\begin{lstlisting}[language=nginx,numbers=none]
+# WordPress a traves del proxy
+server {
+    listen 80;
+    server_name www.asir.test;
+
+    location / {
+        proxy_pass http://apache:80;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+# PHPMyAdmin a traves del proxy
+server {
+    listen 80;
+    server_name pma.asir.test phpmyadmin.asir.test;
+
+    location / {
+        proxy_pass http://phpmyadmin:80;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+\end{lstlisting}
+\subsection{dns/named.conf}
+\label{sec:org0000087}
+
+\begin{lstlisting}[language=conf,numbers=none]
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.local";
+\end{lstlisting}
+\subsection{dns/named.conf.options}
+\label{sec:org000008a}
+
+\begin{lstlisting}[language=conf,numbers=none]
+options {
+    directory "/var/cache/bind";
+
+    recursion yes;
+    allow-query { any; };
+
+    listen-on port 53  { any; };
+    listen-on-v6       { any; };
+
+    forwarders { 1.1.1.1; 8.8.8.8; };
+    dnssec-validation no;
+};
+\end{lstlisting}
+\subsection{dns/named.conf.local}
+\label{sec:org000008d}
+
+\begin{lstlisting}[language=conf,numbers=none]
+// Zona directa del proyecto
+zone "asir.test" {
+    type master;
+    file "/etc/bind/zones/db.asir.test";
+};
+
+// Zonas inversas de las dos redes Docker
+zone "21.172.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.172.21";
+};
+
+zone "22.172.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.172.22";
+};
+\end{lstlisting}
+\subsection{dns/zones/db.asir.test}
+\label{sec:org0000090}
+
+\begin{lstlisting}[language=conf,numbers=none]
+$TTL 86400
+@   IN SOA dns.asir.test. admin.asir.test. (
+        2026091401 ; serial
+        3600       ; refresh
+        1800       ; retry
+        604800     ; expire
+        86400 )    ; minimum
+
+    IN NS  dns.asir.test.
+
+; Servidores
+dns     IN A    172.21.0.53
+proxy   IN A    172.21.0.10
+vpn     IN A    172.21.0.20
+
+; Backend (solo red-interna / VPN)
+apache  IN A    172.22.0.11
+db      IN A    172.22.0.12
+pma     IN A    172.22.0.13
+
+; Alias
+phpmyadmin  IN CNAME pma
+www         IN CNAME proxy
+\end{lstlisting}
+\subsection{dns/zones/db.172.21}
+\label{sec:org0000093}
+
+\begin{lstlisting}[language=conf,numbers=none]
+$TTL 86400
+@   IN SOA dns.asir.test. admin.asir.test. (
+        2026091401 ; serial
+        3600       ; refresh
+        1800       ; retry
+        604800     ; expire
+        86400 )    ; minimum
+
+    IN NS  dns.asir.test.
+
+10  IN PTR proxy.asir.test.
+20  IN PTR vpn.asir.test.
+53  IN PTR dns.asir.test.
+\end{lstlisting}
+\subsection{dns/zones/db.172.22}
+\label{sec:org0000096}
+
+\begin{lstlisting}[language=conf,numbers=none]
+$TTL 86400
+@   IN SOA dns.asir.test. admin.asir.test. (
+        2026091401 ; serial
+        3600       ; refresh
+        1800       ; retry
+        604800     ; expire
+        86400 )    ; minimum
+
+    IN NS  dns.asir.test.
+
+10  IN PTR proxy.asir.test.
+11  IN PTR apache.asir.test.
+12  IN PTR db.asir.test.
+13  IN PTR pma.asir.test.
+\end{lstlisting}
+\subsection{scripts/install.sh}
+\label{sec:org0000099}
+
+\begin{lstlisting}[language=bash,numbers=none]
+#!/bin/bash
+# Preparacion automatica del proyecto ASIR.
+# Uso: ./scripts/install.sh
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "[1/3] Creando directorios de datos"
+mkdir -p apache/www db/data
+
+echo "[2/3] Desplegando WordPress (fases 1 y 3)"
+if [ ! -f "apache/www/wp-config.php" ]; then
+  curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wordpress.tar.gz
+  tar -xzf /tmp/wordpress.tar.gz -C apache/www --strip-components=1
+
+  SALTS=""
+  for i in AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY \
+           AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT; do
+    SALTS+=$(printf "define('%s', '%s');\n" "$i" "$(openssl rand -base64 48)")
+  done
+
+  cat > apache/www/wp-config.php <<EOF
+<?php
+define('DB_NAME', 'wordpress');
+define('DB_USER', 'wp_user');
+define('DB_PASSWORD', 'wp_pass_2026');
+define('DB_HOST', 'db');
+define('DB_CHARSET', 'utf8mb4');
+define('DB_COLLATE', '');
+
+$SALTS
+\$table_prefix = 'wp_';
+
+define('WP_DEBUG', false);
+
+// Acceso final a traves del proxy inverso
+define('WP_HOME', 'http://www.asir.test');
+define('WP_SITEURL', 'http://www.asir.test');
+
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+require_once ABSPATH . 'wp-settings.php';
+EOF
+  echo "  - wp-config.php generado"
+fi
+
+echo "[3/3] Configurando WireGuard (fase 5)"
+if [ ! -f .env ]; then
+  HOST_IP=$(hostname -I | awk '{print $1}')
+  cat > .env <<EOF
+WG_HOST=${HOST_IP}
+WG_PASSWORD=asir-vpn-2026
+EOF
+  echo "  - .env generado (WG_HOST=${HOST_IP})"
+fi
+
+echo "Listo. Ejecuta:  docker compose up -d --build"
+\end{lstlisting}
+\subsection{scripts/comprobaciones.sh}
+\label{sec:org000009c}
+
+\begin{lstlisting}[language=bash,numbers=none]
+#!/bin/bash
+# Verificacion del despliegue completo.  set -euo pipefail cd
+"$(dirname "$0")/.."
+
+DNS_IP=172.21.0.53
+
+echo "=== 1. Contenedores ===" docker compose ps --format "table
+{{.Name}}\t{{.Status}}\t{{.Ports}}"
+
+echo "=== 2. Resolucion directa asir.test ===" for n in dns proxy www
+vpn apache db pma phpmyadmin; do r=$(dig +short "@${DNS_IP}"
+"${n}.asir.test" A | head -n1) echo " ${n}.asir.test -> ${r:-SIN
+RESPUESTA}" done
+
+echo "=== 3. Resolucion inversa ===" for ip in 172.21.0.53 172.21.0.10
+172.21.0.20 \ 172.22.0.11 172.22.0.12 172.22.0.13; do echo " ${ip} ->
+$(dig +short -x "${ip}" "@${DNS_IP}")" done
+
+echo "=== 4. Proxy inverso ===" curl -s -o /dev/null -w "
+www.asir.test -> HTTP %{http_code}\n" \ -H "Host: www.asir.test"
+http://127.0.0.1/ curl -s -o /dev/null -w " pma.asir.test -> HTTP
+%{http_code}\n" \ -H "Host: pma.asir.test" http://127.0.0.1/
+
+echo "=== 5. SSH en backend (fase 5) ===" docker compose exec apache
+bash -c 'pgrep sshd >/dev/null && echo " sshd OK en apache"' docker
+compose exec db bash -c 'pgrep sshd >/dev/null && echo " sshd OK en
+ db"'
+
+echo "=== 6. Log de WireGuard ===" docker compose logs vpn 2>/dev/null
+| tail -n 3
+\end{lstlisting}
+\subsection{Puesta en marcha}
+\label{sec:org000009f}
+
+\begin{lstlisting}[language=bash,numbers=none]
+chmod +x scripts/*.sh ./scripts/install.sh # descarga WordPress,
+genera wp-config y .env docker compose up -d --build
+\end{lstlisting}
+
+\begin{itemize}
+\item Acceder a \texttt{http://www.asir.test} (WordPress) y \texttt{http://pma.asir.test} (PHPMyAdmin) con el DNS del sistema apuntando a 172.21.0.53.
+\item Crear un cliente VPN en \texttt{http://IP\_DEL\_HOST:51821} y descargar el fichero \texttt{*.conf}. Importarlo en el cliente WireGuard, conectarse y repetir la lista de comprobaciones de la fase 5.
+\end{itemize}
+\subsection{Notas sobre wg-easy}
+\label{sec:org00000a2}
+\begin{itemize}
+\item \texttt{WG\_HOST} debe ser la IP o dominio que el cliente VPN usa para conectarse: en prácticas de aula basta la IP del host (se detecta en \texttt{install.sh}); con clientes externos hay que usar la IP pública o un dominio con registro A.
+\item Si se prefiere autenticar con hash en lugar de \texttt{PASSWORD}, se genera con \texttt{docker run -{}-{}rm weejewel/wg-easy wgpw 'asir-vpn-2026'} y se asigna la variable \texttt{PASSWORD\_HASH} en el servicio \texttt{vpn}.
+\item wg-easy asigna IPs automáticas dentro de \texttt{10.9.0.0/24} a cada cliente creado desde el panel.
+\end{itemize}
+\end{document}
