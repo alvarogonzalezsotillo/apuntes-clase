@@ -1,8 +1,16 @@
-
-
+* Prompt
+Este proyecto para estudiantes consta de varias fases. En el estado final:
+- 6 /containers/: proxy inverso, Apache con PHP, MySQL, Apache con PHPMyAdmin, servidor VPN, servidor DNS
+- Los clientes externos pueden utilizar el servidor DNS
+- Los clientes conectados a la VPN Wireguard utilizan el servidor DNS
+- Se crea automáticamente con un solo =docker compose= y los /scripts/ necesarios  
 
 | Fase 1 | Servidor LAMP                                                             |
-| Fase 2 | Wordpress instalado en LAMP                                               |
-| Fase 3 | Proxy inverso frente a servidor Apache y servidor PhpMyAdmin              |
-| Fase 4 | Acceso mediante VPN a backend PhpMyAdmin y SSH a container Apache y MySQL |
+| Fase 2 | Servidor DNS que almacena nombres para cada container                     |
+| Fase 3 | Wordpress instalado en LAMP                                               |
+| Fase 4 | Proxy inverso frente a servidor Apache y servidor PhpMyAdmin              |
+| Fase 5 | Acceso mediante VPN a backend PhpMyAdmin y SSH a container Apache y MySQL |
 
+Los diagramas se realizan con ``#+begin_src dot'' o similar (ejemplos en /home/alvaro/distrobox-homes/ubuntu-code/apuntes-clase-llm/entornos-de-desarrollo/apuntes/5/ED-05-pruebas.org)
+
+Completa este documento donde se detalla el enunciado de las fases para los alumnos. Incluye la solución en un último punto para todas las fases, en bloques begin_src
