@@ -20,10 +20,9 @@
 + Acceso a Internet fuera del aula
 
 ** Libro de referencia
-+ Seguridad Informática
-+ Editorial: MacMillan
-+ Autor: Gema Escrivá Gascó
-+ ISBN: 978-84-15656-64-7 
++ [[https://www.garceta.es/catalogo/libro.php?ISBN=978-84-1728-930-0&idd=12][Seguridad y alta disponibilidad. 2ª Edición]]
++ Editorial: Garceta
++ ISBN: 978-84-1728-930-0
 [[file:portada-libro.png]]
 
 * Entrega de Trabajos
@@ -59,6 +58,121 @@
 
 
 
+* Contenidos
+** Adopción de pautas de seguridad informática:
+- Visión global de la seguridad informática.
+- Fiabilidad, confidencialidad, integridad y disponibilidad.
+- Elementos vulnerables en el sistema informático: hardware, software y datos.
+- Análisis de las principales vulnerabilidades de un sistema informático.
+- Amenazas. Tipos:
+  - Amenazas físicas.
+  - Amenazas lógicas.
+- Tipos de ataques.
+- Valoración de los riesgos
+- Impactos y repercusión.
+- Seguridad física y ambiental:
+  - Ubicación y protección física de los equipos y servidores. Condiciones ambientales. Plan de seguridad física. Plan recuperación en caso de desastres. Protección del hardware. Control de accesos.
+  - Sistemas de alimentación ininterrumpida (SAI). Funciones. Tipos.
+- Seguridad lógica:
+  - Criptografía. Cifrado de clave secreta (simétrica o privada). Cifrado de clave pública
+(asimétrica). Funciones de mezcla o resumen (hash).
+  - Sistemas de identificación. Firma electrónica. Certificados digitales Distribución de
+claves. Infraestructura de clave pública (PKI). DNI electrónico.
+  - Establecimiento de políticas de contraseñas.
+  - Políticas de almacenamiento. Medios de almacenamiento externo: DAS (Direct Attached Storage), NAS (Network Attached Storage), SAN (Storage Area Network).Copias de seguridad e imágenes de respaldo.
+- Análisis forense en sistemas informáticos.
+** Implantación de mecanismos de seguridad activa:
+- Ataques y contramedidas en sistemas personales:
+  - Clasificación de los ataques y amenazas.
+  - Control de acceso al sistema. Seguridad en BIOS (Basic Input-Output System).Seguridad en gestores arranque.
+  - Consideraciones de seguridad en el particionado de discos.
+  - Autenticación para el acceso al sistema (cuentas, contraseñas, tarjetas inteligentes,lectores de huellas…).
+  - Seguridad en sistemas de ficheros. Acceso a recursos. Listas de control de acceso.
+  - Actualización de sistemas y aplicaciones. Autenticidad de aplicaciones y actualizaciones.
+  - Anatomía de ataques y análisis de software malicioso (malware: virus, gusanos, spyware, keylogers…).
+  - Pautas y prácticas seguras.
+- Seguridad en la red corporativa:
+  - Problemas de seguridad y vulnerabilidades en protocolos TCP/IP.
+  - Riesgos potenciales de los servicios de red.
+  - Ataques en redes TCP/IP (suplantación, denegación de servicio…).
+  - Seguridad en los accesos de red. Arranque de servicios. Puertos.
+  - Descripción general de protocolos seguros a diferentes niveles: IPsec (Internet Protocol Security), SSL/TSL (Secure Sockets Layer/Transport Layer Security), PGP (Pretty Good Privacy), S/MIME (Secure / Multipurpose Internet Mail Extensions)...
+  - Seguridad en los protocolos para comunicaciones inalámbricas.
+  - Monitorización del tráfico en redes.
+  - Intentos de penetración. Intrusiones externas vs. Intrusiones internas. Seguridad perimetral.
+- Herramientas de seguridad y monitorización
+  - Herramientas preventivas y paliativas (descifrar contraseñas, anti-rootkit, sniffers, escaneadores de puertos, detectores de vulnerabilidades, sistemas de detección de intrusos, recuperación de datos…)
+  - Instalación y configuración básica.
+** Implantación de seguridad perimetral:
+- Elementos básicos de la seguridad perimetral (sistemas bastión, cortafuegos, proxys, VPNs (Virtual Private Networks)…
+- Arquitecturas de seguridad perimetral
+  - Arquitectura débil de subred protegida.
+  - Arquitectura fuerte de subred protegida.
+  - Perímetros de red. Zonas desmilitarizadas DMZ (Demilitarized Zone).
+  - Otras arquitecturas.
+** Instalación y configuración de cortafuegos:
+- Concepto de cortafuegos.
+- Características. Funciones principales y adicionales.
+- Tipos de cortafuegos
+  - Clasificación por tecnología: filtrado de paquetes de datos, pasarelas de nivel de aplicación (proxys), pasarelas de nivel de circuitos (híbridos).
+  - Clasificación por ubicación: cortafuegos personales, cortafuegos para pequeñas redes SOHO (Small Office Home Office), cortafuegos corporativos.
+  - Cortafuegos software vs. equipos hardware específicos.
+- Instalación y configuración de cortafuegos. Ubicación.
+  - Utilización de cortafuegos. Reglas de filtrado de cortafuegos.
+  - Pruebas de funcionamiento. Sondeo.
+  - Registros de sucesos de un cortafuegos.
+- Distribuciones libres para implementar cortafuegos en máquinas dedicadas.
+- Integración con otras tecnologías: NAT, VPNs, sistemas de detección de intrusos IDS (Intrusion Detection System), QoS, antivirus….
+** Instalación y configuración de servidores «proxy»:
+- Tipos de «proxy». Características y funciones.
+- Instalación y configuración de de servidores «proxy».
+  - Configuración del almacenamiento en la caché de un «proxy».
+  - Configuración de filtros.
+  - Métodos de autenticación en un «proxy».
+  - Monitorización y registros de actividad (logs).
+  - Herramientas para generar informes sobre logs de servidores proxy.
+- Instalación y configuración de clientes «proxy».
+** Implantación de técnicas de acceso remoto. VPNs (Virtual Private Networks)
+- Redes privadas virtuales. VPN. Elementos de una VPN.
+- Beneficios y desventajas con respecto a las líneas dedicadas.
+- Esquemas de VPNs
+  - VPNs punto a punto.
+  - VPNs de acceso remoto (LAN a road warrior).
+  - VPN extremo a extremo (LAN a LAN).
+- Tecnologías y protocolos de VPNs.
+  - PPTP (Point-to-Point Tunneling Protocol).
+  - IPsec (Internet Protocol Security).
+  - IPsec/L2PT (Layer Two Tunneling Protocol).
+  - SSL/TSL (Secure Sockets Layer/ Transport Layer Security). OpenVPN.
+  - SSH (Secure Shell).
+- VPNs por hardware vs. VPNs por software.
+- VPNs a nivel de enlace, nivel de red y nivel de aplicación.
+- Técnicas de cifrado en VPNs. Clave pública y clave privada.
+- Servidores de acceso remoto y VPN:
+  - Implantación de VPNs. Instalación y configuración básica de clientes y servidores.
+  - Protocolos de autenticación.
+  - Configuración de parámetros de acceso.
+  - Servidores de autenticación.
+** Implantación de soluciones de alta disponibilidad:
+- Definición y objetivos.
+- Análisis de configuraciones de alta disponibilidad.
+  - Funcionamiento interrumpido y alta disponibilidad.
+  - Balanceadores de carga.
+  - Almacenamiento compartido. Sistemas de archivos y dispositivos de bloque.
+  - Servidores redundantes.
+  - Sistemas de «clusters».
+  - Integridad de datos y recuperación de servicio.
+- Instalación y configuración de soluciones de alta disponibilidad.
+- Virtualización de sistemas.
+  - Posibilidades de la virtualización de sistemas.
+  - Herramientas para la virtualización.
+  - Configuración y utilización de máquinas virtuales.
+  - Alta disponibilidad y virtualización.
+  - Simulación de servicios con virtualización.
+- Pruebas de carga. Cargas sintéticas.
+** Legislación y normas sobre seguridad:
+- Legislación sobre protección de datos.
+- Legislación sobre los servicios de la sociedad de la información y correo electrónico.
 
 * Criterios de evaluación
 
