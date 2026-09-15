@@ -75,8 +75,8 @@ services:
     ports:
       # TODO: EL BINDING VALE PARA PROBAR EL DNS SIN LA VPN
       # LA IP DEBERÍA VENIR DE UNA VARIABLE DE ENTORNO
-      - "192.168.1.132:53:53/udp"
-      - "192.168.1.132:53:53/tcp"
+      - "${WG_HOST}:53:53/udp"
+      - "${WG_HOST}:53:53/tcp"
     volumes:
       - ./dns/named.conf:/etc/bind/named.conf:ro
       - ./dns/named.conf.options:/etc/bind/named.conf.options:ro
@@ -110,7 +110,7 @@ services:
       WG_PERSISTENT_KEEPALIVE: "25"
 
 
-    # TODO: HACE FALTA QUE SE HAGA NAT AL ENTRAR POR LA VPN, PARA QUE LOS SERVICIOS PUEDAN VOLVER
+    # TODO: HACE FALTA QUE SE HAGA NAT AL ENTRAR POR LA VPN para las dos tarjetas, PARA QUE LOS SERVICIOS PUEDAN VOLVER
     # PUEDE QUE HAYA MEJORES SOLUCIONES, INVESTIGAR ENTRYPOINT Y COMMAND Y WG_POST_UP
     command: >
         sh -c "iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -d 172.21.0.0/24 -j SNAT --to-source 172.21.0.20 && /usr/bin/dumb-init node server.js docker-entrypoint.sh"

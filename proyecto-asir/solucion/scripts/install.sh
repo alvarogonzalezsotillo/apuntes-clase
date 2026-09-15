@@ -7,10 +7,12 @@ cd "$(dirname "$0")/.."
 echo "[1/3] Creando directorios de datos"
 mkdir -p apache/www db/data
 
+WPDIR=apache/www/wordpress
+
 echo "[2/3] Desplegando WordPress (fases 1 y 3)"
-if [ ! -f "apache/www/wp-config.php" ]; then
+if [ ! -f "$WPDIR/wp-config.php" ]; then
   curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wordpress.tar.gz
-  tar -xzf /tmp/wordpress.tar.gz -C apache/www --strip-components=1
+  tar -xzf /tmp/wordpress.tar.gz -C $WPDIR/ --strip-components=1
 
   SALTS=""
   for i in AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY \
@@ -18,7 +20,7 @@ if [ ! -f "apache/www/wp-config.php" ]; then
     SALTS+=$(printf "define('%s', '%s');\n" "$i" "$(openssl rand -base64 48)")
   done
 
-  cat > apache/www/wp-config.php <<EOF
+  cat > $WPDIR/wp-config.php <<EOF
 <?php
 define('DB_NAME', 'wordpress');
 define('DB_USER', 'wp_user');
@@ -33,14 +35,18 @@ $SALTS
 define('WP_DEBUG', false);
 
 // Acceso final a traves del proxy inverso
-define('WP_HOME', 'http://www.asir.test');
-define('WP_SITEURL', 'http://www.asir.test');
+define('WP_HOME', 'http://www.asir.test/wp');
+define('WP_SITEURL', 'http://www.asir.test/wp');
 
 if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', __DIR__ . '/' );
 }
 require_once ABSPATH . 'wp-settings.php';
 EOF
+
+  echo "TODO: FALTA PONER LA BASE DE DATOS"
+
+  
   echo "  - wp-config.php generado"
 fi
 
