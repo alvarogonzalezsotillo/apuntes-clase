@@ -1,5 +1,10 @@
 name: proyecto-asir
 
+volumes:
+  # PARA GUARDAR CONFIGURACIONES DE CLIENTE VPN
+  etc_wireguard:
+
+
 services:
 
   proxy:
@@ -68,8 +73,10 @@ services:
     container_name: dns
     restart: unless-stopped
     ports:
-      - "172.21.0.53:53:53/udp"
-      - "172.21.0.53:53:53/tcp"
+      # TODO: EL BINDING VALE PARA PROBAR EL DNS SIN LA VPN
+      # LA IP DEBERÍA VENIR DE UNA VARIABLE DE ENTORNO
+      - "192.168.1.132:53:53/udp"
+      - "192.168.1.132:53:53/tcp"
     volumes:
       - ./dns/named.conf:/etc/bind/named.conf:ro
       - ./dns/named.conf.options:/etc/bind/named.conf.options:ro
@@ -89,6 +96,8 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv4.ip_forward=1
+    volumes:
+      - etc_wireguard:/etc/wireguard
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
@@ -99,6 +108,13 @@ services:
       WG_DEFAULT_DNS: "172.21.0.53"
       WG_ALLOWED_IPS: "172.21.0.0/24, 172.22.0.0/24, 10.9.0.0/24"
       WG_PERSISTENT_KEEPALIVE: "25"
+
+
+    # TODO: HACE FALTA QUE SE HAGA NAT AL ENTRAR POR LA VPN, PARA QUE LOS SERVICIOS PUEDAN VOLVER
+    # PUEDE QUE HAYA MEJORES SOLUCIONES, INVESTIGAR ENTRYPOINT Y COMMAND Y WG_POST_UP
+    command: >
+        sh -c "iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -d 172.21.0.0/24 -j SNAT --to-source 172.21.0.20 && /usr/bin/dumb-init node server.js docker-entrypoint.sh"
+
     networks:
       red-publica:
         ipv4_address: 172.21.0.20
