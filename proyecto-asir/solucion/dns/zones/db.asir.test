@@ -1,0 +1,23 @@
+$TTL 86400
+@   IN SOA dns.asir.test. admin.asir.test. (
+        2026091401 ; serial
+        3600       ; refresh
+        1800       ; retry
+        604800     ; expire
+        86400 )    ; minimum
+
+    IN NS  dns.asir.test.
+
+; Servidores
+dns     IN A    172.21.0.53
+proxy   IN A    172.21.0.10
+vpn     IN A    172.21.0.20
+
+; Backend (solo red-interna / VPN)
+apache  IN A    172.22.0.11
+db      IN A    172.22.0.12
+pma     IN A    172.22.0.13
+
+; Alias
+phpmyadmin  IN CNAME pma
+www         IN CNAME proxy

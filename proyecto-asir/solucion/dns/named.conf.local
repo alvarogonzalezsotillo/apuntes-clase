@@ -1,0 +1,16 @@
+// Zona directa del proyecto
+zone "asir.test" {
+    type master;
+    file "/etc/bind/zones/db.asir.test";
+};
+
+// Zonas inversas de las dos redes Docker
+zone "21.172.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.172.21";
+};
+
+zone "22.172.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.172.22";
+};

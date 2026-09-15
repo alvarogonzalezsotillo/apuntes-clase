@@ -1,0 +1,13 @@
+$TTL 86400
+@   IN SOA dns.asir.test. admin.asir.test. (
+        2026091401 ; serial
+        3600       ; refresh
+        1800       ; retry
+        604800     ; expire
+        86400 )    ; minimum
+
+    IN NS  dns.asir.test.
+
+10  IN PTR proxy.asir.test.
+20  IN PTR vpn.asir.test.
+53  IN PTR dns.asir.test.

@@ -1,0 +1,118 @@
+name: proyecto-asir
+
+services:
+
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./proxy/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - apache
+      - phpmyadmin
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.10
+      red-interna:
+        ipv4_address: 172.22.0.10
+
+  apache:
+    build: ./apache
+    container_name: apache
+    restart: unless-stopped
+    volumes:
+      - ./apache/www:/var/www/html
+    depends_on:
+      - db
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.11
+
+  db:
+    build: ./db
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: asir_root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_pass_2026
+    volumes:
+      - ./db/data:/var/lib/mysql
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.12
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: asir_root
+      PMA_ABSOLUTE_URI: "http://pma.asir.test"
+    depends_on:
+      - db
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.13
+
+  dns:
+    image: internetsystemsconsortium/bind9:9.20
+    container_name: dns
+    restart: unless-stopped
+    ports:
+      - "172.21.0.53:53:53/udp"
+      - "172.21.0.53:53:53/tcp"
+    volumes:
+      - ./dns/named.conf:/etc/bind/named.conf:ro
+      - ./dns/named.conf.options:/etc/bind/named.conf.options:ro
+      - ./dns/named.conf.local:/etc/bind/named.conf.local:ro
+      - ./dns/zones:/etc/bind/zones:ro
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.53
+
+  vpn:
+    image: weejewel/wg-easy
+    container_name: vpn
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    environment:
+      WG_HOST: "${WG_HOST:-127.0.0.1}"
+      PASSWORD: "${WG_PASSWORD:-asir-vpn-2026}"
+      WG_DEFAULT_ADDRESS: "10.9.0.x"
+      WG_DEFAULT_DNS: "172.21.0.53"
+      WG_ALLOWED_IPS: "172.21.0.0/24, 172.22.0.0/24, 10.9.0.0/24"
+      WG_PERSISTENT_KEEPALIVE: "25"
+    networks:
+      red-publica:
+        ipv4_address: 172.21.0.20
+      red-interna:
+        ipv4_address: 172.22.0.20
+
+networks:
+  red-publica:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+  red-interna:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
