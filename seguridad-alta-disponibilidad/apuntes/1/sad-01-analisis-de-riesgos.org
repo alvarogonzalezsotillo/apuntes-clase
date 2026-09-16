@@ -18,6 +18,8 @@ En lenguaje informal (y en contabilidad), un activo es cualquier cosa que tenga 
 
 En el ámbito del análisis de riesgos, se denomina así a cualquier recurso de la empresa que sea necesario para que el sistema de información funcione de forma adecuada. Son activos elementos de los datos, el software, el hardware, el personal, las redes, las instalaciones e incluso los servicios y actividades de la empresa. En un análisis de riesgos los enumeraremos y explicaremos lo que son.
 
+[[https://pilar.ccn-cert.cni.es/docman/documentos/2-magerit-v3-libro-ii-catalogo-de-elementos/file][MAGERIT tiene un catálogo de tipos de activos]].
+
 *** AMENAZAS:
 
 Se entiende por amenaza la presencia de uno o más factores de diversa índole que -de tener la oportunidad- afectarían al sistema objeto de estudio produciéndole daños.
@@ -265,3 +267,5 @@ más:
 #+caption: Diagrama de documentos del análisis de riesgos
 [[file:diagrama-analisis-riesgos.svg]]
 
+[[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Ejercicio%2BAn%C3%A1lisis%2Bde%2Briesgos.pdf][Ejemplo de análisis de riesgos]]
+[[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Plan%20de%20contingencia%20%20-%20Guia%20y%20ejemplo.pdf][Ejemplo de plan de contingencias]]
