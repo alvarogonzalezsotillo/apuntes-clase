@@ -74,10 +74,8 @@
   - Ubicación y protección física de los equipos y servidores. Condiciones ambientales. Plan de seguridad física. Plan recuperación en caso de desastres. Protección del hardware. Control de accesos.
   - Sistemas de alimentación ininterrumpida (SAI). Funciones. Tipos.
 - Seguridad lógica:
-  - Criptografía. Cifrado de clave secreta (simétrica o privada). Cifrado de clave pública
-(asimétrica). Funciones de mezcla o resumen (hash).
-  - Sistemas de identificación. Firma electrónica. Certificados digitales Distribución de
-claves. Infraestructura de clave pública (PKI). DNI electrónico.
+  - Criptografía. Cifrado de clave secreta (simétrica o privada). Cifrado de clave pública (asimétrica). Funciones de mezcla o resumen (hash).
+  - Sistemas de identificación. Firma electrónica. Certificados digitales Distribución de claves. Infraestructura de clave pública (PKI). DNI electrónico.
   - Establecimiento de políticas de contraseñas.
   - Políticas de almacenamiento. Medios de almacenamiento externo: DAS (Direct Attached Storage), NAS (Network Attached Storage), SAN (Storage Area Network).Copias de seguridad e imágenes de respaldo.
 - Análisis forense en sistemas informáticos.

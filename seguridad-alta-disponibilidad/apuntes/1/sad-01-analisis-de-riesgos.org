@@ -91,7 +91,7 @@ Ante la detección de un riesgo, se puede optar por tres alternativas:
 
 -  *Transferirlo*. Traspasar a un tercero la gestión de ese riesgo: típicamente, *contratar un seguro* para ese riesgo. Tiene sentido cuando el coste de la prevención es elevado, también el de la reparación... pero el riesgo de que ocurra es bajo.
 
-[[file:impacto-probabilidad.png]]
+[[file:media/impacto-probabilidad.png]]
 
 *** ATAQUE:
 
@@ -135,7 +135,7 @@ Es conveniente tener identificados los posibles SPOFs de un sistema informático
 En sistemas en los que se quiere lograr alta disponibilidad, los componentes del SPOF suelen ser redundados.
 
 #+caption: En una red de ordenadores, un único enrutador probablemente es un SPOF.
-[[file:ejemplo-spof.png]]
+[[file:media/ejemplo-spof.png]]
 
 
 
@@ -170,7 +170,7 @@ Después, deberíamos seguir un cierto esquema, que, sin duda pasa por estos pun
 Es importante resaltar que las medidas de seguridad activas intentan eliminar una *vulnerabilidad*, mientras que las medidas de seguridad pasivas mitigan los impactos de un daño producido por una *amenaza*
 
 #+caption: Resumen de medidas activas y pasivas
-[[file:diagrama-seguridad-y-medidas.svg]]
+[[file:media/diagrama-seguridad-y-medidas.svg]]
 
 En conclusión.... el *análisis de riesgos* es mucho más que un documento... ES UN *ANÁLISIS*: un estudio y reflexión del profesional que lo realiza, y se refiere la seguridad de algún aspecto de un sistema informático, con aporte de soluciones para reducir los riegos, y estudio y evaluación de todos los elementos implicados, desde los puntos de vista más amplios posible.
 
@@ -265,7 +265,7 @@ más:
 -  /[[https://es.wikipedia.org/wiki/Examen_de_penetraci%C3%B3n][pentesting]]/ en wikipedia
    
 #+caption: Diagrama de documentos del análisis de riesgos
-[[file:diagrama-analisis-riesgos.svg]]
+[[file:media/diagrama-analisis-riesgos.svg]]
 
 [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Ejercicio%2BAn%C3%A1lisis%2Bde%2Briesgos.pdf][Ejemplo de análisis de riesgos]]
 [[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Plan%20de%20contingencia%20%20-%20Guia%20y%20ejemplo.pdf][Ejemplo de plan de contingencias]]
