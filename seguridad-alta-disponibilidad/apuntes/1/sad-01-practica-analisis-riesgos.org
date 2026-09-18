@@ -14,8 +14,6 @@ La empresa Europe Avellaneda S.A. se dedica a la organización de eventos. Por e
 
 En su sede central, situada en una céntrica calle de Madrid, disponen de unas instalaciones con varios despachos. En la oficina trabajan varios representantes, cuya función principal es estar en contacto con proveedores y clientes, para terminar de organizar el evento.
 
-Cada evento es único, así que el trabajo humano es fundamental, pero las nuevas tecnologías ayudan a estar en contacto.
-
 Cada representante puede conectarse a la red wifi de la empresa con su portátil. En esa red, que es privada, existe una aplicación desarrollada dentro de la empresa (llamada Testor) en la que se almacenan los datos de clientes, eventos y proveedores.
 
 A dicha aplicación se accede con un navegador (es decir, es una Aplicación web), pero el servidor es privado. Para acceder a dicha aplicación, es necesario estar conectado a la wifi de la oficina (no se accede desde Internet) y además introducir un nombre de usuario y una contraseña.
@@ -37,10 +35,8 @@ El cliente no cedió el proyecto a la otra empresa de eventos, sino que lo cance
 El incidente alarmó a la gerencia de la empresa, que nos encarga que estudiemos el caso, para que no vuelva a ocurrir que alguien de la competencia intenta llevarse un evento. Y no solo eso, sino evitar la falta de credibilidad que va a tener durante un tiempo esta empresa.
 
 * Parte 1: Análisis de riesgos
-- Realiza un análisis de riesgos de este caso, siguiendo el esquema que conoces del análisis.
-- Plásmalo en un documento hecho con tu procesador de textos favorito. Puedes utilizar la plantilla adjunta en el taller.
+- Realiza un análisis de riesgos de este caso.
 - Recuerda que es un análisis de riesgos:
-
   - Identificamos elementos relacionados con el ataque (o con el supuesto ataque en caso de no poder confirmarse).
   - Amenazas, riesgos, activos implicados, vulnerabilidades de cada activo.
   - Describimos el impacto del ataque (si se hubiera producido) o de las posibles amenazas en caso de que se materializasen.
@@ -53,7 +49,7 @@ El incidente alarmó a la gerencia de la empresa, que nos encarga que estudiemos
 - Aún no estamos en condiciones de proponer las cosas con mucho detalle técnico, pero nadie va a cuestionar tus aportes en materia de medidas de seguridad. Tan solo, que el análisis sea correcto en sus formas.
 
 * Parte 2: Políticas de seguridad
-  ¿Hay alguna norma de seguridad que quieras que los empleados de Europe Avellaneda cumplan? Si es así, detállala en el cuadro de notas que hay al final de este ejercicio.
+¿Hay alguna norma de seguridad que quieras que los empleados de Europe Avellaneda cumplan? Si es así, detállala en el cuadro de notas que hay al final de este ejercicio.
 - Con una o dos líneas por cada cosa que sugieras es suficiente.
 - Si no es necesario tener en cuenta ninguna consideración adicional que deba ser conocida por el personal de Europe Avellaneda, indícalo también, mencionando que no es necesario incluir ninguna política de seguridad nueva.
 - Recuerda que son normas dirigidas a personal no técnico: lenguaje sencillo y claro.
