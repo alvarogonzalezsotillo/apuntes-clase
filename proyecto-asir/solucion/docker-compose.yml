@@ -33,6 +33,7 @@ services:
       - ./apache/www:/var/www/html
     depends_on:
       - db
+      - ldap
     networks:
       red-interna:
         ipv4_address: 172.22.0.11
@@ -121,6 +122,22 @@ services:
         ipv4_address: 172.21.0.20
       red-interna:
         ipv4_address: 172.22.0.20
+
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap
+    restart: unless-stopped
+    environment:
+      LDAP_ORGANISATION: "ASIR"
+      LDAP_DOMAIN: "asir.test"
+      LDAP_ADMIN_PASSWORD: "asir_ldap"
+      LDAP_CONFIG_PASSWORD: "asir_ldap"
+    volumes:
+      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
+      - ./ldap/data:/var/lib/ldap
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.14
 
 networks:
   red-publica:

@@ -17,6 +17,7 @@ vpn     IN A    172.21.0.20
 apache  IN A    172.22.0.11
 db      IN A    172.22.0.12
 pma     IN A    172.22.0.13
+ldap    IN A    172.22.0.14
 
 ; Alias
 phpmyadmin  IN CNAME pma

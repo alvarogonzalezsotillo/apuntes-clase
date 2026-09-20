@@ -4,12 +4,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "[1/3] Creando directorios de datos"
+echo "[1/5] Creando directorios de datos"
 mkdir -p apache/www db/data
 
 WPDIR=apache/www/wordpress
 
-echo "[1b/3] Poniendo la IP del host en la zona DNS (www.asir.test)"
+echo "[2/5] Poniendo la IP del host en la zona DNS (www.asir.test)"
 HOST_IP=$(hostname -I | awk '{print $1}')
 ZONE=dns/zones/db.asir.test
 if [ -f "$ZONE" ]; then
@@ -17,7 +17,7 @@ if [ -f "$ZONE" ]; then
   echo "  - www.asir.test -> ${HOST_IP}"
 fi
 
-echo "[2/3] Desplegando WordPress (fases 2 y 3)"
+echo "[3/5] Desplegando WordPress (fases 2 y 3)"
 if [ ! -f "$WPDIR/wp-config.php" ]; then
   curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wordpress.tar.gz
   tar -xzf /tmp/wordpress.tar.gz -C $WPDIR/ --strip-components=1
@@ -58,7 +58,16 @@ EOF
   echo "  - wp-config.php generado"
 fi
 
-echo "[3/3] Configurando WireGuard (fase 5)"
+echo "[4/5] Instalando el plugin LDAP Login for Intranet Sites (fase 6)"
+PLUGIN_DIR="$WPDIR/wp-content/plugins"
+if [ ! -d "$PLUGIN_DIR/ldap-login-for-intranet-sites" ]; then
+  mkdir -p "$PLUGIN_DIR"
+  curl -fsSL https://downloads.wordpress.org/plugin/ldap-login-for-intranet-sites.latest-stable.zip -o /tmp/ldap-login.zip
+  unzip -q /tmp/ldap-login.zip -d "$PLUGIN_DIR"
+  echo "  - plugin LDAP Login descargado en wp-content/plugins"
+fi
+
+echo "[5/5] Configurando WireGuard (fase 5)"
 if [ ! -f .env ]; then
   HOST_IP=$(hostname -I | awk '{print $1}')
   cat > .env <<EOF

@@ -2,7 +2,7 @@
 
 * Prompt :noexport:
 Este proyecto para estudiantes consta de varias fases. En el estado final:
-- 6 /containers/: proxy inverso, Apache con PHP, MySQL, Apache con PHPMyAdmin, servidor VPN, servidor DNS
+- Varios /containers/: proxy inverso, Apache con PHP, MySQL, Apache con PHPMyAdmin, servidor VPN, servidor DNS, servidor LDAP
 - Los clientes externos pueden utilizar el servidor DNS, el proxy inverso y el servidor DNS
 - Los clientes conectados a la VPN Wireguard utilizan el servidor DNS
 - Se crea automáticamente con un solo =docker compose= y los /scripts/ necesarios  
@@ -12,7 +12,7 @@ Este proyecto para estudiantes consta de varias fases. En el estado final:
 | Fase 3 | Wordpress instalado en LAMP (apache.asir.test)                                                                                                  |
 | Fase 4 | Proxy inverso frente a servidor Wordpress y servidor PhpMyAdmin, a través de www.asir.test/wp y www.asir.test/pma                               |
 | Fase 5 | Acceso mediante VPN a cada container de la red interna, por SSH                                                                                 |
-
+| Fase 6 | Autenticación de WordPress contra un directorio LDAP (=ldap.asir.test=)   con https://wordpress.org/plugins/ldap-login-for-intranet-sites/      |
 
 Diagrama:
 #+begin_src dot :file ./media/arquitectura.svg :exports results :cmdline -Tsvg
@@ -37,6 +37,7 @@ digraph arquitectura {
     apache [label="apache  PHP + WordPress\n172.22.0.11 (ssh 22, fase 5)"];
     db     [label="db  MySQL\n172.22.0.12 (ssh 22, fase 5)"];
     pma    [label="phpmyadmin\n172.22.0.13 (solo interno)"];
+    ldap ;
   }
 
 
@@ -49,6 +50,8 @@ digraph arquitectura {
 
   proxy -> apache [label=" reverse-proxy", color="#4a7c2f"];
   proxy -> pma    [label=" reverse-proxy", color="#4a7c2f"];
+
+  apache -> ldap [label="autenticación"];
 
   apache -> db [label=" red-interna", color="#2f4a7c"];
   pma    -> db [label=" red-interna", color="#2f4a7c"];
@@ -70,10 +73,10 @@ Completa este documento donde se detalla el enunciado de las fases para los alum
 
 ** Arquitectura final
 
-El proyecto queda formado por *6 contenedores* distribuidos en dos redes Docker:
+El proyecto queda formado por *7 contenedores* distribuidos en dos redes Docker:
 
 - =red-publica= (172.21.0.0/24): =dns= (BIND9), =proxy= (nginx) y =vpn= (WireGuard). Son los servicios que los clientes externos alcanzan a través de los puertos mapeados del host.
-- =red-interna= (172.22.0.0/24): =apache= (PHP + WordPress), =db= (MySQL) y =phpmyadmin=. El backend no publica puertos: solo se alcanza a través del =proxy= o de la VPN.
+- =red-interna= (172.22.0.0/24): =apache= (PHP + WordPress), =db= (MySQL), =phpmyadmin= y =ldap= (OpenLDAP). El backend no publica puertos: solo se alcanza a través del =proxy= o de la VPN.
 
 Los clientes externos (host o red del centro) pueden utilizar el servidor DNS, el
 proxy inverso y el servidor VPN. Los clientes conectados a la VPN WireGuard usan el
@@ -84,23 +87,13 @@ El nombre público =www.asir.test= resuelve a la *IP de la máquina host*: es la
 entrada que llega al proxy a través del puerto 80 mapeado. Un script modifica la
 zona DNS con esa IP antes de arrancar el escenario.
 
-El proyecto queda formado por *6 contenedores* distribuidos en dos redes Docker:
-
-- =red-publica= (172.21.0.0/24): =dns= (BIND9), =proxy= (nginx) y =vpn= (WireGuard). Son los servicios que los clientes externos alcanzan a través de los puertos mapeados del host.
-- =red-interna= (172.22.0.0/24): =apache= (PHP + WordPress), =db= (MySQL) y =phpmyadmin=. El backend no publica puertos: solo se alcanza a través del =proxy= o de la VPN.
-
-Los clientes externos (host o red del centro) pueden utilizar el servidor DNS, el
-proxy inverso y el servidor VPN. Los clientes conectados a la VPN WireGuard usan el
-DNS del proyecto, acceden directamente al backend (p. ej. =pma.asir.test= sin pasar
-por el proxy) y entran por SSH a =apache= y =db=.
-
-El nombre público =www.asir.test= resuelve a la *IP de la máquina host*: es la
-entrada que llega al proxy a través del puerto 80 mapeado. Un script modifica la
-zona DNS con esa IP antes de arrancar el escenario.
+En la fase 6 el servidor =ldap= (=ldap.asir.test=, backend) guarda las cuentas del
+dominio y se usa para autenticar el acceso a WordPress: los usuarios del directorio
+entran con su cuenta LDAP sin necesidad de darlos de alta en WordPress.
 
 ** Redes Docker
 - =red-publica= (bridge) con subred =172.21.0.0/24=: contiene los servicios expuestos al exterior: =dns=, =proxy= y =vpn=.
-- =red-interna= (bridge) con subred =172.22.0.0/24=: contiene los servicios /backend/: =apache=, =db= y =phpmyadmin=. =proxy= y =vpn= también se conectan a esta red para alcanzar el backend.
+- =red-interna= (bridge) con subred =172.22.0.0/24=: contiene los servicios /backend/: =apache=, =db=, =phpmyadmin= y =ldap=. =proxy= y =vpn= también se conectan a esta red para alcanzar el backend.
 - Dentro de una misma red Docker los contenedores se resuelven entre sí por su *nombre de servicio* (=db=, =apache=...). Los nombres públicos del dominio =asir.test= los resuelve el servidor DNS del proyecto.
 
 ** Contenedores e IPs
@@ -112,6 +105,7 @@ zona DNS con esa IP antes de arrancar el escenario.
 | =apache=     | php:8.2-apache      | —              | 172.22.0.11    | Apache + PHP con WordPress, SSH (fase 5)                              |
 | =db=         | mysql:8.4           | —              | 172.22.0.12    | MySQL con la base de datos de WordPress, SSH (fase 5)                 |
 | =phpmyadmin= | phpmyadmin          | —              | 172.22.0.13    | Gestión web de =db=, accesible solo por proxy o por VPN               |
+| =ldap=       | osixia/openldap     | —              | 172.22.0.14    | Directorio LDAP (=dc=asir,dc=test=) con las cuentas para WordPress    |
 | =vpn=        | wireguard (wg-easy) | 172.21.0.20    | 172.22.0.20    | Servidor WireGuard con panel web de gestión                          |
 
 ** Puertos expuestos en el host
@@ -122,6 +116,9 @@ zona DNS con esa IP antes de arrancar el escenario.
 | 80 y 443     | =proxy=  | Proxy inverso al wordpress y a PHPMyAdmin (=www.asir.test=) |
 | 51820/udp    | =vpn=    | Túnel WireGuard para los clientes VPN                       |
 
+El directorio =ldap= no publica puertos en el host: solo se alcanza por =red-interna=
+(desde =apache= o el =proxy=) o desde un cliente VPN.
+
 ** Dominio
 Se emplea el dominio reservado para pruebas =asir.test= (RFC 6761). Registros requeridos:
  - =dns.asir.test=
@@ -130,19 +127,20 @@ Se emplea el dominio reservado para pruebas =asir.test= (RFC 6761). Registros re
  - =apache.asir.test=
  - =db.asir.test=
  - =pma.asir.test=,
+ - =ldap.asir.test=,
  - alias =phpmyadmin.asir.test= (CNAME de =pma=)
  - Alias =www.asir.test= con la *IP de la máquina host*: es la entrada pública que llega al proxy por el puerto 80. No es un CNAME del backend: la zona la modifica un script (=scripts/install.sh=) antes de arrancar, porque la IP del host puede cambiar entre sesiones.
 
-Los nombres =apache.asir.test=, =db.asir.test= y =pma.asir.test= son del backend (172.22.0.0/24): solo se resuelven y alcanzan desde el host, el =proxy= o los clientes VPN.
+Los nombres =apache.asir.test=, =db.asir.test=, =pma.asir.test= y =ldap.asir.test= son del backend (172.22.0.0/24): solo se resuelven y alcanzan desde el host, el =proxy= o los clientes VPN.
 
 ** Estructura del repositorio
 
 #+begin_src text
 proyecto-asir/
-├── docker-compose.yml       # definicion de los 6 servicios
+├── docker-compose.yml       # definicion de los 7 servicios
 ├── .env.example             # variables de entorno (WireGuard)
 ├── apache/
-│   ├── Dockerfile           # php:8.2-apache + sshd
+│   ├── Dockerfile           # php:8.2-apache + sshd + extensión LDAP
 │   ├── entrypoint.sh        # arranca sshd y Apache
 │   └── www/                 # documentos web (WordPress, lo genera install.sh)
 ├── db/
@@ -156,6 +154,8 @@ proyecto-asir/
 │   ├── named.conf.options
 │   ├── named.conf.local
 │   └── zones/               # zona directa e inversas (www.asir.test = IP del host)
+├── ldap/
+│   └── ldif/                # 10-base.ldif con la OU de usuarios (fase 6)
 └── scripts/
     ├── install.sh           # pone la IP del host en la zona DNS, prepara WordPress y .env
     └── comprobaciones.sh    # verifica el despliegue completo
@@ -178,7 +178,7 @@ proyecto-asir/
 1. Añadir el servicio =dns= con la imagen =internetsystemsconsortium/bind9= y publicar los puertos =53= (TCP y UDP).
 2. Crear la red =red-publica= (172.21.0.0/24) y asignar a =dns= la IP fija 172.21.0.53.
 3. Montar en el contenedor =named.conf=, =named.conf.options=, =named.conf.local= y el directorio =zones/=.
-4. Definir la zona directa =asir.test= con un A por contenedor (=dns=, =proxy=, =vpn=, =apache=, =db=, =pma=) y los CNAME =phpmyadmin= → =pma= y =www= con la IP de la máquina host (registro A, no CNAME).
+4. Definir la zona directa =asir.test= con un A por contenedor (=dns=, =proxy=, =vpn=, =apache=, =db=, =pma=, =ldap=) y los CNAME =phpmyadmin= → =pma= y =www= con la IP de la máquina host (registro A, no CNAME).
 5. Definir las zonas inversas =21.172.in-addr.arpa= y =22.172.in-addr.arpa= con los PTR de todas las IPs del proyecto.
 6. Configurar la recursividad con =forwarders= (p. ej. 1.1.1.1 y 8.8.8.8).
 7. En =scripts/install.sh=, sustituir el registro =www= de la zona por la IP real del host (=hostname -I=) antes de levantar el escenario.
@@ -348,15 +348,66 @@ docker compose exec db mysql -u wp_user -pwp_pass_2026 wordpress -e \
 - Configuración del servicio =vpn= y capturas del cliente VPN con todos los
   apartados anteriores funcionando.
 
+* Fase 6 — Autenticación con LDAP (=ldap.asir.test=)
+
+** Enunciado
+- Desplegar un contenedor =ldap= con OpenLDAP (imagen =osixia/openldap=) como directorio del dominio =dc=asir,dc=test=.
+- El directorio debe contener una OU =ou=usuarios= con al menos tres cuentas (=profesor=, =alumno1=, =alumno2=) que se cargan automáticamente en el primer arranque desde un fichero =ldif=.
+- Configurar WordPress (=apache=) para autenticar el acceso contra el directorio con el plugin =LDAP Login for Intranet Sites= (=https://wordpress.org/plugins/ldap-login-for-intranet-sites/=): los usuarios del directorio entran en WordPress con su cuenta LDAP y se crean automáticamente la primera vez.
+- =ldap.asir.test= debe resolverse a la IP del backend (172.22.0.14) desde el host, el =proxy= y los clientes VPN; dentro de =red-interna= Apache alcanza el directorio por el nombre de servicio =ldap=.
+
+** Objetivos
+- Montar un servidor OpenLDAP en un contenedor con datos de arranque (=ldif=).
+- Entender la estructura de un directorio: DIT, DN, OU y entradas =inetOrgPerson=.
+- Configurar una aplicación (WordPress) para autenticar contra un directorio LDAP con un plugin.
+- Comprobar la autenticación con =ldapsearch= y haciendo login en WordPress con una cuenta del directorio.
+
+** Tareas
+1. Añadir el servicio =ldap= con la imagen =osixia/openldap= en =red-interna= con la IP fija 172.22.0.14. No publica puertos en el host: se alcanza por =red-interna= o por la VPN.
+2. Configurar las variables =LDAP_ORGANISATION=ASIR=, =LDAP_DOMAIN=asir.test=, =LDAP_ADMIN_PASSWORD= y =LDAP_CONFIG_PASSWORD= en el servicio.
+3. Crear =ldap/ldif/10-base.ldif= con la OU =ou=usuarios,dc=asir,dc=test= y las cuentas =profesor=, =alumno1= y =alumno2= (=inetOrgPerson=, contraseña =asir2026=). La imagen lo importa en el primer arranque al montarlo en el directorio de bootstrap (=/container/service/slapd/assets/config/bootstrap/ldif/custom=).
+4. Añadir en la fase 1 el registro A =ldap.asir.test= → 172.22.0.14 (zona directa) y su PTR en la inversa de =red-interna=.
+5. En el Dockerfile de =apache= instalar la extensión PHP =ldap= (el plugin la requiere; en la imagen =php:8.2-apache= se compila con =docker-php-ext-install ldap= previa instalación de =libldap2-dev=).
+6. Descargar el plugin =LDAP Login for Intranet Sites= en =wp-content/plugins= (=scripts/install.sh=) o instalarlo desde el escritorio de WordPress.
+7. Configurar el plugin en =Ajustes → LDAP Login Config=:
+   - LDAP Server: =ldap= (nombre del servicio Docker), puerto 389.
+   - Bind DN: =cn=admin,dc=asir,dc=test= con la contraseña de =LDAP_ADMIN_PASSWORD= (bind de búsqueda).
+   - Search Base: =ou=usuarios,dc=asir,dc=test=.
+   - Username/Login attribute: =uid=.
+   - Rol por defecto: =suscriptor= (o el que se decida).
+8. Activar la autenticación LDAP y probar el acceso.
+
+** Comprobaciones
+#+begin_src bash
+# Desde el host (alcanza red-interna directamente) o desde un cliente VPN:
+ldapsearch -x -H ldap://172.22.0.14 -b "dc=asir,dc=test" "(uid=alumno1)" uid cn mail
+
+# Desde el contenedor apache, como lo hará WordPress:
+docker compose exec apache getent hosts ldap      # -> 172.22.0.14
+docker compose exec apache php -m | grep -i ldap  # extension ldap activa
+
+# Resolución del nombre público del directorio:
+dig @172.21.0.53 ldap.asir.test A    # -> 172.22.0.14
+#+end_src
+- Hacer login en =/wp-admin= con =alumno1= / =asir2026=: el plugin crea la cuenta
+  en WordPress y entra sin estar dado de alta previamente. Con una contraseña
+  incorrecta el acceso se rechaza.
+
+** Entrega
+- Servicio =ldap= del =docker-compose.yml= y fichero =ldif= de arranque.
+- Dockerfile de =apache= con la extensión PHP =ldap=.
+- Capturas de: =ldapsearch=, configuración del plugin y login correcto e incorrecto.
+
 * Evaluación
 
 | Criterio                                                                                              | Peso |
 |-------------------------------------------------------------------------------------------------------+------|
 | Fase 1: DNS autoritativo, resolución de todos los contenedores y www.asir.test = IP del host (script) |  20% |
-| Fase 2: LAMP operativo y explicación de sus componentes                                               |  15% |
-| Fase 3: WordPress instalado en =apache.asir.test= y con persistencia en MySQL                         |  15% |
-| Fase 4: proxy inverso con doble nombre virtual y backend oculto                                       |  20% |
-| Fase 5: cliente VPN con DNS + acceso al backend y SSH a apache/db                                     |  20% |
+| Fase 2: LAMP operativo y explicación de sus componentes                                               |  10% |
+| Fase 3: WordPress instalado en =apache.asir.test= y con persistencia en MySQL                         |  10% |
+| Fase 4: proxy inverso con doble nombre virtual y backend oculto                                       |  15% |
+| Fase 5: cliente VPN con DNS + acceso al backend y SSH a apache/db                                     |  15% |
+| Fase 6: directorio LDAP y autenticación de WordPress contra =ldap.asir.test=                          |  20% |
 | Despliegue automático con un solo =docker compose= y los scripts                                      |  10% |
 * Solución
 
@@ -384,6 +435,11 @@ proyecto-asir/
 │       ├── db.asir.test      # www.asir.test lo actualiza scripts/install.sh
 │       ├── db.172.21
 │       └── db.172.22
+├── ldap/
+│   ├── ldif/
+│   │   └── 10-base.ldif      # OU de usuarios cargada en el primer arranque
+│   ├── data/                 # datos persistentes del directorio (/var/lib/ldap)
+│   └── config/               # (opcional) ajustes del servidor slapd
 └── scripts/
     ├── install.sh
     └── comprobaciones.sh
@@ -422,6 +478,7 @@ services:
       - ./apache/www:/var/www/html
     depends_on:
       - db
+      - ldap
     networks:
       red-interna:
         ipv4_address: 172.22.0.11
@@ -499,6 +556,22 @@ services:
       red-interna:
         ipv4_address: 172.22.0.20
 
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap
+    restart: unless-stopped
+    environment:
+      LDAP_ORGANISATION: "ASIR"
+      LDAP_DOMAIN: "asir.test"
+      LDAP_ADMIN_PASSWORD: "asir_ldap"
+      LDAP_CONFIG_PASSWORD: "asir_ldap"
+    volumes:
+      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
+      - ./ldap/data:/var/lib/ldap
+    networks:
+      red-interna:
+        ipv4_address: 172.22.0.14
+
 networks:
   red-publica:
     driver: bridge
@@ -527,8 +600,9 @@ WG_PASSWORD=asir-vpn-2026
 FROM php:8.2-apache
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends vim openssh-server \
-    && docker-php-ext-install mysqli pdo_mysql \
+    && apt-get install -y --no-install-recommends vim openssh-server libldap2-dev \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
+    && docker-php-ext-install mysqli pdo_mysql ldap \
     && a2enmod rewrite \
     && sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && mkdir -p /run/sshd \
@@ -576,6 +650,41 @@ CMD ["mysqld"]
 exec docker-entrypoint.sh "$@"
 #+end_src
 
+** ldap/ldif/10-base.ldif
+
+#+begin_src ldif
+# Base de usuarios del directorio (fase 6).
+# osixia/openldap procesa este fichero en el primer arranque
+# (directorio montado en .../bootstrap/ldif/custom).
+
+dn: ou=usuarios,dc=asir,dc=test
+objectClass: organizationalUnit
+ou: usuarios
+
+dn: uid=profesor,ou=usuarios,dc=asir,dc=test
+objectClass: inetOrgPerson
+uid: profesor
+cn: Profesor Prueba
+sn: Prueba
+userPassword: asir2026
+mail: profesor@asir.test
+
+dn: uid=alumno1,ou=usuarios,dc=asir,dc=test
+objectClass: inetOrgPerson
+uid: alumno1
+cn: Alumno Uno
+sn: Uno
+userPassword: asir2026
+mail: alumno1@asir.test
+
+dn: uid=alumno2,ou=usuarios,dc=asir,dc=test
+objectClass: inetOrgPerson
+uid: alumno2
+cn: Alumno Dos
+sn: Dos
+userPassword: asir2026
+mail: alumno2@asir.test
+#+end_src
 ** proxy/conf.d/proxy.conf
 
 #+begin_src nginx
@@ -672,6 +781,7 @@ vpn     IN A    172.21.0.20
 apache  IN A    172.22.0.11
 db      IN A    172.22.0.12
 pma     IN A    172.22.0.13
+ldap    IN A    172.22.0.14
 
 ; Alias
 phpmyadmin  IN CNAME pma
@@ -714,6 +824,7 @@ $TTL 86400
 11  IN PTR apache.asir.test.
 12  IN PTR db.asir.test.
 13  IN PTR pma.asir.test.
+14  IN PTR ldap.asir.test.
 #+end_src
 
 ** scripts/install.sh
@@ -725,10 +836,10 @@ $TTL 86400
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "[1/4] Creando directorios de datos"
+echo "[1/5] Creando directorios de datos"
 mkdir -p apache/www db/data
 
-echo "[2/4] Poniendo la IP del host en la zona DNS (www.asir.test)"
+echo "[2/5] Poniendo la IP del host en la zona DNS (www.asir.test)"
 HOST_IP=$(hostname -I | awk '{print $1}')
 ZONE=dns/zones/db.asir.test
 if [ -f "$ZONE" ]; then
@@ -736,7 +847,7 @@ if [ -f "$ZONE" ]; then
   echo "  - www.asir.test -> ${HOST_IP}"
 fi
 
-echo "[3/4] Desplegando WordPress (fases 2 y 3)"
+echo "[3/5] Desplegando WordPress (fases 2 y 3)"
 if [ ! -f "apache/www/wp-config.php" ]; then
   curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wordpress.tar.gz
   tar -xzf /tmp/wordpress.tar.gz -C apache/www --strip-components=1
@@ -772,7 +883,16 @@ EOF
   echo "  - wp-config.php generado"
 fi
 
-echo "[4/4] Configurando WireGuard (fase 5)"
+echo "[4/5] Instalando el plugin LDAP Login for Intranet Sites (fase 6)"
+PLUGIN_DIR=apache/www/wp-content/plugins
+if [ ! -d "$PLUGIN_DIR/ldap-login-for-intranet-sites" ]; then
+  mkdir -p "$PLUGIN_DIR"
+  curl -fsSL https://downloads.wordpress.org/plugin/ldap-login-for-intranet-sites.latest-stable.zip -o /tmp/ldap-login.zip
+  unzip -q /tmp/ldap-login.zip -d "$PLUGIN_DIR"
+  echo "  - plugin LDAP Login descargado en wp-content/plugins"
+fi
+
+echo "[5/5] Configurando WireGuard (fase 5)"
 if [ ! -f .env ]; then
   cat > .env <<EOF
 WG_HOST=${HOST_IP}
@@ -799,7 +919,7 @@ echo "=== 1. Contenedores ==="
 docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}"
 
 echo "=== 2. Resolucion directa asir.test ==="
-for n in dns proxy www vpn apache db pma phpmyadmin; do
+for n in dns proxy www vpn apache db pma phpmyadmin ldap; do
   r=$(dig +short "@${DNS_IP}" "${n}.asir.test" A | head -n1)
   echo "  ${n}.asir.test -> ${r:-SIN RESPUESTA}"
 done
@@ -807,7 +927,7 @@ echo "  (esperado: www.asir.test -> ${IP_HOST})"
 
 echo "=== 3. Resolucion inversa ==="
 for ip in 172.21.0.53 172.21.0.10 172.21.0.20 \
-          172.22.0.11 172.22.0.12 172.22.0.13; do
+          172.22.0.11 172.22.0.12 172.22.0.13 172.22.0.14; do
   echo "  ${ip} -> $(dig +short -x "${ip}" "@${DNS_IP}")"
 done
 
@@ -823,6 +943,11 @@ docker compose exec db bash -c 'pgrep sshd >/dev/null && echo "  sshd OK en db"'
 
 echo "=== 6. Log de WireGuard ==="
 docker compose logs vpn 2>/dev/null | tail -n 3
+
+echo "=== 7. LDAP (fase 6) ==="
+docker compose exec apache bash -c 'php -m | grep -qi ldap && echo "  extension ldap OK en apache"'
+docker compose exec ldap ldapsearch -x -H ldap://localhost -b "dc=asir,dc=test" "(uid=alumno1)" uid cn mail -LLL 2>/dev/null \
+  | grep -E "^(uid|cn|mail):" | sed 's/^/  /'
 #+end_src
 
 ** Puesta en marcha
@@ -834,6 +959,7 @@ docker compose up -d --build
 #+end_src
 
 - Acceder a =http://www.asir.test= (WordPress) y =http://pma.asir.test= (PHPMyAdmin) con el DNS del sistema apuntando a 172.21.0.53.
+- Activar el plugin =LDAP Login for Intranet Sites= desde =Plugins= y configurarlo en =Ajustes → LDAP Login Config= (fase 6): servidor =ldap=, puerto 389, Bind DN =cn=admin,dc=asir,dc=test=, Search Base =ou=usuarios,dc=asir,dc=test= y atributo de login =uid=. Probar el acceso con =profesor= / =asir2026=.
 - Crear un cliente VPN en =http://IP_DEL_HOST:51821= y descargar el fichero =*.conf=. Importarlo en el cliente WireGuard, conectarse y repetir la lista de comprobaciones de la fase 5.
 
 ** Notas sobre wg-easy

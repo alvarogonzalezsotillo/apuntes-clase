@@ -9,14 +9,14 @@ echo "=== 1. Contenedores ==="
 docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}"
 
 echo "=== 2. Resolucion directa asir.test ==="
-for n in dns proxy www vpn apache db pma phpmyadmin; do
+for n in dns proxy www vpn apache db pma phpmyadmin ldap; do
   r=$(dig +short "@${DNS_IP}" "${n}.asir.test" A | head -n1)
   echo "  ${n}.asir.test -> ${r:-SIN RESPUESTA}"
 done
 
 echo "=== 3. Resolucion inversa ==="
 for ip in 172.21.0.53 172.21.0.10 172.21.0.20 \
-          172.22.0.11 172.22.0.12 172.22.0.13; do
+          172.22.0.11 172.22.0.12 172.22.0.13 172.22.0.14; do
   echo "  ${ip} -> $(dig +short -x "${ip}" "@${DNS_IP}")"
 done
 
@@ -32,3 +32,8 @@ docker compose exec db bash -c 'pgrep sshd >/dev/null && echo "  sshd OK en db"'
 
 echo "=== 6. Log de WireGuard ==="
 docker compose logs vpn 2>/dev/null | tail -n 3
+
+echo "=== 7. LDAP (fase 6) ==="
+docker compose exec apache bash -c 'php -m | grep -qi ldap && echo "  extension ldap OK en apache"'
+docker compose exec ldap ldapsearch -x -H ldap://localhost -b "dc=asir,dc=test" "(uid=alumno1)" uid cn mail -LLL 2>/dev/null \
+  | grep -E "^(uid|cn|mail):" | sed 's/^/  /'

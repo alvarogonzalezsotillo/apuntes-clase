@@ -12,3 +12,4 @@ $TTL 86400
 11  IN PTR apache.asir.test.
 12  IN PTR db.asir.test.
 13  IN PTR pma.asir.test.
+14  IN PTR ldap.asir.test.
