@@ -9,7 +9,15 @@ mkdir -p apache/www db/data
 
 WPDIR=apache/www/wordpress
 
-echo "[2/3] Desplegando WordPress (fases 1 y 3)"
+echo "[1b/3] Poniendo la IP del host en la zona DNS (www.asir.test)"
+HOST_IP=$(hostname -I | awk '{print $1}')
+ZONE=dns/zones/db.asir.test
+if [ -f "$ZONE" ]; then
+  sed -i -E "s/^(www[[:space:]]+IN[[:space:]]+A[[:space:]]+).*/\1${HOST_IP}/" "$ZONE"
+  echo "  - www.asir.test -> ${HOST_IP}"
+fi
+
+echo "[2/3] Desplegando WordPress (fases 2 y 3)"
 if [ ! -f "$WPDIR/wp-config.php" ]; then
   curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wordpress.tar.gz
   tar -xzf /tmp/wordpress.tar.gz -C $WPDIR/ --strip-components=1

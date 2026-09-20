@@ -20,4 +20,5 @@ pma     IN A    172.22.0.13
 
 ; Alias
 phpmyadmin  IN CNAME pma
-www         IN CNAME proxy
+; www.asir.test es la IP de la maquina host; install.sh la sustituye antes de arrancar
+www         IN A    192.168.2.109
