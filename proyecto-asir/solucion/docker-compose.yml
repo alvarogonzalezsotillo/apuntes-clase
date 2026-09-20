@@ -59,8 +59,9 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: asir_root
+      # TODO: decicir si poner contraseña o no
+      # PMA_USER: root
+      # PMA_PASSWORD: asir_root
       PMA_ABSOLUTE_URI: "http://pma.asir.test"
     depends_on:
       - db

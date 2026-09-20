@@ -3,27 +3,23 @@
 * Prompt :noexport:
 Este proyecto para estudiantes consta de varias fases. En el estado final:
 - 6 /containers/: proxy inverso, Apache con PHP, MySQL, Apache con PHPMyAdmin, servidor VPN, servidor DNS
-- Los clientes externos pueden utilizar el servidor DNS
+- Los clientes externos pueden utilizar el servidor DNS, el proxy inverso y el servidor DNS
 - Los clientes conectados a la VPN Wireguard utilizan el servidor DNS
 - Se crea automáticamente con un solo =docker compose= y los /scripts/ necesarios  
 
-| Fase 1 | Servidor LAMP                                                             |
-| Fase 2 | Servidor DNS que almacena nombres para cada container                     |
-| Fase 3 | Wordpress instalado en LAMP                                               |
-| Fase 4 | Proxy inverso frente a servidor Apache y servidor PhpMyAdmin              |
-| Fase 5 | Acceso mediante VPN a backend PhpMyAdmin y SSH a container Apache y MySQL |
+| Fase 1 | Servidor DNS que almacena nombres para cada container, www.asir.test es la IP de la máquina host (un script modifica la zona antes de arrancar) |
+| Fase 2 | Servidor LAMP, se comprueba                                                                                                                     |
+| Fase 3 | Wordpress instalado en LAMP (apache.asir.test)                                                                                                  |
+| Fase 4 | Proxy inverso frente a servidor Wordpress y servidor PhpMyAdmin                                                                                 |
+| Fase 5 | Acceso mediante VPN a cada container de la red interna                                    |
 
-Los diagramas se realizan con ``#+begin_src dot'' o similar (ejemplos en /home/alvaro/distrobox-homes/ubuntu-code/apuntes-clase-llm/entornos-de-desarrollo/apuntes/5/ED-05-pruebas.org)
 
-Completa este documento donde se detalla el enunciado de las fases para los alumnos. Incluye la solución en un último punto para todas las fases, en bloques begin_src
-* Descripción general
-
-** Arquitectura final
-
+Diagrama:
 #+begin_src dot :file ./media/arquitectura.svg :exports results :cmdline -Tsvg
 digraph arquitectura {
 
-  rankdir="TD";
+  compound=true;
+  rankdir="TR";
   node  [shape=box, style="rounded, filled", fillcolor="#eef3fb", fontname="sans-serif"];
 
   cliente_ext [label="Cliente externo\n(host o red del centro)", fillcolor="#fdf6e3"];
@@ -33,6 +29,7 @@ digraph arquitectura {
     label="red-publica  172.21.0.0/24";
     dns   [label="dns  bind9\n172.21.0.53 (puertos 53)"];
     proxy [label="proxy  nginx\n172.21.0.10 (puertos 80/443)"];
+    vpn [label="vpn  WireGuard (wg-easy)\nred-publica 172.21.0.20\nred-interna  172.22.0.20\npuerto 51820/udp"];
   }
 
   subgraph cluster_interna {
@@ -42,13 +39,13 @@ digraph arquitectura {
     pma    [label="phpmyadmin\n172.22.0.13 (solo interno)"];
   }
 
-  vpn [label="vpn  WireGuard (wg-easy)\nred-publica 172.21.0.20\nred-interna  172.22.0.20\npuerto 51820/udp", shape=hexagon, fillcolor="#ffe8e0"];
 
   vpn_client -> vpn [label=" tunel 51820/udp + DNS 172.21.0.53", style=dashed];
 
-  cliente_ext -> proxy [label=" http://www.asir.test\n http://pma.asir.test"];
-  cliente_ext -> dns   [label=" consultas DNS"];
-  cliente_ext -> vpn   [label=" tunel VPN (fase 5)", style=dashed];
+  // cliente_ext -> proxy [label=" http://www.asir.test\n http://pma.asir.test"];
+  // cliente_ext -> dns   [label=" consultas DNS"];
+  // cliente_ext -> vpn   [label=" tunel VPN (fase 5)", style=dashed];
+  cliente_ext -> vpn [label="Acceso por puertos docker mapeados" lhead="cluster_publica"]
 
   proxy -> apache [label=" reverse-proxy", color="#4a7c2f"];
   proxy -> pma    [label=" reverse-proxy", color="#4a7c2f"];
@@ -56,16 +53,22 @@ digraph arquitectura {
   apache -> db [label=" red-interna", color="#2f4a7c"];
   pma    -> db [label=" red-interna", color="#2f4a7c"];
 
-  vpn -> proxy  [label=" acceso SSH", style=dashed, color="#7c2f4a"];
-  vpn -> apache [label=" acceso SSH", style=dashed, color="#7c2f4a"];
-  vpn -> db     [label=" acceso SSH", style=dashed, color="#7c2f4a"];
-  vpn -> pma    [label=" backend pma.asir.test", style=dashed, color="#7c2f4a"];
-  vpn -> dns    [label=" resolucion asir.test", style=dashed, color="#7c2f4a"];
+  vpn -> apache [label="acceso por vpn",  lhead=cluster_interna]
+  // vpn -> pma;
+  // vpn -> apache;
+  // vpn -> db;
 }
 #+end_src
 
 #+RESULTS:
 [[file:./media/arquitectura.svg]]
+
+Los diagramas se realizan con ``#+begin_src dot'' o similar
+
+Completa este documento donde se detalla el enunciado de las fases para los alumnos.
+* Descripción general
+
+** Arquitectura final
 
 ** Redes Docker
 - =red-publica= (bridge) con subred =172.21.0.0/24=: contiene los servicios expuestos al exterior: =dns=, =proxy= y =vpn=.
