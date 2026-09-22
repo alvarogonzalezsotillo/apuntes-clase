@@ -1,0 +1,20 @@
+
+1. Importa la clave pública del profesor (fichero profesor-export) en tu base de datos de claves, con --import
+
+2. Comprueba cual(es) de los ficheros TXT es el que ha firmado el profesor. Sigue las instrucciones del fichero verificado.
+
+3. Modifica el nivel de confianza que tienes en la firma del profesor, con --edit. Después, comprueba que --verify ya no emite mensajes de aviso que duden de la firma.
+
+4. Crea tu propia clave pública y privada con --gen. Utiliza tu nombre real y tu dirección de correo Gmail. Selecciona RSA de 1024 bits para que se genere más rápido. Utiliza como passphrase alumno (o una de la que te acuerdes).
+
+5. Exporta la clave pública recién creada con --export <nombre>. Graba la clave con --output en un fichero que se llame <nombre>-publica.clave
+
+6. Descarga o crea una imagen pequeña PNG, y encríptala con --dencrypt (usando tu propia clave). Obtendrás un fichero PNG.GPG que será ilegible.
+
+7. Exporta la clave privada con --export-secret-keys <nombre>. Lleva la clave privada y el fichero PNG.GPG a otro ordenador, y desencripta allí la imagen.
+
+7. Firma la imagen PNG con --detach. Se generará un fichero PNG.SIG
+
+8. Comprueba que has firmado correctamente el fichero. Para ello, envía a un compañero el fichero PNG, la firma PNG.SIG y la clave pública <nombre>-publica.clave. El compañero debe importar tu clave pública y verificar tu firma.
+
+9. Sube al moodle un fichero ZIP con una memoria de los ejercicios 1 al 8, y los ficheros PNG, <nombre>-publica.clave y PNG.SIG
