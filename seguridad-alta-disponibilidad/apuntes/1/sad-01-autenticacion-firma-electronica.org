@@ -35,7 +35,7 @@ Hay muchas formas de autenticar a un usuario frente a una máquina, pero desde e
    | [[file:media/teclado-pin.png]] | [[file:media/postit-password.png]]  |
 2. Tener algo El usuario posee algún objeto que tiene grabado en su interior una contraseña, y que el sistema es capaz de leer. (Por ejemplo, tarjetas con banda magnética, Tarjetas Smartcard con chip, Llaveros de radiofrecuencia)
    #+caption: Llave RFID y tarjeta magnética
-   | [[file:media/llave-rfid.png]] | [[file:media/lector-tarjetas.png]] | [[file:media/smartcard.png]]  | 
+   | [[file:media/llave-rfid.png]] | [[file:media/lector-tarjetas.png]] | [[file:media/smartcard.png]] |
 3. Exhibir algún rasgo o característica física intransferible.
    #+caption: Diferentes medidas biométricas
    | [[file:media/lector-iris.png]] | [[file:media/huella-digital.png]] | [[file:media/firma-analogica.png]] | 

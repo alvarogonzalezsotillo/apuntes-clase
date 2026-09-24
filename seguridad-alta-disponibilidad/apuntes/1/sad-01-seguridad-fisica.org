@@ -111,7 +111,7 @@ Consta de:
 - Una batería auxiliar, que proporciona corriente en el caso de un corte de energía (Intencionado o fortuito)
 - Puede haber pulsadores de emergencia, normalmente disimulados que disparan la alarma
 - Una sirena y luces con intención disuasoria
-
+  
 #+ATTR_HTML:  :style margin-left:auto;margin-right:auto;
 #+caption: Centralitas y sensores de alarma
 | [[file:media/centralita-alarma.png]] | [[file:media/centralita-y-sensores-alarma.png]] |
@@ -443,7 +443,7 @@ Un equipo RAID para rack mide, por supuesto 19” de ancho y un múltiplo de “
 [[file:media/raid-enracable.png]]
 
 
-* Suelo Técnico
+* Suelo Técnico :noexport:
 El suelo técnico es un suelo que se monta sobre una estructura metálica con baldosas que habitualmente van sueltas, formando un segundo suelo más elevado sobre el suelo de obra. Tiene múltiples utilidades. No todas ellas están disponibles en todos los suelos técnicos.
   - Puede dar cobijo a la instalación eléctrica.
   - En salas de estaciones de trabajo también se suelen pasar otras instalaciones, como las de red para que los cables no estén visibles y puedan causar molestias o problemas. En salas de servidores la instalación de red no suele estar bajo el suelo porque no es demasiado práctico.
