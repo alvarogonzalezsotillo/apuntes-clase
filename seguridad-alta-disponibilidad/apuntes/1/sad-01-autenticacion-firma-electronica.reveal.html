@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-09-22 mar 13:18 -->
+<!-- Generated on 2026-09-24 jue 11:18 -->
 <meta charset="utf-8"/>
 <title>Privacidad, confidencialidad</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -445,7 +445,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Privacidad, confidencialidad</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-09-22 mar 13:18</p>
+<h1 class="title">Privacidad, confidencialidad</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-09-24 jue 11:18</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -479,31 +479,25 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-8-1">8.1. El mecanismo de la firma digital.</a></li>
 </ul>
 </li>
-<li><a href="#/slide-9">9. Sistemas de confianza e intercambio de claves: la PKI y PGP</a>
+<li><a href="#/slide-9">9. Aplicaciones</a>
 <ul>
-<li><a href="#/slide-9-1">9.1. PGP (Pretty Good Privacy)</a></li>
+<li><a href="#/slide-9-1">9.1. Cifrado/descifrado en información almacenada</a></li>
+<li><a href="#/slide-9-2">9.2. Cifrado/descifrado en la red</a></li>
 </ul>
 </li>
-<li><a href="#/slide-10">10. x509 y la Public Key Infrastructure (PKI)</a></li>
-<li><a href="#/slide-11">11. Aplicaciones</a>
+<li><a href="#/slide-10">10. El nivel de red/transporte: TLS y SSL</a></li>
+<li><a href="#/slide-11">11. El nivel de aplicación</a>
 <ul>
-<li><a href="#/slide-11-1">11.1. Cifrado/descifrado en información almacenada</a></li>
-<li><a href="#/slide-11-2">11.2. Cifrado/descifrado en la red</a></li>
+<li><a href="#/slide-https">11.1. Ejemplo: HTTPS</a></li>
 </ul>
 </li>
-<li><a href="#/slide-12">12. El nivel de red/transporte: TLS y SSL</a></li>
-<li><a href="#/slide-13">13. El nivel de aplicación</a>
+<li><a href="#/slide-12">12. Firma digital oficial en España</a>
 <ul>
-<li><a href="#/slide-https">13.1. Ejemplo: HTTPS</a></li>
-</ul>
-</li>
-<li><a href="#/slide-14">14. Firma digital oficial en España</a>
-<ul>
-<li><a href="#/slide-14-1">14.1. Comunidad de Madrid: Camefirma</a></li>
-<li><a href="#/slide-14-2">14.2. FNMT</a></li>
-<li><a href="#/slide-14-3">14.3. DNIe</a></li>
-<li><a href="#/slide-14-4">14.4. Uso de la firma</a></li>
-<li><a href="#/slide-14-5">14.5. Software firmado</a></li>
+<li><a href="#/slide-12-1">12.1. Comunidad de Madrid: Camefirma</a></li>
+<li><a href="#/slide-12-2">12.2. FNMT</a></li>
+<li><a href="#/slide-12-3">12.3. DNIe</a></li>
+<li><a href="#/slide-12-4">12.4. Uso de la firma</a></li>
+<li><a href="#/slide-12-5">12.5. Software firmado</a></li>
 </ul>
 </li>
 </ul>
@@ -586,7 +580,7 @@ En éste tema, ahondaremos en algunas medidas y sistemas cuyo objetivo primordia
 <h2 id="2"><span class="section-number-2">2.</span> Autenticación.</h2>
 <p>
 La confidencialidad es la propiedad que nos asegura que la información llega sólo a sus usuarios legítimos. Para ello, un punto clave suele ser autenticar a éstos usuarios legítimos.
-Aunque autenticación e identificación son palabras que en el uso común pueden confundirse, en nuestro mundillo tienen significados diferentes. Identificar es decir quién eres&#x2026;. y autentificarse es demostrarlo.
+Aunque autenticación e identificación son palabras que en el uso común pueden confundirse, en nuestro mundillo tienen significados diferentes. Identificar es decir quién eres&hellip;. y autentificarse es demostrarlo.
 Por ejemplo, para meterte en la página de la asignatura, te has identificado con un nombre de usuario, pero el sistema te ha autenticado con la contraseña.
 </p>
 
@@ -610,7 +604,7 @@ Hay muchas formas de autenticar a un usuario frente a una máquina, pero desde e
 Saber algo: El usuario sabe una contraseña, o PIN, que introduce para que el sistema lo autentifique
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 1</span> Ejemplo de contraseña y PIN</caption>
+<caption class="t-above"><span class="table-number">Tabla 1:</span> Ejemplo de contraseña y PIN</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -628,7 +622,7 @@ Saber algo: El usuario sabe una contraseña, o PIN, que introduce para que el si
 Tener algo El usuario posee algún objeto que tiene grabado en su interior una contraseña, y que el sistema es capaz de leer. (Por ejemplo, tarjetas con banda magnética, Tarjetas Smartcard con chip, Llaveros de radiofrecuencia)
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 2</span> Llave RFID y tarjeta magnética</caption>
+<caption class="t-above"><span class="table-number">Tabla 2:</span> Llave RFID y tarjeta magnética</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -649,7 +643,7 @@ Tener algo El usuario posee algún objeto que tiene grabado en su interior una c
 Exhibir algún rasgo o característica física intransferible.
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 3</span> Diferentes medidas biométricas</caption>
+<caption class="t-above"><span class="table-number">Tabla 3:</span> Diferentes medidas biométricas</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -673,6 +667,12 @@ Exhibir algún rasgo o característica física intransferible.
 <p>
 Aunque todavía es una tecnología emergente y no demasiado precisa, la biometría es la tercera vía para autenticar a un usuario: que el sistema reconozca alguna característica física, como la huella dactilar, el iris o la retina, o los movimiento y la presión en el gesto de firmar sobre una tableta.
 </p>
+<ul>
+<li>Huellas digitales, vasos sanguíneos, iris, rostro, voz, dna, retina</li>
+<li>Movimientos característicos: labios, firma tradicional, forma de teclear, análisis de marcha</li>
+<li><a href="https://www.miniorange.com/es/blog/types-of-biometric-authentication/">Más información</a></li>
+
+</ul>
 
 <p>
 En este caso, el sistema almacena un indicador estadístico de cada usuario, tomado previo a la autenticación.
@@ -682,7 +682,7 @@ En este caso, el sistema almacena un indicador estadístico de cada usuario, tom
 Observa que:
 </p>
 <ul>
-<li>saber algo y tener algo, no pueden garantizar la identidad de una persona&#x2026; así pues, lo que autentican es una credencial:es decir, la máquina puede autenticar que la persona tiene las credenciales de quien dice ser Por contra, la biometría, al basarse en indicadores intransferibles, puede autenticar que</li>
+<li>saber algo y tener algo, no pueden garantizar la identidad de una persona&hellip; así pues, lo que autentican es una credencial:es decir, la máquina puede autenticar que la persona tiene las credenciales de quien dice ser Por contra, la biometría, al basarse en indicadores intransferibles, puede autenticar que</li>
 
 </ul>
 <p>
@@ -694,7 +694,7 @@ alguien es quien dice ser… por supuesto, todo esto con matices.
 </ul>
 
 <p>
-La biometría, por el momento, se basa en técnicas estadísticas, no hay ningún número fijo que alguien tenga escrito en ningún rasgo físico&#x2026; así que, en general, no puede participar en criptografía de manera directa.
+La biometría, por el momento, se basa en técnicas estadísticas, no hay ningún número fijo que alguien tenga escrito en ningún rasgo físico&hellip; así que, en general, no puede participar en criptografía de manera directa.
 </p>
 <div class="slide-footer"></div>
 </section>
@@ -735,7 +735,7 @@ La idea es que un usuario de la información, utilizando alguna clave secreta nu
 
 <tr>
 <td class="org-left">Cifrar, encriptar</td>
-<td class="org-left">Los consideramos sinónimos&#x2026; Es el acto de transformar la información en claro a información cifrada, sin sentido para cualquiera que no sea usuario legítimo</td>
+<td class="org-left">Los consideramos sinónimos&hellip; Es el acto de transformar la información en claro a información cifrada, sin sentido para cualquiera que no sea usuario legítimo</td>
 </tr>
 
 <tr>
@@ -783,7 +783,7 @@ La criptografía se usa en distintas aplicaciones, pero las principales formas d
 alguno de estos grupos:
 </p>
 <ol>
-<li>Cifrado de información almacenada: es decir, se guardan datos cifrados en almacenamientos de memoria secundaria (discos, pendrives, archivos comprimidos, copias de seguridad, e incluso bases de datos).  Posteriormente son descifradas cuando se van a utilizar&#x2026; por la misma persona que cifró la información o por cualquier otra autorizada.</li>
+<li>Cifrado de información almacenada: es decir, se guardan datos cifrados en almacenamientos de memoria secundaria (discos, pendrives, archivos comprimidos, copias de seguridad, e incluso bases de datos).  Posteriormente son descifradas cuando se van a utilizar&hellip; por la misma persona que cifró la información o por cualquier otra autorizada.</li>
 <li>Cifrado de información en movimiento a través de redes de comunicaciones. Es decir, la información va a viajar de un lugar a otro por un medio electrónico y se envía cifrada para evitar que un posible intruso que intercepte la comunicación pueda tener acceso a ella.  Éste cifrado suele hacerse en tres puntos muy concretos, y según el ámbito de aplicación:
 <ul>
 <li>En el nivel físico/enlace, para evitar pérdidas de confidencialidad en LAN</li>
@@ -814,7 +814,7 @@ alguno de estos grupos:
 <h3 id="4-1"><span class="section-number-3">4.1.</span> Características principales:</h3>
 <ul>
 <li>Para cifrar y descifrar se utiliza una única clave, que debe permanecer en secreto.</li>
-<li>Dicha clave, debe ser conocida por quien cifra y por quien descifra&#x2026; así que deben comunicársela previamente utilizando un <b>canal seguro</b>.</li>
+<li>Dicha clave, debe ser conocida por quien cifra y por quien descifra&hellip; así que deben comunicársela previamente utilizando un <b>canal seguro</b>.</li>
 <li>Se utiliza un algoritmo que utiliza de una forma la clave para cifrar, y de forma contraria la clave para descifrar.</li>
 
 </ul>
@@ -2827,119 +2827,21 @@ Permite garantizar cualquiera de estas tres cualidades de una pieza de informaci
 </section>
 <section>
 <section id="slide-9">
-<h2 id="9"><span class="section-number-2">9.</span> Sistemas de confianza e intercambio de claves: la PKI y PGP</h2>
-<p>
-La criptografía asimétrica tiene una utilidad apasionante, pero también tiene un punto débil.  Si bien proporciona un cifrado prácticamente imposible de romper, se basa en la difusión de una clave pública, por mecanismos públicos, y que siempre va asociada a una identidad. Es decir, yo puedo generar una clave pública para mi y publicarla donde sea asociada a mi nombre o a mi dirección de correo&#x2026; o a cualquier otro dato que me identifique&#x2026;. <i>pero cualquiera puede hacer lo mismo suplantando mi identidad</i>. En ese supuesto caso&#x2026; si un intruso pone en algun lugar público una dirección de correo y una clave pública diciendo que soy yo&#x2026; un posible emisor de un mensaje podría confundirse y enviarle a él un mensaje cifrado pensando que soy yo. Él lo podría descifrar, dado que ha sido él quien ha creado la clave pública. 
-</p>
-
-<p>
-La criptografía asimétrica necesita un mecanismo para autentificar la identidad de los receptores de los mensajes.
-</p>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-9-1">
-<h3 id="9-1"><span class="section-number-3">9.1.</span> PGP (Pretty Good Privacy)</h3>
-<p>
-PGP es un programa creado en 1991, para el intercambio de mensajes cifrados utilizando
-criptografía asimétrica. El programa sigue hoy en día actualizado.
-</p>
-
-<p>
-El grupo GNU tiene un programa parecido GnuPG y en cierto modo, compatible con PGP.
-Con este programa uno puede generar sus propias claves, y difundir la pública.
-</p>
-
-<p>
-Hay servidores web con aplicaciones web para intercambiar claves públicas. Estos funcionan bien para pequeñas organizaciones, donde la identidad de cada uno se pueda autenticar por otros medios.
-</p>
-
-<p>
-Cuanto más grande el conjunto de usuarios de usuarios, también es más fácil la intrusión mediante suplantación de la clave pública en uno de éstos servidores de claves públicas PGP.
-</p>
-
-<p>
-PGP es un buen medio para enviar mensajes cifrados, pero no para autenticar. La autenticidad de los certificados se basa en el llamado "anillo de confianza" en el cual, cuando una persona puede garantizar que un certificado de otra persona es de confianza, lo firma&#x2026; si se distribuye el certificado firmado y quien lo recibe confía en el firmante, entonces confía también en el certificado original. Este proceso puede repetirse indefinidamente&#x2026;. ir firmando los certificados y transmitirlos firmados es una manera de transmitir la confianza.
-</p>
-<div class="slide-footer"></div>
-</section>
-</section>
-<section>
-<section id="slide-10">
-<h2 id="10"><span class="section-number-2">10.</span> x509 y la Public Key Infrastructure (PKI)</h2>
-<p>
-En otro ámbito, existe un estándar llamado x509, y propuesto por la ITU (Unión Internacional de Telecomunicaciones), que es el que se utiliza para los certificar la identidad de los sitios web que usan https, y también para la identificación y firma digital de personas en España, mediante el DNIe o el certificado de la Fábrica Nacional de Moneda y Timbre (FNMT)
-</p>
-
-<p>
-Es un formato de intercambio de claves públicas, en lo que ellos llaman “certificados”.
-</p>
-
-<p>
-Un certificado es un fichero que contiene en su interior al menos uno de éstos elementos:
-</p>
-<ul>
-<li>Datos de identificación de una persona u organización</li>
-<li>Una clave privada</li>
-<li>Una clave pública</li>
-<li>Una firma digital.</li>
-
-</ul>
-
-<p>
-En cierto modo, x509 puede hacer lo mismo que PGP, sólo que con un propósito más general (PGP está orientado a los mensajes -nivel aplicación- y x509 es más multifuncional).
-</p>
-
-<p>
-Alrededor del sistema x509 se ha montado una infraestructura de validación de certificados llamada PKI (Public Key Infrastructure). En ella, algunas entidades son CERTIFICADORAS. Firman certificados para otras entidades o personas. Generar un certificado es sencillo, se puede realizar de forma particular con una  aplicación. Estas entidades FIRMAN el certificado que otros generan. A estas entidades que firman se les denomina <b>Autoridades de Certificación (CA)</b>.
-</p>
-
-<p>
-El sistema PKI está basado en que en el mundo existen una serie de CA, que garantizan la identidad de otras organizaciónes&#x2026; A partir de ahí, las otras organizaciones a su vez pueden generar y firmar nuevos certificados para otras entidades o personas. Las claves públicas de las CA están incluídas en las distribuciones de nuestros navegadores y sistemas operativos.
-</p>
-
-<p>
-En resumen&#x2026; cualquier persona u organización puede tener un certificado y hacerlo público, que contenga: su identidad, su clave pública y una firma digital de quien lo ha emitido.  Para verificar su identidad, podemos comprobar la firma del certificado. Si quien lo ha emitido no es una CA, su certificado irá a su vez firmado por otra entidad&#x2026; repetimos el proceso de verificación hasta llegar a la CA.
-</p>
-
-<p>
-La PKI consiste en la infraestructura que permite la verificación de la identidad a partir de los certificados x.509 hechos públicos por distintos medios.
-</p>
-
-<p>
-Si por cualquier motivo, no se puede autenticar un certificado x.509 (es decir, no se puede demostrar que la persona u organización que exhibe el certificado es quien dice ser), entonces el certificado vale igualmente para cifrar&#x2026; pero ¿nuestro interlocutor es quien dice ser o podría ser un intruso suplantador?
-</p>
-
-<p>
-Cada certificado cuenta con una firma que es posible verificar, hasta llegar a una CA. En el sistema PKI, a eso se le llama la ruta de certificación.
-</p>
-
-<p>
-Ej: En la dirección web <a href="https://www.lacaixa.es">https://www.lacaixa.es</a> me
-muestran un certificado x509 para su uso en TLS
-Si miro los detalles, veo que el certificado de La Caixa
-va firmado por la empresa USERTrust&#x2026; que a su vez
-va firmado por Entrust.net.
-</p>
-<div class="slide-footer"></div>
-</section>
-</section>
-<section>
-<section id="slide-11">
-<h2 id="11"><span class="section-number-2">11.</span> Aplicaciones</h2>
+<h2 id="9"><span class="section-number-2">9.</span> Aplicaciones</h2>
 <p>
 Vamos a dar un repaso a algunas aplicaciones de lo que hemos visto hasta ahora, pero en el mundo real.
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-1">
-<h3 id="11-1"><span class="section-number-3">11.1.</span> Cifrado/descifrado en información almacenada</h3>
-<div class="outline-text-3" id="text-11-1">
+<section id="slide-9-1">
+<h3 id="9-1"><span class="section-number-3">9.1.</span> Cifrado/descifrado en información almacenada</h3>
+<div class="outline-text-3" id="text-9-1">
 </div>
 </section>
-<section id="slide-11-1-1">
-<h4 id="11-1-1"><span class="section-number-4">11.1.1.</span> El Encrypted File System de Windows 7 y Server 2008.</h4>
+<section id="slide-9-1-1">
+<h4 id="9-1-1"><span class="section-number-4">9.1.1.</span> El Encrypted File System de Windows 7 y Server 2008.</h4>
 <p>
-Ambos sistemas operativos disponen de la capacidad de encriptar ficheros individuales o carpetas enteras, mediante el sistema EFS (<a href="https://en.wikipedia.org/wiki/Encrypting_File_System">Encrypted File System</a>). Desde el entorno gráfico, basta con activar una casilla en la hoja de propiedades del archivo o carpeta (Botón derecho/Propiedades/Avanzados/Cifrar contenido&#x2026;)
+Ambos sistemas operativos disponen de la capacidad de encriptar ficheros individuales o carpetas enteras, mediante el sistema EFS (<a href="https://en.wikipedia.org/wiki/Encrypting_File_System">Encrypted File System</a>). Desde el entorno gráfico, basta con activar una casilla en la hoja de propiedades del archivo o carpeta (Botón derecho/Propiedades/Avanzados/Cifrar contenido&hellip;)
 </p>
 
 
@@ -3098,8 +3000,8 @@ El cifrado de EFS se gestiona a través de las políticas de seguridad de Window
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-1-2">
-<h4 id="11-1-2"><span class="section-number-4">11.1.2.</span> Bitlocker: Cifrar volúmenes completos en Windows 7 y 2008 Server</h4>
+<section id="slide-9-1-2">
+<h4 id="9-1-2"><span class="section-number-4">9.1.2.</span> Bitlocker: Cifrar volúmenes completos en Windows 7 y 2008 Server</h4>
 <p>
 <a href="https://en.wikipedia.org/wiki/BitLocker">Bitlocker</a> permite tener volúmenes completos cifrados en sistemas Windows 7 y 2008 server. Los volúmenes se protegen mediante una clave protegida por una contraseña.
 </p>
@@ -3122,7 +3024,7 @@ Para crear unidades cifradas es necesaria la versión Professional o Ultimate de
 </p>
 
 <p>
-Para los dispositivos extraíbles (pendrives, HDDs y SDDs&#x2026;) windows incluye en la propia unidad un pequeño programa sin cifrar: Bitlocker On The Go, de tal manera que si se inserta el dispositivo en un sistema XP o cualquier otro compatible, pero sin Bitlocker, se ejecuta ese pequeño programa que permite leer el contenido de la unidad, aunque no escribir en ella.
+Para los dispositivos extraíbles (pendrives, HDDs y SDDs&hellip;) windows incluye en la propia unidad un pequeño programa sin cifrar: Bitlocker On The Go, de tal manera que si se inserta el dispositivo en un sistema XP o cualquier otro compatible, pero sin Bitlocker, se ejecuta ese pequeño programa que permite leer el contenido de la unidad, aunque no escribir en ella.
 </p>
 
 
@@ -3132,8 +3034,8 @@ Para los dispositivos extraíbles (pendrives, HDDs y SDDs&#x2026;) windows inclu
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-1-3">
-<h4 id="11-1-3"><span class="section-number-4">11.1.3.</span> Archivos comprimidos encriptados.</h4>
+<section id="slide-9-1-3">
+<h4 id="9-1-3"><span class="section-number-4">9.1.3.</span> Archivos comprimidos encriptados.</h4>
 <p>
 La mayor parte de formatos de archivos comprimidos (Ej: zip, rar, 7z) admiten cifrado simétrico además de la compresión. Estos algoritmos obtienen una clave a partir de una contraseña suministrada por el usuario en el momento de cifrar, que debe ser también proporcionada al descifrar.
 </p>
@@ -3146,8 +3048,8 @@ La mayor parte de formatos de archivos comprimidos (Ej: zip, rar, 7z) admiten ci
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-1-4">
-<h4 id="11-1-4"><span class="section-number-4">11.1.4.</span> Copias de seguridad encriptadas.</h4>
+<section id="slide-9-1-4">
+<h4 id="9-1-4"><span class="section-number-4">9.1.4.</span> Copias de seguridad encriptadas.</h4>
 <p>
 Todos los sistemas de copia de seguridad permiten que la copia tenga algún tipo de
 encriptación.
@@ -3161,13 +3063,13 @@ encriptación.
 </div>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2">
-<h3 id="11-2"><span class="section-number-3">11.2.</span> Cifrado/descifrado en la red</h3>
-<div class="outline-text-3" id="text-11-2">
+<section id="slide-9-2">
+<h3 id="9-2"><span class="section-number-3">9.2.</span> Cifrado/descifrado en la red</h3>
+<div class="outline-text-3" id="text-9-2">
 </div>
 </section>
-<section id="slide-11-2-1">
-<h4 id="11-2-1"><span class="section-number-4">11.2.1.</span> Wifi (IEEE802.11)</h4>
+<section id="slide-9-2-1">
+<h4 id="9-2-1"><span class="section-number-4">9.2.1.</span> Wifi (IEEE802.11)</h4>
 <p>
 Es una tecnología para la comunicación de tramas Ethernet a través de conexiones inalámbricas. En su nivel físico y de enlace, admite varios tipos de cifrado
 </p>
@@ -3178,21 +3080,21 @@ Es una tecnología para la comunicación de tramas Ethernet a través de conexio
 </ul>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2-2">
-<h4 id="11-2-2"><span class="section-number-4">11.2.2.</span> WEP (Wired Equivalent Privacy - Privacidad tan buena como la del cable)</h4>
+<section id="slide-9-2-2">
+<h4 id="9-2-2"><span class="section-number-4">9.2.2.</span> WEP (Wired Equivalent Privacy - Privacidad tan buena como la del cable)</h4>
 <p>
 Se basa en un cifrado RC4 con claves de 64 o 128 bits.  La autenticación de los clientes en el punto de acceso se realiza conociendo esa clave, que se suele representar como un conjunto de dígitos hexadecimales.  El algoritmo RC4 tenía algunas vulnerabilidades conocidas.  Al ser implementado en WEP y popularizarse, no tardó en ser atacado por técnicas de criptoanálisis.  Hoy en día se considera absolutamente <b>inseguro</b>, y no hay ningún motivo para utilizarlo.
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2-3">
-<h4 id="11-2-3"><span class="section-number-4">11.2.3.</span> WPA. (Wifi Protected Access)</h4>
+<section id="slide-9-2-3">
+<h4 id="9-2-3"><span class="section-number-4">9.2.3.</span> WPA. (Wifi Protected Access)</h4>
 <p>
 Fue un intento de los fabricantes de componentes Wifi de paliar la vulnerabilidad de WEP sin necesidad de cambiar el hardware: de hacer WEP más seguro sólo con una actualizacion de software.
 </p>
 
 <p>
-La base de WPA es seguir utilizando RC4, pero con una serie de mejoras que lo fortalecieron, conocidas como TKIP (Temporal Key Integrity Protocol). Aunque complicadas de explicar a nivel matemático, la idea que subyace es una evolución en la clave que utiliza RC4&#x2026; es decir, ir variando la clave con el tiempo de manera transparente para los clientes, junto con otros mecanismos de integridad.
+La base de WPA es seguir utilizando RC4, pero con una serie de mejoras que lo fortalecieron, conocidas como TKIP (Temporal Key Integrity Protocol). Aunque complicadas de explicar a nivel matemático, la idea que subyace es una evolución en la clave que utiliza RC4&hellip; es decir, ir variando la clave con el tiempo de manera transparente para los clientes, junto con otros mecanismos de integridad.
 </p>
 
 <p>
@@ -3200,8 +3102,8 @@ No obstante, fue solo una solución temporal. A día de hoy, RC4 con TKIP tambi�
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-11-2-4">
-<h4 id="11-2-4"><span class="section-number-4">11.2.4.</span> WPA2 (La segunda versión de WPA).</h4>
+<section id="slide-9-2-4">
+<h4 id="9-2-4"><span class="section-number-4">9.2.4.</span> WPA2 (La segunda versión de WPA).</h4>
 <p>
 Data de 2004 (IEEE802.11i) Se introduce AES como algoritmo criptográfico.  WPA2 es extensible, de tal manera que aceptará facilmente cambios de algoritmo si algún día AES es vulnerado.
 </p>
@@ -3217,7 +3119,7 @@ En WPA2 se introducen dos formas de autenticar a un cliente (una tarjeta inalám
 
 <ul>
 <li>PSK (Pre-Shared-Key): consiste en compartir una clave (una contraseña alfanumérica) conocida por todos los usuarios de la red. Esa contraseña es la que se utiliza para generar la clave AES y realizar el cifrado.</li>
-<li>IEEE 802.1x: consiste en la utilización de un servidor de autenticación que siga el protocolo RADIUS (Remote Access Dial-In User Server). Un servidor RADIUS se instala en un ordenador de la red, y almacena nombres de usuario y contraseña. Cuando está activado IEEE802.1x, el punto de acceso preguntará al usuario un nombre de usuario y una contraseña&#x2026; consultará entonces al servidor RADIUS y si este contesta afirmativamente se le dejará pasar. La clave que se genera para cifrar es <b>única</b> para ese usuario.</li>
+<li>IEEE 802.1x: consiste en la utilización de un servidor de autenticación que siga el protocolo RADIUS (Remote Access Dial-In User Server). Un servidor RADIUS se instala en un ordenador de la red, y almacena nombres de usuario y contraseña. Cuando está activado IEEE802.1x, el punto de acceso preguntará al usuario un nombre de usuario y una contraseña&hellip; consultará entonces al servidor RADIUS y si este contesta afirmativamente se le dejará pasar. La clave que se genera para cifrar es <b>única</b> para ese usuario.</li>
 
 </ul>
 
@@ -3248,8 +3150,8 @@ Todos los sistemas servidores de Windows tienen el servicio de RADIUS, que adem�
 </section>
 </section>
 <section>
-<section id="slide-12">
-<h2 id="12"><span class="section-number-2">12.</span> El nivel de red/transporte: TLS y SSL</h2>
+<section id="slide-10">
+<h2 id="10"><span class="section-number-2">10.</span> El nivel de red/transporte: TLS y SSL</h2>
 <p>
 En el nivel de red y transporte existe desde hace mucho un protocolo llamado SSL (Secure Socket Layer- Capa de Sockets Seguros) y que hoy en día conocemos como <b>TLS</b> (Transport Layer Security)
 </p>
@@ -3292,8 +3194,8 @@ En resumen, la clave pública asimétrica se utiliza para negociar una clave sec
 </section>
 </section>
 <section>
-<section id="slide-13">
-<h2 id="13"><span class="section-number-2">13.</span> El nivel de aplicación</h2>
+<section id="slide-11">
+<h2 id="11"><span class="section-number-2">11.</span> El nivel de aplicación</h2>
 <p>
 Es muy común que haya aplicaciones que, en vez de definir un nuevo mecanismo de cifrado, sean montadas sobre transportes seguros SSL/TLS.
 </p>
@@ -3315,7 +3217,7 @@ También hay otras aplicaciones con un sistema de cifrado Aplicaciones con su pr
 <div class="slide-footer"></div>
 </section>
 <section id="slide-https">
-<h3 id="https"><span class="section-number-3">13.1.</span> <a id="org0000011"></a> Ejemplo: HTTPS</h3>
+<h3 id="https"><span class="section-number-3">11.1.</span> <a id="org0000011"></a> Ejemplo: HTTPS</h3>
 <p>
 En una conexión https se utiliza el protocolo TLS/SSL sobre HTTP. El servidor debe disponer de un certificado x.509. La conexión siempre está cifrada con un algoritmo simétrico, y a menudo (aunque no es obligatorio) se garantiza la autenticidad del servidor mediante la firma digital del certificado.
 </p>
@@ -3340,11 +3242,11 @@ Por supuesto, el proceso incluye muchos pasos intermedios no descritos aquí, po
 </section>
 </section>
 <section>
-<section id="slide-14">
-<h2 id="14"><span class="section-number-2">14.</span> Firma digital oficial en España</h2>
+<section id="slide-12">
+<h2 id="12"><span class="section-number-2">12.</span> Firma digital oficial en España</h2>
 <p>
 En el contexto de la firma digital, en España tenemos dos aplicaciones clave.
-Ambas sirven para identificarse ante las administraciones públicas, y firmar actos administrativos (solicitudes, informes, declaraciones, etc&#x2026;)
+Ambas sirven para identificarse ante las administraciones públicas, y firmar actos administrativos (solicitudes, informes, declaraciones, etc&hellip;)
 </p>
 
 <p>
@@ -3352,12 +3254,12 @@ Fuera de las administraciones públicas, también lo utilizan algunas pocas empr
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-14-1">
-<h3 id="14-1"><span class="section-number-3">14.1.</span> Comunidad de Madrid: Camefirma</h3>
+<section id="slide-12-1">
+<h3 id="12-1"><span class="section-number-3">12.1.</span> Comunidad de Madrid: Camefirma</h3>
 <ol>
 <li>Presolicitud de certificado
 <ul>
-<li><a href="https://www.camerfirma.com/certificados/certificado-de-ciudadano/">https://www.camerfirma.com/certificados/certificado-de-ciudadano/</a></li>
+<li><a href="https://www.comunidad.madrid/atencion-ciudadano/certificado-firma-electronica-ciudadano">https://www.comunidad.madrid/atencion-ciudadano/certificado-firma-electronica-ciudadano</a></li>
 
 </ul></li>
 <li>Se recibe por email una contraseña de descarga y dónde confirmar la solicitud</li>
@@ -3368,35 +3270,34 @@ Fuera de las administraciones públicas, también lo utilizan algunas pocas empr
 <li>Se instala el certificado</li>
 <li>Si se pierde el control del certificado, se revoca 
 <ul>
-<li><a href="http://www.camerfirma.com/camerfirmaPublic/index/Area-Usuario/Revocar-Certificado.html">http://www.camerfirma.com/camerfirmaPublic/index/Area-Usuario/Revocar-Certificado.html</a></li>
+<li><a href="https://status.camerfirma.com/certificados_2010/revocar_certificado.php">https://status.camerfirma.com/certificados_2010/revocar_certificado.php</a></li>
 
 </ul></li>
 
 </ol>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-14-2">
-<h3 id="14-2"><span class="section-number-3">14.2.</span> FNMT</h3>
+<section id="slide-12-2">
+<h3 id="12-2"><span class="section-number-3">12.2.</span> FNMT</h3>
 <p>
 La Fábrica Nacional de Moneda y Timbre (FNMT) emite a cualquier ciudadano español un certificado x509 en la que ella es CA (Autoridad Certificadora) y que contiene nuestra identidad y una clave privada que permite firma electrónica.
-Se descarga en forma de fichero, y se puede instalar en el almacén de certificados de Windows, o de algunos navegadores, como FireFox.
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-14-3">
-<h3 id="14-3"><span class="section-number-3">14.3.</span> DNIe</h3>
+<section id="slide-12-3">
+<h3 id="12-3"><span class="section-number-3">12.3.</span> DNIe</h3>
 <p>
 La Policía Nacional expide el DNI electrónico (DNIe) que es una tarjeta que además de hacer las mismas funciones físicas que un DNI tradicional permite la firma electrónica.
 Dispone de un Chip criptográfico tipo SmartCard, que contiene en su interior la identidad del ciudadano y una clave privada que permite la firma electrónica. También tiene en sus interior otros datos del ciudadano.
 Puede utilizarse para identificarse ante la administración, y para firma electrónica, pero necesita de un lector de tarjetas SmartCard compatible, y de la instalación de algún software en los ordenadores en que se vaya a utilizar.
 La ventaja del DNIe reside en que la clave privada no se puede extraer del chip.
-Realmente&#x2026; es el propio chip del DNI el que realiza la firma de manera autónoma.
+Realmente es el propio chip del DNI el que realiza la firma de manera autónoma.
 No obstante, para que el DNI firme se requiere de un PIN, que es susceptible de ser interceptado.
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-14-4">
-<h3 id="14-4"><span class="section-number-3">14.4.</span> Uso de la firma</h3>
+<section id="slide-12-4">
+<h3 id="12-4"><span class="section-number-3">12.4.</span> Uso de la firma</h3>
 <p>
 En el sitio <a href="http://firmaelectronica.gob.es/">http://firmaelectronica.gob.es/</a> podemos encontrar multitud de recursos para realizar firma electrónica con validez legal, basado en cualquiera de los dos certificados oficiales.
 </p>
@@ -3421,8 +3322,8 @@ El sitio web <a href="https://valide.redsara.es/valide/">https://valide.redsara.
 </p>
 <div class="slide-footer"></div>
 </section>
-<section id="slide-14-5">
-<h3 id="14-5"><span class="section-number-3">14.5.</span> Software firmado</h3>
+<section id="slide-12-5">
+<h3 id="12-5"><span class="section-number-3">12.5.</span> Software firmado</h3>
 <p>
 Los ejecutables aplicaciones de Windows (y en otros sistemas operativos, por ejemplo, Android) llevan una firma digital, que los sistemas pueden comprobar durante la instalación. También se utiliza para evitar la copia en algunas videoconsolas.
 </p>
