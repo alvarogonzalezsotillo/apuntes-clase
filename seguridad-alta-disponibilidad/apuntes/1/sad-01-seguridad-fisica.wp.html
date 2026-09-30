@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-09-24 jue 11:05 -->
+<!-- 2026-09-30 mié 10:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Seguridad física en equipos y servidores</title>
@@ -185,7 +185,13 @@
   #org-div-home-and-up
    { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
+  .linenr {
+    font-size: smaller;
+    @supports (content: attr(data-linenr)) {
+      visibility: hidden;
+      &::before { content: attr(data-linenr); visibility: visible; }
+    }
+  }
   .code-highlighted { background-color: #ffff00; }
   .org-info-js_info-navigation { border-style: none; }
   #org-info-js_console-label
@@ -243,45 +249,50 @@
 <li><a href="#org0000005">1.2. Grupos de trabajo (Workgroups)</a></li>
 </ul>
 </li>
-<li><a href="#org000001b">2. Acceso físico de personas</a>
+<li><a href="#org0000012">2. Acceso físico de personas</a>
 <ul>
-<li><a href="#org000000d">2.1. Cerraduras</a></li>
-<li><a href="#org0000011">2.2. Personal de vigilancia.</a></li>
-<li><a href="#org0000015">2.3. Cámaras de seguridad</a></li>
-<li><a href="#org0000018">2.4. Alarma contra intrusos.</a></li>
+<li><a href="#org000000c">2.1. Cerraduras</a></li>
+<li><a href="#org000000f">2.2. PGP (Pretty Good Privacy)</a></li>
 </ul>
 </li>
-<li><a href="#org0000047">3. Condiciones climáticas y ambientales.</a>
+<li><a href="#org0000021">3. x509 y la Public Key Infrastructure (PKI)</a>
 <ul>
-<li><a href="#org000001e">3.1. Temperatura</a></li>
-<li><a href="#org0000022">3.2. Humedad</a></li>
-<li><a href="#org0000026">3.3. Polvo</a></li>
-<li><a href="#org0000029">3.4. Agua</a></li>
-<li><a href="#org0000035">3.5. Fuego</a></li>
-<li><a href="#org000003a">3.6. Sistemas de extinción.</a></li>
-<li><a href="#org000003d">3.7. Tipos de fuego.</a></li>
-<li><a href="#org0000040">3.8. Agentes extintores</a></li>
-<li><a href="#org0000044">3.9. Vías de evacuación y señalización.</a></li>
+<li><a href="#org0000017">3.1. Personal de vigilancia.</a></li>
+<li><a href="#org000001b">3.2. Cámaras de seguridad</a></li>
+<li><a href="#org000001e">3.3. Alarma contra intrusos.</a></li>
 </ul>
 </li>
-<li><a href="#org000005c">4. El entorno físico de un centro de proceso de datos (CPD)</a>
+<li><a href="#org000004d">4. Condiciones climáticas y ambientales.</a>
 <ul>
-<li><a href="#org0000059">4.1. Niveles TIER</a></li>
+<li><a href="#org0000024">4.1. Temperatura</a></li>
+<li><a href="#org0000028">4.2. Humedad</a></li>
+<li><a href="#org000002c">4.3. Polvo</a></li>
+<li><a href="#org000002f">4.4. Agua</a></li>
+<li><a href="#org000003b">4.5. Fuego</a></li>
+<li><a href="#org0000040">4.6. Sistemas de extinción.</a></li>
+<li><a href="#org0000043">4.7. Tipos de fuego.</a></li>
+<li><a href="#org0000046">4.8. Agentes extintores</a></li>
+<li><a href="#org000004a">4.9. Vías de evacuación y señalización.</a></li>
 </ul>
 </li>
-<li><a href="#org00000a3">5. Electricidad</a>
+<li><a href="#org0000062">5. El entorno físico de un centro de proceso de datos (CPD)</a>
 <ul>
-<li><a href="#org000005f">5.1. La red eléctrica</a></li>
-<li><a href="#org0000079">5.2. Protección eléctrica</a></li>
-<li><a href="#org000007c">5.3. Cálculo aproximado del consumo eléctrico</a></li>
-<li><a href="#org000007f">5.4. Problemas en el suministro eléctrico</a></li>
-<li><a href="#org0000083">5.5. Reguladores automáticos de voltaje (AVR)</a></li>
-<li><a href="#org00000a0">5.6. Sistemas de Alimentación Ininterrumpida (SAI)</a></li>
+<li><a href="#org000005f">5.1. Niveles TIER</a></li>
 </ul>
 </li>
-<li><a href="#org00000ab">6. Tamaños de SAI</a>
+<li><a href="#org00000a9">6. Electricidad</a>
 <ul>
-<li><a href="#org00000a8">6.1. Grupos electrógenos</a></li>
+<li><a href="#org0000065">6.1. La red eléctrica</a></li>
+<li><a href="#org000007f">6.2. Protección eléctrica</a></li>
+<li><a href="#org0000082">6.3. Cálculo aproximado del consumo eléctrico</a></li>
+<li><a href="#org0000085">6.4. Problemas en el suministro eléctrico</a></li>
+<li><a href="#org0000089">6.5. Reguladores automáticos de voltaje (AVR)</a></li>
+<li><a href="#org00000a6">6.6. Sistemas de Alimentación Ininterrumpida (SAI)</a></li>
+</ul>
+</li>
+<li><a href="#org00000b1">7. Tamaños de SAI</a>
+<ul>
+<li><a href="#org00000ae">7.1. Grupos electrógenos</a></li>
 </ul>
 </li>
 </ul>
@@ -404,8 +415,8 @@ Asimismo, cada estación de trabajo puede prestar servicios a las demás (compar
 </div>
 </div>
 </div>
-<div id="outline-container-org000001b" class="outline-2">
-<h2 id="org000001b"><span class="section-number-2">2.</span> Acceso físico de personas</h2>
+<div id="outline-container-org0000012" class="outline-2">
+<h2 id="org0000012"><span class="section-number-2">2.</span> Acceso físico de personas</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Desde el punto de vista de la seguridad física, en algunos casos puede suponer una amenaza el acceso de personas no autorizadas a determinadas dependencias o instalaciones.
@@ -418,8 +429,8 @@ El espacio donde se encuentra el hardware puede contar con restricciones física
 <li>Alarmas</li>
 </ul>
 </div>
-<div id="outline-container-org000000d" class="outline-3">
-<h3 id="org000000d"><span class="section-number-3">2.1.</span> Cerraduras</h3>
+<div id="outline-container-org000000c" class="outline-3">
+<h3 id="org000000c"><span class="section-number-3">2.1.</span> Cerraduras</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Las cerraduras con una llave pueden impedir el acceso de personas… pero más allá de la cerradura tradicional, otros sistemas de acceso como tarjetas, contraseñas o la biometría pueden realizar otras tareas como la autentificación y el control de acceso de las personas.
@@ -471,27 +482,123 @@ Estas formas de acceso se basan en :
 </ul>
 
 
+<ul class="org-ul">
+<li>Sistemas de confianza e intercambio de claves: la PKI y PGP</li>
+</ul>
+<p>
+La criptografía asimétrica tiene una utilidad apasionante, pero también tiene un punto débil.  Si bien proporciona un cifrado prácticamente imposible de romper, se basa en la difusión de una clave pública, por mecanismos públicos, y que siempre va asociada a una identidad. Es decir, yo puedo generar una clave pública para mi y publicarla donde sea asociada a mi nombre o a mi dirección de correo&hellip; o a cualquier otro dato que me identifique&hellip;. <i>pero cualquiera puede hacer lo mismo suplantando mi identidad</i>. En ese supuesto caso&hellip; si un intruso pone en algun lugar público una dirección de correo y una clave pública diciendo que soy yo&hellip; un posible emisor de un mensaje podría confundirse y enviarle a él un mensaje cifrado pensando que soy yo. Él lo podría descifrar, dado que ha sido él quien ha creado la clave pública. 
+</p>
 
-<div id="org000000c" class="figure">
+<p>
+La criptografía asimétrica necesita un mecanismo para autentificar la identidad de los receptores de los mensajes.
+</p>
+</div>
+</div>
+<div id="outline-container-org000000f" class="outline-3">
+<h3 id="org000000f"><span class="section-number-3">2.2.</span> PGP (Pretty Good Privacy)</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+PGP es un programa creado en 1991, para el intercambio de mensajes cifrados utilizando
+criptografía asimétrica. El programa sigue hoy en día actualizado.
+</p>
+
+<p>
+El grupo GNU tiene un programa parecido GnuPG y en cierto modo, compatible con PGP.
+Con este programa uno puede generar sus propias claves, y difundir la pública.
+</p>
+
+<p>
+Hay servidores web con aplicaciones web para intercambiar claves públicas. Estos funcionan bien para pequeñas organizaciones, donde la identidad de cada uno se pueda autenticar por otros medios.
+</p>
+
+<p>
+Cuanto más grande el conjunto de usuarios de usuarios, también es más fácil la intrusión mediante suplantación de la clave pública en uno de éstos servidores de claves públicas PGP.
+</p>
+
+<p>
+PGP es un buen medio para enviar mensajes cifrados, pero no para autenticar. La autenticidad de los certificados se basa en el llamado "anillo de confianza" en el cual, cuando una persona puede garantizar que un certificado de otra persona es de confianza, lo firma&hellip; si se distribuye el certificado firmado y quien lo recibe confía en el firmante, entonces confía también en el certificado original. Este proceso puede repetirse indefinidamente&hellip;. ir firmando los certificados y transmitirlos firmados es una manera de transmitir la confianza.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0000021" class="outline-2">
+<h2 id="org0000021"><span class="section-number-2">3.</span> x509 y la Public Key Infrastructure (PKI)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+En otro ámbito, existe un estándar llamado x509, y propuesto por la ITU (Unión Internacional de Telecomunicaciones), que es el que se utiliza para los certificar la identidad de los sitios web que usan https, y también para la identificación y firma digital de personas en España, mediante el DNIe o el certificado de la Fábrica Nacional de Moneda y Timbre (FNMT)
+</p>
+
+<p>
+Es un formato de intercambio de claves públicas, en lo que ellos llaman “certificados”.
+</p>
+
+<p>
+Un certificado es un fichero que contiene en su interior al menos uno de éstos elementos:
+</p>
+<ul class="org-ul">
+<li>Datos de identificación de una persona u organización</li>
+<li>Una clave privada</li>
+<li>Una clave pública</li>
+<li>Una firma digital.</li>
+</ul>
+
+<p>
+En cierto modo, x509 puede hacer lo mismo que PGP, sólo que con un propósito más general (PGP está orientado a los mensajes -nivel aplicación- y x509 es más multifuncional).
+</p>
+
+<p>
+Alrededor del sistema x509 se ha montado una infraestructura de validación de certificados llamada PKI (Public Key Infrastructure). En ella, algunas entidades son CERTIFICADORAS. Firman certificados para otras entidades o personas. Generar un certificado es sencillo, se puede realizar de forma particular con una  aplicación. Estas entidades FIRMAN el certificado que otros generan. A estas entidades que firman se les denomina <b>Autoridades de Certificación (CA)</b>.
+</p>
+
+<p>
+El sistema PKI está basado en que en el mundo existen una serie de CA, que garantizan la identidad de otras organizaciónes&hellip; A partir de ahí, las otras organizaciones a su vez pueden generar y firmar nuevos certificados para otras entidades o personas. Las claves públicas de las CA están incluídas en las distribuciones de nuestros navegadores y sistemas operativos.
+</p>
+
+<p>
+En resumen&hellip; cualquier persona u organización puede tener un certificado y hacerlo público, que contenga: su identidad, su clave pública y una firma digital de quien lo ha emitido.  Para verificar su identidad, podemos comprobar la firma del certificado. Si quien lo ha emitido no es una CA, su certificado irá a su vez firmado por otra entidad&hellip; repetimos el proceso de verificación hasta llegar a la CA.
+</p>
+
+<p>
+La PKI consiste en la infraestructura que permite la verificación de la identidad a partir de los certificados x.509 hechos públicos por distintos medios.
+</p>
+
+<p>
+Si por cualquier motivo, no se puede autenticar un certificado x.509 (es decir, no se puede demostrar que la persona u organización que exhibe el certificado es quien dice ser), entonces el certificado vale igualmente para cifrar&hellip; pero ¿nuestro interlocutor es quien dice ser o podría ser un intruso suplantador?
+</p>
+
+<p>
+Cada certificado cuenta con una firma que es posible verificar, hasta llegar a una CA. En el sistema PKI, a eso se le llama la ruta de certificación.
+</p>
+
+<p>
+Ej: En la dirección web <a href="https://www.lacaixa.es">https://www.lacaixa.es</a> me
+muestran un certificado x509 para su uso en TLS
+Si miro los detalles, veo que el certificado de La Caixa
+va firmado por la empresa USERTrust&hellip; que a su vez
+va firmado por Entrust.net.
+</p>
+
+
+
+
+<div id="org0000015" class="figure">
 <p><img src="media/lector-huella-digital.png" alt="lector-huella-digital.png" />
 </p>
-<p><span class="figure-number">Figura 4: </span>Control de acceso mendiante huella digital (biometría)</p>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000011" class="outline-3">
-<h3 id="org0000011"><span class="section-number-3">2.2.</span> Personal de vigilancia.</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org0000017" class="outline-3">
+<h3 id="org0000017"><span class="section-number-3">3.1.</span> Personal de vigilancia.</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 Según la legislación Española, las tareas de vigilancia se encomiendan a un profesional vigilante o guardia de seguridad privada, que pertenecen obligatoriamente a una empresa de seguridad y siguen un proceso de selección y acreditación de acuerdo a normativa.
 “Se reserva al personal de seguridad privada estrictamente las funciones de vigilancia y seguridad activa de bienes y personas -diurna y nocturna- y el control de sistemas de seguridad; entendiéndose por vigilancia y seguridad activa aquella que incluye la posibilidad de repeler cualquier agresión al bien que se vigila”
 </p>
 
 
-<div id="org0000010" class="figure">
+<div id="org0000016" class="figure">
 <p><img src="media/vigilante-de-seguridad.png" alt="vigilante-de-seguridad.png" />
 </p>
-<p><span class="figure-number">Figura 5: </span>Personal de vigilancia</p>
+<p><span class="figure-number">Figura 4: </span>Personal de vigilancia</p>
 </div>
 
 <p>
@@ -504,18 +611,18 @@ Principalmente, sus funciones se centran en:
 </ol>
 </div>
 </div>
-<div id="outline-container-org0000015" class="outline-3">
-<h3 id="org0000015"><span class="section-number-3">2.3.</span> Cámaras de seguridad</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org000001b" class="outline-3">
+<h3 id="org000001b"><span class="section-number-3">3.2.</span> Cámaras de seguridad</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 Las cámaras son una medida típicamente pasiva, ya que en general, su misión es grabar lo sucedido, de tal manera que si se produce un ataque, se pueda reducir su impacto.
 </p>
 
 
-<div id="org0000014" class="figure">
+<div id="org000001a" class="figure">
 <p><img src="media/camara-de-segurdad.png" alt="camara-de-segurdad.png" />
 </p>
-<p><span class="figure-number">Figura 6: </span>Cámara de vigilancia</p>
+<p><span class="figure-number">Figura 5: </span>Cámara de vigilancia</p>
 </div>
 
 <p>
@@ -523,9 +630,9 @@ A veces, la cámara no solo graba, sino que un vigilante de seguridad puede esta
 </p>
 </div>
 </div>
-<div id="outline-container-org0000018" class="outline-3">
-<h3 id="org0000018"><span class="section-number-3">2.4.</span> Alarma contra intrusos.</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">3.3.</span> Alarma contra intrusos.</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 Es un sistema encargado de detectar la intrusión de personas no autorizadas o por medios no autorizados al recinto, especialmente durante horas en las que no debe haber personas en él.
 </p>
@@ -584,17 +691,17 @@ Los sensores, pulsadores suelen estar conectados en estrella:
 </div>
 </div>
 </div>
-<div id="outline-container-org0000047" class="outline-2">
-<h2 id="org0000047"><span class="section-number-2">3.</span> Condiciones climáticas y ambientales.</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org000004d" class="outline-2">
+<h2 id="org000004d"><span class="section-number-2">4.</span> Condiciones climáticas y ambientales.</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Aunque el hardware, en general puede operar correctamente en diversas condiciones ambientales, es conveniente mantenerlo en una franja concreta de éstas.
 Los factores que más afectan a la electrónica son temperatura, humedad y polvo
 </p>
 </div>
-<div id="outline-container-org000001e" class="outline-3">
-<h3 id="org000001e"><span class="section-number-3">3.1.</span> Temperatura</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org0000024" class="outline-3">
+<h3 id="org0000024"><span class="section-number-3">4.1.</span> Temperatura</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 Los equipos electrónicos  de consumo pueden funcionar correctamente con una temperatura ambiental del aire en un rango bastante amplio.
 Generan bastante calor interno, con lo que es conveniente que el ambiente en el que se encuentran esté lo más fresco posible.
@@ -607,9 +714,9 @@ Ten en cuenta, que en estos rangos de temperatura, hablamos de la temperatura de
 </p>
 </div>
 </div>
-<div id="outline-container-org0000022" class="outline-3">
-<h3 id="org0000022"><span class="section-number-3">3.2.</span> Humedad</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org0000028" class="outline-3">
+<h3 id="org0000028"><span class="section-number-3">4.2.</span> Humedad</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 El aire contiene una pequeña cantidad de agua en estado gaseoso (o incluso líquido en suspensión). La cantidad de vapor que contiene el aire en un instante dado con respecto al máximo que puede contener es la es la humedad relativa. Se expresa con un tanto por ciento.
 Si la humedad es del 100%, quiere decir que el aire contiene la máxima cantidad de vapor que puede llevar disuelto antes de expulsarlo en forma líquida.
@@ -624,16 +731,16 @@ Los deshumidificadores pueden conectarse a un desagüe para evacuar el agua en e
 </p>
 
 
-<div id="org0000021" class="figure">
+<div id="org0000027" class="figure">
 <p><img src="media/deshumidificador.png" alt="deshumidificador.png" />
 </p>
-<p><span class="figure-number">Figura 7: </span>Deshumificador doméstico</p>
+<p><span class="figure-number">Figura 6: </span>Deshumificador doméstico</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000026" class="outline-3">
-<h3 id="org0000026"><span class="section-number-3">3.3.</span> Polvo</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org000002c" class="outline-3">
+<h3 id="org000002c"><span class="section-number-3">4.3.</span> Polvo</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 El polvo se compone de  partículas sólidas de todo tipo en suspensión (fibras, tierra, pelos y piel de animales y humanos, polen, resinas…) .
 Es un gran enemigo de los sistemas informáticos:
@@ -654,10 +761,10 @@ Hay que tener en cuenta que los sistemas de climatización de los CPD, el aire a
 </p>
 
 
-<div id="org0000025" class="figure">
+<div id="org000002b" class="figure">
 <p><img src="media/filtro-de-polvo.png" alt="filtro-de-polvo.png" />
 </p>
-<p><span class="figure-number">Figura 8: </span>Filtro de polvo y partículas</p>
+<p><span class="figure-number">Figura 7: </span>Filtro de polvo y partículas</p>
 </div>
 
 <p>
@@ -665,9 +772,9 @@ Algunos equipos pueden aislarse en un recinto hermético, de tal manera que toda
 </p>
 </div>
 </div>
-<div id="outline-container-org0000029" class="outline-3">
-<h3 id="org0000029"><span class="section-number-3">3.4.</span> Agua</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org000002f" class="outline-3">
+<h3 id="org000002f"><span class="section-number-3">4.4.</span> Agua</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 Es necesario tomar algunas precauciones absolutamente evidentes con respecto a pequeñas fugas de agua:
 </p>
@@ -678,9 +785,9 @@ Es necesario tomar algunas precauciones absolutamente evidentes con respecto a p
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000035" class="outline-3">
-<h3 id="org0000035"><span class="section-number-3">3.5.</span> Fuego</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-org000003b" class="outline-3">
+<h3 id="org000003b"><span class="section-number-3">4.5.</span> Fuego</h3>
+<div class="outline-text-3" id="text-4-5">
 <p>
 El fuego es una amenaza mucho más seria de lo que puede parecer en un primer momento. Las averías eléctricas son fuente frecuentemente de pequeños incendios. La mayor parte de éstos pequeños incendios pueden ser controlados, pero si no lo son, un fuego puede extenderse y descontrolarse rápidamente.
 </p>
@@ -689,9 +796,9 @@ El fuego es una amenaza mucho más seria de lo que puede parecer en un primer mo
 Vamos a hablar de algunas medidas de seguridad comunes con respecto al fuego.
 </p>
 </div>
-<div id="outline-container-org000002e" class="outline-4">
-<h4 id="org000002e"><span class="section-number-4">3.5.1.</span> Barreras</h4>
-<div class="outline-text-4" id="text-3-5-1">
+<div id="outline-container-org0000034" class="outline-4">
+<h4 id="org0000034"><span class="section-number-4">4.5.1.</span> Barreras</h4>
+<div class="outline-text-4" id="text-4-5-1">
 <p>
 Algunos muros están construidos con especial resistencia al fuego, para evitar que se propague. Contienen materiales aislantes e incluso refrigerantes. Se sellan sus resquicios con masillas y siliconas ignífugas
 </p>
@@ -705,10 +812,10 @@ Suelen estar clasificadas con un rótulo “DF” seguido del número de minutos
 </p>
 
 
-<div id="org000002c" class="figure">
+<div id="org0000032" class="figure">
 <p><img src="media/puertas-antiincendios.png" alt="puertas-antiincendios.png" />
 </p>
-<p><span class="figure-number">Figura 9: </span>Puertas de seguridad antiincencios</p>
+<p><span class="figure-number">Figura 8: </span>Puertas de seguridad antiincencios</p>
 </div>
 
 <p>
@@ -717,16 +824,16 @@ Su cierre es automático.
 </p>
 
 
-<div id="org000002d" class="figure">
+<div id="org0000033" class="figure">
 <p><img src="media/compuerta-cortafuegos-ventilacion.png" alt="compuerta-cortafuegos-ventilacion.png" />
 </p>
-<p><span class="figure-number">Figura 10: </span>Compuertas antiincencios para conductos de calefacción</p>
+<p><span class="figure-number">Figura 9: </span>Compuertas antiincencios para conductos de calefacción</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000032" class="outline-4">
-<h4 id="org0000032"><span class="section-number-4">3.5.2.</span> Detectores:</h4>
-<div class="outline-text-4" id="text-3-5-2">
+<div id="outline-container-org0000038" class="outline-4">
+<h4 id="org0000038"><span class="section-number-4">4.5.2.</span> Detectores:</h4>
+<div class="outline-text-4" id="text-4-5-2">
 <p>
 Hay de varios tipos. Se sitúan en partes altas. Están conectados a la central de alarma
 </p>
@@ -744,17 +851,17 @@ En cualquier caso, la central de alarma hará una o más de éstas acciones:
 </ul>
 
 
-<div id="org0000031" class="figure">
+<div id="org0000037" class="figure">
 <p><img src="media/detector-humo.png" alt="detector-humo.png" />
 </p>
-<p><span class="figure-number">Figura 11: </span>Detector de humo</p>
+<p><span class="figure-number">Figura 10: </span>Detector de humo</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org000003a" class="outline-3">
-<h3 id="org000003a"><span class="section-number-3">3.6.</span> Sistemas de extinción.</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-org0000040" class="outline-3">
+<h3 id="org0000040"><span class="section-number-3">4.6.</span> Sistemas de extinción.</h3>
+<div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>Automáticos: En muchos entornos en los que hay instalados ordenadores se cuenta con sistemas de extinción automáticos instalados en el edificio y sus dependencias. 
 <ul class="org-ul">
@@ -768,10 +875,10 @@ En cualquier caso, la central de alarma hará una o más de éstas acciones:
 
 
 
-<div id="org0000038" class="figure">
+<div id="org000003e" class="figure">
 <p><img src="media/aspersor-incendios.png" alt="aspersor-incendios.png" />
 </p>
-<p><span class="figure-number">Figura 12: </span>Aspersor para la extinción automática de incendios</p>
+<p><span class="figure-number">Figura 11: </span>Aspersor para la extinción automática de incendios</p>
 </div>
 
 <ul class="org-ul">
@@ -779,16 +886,16 @@ En cualquier caso, la central de alarma hará una o más de éstas acciones:
 </ul>
 
 
-<div id="org0000039" class="figure">
+<div id="org000003f" class="figure">
 <p><img src="media/extintores.png" alt="extintores.png" />
 </p>
-<p><span class="figure-number">Figura 13: </span>Extintores manuales</p>
+<p><span class="figure-number">Figura 12: </span>Extintores manuales</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org000003d" class="outline-3">
-<h3 id="org000003d"><span class="section-number-3">3.7.</span> Tipos de fuego.</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-org0000043" class="outline-3">
+<h3 id="org0000043"><span class="section-number-3">4.7.</span> Tipos de fuego.</h3>
+<div class="outline-text-3" id="text-4-7">
 <p>
 Hay varios tipos de fuego, según el material que esté ardiendo. Los más comunes son:
 </p>
@@ -803,9 +910,9 @@ Además, es posible que se presente el fuego donde pueden haber cargas eléctric
 </p>
 </div>
 </div>
-<div id="outline-container-org0000040" class="outline-3">
-<h3 id="org0000040"><span class="section-number-3">3.8.</span> Agentes extintores</h3>
-<div class="outline-text-3" id="text-3-8">
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">4.8.</span> Agentes extintores</h3>
+<div class="outline-text-3" id="text-4-8">
 <p>
 Los principales agentes extintores para uso manual son:
 </p>
@@ -827,25 +934,25 @@ Los principales agentes extintores para uso automático son:
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000044" class="outline-3">
-<h3 id="org0000044"><span class="section-number-3">3.9.</span> Vías de evacuación y señalización.</h3>
-<div class="outline-text-3" id="text-3-9">
+<div id="outline-container-org000004a" class="outline-3">
+<h3 id="org000004a"><span class="section-number-3">4.9.</span> Vías de evacuación y señalización.</h3>
+<div class="outline-text-3" id="text-4-9">
 <p>
 Distintas normas europeas indican cómo debe ser la señalización referida a los incendios. En todos los casos se trata de señales verdes que se colocan en partes altas.
 </p>
 
 
-<div id="org0000043" class="figure">
+<div id="org0000049" class="figure">
 <p><img src="media/senalizacion-emergencia.png" alt="senalizacion-emergencia.png" />
 </p>
-<p><span class="figure-number">Figura 14: </span>Señalización de las vías de evaluación</p>
+<p><span class="figure-number">Figura 13: </span>Señalización de las vías de evaluación</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org000005c" class="outline-2">
-<h2 id="org000005c"><span class="section-number-2">4.</span> El entorno físico de un centro de proceso de datos (CPD)</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org0000062" class="outline-2">
+<h2 id="org0000062"><span class="section-number-2">5.</span> El entorno físico de un centro de proceso de datos (CPD)</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Un Centro de Proceso de Datos (CPD) es una instalación que alberga un sistema principal de redes, ordenadores y recursos para procesar toda la información de una empresa u organismo (o varios)
 Otros nombres: Centro de cálculo, Datacenter.
@@ -865,20 +972,20 @@ Eso ocurre con los datacenter grandes (Ej: Amazon web services,Microsoft Azure&h
 
 
 
-<div id="org000004a" class="figure">
+<div id="org0000050" class="figure">
 <p><img src="media/exterior-datacenter.png" alt="exterior-datacenter.png" />
 </p>
-<p><span class="figure-number">Figura 15: </span>Datacenter de Google en Montain View, California, EEUU. 45000 servidores</p>
+<p><span class="figure-number">Figura 14: </span>Datacenter de Google en Montain View, California, EEUU. 45000 servidores</p>
 </div>
 
 <p>
 I
 </p>
 
-<div id="org000004b" class="figure">
+<div id="org0000051" class="figure">
 <p><img src="media/interior-datacenter.png" alt="interior-datacenter.png" />
 </p>
-<p><span class="figure-number">Figura 16: </span>Interior del Datacenter de un proveedor de hosting y servicios web (ThePlanet)</p>
+<p><span class="figure-number">Figura 15: </span>Interior del Datacenter de un proveedor de hosting y servicios web (ThePlanet)</p>
 </div>
 
 <p>
@@ -949,16 +1056,16 @@ También es importante en algunos casos, decidir dónde y cómo ubicar las insta
 Por último, una consideración acerca de la duplicación de sistemas en un Datacenter. Ya hemos comentado que en los CPD es común duplicar algunos sistemas, como las acometidas de electricidad o las redes. En algunos casos, se opta por duplicar completamente el centro, en otras instalaciones alejadas, de tal manera que tengan los mismos datos y el mismo funcionamiento, para que en caso de fallo en un datacenter, el otro siga operativo.
 </p>
 </div>
-<div id="outline-container-org0000059" class="outline-3">
-<h3 id="org0000059"><span class="section-number-3">4.1.</span> Niveles TIER</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org000005f" class="outline-3">
+<h3 id="org000005f"><span class="section-number-3">5.1.</span> Niveles TIER</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asociados a cuatro niveles de disponibilidad definidos. A mayor número en el Tier, mayor disponibilidad, y por lo tanto mayores costes asociados en su construcción y más tiempo para hacerlo. A día de hoy se han definido cuatro Tier diferentes, y ordenados de menor a mayor son:
 </p>
 </div>
-<div id="outline-container-org000004c" class="outline-4">
-<h4 id="org000004c"><span class="section-number-4">4.1.1.</span> Tier I: Centro de datos Básico: Disponibilidad del 99.671%.</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<div id="outline-container-org0000052" class="outline-4">
+<h4 id="org0000052"><span class="section-number-4">5.1.1.</span> Tier I: Centro de datos Básico: Disponibilidad del 99.671%.</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>El servicio puede interrumpirse por actividades planeadas o no planeadas.</li>
 <li>No hay componentes redundantes en la distribución eléctrica y de refrigeración.</li>
@@ -967,9 +1074,9 @@ El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asoc
 </ul>
 </div>
 </div>
-<div id="outline-container-org000004f" class="outline-4">
-<h4 id="org000004f"><span class="section-number-4">4.1.2.</span> Tier II: Centro de datos Redundante: Disponibilidad del 99.741%.</h4>
-<div class="outline-text-4" id="text-4-1-2">
+<div id="outline-container-org0000055" class="outline-4">
+<h4 id="org0000055"><span class="section-number-4">5.1.2.</span> Tier II: Centro de datos Redundante: Disponibilidad del 99.741%.</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <ul class="org-ul">
 <li>Menos susceptible a interrupciones por actividades planeadas o no planeadas.</li>
 <li>Tiene suelos elevados, generadores auxiliares o UPS.</li>
@@ -982,9 +1089,9 @@ El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asoc
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000052" class="outline-4">
-<h4 id="org0000052"><span class="section-number-4">4.1.3.</span> Tier III: Centro de datos Concurrentemente Mantenibles: Disponibilidad del 99.982%.</h4>
-<div class="outline-text-4" id="text-4-1-3">
+<div id="outline-container-org0000058" class="outline-4">
+<h4 id="org0000058"><span class="section-number-4">5.1.3.</span> Tier III: Centro de datos Concurrentemente Mantenibles: Disponibilidad del 99.982%.</h4>
+<div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li>Permite planificar actividades de mantenimiento sin afectar al servicio de computación, pero eventos no planeados pueden causar paradas no planificadas.</li>
 <li>Componentes redundantes (N+1)</li>
@@ -993,9 +1100,9 @@ El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asoc
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000056" class="outline-4">
-<h4 id="org0000056"><span class="section-number-4">4.1.4.</span> Tier IV: Centro de datos Tolerante a fallos: Disponibilidad del 99.995%.</h4>
-<div class="outline-text-4" id="text-4-1-4">
+<div id="outline-container-org000005c" class="outline-4">
+<h4 id="org000005c"><span class="section-number-4">5.1.4.</span> Tier IV: Centro de datos Tolerante a fallos: Disponibilidad del 99.995%.</h4>
+<div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li>Permite planificar actividades de mantenimiento sin afectar al servicio de computación críticos, y es capaz de soportar por lo menos un evento no planificado del tipo ‘peor escenario’ sin impacto crítico en la carga.</li>
 <li>Conectados múltiples líneas de distribución eléctrica y de refrigeración con múltiples componentes redundantes</li>
@@ -1007,22 +1114,22 @@ El concepto de Tier nos indica el nivel de fiabilidad de un centro de datos asoc
 
 
 
-<div id="org0000055" class="figure">
+<div id="org000005b" class="figure">
 <p><img src="media/tier.png" alt="tier.png" />
 </p>
-<p><span class="figure-number">Figura 17: </span>Resumen de niveles TIER</p>
+<p><span class="figure-number">Figura 16: </span>Resumen de niveles TIER</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org00000a3" class="outline-2">
-<h2 id="org00000a3"><span class="section-number-2">5.</span> Electricidad</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org00000a9" class="outline-2">
+<h2 id="org00000a9"><span class="section-number-2">6.</span> Electricidad</h2>
+<div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org000005f" class="outline-3">
-<h3 id="org000005f"><span class="section-number-3">5.1.</span> La red eléctrica</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org0000065" class="outline-3">
+<h3 id="org0000065"><span class="section-number-3">6.1.</span> La red eléctrica</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 En España, el suministro de corriente eléctrica se hace con corriente alterna (que es la forma de transportar corriente a largas distancias, con éstos parámetros fijos:
 </p>
@@ -1036,42 +1143,42 @@ Los dispositivos electrónicos (ordenadores, periféricos, comunicaciones…) ut
 </p>
 </div>
 </div>
-<div id="outline-container-org0000079" class="outline-3">
-<h3 id="org0000079"><span class="section-number-3">5.2.</span> Protección eléctrica</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-org000007f" class="outline-3">
+<h3 id="org000007f"><span class="section-number-3">6.2.</span> Protección eléctrica</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 La red eléctrica proporciona tensiones nominales de entre 220 y 240V La potencia que suministra la red (kiloWatts – kW) se estipula por contrato.
 </p>
 </div>
-<div id="outline-container-org0000062" class="outline-4">
-<h4 id="org0000062"><span class="section-number-4">5.2.1.</span> El Interruptor de Control de Potencia.</h4>
-<div class="outline-text-4" id="text-5-2-1">
+<div id="outline-container-org0000068" class="outline-4">
+<h4 id="org0000068"><span class="section-number-4">6.2.1.</span> El Interruptor de Control de Potencia.</h4>
+<div class="outline-text-4" id="text-6-2-1">
 <p>
 La instalación eléctrica debe ir acorde a la potencia suministrada. Un Interruptor de Control de Potencia (ICP) se coloca a la entrada del suministro, después de los contadores para garantizar que no se consume más allá de la potencia contratada. Hay uno a la entrada de cada cliente. Se coloca más para control de consumo que para seguridad.
 </p>
 </div>
 </div>
-<div id="outline-container-org0000067" class="outline-4">
-<h4 id="org0000067"><span class="section-number-4">5.2.2.</span> Los interruptores magnetotérmicos</h4>
-<div class="outline-text-4" id="text-5-2-2">
+<div id="outline-container-org000006d" class="outline-4">
+<h4 id="org000006d"><span class="section-number-4">6.2.2.</span> Los interruptores magnetotérmicos</h4>
+<div class="outline-text-4" id="text-6-2-2">
 <p>
 Protegen un circuito. Cada uno admite una determinada corriente máxima, que se mide en Amperes (A). Los magnetotérmicos vienen marcados con la letra “C” -de Current, corriente- y una cantidad, que indica el paso máximo de corriente que permiten “C16 → 16 Amperios máximo”. Saltan ante cortocircuitos y consumo excesivo (sobrecarga del circuito)
 Es capaz de interrumpir la corriente eléctrica de un circuito cuando ésta sobrepasa ciertos valores máximos (Que se expresan en amperios)
 </p>
 
 
-<div id="org0000065" class="figure">
+<div id="org000006b" class="figure">
 <p><img src="media/magnetotermico-doble.png" alt="magnetotermico-doble.png" />
 </p>
-<p><span class="figure-number">Figura 18: </span>Mangetotérmico doble</p>
+<p><span class="figure-number">Figura 17: </span>Mangetotérmico doble</p>
 </div>
 
 
 
-<div id="org0000066" class="figure">
+<div id="org000006c" class="figure">
 <p><img src="media/magnetotermico-simple.png" alt="magnetotermico-simple.png" />
 </p>
-<p><span class="figure-number">Figura 19: </span>Magnetotérmico simple</p>
+<p><span class="figure-number">Figura 18: </span>Magnetotérmico simple</p>
 </div>
 
 <p>
@@ -1105,18 +1212,18 @@ Se pueden colocar varios magnetotérmicos jerárquicamente (ej: uno en una ofici
 </p>
 </div>
 </div>
-<div id="outline-container-org000006b" class="outline-4">
-<h4 id="org000006b"><span class="section-number-4">5.2.3.</span> El interruptor diferencial</h4>
-<div class="outline-text-4" id="text-5-2-3">
+<div id="outline-container-org0000071" class="outline-4">
+<h4 id="org0000071"><span class="section-number-4">6.2.3.</span> El interruptor diferencial</h4>
+<div class="outline-text-4" id="text-6-2-3">
 <p>
 Se coloca en las instalaciones eléctricas con el fin de proteger a las personas de las derivaciones causadas por faltas de aislamiento entre los conductores activos y tierra o masa de los aparatos. Lo distinguirás fácilmente por el botón marcado con una “T”.
 </p>
 
 
-<div id="org000006a" class="figure">
+<div id="org0000070" class="figure">
 <p><img src="media/diferencial.png" alt="diferencial.png" />
 </p>
-<p><span class="figure-number">Figura 20: </span>Diferencial</p>
+<p><span class="figure-number">Figura 19: </span>Diferencial</p>
 </div>
 
 
@@ -1129,9 +1236,9 @@ El botón “T” (de Test) sirve para comprobar que funciona correctamente, ya 
 </p>
 </div>
 </div>
-<div id="outline-container-org000006e" class="outline-4">
-<h4 id="org000006e"><span class="section-number-4">5.2.4.</span> La toma de Tierra.</h4>
-<div class="outline-text-4" id="text-5-2-4">
+<div id="outline-container-org0000074" class="outline-4">
+<h4 id="org0000074"><span class="section-number-4">6.2.4.</span> La toma de Tierra.</h4>
+<div class="outline-text-4" id="text-6-2-4">
 <p>
 La instalación eléctrica, además de los dos cables que traen la corriente alterna cuenta con un tercero conectado a tierra.
 (La <b>FASE</b> –que siempre es rojo, marrón o negro- es el conductor que realmente trae la potencia. El <b>NEUTRO</b>, que siempre es azul es realmente el retorno del circuito. No transporta corriente si no se cierra el circuito con la fase. La <b>TIERRA</b> –en amarillo y verde- está conectado a un gran clavo en los cimientos del edificio.
@@ -1142,31 +1249,31 @@ El enchufe schuko garantiza las fugas a tierra de corrientes descontroladas y es
 </p>
 </div>
 </div>
-<div id="outline-container-org0000073" class="outline-4">
-<h4 id="org0000073"><span class="section-number-4">5.2.5.</span> Doble aislamiento</h4>
-<div class="outline-text-4" id="text-5-2-5">
+<div id="outline-container-org0000079" class="outline-4">
+<h4 id="org0000079"><span class="section-number-4">6.2.5.</span> Doble aislamiento</h4>
+<div class="outline-text-4" id="text-6-2-5">
 <p>
 Algunos aparatos disponen de un doble aislamiento de sus partes activas (tanto neutro como fase). En ese caso, no requieren conexión a tierra. Van marcados con éste símbolo en su carcasa. Pueden llevar un enchufe Europlug o Schuko sin toma de tierra.
 </p>
 
 
-<div id="org0000071" class="figure">
+<div id="org0000077" class="figure">
 <p><img src="media/simbolo-doble-aislamiento.png" alt="simbolo-doble-aislamiento.png" />
 </p>
-<p><span class="figure-number">Figura 21: </span>Símbolo de doble aislamiento</p>
+<p><span class="figure-number">Figura 20: </span>Símbolo de doble aislamiento</p>
 </div>
 
 
-<div id="org0000072" class="figure">
+<div id="org0000078" class="figure">
 <p><img src="media/schuko-sin-tierra.png" alt="schuko-sin-tierra.png" />
 </p>
-<p><span class="figure-number">Figura 22: </span>Enchufe schuco válido para equipo con doble aislamiento (sin tierra)</p>
+<p><span class="figure-number">Figura 21: </span>Enchufe schuco válido para equipo con doble aislamiento (sin tierra)</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000076" class="outline-4">
-<h4 id="org0000076"><span class="section-number-4">5.2.6.</span> Adaptadores, ladrones, regletas</h4>
-<div class="outline-text-4" id="text-5-2-6">
+<div id="outline-container-org000007c" class="outline-4">
+<h4 id="org000007c"><span class="section-number-4">6.2.6.</span> Adaptadores, ladrones, regletas</h4>
+<div class="outline-text-4" id="text-6-2-6">
 <p>
 En ningún caso están especialmente recomendados los “adaptadores”, “ladrones” o regletas de corriente si pueden evitarse. Pero es necesario tener en cuenta que NUNCA DEBE UTILIZARSE UN ADAPTADOR CON ENTRADA EUROPLUG Y CONECTOR SCHUKO. Ya que permitiría enchufar aparatos con enchufe Schuko (de hasta 16A), cuando una entrada europlug solo está certificada para 2.5A.
 </p>
@@ -1226,9 +1333,9 @@ En ningún caso están especialmente recomendados los “adaptadores”, “ladr
 </div>
 </div>
 </div>
-<div id="outline-container-org000007c" class="outline-3">
-<h3 id="org000007c"><span class="section-number-3">5.3.</span> Cálculo aproximado del consumo eléctrico</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-org0000082" class="outline-3">
+<h3 id="org0000082"><span class="section-number-3">6.3.</span> Cálculo aproximado del consumo eléctrico</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 Todos los circuitos eléctricos permiten un consumo máximo instantáneo de corriente, expresado en Amperios. En última instancia, si lo sobrepasamos, el interruptor magnetotérmico que protege el circuito saltará, debido al exceso de demanda de corriente.
 La demanda eléctrica máxima de un dispositivo debe venir indicada por el fabricante del mismo, expresada en Amperes (Amperios)… o bien, el consumo expresado en Watts (Vatios).
@@ -1250,9 +1357,9 @@ En el caso de corriente alterna, se debe usar un factor de corrección.
 </p>
 </div>
 </div>
-<div id="outline-container-org000007f" class="outline-3">
-<h3 id="org000007f"><span class="section-number-3">5.4.</span> Problemas en el suministro eléctrico</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-org0000085" class="outline-3">
+<h3 id="org0000085"><span class="section-number-3">6.4.</span> Problemas en el suministro eléctrico</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 Los problemas más habituales en el suministro eléctrico pueden ser de diversa índole:
 </p>
@@ -1267,9 +1374,9 @@ Los problemas más habituales en el suministro eléctrico pueden ser de diversa 
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000083" class="outline-3">
-<h3 id="org0000083"><span class="section-number-3">5.5.</span> Reguladores automáticos de voltaje (AVR)</h3>
-<div class="outline-text-3" id="text-5-5">
+<div id="outline-container-org0000089" class="outline-3">
+<h3 id="org0000089"><span class="section-number-3">6.5.</span> Reguladores automáticos de voltaje (AVR)</h3>
+<div class="outline-text-3" id="text-6-5">
 <p>
 También llamados “Estabilizadores de tensión”. Un AVR es un circuito eléctrico basado en varios bobinados que intenta conseguir siempre una tensión de salida de 230V.
 Protege de bajadas y subidas de tensión, y también elimina ruidos.
@@ -1281,16 +1388,16 @@ Son dispositivos muy útiles, pero están desapareciendo como dispositivo indepe
 </p>
 
 
-<div id="org0000082" class="figure">
+<div id="org0000088" class="figure">
 <p><img src="media/avr.png" alt="avr.png" />
 </p>
-<p><span class="figure-number">Figura 23: </span>Regulador de voltaje</p>
+<p><span class="figure-number">Figura 22: </span>Regulador de voltaje</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org00000a0" class="outline-3">
-<h3 id="org00000a0"><span class="section-number-3">5.6.</span> Sistemas de Alimentación Ininterrumpida (SAI)</h3>
-<div class="outline-text-3" id="text-5-6">
+<div id="outline-container-org00000a6" class="outline-3">
+<h3 id="org00000a6"><span class="section-number-3">6.6.</span> Sistemas de Alimentación Ininterrumpida (SAI)</h3>
+<div class="outline-text-3" id="text-6-6">
 <p>
 SAI son las siglas en español de Sistema de Alimentación Ininterrupida. A menudo lo vemos abreviado también como UPS, del inglés Uninterruptiblepowersupply.
 Básicamente, un SAI es un aparato basado en baterías que es capaz de proporcionar corriente a los aparatos electrónicos como ordenadores ante la ausencia de corriente en el suministro eléctrico normal.
@@ -1319,10 +1426,10 @@ Los SAIs contienen en su interior algún tipo de batería, capaz de acumular ele
 </p>
 
 
-<div id="org0000086" class="figure">
+<div id="org000008c" class="figure">
 <p><img src="media/conexion-sai-pc.png" alt="conexion-sai-pc.png" />
 </p>
-<p><span class="figure-number">Figura 24: </span>Conexión entre SAI y ordenador</p>
+<p><span class="figure-number">Figura 23: </span>Conexión entre SAI y ordenador</p>
 </div>
 
 <p>
@@ -1334,18 +1441,18 @@ El SAI se conecta al suministro de la red eléctrica mediante un cable de alimen
 Casi todos los SAIs disponen de alguna aplicación de monitorización: se conectan al equipo que protegen por un cable serie, usb o por red. El programa de monitorización puede realizar acciones como hibernar el equipo, vaciar cachés de disco, apagar de manera seguro.
 </p>
 </div>
-<div id="outline-container-org0000088" class="outline-4">
-<h4 id="org0000088"><span class="section-number-4">5.6.1.</span> La batería, el cargador y el inversor.</h4>
-<div class="outline-text-4" id="text-5-6-1">
+<div id="outline-container-org000008e" class="outline-4">
+<h4 id="org000008e"><span class="section-number-4">6.6.1.</span> La batería, el cargador y el inversor.</h4>
+<div class="outline-text-4" id="text-6-6-1">
 <p>
 Las baterías de los SAI suelen ser de plomo y ácido, muy similares a los de los coches y las motos. Tienen una vida limitada, de unos pocos años, luego se van degradando.
 </p>
 
 
-<div id="org0000087" class="figure">
+<div id="org000008d" class="figure">
 <p><img src="media/foto-sai-bateria.png" alt="foto-sai-bateria.png" />
 </p>
-<p><span class="figure-number">Figura 25: </span>Batería interna de un SAI</p>
+<p><span class="figure-number">Figura 24: </span>Batería interna de un SAI</p>
 </div>
 
 <p>
@@ -1360,19 +1467,19 @@ Hay muchos tipos de SAI, y cuentan con todo tipo de circuitos auxiliares&hellip;
 </p>
 </div>
 </div>
-<div id="outline-container-org000008c" class="outline-4">
-<h4 id="org000008c"><span class="section-number-4">5.6.2.</span> Off-Line pasivos, también llamados "Stand-by".</h4>
-<div class="outline-text-4" id="text-5-6-2">
+<div id="outline-container-org0000092" class="outline-4">
+<h4 id="org0000092"><span class="section-number-4">6.6.2.</span> Off-Line pasivos, también llamados "Stand-by".</h4>
+<div class="outline-text-4" id="text-6-6-2">
 <p>
 Los sai off-line son los más comunes, los más sencillos y también los más económicos. Constan de un cargador que le proporciona la carga a la batería a partir de la AC del suministro eléctrico normal, y un inversor que proporciona AC corriente al aparato enchufado a partir de la batería.
 Pero el SAI Off-line sólo obtiene energía de la batería cuando hay una ausencia de suministro, un microcorte o una bajada de tensión importante. Para ello, un circuito conmutador está constantemente vigilando el suministro eléctrico, y cuando su tensión cae por debajo de un cierto límite, conmuta la salida a la batería.
 </p>
 
 
-<div id="org000008b" class="figure">
+<div id="org0000091" class="figure">
 <p><img src="media/sai-offline.png" alt="sai-offline.png" />
 </p>
-<p><span class="figure-number">Figura 26: </span>SAI offline</p>
+<p><span class="figure-number">Figura 25: </span>SAI offline</p>
 </div>
 
 <p>
@@ -1381,33 +1488,33 @@ Aunque no lo hayamos dibujado, muchos de ellos cuentan con un sencillo filtro en
 </p>
 </div>
 </div>
-<div id="outline-container-org0000090" class="outline-4">
-<h4 id="org0000090"><span class="section-number-4">5.6.3.</span> Off-Line interactivos, o activos, o con estabilizador o AVR</h4>
-<div class="outline-text-4" id="text-5-6-3">
+<div id="outline-container-org0000096" class="outline-4">
+<h4 id="org0000096"><span class="section-number-4">6.6.3.</span> Off-Line interactivos, o activos, o con estabilizador o AVR</h4>
+<div class="outline-text-4" id="text-6-6-3">
 <p>
 El estabilizador (<a href="http://en.wikipedia.org/wiki/Automatic_Voltage_Regulator">AVR- AutomaticVoltageRegulator</a>) es un circuito que es capaz de proporcionar una tensión de salida constante (230V en el caso de España), aunque la entrada tenga pequeñas fluctuaciones. Un SAI interactivo dispone de un AVR en la entrada de corriente alterna (desde la red eléctrica), y proporciona al cargador de la batería y a la salida de AC una tensión constante. Los AVR tienen un rango de trabajo. Si la entrada cae por debajo de los 175V o sube por encima de los 270V (aproximadamente), no podrán estabilizarla, y el conmutador deberá conmutar la salida a la batería.
 </p>
 
 
-<div id="org000008f" class="figure">
+<div id="org0000095" class="figure">
 <p><img src="media/sai-con-avr.png" alt="sai-con-avr.png" />
 </p>
-<p><span class="figure-number">Figura 27: </span>SAI offline interactivo</p>
+<p><span class="figure-number">Figura 26: </span>SAI offline interactivo</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000094" class="outline-4">
-<h4 id="org0000094"><span class="section-number-4">5.6.4.</span> On line, en línea o de doble conversión.</h4>
-<div class="outline-text-4" id="text-5-6-4">
+<div id="outline-container-org000009a" class="outline-4">
+<h4 id="org000009a"><span class="section-number-4">6.6.4.</span> On line, en línea o de doble conversión.</h4>
+<div class="outline-text-4" id="text-6-6-4">
 <p>
 Son la "gama alta" de los SAI. En estos SAI no hay conmutador, y en la salida nunca se obtiene la corriente directamente de la entrada. En su lugar, la batería está constantemente cargándose, y la salida se obtiene siempre de la batería.
 </p>
 
 
-<div id="org0000093" class="figure">
+<div id="org0000099" class="figure">
 <p><img src="media/sai-online.png" alt="sai-online.png" />
 </p>
-<p><span class="figure-number">Figura 28: </span>SAI online</p>
+<p><span class="figure-number">Figura 27: </span>SAI online</p>
 </div>
 
 <p>
@@ -1415,18 +1522,18 @@ Los SAI en línea no necesitan estabilizador, ya que la salida siempre está lim
 </p>
 </div>
 </div>
-<div id="outline-container-org0000097" class="outline-4">
-<h4 id="org0000097"><span class="section-number-4">5.6.5.</span> El By-pass de los SAI online:</h4>
-<div class="outline-text-4" id="text-5-6-5">
+<div id="outline-container-org000009d" class="outline-4">
+<h4 id="org000009d"><span class="section-number-4">6.6.5.</span> El By-pass de los SAI online:</h4>
+<div class="outline-text-4" id="text-6-6-5">
 <p>
 Dado que un SAI online siempre está operando con la batería, ésta no se puede sustituir sin pérdida de suministro.
 El Bypass (del inglés by-pass) es un simple conmutador, que conecta directamente la entrada de AC con la salida de AC en un SAI online, con la única intención de poder realizar tareas de mantenimiento en la batería.
 </p>
 </div>
 </div>
-<div id="outline-container-org000009a" class="outline-4">
-<h4 id="org000009a"><span class="section-number-4">5.6.6.</span> Mantenimiento</h4>
-<div class="outline-text-4" id="text-5-6-6">
+<div id="outline-container-org00000a0" class="outline-4">
+<h4 id="org00000a0"><span class="section-number-4">6.6.6.</span> Mantenimiento</h4>
+<div class="outline-text-4" id="text-6-6-6">
 <p>
 Cuando la batería de un SAI no es capaz de mantener la carga, es necesario cambiarla. Los principales fabricantes proporcionan baterías de repuesto para sus SAI. 
 El cambio de batería con el SAI enchufado es una operación delicada y debe hacerse extremando la precaución para acceder únicamente a la batería.
@@ -1434,9 +1541,9 @@ Siempre que sea posible, el cambio se debe hacer con el SAI desconectado de la c
 </p>
 </div>
 </div>
-<div id="outline-container-org000009d" class="outline-4">
-<h4 id="org000009d"><span class="section-number-4">5.6.7.</span> Capacidad y tiempo de suministro.</h4>
-<div class="outline-text-4" id="text-5-6-7">
+<div id="outline-container-org00000a3" class="outline-4">
+<h4 id="org00000a3"><span class="section-number-4">6.6.7.</span> Capacidad y tiempo de suministro.</h4>
+<div class="outline-text-4" id="text-6-6-7">
 <p>
 Los SAIs no fueron ideados para proporcionar energía a los equipos durante mucho tiempo. La idea es mantener la corriente el tiempo necesario para que el equipo pueda salvaguardar los datos adecuadamente (por ejemplo, cerrando bases de datos, servicios, o hibernando), bien manualmente o bien automáticamente&hellip; es decir&hellip; hablamos de minutos.
 Para poder hacerlo automáticamente, casi todos los SAI pueden conectarse al equipo mediante un cable USB (o un cable serie RS-232 en algunos casos). En el equipo se instala un software de control que puede realizar alguna tarea de salvaguarda cuando el SAI indica que está actuando porque no hay suministro.
@@ -1468,17 +1575,17 @@ El factor \(0.7\) es debido al desfase entre la subida de tensión y la subida d
 </div>
 </div>
 </div>
-<div id="outline-container-org00000ab" class="outline-2">
-<h2 id="org00000ab"><span class="section-number-2">6.</span> Tamaños de SAI</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org00000b1" class="outline-2">
+<h2 id="org00000b1"><span class="section-number-2">7.</span> Tamaños de SAI</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Hay SAIs de todos los tamaños, desde los muy muy pequeños para equipos domésticos y de pequeña oficina hasta los muy muy grandes, para grandes instalaciones y servidores, como éste de la foto, de 500000VA.
 </p>
 
-<div id="org00000a6" class="figure">
+<div id="org00000ac" class="figure">
 <p><img src="media/sai-en-rack.png" alt="sai-en-rack.png" />
 </p>
-<p><span class="figure-number">Figura 29: </span>SAI para una gran instalación</p>
+<p><span class="figure-number">Figura 28: </span>SAI para una gran instalación</p>
 </div>
 
 <p>
@@ -1490,9 +1597,9 @@ Cabe destacar que existen equipos de medidas normalizadas para armarios rack. Mu
 <img src="media/sai-modular-salicru.png" alt="sai-modular-salicru.png" />
 </p>
 </div>
-<div id="outline-container-org00000a8" class="outline-3">
-<h3 id="org00000a8"><span class="section-number-3">6.1.</span> Grupos electrógenos</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-org00000ae" class="outline-3">
+<h3 id="org00000ae"><span class="section-number-3">7.1.</span> Grupos electrógenos</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 Generan electricidad quemando un combustible (normalmente gasoil).
 Tienen un tiempo de conmutación muy grande (se puede compensar con un SAI intermedio o manteniendo el grupo en marcha)
@@ -1501,10 +1608,10 @@ Requieren mucho mantenimiento.
 
 
 
-<div id="org00000a7" class="figure">
+<div id="org00000ad" class="figure">
 <p><img src="media/sai-grande.png" alt="sai-grande.png" />
 </p>
-<p><span class="figure-number">Figura 30: </span>Grupo electrógeno</p>
+<p><span class="figure-number">Figura 29: </span>Grupo electrógeno</p>
 </div>
 </div>
 </div>
@@ -1512,7 +1619,7 @@ Requieren mucho mantenimiento.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-09-24 jue 11:05</p>
+<p class="date">Created: 2026-09-30 mié 10:20</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
