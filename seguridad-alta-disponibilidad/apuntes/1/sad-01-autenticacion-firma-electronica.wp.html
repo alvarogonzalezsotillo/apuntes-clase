@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-09-24 jue 11:18 -->
+<!-- 2026-09-29 mar 14:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacidad, confidencialidad</title>
@@ -57,7 +57,6 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
-  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -72,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -245,15 +244,6 @@
 <li><a href="#https">11.1. Ejemplo: HTTPS</a></li>
 </ul>
 </li>
-<li><a href="#org000007a">12. Firma digital oficial en España</a>
-<ul>
-<li><a href="#org000006a">12.1. Comunidad de Madrid: Camefirma</a></li>
-<li><a href="#org000006d">12.2. FNMT</a></li>
-<li><a href="#org0000070">12.3. DNIe</a></li>
-<li><a href="#org0000073">12.4. Uso de la firma</a></li>
-<li><a href="#org0000077">12.5. Software firmado</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -330,7 +320,7 @@ En éste tema, ahondaremos en algunas medidas y sistemas cuyo objetivo primordia
 <div class="outline-text-2" id="text-2">
 <p>
 La confidencialidad es la propiedad que nos asegura que la información llega sólo a sus usuarios legítimos. Para ello, un punto clave suele ser autenticar a éstos usuarios legítimos.
-Aunque autenticación e identificación son palabras que en el uso común pueden confundirse, en nuestro mundillo tienen significados diferentes. Identificar es decir quién eres&hellip;. y autentificarse es demostrarlo.
+Aunque autenticación e identificación son palabras que en el uso común pueden confundirse, en nuestro mundillo tienen significados diferentes. Identificar es decir quién eres&#x2026;. y autentificarse es demostrarlo.
 Por ejemplo, para meterte en la página de la asignatura, te has identificado con un nombre de usuario, pero el sistema te ha autenticado con la contraseña.
 </p>
 
@@ -354,7 +344,7 @@ Hay muchas formas de autenticar a un usuario frente a una máquina, pero desde e
 Saber algo: El usuario sabe una contraseña, o PIN, que introduce para que el sistema lo autentifique
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 1:</span> Ejemplo de contraseña y PIN</caption>
+<caption class="t-above"><span class="table-number">Tabla 1</span> Ejemplo de contraseña y PIN</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -372,7 +362,7 @@ Saber algo: El usuario sabe una contraseña, o PIN, que introduce para que el si
 Tener algo El usuario posee algún objeto que tiene grabado en su interior una contraseña, y que el sistema es capaz de leer. (Por ejemplo, tarjetas con banda magnética, Tarjetas Smartcard con chip, Llaveros de radiofrecuencia)
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 2:</span> Llave RFID y tarjeta magnética</caption>
+<caption class="t-above"><span class="table-number">Tabla 2</span> Llave RFID y tarjeta magnética</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -393,7 +383,7 @@ Tener algo El usuario posee algún objeto que tiene grabado en su interior una c
 Exhibir algún rasgo o característica física intransferible.
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Tabla 3:</span> Diferentes medidas biométricas</caption>
+<caption class="t-above"><span class="table-number">Tabla 3</span> Diferentes medidas biométricas</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -430,7 +420,7 @@ En este caso, el sistema almacena un indicador estadístico de cada usuario, tom
 Observa que:
 </p>
 <ul class="org-ul">
-<li>saber algo y tener algo, no pueden garantizar la identidad de una persona&hellip; así pues, lo que autentican es una credencial:es decir, la máquina puede autenticar que la persona tiene las credenciales de quien dice ser Por contra, la biometría, al basarse en indicadores intransferibles, puede autenticar que</li>
+<li>saber algo y tener algo, no pueden garantizar la identidad de una persona&#x2026; así pues, lo que autentican es una credencial:es decir, la máquina puede autenticar que la persona tiene las credenciales de quien dice ser Por contra, la biometría, al basarse en indicadores intransferibles, puede autenticar que</li>
 </ul>
 <p>
 alguien es quien dice ser… por supuesto, todo esto con matices.
@@ -440,7 +430,7 @@ alguien es quien dice ser… por supuesto, todo esto con matices.
 </ul>
 
 <p>
-La biometría, por el momento, se basa en técnicas estadísticas, no hay ningún número fijo que alguien tenga escrito en ningún rasgo físico&hellip; así que, en general, no puede participar en criptografía de manera directa.
+La biometría, por el momento, se basa en técnicas estadísticas, no hay ningún número fijo que alguien tenga escrito en ningún rasgo físico&#x2026; así que, en general, no puede participar en criptografía de manera directa.
 </p>
 </div>
 </div>
@@ -480,7 +470,7 @@ La idea es que un usuario de la información, utilizando alguna clave secreta nu
 
 <tr>
 <td class="org-left">Cifrar, encriptar</td>
-<td class="org-left">Los consideramos sinónimos&hellip; Es el acto de transformar la información en claro a información cifrada, sin sentido para cualquiera que no sea usuario legítimo</td>
+<td class="org-left">Los consideramos sinónimos&#x2026; Es el acto de transformar la información en claro a información cifrada, sin sentido para cualquiera que no sea usuario legítimo</td>
 </tr>
 
 <tr>
@@ -529,7 +519,7 @@ La criptografía se usa en distintas aplicaciones, pero las principales formas d
 alguno de estos grupos:
 </p>
 <ol class="org-ol">
-<li>Cifrado de información almacenada: es decir, se guardan datos cifrados en almacenamientos de memoria secundaria (discos, pendrives, archivos comprimidos, copias de seguridad, e incluso bases de datos).  Posteriormente son descifradas cuando se van a utilizar&hellip; por la misma persona que cifró la información o por cualquier otra autorizada.</li>
+<li>Cifrado de información almacenada: es decir, se guardan datos cifrados en almacenamientos de memoria secundaria (discos, pendrives, archivos comprimidos, copias de seguridad, e incluso bases de datos).  Posteriormente son descifradas cuando se van a utilizar&#x2026; por la misma persona que cifró la información o por cualquier otra autorizada.</li>
 <li>Cifrado de información en movimiento a través de redes de comunicaciones. Es decir, la información va a viajar de un lugar a otro por un medio electrónico y se envía cifrada para evitar que un posible intruso que intercepte la comunicación pueda tener acceso a ella.  Éste cifrado suele hacerse en tres puntos muy concretos, y según el ámbito de aplicación:
 <ul class="org-ul">
 <li>En el nivel físico/enlace, para evitar pérdidas de confidencialidad en LAN</li>
@@ -556,7 +546,7 @@ alguno de estos grupos:
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Para cifrar y descifrar se utiliza una única clave, que debe permanecer en secreto.</li>
-<li>Dicha clave, debe ser conocida por quien cifra y por quien descifra&hellip; así que deben comunicársela previamente utilizando un <b>canal seguro</b>.</li>
+<li>Dicha clave, debe ser conocida por quien cifra y por quien descifra&#x2026; así que deben comunicársela previamente utilizando un <b>canal seguro</b>.</li>
 <li>Se utiliza un algoritmo que utiliza de una forma la clave para cifrar, y de forma contraria la clave para descifrar.</li>
 </ul>
 
@@ -689,7 +679,7 @@ Es una evolución del cifrado del César. La tabla de sustitución ya no se calc
 
 
 <div class="org-src-container">
-<pre class="src src-c"><code>Supongamos un n&#250;mero n que est&#225; compuesto por s&#243;lo dos <span style="color: #228b22;">factores</span> <span style="color: #a0522d;">primos</span>, <span style="color: #a0522d;">es</span> decir, 
+<pre class="src src-c">Supongamos un n&#250;mero n que est&#225; compuesto por s&#243;lo dos <span style="color: #228b22;">factores</span> <span style="color: #a0522d;">primos</span>, <span style="color: #a0522d;">es</span> decir, 
 <span style="color: #a0522d;">n</span>=p&#183;q, <span style="color: #a0522d;">siendo</span> p y q primos.
 Si sabemos p y q es facil saber el valor de n: basta multiplicar. 
 Sin embargo, <span style="color: #a0522d;">si</span> s&#243;lo sabemos el valor de n, <span style="color: #a0522d;">para</span> hallar p o q es
@@ -706,7 +696,7 @@ Si p y q tuvieran unos pocos cientos de cifras, <span style="color: #a0522d;">ob
 
 En el algoritmo RSA, <span style="color: #a0522d;">el</span> m&#225;s utilizado de los asim&#233;tricos, <span style="color: #a0522d;">la</span> clave p&#250;blica 
 contiene el n&#250;mero n mientras que la privada contiene a p y q por separado.
-</code></pre>
+</pre>
 </div>
 
 <ul class="org-ul">
@@ -855,7 +845,7 @@ Vamos a dar un repaso a algunas aplicaciones de lo que hemos visto hasta ahora, 
 <h4 id="org000003d"><span class="section-number-4">9.1.1.</span> El Encrypted File System de Windows 7 y Server 2008.</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <p>
-Ambos sistemas operativos disponen de la capacidad de encriptar ficheros individuales o carpetas enteras, mediante el sistema EFS (<a href="https://en.wikipedia.org/wiki/Encrypting_File_System">Encrypted File System</a>). Desde el entorno gráfico, basta con activar una casilla en la hoja de propiedades del archivo o carpeta (Botón derecho/Propiedades/Avanzados/Cifrar contenido&hellip;)
+Ambos sistemas operativos disponen de la capacidad de encriptar ficheros individuales o carpetas enteras, mediante el sistema EFS (<a href="https://en.wikipedia.org/wiki/Encrypting_File_System">Encrypted File System</a>). Desde el entorno gráfico, basta con activar una casilla en la hoja de propiedades del archivo o carpeta (Botón derecho/Propiedades/Avanzados/Cifrar contenido&#x2026;)
 </p>
 
 
@@ -895,7 +885,7 @@ El cifrado de EFS se gestiona a través de las políticas de seguridad de Window
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listado de programa 1: </span>Ayuda de la utilidad <code>cipher</code> para EFS mediante línea de comandos</label><pre class="src src-sh"><code>Muestra o altera el cifrado de directorios [archivos] en particiones NTFS.
+<label class="org-src-name"><span class="listing-number">Listado de programa 1 </span>Ayuda de la utilidad <code>cipher</code> para EFS mediante línea de comandos</label><pre class="src src-sh">Muestra o altera el cifrado de directorios [archivos] en particiones NTFS.
 
   CIPHER [/E | /D | /C]
     <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>[/S:directorio] [/B] [/H] [nombreDeRuta [...]]
@@ -924,80 +914,80 @@ El cifrado de EFS se gestiona a través de las políticas de seguridad de Window
   CIPHER /REKEY [nombreDeRuta [...]]
 
     /B        Anular si se detecta un error. De forma predeterminada, CIPHER
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> contin&#250;a ejecut&#225;ndose aunque se detecten errores.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> contin&#250;a ejecut&#225;ndose aunque se detecten errores.
     /C        Muestra informaci&#243;n sobre el archivo cifrado.
     /D        Descifra los archivos o directorios especificados.
     /E        Cifra los archivos o directorios especificados. Los directorios
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> se marcar&#225;n para que los archivos agregados posteriormente se
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> cifren. El archivo cifrado podr&#237;a descifrarse al modificarse si
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> el directorio principal no est&#225; cifrado. Se recomienda cifrar
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> el archivo y el directorio principal.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> se marcar&#225;n para que los archivos agregados posteriormente se
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> cifren. El archivo cifrado podr&#237;a descifrarse al modificarse si
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> el directorio principal no est&#225; cifrado. Se recomienda cifrar
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> el archivo y el directorio principal.
     /H        Muestra los archivos con los atributos de sistema u ocultos.
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Estos archivos se omiten de forma predeterminada.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Estos archivos se omiten de forma predeterminada.
     /K        Crea un nuevo certificado y una nueva clave para usar con EFS.
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Si se elige esta opci&#243;n, se omite el resto de opciones.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Si se elige esta opci&#243;n, se omite el resto de opciones.
              
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Nota: de forma predeterminada, /K crea un certificado y una
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   clave que siguen la directiva de grupo actual. Si se
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   especifica EEC, se crear&#225; un certificado autofirmado
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   con el tama&#241;o de clave especificado.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Nota: de forma predeterminada, /K crea un certificado y una
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   clave que siguen la directiva de grupo actual. Si se
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   especifica EEC, se crear&#225; un certificado autofirmado
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   con el tama&#241;o de clave especificado.
                  
     /N        Esta opci&#243;n s&#243;lo funciona con /U e impedir&#225; que se actualicen
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> las claves. Se usa para buscar todos los archivos cifrados en
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> las unidades locales.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> las claves. Se usa para buscar todos los archivos cifrados en
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> las unidades locales.
     /R        Genera una clave y un certificado EFS, los guarda en un
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> archivo .PFX (que contiene el certificado y la clave privada)
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> y en un archivo .CER (que contiene s&#243;lo el certificado).
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Un administrador puede agregar el contenido del
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> archivo .CER a la directiva de recuperaci&#243;n EFS para crear la
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> clave de recuperaci&#243;n para los usuarios e importar el archivo
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> .PFX para recuperar archivos individuales. Si se especifica
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> SMARTCARD, escribe el certificado y la clave de recuperaci&#243;n en
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> una tarjeta inteligente. Se genera un archivo .CER (que contiene
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> s&#243;lo el certificado). No se genera ning&#250;n archivo .PFX.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> archivo .PFX (que contiene el certificado y la clave privada)
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> y en un archivo .CER (que contiene s&#243;lo el certificado).
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Un administrador puede agregar el contenido del
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> archivo .CER a la directiva de recuperaci&#243;n EFS para crear la
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> clave de recuperaci&#243;n para los usuarios e importar el archivo
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> .PFX para recuperar archivos individuales. Si se especifica
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> SMARTCARD, escribe el certificado y la clave de recuperaci&#243;n en
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> una tarjeta inteligente. Se genera un archivo .CER (que contiene
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> s&#243;lo el certificado). No se genera ning&#250;n archivo .PFX.
              
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Nota: de forma predeterminada, /R crea un certificado y una
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   clave de recuperaci&#243;n RSA de 2048 bits. Si se especifica
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   ECC, debe ir seguido de un tama&#241;o de clave de 256, 384
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   o 521.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Nota: de forma predeterminada, /R crea un certificado y una
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   clave de recuperaci&#243;n RSA de 2048 bits. Si se especifica
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   ECC, debe ir seguido de un tama&#241;o de clave de 256, 384
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span>   <span style="color: #e6dfb7e3b7e3;"> </span>   o 521.
                  
     /S        Realiza la operaci&#243;n especificada en el directorio indicado y en
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> todos sus archivos y subdirectorios.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> todos sus archivos y subdirectorios.
     /U        Intenta procesar todos los archivos cifrados en unidades
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> locales. Esto actualizar&#225; la clave de cifrado de archivos del
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> usuario o las claves de recuperaci&#243;n a las actuales en caso de
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> que hayan cambiado. Esta opci&#243;n no funciona con otras opciones a
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> excepci&#243;n de /N.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> locales. Esto actualizar&#225; la clave de cifrado de archivos del
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> usuario o las claves de recuperaci&#243;n a las actuales en caso de
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> que hayan cambiado. Esta opci&#243;n no funciona con otras opciones a
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> excepci&#243;n de /N.
     /W        Quita datos de espacio en disco disponible en todo el
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> volumen. Si se elige esta opci&#243;n, se omitir&#225;n todas las dem&#225;s
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> opciones. El directorio especificado puede estar en cualquier
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> ubicaci&#243;n del volumen local. Si es un punto de montaje o apunta
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> a un directorio en otro volumen, se quitar&#225;n los datos del
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> volumen.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> volumen. Si se elige esta opci&#243;n, se omitir&#225;n todas las dem&#225;s
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> opciones. El directorio especificado puede estar en cualquier
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> ubicaci&#243;n del volumen local. Si es un punto de montaje o apunta
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> a un directorio en otro volumen, se quitar&#225;n los datos del
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> volumen.
     /X        Hace una copia de seguridad del certificado y las claves EFS en
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> el archivo nombreDeArchivo. Si el archivoEfs se proporciona, se
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> har&#225; una copia de seguridad del certificado o certificados
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> actuales del usuario usados para cifrar el archivo. De lo
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> contrario, se har&#225; una copia de seguridad
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> del certificado y las claves EFS actuales del usuario.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> el archivo nombreDeArchivo. Si el archivoEfs se proporciona, se
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> har&#225; una copia de seguridad del certificado o certificados
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> actuales del usuario usados para cifrar el archivo. De lo
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> contrario, se har&#225; una copia de seguridad
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> del certificado y las claves EFS actuales del usuario.
     /Y        Muestra la vista en miniatura del certificado EFS actual en el
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> equipo local.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> equipo local.
     /ADDUSER  Agrega un usuario a los archivos cifrados especificados. Si se
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> proporciona CERTHASH, el cifrado buscar&#225; un certificado con este
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> <span style="color: #483d8b;">hash</span> SHA1. Si se proporciona CERTFILE, el cifrado extraer&#225; el
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> certificado del archivo. Si se proporciona USER, el cifrado
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> intentar&#225; ubicar el certificado del usuario en Servicios
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> de dominio de Active Directory.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> proporciona CERTHASH, el cifrado buscar&#225; un certificado con este
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> <span style="color: #483d8b;">hash</span> SHA1. Si se proporciona CERTFILE, el cifrado extraer&#225; el
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> certificado del archivo. Si se proporciona USER, el cifrado
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> intentar&#225; ubicar el certificado del usuario en Servicios
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> de dominio de Active Directory.
     /FLUSHCACHE
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Borra la memoria cach&#233; de claves EFT del usuario que realiza
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> la llamada en el servidor especificado.
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Si no se proporciona el nombre del servidor, CIPHER borra
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> la memoria cach&#233; de claves de usuario en el equipo local.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Borra la memoria cach&#233; de claves EFT del usuario que realiza
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> la llamada en el servidor especificado.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Si no se proporciona el nombre del servidor, CIPHER borra
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> la memoria cach&#233; de claves de usuario en el equipo local.
     /REKEY    Actualiza los archivos cifrados especificados para usar la clave
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> EFS configurada actual.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> EFS configurada actual.
     /REMOVEUSER
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> Quita un usuario de los archivos especificados. CERTHASH
-    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #e100b73cfb1a;"> </span> debe ser el hash SHA1 del certificado que se va a quitar.
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> Quita un usuario de los archivos especificados. CERTHASH
+    <span style="color: #acccacccffff;"> </span>   <span style="color: #e100c78dbb7a;"> </span>   <span style="color: #d68facccd68f;"> </span> debe ser el hash SHA1 del certificado que se va a quitar.
              
     directorio       Ruta de acceso de un directorio.
     nombreDeArchivo  Nombre de archivo sin extensi&#243;n.
@@ -1008,7 +998,7 @@ El cifrado de EFS se gestiona a través de las políticas de seguridad de Window
     directorio actual y de todos los archivos que contiene. Puede usar varios
     nombres de directorio y caracteres comod&#237;n. Debe usar espacios entre
     los diferentes par&#225;metros.
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
@@ -1037,7 +1027,7 @@ Para crear unidades cifradas es necesaria la versión Professional o Ultimate de
 </p>
 
 <p>
-Para los dispositivos extraíbles (pendrives, HDDs y SDDs&hellip;) windows incluye en la propia unidad un pequeño programa sin cifrar: Bitlocker On The Go, de tal manera que si se inserta el dispositivo en un sistema XP o cualquier otro compatible, pero sin Bitlocker, se ejecuta ese pequeño programa que permite leer el contenido de la unidad, aunque no escribir en ella.
+Para los dispositivos extraíbles (pendrives, HDDs y SDDs&#x2026;) windows incluye en la propia unidad un pequeño programa sin cifrar: Bitlocker On The Go, de tal manera que si se inserta el dispositivo en un sistema XP o cualquier otro compatible, pero sin Bitlocker, se ejecuta ese pequeño programa que permite leer el contenido de la unidad, aunque no escribir en ella.
 </p>
 
 
@@ -1111,7 +1101,7 @@ Fue un intento de los fabricantes de componentes Wifi de paliar la vulnerabilida
 </p>
 
 <p>
-La base de WPA es seguir utilizando RC4, pero con una serie de mejoras que lo fortalecieron, conocidas como TKIP (Temporal Key Integrity Protocol). Aunque complicadas de explicar a nivel matemático, la idea que subyace es una evolución en la clave que utiliza RC4&hellip; es decir, ir variando la clave con el tiempo de manera transparente para los clientes, junto con otros mecanismos de integridad.
+La base de WPA es seguir utilizando RC4, pero con una serie de mejoras que lo fortalecieron, conocidas como TKIP (Temporal Key Integrity Protocol). Aunque complicadas de explicar a nivel matemático, la idea que subyace es una evolución en la clave que utiliza RC4&#x2026; es decir, ir variando la clave con el tiempo de manera transparente para los clientes, junto con otros mecanismos de integridad.
 </p>
 
 <p>
@@ -1137,7 +1127,7 @@ En WPA2 se introducen dos formas de autenticar a un cliente (una tarjeta inalám
 
 <ul class="org-ul">
 <li>PSK (Pre-Shared-Key): consiste en compartir una clave (una contraseña alfanumérica) conocida por todos los usuarios de la red. Esa contraseña es la que se utiliza para generar la clave AES y realizar el cifrado.</li>
-<li>IEEE 802.1x: consiste en la utilización de un servidor de autenticación que siga el protocolo RADIUS (Remote Access Dial-In User Server). Un servidor RADIUS se instala en un ordenador de la red, y almacena nombres de usuario y contraseña. Cuando está activado IEEE802.1x, el punto de acceso preguntará al usuario un nombre de usuario y una contraseña&hellip; consultará entonces al servidor RADIUS y si este contesta afirmativamente se le dejará pasar. La clave que se genera para cifrar es <b>única</b> para ese usuario.</li>
+<li>IEEE 802.1x: consiste en la utilización de un servidor de autenticación que siga el protocolo RADIUS (Remote Access Dial-In User Server). Un servidor RADIUS se instala en un ordenador de la red, y almacena nombres de usuario y contraseña. Cuando está activado IEEE802.1x, el punto de acceso preguntará al usuario un nombre de usuario y una contraseña&#x2026; consultará entonces al servidor RADIUS y si este contesta afirmativamente se le dejará pasar. La clave que se genera para cifrar es <b>única</b> para ese usuario.</li>
 </ul>
 
 
@@ -1251,105 +1241,10 @@ Por supuesto, el proceso incluye muchos pasos intermedios no descritos aquí, po
 </div>
 </div>
 </div>
-<div id="outline-container-org000007a" class="outline-2">
-<h2 id="org000007a"><span class="section-number-2">12.</span> Firma digital oficial en España</h2>
-<div class="outline-text-2" id="text-12">
-<p>
-En el contexto de la firma digital, en España tenemos dos aplicaciones clave.
-Ambas sirven para identificarse ante las administraciones públicas, y firmar actos administrativos (solicitudes, informes, declaraciones, etc&hellip;)
-</p>
-
-<p>
-Fuera de las administraciones públicas, también lo utilizan algunas pocas empresas privadas, principalmente para autenticación (bancos, aseguradoras y otras entidades financieras principalmente).
-</p>
-</div>
-<div id="outline-container-org000006a" class="outline-3">
-<h3 id="org000006a"><span class="section-number-3">12.1.</span> Comunidad de Madrid: Camefirma</h3>
-<div class="outline-text-3" id="text-12-1">
-<ol class="org-ol">
-<li>Presolicitud de certificado
-<ul class="org-ul">
-<li><a href="https://www.comunidad.madrid/atencion-ciudadano/certificado-firma-electronica-ciudadano">https://www.comunidad.madrid/atencion-ciudadano/certificado-firma-electronica-ciudadano</a></li>
-</ul></li>
-<li>Se recibe por email una contraseña de descarga y dónde confirmar la solicitud</li>
-<li>Se confirma presencialmente con DNI</li>
-<li>Se recibe un email el enlace de descarga</li>
-<li>Se descarga el certificado</li>
-<li>Se recibe un email con la clave simétrica que protege la clave privada, y un pin de revocación</li>
-<li>Se instala el certificado</li>
-<li>Si se pierde el control del certificado, se revoca 
-<ul class="org-ul">
-<li><a href="https://status.camerfirma.com/certificados_2010/revocar_certificado.php">https://status.camerfirma.com/certificados_2010/revocar_certificado.php</a></li>
-</ul></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org000006d" class="outline-3">
-<h3 id="org000006d"><span class="section-number-3">12.2.</span> FNMT</h3>
-<div class="outline-text-3" id="text-12-2">
-<p>
-La Fábrica Nacional de Moneda y Timbre (FNMT) emite a cualquier ciudadano español un certificado x509 en la que ella es CA (Autoridad Certificadora) y que contiene nuestra identidad y una clave privada que permite firma electrónica.
-</p>
-</div>
-</div>
-<div id="outline-container-org0000070" class="outline-3">
-<h3 id="org0000070"><span class="section-number-3">12.3.</span> DNIe</h3>
-<div class="outline-text-3" id="text-12-3">
-<p>
-La Policía Nacional expide el DNI electrónico (DNIe) que es una tarjeta que además de hacer las mismas funciones físicas que un DNI tradicional permite la firma electrónica.
-Dispone de un Chip criptográfico tipo SmartCard, que contiene en su interior la identidad del ciudadano y una clave privada que permite la firma electrónica. También tiene en sus interior otros datos del ciudadano.
-Puede utilizarse para identificarse ante la administración, y para firma electrónica, pero necesita de un lector de tarjetas SmartCard compatible, y de la instalación de algún software en los ordenadores en que se vaya a utilizar.
-La ventaja del DNIe reside en que la clave privada no se puede extraer del chip.
-Realmente es el propio chip del DNI el que realiza la firma de manera autónoma.
-No obstante, para que el DNI firme se requiere de un PIN, que es susceptible de ser interceptado.
-</p>
-</div>
-</div>
-<div id="outline-container-org0000073" class="outline-3">
-<h3 id="org0000073"><span class="section-number-3">12.4.</span> Uso de la firma</h3>
-<div class="outline-text-3" id="text-12-4">
-<p>
-En el sitio <a href="http://firmaelectronica.gob.es/">http://firmaelectronica.gob.es/</a> podemos encontrar multitud de recursos para realizar firma electrónica con validez legal, basado en cualquiera de los dos certificados oficiales.
-</p>
-
-<p>
-La aplicación <b>AutoFirma</b> permite, entre otras cosas:
-</p>
-<ul class="org-ul">
-<li>Firmar cualquier fichero (de office, de LibreOffice, pdf, imagenes, etc)</li>
-<li>Realizar firma electrónica on-line en sitios web de la administración pública</li>
-<li>Comprobar firmas digitales</li>
-</ul>
-
-<p>
-La aplicación <b>Adobe Acrobat</b> permite utilizar un certificado X509 (DNIe, FNMT) para firmar digitalmente un PDF. La firma digital se guarda en el propio PDF y visualmente se ve un cuadro con los datos de la firma. Aunque un PDF firmado se puede imprimir, sólo se puede comprobar la firma teniendo el fichero
-</p>
-
-
-<p>
-El sitio web <a href="https://valide.redsara.es/valide/">https://valide.redsara.es/valide/</a> permite validar firmas en documentos sin necesidad de instalar ningún software.
-</p>
-</div>
-</div>
-<div id="outline-container-org0000077" class="outline-3">
-<h3 id="org0000077"><span class="section-number-3">12.5.</span> Software firmado</h3>
-<div class="outline-text-3" id="text-12-5">
-<p>
-Los ejecutables aplicaciones de Windows (y en otros sistemas operativos, por ejemplo, Android) llevan una firma digital, que los sistemas pueden comprobar durante la instalación. También se utiliza para evitar la copia en algunas videoconsolas.
-</p>
-
-
-<div id="org0000076" class="figure">
-<p><img src="media/firma-de-programa-windows.png" alt="firma-de-programa-windows.png" />
-</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-09-24 jue 11:18</p>
+<p class="date">Created: 2026-09-29 mar 14:02</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
