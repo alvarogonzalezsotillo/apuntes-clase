@@ -58,5 +58,14 @@ Ej: En la dirección web https://www.caixabank.es me muestran un certificado x50
 
   
 
+** Revocación de un certificado
+Cuando un usuario considera que un certificado ya no debe ser válido, ya por razones administrativas, o porque se sospecha se ha perdido el control sobre la clave privada, puede revocar el certificado.
+
+Generalmente, es [[https://status.camerfirma.com/certificados_2010/revocar_certificado.php][un formulario web de la entidad que expidió el certificado]], que tras la autenticación del usuario permite notificar esta revocación.
+
+Los certificados suelen incluir una URL de comprobación de vigencia [[https://en.wikipedia.org/wiki/Certificate_revocation_list][(CRL, certificate revocating list]]). Los programas que comprueban certificados deben consultar esta URL, que decide si el certificado fue revocado o no.
+
+La operación de revocación de un certificado es irreversible, no puede deshacerse y el usuario necesitará un nuevo certificado.
+
 
 
