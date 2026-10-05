@@ -1,0 +1,8 @@
+
+
+
+| Fase 1 | Servidor LAMP                                                             |
+| Fase 2 | Wordpress instalado en LAMP                                               |
+| Fase 3 | Proxy inverso frente a servidor Apache y servidor PhpMyAdmin              |
+| Fase 4 | Acceso mediante VPN a backend PhpMyAdmin y SSH a container Apache y MySQL |
+

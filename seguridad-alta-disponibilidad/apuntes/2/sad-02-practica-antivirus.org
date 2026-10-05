@@ -1,0 +1,112 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+#+OPTIONS: author:nil date:nil num:t toc:t
+#+LATEX_HEADER: \lhead{SAD}
+#+LATEX_HEADER: \rhead{Antivirus y \textit{malware}}
+#+title: Antivirus y /malware/
+
+
+
+* Objetivo de la práctica
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+Durante el desarrollo de esta práctica, el alumno infectará una máquina virtual de Windows con un /malware/. Los objetivos  de la práctica son:
+- reconocer el /malware/ como un proceso más del sistema operativo.
+- localizar el /malware/ y eliminarlo del sistema de forma manual, sin utilizar un antivirus.
+- configurar y utilizar un antivirus  
+
+
+
+* Preparación de una máquina virtual
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+Instalar un /malware/ es una operación *arriesgada*, por lo que no se recomienda utilizar la máquina real para esta práctica. Necesitaremos una máquina virtual con las siguientes características:
+- Sistema operativo Windows 7,8, 10 u 11
+- No se necesitan más de 4G de memoria
+- Conexión a Internet, para bajar el virus
+
+
+
+
+* Configuración de antivirus (/Windows defender/) (1 punto)
+#+latex: \textattachfile[mimetype=application/zip,author={password-alumno.zip},description={password-alumno.zip},subject={password-alumno.zip}]{./malware/password-alumno.zip}{} \vspace{-4em}
+
+1. Copia el fichero [[file:malware/password-alumno.zip][malware/password-alumno.zip]] a una máquina virtual de Windows.
+2. Intenta descomprimirlo en Windows, con la contraseña =alumno=.
+   - Seguramente no lo consigas. indica qué ha ocurrido, con los correspondientes mensajes de aviso o error
+   - Si lo consigues, explica cómo lo has hecho  
+3. Configura /Windows defender/ para que ignore una carpeta y desactive la protección en tiempo real.
+   - Descomprime allí el fichero, y explica qué contiene
+  
+
+*  Instalación del /malware/ (0 puntos)
+#+latex: \textattachfile[mimetype=application/zip,author={article_FB.vbs.zip},description={article_FB.vbs.zip},subject={article_FB.vbs.zip}]{./malware/article_FB.vbs.zip}{} \vspace{-2em}
+
+Descarga el fichero [[file:malware/article_FB.vbs.zip]]. Descomprímelo con la contraseña =virus= y ejecútalo.
+
+
+*  Localización y eliminación del /malware/ (4 puntos)
+Utiliza estas dos herramientas:
+- [[https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer][procexp]]: lista de programas en ejecución
+- [[https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns][autoruns]]: lista de programas que se ejecutan automáticamente en Windows, sin intervención directa del usuario
+    
+
+Con ellas:
+- Localiza el proceso /malware/
+- Localiza el/los ficheros ejecutables del /malware/
+- Localiza de qué forma se ejecuta cada vez que se inicia Windows o se hace /login/
+
+Tras esto, desactiva y elimina el /malware/ de forma manual, sin activar el antivirus.
+
+* Contagia un /pen drive/ (3 puntos)
+#+latex:  \begin{Aviso}[Precaución]
+    Utiliza una memoria USB que no contenga datos importantes, porque por seguridad deberá formatearse al finalizar la práctica.
+#+latex:  \end{Aviso}
+
+- Usa un /pen drive/ que en el directorio raíz tenga al menos dos ficheros de datos (TXT, DOCX, PDF) y dos directorios.
+- Conecta la unidad USB a la máquina virtual
+- Describe los cambios que se han producido en la unidad USB, y de qué forma contribuyen a la expansión del /malware/.
+  - Será más fácil si el /pen drive/ se contecta a un ordenador linux.
+  
+* Eliminación del /malware/ por un antivirus (2 puntos)
+- Activa /Windows defender/ y no ignores ninguna carpeta
+- observa cómo detecta y elimina los dos /malware/ instalados
+  - Debe encontrar el del fichero  [[file:malware/password-alumno.zip][malware/password-alumno.zip]] y el de  [[file:malware/article_FB.vbs.zip]].
+- Ejecuta un escaneo de todo el disco, por si acaso, y también de la unidad USB.
+
+#+latex:  \begin{Aviso}[Precaución]
+    Aunque creas que has desinstalado el /malware/ del la unidad USB, formatéala para mayor seguridad
+#+latex:  \end{Aviso}
+
+  
+  
+
+* Qué se valorará
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+El trabajo debe ser un /*tutorial*/ de cómo localizar manualmente un /malware/ y configurar el antivirus. Por tanto, no es correcto:
+- Incluir tal cual los enunciados en el trabajo
+- Simplemente, poner pantallazos
+
+
+Se valorará:
+- Que cada paso quede bien documentado. 
+- La corrección técnica (que funcione)
+- Que esté correctamente redactado, de forma que nuestro lector lo entienda 
+- La apariencia profesional:
+  - Estética
+  - Organización
+  - Homogeneidad de formatos y estilos
+  
+* Instrucciones de entrega
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+- El ejercicio se realizará y entregará de manera individual.
+- Los trabajos pueden entregarse como un documento (DOCX, PDF, ODT), o como una entrada de blog.
+- La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.

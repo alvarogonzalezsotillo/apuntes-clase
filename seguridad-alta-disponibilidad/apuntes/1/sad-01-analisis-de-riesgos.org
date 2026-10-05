@@ -5,31 +5,20 @@
 
 * Análisis de riesgos
 
-Hasta ahora, hemos planteado algunos conceptos básicos de la seguridad.... utilizando una terminología informal.
-
-En el ámbito de la seguridad, se utiliza sin embargo, una terminología formal y común para todas las disciplinas de seguridad (la seguridad informática incluida, por supuesto).
-
-El *Análisis de riesgos* es una acción extremadamente común en el estudio de la seguridad de un sistema. Consiste en estudiar, analizar, reflexionar y proponer medidas de seguridad fijándose en algunos aspectos de un sistema de información. Es decir, es un estudio dirigido, acotado... destinado a reflexionar sobre una parte o unos aspectos concretos de la seguridad.
-
-Podría hacerse referido a la seguridad de un sistema informático al completo, pero esa es una tarea titánica... mejor enfocarse. Si es necesario hacer un análisis de riegos de todo un sistema es mejor descomponerlo en partes o aspectos y hacer análisis de cada uno de ellos.
+El *Análisis de riesgos* consiste en estudiar, analizar, reflexionar y proponer medidas de seguridad fijándose en algunos aspectos de un sistema de información. Es decir, es un estudio dirigido, acotado... destinado a reflexionar sobre una parte o unos aspectos concretos de la seguridad.
 
 Este análisis suele dar como resultado *documentación escrita*. Es decir, el análisis tiene valor en sí mismo, pero es necesario darlo a conocer.
 
-Aunque tiene un carácter ciertamente esquemático y técnico, debe estar lo suficientemente redactado y razonado como para que cualquier persona entienda su contenido... de qué va, qué es lo que se está estudiando, qué elementos se ven afectados, por qué se está realizando el estudio, por qué se proponen según qué medidas, etc.
-
-Existen modelos formales que nos ayudan a saber qué pasos realizar para hacer un análisis de riesgos de calidad y exhaustivo (ej MAGERIT). Nosotros, en la asignatura, lo haremos algo más informalmente, adecuado para análisis de sistemas o subsistemas en la pequeña o mediana empresa... pero eso no es excusa para descuidar su aspecto, profundidad e incidencia.
-
-** Elementos de estudio... ¿En qué tenemos que fijarnos?
-
-Ya hemos comentado que un *análisis de riesgos* suele ir dirigido, es decir... se motiva por la presenta de supuestos peligros que queremos estudiar, o bien... porque directamente se ha producido un incidente y queremos evitar que se repita uno igual o similar.
-
-Nos fijaremos en éstos elementos:
+Existen modelos formales que nos ayudan a saber qué pasos realizar para hacer un análisis de riesgos de calidad y exhaustivo (ej MAGERIT).
+** Elementos de estudio
 
 *** ACTIVOS:
 
 En lenguaje informal (y en contabilidad), un activo es cualquier cosa que tenga valor para la empresa.
 
 En el ámbito del análisis de riesgos, se denomina así a cualquier recurso de la empresa que sea necesario para que el sistema de información funcione de forma adecuada. Son activos elementos de los datos, el software, el hardware, el personal, las redes, las instalaciones e incluso los servicios y actividades de la empresa. En un análisis de riesgos los enumeraremos y explicaremos lo que son.
+
+[[https://pilar.ccn-cert.cni.es/docman/documentos/2-magerit-v3-libro-ii-catalogo-de-elementos/file][MAGERIT tiene un catálogo de tipos de activos]].
 
 *** AMENAZAS:
 
@@ -57,21 +46,8 @@ Hay muchos tipos de amenazas... cortes eléctricos, fallos en hardware, riesgos 
 - Radiaciones electromagnéticas: Sabemos que cualquier aparato eléctrico emite radiaciones y que dichas radiaciones se pueden capturar y reproducir si se dispone del equipamiento adecuado. 
 - Desastres naturales: Aquí englobamos gotas frías, las inundaciones por riadas o las lluvias torrenciales puntuales, terremotos, etc. 
 
-
-Pero en función del daño o manipulación que puedan hacer sobre la información, suelen caer en uno de éstos grupos:
-
--  De *interrupción*: se deshabilita el acceso a la información, se cortan comunicaciones o accesos.
-
--  De *interceptación*: se capta la información por personas o elementos no autorizados
-
--  De *modificación*: La información se altera, bien definitiva o bien circunstancialmente
-
--  De *fabricación*: se genera información nueva y fraudulenta o errónea.
-
-Como ya comentamos, según su origen pueden ser:
-
+Según su origen pueden ser:
 -  Fortuitas (o accidentales)
-
 -  Fraudulentas (o intencionadas)
 
 *** VULNERABILIDADES:
@@ -82,23 +58,17 @@ Ej: (Un tanto exagerado). Imaginemos la siguiente amenaza: "Lluvia de meteoritos
 
 Si los activos que pueden verse afectados son "Yo mismo" y "Superman"... El primer activo es totalmente vulnerable a la amenaza... El segundo activo es prácticamente invulnerable.
 
-Otro ejemplo: (Menos exagerado). El famoso virus "Sasser" estaba programado para aprovecharse de algunas vulnerabilidades de algunos sistemas operativos de la serie Windows. Algunos sistemas Windows eran totalmente vulnerables... otros sólo parcialmente o eran completamente invulnerables. Todos los sistemas tipo unix eran invulnerables.
+Otro ejemplo: El virus "Sasser" estaba programado para aprovecharse de algunas vulnerabilidades de algunos sistemas operativos de la serie Windows. Algunos sistemas Windows eran totalmente vulnerables... otros sólo parcialmente o eran completamente invulnerables. Todos los sistemas tipo unix eran invulnerables.
 
 *** RIESGOS
 
 Riesgo es la probabilidad de que se materialice una amenaza y produzca un daño sobre un activo aprovechando su vulnerabilidad ante dicha amenaza. Es decir... la definición de *riesgo* está íntimamente ligada por un lado a los activos y sus vulnerabilidadades, y por otro a las amenazas.
 
-Ej.: Siguiendo con el ejemplo anterior... el *riesgo* de que se produzca una lluvia de meteoritos sobre ésta población y me afecte a mí (el activo) es muy bajo. (No se conocen lluvias de meteoritos en los últimos siglos sobre ésta población).
+Ej.: Siguiendo con el ejemplo anterior... el *riesgo* de que se produzca una lluvia de meteoritos sobre ésta población y me afecte a mí (el activo) es muy bajo. (No se conocen lluvias de meteoritos en los últimos siglos sobre esta población).
 
-El el riesgo de que se produzca una lluvia de meteoritos sobre ésta población y afecte a Superman (el activo) es practicamente inexistente. (Además de que no se conocen lluvias de meteoritos en los últimos siglos sobre ésta población, tampoco Superman suele estar por aquí, con lo cual, si se produjera una lluvia de meteoritos es poco probable que le pillara, y en caso de que le pillara, es invulnerable a los meteoritos).
-
-El riesgo de un virus tipo "Iloveyou" o "wannacry" afecte a un sistema Windows fue muy alto, ya que están diseñados específicamente para propagarse y aprovechar vulnerabilidades de éstos.
+El riesgo de un virus tipo "Iloveyou" o "wannacry" afecte a un sistema Windows fue muy alto, ya que están diseñados específicamente para propagarse y aprovechar vulnerabilidades de éstos. Pero ya no es tan probable que virus parecidos puedan volver a producirse.
 
 Lo importante de los riesgos es *estimarlos...* hacer una estimación de la probabilidad de que aparezca la amenaza y afecte a un determinado activo.
-
-La estimación no es más que eso: una forma de intentar "adivinar" en qué grado de probabilidad una amenaza afectaría a un activo.
-
-A menudo, se diseñan herramientas (estadísticas, matemáticas, probabilísticas...) para intentar evaluar los riesgos de la manera más cuantificada posible (es decir, con números)... Si utilizamos alguna de éstas herramientas para evaluar un riesgo, es necesario citarla /siempre/.
 
 Ante la detección de un riesgo, se puede optar por tres alternativas:
 
@@ -108,7 +78,7 @@ Ante la detección de un riesgo, se puede optar por tres alternativas:
 
 -  *Transferirlo*. Traspasar a un tercero la gestión de ese riesgo: típicamente, *contratar un seguro* para ese riesgo. Tiene sentido cuando el coste de la prevención es elevado, también el de la reparación... pero el riesgo de que ocurra es bajo.
 
-[[file:impacto-probabilidad.png]]
+[[file:media/impacto-probabilidad.png]]
 
 *** ATAQUE:
 
@@ -120,7 +90,13 @@ En función del impacto causado y la propiedad del sistema vulnerada, los ataque
 
 -  *ataque pasivo*: Si solamente se accede a información de manera no autorizada o por canales no autorizados (Es decir, se compromete la /confidencialidad/ del sistema).
 
-Un ataque también puede ser *directo* si se produce directamente desde el atacante hasta el activo, o *indirecto* si se hace a través de recursos o personas intermediarias.
+| Nombre del ataque | Descripción                                                                                                                                                                                                  |
+|-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Interrupción      | Un recurso del sistema o la red deja de estar disponible debido a un ataque.                                                                                                                                 |
+| Generación        | Falsificación del sistema. Se crea un producto (por ejemplo, una página Web) difícil de distinguir del auténtico y que puede utilizarse para hacerse, por ejemplo, con información confidencial del usuario. |
+| Interceptación    | Un intruso accede a la información de nuestro equipo o a la que enviamos por la red.                                                                                                                         |
+| Modificación      | La información ha sido modificada sin autorización, por lo que ya no es válida.                                                                                                                              |
+
 
 *** IMPACTO:
 
@@ -146,7 +122,7 @@ Es conveniente tener identificados los posibles SPOFs de un sistema informático
 En sistemas en los que se quiere lograr alta disponibilidad, los componentes del SPOF suelen ser redundados.
 
 #+caption: En una red de ordenadores, un único enrutador probablemente es un SPOF.
-[[file:ejemplo-spof.png]]
+[[file:media/ejemplo-spof.png]]
 
 
 
@@ -181,7 +157,7 @@ Después, deberíamos seguir un cierto esquema, que, sin duda pasa por estos pun
 Es importante resaltar que las medidas de seguridad activas intentan eliminar una *vulnerabilidad*, mientras que las medidas de seguridad pasivas mitigan los impactos de un daño producido por una *amenaza*
 
 #+caption: Resumen de medidas activas y pasivas
-[[file:diagrama-seguridad-y-medidas.svg]]
+[[file:media/diagrama-seguridad-y-medidas.svg]]
 
 En conclusión.... el *análisis de riesgos* es mucho más que un documento... ES UN *ANÁLISIS*: un estudio y reflexión del profesional que lo realiza, y se refiere la seguridad de algún aspecto de un sistema informático, con aporte de soluciones para reducir los riegos, y estudio y evaluación de todos los elementos implicados, desde los puntos de vista más amplios posible.
 
@@ -189,6 +165,11 @@ Es la herramienta clave de la SEGURIDAD, tanto informática como de cualquier ot
 
 Más[[http://es.wikipedia.org/wiki/An%C3%A1lisis_de_riesgo][ /Análisis de riesgos/]] en Wikipedia.
 
+
+** Herramientas para análisis de riesgos
+
+- MAGERIT. Es una metodología de análisis y gestión de riesgos de los sistemas de información. En inglés Methodology for Information Systems Risk Analysis and Management. 
+- PILAR. Es un procedimiento informático-lógico para el análisis y gestión de riesgos, que sigue la metodología MAGERIT. De uso exclusivo de la Administración Pública Española. 
 * Políticas de seguridad
 
 Llamamos así a las *directrices u objetivos* de una organización con respecto a la seguridad.
@@ -246,6 +227,8 @@ En ese sentido, para cada contingencia previsible (cada posible amenaza), deber�
 
 Los planes de contingencia forman parte de las políticas de seguridad de una empresa.
 
+[[file:sad-01-plan-de-contingencia-guia-y-ejemplo.pdf][Ejemplo de plan de contingencia]].
+
 [más: [[http://es.wikipedia.org/wiki/Plan_de_Contingencias][/Planes de contingencia/]] en wikipedia]
 
 * Auditorías de seguridad
@@ -271,5 +254,7 @@ más:
 -  /[[https://es.wikipedia.org/wiki/Examen_de_penetraci%C3%B3n][pentesting]]/ en wikipedia
    
 #+caption: Diagrama de documentos del análisis de riesgos
-[[file:diagrama-analisis-riesgos.svg]]
+[[file:media/diagrama-analisis-riesgos.svg]]
 
+[[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Ejercicio%2BAn%C3%A1lisis%2Bde%2Briesgos.pdf][Ejemplo de análisis de riesgos]]
+[[https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala/pluginfile.php/192508/mod_workshop/intro/Plan%20de%20contingencia%20%20-%20Guia%20y%20ejemplo.pdf][Ejemplo de plan de contingencias]]
