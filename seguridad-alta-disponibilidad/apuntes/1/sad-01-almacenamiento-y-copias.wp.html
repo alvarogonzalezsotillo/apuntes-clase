@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-10-05 lun 10:27 -->
+<!-- 2026-10-06 mar 12:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dispositivos de almacenamiento y copias de seguridad</title>
@@ -248,24 +248,17 @@
 <li><a href="#org0000062">6.4. Un caso particular: iSCSI SAN</a></li>
 </ul>
 </li>
-<li><a href="#org000006e">7. La detección del deterioro de los discos</a>
+<li><a href="#org0000068">7. Sistemas de fichero distribuidos</a></li>
+<li><a href="#org000007d">8. El respaldo de los datos: la copia de seguridad.</a>
 <ul>
-<li><a href="#org0000068">7.1. CRC</a></li>
-<li><a href="#org000006b">7.2. S.M.A.R.T.</a></li>
+<li><a href="#org000006b">8.1. Tipos de copias de seguridad.</a></li>
+<li><a href="#org000006e">8.2. Los medios en los que se guardan las copias</a></li>
+<li><a href="#org0000071">8.3. Diseño de las políticas de respaldo.</a></li>
+<li><a href="#org0000074">8.4. Encriptación</a></li>
+<li><a href="#org0000077">8.5. El bit de archivo y la fecha de modificación.</a></li>
+<li><a href="#org000007a">8.6. Políticas de respaldo.</a></li>
 </ul>
 </li>
-<li><a href="#org0000072">8. Redundancia en servidores: clústeres.</a></li>
-<li><a href="#org0000087">9. El respaldo de los datos: la copia de seguridad.</a>
-<ul>
-<li><a href="#org0000075">9.1. Tipos de copias de seguridad.</a></li>
-<li><a href="#org0000078">9.2. Los medios en los que se guardan las copias</a></li>
-<li><a href="#org000007b">9.3. Diseño de las políticas de respaldo.</a></li>
-<li><a href="#org000007e">9.4. Encriptación</a></li>
-<li><a href="#org0000081">9.5. El bit de archivo y la fecha de modificación.</a></li>
-<li><a href="#org0000084">9.6. Políticas de respaldo.</a></li>
-</ul>
-</li>
-<li><a href="#org000008a">10. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -315,6 +308,14 @@ window.addEventListener("load",()=>{
 }
 
 </style>
+<p>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-almacenamiento-y-copias.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-almacenamiento-y-copias.wp.html</a>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-analisis-de-riesgos.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-analisis-de-riesgos.wp.html</a>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-autenticacion-firma-electronica.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-autenticacion-firma-electronica.wp.html</a>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-Introduccion-a-la-seguridad-informatica.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-Introduccion-a-la-seguridad-informatica.wp.html</a>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-pki.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-pki.wp.html</a>
+<a href="https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-seguridad-fisica.wp.html">https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-seguridad-fisica.wp.html</a>
+</p>
 <div id="outline-container-org0000000" class="outline-2">
 <h2 id="org0000000"><span class="section-number-2">1.</span> Introducción</h2>
 <div class="outline-text-2" id="text-1">
@@ -333,10 +334,6 @@ Hablaremos de dos conceptos clave: la redundancia y el respaldo de la informaci�
 <li>La redundancia es la técnica por la cual la información se almacena en varios sitios, o de varias formas, de tal manera que ante un fallo en un medio de almacenamiento debido a cualquier causa física o a simple deterioro por el uso, se pueda seguir trabajando&hellip; pero éste mecanismo debe ser transparente&hellip; Si se produce un fallo, la actividad de los sistemas informáticos no debería verse afectada. Los sistemas RAID son el ejemplo típico de almacenamiento redundante.</li>
 <li>El respaldo es el acto por el cual se almacena adrede una copia de información en un medio destinado a reconstruir la información original sólo en caso de pérdida, por un ataque bien accidental o fortuito. El ejemplo típico lo constituyen las copias de seguridad. Hacer una copia de seguridad puede ser algo tan sencillo como copiar una carpeta periódicamente a pendrive&hellip;  pero ésto puede plantear problemas de seguridad obvios. De ello trataremos en el apartado correspondiente.</li>
 </ul>
-
-<p>
-Tanto una cosa como la otra no pueden evitar ataques (la redundancia no puede evitar el deterioro de un dispositivo ni el respaldo puede evitar una posible pérdida de la información original)&hellip; así que ambas son medidas de seguridad <b>PASIVAS</b>.  También hablaremos del almacenamiento y la organización de servidores en ambiente profesional.
-</p>
 </div>
 </div>
 <div id="outline-container-org000001f" class="outline-2">
@@ -1046,6 +1043,7 @@ Las combinaciones de RAID buscan conseguir las ventajas de distintos niveles RAI
 <li>que éstos se corrompan</li>
 <li>que sufran la modificación o borrado accidental por parte del usuario</li>
 <li>que un fallo físico en otro componente del sistema afecten a los datos.</li>
+<li>RAID no es un <i>backup</i></li>
 </ul></li>
 <li>RAID <b>no simplifica la recuperación</b> de un desastre (algo más allá del simple deterioro de un disco). Cuando se trabaja con un solo disco, éste es accesible normalmente mediante un controlador SATA o SCSI incluido en la mayoría de los sistemas operativos. Podemos sacar el disco y llevarlo a otro ordenador y leerlo. Sin embargo, las controladoras RAID <b>necesitan controladores software específicos</b>. Las herramientas de recuperación que trabajan con discos simples en controladoras genéricas necesitarán controladores especiales para acceder a los datos de los conjuntos RAID. Si estas herramientas no los soportan, los datos serán inaccesibles para ellas.</li>
 <li>RAID <b>no facilita el traslado</b> de los discos a un sistema nuevo. Cuando se usa un solo disco, es relativamente fácil trasladar el disco a un sistema nuevo: basta con conectarlo, si cuenta con la misma interfaz. Con los discos de un conjunto RAID no es tan sencillo. Dado que los distintos fabricantes de almacenamientos RAID usan diferentes formas de implementar los niveles es virtualmente imposible <b>mover los discos de un conjunto RAID a otro dispositivo RAID diferente</b>.</li>
@@ -1177,117 +1175,35 @@ Este tipo de SAN han experimentado un incremento importante en su utilización e
 </div>
 </div>
 </div>
-<div id="outline-container-org000006e" class="outline-2">
-<h2 id="org000006e"><span class="section-number-2">7.</span> La detección del deterioro de los discos</h2>
+<div id="outline-container-org0000068" class="outline-2">
+<h2 id="org0000068"><span class="section-number-2">7.</span> Sistemas de fichero distribuidos</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-Los sistemas redundantes deben marcar un disco como inutilizado cuando detectan un fallo.
+Existen sistemas de ficheros pensados desde el principio para:
 </p>
-</div>
-<div id="outline-container-org0000068" class="outline-3">
-<h3 id="org0000068"><span class="section-number-3">7.1.</span> CRC</h3>
-<div class="outline-text-3" id="text-7-1">
-<p>
-El Control de Redundancia Cíclica (CRC) es un mecanismo matemático que sirve de comprobación de la integridad de los datos, y que se calcula cada vez que se leen o se escriben datos en un almacenamiento. El cálculo del CRC puede detectar fallos en un disco&hellip; una vez que éstos fallos se han producido&hellip; es decir, cuando el disco no es capaz de leer o escribir bien un sector.
-</p>
-</div>
-</div>
-<div id="outline-container-org000006b" class="outline-3">
-<h3 id="org000006b"><span class="section-number-3">7.2.</span> S.M.A.R.T.</h3>
-<div class="outline-text-3" id="text-7-2">
-<p>
-Pero por otro lado, sabemos que todos los discos duros se deterioran con el tiempo de manera inevitable. Los fabricantes de discos duros han desarrollado un sistema de auto-monitorización llamado SMART (Self-Monitoring Analysis and Reporting Technology).  El sistema viene implementado en mayor o menor medida en las unidades de disco. Consta de una serie de sensores que miden atributos físicos o lógicos relativos al funcionamiento del disco duro.
-</p>
+<ul class="org-ul">
+<li>Ser accedidos desde varios servidores</li>
+<li>Poder añadir capacidad según se necesite</li>
+<li>Presentar tolerancia a fallos</li>
+</ul>
 
 <p>
-Cada uno de esos atributos se representa con un valor de un byte. Esos atributos van bajando su valor a medida que el disco se va deteriorando. Cuando caen por debajo de un mínimo marcado por el fabricante y distinto para cada uno de los atributos, podemos considerar que el sistema SMART nos indica que el disco duro va a sufrir un fallo definitivo en breve.
+Algunos ejemplos:
 </p>
+<ul class="org-ul">
+<li><a href="https://docs.ceph.com/en/quincy/cephfs/index.html">CEPHFS</a></li>
+<li><a href="https://hadoop.apache.org/">Hadoop</a></li>
+</ul>
+
 
 <p>
-Esos valores mínimos han sido fijados por el fabricante basándose en datos estadísticos&hellip; así que puede que el disco falle cuando lo dice SMART&hellip; o puede que no. Pero por probabilidad&hellip;  es más probable que sí lo haga.
-</p>
-
-<p>
-El disco duro monitoriza de manera autónoma esos atributos. Un sistema RAID (u otros sitemas de monitorización) pueden leer la información SMART de esos atributos medidos, junto con el valor mínimo aceptado de cada uno de ellos (threshold). Si cualquiera de los atributos cae por una sola vez por debajo del mínimo (threshold), el sistema SMART indicará a quien quiera leerlo (un sistema RAID, por ejemplo) que el disco ya no presenta garantías de funcionamiento fiable.
-</p>
-
-<p>
-El sistema SMART sirve a un almacenamiento RAID para inutilizar un disco antes de que se produzca un fallo.
-</p>
-
-<p>
-Es necesario tener en cuenta que no existe una uniformidad con respecto al nivel de implementación de SMART en cada disco: lo fija y lo elabora el fabricante del disco&hellip; Es posible que un disco monitorice muchos datos o pocos&hellip; y que aun en cualquiera de esos casos, un fabricante acierte más en sus predicciones o menos. La lógica indica que cuanto mayor sea el número de atributos monitorizados, mayor será también la probabilidad de hacer previsiones exactas. No siempre es así, porque la probabilidad no es la realidad&hellip; pero ayuda.  [más: <a href="http://en.wikipedia.org/wiki/S.M.A.R.T.">wikipedia</a>]
+Más <a href="https://en.wikipedia.org/wiki/Comparison_of_distributed_file_systems">ejemplos y comparativa en la wikipedia</a>
 </p>
 </div>
 </div>
-</div>
-<div id="outline-container-org0000072" class="outline-2">
-<h2 id="org0000072"><span class="section-number-2">8.</span> Redundancia en servidores: clústeres.</h2>
+<div id="outline-container-org000007d" class="outline-2">
+<h2 id="org000007d"><span class="section-number-2">8.</span> El respaldo de los datos: la copia de seguridad.</h2>
 <div class="outline-text-2" id="text-8">
-<p>
-Al igual que los almacenamientos se disponen formando sistemas redundantes, también se
-implementa a veces redundancia en los servidores.
-</p>
-
-<p>
-Cuando un grupo de servidores están dedicados a la misma tarea, a menudo se configuran en
-forma de clúster. Un clúster de servidores es un grupo de servidores con un hardware y un software similar o
-idéntico, que realizan las mismas tareas.
-</p>
-
-
-<div id="org0000071" class="figure">
-<p><img src="media/servidores.png" alt="servidores.png" />
-</p>
-<p><span class="figure-number">Figura 18: </span>El IBM iDataPlex funciona en clúster, como un único ordenador, aunque está formado por servidores independientes. El de la foto tiene unas 30000 CPU en total</p>
-</div>
-
-<p>
-La idea es que todo el conjunto debe dar la impresión de ser un gran ordenador, en lugar de
-varios ordenadores independientes.
-(También puede hacerse sólo para un servicio&hellip; ej&hellip; que el conjunto sigan siendo ordenadores
-independientes en su administración y gestión, pero que entre todos proporcionen un sólo
-servicio de base de datos).
-</p>
-
-<p>
-Por ejemplo, el servicio de correo de GMail se reparte en realidad entre multitud de ordenadores, pero desde el punto de vista del cliente se concentra en uno solo.
-</p>
-
-<p>
-En ese caso, se pueden lograr algunos beneficios particulares:
-</p>
-<ul class="org-ul">
-<li>Alto rendimiento: utilizar al máximo el potencial de cálculo del hardware.</li>
-<li>Alta disponibilidad: permitir que el sistema en conjunto siempre responda, aunque alguna de sus unidades no pueda hacerlo.</li>
-<li>Alta eficiencia: ser capaz de hacer más cosas trabajando los servidores en conjunto que por separado.</li>
-<li>Escalabilidad: ser capaz de crecer de manera sencilla</li>
-</ul>
-
-<p>
-La utilidad de los clústeres suele estar limitada a dos ambientes claramente diferenciados:
-</p>
-<ul class="org-ul">
-<li>Los clústeres científicos y de investigación: suelen intentar lograr el alto rendimiento. Sirven para hacer cálculos complicados que en ordenadores de menos prestaciones tardarían mucho. Se utilizan en muchos ámbitos para desarrollar productos (medicina, farmacia, ingeniería, astronomía, etc&hellip;)</li>
-<li>Los clústeres de IT y comerciales: que normalmente participan en el tratamiento de grandes volúmenes de datos. Buscan la alta disponibilidad y la alta eficiencia.</li>
-</ul>
-
-<p>
-En general, un clúster necesita de varios componentes de software y hardware para poder funcionar:
-</p>
-<ul class="org-ul">
-<li>nodos (los ordenadores)</li>
-<li>almacenamientos</li>
-<li>sistemas operativos individuales para cada ordenador</li>
-<li>conexiones de red, para conectar los nodos entre sí y los nodos con los almacenamientos</li>
-<li>middleware: el software que unifica los nodos para que actúen todos como si fueran uno solo. Debe dar al usuario la impresión de que se enfrenta a un solo ordenador. (Ejemplos de middleware para clústeres: <a href="http://www.mosix.org/txt_about.html">mosix</a>, <a href="http://openssi.org/cgi-bin/view?page=openssi.html">openSSI</a>)</li>
-<li>Aplicaciones a medida, programadas teniendo en cuenta la redundancia de servidores.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0000087" class="outline-2">
-<h2 id="org0000087"><span class="section-number-2">9.</span> El respaldo de los datos: la copia de seguridad.</h2>
-<div class="outline-text-2" id="text-9">
 <p>
 Las copias de seguridad de la información son una medida de seguridad pasiva para restaurar la información a un estado válido y reciente, de tal manera que el impacto de cualquier posible contingencia sea mínimo.
 </p>
@@ -1310,15 +1226,17 @@ Las copias de seguridad se realizan normalmente mediante aplicaciones especialme
 Una aplicación de copia de seguridad puede tener varias de esas programaciones, realizándose distintos tipos de copia en distintos medios y con distintas periodicidades.
 </p>
 </div>
-<div id="outline-container-org0000075" class="outline-3">
-<h3 id="org0000075"><span class="section-number-3">9.1.</span> Tipos de copias de seguridad.</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-org000006b" class="outline-3">
+<h3 id="org000006b"><span class="section-number-3">8.1.</span> Tipos de copias de seguridad.</h3>
+<div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>Según la intención con la que se realice la copia, podemos distinguir:
 <ul class="org-ul">
 <li><b>Back-up</b>: llamamos así a las copias de los archivos realizadas periódicamente, con intención de poder deshacer una posible pérdida de integridad en los datos originales, y revertir los datos a como estaban en un momento anterior en el tiempo.</li>
 <li><b>Archiving</b>: copiar los archivos para almacenar por un largo período de tiempo, sea por cuestiones legales como la contabilidad o por motivo de espacio, para retirar información antigua. Si se necesitan, se pueden restaurar.
--<b>Disaster recovery</b>: recuperar desde una situación en la que el sistema original está fuera de servicio. Se requiere entonces que la copia de seguridad permita restaurar totalmente los datos y el <b>software</b> del sistema.</li>
+<ul class="org-ul">
+<li><b>Disaster recovery</b>: recuperar desde una situación en la que el sistema original está fuera de servicio. Se requiere entonces que la copia de seguridad permita restaurar totalmente los datos y el <b>software</b> del sistema.</li>
+</ul></li>
 </ul></li>
 
 <li>Según la información que se guarde durante una copia, podemos distinguir:
@@ -1332,12 +1250,18 @@ Una aplicación de copia de seguridad puede tener varias de esas programaciones,
 <li><b>On-Site</b>: La copia se guarda físicamente cerca de la información original.</li>
 <li><b>Off-Site</b>: La copia se guarda físicamente lejos de la información original. Debería hacerse un backup off-site al menos una vez a la semana. Garantiza que hay una copia fuera de las dependencias donde está la información original y que puede restaurar la información en caso de desastre total.</li>
 </ul></li>
+
+<li>Según la accesibilidad de la copia:
+<ul class="org-ul">
+<li><b>On-line</b>: La copia puede accederse inmediatamente. Por ejemplo, está accesible por DAS, NAS u otro mecanismo por red.</li>
+<li><b>Off-line</b>: La copia debe ser manipulada físicamente para poder leerse. Por ejemplo, discos DVD en un armario ignífugo.</li>
+</ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000078" class="outline-3">
-<h3 id="org0000078"><span class="section-number-3">9.2.</span> Los medios en los que se guardan las copias</h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-org000006e" class="outline-3">
+<h3 id="org000006e"><span class="section-number-3">8.2.</span> Los medios en los que se guardan las copias</h3>
+<div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>Hay varios medios posibles para guardar copias de seguridad:
 <ul class="org-ul">
@@ -1363,9 +1287,9 @@ especialmente pensadas para mantener a salvo las copias de seguridad, como la ro
 </p>
 </div>
 </div>
-<div id="outline-container-org000007b" class="outline-3">
-<h3 id="org000007b"><span class="section-number-3">9.3.</span> Diseño de las políticas de respaldo.</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-org0000071" class="outline-3">
+<h3 id="org0000071"><span class="section-number-3">8.3.</span> Diseño de las políticas de respaldo.</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
 Ya hemos comentado que lo más importante de las copias de seguridad es diseñar unas políticas y ceñirse a ellas. No obstante, hay algunos factores simples a tener en cuenta: Seguir un sistema simple para hacer las copias NO ES EFECTIVO. Por ejemplo, hay mucha gente que hace una copia de seguridad periódicamente en un disco duro externo o en un Cd Rom. Si surge, por ejemplo, un malware que compromete la integridad, los datos en buen estado de una copia podrían ser sobreescritos con datos dañados antes de haberse manifestado el problema. Es decir, tanto los datos originales como los de la copia de seguridad pueden estar mal. Por eso es necesario seguir un sistema de rotación, es decir, una política de respaldo segura.
 </p>
@@ -1396,17 +1320,17 @@ Utilice un medio distinto cada día de la semana</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org000007e" class="outline-3">
-<h3 id="org000007e"><span class="section-number-3">9.4.</span> Encriptación</h3>
-<div class="outline-text-3" id="text-9-4">
+<div id="outline-container-org0000074" class="outline-3">
+<h3 id="org0000074"><span class="section-number-3">8.4.</span> Encriptación</h3>
+<div class="outline-text-3" id="text-8-4">
 <p>
 Es necesario hacer notar que es importante almacenar las copias de seguridad cifradas, de tal manera que si alguien no autorizado se hace con una de ellas, la confidencialidad de los datos no se vea comprometida.
 </p>
 </div>
 </div>
-<div id="outline-container-org0000081" class="outline-3">
-<h3 id="org0000081"><span class="section-number-3">9.5.</span> El bit de archivo y la fecha de modificación.</h3>
-<div class="outline-text-3" id="text-9-5">
+<div id="outline-container-org0000077" class="outline-3">
+<h3 id="org0000077"><span class="section-number-3">8.5.</span> El bit de archivo y la fecha de modificación.</h3>
+<div class="outline-text-3" id="text-8-5">
 <p>
 A los programas de copia de seguridad se les indica que deben hacer copia de los archivos y carpetas contenidos en una determinada ubicación.
 </p>
@@ -1425,9 +1349,9 @@ A pesar de estas facilidades, pueden configurarse las herramientas de copia para
 </p>
 </div>
 </div>
-<div id="outline-container-org0000084" class="outline-3">
-<h3 id="org0000084"><span class="section-number-3">9.6.</span> Políticas de respaldo.</h3>
-<div class="outline-text-3" id="text-9-6">
+<div id="outline-container-org000007a" class="outline-3">
+<h3 id="org000007a"><span class="section-number-3">8.6.</span> Políticas de respaldo.</h3>
+<div class="outline-text-3" id="text-8-6">
 <p>
 Una política de respaldos es una estrategia para realizar las copias de seguridad. Se definen todos los aspectos aquí descritos:
 </p>
@@ -1459,19 +1383,10 @@ Muchos de los incidentes de seguridad relacionados con pérdidas de datos por pr
 </div>
 </div>
 </div>
-<div id="outline-container-org000008a" class="outline-2">
-<h2 id="org000008a"><span class="section-number-2">10.</span> Referencias</h2>
-<div class="outline-text-2" id="text-10">
-<ul class="org-ul">
-<li>Adaptado de <a href="https://www.linkedin.com/in/victorjfernandez/">Víctor J. Fernández</a></li>
-<li><a href="SI-T-03-almacenamiento-y-copias.pdf">Versión en PDF</a></li>
-</ul>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-10-05 lun 10:27</p>
+<p class="date">Created: 2026-10-06 mar 12:19</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

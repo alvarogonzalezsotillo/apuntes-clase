@@ -1,6 +1,12 @@
 #+INCLUDE: "../../../common/header.org"
 #+OPTIONS:   toc:2
 
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-almacenamiento-y-copias.wp.html
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-analisis-de-riesgos.wp.html
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-autenticacion-firma-electronica.wp.html
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-Introduccion-a-la-seguridad-informatica.wp.html
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-pki.wp.html
+https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/1/sad-01-seguridad-fisica.wp.html
 
 
 #+title: Dispositivos de almacenamiento y copias de seguridad
@@ -387,7 +393,7 @@ Un caso particular de SAN lo forman las redes iSCSI (SCSI over Internet). Básic
 
 Este tipo de SAN han experimentado un incremento importante en su utilización en los últimos años, ya que se configura e instala de forma sencilla y más económica en Windows 2008 server y algunas versiones de Unix o GNU Linux.
 
-* La detección del deterioro de los discos
+* La detección del deterioro de los discos :noexport:
 Los sistemas redundantes deben marcar un disco como inutilizado cuando detectan un fallo.
 
 ** CRC
