@@ -22,6 +22,8 @@ Cuanto más grande el conjunto de usuarios de usuarios, también es más fácil 
 
 PGP es un buen medio para enviar mensajes cifrados, pero no para autenticar. La autenticidad de los certificados se basa en el llamado "anillo de confianza" en el cual, cuando una persona puede garantizar que un certificado de otra persona es de confianza, lo firma... si se distribuye el certificado firmado y quien lo recibe confía en el firmante, entonces confía también en el certificado original. Este proceso puede repetirse indefinidamente.... ir firmando los certificados y transmitirlos firmados es una manera de transmitir la confianza.
 
+Se organizan [[https://en.wikipedia.org/wiki/Key_signing_party][fiestas de firmado de claves]] como una forma de transmitir confianza para autenticacion de claves público-privadas de pgp.
+
 
 * x509 y la Public Key Infrastructure (PKI)
 En otro ámbito, existe un estándar llamado x509, y propuesto por la ITU (Unión Internacional de Telecomunicaciones), que es el que se utiliza para los certificar la identidad de los sitios web que usan https, y también para la identificación y firma digital de personas en España, mediante el DNIe o el certificado de la Fábrica Nacional de Moneda y Timbre (FNMT)

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-10-01 jue 17:44 -->
+<!-- 2026-10-02 vie 08:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PKI</title>
@@ -185,7 +185,13 @@
   #org-div-home-and-up
    { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
+  .linenr {
+    font-size: smaller;
+    @supports (content: attr(data-linenr)) {
+      visibility: hidden;
+      &::before { content: attr(data-linenr); visibility: visible; }
+    }
+  }
   .code-highlighted { background-color: #ffff00; }
   .org-info-js_info-navigation { border-style: none; }
   #org-info-js_console-label
@@ -300,6 +306,10 @@ Cuanto más grande el conjunto de usuarios de usuarios, también es más fácil 
 <p>
 PGP es un buen medio para enviar mensajes cifrados, pero no para autenticar. La autenticidad de los certificados se basa en el llamado "anillo de confianza" en el cual, cuando una persona puede garantizar que un certificado de otra persona es de confianza, lo firma&hellip; si se distribuye el certificado firmado y quien lo recibe confía en el firmante, entonces confía también en el certificado original. Este proceso puede repetirse indefinidamente&hellip;. ir firmando los certificados y transmitirlos firmados es una manera de transmitir la confianza.
 </p>
+
+<p>
+Se organizan <a href="https://en.wikipedia.org/wiki/Key_signing_party">fiestas de firmado de claves</a> como una forma de transmitir confianza para autenticacion de claves público-privadas de pgp.
+</p>
 </div>
 </div>
 </div>
@@ -394,7 +404,7 @@ La operación de revocación de un certificado es irreversible, no puede deshace
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-10-01 jue 17:44</p>
+<p class="date">Created: 2026-10-02 vie 08:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
