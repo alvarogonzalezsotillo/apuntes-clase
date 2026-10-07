@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-09-15 mar 12:18 -->
+<!-- 2026-10-07 mié 10:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SEGURIDAD Y ALTA DISPONIBILIDAD</title>
@@ -185,7 +185,13 @@
   #org-div-home-and-up
    { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
+  .linenr {
+    font-size: smaller;
+    @supports (content: attr(data-linenr)) {
+      visibility: hidden;
+      &::before { content: attr(data-linenr); visibility: visible; }
+    }
+  }
   .code-highlighted { background-color: #ffff00; }
   .org-info-js_info-navigation { border-style: none; }
   #org-info-js_console-label
@@ -398,23 +404,11 @@ window.addEventListener("load",()=>{
 </ul></li>
 <li>Seguridad lógica:
 <ul class="org-ul">
-<li>Criptografía. Cifrado de clave secreta (simétrica o privada). Cifrado de clave pública</li>
-</ul></li>
-</ul>
-<p>
-(asimétrica). Funciones de mezcla o resumen (hash).
-</p>
-<ul class="org-ul">
-<li>Sistemas de identificación. Firma electrónica. Certificados digitales Distribución de</li>
-</ul>
-<p>
-claves. Infraestructura de clave pública (PKI). DNI electrónico.
-</p>
-<ul class="org-ul">
+<li>Criptografía. Cifrado de clave secreta (simétrica o privada). Cifrado de clave pública (asimétrica). Funciones de mezcla o resumen (hash).</li>
+<li>Sistemas de identificación. Firma electrónica. Certificados digitales Distribución de claves. Infraestructura de clave pública (PKI). DNI electrónico.</li>
 <li>Establecimiento de políticas de contraseñas.</li>
 <li>Políticas de almacenamiento. Medios de almacenamiento externo: DAS (Direct Attached Storage), NAS (Network Attached Storage), SAN (Storage Area Network).Copias de seguridad e imágenes de respaldo.</li>
-</ul>
-<ul class="org-ul">
+</ul></li>
 <li>Análisis forense en sistemas informáticos.</li>
 </ul>
 </div>
@@ -715,8 +709,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <col  class="org-left" />
 
 <col  class="org-left" />
-
-<col  class="org-right" />
 </colgroup>
 <thead>
 <tr>
@@ -728,7 +720,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <th scope="col" class="org-left">15%</th>
 <th scope="col" class="org-left">40%</th>
 <th scope="col" class="org-left">5%</th>
-<th scope="col" class="org-right">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -741,7 +732,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">RA5</td>
 <td class="org-left">RA6</td>
 <td class="org-left">RA7</td>
-<td class="org-right">FFE</td>
 </tr>
 </tbody>
 <tbody>
@@ -754,19 +744,17 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
 <td class="org-left">UT2 Seguridad activa del sistema</td>
 <td class="org-right">&nbsp;</td>
-<td class="org-right">50%</td>
+<td class="org-right">100%</td>
 <td class="org-right">&nbsp;</td>
 <td class="org-right">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">50%</td>
 </tr>
 
 <tr>
@@ -778,7 +766,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
@@ -790,7 +777,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
@@ -802,7 +788,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">100%</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
@@ -814,7 +799,6 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-left">&nbsp;</td>
 <td class="org-left">100%</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
 </tr>
 
 <tr>
@@ -825,8 +809,7 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 <td class="org-right">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
 <td class="org-left">&nbsp;</td>
-<td class="org-left">50%</td>
-<td class="org-right">50%</td>
+<td class="org-left">100%</td>
 </tr>
 </tbody>
 </table>
@@ -835,7 +818,7 @@ Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de 
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-09-15 mar 12:18</p>
+<p class="date">Created: 2026-10-07 mié 10:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
