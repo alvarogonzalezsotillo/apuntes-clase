@@ -485,7 +485,7 @@ Las tres reglas de oro del diseño de políticas de respaldo. Aplica tu sentido 
 ** Encriptación
 Es necesario hacer notar que es importante almacenar las copias de seguridad cifradas, de tal manera que si alguien no autorizado se hace con una de ellas, la confidencialidad de los datos no se vea comprometida.
 
-** El bit de archivo y la fecha de modificación.
+** El bit de archivo y la fecha de modificación. :noexport:
 A los programas de copia de seguridad se les indica que deben hacer copia de los archivos y carpetas contenidos en una determinada ubicación.
 
 Las copias incrementales o diferenciales sólo copian algunos ficheros.... para saber cuáles son, cuentan con dos herramientas:

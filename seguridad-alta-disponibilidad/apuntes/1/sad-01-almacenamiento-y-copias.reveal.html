@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-10-07 mié 10:32 -->
+<!-- Generated on 2026-10-07 mié 11:38 -->
 <meta charset="utf-8"/>
 <title>Dispositivos de almacenamiento y copias de seguridad</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Dispositivos de almacenamiento y copias de seguridad</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-10-07 mié 10:32</p>
+<h1 class="title">Dispositivos de almacenamiento y copias de seguridad</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-10-07 mié 11:38</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -495,8 +495,7 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-8-2">8.2. Los medios en los que se guardan las copias</a></li>
 <li><a href="#/slide-8-3">8.3. Diseño de las políticas de respaldo.</a></li>
 <li><a href="#/slide-8-4">8.4. Encriptación</a></li>
-<li><a href="#/slide-8-5">8.5. El bit de archivo y la fecha de modificación.</a></li>
-<li><a href="#/slide-8-6">8.6. Políticas de respaldo.</a></li>
+<li><a href="#/slide-8-5">8.5. Políticas de respaldo.</a></li>
 </ul>
 </li>
 </ul>
@@ -1587,28 +1586,7 @@ Es necesario hacer notar que es importante almacenar las copias de seguridad cif
 <div class="slide-footer"></div>
 </section>
 <section id="slide-8-5">
-<h3 id="8-5"><span class="section-number-3">8.5.</span> El bit de archivo y la fecha de modificación.</h3>
-<p>
-A los programas de copia de seguridad se les indica que deben hacer copia de los archivos y carpetas contenidos en una determinada ubicación.
-</p>
-
-<p>
-Las copias incrementales o diferenciales sólo copian algunos ficheros&hellip;. para saber cuáles son, cuentan con dos herramientas:
-</p>
-
-<ul>
-<li>Cada archivo o carpeta lleva grabada una fecha y hora de la última modificación. El sistema operativo se encargará de cambiarla en cada modificación. Puede parecer una obviedad, pero el reloj del sistema debe estar funcionando y no perder la hora, o el programa de copia de seguridad podría confundirse.</li>
-<li>En windows, cada archivo o carpeta tiene una serie de atributos, uno de ellos el el atributo de archivo. Todos los archivos en windows lo tienen inicialmente activado. Los programas de copia de seguridad desactivan ese atributo cuando el archivo ha ido a parar a un backup, y el sistema operativo windows lo vuelve a activar cuando se modifica su contenido. Así pues, durante una copia incremental, sólo deben guardarse los archivos con éste atributo activado. No es necesario comparar fechas.</li>
-
-</ul>
-
-<p>
-A pesar de estas facilidades, pueden configurarse las herramientas de copia para ignorar estos datos y fijarse únicamente en la información contenida en los ficheros.
-</p>
-<div class="slide-footer"></div>
-</section>
-<section id="slide-8-6">
-<h3 id="8-6"><span class="section-number-3">8.6.</span> Políticas de respaldo.</h3>
+<h3 id="8-5"><span class="section-number-3">8.5.</span> Políticas de respaldo.</h3>
 <p>
 Una política de respaldos es una estrategia para realizar las copias de seguridad. Se definen todos los aspectos aquí descritos:
 </p>

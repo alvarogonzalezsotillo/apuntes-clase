@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-10-07 mié 10:32 -->
+<!-- 2026-10-07 mié 11:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dispositivos de almacenamiento y copias de seguridad</title>
@@ -249,14 +249,13 @@
 </ul>
 </li>
 <li><a href="#org0000068">7. Sistemas de fichero distribuidos</a></li>
-<li><a href="#org000007d">8. El respaldo de los datos: la copia de seguridad.</a>
+<li><a href="#org000007a">8. El respaldo de los datos: la copia de seguridad.</a>
 <ul>
 <li><a href="#org000006b">8.1. Tipos de copias de seguridad.</a></li>
 <li><a href="#org000006e">8.2. Los medios en los que se guardan las copias</a></li>
 <li><a href="#org0000071">8.3. Diseño de las políticas de respaldo.</a></li>
 <li><a href="#org0000074">8.4. Encriptación</a></li>
-<li><a href="#org0000077">8.5. El bit de archivo y la fecha de modificación.</a></li>
-<li><a href="#org000007a">8.6. Políticas de respaldo.</a></li>
+<li><a href="#org0000077">8.5. Políticas de respaldo.</a></li>
 </ul>
 </li>
 </ul>
@@ -1193,8 +1192,8 @@ Más <a href="https://en.wikipedia.org/wiki/Comparison_of_distributed_file_syste
 </p>
 </div>
 </div>
-<div id="outline-container-org000007d" class="outline-2">
-<h2 id="org000007d"><span class="section-number-2">8.</span> El respaldo de los datos: la copia de seguridad.</h2>
+<div id="outline-container-org000007a" class="outline-2">
+<h2 id="org000007a"><span class="section-number-2">8.</span> El respaldo de los datos: la copia de seguridad.</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Las copias de seguridad de la información son una medida de seguridad pasiva para restaurar la información a un estado válido y reciente, de tal manera que el impacto de cualquier posible contingencia sea mínimo.
@@ -1321,29 +1320,8 @@ Es necesario hacer notar que es importante almacenar las copias de seguridad cif
 </div>
 </div>
 <div id="outline-container-org0000077" class="outline-3">
-<h3 id="org0000077"><span class="section-number-3">8.5.</span> El bit de archivo y la fecha de modificación.</h3>
+<h3 id="org0000077"><span class="section-number-3">8.5.</span> Políticas de respaldo.</h3>
 <div class="outline-text-3" id="text-8-5">
-<p>
-A los programas de copia de seguridad se les indica que deben hacer copia de los archivos y carpetas contenidos en una determinada ubicación.
-</p>
-
-<p>
-Las copias incrementales o diferenciales sólo copian algunos ficheros&hellip;. para saber cuáles son, cuentan con dos herramientas:
-</p>
-
-<ul class="org-ul">
-<li>Cada archivo o carpeta lleva grabada una fecha y hora de la última modificación. El sistema operativo se encargará de cambiarla en cada modificación. Puede parecer una obviedad, pero el reloj del sistema debe estar funcionando y no perder la hora, o el programa de copia de seguridad podría confundirse.</li>
-<li>En windows, cada archivo o carpeta tiene una serie de atributos, uno de ellos el el atributo de archivo. Todos los archivos en windows lo tienen inicialmente activado. Los programas de copia de seguridad desactivan ese atributo cuando el archivo ha ido a parar a un backup, y el sistema operativo windows lo vuelve a activar cuando se modifica su contenido. Así pues, durante una copia incremental, sólo deben guardarse los archivos con éste atributo activado. No es necesario comparar fechas.</li>
-</ul>
-
-<p>
-A pesar de estas facilidades, pueden configurarse las herramientas de copia para ignorar estos datos y fijarse únicamente en la información contenida en los ficheros.
-</p>
-</div>
-</div>
-<div id="outline-container-org000007a" class="outline-3">
-<h3 id="org000007a"><span class="section-number-3">8.6.</span> Políticas de respaldo.</h3>
-<div class="outline-text-3" id="text-8-6">
 <p>
 Una política de respaldos es una estrategia para realizar las copias de seguridad. Se definen todos los aspectos aquí descritos:
 </p>
@@ -1378,7 +1356,7 @@ Muchos de los incidentes de seguridad relacionados con pérdidas de datos por pr
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-10-07 mié 10:32</p>
+<p class="date">Created: 2026-10-07 mié 11:38</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
