@@ -252,14 +252,14 @@ g) Se ha comprendido la necesidad de conocer y respetar la normativa legal aplic
 
 * Distribución de RA en unidades de trabajo
 
-| Peso en la calificación final de cada RA |   5% |  5% |  10% |  20% |  15% |  40% |  5% |     |
-|------------------------------------------+------+-----+------+------+------+------+-----+-----|
-|                                          |  RA1 | RA2 |  RA3 |  RA4 |  RA5 |  RA6 | RA7 | FFE |
-|------------------------------------------+------+-----+------+------+------+------+-----+-----|
-| UT1 Pautas en seguridad informática      | 100% |     |      |      |      |      |     |     |
-| UT2 Seguridad activa del sistema         |      | 50% |      |      |      |      |     | 50% |
-| UT3 Acceso remoto                        |      |     | 100% |      |      |      |     |     |
-| UT4 /Firewall/                           |      |     |      | 100% |      |      |     |     |
-| UT5 /Proxy/ y /Proxy/ inverso            |      |     |      |      | 100% |      |     |     |
-| UT6 Alta disponibilidad                  |      |     |      |      |      | 100% |     |     |
-| UT7 Legislación                          |      |     |      |      |      |      | 50% | 50% |
+| Peso en la calificación final de cada RA |   5% |   5% |  10% |  20% |  15% |  40% |   5% |
+|------------------------------------------+------+------+------+------+------+------+------|
+|                                          |  RA1 |  RA2 |  RA3 |  RA4 |  RA5 |  RA6 |  RA7 |
+|------------------------------------------+------+------+------+------+------+------+------|
+| UT1 Pautas en seguridad informática      | 100% |      |      |      |      |      |      |
+| UT2 Seguridad activa del sistema         |      | 100% |      |      |      |      |      |
+| UT3 Acceso remoto                        |      |      | 100% |      |      |      |      |
+| UT4 /Firewall/                           |      |      |      | 100% |      |      |      |
+| UT5 /Proxy/ y /Proxy/ inverso            |      |      |      |      | 100% |      |      |
+| UT6 Alta disponibilidad                  |      |      |      |      |      | 100% |      |
+| UT7 Legislación                          |      |      |      |      |      |      | 100% |
