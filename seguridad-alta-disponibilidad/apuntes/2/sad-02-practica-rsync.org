@@ -1,0 +1,50 @@
+#+INCLUDE: "../../../common/header-examen-practica.org"
+#+OPTIONS: author:nil date:nil num:t toc:t
+#+LATEX_HEADER: \lhead{SAD}
+#+LATEX_HEADER: \rhead{Antivirus y \textit{malware}}
+#+title: Copias diferenciales con =rsync=
+
+
+
+* Objetivo de la práctica
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+Durante el desarrollo de esta práctica, el alumno realizará una copia de seguridad con =rsync=. Se espera que
+- reconozca las opciones básicas de =rsync=
+- plantee una política de respaldo con copias totales e incrementales
+- proteja las copias con encriptación  
+
+
+
+
+* Enunciado
+- Prepara un /script/ de Bash que haga una copia de seguridad del directorio =/datos= del servidor =10.1.35.201=
+
+* Qué se valorará
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+El trabajo debe ser un /*tutorial*/ de cómo localizar manualmente un /malware/ y configurar el antivirus. Por tanto, no es correcto:
+- Incluir tal cual los enunciados en el trabajo
+- Simplemente, poner pantallazos
+
+
+Se valorará:
+- Que cada paso quede bien documentado. 
+- La corrección técnica (que funcione)
+- Que esté correctamente redactado, de forma que nuestro lector lo entienda 
+- La apariencia profesional:
+  - Estética
+  - Organización
+  - Homogeneidad de formatos y estilos
+  
+* Instrucciones de entrega
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+- El ejercicio se realizará y entregará de manera individual.
+- Los trabajos pueden entregarse como un documento (DOCX, PDF, ODT), o como una entrada de blog.
+- La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
