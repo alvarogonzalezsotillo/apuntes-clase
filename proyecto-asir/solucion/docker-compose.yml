@@ -127,13 +127,18 @@ services:
     image: osixia/openldap:1.5.0
     container_name: ldap
     restart: unless-stopped
+    # Copia /container/service a /container/run/service y no toca los ficheros
+    # montados del host: evita que el sed del primer arranque falle con
+    # "tls-enable.ldif: No such file or directory"
+    command: --copy-service
     environment:
       LDAP_ORGANISATION: "ASIR"
       LDAP_DOMAIN: "asir.test"
       LDAP_ADMIN_PASSWORD: "asir_ldap"
       LDAP_CONFIG_PASSWORD: "asir_ldap"
     volumes:
-      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
+      # CON RO no funciona
+      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
       - ./ldap/data:/var/lib/ldap
     networks:
       red-interna:
