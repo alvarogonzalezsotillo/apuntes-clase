@@ -63,6 +63,7 @@
 * /Proxy/ (pasarela)
 - Equivalente a bastión
   - El bastión suele ser el servidor, el /proxy/ el servicio
+  - El bastión puede hacer funciones de /router/  
 - El /proxy/ hace de [[https://en.wikipedia.org/wiki/Man-in-the-middle_attack][MITM]] entre los clientes y los servicios reales
   a) El cliente está configurado para usar el /proxy/
   b) O bien el administrador de red ha configurado los DNS/routers para hacer creer al cliente que se comunica con el servicio ([[https://es.wikipedia.org/wiki/Servidor_proxy#Proxies_transparentes][/proxy/ transparente]])
@@ -73,10 +74,48 @@
 - /Screened subnet/
 
 ** /Screening router/
+- Configuración simple
+- Poco /hardware/ (barato)
+- Los servicios al exterior están en la misma red que las /workstations/
+  - Se mezcla tráfico interno y externo en la misma red /ethernet/  
+- La seguridad depende de un solo punto
+  - Si un atacante consigue el control del router, controla toda la red   
+   
+file:media/screening-router.svg
+
+#+reveal: split
+- El /router/ puede cambiarse por un bastión
+- Así puede controlarse también el nivel de aplicación
+- Filtros más complejos, con más criterios
+  - Usuario de aplicación
+  - Recurso accedido (URL)
+  - Límites de ancho de banda y tráfico total  
+  - Hora y día de acceso
+  - ...  
+
+[[file:media/screening-router-bastion.svg]]
 
 
 ** /Screened host/
+- Se separa el /router/ del bastión
+- El /router/ envía las peticiones externas al bastión
+- La mayoría de los clientes no salen directamente por el router, sino que lo hacen a través del bastión    
+
 [[file:media/screened-host.svg]]
 
-** /Screened subnet/
+#+reveal: split
+- Ejemplo con /router/ Cisco, en el que todas las peticiones HTTP deben pasar por el /proxy/
 
+[[file:media/screened-host-http.svg]]
+
+** /Screened subnet/
+- La red interna no se satura con peticiones del exterior
+- Si el router externo o el bastión es /hackeado/ queda otro nivel de protección
+- Más caro, más complejo. Pero más difícil de comprometer.  
+
+[[file:media/screened-subnet.svg]]
+
+** DMZ
+- Los servicios al exterior no necesitan estar en la red interna
+- Suelen colocarse entre los dos /routers/
+  
