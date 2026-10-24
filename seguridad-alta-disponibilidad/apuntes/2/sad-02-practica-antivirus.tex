@@ -1,0 +1,231 @@
+% Created 2026-09-27 dom 13:12
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{SAD}
+\rhead{Antivirus y \textit{malware}}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+\date{}
+\title{Antivirus y \emph{malware}}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={Antivirus y \emph{malware}},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/seguridad-alta-disponibilidad/apuntes/2/sad-02-practica-antivirus.org}{} \vspace{-1em}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+\section*{Objetivo de la práctica}
+\label{sec:org0000000}
+Durante el desarrollo de esta práctica, el alumno infectará una máquina virtual de Windows con un \emph{malware}. Los objetivos  de la práctica son:
+\begin{itemize}
+\item reconocer el \emph{malware} como un proceso más del sistema operativo.
+\item localizar el \emph{malware} y eliminarlo del sistema de forma manual, sin utilizar un antivirus.
+\item configurar y utilizar un antivirus
+\end{itemize}
+\section*{Preparación de una máquina virtual}
+\label{sec:org0000003}
+Instalar un \emph{malware} es una operación \textbf{arriesgada}, por lo que no se recomienda utilizar la máquina real para esta práctica. Necesitaremos una máquina virtual con las siguientes características:
+\begin{itemize}
+\item Sistema operativo Windows 7,8, 10 u 11
+\item No se necesitan más de 4G de memoria
+\item Conexión a Internet, para bajar el virus
+\end{itemize}
+\section{Configuración de antivirus (\emph{Windows defender}) (1 punto)}
+\label{sec:org0000006}
+\textattachfile[mimetype=application/zip,author={password-alumno.zip},description={password-alumno.zip},subject={password-alumno.zip}]{./malware/password-alumno.zip}{} \vspace{-4em}
+
+\begin{enumerate}
+\item Copia el fichero \href{malware/password-alumno.zip}{malware/password-alumno.zip} a una máquina virtual de Windows.
+\item Intenta descomprimirlo en Windows, con la contraseña \texttt{alumno}.
+\begin{itemize}
+\item Seguramente no lo consigas. indica qué ha ocurrido, con los correspondientes mensajes de aviso o error
+\item Si lo consigues, explica cómo lo has hecho
+\end{itemize}
+\item Configura \emph{Windows defender} para que ignore una carpeta y desactive la protección en tiempo real.
+\begin{itemize}
+\item Descomprime allí el fichero, y explica qué contiene
+\end{itemize}
+\end{enumerate}
+\section{Instalación del \emph{malware} (0 puntos)}
+\label{sec:org0000009}
+\textattachfile[mimetype=application/zip,author={article_FB.vbs.zip},description={article_FB.vbs.zip},subject={article_FB.vbs.zip}]{./malware/article_FB.vbs.zip}{} \vspace{-2em}
+
+Descarga el fichero \url{malware/article\_FB.vbs.zip}. Descomprímelo con la contraseña \texttt{virus} y ejecútalo.
+\section{Localización y eliminación del \emph{malware} (4 puntos)}
+\label{sec:org000000c}
+Utiliza estas dos herramientas:
+\begin{itemize}
+\item \href{https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer}{procexp}: lista de programas en ejecución
+\item \href{https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns}{autoruns}: lista de programas que se ejecutan automáticamente en Windows, sin intervención directa del usuario
+\end{itemize}
+
+
+Con ellas:
+\begin{itemize}
+\item Localiza el proceso \emph{malware}
+\item Localiza el/los ficheros ejecutables del \emph{malware}
+\item Localiza de qué forma se ejecuta cada vez que se inicia Windows o se hace \emph{login}
+\end{itemize}
+
+Tras esto, desactiva y elimina el \emph{malware} de forma manual, sin activar el antivirus.
+\section{Contagia un \emph{pen drive} (3 puntos)}
+\label{sec:org000000f}
+\begin{Aviso}[Precaución]
+Utiliza una memoria USB que no contenga datos importantes, porque por seguridad deberá formatearse al finalizar la práctica.
+\end{Aviso}
+
+\begin{itemize}
+\item Usa un \emph{pen drive} que en el directorio raíz tenga al menos dos ficheros de datos (TXT, DOCX, PDF) y dos directorios.
+\item Conecta la unidad USB a la máquina virtual
+\item Describe los cambios que se han producido en la unidad USB, y de qué forma contribuyen a la expansión del \emph{malware}.
+\begin{itemize}
+\item Será más fácil si el \emph{pen drive} se contecta a un ordenador linux.
+\end{itemize}
+\end{itemize}
+\section{Eliminación del \emph{malware} por un antivirus (2 puntos)}
+\label{sec:org0000012}
+\begin{itemize}
+\item Activa \emph{Windows defender} y no ignores ninguna carpeta
+\item observa cómo detecta y elimina los dos \emph{malware} instalados
+\begin{itemize}
+\item Debe encontrar el del fichero  \href{malware/password-alumno.zip}{malware/password-alumno.zip} y el de  \url{malware/article\_FB.vbs.zip}.
+\end{itemize}
+\item Ejecuta un escaneo de todo el disco, por si acaso, y también de la unidad USB.
+\end{itemize}
+
+\begin{Aviso}[Precaución]
+Aunque creas que has desinstalado el \emph{malware} del la unidad USB, formatéala para mayor seguridad
+\end{Aviso}
+\section*{Qué se valorará}
+\label{sec:org0000015}
+El trabajo debe ser un \emph{\textbf{tutorial}} de cómo localizar manualmente un \emph{malware} y configurar el antivirus. Por tanto, no es correcto:
+\begin{itemize}
+\item Incluir tal cual los enunciados en el trabajo
+\item Simplemente, poner pantallazos
+\end{itemize}
+
+
+Se valorará:
+\begin{itemize}
+\item Que cada paso quede bien documentado.
+\item La corrección técnica (que funcione)
+\item Que esté correctamente redactado, de forma que nuestro lector lo entienda
+\item La apariencia profesional:
+\begin{itemize}
+\item Estética
+\item Organización
+\item Homogeneidad de formatos y estilos
+\end{itemize}
+\end{itemize}
+\section*{Instrucciones de entrega}
+\label{sec:org0000018}
+\begin{itemize}
+\item El ejercicio se realizará y entregará de manera individual.
+\item Los trabajos pueden entregarse como un documento (DOCX, PDF, ODT), o como una entrada de blog.
+\item La entrega se realizará en la tarea correspondiente del aula virtual. Si se entrega un fichero, este se subirá directamente. Si es una entrada de blog, se subirá un fichero de texto con la URL de dicha entrada.
+\end{itemize}
+\end{document}
