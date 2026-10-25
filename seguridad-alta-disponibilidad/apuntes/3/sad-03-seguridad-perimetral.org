@@ -118,4 +118,12 @@ file:media/screening-router.svg
 ** DMZ
 - Los servicios al exterior no necesitan estar en la red interna
 - Suelen colocarse entre los dos /routers/
+
+[[file:media/dmz-con-servidores.svg]]
+
+
+** DMZ (variante)
+- Hay variantes según el número de routers y redes intermedias entre Internet y la red interna
+
+[[file:media/dmz-con-servidores-mas-lejos.svg]]  
   
