@@ -93,7 +93,6 @@ digraph{
 
 * Pasos a seguir
 
-Orientativamente, puedes seguir estos pasos:
 1. *Docker.* La forma más fácil es con el [[https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script][/script/ de conveniencia]] en una máquina virtual linux.
 2. *Portainer.* (opcional) [[https://docs.portainer.io/start/install-ce/server/docker/linux][Se utilizará la /comunity edition/]]. Puede ayudar a crear containers y a inspeccionar el estado de Docker.
 3. *Creación de red interna.* [[https://docs.docker.com/reference/cli/docker/network/create/][Crea la red interna]] /Docker/ donde conectar el servidor web y el servidor VPN.
@@ -107,7 +106,9 @@ Orientativamente, puedes seguir estos pasos:
    - [[https://hub.docker.com/r/weejewel/wg-easy#2-run-wireguard-easy][Habilita el reenvío IP y configura los parámetros necesarios]] para que los clientes VPN puedan alcanzar la subred interna.
    - Haz un volumen en =/etc/wireguard= dentro del container, o los usuarios que crees podrían perderse.  
 6. *Configuración del cliente VPN.* Desde el panel web de /wg-easy/ (puerto 51821, con un navegador), crea un cliente /WireGuard/, descarga su configuración o código QR y conéctalo.
-7. *Comprobación del aislamiento.* Comprueba que sin estar conectado a la VPN no se accede a /Apache/ y, con la VPN activa, sí se accede mediante la IP del contenedor /Apache/ desde el cliente VPN.
+7. *Comprobación del aislamiento.*
+   - Comprueba que sin estar conectado a la VPN no se accede a /Apache/ y, con la VPN activa, sí se accede mediante la IP del contenedor /Apache/ desde el cliente VPN.
+   - Ejecuta un =pathping= o =mtr= desde el cliente VPN, para ver los saltos hasta el servidor Apache
 
 
 * Solución :noexport:

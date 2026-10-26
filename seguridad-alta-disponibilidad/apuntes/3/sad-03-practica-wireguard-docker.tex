@@ -1,4 +1,4 @@
-% Created 2026-10-26 lun 18:51
+% Created 2026-10-26 lun 18:54
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 
@@ -174,7 +174,6 @@ Se instalará Portainer en el host, para poder inspeccionar fácilmente los \emp
 \section{Pasos a seguir}
 \label{sec:org0000009}
 
-Orientativamente, puedes seguir estos pasos:
 \begin{enumerate}
 \item \textbf{Docker.} La forma más fácil es con el \href{https://docs.docker.com/engine/install/ubuntu/\#install-using-the-convenience-script}{\emph{script} de conveniencia} en una máquina virtual linux.
 \item \textbf{Portainer.} (opcional) \href{https://docs.portainer.io/start/install-ce/server/docker/linux}{Se utilizará la \emph{comunity edition}}. Puede ayudar a crear containers y a inspeccionar el estado de Docker.
@@ -193,7 +192,11 @@ Orientativamente, puedes seguir estos pasos:
 \item Haz un volumen en \texttt{/etc/wireguard} dentro del container, o los usuarios que crees podrían perderse.
 \end{itemize}
 \item \textbf{Configuración del cliente VPN.} Desde el panel web de \emph{wg-easy} (puerto 51821, con un navegador), crea un cliente \emph{WireGuard}, descarga su configuración o código QR y conéctalo.
-\item \textbf{Comprobación del aislamiento.} Comprueba que sin estar conectado a la VPN no se accede a \emph{Apache} y, con la VPN activa, sí se accede mediante la IP del contenedor \emph{Apache} desde el cliente VPN.
+\item \textbf{Comprobación del aislamiento.}
+\begin{itemize}
+\item Comprueba que sin estar conectado a la VPN no se accede a \emph{Apache} y, con la VPN activa, sí se accede mediante la IP del contenedor \emph{Apache} desde el cliente VPN.
+\item Ejecuta un \texttt{pathping} o \texttt{mtr} desde el cliente VPN, para ver los saltos hasta el servidor Apache
+\end{itemize}
 \end{enumerate}
 \section{Qué se valorará}
 \label{sec:org000000c}
