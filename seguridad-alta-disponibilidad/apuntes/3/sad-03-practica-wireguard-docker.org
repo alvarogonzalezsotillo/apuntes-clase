@@ -5,7 +5,6 @@
 
 #+TITLE: Práctica 03: Acceso a Apache únicamente a través de VPN con Docker y wg-easy
 
-#+latex: \newpage
 
 * Objetivo de la práctica
 
@@ -19,62 +18,97 @@ Tras la realización de esta práctica, el alumno será capaz de:
 
 Está disponible la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/3/sad-03-practica-wg-easy-apache-solo-vpn.pdf][última versión de esta práctica en este enlace]].
 
-#+latex: \newpage
 
 * Descripción del problema
 
-Se desea que el servidor web /Apache/ quede completamente aislado de la red del host. 
+Se desea que un servidor web /Apache/ solo accesible mediante una VPN.
 
 Únicamente los clientes que se conecten al servidor /VPN/ levantado con /wg-easy/ podrán acceder a dicho servidor /Apache/.
 
-Desde fuera del equipo, **sin estar conectado a la VPN, NO deberá ser posible acceder al puerto 80 de Apache**. 
+Se expondrá al host el túnel /WireGuard/ (UDP 51820) y, la interfaz web de gestión de /wg-easy/ (TCP 51821).
 
-El único servicio que se expondrá al host será el túnel /WireGuard/ (UDP 51820) y, opcionalmente, la interfaz web de gestión de /wg-easy/ (TCP 51821).
+El puerto 51820 será accesible desde el exterior. El puerto 51821 será solo accesible al host.
 
-* Topología propuesta
+Se instalará Portainer en el host, para poder inspeccionar fácilmente los /containers/.
 
 #+begin_src dot :file ./media/practica-vpn-con-containers.png :exports results :cmdline -Tpng
-digraph red_vpn_apache {
-  rankdir=LR;
-  node [shape=box, style="rounded,filled", fontname="sans-serif", fillcolor="#eef3fb"];
-  edge [fontname="sans-serif"];
+digraph{
+    rankdir=LR;
+    node [shape=box, style="rounded,filled"];
+    edge [dir=none]
+    compound=true
+    splines=true
 
-  cliente [label="Cliente VPN\n10.8.0.0/24", fillcolor="#fdf6e3"];
-  host    [label="Host / Máquina física\n(Exposición puertos)", fillcolor="#fdf6e3"];
-  wgeasy  [label="Red interna", shape=hexagon, fillcolor="#ffe8e0"];
-  apache  [label="Apache httpd:2.4\nred-interna 10.10.50.0/24\n(Puerto 80 NO expuesto)", fillcolor="#e8f8f5"];
+    subgraph cluster_maquinavirtual {
+        label="Host con Docker";
+        shape=box;
 
-  cliente -> host [label="WireGuard UDP 51820"];
-  host    -> wgeasy 
-  wgeasy  -> apache
+        puerto51820    [label="Puerto Docker hacia\ncontainer Wireguard\nUDP 51820", fillcolor="#fdf6e3"];
+        puerto9443    [label="Puerto Docker hacia\ncontainer Portainer\nUDP 9443", fillcolor="#fdf6e3"];
+
+        
+        subgraph cluster_docker{
+            label="Docker"
+            portainer [label="Container\nPortainer" fillcolor="#e8f8f5"];
+            apache  [label="Container\nApache httpd:2.4\n10.10.50.2:80" fillcolor="#e8f8f5"];
+            redinterna  [label="Red interna\n10.10.50.0/24", shape=hexagon, fillcolor="#ffe8e0"];
+            wireguard  [label="Container\nwg-easy" fillcolor="#e8f8f5"];
+        }
+    }
+
+
+    redaula  [label="Red aula\n172.16.0/8", shape=hexagon, fillcolor="#ffe8e0"];
+    
+    puerto9443 -> portainer;
+    
+    cliente [label="Cliente VPN\n10.8.0.0/24", fillcolor="#fdf6e3"];
+
+    cliente -> redaula -> puerto51820;
+    redaula -> puerto9443;
+    puerto51820    -> wireguard -> redinterna  -> apache
+
+    cliente -> redvpn -> wireguard [style=dotted]
+
+    redvpn  [label="Red VPN\n10.8.0.0/24", shape=hexagon, fillcolor="#ffe8e0"];
+
 }
 #+end_src
 
-- =red-interna=: Red puente completamente aislada. Únicamente contendrá el servicio /Apache/. **No se mapeará ningún puerto de este contenedor al host**.
-- =wg-easy=: Contenedor conectado a *ambas* redes. Gracias a esto, podrá enrutar el tráfico procedente del túnel /WireGuard/ hacia la red interna donde se encuentra /Apache/.
+#+RESULTS:
+[[file:./media/practica-vpn-con-containers.png]]
 
-#+latex: \newpage
+
 
 * Requisitos
 
-- Equipo con /Docker/ instalado, para los servidores (máquina virtual)
-- Equipo con interfaz gráfica donde instalar el cliente de VPN (máquina virtual) 
+- Equipo host con /Docker/ instalado, para los servidores (máquina virtual)
+  - Con interfaz gráfica para acceder a Portainer
+  - Permisos para crear redes, contenedores y modificar =sysctl= (root)
+- Equipo con interfaz gráfica donde instalar el cliente de VPN (máquina virtual).
+  - Windows, o bien
+  - Linux con KDE (Gnome debería servir, pero no está probado por el profesor)
 - Conexión a Internet para descargar las imágenes
   - =docker.io/weejewel/wg-easy:latest=
   - =docker.io/library/httpd:2.4=.
-- Permisos para crear redes, contenedores y modificar =sysctl=
 
-* Enunciado para el alumno
+* Pasos a seguir
 
-Realiza los siguientes apartados:
+Orientativamente, puedes seguir estos pasos:
+1. *Docker.* La forma más fácil es con el [[https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script][/script/ de conveniencia]] en una máquina virtual linux.
+2. *Portainer.* (opcional) [[https://docs.portainer.io/start/install-ce/server/docker/linux][Se utilizará la /comunity edition/]]. Puede ayudar a crear containers y a inspeccionar el estado de Docker.
+3. *Creación de red interna.* [[https://docs.docker.com/reference/cli/docker/network/create/][Crea la red interna]] /Docker/ donde conectar el servidor web y el servidor VPN.
+4. *Despliegue de Apache.* Despliega un contenedor con [[https://hub.docker.com/_/httpd][=httpd:2.4=]].
+   - Conéctalo [[https://stackoverflow.com/a/35359185][únicamente a la red interna y con una ip]] concreta.
+   - Crea una página =index.html= personalizada en un [[https://hub.docker.com/_/httpd#without-a-dockerfile][volumen conectado al directorio raiz de Apache]].
+5. *Despliegue de wg-easy.* Despliega el [[https://hub.docker.com/r/weejewel/wg-easy][contenedor =wg-easy=]]
+   - Conecta el puerto 51820 UDP al host
+   - Conecta el puerto 51821 TCP al host, [[https://stackoverflow.com/a/22100687][pero solo accesible desde el propio host]]
+   - Conéctalo también a la red interna.
+   - [[https://hub.docker.com/r/weejewel/wg-easy#2-run-wireguard-easy][Habilita el reenvío IP y configura los parámetros necesarios]] para que los clientes VPN puedan alcanzar la subred interna.
+   - Haz un volumen en =/etc/wireguard= dentro del container, o los usuarios que crees podrían perderse.  
+6. *Configuración del cliente VPN.* Desde el panel web de /wg-easy/ (puerto 51821, con un navegador), crea un cliente /WireGuard/, descarga su configuración o código QR y conéctalo.
+7. *Comprobación del aislamiento.* Comprueba que sin estar conectado a la VPN no se accede a /Apache/ y, con la VPN activa, sí se accede mediante la IP del contenedor /Apache/ desde el cliente VPN.
 
-1. *Creación de red interna.* Crea la red interna /Docker/ donde conectar el servidor web y el servidor VPN.
-2. *Despliegue de Apache.* Despliega un contenedor con =httpd:2.4= conectado únicamente a la red interna. Crea una página =index.html= personalizada y comprueba que, *sin VPN*, no es accesible desde el host.
-3. *Despliegue de wg-easy.* Despliega el contenedor =wg-easy= conectado a la red expuesta al host y, posteriormente, conéctalo también a la red interna. Habilita el reenvío IP y configura los parámetros necesarios para que los clientes VPN puedan alcanzar la subred interna.
-4. *Configuración del cliente VPN.* Desde el panel web de /wg-easy/, crea un cliente /WireGuard/, descarga su configuración o código QR e conéctalo.
-5. *Comprobación del aislamiento.* Comprueba que sin estar conectado a la VPN no se accede a /Apache/ y, con la VPN activa, sí se accede mediante la IP del contenedor /Apache/ desde el cliente VPN.
-
-#+latex: \newpage
 
 * Solución :noexport:
 
@@ -97,7 +131,10 @@ mkdir -p ~/practica-vpn-apache/html
 
 cat > ~/practica-vpn-apache/html/index.html << 'EOF'
 <html>
-  <head><title>Acceso solo por VPN</title></head>
+  <head>
+    <title>Acceso solo por VPN</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
   <body>
     <h1>¡Éxito!</h1>
     <p>Solo puedes ver esta página si estás conectado por WireGuard</p>
@@ -113,6 +150,7 @@ sudo docker run -d \
   --name apache \
   --hostname apache \
   --network red-interna \
+  --ip 10.10.50.2 \
   -v ~/practica-vpn-apache/html:/usr/local/apache2/htdocs/:Z \
   docker.io/library/httpd:2.4
 #+end_src
@@ -136,6 +174,7 @@ export WG_PASS="Asir1234"
 Lanzamos /wg-easy/ exponiendo únicamente WireGuard y su panel web:
 
 #+begin_src bash
+mkdir -p ./etc_wireguard
 sudo docker run -d \
   --name wg-easy \
   --hostname wg-easy \
@@ -150,7 +189,8 @@ sudo docker run -d \
   -e WG_ALLOWED_IPS="10.8.0.0/24, 10.10.50.0/24" \
   -e WG_PERSISTENT_KEEPALIVE=25 \
   -p 51820:51820/udp \
-  -p 51821:51821/tcp \
+  -p 127.0.0.1:51821:51821/tcp \
+  -v ./etc_wireguard:/etc/wireguard \
   --network red-interna \
   docker.io/weejewel/wg-easy:latest
 #+end_src
@@ -207,15 +247,14 @@ curl http://10.10.50.2
 </html>
 #+end_example
 
-#+latex: \newpage
 
 
 * Qué se valorará
 
-Se entregará un documento (=PDF=, =ODT=, =DOCX= o =MD=) con la siguiente información:
+Se entregará un documento (=PDF=, =ODT=, =DOCX=) con la siguiente información:
 
-- *Topología:* Diagrama con las redes, contenedores y flujo de tráfico (/sin VPN/ vs /con VPN/).
-- *Despliegue:* Comandos utilizados para crear redes, lanzar contenedores y conectar /wg-easy/ a ambas redes.
+- *Topología:* Diagrama con las redes, contenedores y flujo de tráfico.
+- *Despliegue:* Comandos utilizados para crear redes, lanzar contenedores y conectar containers redes.
 - *Configuración VPN:* Captura del panel web de /wg-easy/ con el cliente creado y/o captura del cliente /WireGuard/ conectado.
 - *Comprobaciones:* Mostrando la página personalizada de /Apache/.
 - *Claridad y presentación:* Pasos ordenados, explicaciones razonadas y capturas legibles.

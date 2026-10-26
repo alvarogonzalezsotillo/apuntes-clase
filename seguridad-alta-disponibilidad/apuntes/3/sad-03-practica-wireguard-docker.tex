@@ -1,4 +1,4 @@
-% Created 2026-10-26 lun 13:01
+% Created 2026-10-26 lun 18:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 
@@ -120,8 +120,6 @@
     \vspace{-0.2cm}
   \end{cuadrito}
 }
-
-\newpage
 \section{Objetivo de la práctica}
 \label{sec:org0000000}
 
@@ -136,73 +134,81 @@ Tras la realización de esta práctica, el alumno será capaz de:
 \end{itemize}
 
 Está disponible la \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/3/sad-03-practica-wg-easy-apache-solo-vpn.pdf}{última versión de esta práctica en este enlace}.
-
-\newpage
 \section{Descripción del problema}
 \label{sec:org0000003}
 
-Se desea que el servidor web \emph{Apache} quede completamente aislado de la red del host. 
+Se desea que un servidor web \emph{Apache} solo accesible mediante una VPN.
 
 Únicamente los clientes que se conecten al servidor \emph{VPN} levantado con \emph{wg-easy} podrán acceder a dicho servidor \emph{Apache}.
 
-Desde fuera del equipo, \textbf{\textbf{sin estar conectado a la VPN, NO deberá ser posible acceder al puerto 80 de Apache}}. 
+Se expondrá al host el túnel \emph{WireGuard} (UDP 51820) y, la interfaz web de gestión de \emph{wg-easy} (TCP 51821).
 
-El único servicio que se expondrá al host será el túnel \emph{WireGuard} (UDP 51820) y, opcionalmente, la interfaz web de gestión de \emph{wg-easy} (TCP 51821).
-\section{Topología propuesta}
-\label{sec:org0000006}
+El puerto 51820 será accesible desde el exterior. El puerto 51821 será solo accesible al host.
+
+Se instalará Portainer en el host, para poder inspeccionar fácilmente los \emph{containers}.
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./media/practica-vpn-con-containers.png}
 \label{}
 \end{center}
-
-\begin{itemize}
-\item \texttt{red-interna}: Red puente completamente aislada. Únicamente contendrá el servicio \emph{Apache}. \textbf{\textbf{No se mapeará ningún puerto de este contenedor al host}}.
-\item \texttt{wg-easy}: Contenedor conectado a \textbf{ambas} redes. Gracias a esto, podrá enrutar el tráfico procedente del túnel \emph{WireGuard} hacia la red interna donde se encuentra \emph{Apache}.
-\end{itemize}
-
-\newpage
 \section{Requisitos}
-\label{sec:org0000009}
+\label{sec:org0000006}
 
 \begin{itemize}
-\item Equipo con \emph{Docker} instalado, para los servidores (máquina virtual)
-\item Equipo con interfaz gráfica donde instalar el cliente de VPN (máquina virtual)
+\item Equipo host con \emph{Docker} instalado, para los servidores (máquina virtual)
+\begin{itemize}
+\item Con interfaz gráfica para acceder a Portainer
+\item Permisos para crear redes, contenedores y modificar \texttt{sysctl} (root)
+\end{itemize}
+\item Equipo con interfaz gráfica donde instalar el cliente de VPN (máquina virtual).
+\begin{itemize}
+\item Windows, o bien
+\item Linux con KDE (Gnome debería servir, pero no está probado por el profesor)
+\end{itemize}
 \item Conexión a Internet para descargar las imágenes
 \begin{itemize}
 \item \texttt{docker.io/weejewel/wg-easy:latest}
 \item \texttt{docker.io/library/httpd:2.4}.
 \end{itemize}
-\item Permisos para crear redes, contenedores y modificar \texttt{sysctl}
 \end{itemize}
-\section{Enunciado para el alumno}
-\label{sec:org000000c}
+\section{Pasos a seguir}
+\label{sec:org0000009}
 
-Realiza los siguientes apartados:
-
+Orientativamente, puedes seguir estos pasos:
 \begin{enumerate}
-\item \textbf{Creación de red interna.} Crea la red interna \emph{Docker} donde conectar el servidor web y el servidor VPN.
-\item \textbf{Despliegue de Apache.} Despliega un contenedor con \texttt{httpd:2.4} conectado únicamente a la red interna. Crea una página \texttt{index.html} personalizada y comprueba que, \textbf{sin VPN}, no es accesible desde el host.
-\item \textbf{Despliegue de wg-easy.} Despliega el contenedor \texttt{wg-easy} conectado a la red expuesta al host y, posteriormente, conéctalo también a la red interna. Habilita el reenvío IP y configura los parámetros necesarios para que los clientes VPN puedan alcanzar la subred interna.
-\item \textbf{Configuración del cliente VPN.} Desde el panel web de \emph{wg-easy}, crea un cliente \emph{WireGuard}, descarga su configuración o código QR e conéctalo.
+\item \textbf{Docker.} La forma más fácil es con el \href{https://docs.docker.com/engine/install/ubuntu/\#install-using-the-convenience-script}{\emph{script} de conveniencia} en una máquina virtual linux.
+\item \textbf{Portainer.} (opcional) \href{https://docs.portainer.io/start/install-ce/server/docker/linux}{Se utilizará la \emph{comunity edition}}. Puede ayudar a crear containers y a inspeccionar el estado de Docker.
+\item \textbf{Creación de red interna.} \href{https://docs.docker.com/reference/cli/docker/network/create/}{Crea la red interna} \emph{Docker} donde conectar el servidor web y el servidor VPN.
+\item \textbf{Despliegue de Apache.} Despliega un contenedor con \href{https://hub.docker.com/\_/httpd}{\texttt{httpd:2.4}}.
+\begin{itemize}
+\item Conéctalo \href{https://stackoverflow.com/a/35359185}{únicamente a la red interna y con una ip} concreta.
+\item Crea una página \texttt{index.html} personalizada en un \href{https://hub.docker.com/\_/httpd\#without-a-dockerfile}{volumen conectado al directorio raiz de Apache}.
+\end{itemize}
+\item \textbf{Despliegue de wg-easy.} Despliega el \href{https://hub.docker.com/r/weejewel/wg-easy}{contenedor \texttt{wg-easy}}
+\begin{itemize}
+\item Conecta el puerto 51820 UDP al host
+\item Conecta el puerto 51821 TCP al host, \href{https://stackoverflow.com/a/22100687}{pero solo accesible desde el propio host}
+\item Conéctalo también a la red interna.
+\item \href{https://hub.docker.com/r/weejewel/wg-easy\#2-run-wireguard-easy}{Habilita el reenvío IP y configura los parámetros necesarios} para que los clientes VPN puedan alcanzar la subred interna.
+\item Haz un volumen en \texttt{/etc/wireguard} dentro del container, o los usuarios que crees podrían perderse.
+\end{itemize}
+\item \textbf{Configuración del cliente VPN.} Desde el panel web de \emph{wg-easy} (puerto 51821, con un navegador), crea un cliente \emph{WireGuard}, descarga su configuración o código QR y conéctalo.
 \item \textbf{Comprobación del aislamiento.} Comprueba que sin estar conectado a la VPN no se accede a \emph{Apache} y, con la VPN activa, sí se accede mediante la IP del contenedor \emph{Apache} desde el cliente VPN.
 \end{enumerate}
-
-\newpage
 \section{Qué se valorará}
-\label{sec:org000000f}
+\label{sec:org000000c}
 
-Se entregará un documento (\texttt{PDF}, \texttt{ODT}, \texttt{DOCX} o \texttt{MD}) con la siguiente información:
+Se entregará un documento (\texttt{PDF}, \texttt{ODT}, \texttt{DOCX}) con la siguiente información:
 
 \begin{itemize}
-\item \textbf{Topología:} Diagrama con las redes, contenedores y flujo de tráfico (\emph{sin VPN} vs \emph{con VPN}).
-\item \textbf{Despliegue:} Comandos utilizados para crear redes, lanzar contenedores y conectar \emph{wg-easy} a ambas redes.
+\item \textbf{Topología:} Diagrama con las redes, contenedores y flujo de tráfico.
+\item \textbf{Despliegue:} Comandos utilizados para crear redes, lanzar contenedores y conectar containers redes.
 \item \textbf{Configuración VPN:} Captura del panel web de \emph{wg-easy} con el cliente creado y/o captura del cliente \emph{WireGuard} conectado.
 \item \textbf{Comprobaciones:} Mostrando la página personalizada de \emph{Apache}.
 \item \textbf{Claridad y presentación:} Pasos ordenados, explicaciones razonadas y capturas legibles.
 \end{itemize}
 \section{Instrucciones de entrega}
-\label{sec:org0000012}
+\label{sec:org000000f}
 \begin{itemize}
 \item \textbf{Modalidad:} Individual. Solo se admitirá en pareja si así se indica expresamente en clase.
 \item \textbf{Lugar de entrega:} Tarea correspondiente a esta práctica en el aula virtual del módulo.
