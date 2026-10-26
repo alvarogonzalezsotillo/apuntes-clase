@@ -54,6 +54,16 @@ digraph{
             redinterna  [label="Red interna\n10.10.50.0/24", shape=hexagon, fillcolor="#ffe8e0"];
             wireguard  [label="Container\nwg-easy" fillcolor="#e8f8f5"];
         }
+
+        navegadorh [label="Navegador web\n(para wg-easy)"];
+
+    }
+
+    subgraph cluster_hostcliente{
+        label="Host cliente"
+        navegadorc [label="Navegador web\n(para Apache)"];
+        cliente [label="Cliente VPN\n10.8.0.0/24"];
+        
     }
 
 
@@ -61,9 +71,9 @@ digraph{
     
     puerto9443 -> portainer;
     
-    cliente [label="Cliente VPN\n10.8.0.0/24", fillcolor="#fdf6e3"];
 
-    cliente -> redaula -> puerto51820;
+    cliente -> redaula  [ltail=cluster_hostcliente];
+    redaula -> puerto51820;
     redaula -> puerto9443;
     puerto51820    -> wireguard -> redinterna  -> apache
 
