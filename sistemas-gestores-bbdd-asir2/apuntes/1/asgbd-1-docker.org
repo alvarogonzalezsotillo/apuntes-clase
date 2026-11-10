@@ -82,6 +82,14 @@ curl https://get.docker.com/ | sh
   docker run hello-world
   #+end_src
 
+** Podman
+- Podman es un producto compatible con Docker
+  - Funcionan casi todos los comandos de la misma forma
+- Diferencias:
+  - Podman por defecto no usa /socket/
+  - Podman por defecto no es =root=
+- Está ya instalado en los ordenadores, no necesita máquina virtual    
+  
 * Imágenes y /containers/  
 ** Conceptos básicos
 - Una imagen se ejecuta en un /container/. La misma imagen se puede ejecutar en varios /containers/
@@ -179,12 +187,19 @@ curl https://get.docker.com/ | sh
 
 - Es un /registry/ inseguro (sin https).  
 - Para poder usarse hay que modificar/crear el fichero =/etc/docker/daemon.json=
-
-#+begin_src javascript  
-{
+  #+begin_src javascript  
+  {
     "insecure-registries":["10.1.33.201:8090"]
-}
-#+end_src
+  }
+  #+end_src
+
+- Para Podman se puede usar el parámetro =--tls-verify=false=, o el fichero =~/.config/containers/registries.conf=
+  #+begin_src bash
+  [[registry]]
+  prefix = "10.1.33.201:8090"
+  location = "10.1.33.201:8090"
+  insecure = true
+  #+end_src
 
 
 * Práctica: Instalar Webmin
@@ -260,7 +275,13 @@ Parameters:
 - Ficheros de datos en =/opt/oracle/oradata= del la máquina /host/
 - Nombre del container =oracle-enterprise-21.3.0.0=
 - SID: =ORADOCKER=
-- PDB: =PDBORADOCKER=  
+- PDB: =PDBORADOCKER=
+- El usuario del container =54321= es el que ejecuta oracle
+  - En Docker, hay que dar permisos adecuados al volumen en =/opt/oracle/oradata=
+  - En Podman, añadir =--userns=keep-id:uid=54321,gid=54321=
+
+** Ejercicios
+- Haz un /script/ para crear el /container/ y ejecutarlo
 - Haz un /script/ en el /host/ para ejecutar =sqlplus= como =SYSDBA=
   - =/opt/oracle/sqplus-as-sysdba.sh=
   - con =docker exec=
@@ -299,13 +320,14 @@ services:
             - 1521:1521
             - 5500:5500
         environment:
-            - ORACLE_SID=SID_COMPOSE
-            - ORACLE_PDB=PDB_COMPOSE
+            - ORACLE_SID=elsid
+            - ORACLE_PDB=lapdb
             - ORACLE_PWD=changemesecret
             - ORACLE_EDITION=enterprise
         volumes:
             - ./oradata:/opt/oracle/oradata
-        image: container-registry.oracle.com/database/enterprise:21.3.0.0
+        image: 10.1.33.201:8090/database/enterprise:21.3.0.0
+        userns_mode: "keep-id:uid=54321"
 #+end_src
 
 
