@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-07-23 jue 14:16 -->
+<!-- Generated on 2026-11-09 lun 12:35 -->
 <meta charset="utf-8"/>
 <title>Docker</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-07-23 jue 14:16</p>
+<h1 class="title">Docker</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-11-09 lun 12:35</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -609,7 +609,7 @@ window.addEventListener("load",()=>{
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&nbsp;</th>
 <th scope="col" class="org-left">Docker</th>
 <th scope="col" class="org-left">Máquina Virtual</th>
 </tr>
@@ -748,6 +748,25 @@ Solo <code>root</code> y el grupo <code>docker</code> pueden usar el servidor Do
 <pre><code class="bash" >  docker run hello-world
 </code></pre>
 </div></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-6-2">
+<h3 id="6-2"><span class="section-number-3">6.2.</span> Podman</h3>
+<ul>
+<li>Podman es un producto compatible con Docker
+<ul>
+<li>Funcionan casi todos los comandos de la misma forma</li>
+
+</ul></li>
+<li>Diferencias:
+<ul>
+<li>Podman por defecto no usa <i>socket</i></li>
+<li>Podman por defecto no es <code>root</code></li>
+
+</ul></li>
+<li>Está ya instalado en los ordenadores, no necesita máquina virtual</li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -988,17 +1007,30 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <ul>
 <li>Es un <i>registry</i> inseguro (sin https).</li>
-<li>Para poder usarse hay que modificar/crear el fichero <code>/etc/docker/daemon.json</code></li>
-
-</ul>
-
+<li><p>
+Para poder usarse hay que modificar/crear el fichero <code>/etc/docker/daemon.json</code>
+</p>
 <div class="org-src-container">
 
-<pre><code class="javascript" >{
+<pre><code class="javascript" >  {
     "insecure-registries":["10.1.33.201:8090"]
-}
+  }
 </code></pre>
-</div>
+</div></li>
+
+<li><p>
+Para Podman se puede usar el parámetro <code>--tls-verify=false</code>, o el fichero <code>~/.config/containers/registries.conf</code>
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  [[registry]]
+  prefix = "10.1.33.201:8090"
+  location = "10.1.33.201:8090"
+  insecure = true
+</code></pre>
+</div></li>
+
+</ul>
 <div class="slide-footer"></div>
 </section>
 </section>
@@ -1112,6 +1144,20 @@ Parameters:
 <li>Nombre del container <code>oracle-enterprise-21.3.0.0</code></li>
 <li>SID: <code>ORADOCKER</code></li>
 <li>PDB: <code>PDBORADOCKER</code></li>
+<li>El usuario del container <code>54321</code> es el que ejecuta oracle
+<ul>
+<li>En Docker, hay que dar permisos adecuados al volumen en <code>/opt/oracle/oradata</code></li>
+<li>En Podman, añadir <code>--userns=keep-id:uid=54321,gid=54321</code></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-15-3">
+<h3 id="15-3"><span class="section-number-3">15.3.</span> Ejercicios</h3>
+<ul>
+<li>Haz un <i>script</i> para crear el <i>container</i> y ejecutarlo</li>
 <li>Haz un <i>script</i> en el <i>host</i> para ejecutar <code>sqlplus</code> como <code>SYSDBA</code>
 <ul>
 <li><code>/opt/oracle/sqplus-as-sysdba.sh</code></li>

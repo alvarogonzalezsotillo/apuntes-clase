@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-07-23 jue 14:16 -->
+<!-- 2026-11-09 lun 12:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker</title>
@@ -57,6 +57,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -71,7 +72,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -184,7 +185,13 @@
   #org-div-home-and-up
    { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
+  .linenr {
+    font-size: smaller;
+    @supports (content: attr(data-linenr)) {
+      visibility: hidden;
+      &::before { content: attr(data-linenr); visibility: visible; }
+    }
+  }
   .code-highlighted { background-color: #ffff00; }
   .org-info-js_info-navigation { border-style: none; }
   #org-info-js_console-label
@@ -209,18 +216,18 @@
 <li><a href="#org000000c">3. Máquina virtual <i>vs</i> Docker</a></li>
 <li><a href="#org000000f">4. Componentes Docker</a></li>
 <li><a href="#org0000012">5. Portabilidad de Docker</a></li>
-<li><a href="#org0000018">6. Instalación de Docker</a></li>
-<li><a href="#org0000021">7. Imágenes y <i>containers</i></a></li>
-<li><a href="#org000002a">8. Volúmenes</a></li>
-<li><a href="#org000002d">9. Entrar en un <i>container</i></a></li>
-<li><a href="#org0000030">10. <i>Logs</i> de un <i>container</i></a></li>
-<li><a href="#org0000033">11. Usuarios</a></li>
-<li><a href="#org0000039">12. <i>Docker registry</i></a></li>
-<li><a href="#org000003c">13. Práctica: Instalar Webmin</a></li>
-<li><a href="#org000003f">14. Práctica: Instalar Portainer</a></li>
-<li><a href="#org0000049">15. Práctica: instalar Oracle</a></li>
-<li><a href="#org000004c">16. Práctica: instalar con <code>docker compose</code></a></li>
-<li><a href="#org000004f">17. Referencias</a></li>
+<li><a href="#org000001b">6. Instalación de Docker</a></li>
+<li><a href="#org0000024">7. Imágenes y <i>containers</i></a></li>
+<li><a href="#org000002d">8. Volúmenes</a></li>
+<li><a href="#org0000030">9. Entrar en un <i>container</i></a></li>
+<li><a href="#org0000033">10. <i>Logs</i> de un <i>container</i></a></li>
+<li><a href="#org0000036">11. Usuarios</a></li>
+<li><a href="#org000003c">12. <i>Docker registry</i></a></li>
+<li><a href="#org000003f">13. Práctica: Instalar Webmin</a></li>
+<li><a href="#org0000042">14. Práctica: Instalar Portainer</a></li>
+<li><a href="#org000004f">15. Práctica: instalar Oracle</a></li>
+<li><a href="#org0000052">16. Práctica: instalar con <code>docker compose</code></a></li>
+<li><a href="#org0000055">17. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -352,7 +359,7 @@ window.addEventListener("load",()=>{
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&nbsp;</th>
 <th scope="col" class="org-left">Docker</th>
 <th scope="col" class="org-left">Máquina Virtual</th>
 </tr>
@@ -437,8 +444,8 @@ window.addEventListener("load",()=>{
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000018" class="outline-2">
-<h2 id="org0000018"><span class="section-number-2">6.</span> Instalación de Docker</h2>
+<div id="outline-container-org000001b" class="outline-2">
+<h2 id="org000001b"><span class="section-number-2">6.</span> Instalación de Docker</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://docs.docker.com/engine/install/">Página oficial</a></li>
@@ -448,18 +455,18 @@ window.addEventListener("load",()=>{
 Desinstalar las versiones instaladas con <code>apt-get</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #000090; font-weight: bold;">for</span> pkg<span style="color: #000090; font-weight: bold;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
-<span style="color: #000090; font-weight: bold;">do</span>
-    sudo apt-get remove $pkg
-<span style="color: #000090; font-weight: bold;">done</span>
-</pre>
+<pre class="src src-bash"><code><span style="color: #a626a4;">for</span> pkg<span style="color: #a626a4;"> in</span> docker.io docker-doc docker-compose podman-docker containerd runc
+<span style="color: #a626a4;">do</span>
+    sudo apt-get remove $<span style="color: #8b4513;">pkg</span>
+<span style="color: #a626a4;">done</span>
+</code></pre>
 </div></li>
 <li><p>
 Usar el <i>script</i> (no recomendado en producción)
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">curl https://get.docker.com/ | sh
-</pre>
+<pre class="src src-bash"><code>curl https://get.docker.com/ | sh
+</code></pre>
 </div></li>
 </ul></li>
 </ul>
@@ -475,19 +482,36 @@ Solo <code>root</code> y el grupo <code>docker</code> pueden usar el servidor Do
 <li>Tienen acceso a <code>/var/run/docker.sock</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run hello-world
-</pre>
+<pre class="src src-bash"><code>  docker run hello-world
+</code></pre>
 </div></li>
 </ul>
 </div>
 </div>
+<div id="outline-container-org0000018" class="outline-3">
+<h3 id="org0000018"><span class="section-number-3">6.2.</span> Podman</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li>Podman es un producto compatible con Docker
+<ul class="org-ul">
+<li>Funcionan casi todos los comandos de la misma forma</li>
+</ul></li>
+<li>Diferencias:
+<ul class="org-ul">
+<li>Podman por defecto no usa <i>socket</i></li>
+<li>Podman por defecto no es <code>root</code></li>
+</ul></li>
+<li>Está ya instalado en los ordenadores, no necesita máquina virtual</li>
+</ul>
 </div>
-<div id="outline-container-org0000021" class="outline-2">
-<h2 id="org0000021"><span class="section-number-2">7.</span> Imágenes y <i>containers</i></h2>
+</div>
+</div>
+<div id="outline-container-org0000024" class="outline-2">
+<h2 id="org0000024"><span class="section-number-2">7.</span> Imágenes y <i>containers</i></h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org000001b" class="outline-3">
-<h3 id="org000001b"><span class="section-number-3">7.1.</span> Conceptos básicos</h3>
+<div id="outline-container-org000001e" class="outline-3">
+<h3 id="org000001e"><span class="section-number-3">7.1.</span> Conceptos básicos</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Una imagen se ejecuta en un <i>container</i>. La misma imagen se puede ejecutar en varios <i>containers</i></li>
@@ -501,22 +525,22 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">  docker run debian <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">crea un container y termina inmediatamente, bash no tiene entrada
-</span>  docker run -it debian <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">crea un container y conecta la consola al programa por defecto 
-</span>  docker run debian /bin/bash -c <span style="color: #008000; font-weight: bold;">"echo Un mensaje y termino"</span> 
-</pre>
+<pre class="src src-bash"><code>  docker run debian <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">crea un container y termina inmediatamente, bash no tiene entrada</span>
+  docker run -it debian <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">crea un container y conecta la consola al programa por defecto </span>
+  docker run debian /bin/bash -c <span style="color: #50a14f;">"echo Un mensaje y termino"</span> 
+</code></pre>
 </div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org000001e" class="outline-3">
-<h3 id="org000001e"><span class="section-number-3">7.2.</span> Lista de containers e imágenes</h3>
+<div id="outline-container-org0000021" class="outline-3">
+<h3 id="org0000021"><span class="section-number-3">7.2.</span> Lista de containers e imágenes</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
-<pre class="src src-bash">  docker images
-  docker ps <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">containers en ejecucion
-</span>  docker ps -a <span style="color: #808080;"># </span><span style="color: #808080; font-style: italic;">todos los containers</span>
-</pre>
+<pre class="src src-bash"><code>  docker images
+  docker ps <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">containers en ejecucion</span>
+  docker ps -a <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">todos los containers</span>
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>Conclusión: <code>run</code> no ejecuta <i>containers</i>, sino que crea y ejecuta <i>containers</i>
@@ -529,8 +553,8 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 </div>
 </div>
 </div>
-<div id="outline-container-org000002a" class="outline-2">
-<h2 id="org000002a"><span class="section-number-2">8.</span> Volúmenes</h2>
+<div id="outline-container-org000002d" class="outline-2">
+<h2 id="org000002d"><span class="section-number-2">8.</span> Volúmenes</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Los <i>containers</i> son inmutables.
@@ -545,22 +569,22 @@ Una imagen provee un programa a ejecutar cuando se ejecuta con <code>run</code>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000024" class="outline-3">
-<h3 id="org0000024"><span class="section-number-3">8.1.</span> <i>mounts</i></h3>
+<div id="outline-container-org0000027" class="outline-3">
+<h3 id="org0000027"><span class="section-number-3">8.1.</span> <i>mounts</i></h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li><p>
 Equivalente a un <code>mount --bind</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -it --mount type=bind,src=<span style="color: #008000; font-weight: bold;">"$(pwd)"</span>,target=/src debian bash
-</pre>
+<pre class="src src-bash"><code>  docker run -it --mount <span style="color: #8b4513;">type</span>=bind,<span style="color: #8b4513;">src</span>=<span style="color: #50a14f;">"$(pwd)"</span>,<span style="color: #8b4513;">target</span>=/src debian bash
+</code></pre>
 </div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000027" class="outline-3">
-<h3 id="org0000027"><span class="section-number-3">8.2.</span> Volúmenes</h3>
+<div id="outline-container-org000002a" class="outline-3">
+<h3 id="org000002a"><span class="section-number-3">8.2.</span> Volúmenes</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>Puntos de montaje definidos al crear la imagen
@@ -575,8 +599,8 @@ Pueden ser
 <li>directorios del <i>file system</i></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">  docker run -dit --name my-apache-app -p 8080:80 -v $HOME:/usr/local/apache2/htdocs/ httpd:2.4
-</pre>
+<pre class="src src-bash"><code>  docker run -dit --name my-apache-app -p 8080:80 -v $<span style="color: #8b4513;">HOME</span>:/usr/local/apache2/htdocs/ httpd:2.4
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>-dit</code> : <b>d</b> etached, <b>i</b> nteractive, <b>t</b> ty</li>
@@ -588,16 +612,16 @@ Pueden ser
 </div>
 </div>
 </div>
-<div id="outline-container-org000002d" class="outline-2">
-<h2 id="org000002d"><span class="section-number-2">9.</span> Entrar en un <i>container</i></h2>
+<div id="outline-container-org0000030" class="outline-2">
+<h2 id="org0000030"><span class="section-number-2">9.</span> Entrar en un <i>container</i></h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><p>
 Se pueden ejecutar comandos en un <i>container</i> en ejecución
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  docker exec -it my-apache-app bash
-</pre>
+<pre class="src src-bash"><code>  docker exec -it my-apache-app bash
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><b>-i</b>: Ejecutar de forma interactiva (redirigir entrada y salida estándar)</li>
@@ -606,22 +630,22 @@ Se pueden ejecutar comandos en un <i>container</i> en ejecución
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000030" class="outline-2">
-<h2 id="org0000030"><span class="section-number-2">10.</span> <i>Logs</i> de un <i>container</i></h2>
+<div id="outline-container-org0000033" class="outline-2">
+<h2 id="org0000033"><span class="section-number-2">10.</span> <i>Logs</i> de un <i>container</i></h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><p>
 La salida del punto de entrada se considera el <i>log</i> del container
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">  docker logs --follow nombre-container
-</pre>
+<pre class="src src-bash"><code>  docker logs --follow nombre-container
+</code></pre>
 </div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000033" class="outline-2">
-<h2 id="org0000033"><span class="section-number-2">11.</span> Usuarios</h2>
+<div id="outline-container-org0000036" class="outline-2">
+<h2 id="org0000036"><span class="section-number-2">11.</span> Usuarios</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Los usuarios en Linux se identifican por un número
@@ -638,8 +662,8 @@ La salida del punto de entrada se considera el <i>log</i> del container
 </ul>
 </div>
 </div>
-<div id="outline-container-org0000039" class="outline-2">
-<h2 id="org0000039"><span class="section-number-2">12.</span> <i>Docker registry</i></h2>
+<div id="outline-container-org000003c" class="outline-2">
+<h2 id="org000003c"><span class="section-number-2">12.</span> <i>Docker registry</i></h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Las imágenes se almacenan en registros
@@ -649,9 +673,9 @@ La salida del punto de entrada se considera el <i>log</i> del container
 Los siguientes comandos son equivalentes
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    docker run hello-world
+<pre class="src src-bash"><code>    docker run hello-world
     docker run registry.hub.docker.com/hello-world
-</pre>
+</code></pre>
 </div></li>
 </ul></li>
 <li>Oracle tiene un registro para sus imágenes
@@ -662,14 +686,14 @@ Los siguientes comandos son equivalentes
 La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth token</i>
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">    docker login container-registry.oracle.com/
-</pre>
+<pre class="src src-bash"><code>    docker login container-registry.oracle.com/
+</code></pre>
 </div></li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000036" class="outline-3">
-<h3 id="org0000036"><span class="section-number-3">12.1.</span> <i>Cache</i> en el instituto</h3>
+<div id="outline-container-org0000039" class="outline-3">
+<h3 id="org0000039"><span class="section-number-3">12.1.</span> <i>Cache</i> en el instituto</h3>
 <div class="outline-text-3" id="text-12-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -686,33 +710,45 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 
 <ul class="org-ul">
 <li>Es un <i>registry</i> inseguro (sin https).</li>
-<li>Para poder usarse hay que modificar/crear el fichero <code>/etc/docker/daemon.json</code></li>
-</ul>
-
+<li><p>
+Para poder usarse hay que modificar/crear el fichero <code>/etc/docker/daemon.json</code>
+</p>
 <div class="org-src-container">
-<pre class="src src-javascript">{
-    <span style="color: #008000; font-weight: bold;">"insecure-registries"</span>:[<span style="color: #008000; font-weight: bold;">"10.1.33.201:8090"</span>]
-}
-</pre>
+<pre class="src src-javascript"><code>  {
+    <span style="color: #50a14f;">"insecure-registries"</span>:[<span style="color: #50a14f;">"10.1.33.201:8090"</span>]
+  }
+</code></pre>
+</div></li>
+
+<li><p>
+Para Podman se puede usar el parámetro <code>--tls-verify=false</code>, o el fichero <code>~/.config/containers/registries.conf</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>  [[registry]]
+  <span style="color: #8b4513;">prefix</span> = <span style="color: #50a14f;">"10.1.33.201:8090"</span>
+  <span style="color: #8b4513;">location</span> = <span style="color: #50a14f;">"10.1.33.201:8090"</span>
+  <span style="color: #8b4513;">insecure</span> = true
+</code></pre>
+</div></li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org000003c" class="outline-2">
-<h2 id="org000003c"><span class="section-number-2">13.</span> Práctica: Instalar Webmin</h2>
+<div id="outline-container-org000003f" class="outline-2">
+<h2 id="org000003f"><span class="section-number-2">13.</span> Práctica: Instalar Webmin</h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>Es un sistema para manejar servidores Linux mediante con una interfaz web</li>
 <li>Comprueba qué se ha instalado en el <i>container</i> y lanza una <i>shell</i> desde la web</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
-</pre>
+<pre class="src src-bash"><code>sudo docker run -p 10000:10000 10.1.33.201:8090/johanp/webmin
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org000003f" class="outline-2">
-<h2 id="org000003f"><span class="section-number-2">14.</span> Práctica: Instalar Portainer</h2>
+<div id="outline-container-org0000042" class="outline-2">
+<h2 id="org0000042"><span class="section-number-2">14.</span> Práctica: Instalar Portainer</h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Es un sistema para manejar los contenedores Docker, instalado dentro de Docker (¿?)
@@ -723,18 +759,18 @@ La contraseña del registro no es la de la cuenta de Oracle, sino el <i>Auth tok
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-bash">docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #008000; font-weight: bold;">\</span>
-  --name portainer <span style="color: #008000; font-weight: bold;">\</span>
-  --restart=always <span style="color: #008000; font-weight: bold;">\</span>
-  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #008000; font-weight: bold;">\</span>
+<pre class="src src-bash"><code>docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #50a14f;">\</span>
+  --name portainer <span style="color: #50a14f;">\</span>
+  --restart=always <span style="color: #50a14f;">\</span>
+  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #50a14f;">\</span>
   -v portainer_data:/data portainer/portainer-ce:latest
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0000049" class="outline-2">
-<h2 id="org0000049"><span class="section-number-2">15.</span> Práctica: instalar Oracle</h2>
+<div id="outline-container-org000004f" class="outline-2">
+<h2 id="org000004f"><span class="section-number-2">15.</span> Práctica: instalar Oracle</h2>
 <div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li>Usaremos la imagen <code>container-registry.oracle.com/database/enterprise:21.3.0.0</code></li>
@@ -744,14 +780,14 @@ docker run -d -p 8000:8000 -p 9443:9443 <span style="color: #008000; font-weight
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0000043" class="outline-3">
-<h3 id="org0000043"><span class="section-number-3">15.1.</span> Instrucciones</h3>
+<div id="outline-container-org0000046" class="outline-3">
+<h3 id="org0000046"><span class="section-number-3">15.1.</span> Instrucciones</h3>
 <div class="outline-text-3" id="text-15-1">
 <ul class="org-ul">
 <li>Instrucciones: <a href="https://container-registry.oracle.com/ords/ocr/ba/database/enterprise">https://container-registry.oracle.com/ords/ocr/ba/database/enterprise</a></li>
 </ul>
 
-<pre class="example" id="org0000042">
+<pre class="example" id="org0000045">
 docker run -d --name &lt;container_name&gt; \
  -p &lt;host_port&gt;:1521 -p &lt;host_port&gt;:5500 \
  -e ORACLE_SID=&lt;your_SID&gt; \
@@ -790,8 +826,8 @@ Parameters:
 </pre>
 </div>
 </div>
-<div id="outline-container-org0000046" class="outline-3">
-<h3 id="org0000046"><span class="section-number-3">15.2.</span> En nuestro caso</h3>
+<div id="outline-container-org0000049" class="outline-3">
+<h3 id="org0000049"><span class="section-number-3">15.2.</span> En nuestro caso</h3>
 <div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li>Puerto <code>1521</code> del container al <code>1521</code> de la máquina <i>host</i></li>
@@ -799,6 +835,19 @@ Parameters:
 <li>Nombre del container <code>oracle-enterprise-21.3.0.0</code></li>
 <li>SID: <code>ORADOCKER</code></li>
 <li>PDB: <code>PDBORADOCKER</code></li>
+<li>El usuario del container <code>54321</code> es el que ejecuta oracle
+<ul class="org-ul">
+<li>En Docker, hay que dar permisos adecuados al volumen en <code>/opt/oracle/oradata</code></li>
+<li>En Podman, añadir <code>--userns=keep-id:uid=54321,gid=54321</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org000004c" class="outline-3">
+<h3 id="org000004c"><span class="section-number-3">15.3.</span> Ejercicios</h3>
+<div class="outline-text-3" id="text-15-3">
+<ul class="org-ul">
+<li>Haz un <i>script</i> para crear el <i>container</i> y ejecutarlo</li>
 <li>Haz un <i>script</i> en el <i>host</i> para ejecutar <code>sqlplus</code> como <code>SYSDBA</code>
 <ul class="org-ul">
 <li><code>/opt/oracle/sqplus-as-sysdba.sh</code></li>
@@ -813,8 +862,8 @@ Parameters:
 </div>
 </div>
 </div>
-<div id="outline-container-org000004c" class="outline-2">
-<h2 id="org000004c"><span class="section-number-2">16.</span> Práctica: instalar con <code>docker compose</code></h2>
+<div id="outline-container-org0000052" class="outline-2">
+<h2 id="org0000052"><span class="section-number-2">16.</span> Práctica: instalar con <code>docker compose</code></h2>
 <div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li><a href="https://docs.docker.com/compose/"><code>docker compose</code></a> es una extensión para definir varios <i>containers</i> en un fichero <a href="https://en.wikipedia.org/wiki/YAML"><code>yaml</code></a>
@@ -829,8 +878,8 @@ Parameters:
 </ul>
 </div>
 </div>
-<div id="outline-container-org000004f" class="outline-2">
-<h2 id="org000004f"><span class="section-number-2">17.</span> Referencias</h2>
+<div id="outline-container-org0000055" class="outline-2">
+<h2 id="org0000055"><span class="section-number-2">17.</span> Referencias</h2>
 <div class="outline-text-2" id="text-17">
 <ul class="org-ul">
 <li>Formatos:
@@ -851,7 +900,7 @@ Parameters:
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-07-23 jue 14:16</p>
+<p class="date">Created: 2026-11-09 lun 12:35</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
