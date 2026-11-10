@@ -26,7 +26,7 @@
 
 * Seguridad perimetral
 
-- La primera línea de defensa entre las redes públicas y privadas.  ◦
+- La primera línea de defensa entre las redes públicas y privadas.
 - La seguridad perimetral implementa diferentes tipos de arquitectura
 - Para proteger nuestra /red interna/ o /subred protegida/.
 - Hay varias posibilidades, que varían entre:
@@ -50,15 +50,17 @@
     - [[https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/][Windows firewall]]   
   - /Firewalls/ por /software/
     - Se instalan en sistemas operativos de servidor
+    - En ordenadores que se utilizan de /routers/  
     - Utilizan las mismas tecnologías que los /firewalls/ personales, con extensiones para varias interfaces
   - /Firewalls/ por /hardware/   
     - Instalados en equipos de red (no terminales)
     - Ejemplo: [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/7/par-7-acl-cisco.reveal.html][ACL de Cisco]]
+- En otro tema del curso trabajaremos los /firewall/ implementados en linux.     
 
 ** /Firewalls/ más allá de TCP/UDP
 - Los bastiones (más adelante) pueden incluir reglas de acceso
 - Puede haber configuraciones/plugins en servidores que cumplan función de filtro
-  - Ejemplo: [[https://modsecurity.org/docs/index.html][modsecurity]] para Apache/ISS/nginx//
+  - Ejemplo: [[https://modsecurity.org/docs/index.html][modsecurity]] para Apache/ISS/nginx/
 
 * /Proxy/ (pasarela)
 - Equivalente a bastión
@@ -67,6 +69,11 @@
 - El /proxy/ hace de [[https://en.wikipedia.org/wiki/Man-in-the-middle_attack][MITM]] entre los clientes y los servicios reales
   a) El cliente está configurado para usar el /proxy/
   b) O bien el administrador de red ha configurado los DNS/routers para hacer creer al cliente que se comunica con el servicio ([[https://es.wikipedia.org/wiki/Servidor_proxy#Proxies_transparentes][/proxy/ transparente]])
+
+* VPN
+- Red privada virtual
+- Descrito en [[https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/8/par-8-vpn.reveal.html][esta presentación]]
+
 
 * Arquitecturas de cortafuegos
 - /Screening router/

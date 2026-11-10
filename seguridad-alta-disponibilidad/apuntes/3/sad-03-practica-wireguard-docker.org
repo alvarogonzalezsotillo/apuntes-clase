@@ -33,6 +33,7 @@ Se instalará Portainer en el host, para poder inspeccionar fácilmente los /con
 
 #+begin_src dot :file ./media/practica-vpn-con-containers.png :exports results :cmdline -Tpng
 digraph{
+    dpi=600;
     rankdir=LR;
     node [shape=box, style="rounded,filled"];
     edge [dir=none]
@@ -77,7 +78,7 @@ digraph{
     redaula -> puerto9443;
     puerto51820    -> wireguard -> redinterna  -> apache
 
-    cliente -> redvpn -> wireguard [style=dotted]
+    cliente -> redvpn -> wireguard [style=dashed]
 
     redvpn  [label="Red VPN\n10.8.0.0/24", shape=hexagon, fillcolor="#ffe8e0"];
 
