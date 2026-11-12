@@ -1,0 +1,108 @@
+name: practica-ra04
+
+services:
+  router-iptables:
+    build:
+      context: ./router-iptables
+    container_name: router-iptables
+    hostname: router-iptables
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    networks:
+      servers:
+        interface_name: eth0
+        ipv4_address: 192.168.52.254
+      lan:
+        interface_name: eth1
+        ipv4_address: 192.168.51.254
+      wan:
+        interface_name: eth2
+    volumes:
+      - ./router-iptables/setup.sh:/setup.sh:ro
+    command: >
+      sleep infinity
+
+  http:
+    build:
+      context: ./http
+    container_name: http
+    hostname: http
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./http/index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      lan:
+        ipv4_address: 192.168.51.10
+
+
+  mysql:
+    build:
+      context: mariadb
+    container_name: mysql
+    hostname: mysql
+    cap_add:
+      - NET_ADMIN
+    environment:
+      MARIADB_ROOT_PASSWORD: root1234
+      MARIADB_DATABASE: practica
+      MARIADB_USER: alumno
+      MARIADB_PASSWORD: alumno1234
+    networks:
+      lan:
+        ipv4_address: 192.168.51.20
+       
+
+  cliente-admin:
+    build:
+      context: mariadb
+    container_name: cliente-admin
+    hostname: cliente-admin
+    cap_add:
+      - NET_ADMIN
+    networks:
+      servers:
+        ipv4_address: 192.168.52.151
+    extra_hosts:
+      - "http:192.168.51.10"
+      - "mysql:192.168.51.20"
+    command: >
+      sleep infinity
+        
+
+  cliente:
+    build:
+      context: mariadb
+    container_name: cliente
+    hostname: cliente
+    cap_add:
+      - NET_ADMIN
+    networks:
+      servers:
+        ipv4_address: 192.168.52.152
+    extra_hosts:
+      - "http:192.168.51.10"
+      - "mysql:192.168.51.20"
+    command: >
+      sleep infinity
+
+
+networks:
+  servers:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.52.0/24
+
+  lan:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.51.0/24
+
+  wan:
+    driver: bridge
