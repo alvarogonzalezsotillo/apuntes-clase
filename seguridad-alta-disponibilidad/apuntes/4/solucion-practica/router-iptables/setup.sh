@@ -27,7 +27,9 @@ permitir_ping_a_lan(){
 }
 
 log_paquetes_no_aceptados(){
-    iptables -A INPUT -m limit --limit 5/min --limit-burst 10 -j LOG --log-prefix "IPTABLES DROP: " --log-level 4
+    iptables -A INPUT -m limit --limit 5/min --limit-burst 10 -j LOG --log-prefix "IPTABLES INPUT DROP: " --log-level 4
+    iptables -A FORWARD -m limit --limit 5/min --limit-burst 10 -j LOG --log-prefix "IPTABLES FORWARD DROP: " --log-level 4
+    iptables -A OUTPUT -m limit --limit 5/min --limit-burst 10 -j LOG --log-prefix "IPTABLES OUTPUT DROP: " --log-level 4
 }
 
 main(){
