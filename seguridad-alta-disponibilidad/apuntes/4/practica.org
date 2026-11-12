@@ -1,9 +1,0 @@
-* Prompt
-
-
-Inventa una práctica para ASIR grado superior módulo Seguridad y alta disponibilidad RA4.
-
-Usa contenedores docker para crear un router, una red interna y la red real del host, y contenedores en la red interna.
-
-En la red interna habrá servicios (por ejemplo http, mysql), y en el router habrá reglas de iptables para controlar quién puede acceder
-

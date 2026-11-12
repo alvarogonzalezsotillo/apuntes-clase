@@ -106,3 +106,4 @@ networks:
 
   wan:
     driver: bridge
+
