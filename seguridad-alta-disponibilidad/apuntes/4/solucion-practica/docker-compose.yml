@@ -34,8 +34,8 @@ services:
     volumes:
       - ./http/index.html:/usr/share/nginx/html/index.html:ro
     networks:
-      lan:
-        ipv4_address: 192.168.51.10
+      servers:
+        ipv4_address: 192.168.52.10
 
 
   mysql:
@@ -51,8 +51,8 @@ services:
       MARIADB_USER: alumno
       MARIADB_PASSWORD: alumno1234
     networks:
-      lan:
-        ipv4_address: 192.168.51.20
+      servers:
+        ipv4_address: 192.168.52.20
        
 
   cliente-admin:
@@ -63,11 +63,11 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      servers:
-        ipv4_address: 192.168.52.151
+      lan:
+        ipv4_address: 192.168.51.151
     extra_hosts:
-      - "http:192.168.51.10"
-      - "mysql:192.168.51.20"
+      - "http:192.168.52.10"
+      - "mysql:192.168.52.20"
     command: >
       sleep infinity
         
@@ -80,11 +80,11 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      servers:
-        ipv4_address: 192.168.52.152
+      lan:
+        ipv4_address: 192.168.51.152
     extra_hosts:
-      - "http:192.168.51.10"
-      - "mysql:192.168.51.20"
+      - "http:192.168.52.10"
+      - "mysql:192.168.52.20"
     command: >
       sleep infinity
 
