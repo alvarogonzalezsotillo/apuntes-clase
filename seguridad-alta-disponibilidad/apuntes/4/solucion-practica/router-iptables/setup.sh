@@ -44,7 +44,8 @@ abrir_puerto_80_hacia_http(){
     iptables -A FORWARD -i $WAN_IF -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
     # SNAT hacia servers: necesario por el aislamiento que Docker aplica a las
     # redes internal, para que la respuesta de http vuelva por el router
-    iptables -t nat -A POSTROUTING -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -j SNAT --to-source $SERVERS_ROUTER_IP
+    # NO HACE FALTA, SE LE PONE ROUTER POR DEFECTO A http
+    #iptables -t nat -A POSTROUTING -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -j SNAT --to-source $SERVERS_ROUTER_IP
 }
 
 permitir_ping_a_lan(){
