@@ -1,4 +1,4 @@
-name: practica-ra04
+name: ${COMPOSE_PROJECT_NAME:-practica-ra04}
 
 services:
   router-iptables:
@@ -13,13 +13,14 @@ services:
     networks:
       servers:
         interface_name: eth0
-        ipv4_address: 192.168.52.254
+        ipv4_address: ${SERVERS_ROUTER_IP}
       lan:
         interface_name: eth1
-        ipv4_address: 192.168.51.254
+        ipv4_address: ${LAN_ROUTER_IP}
       wan:
         interface_name: eth2
     volumes:
+      - ./.env:/setup.env:ro
       - ./router-iptables/setup.sh:/setup.sh:ro
     command: >
       sleep infinity
@@ -32,11 +33,12 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
+      - ./.env:/setup.env:ro
       - ./http/index.html:/usr/share/nginx/html/index.html:ro
       - ./http/setup.sh:/setup.sh:ro
     networks:
       servers:
-        ipv4_address: 192.168.52.10
+        ipv4_address: ${HTTP_IP}
 
 
   mysql:
@@ -47,15 +49,16 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      MARIADB_ROOT_PASSWORD: root1234
-      MARIADB_DATABASE: practica
-      MARIADB_USER: alumno
-      MARIADB_PASSWORD: alumno1234
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
+      - ./.env:/setup.env:ro
       - ./mysql/setup.sh:/setup.sh:ro
     networks:
       servers:
-        ipv4_address: 192.168.52.20
+        ipv4_address: ${MYSQL_IP}
        
 
   cliente-admin:
@@ -66,13 +69,14 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
+      - ./.env:/setup.env:ro
       - ./cliente-admin/setup.sh:/setup.sh:ro
     networks:
       lan:
-        ipv4_address: 192.168.51.151
+        ipv4_address: ${CLIENTE_ADMIN_IP}
     extra_hosts:
-      - "http:192.168.52.10"
-      - "mysql:192.168.52.20"
+      - "http:${HTTP_IP}"
+      - "mysql:${MYSQL_IP}"
     command: >
       sleep infinity
         
@@ -85,13 +89,14 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
+      - ./.env:/setup.env:ro
       - ./cliente/setup.sh:/setup.sh:ro
     networks:
       lan:
-        ipv4_address: 192.168.51.152
+        ipv4_address: ${CLIENTE_IP}
     extra_hosts:
-      - "http:192.168.52.10"
-      - "mysql:192.168.52.20"
+      - "http:${HTTP_IP}"
+      - "mysql:${MYSQL_IP}"
     command: >
       sleep infinity
 
@@ -102,15 +107,14 @@ networks:
     internal: true
     ipam:
       config:
-        - subnet: 192.168.52.0/24
+        - subnet: ${SERVERS_SUBNET}
 
   lan:
     driver: bridge
     internal: true
     ipam:
       config:
-        - subnet: 192.168.51.0/24
+        - subnet: ${LAN_SUBNET}
 
   wan:
     driver: bridge
-

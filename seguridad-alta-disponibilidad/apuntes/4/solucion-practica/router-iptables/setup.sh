@@ -2,12 +2,17 @@
 
 set -xe
 
-WAN_IF=eth2
-LAN_IF=eth1
-SERVERS_IF=eth0
+if [ -f /setup.env ]; then
+    . /setup.env
+fi
 
-HTTP_IP=192.168.52.10
-SERVERS_ROUTER_IP=192.168.52.254
+# Valores por defecto por si se ejecuta el script sin el .env montado.
+WAN_IF=${WAN_IF:-eth2}
+LAN_IF=${LAN_IF:-eth1}
+SERVERS_IF=${SERVERS_IF:-eth0}
+
+HTTP_IP=${HTTP_IP:-192.168.52.10}
+SERVERS_ROUTER_IP=${SERVERS_ROUTER_IP:-192.168.52.254}
 
 
 limpiar_tablas(){

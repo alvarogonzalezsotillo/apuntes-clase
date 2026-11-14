@@ -1,1 +1,4 @@
 # ORDENES INICIALES PARA CONTAINER cliente. NO SE LANZAR AUTOMÁTICAMENTE, SON MANUALES
+
+. /setup.env
+ip route add default via $LAN_ROUTER_IP
