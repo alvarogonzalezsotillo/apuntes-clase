@@ -33,6 +33,7 @@ services:
       - NET_ADMIN
     volumes:
       - ./http/index.html:/usr/share/nginx/html/index.html:ro
+      - ./http/setup.sh:/setup.sh:ro
     networks:
       servers:
         ipv4_address: 192.168.52.10
@@ -50,6 +51,8 @@ services:
       MARIADB_DATABASE: practica
       MARIADB_USER: alumno
       MARIADB_PASSWORD: alumno1234
+    volumes:
+      - ./mysql/setup.sh:/setup.sh:ro
     networks:
       servers:
         ipv4_address: 192.168.52.20
@@ -62,6 +65,8 @@ services:
     hostname: cliente-admin
     cap_add:
       - NET_ADMIN
+    volumes:
+      - ./cliente-admin/setup.sh:/setup.sh:ro
     networks:
       lan:
         ipv4_address: 192.168.51.151
@@ -79,6 +84,8 @@ services:
     hostname: cliente
     cap_add:
       - NET_ADMIN
+    volumes:
+      - ./cliente/setup.sh:/setup.sh:ro
     networks:
       lan:
         ipv4_address: 192.168.51.152
