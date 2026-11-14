@@ -1,3 +1,4 @@
+#!/bin/bash
 # ORDENES INICIALES PARA CONTAINER cliente-admin. NO SE LANZAR AUTOMÁTICAMENTE, SON MANUALES
 
 . /setup.env

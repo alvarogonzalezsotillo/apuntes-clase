@@ -1,5 +1,7 @@
+#!/bin/bash
 # ORDENES INICIALES PARA CONTAINER router-iptables. NO SE LANZAR AUTOMÁTICAMENTE, SON MANUALES
-
+# https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458
+# HAY QUE ACTIVAR net.netfilter.nf_log_all_netns=0 EN EL HOST
 set -xe
 
 if [ -f /setup.env ]; then
@@ -13,7 +15,8 @@ SERVERS_IF=${SERVERS_IF:-eth0}
 
 HTTP_IP=${HTTP_IP:-192.168.52.10}
 SERVERS_ROUTER_IP=${SERVERS_ROUTER_IP:-192.168.52.254}
-
+MYSQL_IP=${MYSQL_IP:-192.168.52.20}
+CLIENTE_ADMIN_IP=${CLIENTE_ADMIN_IP:-192.168.51.151}
 
 limpiar_tablas(){
     # Deja las politicas en ACCEPT antes de vaciar, para no cortar el acceso
@@ -30,14 +33,14 @@ limpiar_tablas(){
 politicas_por_defecto(){
     iptables -P INPUT DROP
     iptables -P FORWARD DROP
-    iptables -P OUTPUT ACCEPT
+    iptables -P OUTPUT DROP
     iptables -A INPUT -i lo -j ACCEPT
 }
 
 conexiones_ya_establecidas(){
-    iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    # iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
     iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-    iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    #iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 }
 
 nat_hacia_wan(){
@@ -49,19 +52,20 @@ abrir_puerto_80_hacia_http(){
     iptables -t nat -A PREROUTING -i $WAN_IF -p tcp --dport 80 -j DNAT --to-destination $HTTP_IP:80
     # Permitir el reenvio hacia la red servers
     iptables -A FORWARD -i $WAN_IF -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
-    # SNAT hacia servers: necesario por el aislamiento que Docker aplica a las
-    # redes internal, para que la respuesta de http vuelva por el router
-    # NO HACE FALTA, SE LE PONE ROUTER POR DEFECTO A http
-    #iptables -t nat -A POSTROUTING -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -j SNAT --to-source $SERVERS_ROUTER_IP
 }
 
 permitir_ping_a_lan(){
-    iptables -A INPUT -p icmp -i $LAN_IF --icmp-type echo-request -j ACCEPT
+    #iptables -A INPUT -p icmp -i $LAN_IF --icmp-type echo-request -j ACCEPT
     iptables -A FORWARD -p icmp -i $LAN_IF --icmp-type echo-request -j ACCEPT
 }
 
 permitir_http_en_lan(){
     iptables -A FORWARD -i $LAN_IF -o $SERVERS_IF -p tcp -d $HTTP_IP --dport 80 -j ACCEPT
+}
+
+permitir_mysql_a_admin(){
+    #iptables -A INPUT -p tcp --source $CLIENTE_ADMIN_IP --dport 3306 --destination $MYSQL_IP --jump ACCEPT
+    iptables -A FORWARD -p tcp --dport 3306 --source $CLIENTE_ADMIN_IP --destination $MYSQL_IP -j ACCEPT
 }
 
 log_paquetes_no_aceptados(){
@@ -81,10 +85,14 @@ main(){
     nat_hacia_wan
     permitir_ping_a_lan
     permitir_http_en_lan
+    permitir_mysql_a_admin
     abrir_puerto_80_hacia_http
     log_paquetes_no_aceptados
     bucle_comprueba_reglas
 }
 
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
+

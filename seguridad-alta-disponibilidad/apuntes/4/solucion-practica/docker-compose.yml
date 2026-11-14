@@ -22,8 +22,7 @@ services:
     volumes:
       - ./.env:/setup.env:ro
       - ./router-iptables/setup.sh:/setup.sh:ro
-    command: >
-      sleep infinity
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
 
   http:
     build:
@@ -36,6 +35,7 @@ services:
       - ./.env:/setup.env:ro
       - ./http/index.html:/usr/share/nginx/html/index.html:ro
       - ./http/setup.sh:/setup.sh:ro
+    command: ["/bin/sh", "-c", "/setup.sh; exec nginx -g 'daemon off;'"]
     networks:
       servers:
         ipv4_address: ${HTTP_IP}
@@ -56,6 +56,7 @@ services:
     volumes:
       - ./.env:/setup.env:ro
       - ./mysql/setup.sh:/setup.sh:ro
+    command: ["/bin/sh", "-c", "/setup.sh; exec /usr/local/bin/docker-entrypoint.sh mariadbd"]
     networks:
       servers:
         ipv4_address: ${MYSQL_IP}
@@ -77,9 +78,8 @@ services:
     extra_hosts:
       - "http:${HTTP_IP}"
       - "mysql:${MYSQL_IP}"
-    command: >
-      sleep infinity
-        
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
+
 
   cliente:
     build:
@@ -97,8 +97,7 @@ services:
     extra_hosts:
       - "http:${HTTP_IP}"
       - "mysql:${MYSQL_IP}"
-    command: >
-      sleep infinity
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
 
 
 networks:
