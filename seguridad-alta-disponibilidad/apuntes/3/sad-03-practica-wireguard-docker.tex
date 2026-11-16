@@ -1,4 +1,4 @@
-% Created 2026-10-27 mar 09:24
+% Created 2026-11-16 lun 12:52
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 
@@ -55,6 +55,8 @@
 \renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
 \usepackage{comment}
 \excludecomment{NOTES}
+
+
 \author{Álvaro González Sotillo}
 \date{\today}
 \title{Práctica 03: Acceso a Apache únicamente a través de VPN con Docker y wg-easy}
@@ -192,10 +194,14 @@ Se instalará Portainer en el host, para poder inspeccionar fácilmente los \emp
 \item Haz un volumen en \texttt{/etc/wireguard} dentro del container, o los usuarios que crees podrían perderse.
 \end{itemize}
 \item \textbf{Configuración del cliente VPN.} Desde el panel web de \emph{wg-easy} (puerto 51821, con un navegador), crea un cliente \emph{WireGuard}, descarga su configuración o código QR y conéctalo.
+\item \textbf{Configuración de enrutamiento} El router y/o algunos containers necesitan añadir/modificar rutas
+\begin{itemize}
+\item Algunas rutas pueden sustituirse por NAT
+\end{itemize}
 \item \textbf{Comprobación del aislamiento.}
 \begin{itemize}
 \item Comprueba que sin estar conectado a la VPN no se accede a \emph{Apache} y, con la VPN activa, sí se accede mediante la IP del contenedor \emph{Apache} desde el cliente VPN.
-\item Ejecuta un \texttt{pathping} o \texttt{mtr} desde el cliente VPN, para ver los saltos hasta el servidor Apache
+\item Ejecuta un \texttt{pathping}, \texttt{tracert=} o \texttt{mtr} desde el cliente VPN, para ver los saltos hasta el servidor Apache
 \end{itemize}
 \end{enumerate}
 \section{Qué se valorará}
@@ -207,7 +213,7 @@ Se entregará un documento (\texttt{PDF}, \texttt{ODT}, \texttt{DOCX}) con la si
 \item \textbf{Topología:} Diagrama con las redes, contenedores y flujo de tráfico.
 \item \textbf{Despliegue:} Comandos utilizados para crear redes, lanzar contenedores y conectar containers redes.
 \item \textbf{Configuración VPN:} Captura del panel web de \emph{wg-easy} con el cliente creado y/o captura del cliente \emph{WireGuard} conectado.
-\item \textbf{Comprobaciones:} Mostrando la página personalizada de \emph{Apache}.
+\item \textbf{Comprobaciones:} Mostrando la página personalizada de \emph{Apache} y los comandos \texttt{mtr} o \texttt{tracert}.
 \item \textbf{Claridad y presentación:} Pasos ordenados, explicaciones razonadas y capturas legibles.
 \end{itemize}
 \section{Instrucciones de entrega}
