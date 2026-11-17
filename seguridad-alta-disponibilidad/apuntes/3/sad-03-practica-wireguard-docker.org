@@ -68,7 +68,7 @@ digraph{
     }
 
 
-    redaula  [label="Red aula\n172.16.0/8", shape=hexagon, fillcolor="#ffe8e0"];
+    redaula  [label="Red aula\n172.16.0.0/16", shape=hexagon, fillcolor="#ffe8e0"];
     
     puerto9443 -> portainer;
     

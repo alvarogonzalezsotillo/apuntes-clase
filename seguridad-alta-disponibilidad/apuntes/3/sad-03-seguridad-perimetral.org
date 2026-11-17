@@ -59,7 +59,7 @@
 ** /Firewalls/ más allá de TCP/UDP
 - Los bastiones (más adelante) pueden incluir reglas de acceso
 - Puede haber configuraciones/plugins en servidores que cumplan función de filtro
-  - Ejemplo: [[https://modsecurity.org/docs/index.html][modsecurity]] para Apache/ISS/nginx//
+  - Ejemplo: [[https://modsecurity.org/docs/index.html][modsecurity]] para Apache/IIS/nginx
 
 * /Proxy/ (pasarela)
 - Equivalente a bastión
