@@ -1,4 +1,4 @@
-% Created 2026-11-16 lun 12:52
+% Created 2026-11-17 mar 12:25
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
 
@@ -189,13 +189,19 @@ Se instalará Portainer en el host, para poder inspeccionar fácilmente los \emp
 \begin{itemize}
 \item Conecta el puerto 51820 UDP al host
 \item Conecta el puerto 51821 TCP al host, \href{https://stackoverflow.com/a/22100687}{pero solo accesible desde el propio host}
-\item Conéctalo también a la red interna.
+\item Conéctalo a la red \texttt{bridge} y también a la red interna.
 \item \href{https://hub.docker.com/r/weejewel/wg-easy\#2-run-wireguard-easy}{Habilita el reenvío IP y configura los parámetros necesarios} para que los clientes VPN puedan alcanzar la subred interna.
 \item Haz un volumen en \texttt{/etc/wireguard} dentro del container, o los usuarios que crees podrían perderse.
 \end{itemize}
-\item \textbf{Configuración del cliente VPN.} Desde el panel web de \emph{wg-easy} (puerto 51821, con un navegador), crea un cliente \emph{WireGuard}, descarga su configuración o código QR y conéctalo.
-\item \textbf{Configuración de enrutamiento} El router y/o algunos containers necesitan añadir/modificar rutas
+\item \textbf{Configuración del cliente VPN.}
 \begin{itemize}
+\item Desde el panel web de \emph{wg-easy} (puerto 51821, con un navegador), crea un cliente \emph{WireGuard}, descarga su configuración o código QR y conéctalo.
+\item Windows: hay que instalar el \href{https://www.wireguard.com/install/}{cliente wireguard}, e importar el fichero \texttt{conf}
+\item Debian: basta con \texttt{apt install wireguard}, y activar el fichero \texttt{conf} con \texttt{wg-quick}
+\end{itemize}
+\item \textbf{Configuración de enrutamiento.}
+\begin{itemize}
+\item Dependiendo de tu instalación, el router y/o algunos containers pueden necesitan añadir/modificar rutas
 \item Algunas rutas pueden sustituirse por NAT
 \end{itemize}
 \item \textbf{Comprobación del aislamiento.}
