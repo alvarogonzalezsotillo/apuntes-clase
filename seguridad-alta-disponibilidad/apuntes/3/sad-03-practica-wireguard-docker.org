@@ -113,13 +113,19 @@ digraph{
 5. *Despliegue de wg-easy.* Despliega el [[https://hub.docker.com/r/weejewel/wg-easy][contenedor =wg-easy=]]
    - Conecta el puerto 51820 UDP al host
    - Conecta el puerto 51821 TCP al host, [[https://stackoverflow.com/a/22100687][pero solo accesible desde el propio host]]
-   - Conéctalo también a la red interna.
+   - Conéctalo a la red =bridge= y también a la red interna.
    - [[https://hub.docker.com/r/weejewel/wg-easy#2-run-wireguard-easy][Habilita el reenvío IP y configura los parámetros necesarios]] para que los clientes VPN puedan alcanzar la subred interna.
    - Haz un volumen en =/etc/wireguard= dentro del container, o los usuarios que crees podrían perderse.  
-6. *Configuración del cliente VPN.* Desde el panel web de /wg-easy/ (puerto 51821, con un navegador), crea un cliente /WireGuard/, descarga su configuración o código QR y conéctalo.
-7. *Comprobación del aislamiento.*
+6. *Configuración del cliente VPN.*
+   - Desde el panel web de /wg-easy/ (puerto 51821, con un navegador), crea un cliente /WireGuard/, descarga su configuración o código QR y conéctalo.
+   - Windows: hay que instalar el [[https://www.wireguard.com/install/][cliente wireguard]], e importar el fichero =conf=
+   - Debian: basta con =apt install wireguard=, y activar el fichero =conf= con =wg-quick=
+7. *Configuración de enrutamiento.*
+   - Dependiendo de tu instalación, el router y/o algunos containers pueden necesitan añadir/modificar rutas
+   - Algunas rutas pueden sustituirse por NAT
+8. *Comprobación del aislamiento.*
    - Comprueba que sin estar conectado a la VPN no se accede a /Apache/ y, con la VPN activa, sí se accede mediante la IP del contenedor /Apache/ desde el cliente VPN.
-   - Ejecuta un =pathping= o =mtr= desde el cliente VPN, para ver los saltos hasta el servidor Apache
+   - Ejecuta un =pathping=, =tracert== o =mtr= desde el cliente VPN, para ver los saltos hasta el servidor Apache
 
 
 * Solución :noexport:
@@ -150,10 +156,14 @@ EOF
 
 
 #+begin_src bash
+
+ docker network create --internal --subnet 10.10.50.0/24 03-red-interna
+
+
 sudo docker run -d \
-  --name apache \
-  --hostname apache \
-  --network red-interna \
+  --name 03-apache \
+  --hostname 03-apache \
+  --network 03-red-interna \
   --ip 10.10.50.2 \
   -v ~/practica-vpn-apache/html:/usr/local/apache2/htdocs/:Z \
   docker.io/library/httpd:2.4
@@ -167,12 +177,12 @@ export WG_PASS="Asir1234"
 
 mkdir -p ./etc_wireguard
 sudo docker run -d \
-  --name wg-easy \
-  --hostname wg-easy \
+     --name 03-wg-easy \
+  --hostname 03-wg-easy \
   --cap-add=NET_ADMIN \
   --sysctl net.ipv4.ip_forward=1 \
   --sysctl net.ipv4.conf.all.src_valid_mark=1 \
-  -e WG_HOST=192.168.56.113 \
+  -e WG_HOST=10.1.33.202 \
   -e PASSWORD=secreto \
   -e WG_PORT=51820 \
   -e WG_DEFAULT_ADDRESS=10.8.0.x \
@@ -182,8 +192,10 @@ sudo docker run -d \
   -p 51820:51820/udp \
   -p 127.0.0.1:51821:51821/tcp \
   -v ./etc_wireguard:/etc/wireguard \
-  --network red-interna \
+  --network name=03-red-interna,ip=10.10.50.254 \
   docker.io/weejewel/wg-easy:latest
+
+sudo docker network connect bridge 03-wg-easy
 #+end_src
 
 
@@ -196,7 +208,7 @@ Se entregará un documento (=PDF=, =ODT=, =DOCX=) con la siguiente información:
 - *Topología:* Diagrama con las redes, contenedores y flujo de tráfico.
 - *Despliegue:* Comandos utilizados para crear redes, lanzar contenedores y conectar containers redes.
 - *Configuración VPN:* Captura del panel web de /wg-easy/ con el cliente creado y/o captura del cliente /WireGuard/ conectado.
-- *Comprobaciones:* Mostrando la página personalizada de /Apache/.
+- *Comprobaciones:* Mostrando la página personalizada de /Apache/ y los comandos =mtr= o =tracert=.
 - *Claridad y presentación:* Pasos ordenados, explicaciones razonadas y capturas legibles.
 
 * Instrucciones de entrega
