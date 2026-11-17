@@ -208,8 +208,9 @@ Se entregará un documento (=PDF=, =ODT=, =DOCX=) con la siguiente información:
 - *Topología:* Diagrama con las redes, contenedores y flujo de tráfico.
 - *Despliegue:* Comandos utilizados para crear redes, lanzar contenedores y conectar containers redes.
 - *Configuración VPN:* Captura del panel web de /wg-easy/ con el cliente creado y/o captura del cliente /WireGuard/ conectado.
+
+El profesor comprobará la práctica el dia indicado en el ordenador del alumno:
 - *Comprobaciones:* Mostrando la página personalizada de /Apache/ y los comandos =mtr= o =tracert=.
-- *Claridad y presentación:* Pasos ordenados, explicaciones razonadas y capturas legibles.
 
 * Instrucciones de entrega
 - *Modalidad:* Individual. Solo se admitirá en pareja si así se indica expresamente en clase.
