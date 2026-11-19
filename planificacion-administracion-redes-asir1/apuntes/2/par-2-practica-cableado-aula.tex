@@ -1,6 +1,7 @@
-% Created 2024-11-12 mar 11:20
+% Created 2026-11-19 jue 12:02
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -12,6 +13,8 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
 \usepackage[spanish]{babel}
 \usepackage[usenames,dvipsnames]{color} % Required for custom colors
 \renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
@@ -52,18 +55,23 @@
 \renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
 \usepackage{comment}
 \excludecomment{NOTES}
+
+
 \date{}
 \title{}
 \hypersetup{
- pdfauthor={Álvaro González Sotillo},
+ pdfauthor={},
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
+ pdfcreator={},
  pdflang={Spanish}}
 \begin{document}
 
 \captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/2/par-2-practica-cableado-aula.org}{} \vspace{-1em}
+
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
@@ -96,7 +104,19 @@
   \end{cuadrito}
 }
 
-
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
 \section{Objetivo de la práctica}
 \label{sec:org0000000}
 En esta práctica el alumno diseñará desde el comienzo una pequeña red de área local. Se espera que el alumno
@@ -108,9 +128,6 @@ En esta práctica el alumno diseñará desde el comienzo una pequeña red de ár
 
 
 La última versión de este documento está accesible en \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/planificacion-administracion-redes-asir1/apuntes/2/par-2-practica-cableado-aula.pdf}{este enlace}
-
-
-
 \section{Enunciado}
 \label{sec:org0000003}
 Un posible cliente pide un presupuesto para realizar la instalación de una LAN para este aula.
@@ -118,12 +135,9 @@ Un posible cliente pide un presupuesto para realizar la instalación de una LAN 
 \item Se dispone de un punto de red para conectar a la red del resto del instituto.
 \item Se desea pasar de una distribución en forma de \emph{U} con una isla, a una forma de grada, en la que habrá filas de puestos de trabajo orientadas hacia la pantalla del proyector.
 \item El profesor no cambiará de sitio. Necesita al menos dos puntos de red.
+\item Habrá un punto de acceso wifi, que se colocará lo más centrado posible en el aula, para mejorar la cobertura.
 \item Por simplicidad, se supondrá que no hay columnas ni radiadores.
 \end{itemize}
-
-
-
-
 \section{Qué se entrega}
 \label{sec:org0000006}
 Un documento que incluya:
@@ -137,8 +151,6 @@ Un documento que incluya:
 \end{itemize}
 \item Se entregará un solo fichero en formato Microsoft Word, Open Office o PDF.
 \end{itemize}
-
-
 \section{Qué se valorará}
 \label{sec:org0000009}
 \begin{itemize}
@@ -148,8 +160,6 @@ Un documento que incluya:
 \item 1 punto: La preparación de la red para futuras mejoras (velocidad, nuḿero de usuarios\ldots{})
 \item 2 puntos: La apariencia profesional del trabajo
 \end{itemize}
-
-
 \section{Instrucciones de entrega}
 \label{sec:org0000015}
 \begin{itemize}
@@ -163,34 +173,30 @@ Un documento que incluya:
 \item Sube el documento a la tarea correspondiente \href{https://aulavirtual3.educa.madrid.org/ies.alonsodeavellan.alcala}{en el aula virtual}
 \item Presta atención al plazo de entrega (con fecha y hora).
 \end{itemize}
-
 \subsection{Ejemplo de posible Presupuesto}
 \label{sec:org000000c}
-\renewcommand{\arraystretch}{1.9}
 \begin{center}
 \begin{tabular}{lrrrl}
 \hline
-Artículo con URL & Unidades & Precio unitario & Total & \\[0pt]
+Artículo con URL & Unidades & Precio unitario & Total & \\
 \hline
- &  &  &  & \\[0pt]
+ &  &  &  & \\
 \href{https://www.pccomponentes.com/hp-pavilion-200-raton-gaming-3200-dpi}{Ratón} & 12 & 23.99 & 287.88 & \begin{center}
 \includegraphics[width=0.08\linewidth]{ejemplo-presupuesto-red/raton.png}
-\end{center}\\[0pt]
+\end{center}\\
 \href{https://www.tornillos-online.com/975a2es.html}{Tornillo} & 100 & 3.60 & 360.00 & \begin{center}
 \includegraphics[width=0.08\linewidth]{ejemplo-presupuesto-red/tornillo.png}
-\end{center}\\[0pt]
+\end{center}\\
 \href{https://www.tornillos-online.com/975a2es.html}{Otro tornillo} & 1000 & 3.60 & 3600.00 & \begin{center}
 \includegraphics[width=0.08\linewidth]{ejemplo-presupuesto-red/tornillo.png}
-\end{center}\\[0pt]
-Más cosas\ldots{}. &  &  &  & \\[0pt]
+\end{center}\\
+Más cosas\ldots{}. &  &  &  & \\
 \hline
-IVA 21\% &  &  & 892.05 & \\[0pt]
-Total &  &  & 5139.93 & \\[0pt]
+IVA 21\% &  &  & 892.05 & \\
+Total &  &  & 5139.93 & \\
 \hline
 \end{tabular}
 \end{center}
-
-
 \subsection{Dónde realizar las compras}
 \label{sec:org000000f}
 \begin{itemize}
@@ -202,10 +208,10 @@ Total &  &  & 5139.93 & \\[0pt]
 \item O cualquier otro sitio especializado en componentes
 \item No se recomienda Amazon
 \end{itemize}
-
 \subsection{Diagrama de decisiones}
 \label{sec:org0000012}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{./media/tareas-en-la-practica.pdf}
+\label{}
 \end{center}
 \end{document}
