@@ -41,7 +41,7 @@ digraph{
     splines=true
 
     subgraph cluster_maquinavirtual {
-        label="Host con Docker";
+        label="Host con Docker (172.16.10.N)";
         shape=box;
 
         puerto51820    [label="Puerto Docker hacia\ncontainer Wireguard\nUDP 51820", fillcolor="#fdf6e3"];
@@ -131,11 +131,6 @@ digraph{
 * Solución :noexport:
 
 
-#+begin_src bash
-sudo docker network create red-interna \
-  --driver bridge \
-  --subnet 10.10.50.0/24
-#+end_src
 
 #+begin_src bash
 mkdir -p ~/practica-vpn-apache/html
