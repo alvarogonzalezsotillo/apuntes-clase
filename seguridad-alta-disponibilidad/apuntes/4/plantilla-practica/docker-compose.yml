@@ -1,0 +1,119 @@
+name: ${COMPOSE_PROJECT_NAME:-practica-ra04}
+
+services:
+  router-iptables:
+    build:
+      context: ./router-iptables
+    container_name: router-iptables
+    hostname: router-iptables
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    networks:
+      servers:
+        interface_name: eth0
+        ipv4_address: ${SERVERS_ROUTER_IP}
+      lan:
+        interface_name: eth1
+        ipv4_address: ${LAN_ROUTER_IP}
+      wan:
+        interface_name: eth2
+    volumes:
+      - ./.env:/setup.env:ro
+      - ./router-iptables/setup.sh:/setup.sh:ro
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
+
+  http:
+    build:
+      context: ./http
+    container_name: http
+    hostname: http
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./.env:/setup.env:ro
+      - ./http/index.html:/usr/share/nginx/html/index.html:ro
+      - ./http/setup.sh:/setup.sh:ro
+    command: ["/bin/sh", "-c", "/setup.sh; exec nginx -g 'daemon off;'"]
+    networks:
+      servers:
+        ipv4_address: ${HTTP_IP}
+
+
+  mysql:
+    build:
+      context: mariadb
+    container_name: mysql
+    hostname: mysql
+    cap_add:
+      - NET_ADMIN
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - ./.env:/setup.env:ro
+      - ./mysql/setup.sh:/setup.sh:ro
+    command: ["/bin/sh", "-c", "/setup.sh; exec /usr/local/bin/docker-entrypoint.sh mariadbd"]
+    networks:
+      servers:
+        ipv4_address: ${MYSQL_IP}
+       
+
+  cliente-admin:
+    build:
+      context: mariadb
+    container_name: cliente-admin
+    hostname: cliente-admin
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./.env:/setup.env:ro
+      - ./cliente-admin/setup.sh:/setup.sh:ro
+    networks:
+      lan:
+        ipv4_address: ${CLIENTE_ADMIN_IP}
+    extra_hosts:
+      - "http:${HTTP_IP}"
+      - "mysql:${MYSQL_IP}"
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
+
+
+  cliente:
+    build:
+      context: mariadb
+    container_name: cliente
+    hostname: cliente
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./.env:/setup.env:ro
+      - ./cliente/setup.sh:/setup.sh:ro
+    networks:
+      lan:
+        ipv4_address: ${CLIENTE_IP}
+    extra_hosts:
+      - "http:${HTTP_IP}"
+      - "mysql:${MYSQL_IP}"
+    command: ["/bin/sh", "-c", "/setup.sh; exec sleep infinity"]
+
+
+networks:
+  servers:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: ${SERVERS_SUBNET}
+
+  lan:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: ${LAN_SUBNET}
+
+  wan:
+    driver: bridge
