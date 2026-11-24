@@ -86,7 +86,7 @@ iptable -t TABLA [OPERACION] CADENA [REGLA Y PARAMETROS] [ACCION]
 ** Regla y parámetros
 
 | =-i=      | Interfaz de entrada (=lo=,=eth0=, ...)  |
-| =-0=      | Interfaz de salida                      |
+| =-o=      | Interfaz de salida                      |
 | =--sport= | Puerto de origen                        |
 | =--dport= | Puerto de destino                       |
 | =-s=      | IP/red de origen                        |
