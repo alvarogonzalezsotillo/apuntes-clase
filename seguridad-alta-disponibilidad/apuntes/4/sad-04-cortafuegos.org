@@ -182,13 +182,13 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
 #+end_src
 
 * =conntrack=
-| Estado (`--ctstate`) | Significado del paquete                                                                | Uso típico                                          |
-|----------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------|
-| NEW                  | inicia una conexión nueva o aún no se reconoce como parte de una conexión establecida. | Permitir conexiones nuevas a un servidor .          |
-| ESTABLISHED          | pertenece a una conexión ya establecida.                                               | Permitir respuestas a conexiones iniciadas.         |
-| RELATED              | una conexión nueva relacionada con otra conexión existente.                            | Algunos errores ICMP relacionados con una conexión. |
-| INVALID              | no se puede asociar correctamente a una conexión conocida.                             | Registrar o descartar paquetes inesperados.         |
-| UNTRACKED            | excluido explícitamente del seguimiento de conexiones.                                 | Tráfico marcado con reglas `NOTRACK`.               |
+| ~--ctstate~ | Significado del paquete                                                                | Uso                                                 |
+|-------------+----------------------------------------------------------------------------------------+-----------------------------------------------------|
+| NEW         | inicia una conexión nueva o aún no se reconoce como parte de una conexión establecida. | Permitir conexiones nuevas a un servidor .          |
+| ESTABLISHED | pertenece a una conexión ya establecida.                                               | Permitir respuestas a conexiones iniciadas.         |
+| RELATED     | una conexión nueva relacionada con otra conexión existente.                            | Algunos errores ICMP relacionados con una conexión. |
+| INVALID     | no se puede asociar correctamente a una conexión conocida.                             | Registrar o descartar paquetes inesperados.         |
+| UNTRACKED   | excluido explícitamente del seguimiento de conexiones.                                 | Tráfico marcado con reglas `NOTRACK`.               |
 
 
 * Herramientas para depuración de reglas
@@ -203,8 +203,6 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
   iptables -P OUTPUT ACCEPT # el tráfico saliente está permitido por defecto
   iptables -P FORWARD REJECT # por defecto, se informa de que no se enrutan paquetes 
   #+end_src
-    
-
 - Listado de reglas de una cadena, con número de paquetes a los que se aplica
   #+begin_src bash
   iptables --list INPUT --numeric --verbose
