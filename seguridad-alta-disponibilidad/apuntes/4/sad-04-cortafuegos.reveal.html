@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Generated on 2026-11-24 mar 13:06 -->
+<!-- Generated on 2026-11-24 mar 13:45 -->
 <meta charset="utf-8"/>
 <title>Cortafuegos (<i>firewall</i>)</title>
 <meta name="author" content="Álvaro González Sotillo"/>
@@ -444,7 +444,7 @@ div.figure, caption.t-bottom{
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Cortafuegos (<i>firewall</i>)</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-11-24 mar 13:06</p>
+<h1 class="title">Cortafuegos (<i>firewall</i>)</h1><h2 class="author">Álvaro González Sotillo</h2><p class="date">Created: 2026-11-24 mar 13:45</p>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
@@ -455,8 +455,10 @@ div.figure, caption.t-bottom{
 <li><a href="#/slide-2">2. Netfilter</a></li>
 <li><a href="#/slide-3">3. IPTables: visión general</a></li>
 <li><a href="#/slide-4">4. Comando <code>iptables</code></a></li>
-<li><a href="#/slide-5">5. Cadenas definidas por el usuario</a></li>
-<li><a href="#/slide-6">6. Referencias</a></li>
+<li><a href="#/slide-5">5. <code>conntrack</code></a></li>
+<li><a href="#/slide-6">6. Herramientas para depuración de reglas</a></li>
+<li><a href="#/slide-7">7. Cadenas definidas por el usuario</a></li>
+<li><a href="#/slide-8">8. Referencias</a></li>
 </ul>
 </div>
 </div>
@@ -564,11 +566,49 @@ window.addEventListener("load",()=>{
 </div>
 
 
-
-
 <p>
 Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458">Yuta Fujii</a>
 </p>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-3-1">
+<h3 id="3-1"><span class="section-number-3">3.1.</span> Orden de las reglas</h3>
+<ul>
+<li>Las reglas se procesan en orden
+<ol>
+<li>Se comprueba si el paquete encaja con la regla</li>
+<li>Si encaja, se aplica la acción</li>
+<li>Si no encaja, se pasa a la siguiente regla</li>
+
+</ol></li>
+<li>Unas reglas pueden <i>esconder</i> a otras
+<ul>
+<li>Una regla que acepta un paquete hace que las reglas siguientes que lo rechazaban no se alcancen</li>
+
+</ul></li>
+<li>Si el paquete no encaja con ninguna regla se aplica la acción por defecto de la cadena</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-3-2">
+<h3 id="3-2"><span class="section-number-3">3.2.</span> Inicio típico de iptables</h3>
+<ul>
+<li>Borrado de tablas (en el ejmplo, solo <code>filter</code>)</li>
+<li>Definición de políticas por defecto</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="bash" >iptables -F # borra todas las reglas y cadenas de la tabla filter
+iptables -X # borra también cadenas personalizadas 
+iptables -Z # reinicia los contadores
+iptables -P INPUT DROP # por defecto, filter acepta paquetes de entrada
+iptables -P OUTPUT ACCEPT # el tráfico saliente está permitido por defecto
+iptables -P FORWARD REJECT # por defecto, se informa de que no se enrutan paquetes 
+</code></pre>
+</div>
 <div class="slide-footer"></div>
 </section>
 </section>
@@ -597,8 +637,7 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 </div>
 
 <ul>
-<li>Las tablas son RAW, MANGLE, NAT, FILTER, SECURITY</li>
-<li>Las cadenas se muestran en la siguiente tabla</li>
+<li>Si no se especifica una tabla, se usa la tabla <code>filter</code></li>
 
 </ul>
 
@@ -739,6 +778,11 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 <td class="org-left"><code>-Z</code></td>
 <td class="org-left">Reinicia los contadores de la cadena</td>
 </tr>
+
+<tr>
+<td class="org-left"><code>-F</code></td>
+<td class="org-left">Borra todas las reglas de una tabla</td>
+</tr>
 </tbody>
 </table>
 <div class="slide-footer"></div>
@@ -851,6 +895,8 @@ iptables -A OUTPUT -o eth0 -p tcp -s 192.168.1.20  -d 203.0.113.25 --sport 50000
 <li><code>DNAT</code>. Enmascaramiento de la dirección de destino.</li>
 <li><code>SNAT</code>. Enmascaramiento de la dirección IP de origen.</li>
 <li><code>REDIRECT</code>. Cambia IP de destino por <i>host</i> local</li>
+<li><code>LOG</code>. Se crea un registro <code>syslog</code> del paquete</li>
+<li><code>NOTRACK</code>. El paquete deja de usarse en el módulo <code>conntrack</code></li>
 
 </ul>
 <div class="slide-footer"></div>
@@ -928,17 +974,138 @@ iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-ports 8
 </div>
 <div class="slide-footer"></div>
 </section>
+<section id="slide-4-4-3">
+<h4 id="4-4-3"><span class="section-number-4">4.4.3.</span> Ejemplos LOG</h4>
+<div class="org-src-container">
+
+<pre><code class="bash" ># Registrar paquetes ICMP entrantes por eth0
+iptables -A INPUT -i eth0 -p icmp -j LOG
+
+# Añadir un prefijo para reconocerlos en el registro
+iptables -A INPUT -i eth0 -p icmp  -j LOG --log-prefix "ICMP-entrada: "
+
+# Registrar conexiones TCP nuevas al puerto 22 y luego bloquearlas
+iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -j LOG --log-prefix "SSH-inicio: "
+iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -j DROP
+
+# Registrar conexiones al puerto 80, pero 5 por minuto de media, con un límite fuerte de 10 de golpe
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 5/min --limit-burst 10 -j LOG --log-prefix "HTTP-inicio: "
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
 </section>
 <section>
 <section id="slide-5">
-<h2 id="5"><span class="section-number-2">5.</span> Cadenas definidas por el usuario</h2>
+<h2 id="5"><span class="section-number-2">5.</span> <code>conntrack</code></h2>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Estado (`&ndash;ctstate`)</th>
+<th scope="col" class="org-left">Significado del paquete</th>
+<th scope="col" class="org-left">Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">NEW</td>
+<td class="org-left">inicia una conexión nueva o aún no se reconoce como parte de una conexión establecida.</td>
+<td class="org-left">Permitir conexiones nuevas a un servidor .</td>
+</tr>
+
+<tr>
+<td class="org-left">ESTABLISHED</td>
+<td class="org-left">pertenece a una conexión ya establecida.</td>
+<td class="org-left">Permitir respuestas a conexiones iniciadas.</td>
+</tr>
+
+<tr>
+<td class="org-left">RELATED</td>
+<td class="org-left">una conexión nueva relacionada con otra conexión existente.</td>
+<td class="org-left">Algunos errores ICMP relacionados con una conexión.</td>
+</tr>
+
+<tr>
+<td class="org-left">INVALID</td>
+<td class="org-left">no se puede asociar correctamente a una conexión conocida.</td>
+<td class="org-left">Registrar o descartar paquetes inesperados.</td>
+</tr>
+
+<tr>
+<td class="org-left">UNTRACKED</td>
+<td class="org-left">excluido explícitamente del seguimiento de conexiones.</td>
+<td class="org-left">Tráfico marcado con reglas `NOTRACK`.</td>
+</tr>
+</tbody>
+</table>
+<div class="slide-footer"></div>
 </section>
 </section>
 <section>
 <section id="slide-6">
-<h2 id="6"><span class="section-number-2">6.</span> Referencias</h2>
+<h2 id="6"><span class="section-number-2">6.</span> Herramientas para depuración de reglas</h2>
+<ul>
+<li><p>
+Listado de reglas de una cadena, con número de paquetes a los que se aplica
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  iptables --list INPUT --numeric --verbose
+</code></pre>
+</div></li>
+<li><p>
+Listado de todas las reglas
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  iptables-save
+</code></pre>
+</div></li>
+<li>Herramientas habituales de red
+<ul>
+<li><code>tcpdump</code> o <code>wiresark</code></li>
+<li><code>mtr</code> o <code>tracert</code></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-7">
+<h2 id="7"><span class="section-number-2">7.</span> Cadenas definidas por el usuario</h2>
+<ul>
+<li>Se pueden utilizar para organizar un gran número de reglas</li>
+<li>Ejemplo: cadenas que añade <code>docker</code></li>
+<li><p>
+Ejemplo: Los paquetes de <code>INPUT</code> (<code>filter</code>) se envían a <code>WEB</code>. Si no se aplica allí ninguna regla vuelven a <code>INPUT</code>
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >  iptables -N WEB
+  iptables -A WEB -p tcp --dport 80 -j ACCEPT
+  iptables -A WEB -p tcp --dport 443 -j ACCEPT
+  iptables -A INPUT -j WEB
+</code></pre>
+</div></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="8"><span class="section-number-2">8.</span> Referencias</h2>
 <ul>
 <li>Formatos:
 <ul>
