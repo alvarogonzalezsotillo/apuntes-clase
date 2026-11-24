@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-11-24 mar 13:45 -->
+<!-- 2026-11-24 mar 13:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cortafuegos (/firewall/)</title>
@@ -328,7 +328,7 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 <li>Las reglas se procesan en orden
 <ol class="org-ol">
 <li>Se comprueba si el paquete encaja con la regla</li>
-<li>Si encaja, se aplica la acción</li>
+<li>Si encaja, se aplica la acción. Si la acción rechaza el paquete, ya no se siguen mirando reglas</li>
 <li>Si no encaja, se pasa a la siguiente regla</li>
 </ol></li>
 <li>Unas reglas pueden <i>esconder</i> a otras
@@ -855,7 +855,7 @@ Ejemplo: Los paquetes de <code>INPUT</code> (<code>filter</code>) se envían a <
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-11-24 mar 13:45</p>
+<p class="date">Created: 2026-11-24 mar 13:52</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

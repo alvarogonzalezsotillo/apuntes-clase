@@ -35,7 +35,7 @@ Fuente: [[https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2
 ** Orden de las reglas
 - Las reglas se procesan en orden
   1. Se comprueba si el paquete encaja con la regla
-  2. Si encaja, se aplica la acción
+  2. Si encaja, se aplica la acción. Si la acción rechaza el paquete, ya no se siguen mirando reglas
   3. Si no encaja, se pasa a la siguiente regla      
 - Unas reglas pueden /esconder/ a otras
   - Una regla que acepta un paquete hace que las reglas siguientes que lo rechazaban no se alcancen
