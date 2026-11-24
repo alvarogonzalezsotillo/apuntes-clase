@@ -27,8 +27,6 @@ Se entrega el directorio =plantilla-practica/= con el escenario ya preparado.
 
 *docker compose* crea los contenedores y redes necesarias. Cada contenedor ejecuta al inicio un fichero =setup.sh= propio.
 
-*La práctica se puede realizar completando los ficheros =setup.sh=.* No hay que modificar el =docker-compose.yml=, los =Dockerfile=, el =.env= ni la página =index.html=.
-
 
 El comportamiento será el siguiente:
 - Filtro /whitelist/: todo está prohibido, pero se permiten algunas cosas.
@@ -45,54 +43,58 @@ Ejemplos de funcionalidad no permitida
 
 #+begin_src dot :file ./media/practica-04-topologia-docker.png :exports results :cmdline -Tpng
 digraph{
-    dpi=600;
     rankdir=LR;
     node [shape=box, style="rounded,filled"];
     edge [dir=none]
     compound=true
     splines=true
 
-    subgraph cluster_host {
-        label="Host con Docker (cliente externo)";
-        shape=box;
-        host [label="Host\ncurl, navegador\ndmesg / journalctl", fillcolor="#fdf6e3"];
-    }
-
     subgraph cluster_maquinavirtual {
-        label="Docker";
+        label="Host con Docker";
         shape=box;
+        dockerdaemon [label="Demonio Docker", fillcolor="#fdf6e3"];
+    
 
-        router [label="Container router-iptables\nubuntu:24.04 + iptables\neth0 192.168.52.254\neth1 192.168.51.254\neth2 IP de la red wan", fillcolor="#e8f8f5"];
+        subgraph  cluster_docker{
+            label="Docker";
+            shape=box;
 
-        subgraph cluster_wan {
-            label="Red wan (bridge)\nip del host: la asigna Docker";
-            shape=hexagon;
+            router [label="Container router-iptables\nubuntu:24.04 + iptables\neth0 192.168.52.254\neth1 192.168.51.254\neth2 IP de la red wan", fillcolor="#e8f8f5"];
+
             redwan [label="Red wan", shape=hexagon, fillcolor="#ffe8e0"];
-        }
 
-        subgraph cluster_servers {
-            label="Red servers (internal)\n192.168.52.0/24";
-            shape=hexagon;
+                
+            redservers [label="Red servers (internal)\n192.168.52.0/24", shape=hexagon, fillcolor="#ffe8e0"];
             http  [label="Container http\nnginx:alpine\n192.168.52.10:80", fillcolor="#e8f8f5"];
             mysql [label="Container mysql\nmariadb:11\n192.168.52.20:3306", fillcolor="#e8f8f5"];
-        }
+            http -> redservers
+            mysql -> redservers
+            router -> redservers
 
-        subgraph cluster_lan {
-            label="Red lan (internal)\n192.168.51.0/24";
-            shape=hexagon;
+            redlan [label="Red lan (internal)\n192.168.51.0/24", shape=hexagon, fillcolor="#ffe8e0"];
             admin   [label="Container cliente-admin\nmariadb:11 (cliente)\n192.168.51.151", fillcolor="#e8f8f5"];
             cliente [label="Container cliente\nmariadb:11 (cliente)\n192.168.51.152", fillcolor="#e8f8f5"];
+            admin -> redlan
+            cliente -> redlan
+            router -> redlan
+
+
         }
     }
 
-    host -> redwan [label="http://IP-eth2/"];
-    redwan -> router [label="DNAT 80 → http:80\nMASQUERADE hacia wan"];
-    router -> http [label="HTTP"];
-    router -> mysql [label="MySQL solo desde cliente-admin"];
-    admin -> router [label="ruta por defecto .254"];
-    cliente -> router [label="ruta por defecto .254"];
-    http -> router [label="ruta por defecto .254"];
-    mysql -> router [label="ruta por defecto .254"];
+    subgraph  cluster_profesor{
+        label="Ordenador del aula";
+        shape=box;
+        navegador [ Label = "Navegador web", fillcolor="#fdf6e3" ];
+    }
+
+
+    redaula [label="Red aula \n172.16.0.0/16", shape=hexagon, fillcolor="#ffe8e0"];
+    redaula -> navegador [ lhead = cluster_profesor ];
+    redaula -> dockerdaemon [ lhead = cluster_maquinavirtual ];
+
+    redwan -> dockerdaemon  [ lhead = cluster_maquinavirtual ];
+    redwan -> router ;
 }
 #+end_src
 

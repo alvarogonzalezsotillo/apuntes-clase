@@ -213,7 +213,8 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
   #+end_src  
 - Herramientas habituales de red
   - =tcpdump= o =wiresark=
-  - =mtr= o =tracert=  
+  - =mtr= o =tracert=
+  - =nc= o =socat=  
 
 * Cadenas definidas por el usuario
 - Se pueden utilizar para organizar un gran número de reglas
