@@ -46,6 +46,7 @@ Ejemplos de funcionalidad no permitida
 
 #+begin_src dot :file ./media/practica-04-topologia-docker.png :exports results :cmdline -Tpng
 digraph{
+    dpi=600
     rankdir=LR;
     node [shape=box, style="rounded,filled"];
     edge [dir=none]
