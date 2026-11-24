@@ -41,19 +41,6 @@ Fuente: [[https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2
   - Una regla que acepta un paquete hace que las reglas siguientes que lo rechazaban no se alcancen
 - Si el paquete no encaja con ninguna regla se aplica la acción por defecto de la cadena
 
-** Inicio típico de iptables
-- Borrado de tablas (en el ejmplo, solo =filter=)
-- Definición de políticas por defecto  
-
-#+begin_src bash
-iptables -F # borra todas las reglas y cadenas de la tabla filter
-iptables -X # borra también cadenas personalizadas 
-iptables -Z # reinicia los contadores
-iptables -P INPUT DROP # por defecto, filter acepta paquetes de entrada
-iptables -P OUTPUT ACCEPT # el tráfico saliente está permitido por defecto
-iptables -P FORWARD REJECT # por defecto, se informa de que no se enrutan paquetes 
-#+end_src
-    
 
 * Comando =iptables=
 
@@ -205,6 +192,19 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
 
 
 * Herramientas para depuración de reglas
+- Inicio típico de iptables
+  - Borrado de tablas (en el ejmplo, solo =filter=)
+  - Definición de políticas por defecto  
+  #+begin_src bash
+  iptables -F # borra todas las reglas y cadenas de la tabla filter
+  iptables -X # borra también cadenas personalizadas 
+  iptables -Z # reinicia los contadores
+  iptables -P INPUT DROP # por defecto, filter acepta paquetes de entrada
+  iptables -P OUTPUT ACCEPT # el tráfico saliente está permitido por defecto
+  iptables -P FORWARD REJECT # por defecto, se informa de que no se enrutan paquetes 
+  #+end_src
+    
+
 - Listado de reglas de una cadena, con número de paquetes a los que se aplica
   #+begin_src bash
   iptables --list INPUT --numeric --verbose
