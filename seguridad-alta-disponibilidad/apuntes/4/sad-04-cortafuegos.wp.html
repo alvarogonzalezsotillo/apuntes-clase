@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2026-11-24 mar 14:00 -->
+<!-- 2026-11-24 mar 19:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cortafuegos (/firewall/)</title>
@@ -306,19 +306,18 @@ window.addEventListener("load",()=>{
 <h2 id="org000000a"><span class="section-number-2">3.</span> IPTables: visión general</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
-<li>Cadena: Aproximadamente, el momento en el que se aplican las reglas</li>
 <li>Tabla: Aproximadamente, qué se puede filtrar y qué acciones se pueden aplicar</li>
+<li>Cadena: Aproximadamente, el momento en el que se aplican las reglas</li>
 </ul>
 
 
 <div id="org0000006" class="figure">
-<p><img src="media/resumen-tablas-cadenas.png" alt="resumen-tablas-cadenas.png" />
+<p><img src="media/flujo-tablas-y-cadenas.svg" alt="flujo-tablas-y-cadenas.svg" class="org-svg" />
 </p>
 </div>
 
-
 <p>
-Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458">Yuta Fujii</a>
+Basado en: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458">Yuta Fujii</a>
 </p>
 </div>
 <div id="outline-container-org0000007" class="outline-3">
@@ -361,9 +360,6 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 </code></pre>
 </div>
 
-<ul class="org-ul">
-<li>Si no se especifica una tabla, se usa la tabla <code>filter</code></li>
-</ul>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -371,73 +367,77 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 <colgroup>
 <col  class="org-left" />
 
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
+<col  class="org-left" />
 
 <col  class="org-left" />
 
-<col  class="org-right" />
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
 <th scope="col" class="org-left">&nbsp;</th>
-<th scope="col" class="org-right"><code>PREROUTING</code></th>
-<th scope="col" class="org-right"><code>FORWARD</code></th>
-<th scope="col" class="org-right"><code>POSTROUTING</code></th>
+<th scope="col" class="org-left"><code>PREROUTING</code></th>
 <th scope="col" class="org-left"><code>INPUT</code></th>
-<th scope="col" class="org-right"><code>OUTPUT</code></th>
+<th scope="col" class="org-left"><code>FORWARD</code></th>
+<th scope="col" class="org-left"><code>OUTPUT</code></th>
+<th scope="col" class="org-left"><code>POSTROUTING</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><code>raw</code> table</td>
-<td class="org-right">1</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-left">&nbsp;</td>
-<td class="org-right">1</td>
+<td class="org-left">Tabla <code>raw</code></td>
+<td class="org-left">1º</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">1º</td>
+<td class="org-left">-</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>mangle</code> table</td>
-<td class="org-right">2</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left"><b>2</b></td>
-<td class="org-right">2</td>
+<td class="org-left">Tabla <code>mangle</code></td>
+<td class="org-left">2º</td>
+<td class="org-left">1º</td>
+<td class="org-left">1º</td>
+<td class="org-left">2º</td>
+<td class="org-left">1º</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>nat</code> table</td>
-<td class="org-right">3</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-right">2</td>
-<td class="org-left"><b>1</b></td>
-<td class="org-right">3</td>
+<td class="org-left">Tabla <code>nat</code></td>
+<td class="org-left">3º</td>
+<td class="org-left">2º</td>
+<td class="org-left">-</td>
+<td class="org-left">3º</td>
+<td class="org-left">2º</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>filter</code> table</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-right">2</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-left">3</td>
-<td class="org-right">4</td>
+<td class="org-left">Tabla <code>filter</code></td>
+<td class="org-left">-</td>
+<td class="org-left">3º</td>
+<td class="org-left">2º</td>
+<td class="org-left">4º</td>
+<td class="org-left">-</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>security</code> table</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-right">3</td>
-<td class="org-right">&nbsp;</td>
-<td class="org-left">4</td>
-<td class="org-right">5</td>
+<td class="org-left">Tabla <code>security</code></td>
+<td class="org-left">-</td>
+<td class="org-left">4º</td>
+<td class="org-left">3º</td>
+<td class="org-left">5º</td>
+<td class="org-left">-</td>
 </tr>
 </tbody>
 </table>
+
+<p>
+Nota: Si no se especifica una tabla, se usa la tabla <code>filter</code>
+</p>
 </div>
 </div>
 <div id="outline-container-org0000010" class="outline-3">
@@ -525,7 +525,7 @@ Fuente: <a href="https://yuta-san.medium.com/network-basics-related-to-wifi-host
 <tbody>
 <tr>
 <td class="org-left"><code>-i</code></td>
-<td class="org-left">Interfaz de entrada (<code>lo</code>,=eth0=, &hellip;)</td>
+<td class="org-left">Interfaz de entrada ( <code>lo</code> , <code>eth0</code>, &hellip;)</td>
 </tr>
 
 <tr>
@@ -609,18 +609,18 @@ iptables -A OUTPUT -o eth0 -p tcp -s 192.168.1.20  -d 203.0.113.25 --sport 50000
 </code></pre>
 </div>
 <ul class="org-ul">
-<li><code>ACCEPT</code>. Paquete aceptado.</li>
-<li><code>REJECT</code>. Paquete rechazado. Envía notificación ICMP.</li>
-<li><code>DROP</code>. Paquete rechazado. Sin notificación.</li>
-<li><code>MASQUERADE</code>. Enmascaramiento de la dirección IP origen de forma dinámica.
+<li><code>ACCEPT</code> : Paquete aceptado.</li>
+<li><code>REJECT</code> : Paquete rechazado. Envía notificación ICMP.</li>
+<li><code>DROP</code> : Paquete rechazado. Sin notificación.</li>
+<li><code>MASQUERADE</code> : Enmascaramiento de la dirección IP origen de forma dinámica.
 <ul class="org-ul">
 <li>Solo es válida en la tabla NAT cadena POSTROUTING.</li>
 </ul></li>
-<li><code>DNAT</code>. Enmascaramiento de la dirección de destino.</li>
-<li><code>SNAT</code>. Enmascaramiento de la dirección IP de origen.</li>
-<li><code>REDIRECT</code>. Cambia IP de destino por <i>host</i> local</li>
-<li><code>LOG</code>. Se crea un registro <code>syslog</code> del paquete</li>
-<li><code>NOTRACK</code>. El paquete deja de usarse en el módulo <code>conntrack</code></li>
+<li><code>DNAT</code> : Enmascaramiento de la dirección de destino.</li>
+<li><code>SNAT</code> : Enmascaramiento de la dirección IP de origen.</li>
+<li><code>REDIRECT</code> : Cambia IP de destino por <i>host</i> local</li>
+<li><code>LOG</code> : Se crea un registro <code>syslog</code> del paquete</li>
+<li><code>NOTRACK</code> : El paquete deja de usarse en el módulo <code>conntrack</code></li>
 </ul>
 </div>
 <div id="outline-container-org0000019" class="outline-4">
@@ -781,7 +781,7 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
 Inicio típico de iptables
 </p>
 <ul class="org-ul">
-<li>Borrado de tablas (en el ejmplo, solo <code>filter</code>)</li>
+<li>Borrado de tablas (en el ejemplo, solo <code>filter</code>)</li>
 <li>Definición de políticas por defecto</li>
 </ul>
 <div class="org-src-container">
@@ -852,7 +852,7 @@ Ejemplo: Los paquetes de <code>INPUT</code> (<code>filter</code>) se envían a <
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Álvaro González Sotillo</p>
-<p class="date">Created: 2026-11-24 mar 14:00</p>
+<p class="date">Created: 2026-11-24 mar 19:05</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

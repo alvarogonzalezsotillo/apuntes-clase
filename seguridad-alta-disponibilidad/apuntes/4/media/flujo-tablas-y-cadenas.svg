@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="1120" viewBox="0 0 1340 1120" role="img" aria-labelledby="title desc">
+<title id="title">Linux Netfilter packet flow</title>
+<desc id="desc">Vector diagram of the Linux Netfilter packet path showing PREROUTING, INPUT, FORWARD, OUTPUT and POSTROUTING chains and their table order.</desc>
+<defs>
+  <style>
+    .bg { fill:#8796aa; stroke:#233b5d; stroke-width:2.5; }
+    .section { fill:none; stroke:#fff; stroke-width:2; stroke-dasharray:7 5; }
+    .heading { font: 600 30px Arial, sans-serif; fill:#fff; }
+    .outer { font: 20px Arial, sans-serif; fill:#111; }
+    .chain { font: 20px Arial, sans-serif; fill:#111; text-anchor:middle; }
+    .table { font-weight:400; }
+    .chainname { font-weight:700; }
+    .raw { fill:#bce8fa; }
+    .mangle { fill:#c9f8b7; }
+    .nat { fill:#f6b9d2; }
+    .filter { fill:#d9d9d9; }
+    .security { fill:#ffd39a; }
+    .node { fill:#fff; stroke:#152d4d; stroke-width:2; }
+    .arrow { fill:none; stroke:#fff; stroke-width:2.5; marker-end:url(#arr); }
+    .line { fill:none; stroke:#fff; stroke-width:2.5; }
+    .decision { fill:#fff; stroke:#111; stroke-width:1.5; }
+    .decisiontext { font: 18px Arial, sans-serif; fill:#111; text-anchor:middle; }
+    .branch { font: 20px Arial, sans-serif; fill:#fff; }
+  </style>
+  <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#fff"/>
+  </marker>
+</defs>
+
+<!-- Layer labels and network area -->
+<text x="255" y="30" class="outer" text-anchor="middle">Inbound packet</text>
+<text x="1095" y="30" class="outer" text-anchor="middle">Outbound interface</text>
+<text x="22" y="75" class="outer">Datalink Layer</text>
+<rect x="10" y="95" width="1320" height="890" class="bg"/>
+<text x="22" y="126" class="outer" fill="#fff" style="fill:#fff">Network Layer</text>
+<circle cx="240" cy="95" r="23" class="node"/>
+<circle cx="1095" cy="95" r="23" class="node"/>
+
+<!-- Routing section -->
+<rect x="32" y="142" width="1288" height="416" rx="10" class="section"/>
+<text x="675" y="175" class="heading" text-anchor="middle">Routing</text>
+
+<!-- PREROUTING -->
+<rect x="78" y="184" width="300" height="66" rx="8" class="raw" stroke="#111"/>
+<text x="228" y="210" class="chain"><tspan class="table">raw table</tspan><tspan x="228" dy="22" class="chainname">PREROUTING</tspan></text>
+<rect x="78" y="266" width="300" height="66" rx="8" class="mangle" stroke="#111"/>
+<text x="228" y="292" class="chain"><tspan class="table">mangle table</tspan><tspan x="228" dy="22" class="chainname">PREROUTING</tspan></text>
+<rect x="78" y="348" width="300" height="66" rx="8" class="nat" stroke="#111"/>
+<text x="228" y="374" class="chain"><tspan class="table">nat table</tspan><tspan x="228" dy="22" class="chainname">PREROUTING</tspan></text>
+<path d="M240 118 V184 M228 250 V266 M228 332 V348 M228 414 V432" class="arrow"/>
+
+<!-- Routing decision -->
+<polygon points="228,432 370,486 228,540 86,486" class="decision"/>
+<text x="228" y="480" class="decisiontext"><tspan x="228">Is this host</tspan><tspan x="228" dy="19">final destination?</tspan></text>
+<text x="245" y="574" class="branch">yes</text>
+<text x="393" y="508" class="branch">no</text>
+
+<!-- Forward chain -->
+<path d="M370 486 H450 V224 H514" class="arrow"/>
+<rect x="514" y="224" width="306" height="70" rx="8" class="mangle" stroke="#111"/>
+<text x="667" y="252" class="chain"><tspan>mangle table</tspan><tspan x="667" dy="23" class="chainname">FORWARD</tspan></text>
+<rect x="514" y="310" width="306" height="70" rx="8" class="filter" stroke="#111"/>
+<text x="667" y="338" class="chain"><tspan>filter table</tspan><tspan x="667" dy="23" class="chainname">FORWARD</tspan></text>
+<rect x="514" y="396" width="306" height="70" rx="8" class="security" stroke="#111"/>
+<text x="667" y="424" class="chain"><tspan>security table</tspan><tspan x="667" dy="23" class="chainname">FORWARD</tspan></text>
+<path d="M667 294 V310 M667 380 V396 M820 431 H890 V318 H955" class="arrow"/>
+
+<!-- POSTROUTING -->
+<rect x="955" y="195" width="288" height="72" rx="8" class="mangle" stroke="#111"/>
+<text x="1099" y="224" class="chain"><tspan>mangle table</tspan><tspan x="1099" dy="23" class="chainname">POSTROUTING</tspan></text>
+<rect x="955" y="284" width="288" height="72" rx="8" class="nat" stroke="#111"/>
+<text x="1099" y="313" class="chain"><tspan>nat table</tspan><tspan x="1099" dy="23" class="chainname">POSTROUTING</tspan></text>
+<path d="M1099 284 V267 M1099 195 V118" class="arrow"/>
+
+<!-- INPUT firewall -->
+<path d="M228 540 V604" class="arrow"/>
+<rect x="44" y="604" width="370" height="350" rx="10" class="section"/>
+<text x="535" y="690" class="heading" text-anchor="middle">Input Host</text>
+<text x="535" y="720" class="heading" text-anchor="middle">Firewall</text>
+<rect x="78" y="628" width="300" height="62" rx="8" class="mangle" stroke="#111"/>
+<text x="228" y="652" class="chain"><tspan>mangle table</tspan><tspan x="228" dy="22" class="chainname">INPUT</tspan></text>
+<rect x="78" y="704" width="300" height="62" rx="8" class="nat" stroke="#111"/>
+<text x="228" y="728" class="chain"><tspan>nat table</tspan><tspan x="228" dy="22" class="chainname">INPUT</tspan></text>
+<rect x="78" y="780" width="300" height="62" rx="8" class="filter" stroke="#111"/>
+<text x="228" y="804" class="chain"><tspan>filter table</tspan><tspan x="228" dy="22" class="chainname">INPUT</tspan></text>
+<rect x="78" y="856" width="300" height="62" rx="8" class="security" stroke="#111"/>
+<text x="228" y="880" class="chain"><tspan>security table</tspan><tspan x="228" dy="22" class="chainname">INPUT</tspan></text>
+<path d="M228 690 V704 M228 766 V780 M228 842 V856 M228 918 V1010" class="arrow"/>
+<circle cx="228" cy="995" r="23" class="node"/>
+<text x="280" y="1032" class="outer">Socket API</text>
+<text x="280" y="1067" class="outer" style="font-weight:700">recv()</text>
+
+<!-- OUTPUT firewall -->
+<rect x="925" y="604" width="370" height="350" rx="10" class="section"/>
+<text x="850" y="870" class="heading" text-anchor="end">Output Host</text>
+<text x="850" y="900" class="heading" text-anchor="end">Firewall</text>
+<rect x="955" y="620" width="288" height="58" rx="8" class="security" stroke="#111"/>
+<text x="1099" y="644" class="chain"><tspan>security table</tspan><tspan x="1099" dy="21" class="chainname">OUTPUT</tspan></text>
+<rect x="955" y="686" width="288" height="58" rx="8" class="filter" stroke="#111"/>
+<text x="1099" y="710" class="chain"><tspan>filter table</tspan><tspan x="1099" dy="21" class="chainname">OUTPUT</tspan></text>
+<rect x="955" y="752" width="288" height="58" rx="8" class="nat" stroke="#111"/>
+<text x="1099" y="776" class="chain"><tspan>nat table</tspan><tspan x="1099" dy="21" class="chainname">OUTPUT</tspan></text>
+<rect x="955" y="818" width="288" height="58" rx="8" class="mangle" stroke="#111"/>
+<text x="1099" y="842" class="chain"><tspan>mangle table</tspan><tspan x="1099" dy="21" class="chainname">OUTPUT</tspan></text>
+<rect x="955" y="884" width="288" height="58" rx="8" class="raw" stroke="#111"/>
+<text x="1099" y="908" class="chain"><tspan>raw table</tspan><tspan x="1099" dy="21" class="chainname">OUTPUT</tspan></text>
+<path d="M1099 884 V876 M1099 818 V810 M1099 752 V744 M1099 686 V678 M1099 620 V356" class="arrow"/>
+<circle cx="1099" cy="995" r="23" class="node"/>
+<path d="M1099 972 V942" class="arrow"/>
+<text x="920" y="1032" class="outer" text-anchor="middle">Socket API</text>
+<text x="920" y="1067" class="outer" text-anchor="middle" style="font-weight:700">send()</text>
+
+</svg>

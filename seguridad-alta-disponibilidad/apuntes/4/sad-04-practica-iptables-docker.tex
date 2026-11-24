@@ -1,0 +1,198 @@
+% Created 2026-11-24 mar 18:56
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\renewcommand{\ttdefault}{pcr} % MONOESPACIO CON NEGRIT
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\renewcommand{\lstlistingname}{Listado}
+\lstset{frame=single,inputencoding=utf8,basicstyle=\scriptsize\ttfamily,showstringspaces=false,numbers=none}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstset{ breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, keywordstyle=\bfseries, keywordstyle=[1]\color{Blue}\bfseries,  keywordstyle=[2]\color{Purple}\bfseries,  keywordstyle=[3]\color{Blue}\underbar,   identifierstyle=,   commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,   stringstyle=\color{Purple},   showstringspaces=false,   tabsize=2,   morecomment=[l][\color{Blue}]{...} }
+\lstset{literate=  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1   {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1   {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1   {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1   {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 }
+\usepackage{caption}
+\usepackage{attachfile2}
+\usepackage[margin=1.5cm,includeheadfoot,includehead,includefoot]{geometry}
+\hypersetup{colorlinks,linkcolor=black}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\chead{}
+\lhead{}
+\rhead{}
+\cfoot{}
+\lfoot{\begin{footnotesize}alvaro.gonzalezsotillo@educa.madrid.org\end{footnotesize}}
+\rfoot{\begin{footnotesize}\thepage / \pageref{LastPage}\end{footnotesize}}
+\usepackage[skins]{tcolorbox}
+\usepackage{multicol}
+\usepackage{changepage} %ajdustwidth
+\usepackage{fancybox}
+\usepackage{attachfile2}
+\lhead{Extraordinaria 2021 (es el \\lhead)}
+\rhead{Administración y Gestión de Bases de Datos (es el \\rhead)}
+\lhead{Seguridad perimetral}
+\rhead{Seguridad y Alta Disponibilidad}
+\usepackage{svg}
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalincludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2}}}
+\LetLtxMacro{\originalincludesvg}{\includesvg}
+\renewcommand{\includesvg}[2][]{\IfFileExists{#2.pdf}{\originalincludegraphics[#1]{#2.pdf}}{\originalincludegraphics[#1]{#2.svg.pdf}}}
+\usepackage{comment}
+\excludecomment{NOTES}
+
+
+\date{}
+\title{Práctica 04: Cortafuegos con iptables en una topología Docker}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={Práctica 04: Cortafuegos con iptables en una topología Docker},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\captionsetup{font=scriptsize}
+
+\textattachfile{/datos-luks/datos-alvaro/apuntes-clase/seguridad-alta-disponibilidad/apuntes/4/sad-04-practica-iptables-docker.org}{} \vspace{-1em}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\newtcolorbox{Aviso}[1][Aviso]{
+  enhanced,
+  colback=gray!5!white,
+  colframe=gray!75!black,fonttitle=\bfseries,
+  colbacktitle=gray!85!black,
+  attach boxed title to top left={yshift=-2mm,xshift=2mm},
+  title=#1
+}
+
+\newtcolorbox{cuadrito}[1][Ignorado]{
+  %drop shadow southeast,
+  enhanced jigsaw,
+  colback=white,
+}
+
+
+\newcommand{\StudentData}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill \\
+      \textbf{Fecha:} \hrulefill \hspace{1cm} \textbf{Usuario:} \hrulefill \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+
+\newcommand{\StudentDataDniFirma}{
+  \begin{cuadrito}[1\textwidth]
+    \vspace{0.3cm}
+    \large{
+      \textbf{Apellidos:} \hrulefill \\
+      \textbf{Nombre:} \hrulefill  \\
+      \textbf{Dni:} \hrulefill \hspace{8cm} \\
+      \\
+      \textbf{Firma:} \hrulefill \hspace{8cm} \\
+    }
+    \vspace{-0.2cm}
+  \end{cuadrito}
+}
+\section{Objetivo de la práctica}
+\label{sec:org0000000}
+
+Tras la realización de esta práctica, el alumno será capaz de:
+
+\begin{itemize}
+\item Comprender la diferencia entre el tráfico \texttt{INPUT}, \texttt{OUTPUT} y \texttt{FORWARD} en un \emph{firewall} Linux.
+\item Desplegar con \emph{Docker Compose} una topología con tres redes: una red externa (\texttt{wan}) y dos redes aisladas (\texttt{servers} y \texttt{lan}).
+\item Publicar un servicio interno hacia la red externa mediante \texttt{NAT}.
+\item Aplicar políticas por defecto restrictivas y reglas de excepción para permitir únicamente el tráfico autorizado.
+\item Restringir el acceso a un servicio (\texttt{MySQL}) a un único cliente, e identificar las reglas \texttt{LOG} que registran el resto de intentos.
+\item Verificar el aislamiento de las redes, interpretar las tablas de \texttt{iptables} y localizar los mensajes del cortafuegos en el log del kernel del host.
+\end{itemize}
+
+Está disponible la \href{https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/4/sad-04-practica-iptables-docker.pdf}{última versión de esta práctica en este enlace}.
+\section{Descripción del problema}
+\label{sec:org0000003}
+
+Se entrega el directorio \texttt{plantilla-practica/} con el escenario ya preparado.
+
+\textbf{docker compose} crea los contenedores y redes necesarias. Cada contenedor ejecuta al inicio un fichero \texttt{setup.sh} propio.
+
+\textbf{La práctica se puede realizar completando los ficheros \texttt{setup.sh}.} No hay que modificar el \texttt{docker-compose.yml}, los \texttt{Dockerfile}, el \texttt{.env} ni la página \texttt{index.html}.
+
+
+El comportamiento será el siguiente:
+\begin{itemize}
+\item Filtro \emph{whitelist}: todo está prohibido, pero se permiten algunas cosas.
+\item Desde la red \texttt{wan} se puede acceder al servidor \emph{HTTP}, en el puerto 80 del host.
+\item Desde la red \texttt{lan} (todos los containers presentes y futuros), se puede acceder a \texttt{http} por HTTP y hacer \texttt{ping} a la red \texttt{servers}.
+\item Desde la red \texttt{lan}, \textbf{solo} \texttt{cliente-admin} puede conectarse a \texttt{mysql} por el puerto 3306.
+\item Cualquier otro tráfico que atraviese el router se descarta y queda registrado en el log.
+\item Ningún contenedor de \texttt{servers} o \texttt{lan} tiene salida directa al exterior: sus rutas por defecto apuntan al router, que es el único paso entre redes.
+\end{itemize}
+
+Ejemplos de funcionalidad no permitida
+\begin{itemize}
+\item Desde \texttt{wan} se puede hacer \emph{ping} a algún container
+\item Los servidores pueden hacer \emph{ping} a ordenadores de otra red
+\end{itemize}
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./media/practica-04-topologia-docker.png}
+\label{}
+\end{center}
+\section{Requisitos}
+\label{sec:org0000006}
+
+\begin{itemize}
+\item Máquina virtual con \emph{Docker} y \emph{Docker Compose} instalados, con permisos para construir imágenes, crear redes y modificar \texttt{sysctl}.
+\item Para ver los mensajes de \texttt{iptables -j LOG} hay que desactivar en el host la opción que oculta los logs procedentes de otros espacios de nombres de red:
+\begin{lstlisting}[language=bash,numbers=none]
+  sudo sysctl -w net.netfilter.nf_log_all_netns=0
+\end{lstlisting}
+\end{itemize}
+\section{Qué se valorará}
+\label{sec:org0000009}
+
+Se entregará un documento (\texttt{PDF}, \texttt{ODT} o \texttt{DOCX}) con la siguiente información:
+
+\begin{itemize}
+\item \textbf{Despliegue:} comandos utilizados y explicación de qué hace cada \texttt{setup.sh} y cuándo se ejecuta.
+\item \textbf{Claridad y presentación:} pasos ordenados y explicaciones propias.
+\item El profesor también realizará una comprobación del funcionamiento en el día indicado.
+\end{itemize}
+\section{Instrucciones de entrega}
+\label{sec:org000000c}
+
+\begin{itemize}
+\item \textbf{Modalidad:} individual. Solo se admitirá en pareja si así se indica expresamente en clase.
+\item \textbf{Lugar de entrega:} tarea correspondiente a esta práctica en el aula virtual del módulo.
+\item \textbf{Contenido:} documento de la práctica con los cinco ficheros \texttt{setup.sh} completados
+\item \textbf{Fecha:} la indicada en el aula virtual.
+\end{itemize}
+\end{document}

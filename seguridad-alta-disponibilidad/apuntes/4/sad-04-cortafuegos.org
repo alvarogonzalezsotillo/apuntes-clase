@@ -24,13 +24,12 @@
 
 
 * IPTables: visión general
-- Cadena: Aproximadamente, el momento en el que se aplican las reglas
 - Tabla: Aproximadamente, qué se puede filtrar y qué acciones se pueden aplicar
+- Cadena: Aproximadamente, el momento en el que se aplican las reglas
     
-[[file:media/resumen-tablas-cadenas.png]]
+[[file:media/flujo-tablas-y-cadenas.svg]]
 
-
-Fuente: [[https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458][Yuta Fujii]]
+Basado en: [[https://yuta-san.medium.com/network-basics-related-to-wifi-hosting-2-2-packet-processing-in-linux-6771d09eb458][Yuta Fujii]]
 
 ** Orden de las reglas
 - Las reglas se procesan en orden
@@ -56,15 +55,16 @@ iptable -t TABLA [OPERACION] CADENA [REGLA Y PARAMETROS] [ACCION]
            =====             ======
 #+end_src
 
-- Si no se especifica una tabla, se usa la tabla =filter=
 
-|                  | =PREROUTING= | =FORWARD= | =POSTROUTING= | =INPUT= | =OUTPUT= |
-|------------------+--------------+-----------+---------------+---------+----------|
-| =raw= table      |            1 |           |               |         |        1 |
-| =mangle= table   |            2 |         1 |             1 | *2*     |        2 |
-| =nat= table      |            3 |           |             2 | *1*     |        3 |
-| =filter= table   |              |         2 |               | 3       |        4 |
-| =security= table |              |         3 |               | 4       |        5 |
+|                  | =PREROUTING= | =INPUT= | =FORWARD= | =OUTPUT= | =POSTROUTING= |
+|------------------+--------------+---------+-----------+----------+---------------|
+| Tabla =raw=      | 1º           | -       | -         | 1º       | -             |
+| Tabla =mangle=   | 2º           | 1º      | 1º        | 2º       | 1º            |
+| Tabla =nat=      | 3º           | 2º      | -         | 3º       | 2º            |
+| Tabla =filter=   | -            | 3º      | 2º        | 4º       | -             |
+| Tabla =security= | -            | 4º      | 3º        | 5º       | -             |
+
+Nota: Si no se especifica una tabla, se usa la tabla =filter=
 
 ** Operación
 #+begin_src bash
@@ -85,14 +85,14 @@ iptable -t TABLA [OPERACION] CADENA [REGLA Y PARAMETROS] [ACCION]
 
 ** Regla y parámetros
 
-| =-i=      | Interfaz de entrada (=lo=,=eth0=, ...)  |
-| =-o=      | Interfaz de salida                      |
-| =--sport= | Puerto de origen                        |
-| =--dport= | Puerto de destino                       |
-| =-s=      | IP/red de origen                        |
-| =-d=      | IP/red de destino                       |
-| =-p=      | Protocolo (=tcp=, =udp=, =icmp=, =all=) |
-| =-j=      | Para especificar la acción              |
+| =-i=      | Interfaz de entrada ( =lo= , =eth0=, ...) |
+| =-o=      | Interfaz de salida                       |
+| =--sport= | Puerto de origen                         |
+| =--dport= | Puerto de destino                        |
+| =-s=      | IP/red de origen                         |
+| =-d=      | IP/red de destino                        |
+| =-p=      | Protocolo (=tcp=, =udp=, =icmp=, =all=)  |
+| =-j=      | Para especificar la acción               |
 
 *** Ejemplos
 #+begin_src bash
@@ -130,16 +130,16 @@ iptables -A OUTPUT -o eth0 -p tcp -s 192.168.1.20  -d 203.0.113.25 --sport 50000
 iptable -t TABLA [OPERACION] CADENA [REGLA Y PARAMETROS] [ACCION]
                                                          ========
 #+end_src
-- =ACCEPT=. Paquete aceptado.
-- =REJECT=. Paquete rechazado. Envía notificación ICMP.
-- =DROP=. Paquete rechazado. Sin notificación.
-- =MASQUERADE=. Enmascaramiento de la dirección IP origen de forma dinámica.
+- =ACCEPT= : Paquete aceptado.
+- =REJECT= : Paquete rechazado. Envía notificación ICMP.
+- =DROP= : Paquete rechazado. Sin notificación.
+- =MASQUERADE= : Enmascaramiento de la dirección IP origen de forma dinámica.
   - Solo es válida en la tabla NAT cadena POSTROUTING.
-- =DNAT=. Enmascaramiento de la dirección de destino.
-- =SNAT=. Enmascaramiento de la dirección IP de origen.
-- =REDIRECT=. Cambia IP de destino por /host/ local
-- =LOG=. Se crea un registro =syslog= del paquete
-- =NOTRACK=. El paquete deja de usarse en el módulo =conntrack=  
+- =DNAT= : Enmascaramiento de la dirección de destino.
+- =SNAT= : Enmascaramiento de la dirección IP de origen.
+- =REDIRECT= : Cambia IP de destino por /host/ local
+- =LOG= : Se crea un registro =syslog= del paquete
+- =NOTRACK= : El paquete deja de usarse en el módulo =conntrack=  
 
 *** Diferentes NAT
 | Target       | Qué cambia                                                              | Uso habitual                                        | Cadena común           |
@@ -193,7 +193,7 @@ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m limit --limit 
 
 * Herramientas para depuración de reglas
 - Inicio típico de iptables
-  - Borrado de tablas (en el ejmplo, solo =filter=)
+  - Borrado de tablas (en el ejemplo, solo =filter=)
   - Definición de políticas por defecto  
   #+begin_src bash
   iptables -F # borra todas las reglas y cadenas de la tabla filter
