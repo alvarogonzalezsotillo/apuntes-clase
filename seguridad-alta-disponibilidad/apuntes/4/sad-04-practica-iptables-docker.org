@@ -23,7 +23,10 @@ Está disponible la [[https://alvarogonzalezsotillo.github.io/apuntes-clase/segu
 
 * Descripción del problema
 
-Se entrega el directorio =plantilla-practica/= con el escenario ya preparado.
+#+latex: \textattachfile[mimetype=text/plain,author={plantilla-practica.tar.gz},description={plantilla-practica.tar.gz},subject={plantilla-practica.tar.gz}]{./plantilla-practica.tar.gz}{} \vspace{-2em}
+
+Se entrega el directorio [[https://alvarogonzalezsotillo.github.io/apuntes-clase/seguridad-alta-disponibilidad/apuntes/4/plantilla-practica.tar.gz
+][=plantilla-practica/=]] con el escenario ya preparado.
 
 *docker compose* crea los contenedores y redes necesarias. Cada contenedor ejecuta al inicio un fichero =setup.sh= propio.
 
